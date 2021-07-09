@@ -27,6 +27,7 @@
     "node": "^12.22.0 || ^14.17.0 || >=16.0.0"
   },
   "scripts": {
+    "prepare": "yarn build",
     "build": "rollup -c",
     "build:w": "rollup -c -w",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest"
@@ -34,6 +35,9 @@
   "files": [
     "lib"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.2.1",
     "@types/jest": "^26.0.24",
