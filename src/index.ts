@@ -1,3 +1,4 @@
-export default function esUtils(): string {
-  return 'Hello World!';
-}
+import isEmail from './string/isEmail';
+
+// String exports
+export { isEmail };
