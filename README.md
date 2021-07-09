@@ -1,6 +1,6 @@
 # @open-tech-world/es-utils
 
-> Description
+> Collection of ES Utilities.
 
 ## License
 

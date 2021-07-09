@@ -1,8 +1,8 @@
 {
   "name": "@open-tech-world/es-utils",
   "version": "0.1.0",
-  "description": "",
-  "keywords": [],
+  "description": "Collection of ES Utilities.",
+  "keywords": ["collection", "es", "utils", "utilities"],
   "author": {
     "name": "Thanga Ganapathy",
     "email": "ganapathy888@gmail.com",
