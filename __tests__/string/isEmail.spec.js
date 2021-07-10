@@ -21,5 +21,7 @@ describe('String', () => {
     expect(isEmail('User@example.js.org')).toBeFalsy();
     expect(isEmail('User@@example.js.org')).toBeFalsy();
     expect(isEmail('User@domain@example.js.org')).toBeFalsy();
+    expect(isEmail('test.email.with+symbol@domain.com')).toBeTruthy();
+    expect(isEmail('email@example@example.com')).toBeFalsy();
   });
 });

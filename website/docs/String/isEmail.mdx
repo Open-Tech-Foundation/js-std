@@ -1,0 +1,21 @@
+Checks whether a string is an email address.
+
+## Syntax
+
+```ts
+isEmail(str: string): boolean
+```
+
+## Example
+
+```ts
+isEmail('user@example.com') // true
+
+isEmail('test.email.with+symbol@example.org') // true
+
+isEmail('example.net') // false
+
+isEmail('email@example') // false
+
+isEmail('email@example@example.com') // false
+```
