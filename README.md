@@ -1,10 +1,10 @@
 # @open-tech-world/es-utils
 
-> A Collection of ES Utility Functions.
+> A Collection of ECMAScript Utility Functions.
 
 ## Documentation
 
-See the documentation here.
+Read the documentation here.
 
 ## Requirements
 

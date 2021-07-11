@@ -2438,6 +2438,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@open-tech-world/es-utils@workspace:."
   dependencies:
+    "@open-tech-world/rollup-plugin-clean": ^0.7.1
     "@rollup/plugin-typescript": ^8.2.1
     "@types/jest": ^26.0.24
     "@typescript-eslint/eslint-plugin": ^4.28.2
@@ -2452,6 +2453,17 @@ __metadata:
     typescript: ^4.3.5
   languageName: unknown
   linkType: soft
+
+"@open-tech-world/rollup-plugin-clean@npm:^0.7.1":
+  version: 0.7.1
+  resolution: "@open-tech-world/rollup-plugin-clean@npm:0.7.1"
+  dependencies:
+    del: ^6.0.0
+    globby: ^11.0.3
+    lodash.merge: ^4.6.2
+  checksum: 6801784ecadb8303e614c9ff137d115d4d54ab355cb05c06a16326989778d15ff9b0f0136dae3c4b6cc06bfd36d013bdce1a8d84226c54ca8d74834abd7c2938
+  languageName: node
+  linkType: hard
 
 "@polka/url@npm:^1.0.0-next.15":
   version: 1.0.0-next.15

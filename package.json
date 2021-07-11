@@ -1,7 +1,7 @@
 {
   "name": "@open-tech-world/es-utils",
   "version": "0.1.0",
-  "description": "A Collection of ES Utility Functions.",
+  "description": "A Collection of ECMAScript Utility Functions.",
   "keywords": [
     "collection",
     "es",
@@ -20,8 +20,9 @@
     "url": "git+https://github.com/open-tech-world/es-utils.git"
   },
   "type": "module",
+  "types": "lib/index.d.ts",
   "exports": {
-    ".": "./lib/esUtils.js"
+    ".": "./lib/index.js"
   },
   "engines": {
     "node": "^12.22.0 || ^14.17.0 || >=16.0.0"
@@ -39,6 +40,7 @@
     "access": "public"
   },
   "devDependencies": {
+    "@open-tech-world/rollup-plugin-clean": "^0.7.1",
     "@rollup/plugin-typescript": "^8.2.1",
     "@types/jest": "^26.0.24",
     "@typescript-eslint/eslint-plugin": "^4.28.2",
