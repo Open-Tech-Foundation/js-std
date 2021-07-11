@@ -5,8 +5,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 module.exports = {
   title: 'ES Utils',
   tagline: 'A Collection of ECMAScript Utility Functions.',
-  url: 'https://your-docusaurus-test-site.com',
-  baseUrl: '/',
+  url: 'https://open-tech-world.github.io',
+  baseUrl: '/es-utils/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   organizationName: 'open-tech-world', // Usually your GitHub org/user name.
