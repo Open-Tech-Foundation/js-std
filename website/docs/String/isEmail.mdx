@@ -9,13 +9,15 @@ isEmail(str: string): boolean
 ## Example
 
 ```ts
-isEmail('user@example.com') // true
+import { isEmail } from '@open-tech-world/es-utils';
 
-isEmail('test.email.with+symbol@example.org') // true
+isEmail('user@example.com'); // true
 
-isEmail('example.net') // false
+isEmail('test.email.with+symbol@example.org'); // true
 
-isEmail('email@example') // false
+isEmail('example.net'); // false
 
-isEmail('email@example@example.com') // false
+isEmail('email@example'); // false
+
+isEmail('email@example@example.com'); // false
 ```
