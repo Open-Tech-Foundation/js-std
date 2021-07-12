@@ -40,7 +40,7 @@
     "access": "public"
   },
   "devDependencies": {
-    "@open-tech-world/rollup-plugin-clean": "^0.8.0",
+    "@open-tech-world/rollup-plugin-clean": "^0.11.0",
     "@rollup/plugin-typescript": "^8.2.1",
     "@types/jest": "^26.0.24",
     "@typescript-eslint/eslint-plugin": "^4.28.2",
