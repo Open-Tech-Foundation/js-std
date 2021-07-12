@@ -1,5 +1,7 @@
 # @open-tech-world/es-utils
 
+[![Build](https://github.com/open-tech-world/es-utils/actions/workflows/build.yml/badge.svg)](https://github.com/open-tech-world/es-utils/actions/workflows/build.yml)
+
 > A Collection of ECMAScript Utility Functions.
 
 ## Documentation
