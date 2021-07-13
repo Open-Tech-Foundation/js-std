@@ -4,7 +4,8 @@
 name: Deploy to Netlify
 
 on:
-  workflow_dispatch:
+  release:
+    types: [created]
   
 jobs:
   deploy:
