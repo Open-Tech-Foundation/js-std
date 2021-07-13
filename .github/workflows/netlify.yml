@@ -19,4 +19,7 @@ jobs:
         cache: 'yarn'
     - run: yarn install
     - run: yarn workspace website build
-    - run: yarn netlify deploy --dir website/build --prod --site es-utils.netlify.app
+    - shell: bash
+      env:
+        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+      run: yarn netlify deploy --dir website/build --prod --site es-utils.netlify.app --message "Deployed by GitHub Actions"
