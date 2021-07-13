@@ -20,7 +20,8 @@
     "url": "git+https://github.com/open-tech-world/es-utils.git"
   },
   "type": "module",
-  "types": "lib/index.d.ts",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
   "exports": {
     ".": "./lib/index.js"
   },
