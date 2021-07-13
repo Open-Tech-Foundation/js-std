@@ -1,12 +1,12 @@
 # @open-tech-world/es-utils
 
-[![Build](https://github.com/open-tech-world/es-utils/actions/workflows/build.yml/badge.svg)](https://github.com/open-tech-world/es-utils/actions/workflows/build.yml)
+[![Build](https://github.com/open-tech-world/es-utils/actions/workflows/build.yml/badge.svg)](https://github.com/open-tech-world/es-utils/actions/workflows/build.yml) [![Netlify Status](https://api.netlify.com/api/v1/badges/46461c00-ef9b-4e68-a60e-390f8d030ed4/deploy-status)](https://app.netlify.com/sites/es-utils/deploys)
 
 > A Collection of ECMAScript Utility Functions.
 
 ## Documentation
 
-Read the documentation here.
+[Read the documentation here.](https://es-utils.netlify.app/)
 
 ## Requirements
 
@@ -35,7 +35,7 @@ import { utilityFn } from '@open-tech-world/es-utils';
 utilityFn(); 
 ```
 
-Read the documentation for the complete list of available utility functions.
+Read the [documentation](https://es-utils.netlify.app/) for the complete list of available utility functions.
 
 ## License
 
