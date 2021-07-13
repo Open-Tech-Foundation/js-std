@@ -4,13 +4,10 @@
 name: Deploy to Netlify
 
 on:
-  push:
-    branches: [ main ]
-    
   workflow_dispatch:
   
 jobs:
-  build:
+  deploy:
 
     runs-on: ubuntu-latest
 
