@@ -6,7 +6,7 @@ module.exports = {
   title: 'ES Utils',
   tagline: 'A Collection of ECMAScript Utility Functions.',
   url: 'https://open-tech-world.github.io',
-  baseUrl: '/es-utils/',
+  baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   organizationName: 'open-tech-world', // Usually your GitHub org/user name.
