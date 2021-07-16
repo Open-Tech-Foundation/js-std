@@ -1,0 +1,27 @@
+> Replaces a character or string at index position.
+
+## Syntax
+
+```ts
+replaceAt(str: string, index: number, replaceStr?: string): string;
+```
+
+## Example
+
+```ts
+import { replaceAt } from '@open-tech-world/es-utils';
+
+replaceAt() // It throws an error;
+replaceAt('')) // ''
+replaceAt('', 0)) // ''
+replaceAt('', 1, 'abc')) // ''
+replaceAt('a')) // 'a'
+replaceAt('abc')) // 'abc'
+replaceAt('abc', 1)) // 'ac'
+replaceAt('abc', 5)) // 'abc'
+replaceAt('abc', 1, '')) // 'ac'
+replaceAt('abc', 0, 'z')) // 'zbc'
+replaceAt('iphone', 1, 'P')) // 'iPhone'
+replaceAt('I__JS', 1, '❤️')) // 'I❤️JS'
+replaceAt('I HATE U', 2, 'LOVE')) // 'I LOVE U'
+```
