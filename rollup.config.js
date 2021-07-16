@@ -6,6 +6,7 @@ export default {
   output: {
     dir: 'lib',
     format: 'esm',
+    preserveModules: true,
   },
   plugins: [clean('lib/**'), typescript({ tsconfig: './tsconfig.json' })],
   external: [],
