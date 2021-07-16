@@ -1,6 +1,6 @@
 # @open-tech-world/es-utils
 
-[![Build](https://github.com/open-tech-world/es-utils/actions/workflows/build.yml/badge.svg)](https://github.com/open-tech-world/es-utils/actions/workflows/build.yml) [![Netlify Status](https://api.netlify.com/api/v1/badges/46461c00-ef9b-4e68-a60e-390f8d030ed4/deploy-status)](https://app.netlify.com/sites/es-utils/deploys)
+[![Build](https://github.com/open-tech-world/es-utils/actions/workflows/build.yml/badge.svg)](https://github.com/open-tech-world/es-utils/actions/workflows/build.yml) [![Netlify Status](https://api.netlify.com/api/v1/badges/46461c00-ef9b-4e68-a60e-390f8d030ed4/deploy-status)](https://app.netlify.com/sites/es-utils/deploys) [![CodeFactor](https://www.codefactor.io/repository/github/open-tech-world/es-utils/badge/main)](https://www.codefactor.io/repository/github/open-tech-world/es-utils/overview/main)
 
 > A Collection of ECMAScript Utility Functions.
 
