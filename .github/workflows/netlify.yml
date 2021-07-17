@@ -24,4 +24,4 @@ jobs:
     - shell: bash
       env:
         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-      run: yarn netlify deploy --dir website/build --prod --site es-utils.netlify.app --message "Deployed by GitHub Actions"
+      run: npx --yes --package=netlify-cli netlify deploy --dir website/build --prod --site es-utils.netlify.app --message "Deployed by GitHub Actions"
