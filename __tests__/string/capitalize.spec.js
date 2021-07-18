@@ -10,7 +10,5 @@ describe('String', () => {
     expect(capitalize('the quick brown fox')).toBe('The quick brown fox');
     expect(capitalize('the Quick Brown FOX')).toBe('The quick brown fox');
     expect(capitalize('1apple')).toBe('1apple');
-    expect(capitalize('$1')).toBe('$1');
-    expect(capitalize('1 usd')).toBe('1 usd');
   });
 });
