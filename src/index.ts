@@ -1,3 +1,4 @@
 export { default as isEmail } from './string/isEmail';
 export { default as replaceAt } from './string/replaceAt';
 export { default as insertAt } from './string/insertAt';
+export { default as capitalize } from './string/capitalize';
