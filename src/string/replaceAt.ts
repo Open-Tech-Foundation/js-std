@@ -1,8 +1,4 @@
-export default function replaceAt(
-  str: string,
-  index: number,
-  replaceStr = ''
-): string {
+function replaceAt(str: string, index: number, replaceStr = ''): string {
   const rStrLen = index + (replaceStr.length === 0 ? 1 : replaceStr.length);
 
   if (str.length === 0) {
@@ -17,3 +13,5 @@ export default function replaceAt(
 
   return result;
 }
+
+export default replaceAt;
