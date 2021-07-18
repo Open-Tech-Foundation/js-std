@@ -1,0 +1,29 @@
+> It converts a string to [Pascal case](https://en.wikipedia.org/wiki/Camel_case).
+
+## Syntax
+
+```ts
+pascalCase(str: string): string;
+```
+
+## Example
+
+```ts
+import { pascalCase } from '@open-tech-world/es-utils';
+
+pascalCase() // It throws an error;
+
+pascalCase('na cl'); // 'NaCl'
+
+pascalCase('Foo-Bar'); // 'FooBar'
+
+pascalCase('fooBAR'); // 'FooBar'
+
+pascalCase('react_component'); // 'ReactComponent'
+
+pascalCase('--foo.bar'); // 'FooBar'
+
+pascalCase('__foo__--bar'); // 'FooBar'
+
+pascalCase('cinema Scope'); // 'CinemaScope'
+```
