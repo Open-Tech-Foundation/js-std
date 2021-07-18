@@ -2,6 +2,7 @@ import { camelCase } from '../../lib/index.js';
 
 describe('String', () => {
   test('camelCase', () => {
+    expect(() => camelCase()).toThrow();
     expect(camelCase('a')).toMatch('a');
     expect(camelCase('A')).toMatch('a');
     expect(camelCase('aB')).toMatch('aB');
