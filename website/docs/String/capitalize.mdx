@@ -1,0 +1,29 @@
+> It [capitalizes](https://en.wikipedia.org/wiki/Capitalization) a string.
+
+## Syntax
+
+```ts
+capitalize(str: string): string;
+```
+
+## Example
+
+```ts
+import { capitalize } from '@open-tech-world/es-utils';
+
+capitalize() // It throws an error;
+
+capitalize('') // ''
+
+capitalize('a') // 'A'
+
+capitalize('ab') // 'Ab'
+
+capitalize('FOO') // 'Foo'
+
+capitalize('the quick brown fox') // 'The quick brown fox'
+
+capitalize('the Quick Brown FOX') // 'The quick brown fox'
+
+capitalize('1apple') // '1apple'
+```
