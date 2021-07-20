@@ -33,12 +33,12 @@ yarn add @open-tech-world/es-utils
 ```ts
 import { utilityFn } from '@open-tech-world/es-utils';
 
-// Here, the utilityFn is a placeholder for actual utility function name.
+// ⚠️ Here, the utilityFn is a placeholder for actual utility function name.
 utilityFn();
 ```
 
-Read the [documentation](https://es-utils.netlify.app/) for the complete list of available utility functions.
+Read the [documentation](https://es-utils.netlify.app/) for complete list of available utility functions.
 
 ## License
 
-Copyright (c) 2021, Thanga Ganapathy (MIT License).
+Copyright (c) 2021, Thanga Ganapathy ([MIT License](./LICENSE)).
