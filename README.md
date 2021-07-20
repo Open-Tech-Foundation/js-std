@@ -45,4 +45,4 @@ Read the [documentation](https://es-utils.netlify.app/) for complete list of ava
 
 ## License
 
-Copyright (c) 2021, Thanga Ganapathy ([MIT License](./LICENSE)).
+Copyright (c) [Thanga Ganapathy](https://github.com/Thanga-Ganapathy) ([MIT License](./LICENSE)).
