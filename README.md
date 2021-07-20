@@ -1,6 +1,10 @@
+<div align="center">
+
 # @open-tech-world/es-utils
 
-[![Build](https://github.com/open-tech-world/es-utils/actions/workflows/build.yml/badge.svg)](https://github.com/open-tech-world/es-utils/actions/workflows/build.yml) [![Netlify Status](https://api.netlify.com/api/v1/badges/46461c00-ef9b-4e68-a60e-390f8d030ed4/deploy-status)](https://app.netlify.com/sites/es-utils/deploys) [![CodeFactor](https://www.codefactor.io/repository/github/open-tech-world/es-utils/badge/main)](https://www.codefactor.io/repository/github/open-tech-world/es-utils/overview/main)
+[![Build](https://github.com/open-tech-world/es-utils/actions/workflows/build.yml/badge.svg)](https://github.com/open-tech-world/es-utils/actions/workflows/build.yml) [![Netlify Status](https://api.netlify.com/api/v1/badges/46461c00-ef9b-4e68-a60e-390f8d030ed4/deploy-status)](https://app.netlify.com/sites/es-utils/deploys) [![CodeFactor](https://www.codefactor.io/repository/github/open-tech-world/es-utils/badge/main)](https://www.codefactor.io/repository/github/open-tech-world/es-utils/overview/main) ![npm (scoped)](https://img.shields.io/npm/v/@open-tech-world/es-utils?color=blue)
+
+</div>
 
 > A Collection of ECMAScript Utility Functions.
 
