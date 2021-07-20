@@ -6,7 +6,10 @@
     "collection",
     "es",
     "utils",
-    "utilities"
+    "utilities",
+    "string",
+    "array",
+    "object"
   ],
   "author": {
     "name": "Thanga Ganapathy",
