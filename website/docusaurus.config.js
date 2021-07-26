@@ -30,7 +30,7 @@ module.exports = {
     },
     footer: {
       style: 'dark',
-      copyright: `Copyright © ${new Date().getFullYear()} Contributors of <a href="https://github.com/open-tech-world/es-utils">open-tech-world/es-utils</a>. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Contributors of <a href="https://github.com/open-tech-world/es-utils">open-tech-world/es-utils</a>. Built with <a href="https://docusaurus.io/">Docusaurus</a>.`,
     },
     prism: {
       theme: lightCodeTheme,
