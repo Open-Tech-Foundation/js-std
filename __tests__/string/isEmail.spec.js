@@ -1,4 +1,4 @@
-import { isEmail } from '../../lib/index.js';
+import { isEmail } from '../../lib/index.esm.js';
 
 describe('String', () => {
   test('isEmail', () => {

@@ -1,4 +1,4 @@
-import { capitalize } from '../../lib/index.js';
+import { capitalize } from '../../lib/index.esm.js';
 
 describe('String', () => {
   test('capitalize', () => {

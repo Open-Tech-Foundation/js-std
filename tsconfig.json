@@ -1,4 +1,5 @@
 {
+  "exclude": ["lib"],
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
 
@@ -12,6 +13,7 @@
     // "jsx": "preserve",                           /* Specify JSX code generation: 'preserve', 'react-native', 'react', 'react-jsx' or 'react-jsxdev'. */
     // "declarationMap": true,                      /* Generates a sourcemap for each corresponding '.d.ts' file. */
     "declaration": true,                      /* Generates a '.d.ts' file. */
+    "declarationDir": ".",
     // "sourceMap": true,                           /* Generates corresponding '.map' file. */
     // "outFile": "./",                             /* Concatenate and emit output to single file. */
     "outDir": "./lib",                              /* Redirect output structure to the directory. */

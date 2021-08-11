@@ -1,4 +1,4 @@
-import { insertAt } from '../../lib/index.js';
+import { insertAt } from '../../lib/index.esm.js';
 
 describe('String', () => {
   test('insertAt', () => {

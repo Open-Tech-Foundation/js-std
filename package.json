@@ -23,11 +23,11 @@
     "url": "git+https://github.com/open-tech-world/es-utils.git"
   },
   "type": "module",
-  "main": "./lib/index.js",
-  "types": "./lib/index.d.ts",
   "exports": {
-    ".": "./lib/index.js"
+    "import": "./lib/index.esm.js",
+    "require": "./lib/index.cjs.js"
   },
+  "typings": "./lib/index.d.ts",
   "sideEffects": false,
   "engines": {
     "node": "^12.22.0 || ^14.17.0 || >=16.0.0"
