@@ -13,7 +13,6 @@ export default {
       format: 'esm',
     },
   ],
-  // plugins: [typescript({ tsconfig: './tsconfig.json' })],
   plugins: [clean('lib/*'), typescript({ tsconfig: './tsconfig.json' })],
   external: [],
 };
