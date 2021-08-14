@@ -1,22 +1,9 @@
 {
   "scripts": {
     "build": "yarn workspace @open-tech-world/es-utils build",
-    "test": "yarn workspace @open-tech-world/es-utils test"
-  },
-  "devDependencies": {
-    "@open-tech-world/rollup-plugin-clean": "^0.13.0",
-    "@rollup/plugin-typescript": "^8.2.5",
-    "@types/jest": "^27.0.1",
-    "@typescript-eslint/eslint-plugin": "^4.29.1",
-    "@typescript-eslint/parser": "^4.29.1",
-    "eslint": "^7.32.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-jest": "^24.4.0",
-    "eslint-plugin-prettier": "^3.4.0",
-    "jest": "^27.0.6",
-    "prettier": "^2.3.2",
-    "rollup": "^2.56.2",
-    "typescript": "^4.3.5"
+    "test": "yarn workspace @open-tech-world/es-utils test",
+    "website": "yarn workspace website start",
+    "build:website": "yarn workspace website build"
   },
   "workspaces": [
     "package/es-utils",
