@@ -2328,19 +2328,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jest/types@npm:^26.6.2":
-  version: 26.6.2
-  resolution: "@jest/types@npm:26.6.2"
-  dependencies:
-    "@types/istanbul-lib-coverage": ^2.0.0
-    "@types/istanbul-reports": ^3.0.0
-    "@types/node": "*"
-    "@types/yargs": ^15.0.0
-    chalk: ^4.0.0
-  checksum: a0bd3d2f22f26ddb23f41fddf6e6a30bf4fab2ce79ec1cb6ce6fdfaf90a72e00f4c71da91ec61e13db3b10c41de22cf49d07c57ff2b59171d64b29f909c1d8d6
-  languageName: node
-  linkType: hard
-
 "@jest/types@npm:^27.0.6":
   version: 27.0.6
   resolution: "@jest/types@npm:27.0.6"
@@ -2434,34 +2421,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@open-tech-world/es-cli-styles@npm:^0.2.0":
-  version: 0.2.0
-  resolution: "@open-tech-world/es-cli-styles@npm:0.2.0"
-  checksum: 1cd28720a520f279dc8c78e8dce4cd474d52ad962892f96a193d30605a7fd7844d093093132ec0f969521d50eb0f0feab4de6e6ee852cb03cbd18c12170a9092
+"@open-tech-world/es-cli-styles@npm:^0.3.0":
+  version: 0.3.0
+  resolution: "@open-tech-world/es-cli-styles@npm:0.3.0"
+  checksum: 7695bb397c77809ecd9fa4d5d4f1f9c658c461f6ac4514ce9e4e2d4cf0755feee6db58a6c79dde720e96fbd85126530bd2e6ba86bc5b65a4a5f442276c2f9ac2
   languageName: node
   linkType: hard
 
-"@open-tech-world/es-glob@npm:^0.7.0":
-  version: 0.7.0
-  resolution: "@open-tech-world/es-glob@npm:0.7.0"
-  checksum: ac3dcef46492e563c7ff4982290df2cad3a9cfcbba170092ec5a6cfbff1b865399aa8acea286d300e6c5435015fecdf064632c98cf0d4f7e88ccd8675904a4f9
+"@open-tech-world/es-glob@npm:^0.8.1":
+  version: 0.8.1
+  resolution: "@open-tech-world/es-glob@npm:0.8.1"
+  checksum: 7d98eadb8914e1270f438e9669a87e30e8ecb67d2bf8341131472b01bbe9e13b0c6be1896e5f043bfa61a33e14fedbf2cd4b9b2aff546b19a195e0feba0e0628
   languageName: node
   linkType: hard
 
-"@open-tech-world/es-utils@npm:^0.6.0":
-  version: 0.6.0
-  resolution: "@open-tech-world/es-utils@npm:0.6.0"
-  checksum: a51ebfc5ade97be2b434d458951dd529dd9ba1c468750c247f2ef698706d9ff382d659a613424d0aeefe05ab97c39db10a93c77e3912c4978411e8a2d4d28fcf
-  languageName: node
-  linkType: hard
-
-"@open-tech-world/es-utils@workspace:.":
+"@open-tech-world/es-utils@^0.8.0, @open-tech-world/es-utils@workspace:.":
   version: 0.0.0-use.local
   resolution: "@open-tech-world/es-utils@workspace:."
   dependencies:
-    "@open-tech-world/rollup-plugin-clean": ^0.12.1
+    "@open-tech-world/rollup-plugin-clean": ^0.13.0
     "@rollup/plugin-typescript": ^8.2.5
-    "@types/jest": ^27.0.0
+    "@types/jest": ^27.0.1
     "@typescript-eslint/eslint-plugin": ^4.29.1
     "@typescript-eslint/parser": ^4.29.1
     eslint: ^7.32.0
@@ -2475,32 +2455,32 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@open-tech-world/node-glob@npm:^0.3.0":
-  version: 0.3.0
-  resolution: "@open-tech-world/node-glob@npm:0.3.0"
+"@open-tech-world/node-glob@npm:^0.4.0":
+  version: 0.4.0
+  resolution: "@open-tech-world/node-glob@npm:0.4.0"
   dependencies:
-    "@open-tech-world/es-glob": ^0.7.0
-    "@open-tech-world/es-utils": ^0.6.0
-  checksum: c6e187a4c62416cec46d5a81ae2885b0e8f3b559d66a56dbc295b96f2439cd46f7ca75d9206dd6962c22e8287040044e1a5ecba2c585544efff6b71b0492b2e2
+    "@open-tech-world/es-glob": ^0.8.1
+    "@open-tech-world/es-utils": ^0.8.0
+  checksum: 62072d8cbc7ef29d3146aa1ad7cf43c9ba45e84277dd3870b874465f962c9d21d829ce85bd0e12ce9a77ff8dbad00d951e5291e73794bd3f688ff7c4b66c3ae7
   languageName: node
   linkType: hard
 
-"@open-tech-world/node-rm@npm:^0.2.0":
-  version: 0.2.0
-  resolution: "@open-tech-world/node-rm@npm:0.2.0"
+"@open-tech-world/node-rm@npm:^0.5.0":
+  version: 0.5.0
+  resolution: "@open-tech-world/node-rm@npm:0.5.0"
   dependencies:
-    "@open-tech-world/es-cli-styles": ^0.2.0
-    "@open-tech-world/node-glob": ^0.3.0
-  checksum: cb14fc3665aa5ad2185b030c6b0601fb501b02246504d3e22749f422a8217f392a70236f7359cc8e44ed7ce3f7ce43a63fb6353ffb25aaa7839f98d4d1909c30
+    "@open-tech-world/es-cli-styles": ^0.3.0
+    "@open-tech-world/node-glob": ^0.4.0
+  checksum: eb71c16af1a2161d6a112831942721b8933e55d27fe2d36a8bc221189099abfa3480c7b9a579b87b1e141a60475225e8102fb39dafab28fa152537e2bd816099
   languageName: node
   linkType: hard
 
-"@open-tech-world/rollup-plugin-clean@npm:^0.12.1":
-  version: 0.12.1
-  resolution: "@open-tech-world/rollup-plugin-clean@npm:0.12.1"
+"@open-tech-world/rollup-plugin-clean@npm:^0.13.0":
+  version: 0.13.0
+  resolution: "@open-tech-world/rollup-plugin-clean@npm:0.13.0"
   dependencies:
-    "@open-tech-world/node-rm": ^0.2.0
-  checksum: 11cb7737eea15c5d8a463c7e89601755e8c87c57491a5275f93a43238ae6da7e09b08a3f9565eb36c5f74fbf87b1220f53c2f7fb416c3b29f9fb500268774e0a
+    "@open-tech-world/node-rm": ^0.5.0
+  checksum: 813a4bf2d127ac04fe8f8f69707a94cf2faf679651d5f986d2779d6ba14513ba8c2d0253d18c05b577dce151392d24342146492eba92a9c7d13806036a820efa
   languageName: node
   linkType: hard
 
@@ -2895,13 +2875,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jest@npm:^27.0.0":
-  version: 27.0.0
-  resolution: "@types/jest@npm:27.0.0"
+"@types/jest@npm:^27.0.1":
+  version: 27.0.1
+  resolution: "@types/jest@npm:27.0.1"
   dependencies:
-    jest-diff: ^26.0.0
-    pretty-format: ^26.0.0
-  checksum: bb894a1fcc0e244ecefdf2b43ed786c0354c416d00e433155bf68569d0d8a45b012b008fbe6673890903b785076b9a34f128c7095e1b25f4481f3d2a76c7495f
+    jest-diff: ^27.0.0
+    pretty-format: ^27.0.0
+  checksum: 972aaae341b83eb608970c93295282f1f9edc056dc8123635456cbaced822702673118d60279c7b889300e7c9a0726c3674d701115915e2e1967db09542389c2
   languageName: node
   linkType: hard
 
@@ -3015,15 +2995,6 @@ __metadata:
   version: 20.2.1
   resolution: "@types/yargs-parser@npm:20.2.1"
   checksum: 1d039e64494a7a61ddd278349a3dc60b19f99ff0517425696e796f794e4252452b9d62178e69755ad03f439f9dc0c8c3d7b3a1201b3a24e134bac1a09fa11eaa
-  languageName: node
-  linkType: hard
-
-"@types/yargs@npm:^15.0.0":
-  version: 15.0.14
-  resolution: "@types/yargs@npm:15.0.14"
-  dependencies:
-    "@types/yargs-parser": "*"
-  checksum: 8e358aeb8f0c3758e59e2b8fcfdee5627ab2fe3d92f50f380503d966c7f33287be3322155516a50d27727fde1ad3878f48f60cd6648439126d4b0bbb1a1153ed
   languageName: node
   linkType: hard
 
@@ -5583,13 +5554,6 @@ __metadata:
     detect: ./bin/detect-port
     detect-port: ./bin/detect-port
   checksum: 93c40febe714f56711d1fedc2b7a9cc4cbaa0fcddec0509876c46b9dd6099ed6bfd6662a4f35e5fa0301660f48ed516829253ab0fc90b9e79b823dd77786b379
-  languageName: node
-  linkType: hard
-
-"diff-sequences@npm:^26.6.2":
-  version: 26.6.2
-  resolution: "diff-sequences@npm:26.6.2"
-  checksum: 79af871776ef149a7ff3345d6b1bf37fe6e81f68632aa5542787851f6f60fba19b0be22fdd1e06046f56ae7382763ccfe94a982c39ee72bd107aef435ecbc0cf
   languageName: node
   linkType: hard
 
@@ -8551,19 +8515,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"jest-diff@npm:^26.0.0":
-  version: 26.6.2
-  resolution: "jest-diff@npm:26.6.2"
-  dependencies:
-    chalk: ^4.0.0
-    diff-sequences: ^26.6.2
-    jest-get-type: ^26.3.0
-    pretty-format: ^26.6.2
-  checksum: d00d297f31e1ac0252127089892432caa7a11c69bde29cf3bb6c7a839c8afdb95cf1fd401f9df16a4422745da2e6a5d94b428b30666a2540c38e1c5699915c2d
-  languageName: node
-  linkType: hard
-
-"jest-diff@npm:^27.0.6":
+"jest-diff@npm:^27.0.0, jest-diff@npm:^27.0.6":
   version: 27.0.6
   resolution: "jest-diff@npm:27.0.6"
   dependencies:
@@ -8623,13 +8575,6 @@ fsevents@^1.2.7:
     jest-mock: ^27.0.6
     jest-util: ^27.0.6
   checksum: 910ced755557c4fbc134cf687d9c1571100dfb5d7e9691cdaa76dfcccd2bc97e62cec58e271e600757db94dc41612b3d97700fc3fd2439a298ce5f66e32da215
-  languageName: node
-  linkType: hard
-
-"jest-get-type@npm:^26.3.0":
-  version: 26.3.0
-  resolution: "jest-get-type@npm:26.3.0"
-  checksum: 1cc6465ae4f5e880be22ba52fd270fa64c21994915f81b41f8f7553a7957dd8e077cc8d03035de9412e2d739f8bad6a032ebb5dab5805692a5fb9e20dd4ea666
   languageName: node
   linkType: hard
 
@@ -11322,19 +11267,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"pretty-format@npm:^26.0.0, pretty-format@npm:^26.6.2":
-  version: 26.6.2
-  resolution: "pretty-format@npm:26.6.2"
-  dependencies:
-    "@jest/types": ^26.6.2
-    ansi-regex: ^5.0.0
-    ansi-styles: ^4.0.0
-    react-is: ^17.0.1
-  checksum: e3b808404d7e1519f0df1aa1f25cee0054ab475775c6b2b8c5568ff23194a92d54bf93274139b6f584ca70fd773be4eaa754b0e03f12bb0a8d1426b07f079976
-  languageName: node
-  linkType: hard
-
-"pretty-format@npm:^27.0.6":
+"pretty-format@npm:^27.0.0, pretty-format@npm:^27.0.6":
   version: 27.0.6
   resolution: "pretty-format@npm:27.0.6"
   dependencies:
