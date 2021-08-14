@@ -1,48 +1,7 @@
 {
-  "name": "@open-tech-world/es-utils",
-  "version": "0.8.0",
-  "description": "A Collection of ECMAScript Utility Functions.",
-  "keywords": [
-    "collection",
-    "es",
-    "utils",
-    "utilities",
-    "string",
-    "array",
-    "object"
-  ],
-  "author": {
-    "name": "Thanga Ganapathy",
-    "email": "ganapathy888@gmail.com",
-    "url": "https://thanga-ganapathy.github.io"
-  },
-  "license": "MIT",
-  "homepage": "https://es-utils.netlify.app",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/open-tech-world/es-utils.git"
-  },
-  "type": "module",
-  "main": "./lib/index.cjs",
-  "exports": {
-    "import": "./lib/index.esm.js",
-    "require": "./lib/index.cjs"
-  },
-  "typings": "./lib/index.d.ts",
-  "sideEffects": false,
-  "engines": {
-    "node": "^12.22.0 || ^14.17.0 || >=16.0.0"
-  },
   "scripts": {
-    "build": "rollup -c",
-    "build:w": "rollup -c -w",
-    "test": "NODE_OPTIONS=--experimental-vm-modules jest"
-  },
-  "files": [
-    "lib"
-  ],
-  "publishConfig": {
-    "access": "public"
+    "build": "yarn workspace @open-tech-world/es-utils build",
+    "test": "yarn workspace @open-tech-world/es-utils test"
   },
   "devDependencies": {
     "@open-tech-world/rollup-plugin-clean": "^0.13.0",
@@ -60,6 +19,7 @@
     "typescript": "^4.3.5"
   },
   "workspaces": [
+    "package/es-utils",
     "website"
   ],
   "packageManager": "yarn@3.0.1"

@@ -8,3 +8,6 @@ export { default as pascalCase } from './string/pascalCase';
 
 // Array
 export { default as arrayDiff } from './array/arrayDiff';
+
+// Timers
+export { default as sleep } from './timers/sleep';

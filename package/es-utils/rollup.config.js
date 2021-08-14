@@ -1,8 +1,8 @@
 import typescript from '@rollup/plugin-typescript';
-// import clean from '@open-tech-world/rollup-plugin-clean';
+import { clean } from '@open-tech-world/rollup-plugin-clean';
 
 export default {
-  input: 'src/index.ts',
+  input: './src/index.ts',
   output: [
     {
       file: './lib/index.cjs',
@@ -13,7 +13,7 @@ export default {
       format: 'esm',
     },
   ],
-  // plugins: [clean('lib/**'), typescript({ tsconfig: './tsconfig.json' })],
-  plugins: [typescript({ tsconfig: './tsconfig.json' })],
+  // plugins: [typescript({ tsconfig: './tsconfig.json' })],
+  plugins: [clean('lib/*'), typescript({ tsconfig: './tsconfig.json' })],
   external: [],
 };
