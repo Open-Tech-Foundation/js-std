@@ -2438,7 +2438,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@open-tech-world/es-utils@^0.8.0, @open-tech-world/es-utils@workspace:package/es-utils":
+"@open-tech-world/es-utils@npm:^0.8.0":
+  version: 0.8.0
+  resolution: "@open-tech-world/es-utils@npm:0.8.0"
+  checksum: 3954f9653ff1777ae8e5170be6512113c957f988fb41182164f1ed59097cdc3f919fa4546eb2fa8d0ce89e27baa0abd8d0301190b27c99f9f70fa1a5db862e34
+  languageName: node
+  linkType: hard
+
+"@open-tech-world/es-utils@workspace:package/es-utils":
   version: 0.0.0-use.local
   resolution: "@open-tech-world/es-utils@workspace:package/es-utils"
   dependencies:
