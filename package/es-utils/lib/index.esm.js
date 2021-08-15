@@ -95,4 +95,18 @@ async function sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-export { arrayDiff, camelCase, capitalize, insertAt, isEmail, pascalCase, replaceAt, sleep };
+function percentage(value, total, round) {
+    if (round) {
+        return Math.floor((value / total) * 100);
+    }
+    return (value / total) * 100;
+}
+
+function percentageOf(percentage, total, round) {
+    if (round) {
+        return Math.floor((percentage / 100) * total);
+    }
+    return (percentage / 100) * total;
+}
+
+export { arrayDiff, camelCase, capitalize, insertAt, isEmail, pascalCase, percentage, percentageOf, replaceAt, sleep };

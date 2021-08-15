@@ -6,3 +6,5 @@ export { default as camelCase } from './string/camelCase';
 export { default as pascalCase } from './string/pascalCase';
 export { default as arrayDiff } from './array/arrayDiff';
 export { default as sleep } from './timers/sleep';
+export { default as percentage } from './maths/percentage';
+export { default as percentageOf } from './maths/percentageOf';

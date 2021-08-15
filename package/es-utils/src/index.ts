@@ -11,3 +11,7 @@ export { default as arrayDiff } from './array/arrayDiff';
 
 // Timers
 export { default as sleep } from './timers/sleep';
+
+// Maths
+export { default as percentage } from './maths/percentage';
+export { default as percentageOf } from './maths/percentageOf';
