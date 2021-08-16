@@ -1,13 +1,13 @@
 function percentageOf(
   percentage: number,
-  total: number,
-  round?: boolean
+  num: number,
+  floor?: boolean
 ): number {
-  if (round) {
-    return Math.floor((percentage / 100) * total);
+  if (floor) {
+    return Math.floor((percentage / 100) * num);
   }
 
-  return (percentage / 100) * total;
+  return (percentage / 100) * num;
 }
 
 export default percentageOf;

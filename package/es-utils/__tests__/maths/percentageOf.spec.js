@@ -13,6 +13,8 @@ describe('Maths', () => {
     expect(percentageOf(5, 100, true)).toBe(5);
     expect(percentageOf(5, 25, true)).toBe(1);
     expect(percentageOf(0.5, 10)).toBe(0.05);
+    expect(percentageOf(17.5, 10)).toBe(1.75);
+    expect(percentageOf(17.5, 10, true)).toBe(1);
     expect(percentageOf(10, 80)).toBe(8);
     expect(percentageOf(50, 900)).toBe(450);
   });

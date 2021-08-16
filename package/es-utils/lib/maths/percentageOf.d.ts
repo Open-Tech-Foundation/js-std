@@ -1,2 +1,2 @@
-declare function percentageOf(percentage: number, total: number, round?: boolean): number;
+declare function percentageOf(percentage: number, num: number, floor?: boolean): number;
 export default percentageOf;

@@ -1,5 +1,5 @@
-function percentage(value: number, total: number, round?: boolean): number {
-  if (round) {
+function percentage(value: number, total: number, floor?: boolean): number {
+  if (floor) {
     return Math.floor((value / total) * 100);
   }
 

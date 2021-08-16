@@ -99,18 +99,18 @@ async function sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-function percentage(value, total, round) {
-    if (round) {
+function percentage(value, total, floor) {
+    if (floor) {
         return Math.floor((value / total) * 100);
     }
     return (value / total) * 100;
 }
 
-function percentageOf(percentage, total, round) {
-    if (round) {
-        return Math.floor((percentage / 100) * total);
+function percentageOf(percentage, num, floor) {
+    if (floor) {
+        return Math.floor((percentage / 100) * num);
     }
-    return (percentage / 100) * total;
+    return (percentage / 100) * num;
 }
 
 exports.arrayDiff = arrayDiff;
