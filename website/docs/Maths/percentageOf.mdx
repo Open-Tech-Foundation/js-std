@@ -1,0 +1,41 @@
+> Calculates percentage of a number with optional floor values.
+
+## Syntax
+
+```ts
+percentageOf(percentage: number, num: number, floor?: boolean): number
+```
+
+## Examples
+
+```ts
+import { percentageOf } from '@open-tech-world/es-utils';
+
+percentageOf(); // NaN
+
+percentageOf(0); // NaN
+
+percentageOf(undefined, 0); // NaN
+
+percentageOf(0, 0); // 0
+
+percentageOf(1, 0); // 0
+
+percentageOf(1, 1); // 0.01
+
+percentageOf(1, 1, true); // 0
+
+percentageOf(5, 100, true); // 5
+
+percentageOf(5, 25, true); // 1
+
+percentageOf(0.5, 10); // 0.05
+
+percentageOf(10, 80); // 8
+
+percentageOf(50, 900); // 450
+
+percentageOf(17.5, 10); // 1.75
+
+percentageOf(17.5, 10, true); // 1
+```
