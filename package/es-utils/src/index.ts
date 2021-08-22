@@ -18,3 +18,4 @@ export { default as percentageOf } from './maths/percentageOf';
 
 // Types
 export { default as isNumber } from './types/isNumber';
+export { default as inferType } from './types/inferType';

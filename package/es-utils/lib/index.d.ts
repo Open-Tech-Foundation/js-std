@@ -9,3 +9,4 @@ export { default as sleep } from './timers/sleep';
 export { default as percentage } from './maths/percentage';
 export { default as percentageOf } from './maths/percentageOf';
 export { default as isNumber } from './types/isNumber';
+export { default as inferType } from './types/inferType';

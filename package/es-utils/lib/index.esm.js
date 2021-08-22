@@ -140,4 +140,27 @@ function isNumber(value) {
     return false;
 }
 
-export { arrayDiff, camelCase, capitalize, insertAt, isEmail, isNumber, pascalCase, percentage, percentageOf, replaceAt, sleep };
+function inferType(str) {
+    if (typeof str === 'string') {
+        if (str === '') {
+            return 'string';
+        }
+        if (str === 'undefined' || str === 'Undefined') {
+            return 'undefined';
+        }
+        if (str === 'null' || str === 'Null' || str === 'NULL') {
+            return 'null';
+        }
+        const booleans = ['true', 'True', 'TRUE', 'false', 'False', 'FALSE'];
+        if (booleans.includes(str)) {
+            return 'boolean';
+        }
+        if (isNumber(str)) {
+            return 'number';
+        }
+        return 'string';
+    }
+    return 'unknown';
+}
+
+export { arrayDiff, camelCase, capitalize, inferType, insertAt, isEmail, isNumber, pascalCase, percentage, percentageOf, replaceAt, sleep };
