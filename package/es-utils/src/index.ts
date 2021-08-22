@@ -15,3 +15,6 @@ export { default as sleep } from './timers/sleep';
 // Maths
 export { default as percentage } from './maths/percentage';
 export { default as percentageOf } from './maths/percentageOf';
+
+// Types
+export { default as isNumber } from './types/isNumber';

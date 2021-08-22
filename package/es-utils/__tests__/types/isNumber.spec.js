@@ -1,0 +1,42 @@
+import { isNumber } from '../../lib/index.esm.js';
+
+describe('String', () => {
+  test('isNumber', () => {
+    expect(isNumber()).toBeFalsy();
+    expect(isNumber(undefined)).toBeFalsy();
+    expect(isNumber(null)).toBeFalsy();
+    expect(isNumber(true)).toBeFalsy();
+    expect(isNumber(false)).toBeFalsy();
+    expect(isNumber(1n)).toBeFalsy();
+    expect(isNumber('')).toBeFalsy();
+    expect(isNumber(' ')).toBeFalsy();
+    expect(isNumber('a')).toBeFalsy();
+    expect(isNumber('abc')).toBeFalsy();
+    expect(isNumber([])).toBeFalsy();
+    expect(isNumber([1, 2, 3])).toBeFalsy();
+    expect(isNumber({})).toBeFalsy();
+    expect(isNumber({ a: 55 })).toBeFalsy();
+    expect(isNumber(Symbol(1))).toBeFalsy();
+    expect(isNumber(1)).toBeTruthy();
+    expect(isNumber(10)).toBeTruthy();
+    expect(isNumber(600.75)).toBeTruthy();
+    expect(isNumber(Math.PI)).toBeTruthy();
+    expect(isNumber('1')).toBeTruthy();
+    expect(isNumber('1.5')).toBeTruthy();
+    expect(isNumber('0777')).toBeTruthy();
+    expect(isNumber('0o123')).toBeTruthy();
+    expect(isNumber('5e1')).toBeTruthy();
+    expect(isNumber('1e-3')).toBeTruthy();
+    expect(isNumber('0b10')).toBeTruthy();
+    expect(isNumber('0XA')).toBeTruthy();
+    expect(isNumber('0xFFFF')).toBeTruthy();
+    expect(isNumber('1_000')).toBeTruthy();
+    expect(isNumber('1_000_000_000_000')).toBeTruthy();
+    expect(isNumber('1_050.95')).toBeTruthy();
+    expect(isNumber('0b1010_0001_1000_0101')).toBeTruthy();
+    expect(isNumber('0o2_2_5_6')).toBeTruthy();
+    expect(isNumber('0xA0_B0_C0')).toBeTruthy();
+    expect(isNumber('100__000')).toBeFalsy();
+    expect(isNumber('100_')).toBeFalsy();
+  });
+});
