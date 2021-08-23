@@ -1,17 +1,16 @@
-> Calculates percentage with optional floor values.
+> Calculates percentage with optional floor value.
 
 ## Syntax
 
 ```ts
-percentage(value: number, total: number, floor?: boolean): number
+import { percentage } from '@open-tech-world/es-utils';
+
+percentage(value: number, total: number, floor?: boolean): number;
 ```
 
 ## Examples
 
 ```ts
-import { percentage } from '@open-tech-world/es-utils';
-
-
 percentage(0, 0); // NaN
 
 percentage(1, 0); // Infinity

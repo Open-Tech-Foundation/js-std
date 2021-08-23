@@ -11,14 +11,14 @@ It uses [Object.is()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Re
 ## Syntax
 
 ```ts
+import { arrayDiff } from '@open-tech-world/es-utils';
+
 arrayDiff(arr1: unknown[], arr2: unknown[]): unknown[];
 ```
 
 ## Examples
 
 ```ts
-import { arrayDiff } from '@open-tech-world/es-utils';
-
 arrayDiff(); // It throws an error;
 
 arrayDiff([1], []); // [1]

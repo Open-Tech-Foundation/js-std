@@ -10,11 +10,11 @@
 
 ## Documentation
 
-Read the documentation here [https://es-utils.netlify.app](https://es-utils.netlify.app)
+The full documentation available at [https://es-utils.netlify.app](https://es-utils.netlify.app)
 
 ## Requirements
 
-- All modern browsers.
+- Supported all modern browsers.
 
 - Node.js ^12.22.0 || ^14.17.0 || >=16.0.0
 
@@ -41,7 +41,43 @@ import { utilityFn } from '@open-tech-world/es-utils';
 utilityFn();
 ```
 
-Read the [documentation](https://es-utils.netlify.app/) for complete list of available utility functions.
+Please read the [documentation](https://es-utils.netlify.app/) for  complete list of available utility functions.
+
+## API
+
+#### Array
+
+ - [arrayDiff](https://es-utils.netlify.app/docs/Array/arrayDiff)
+
+#### Maths
+
+ - [percentage](https://es-utils.netlify.app/docs/Maths/percentage)
+
+ - [percentageOf](https://es-utils.netlify.app/docs/Maths/percentageOf)
+
+#### String
+
+ - [camelCase](https://es-utils.netlify.app/docs/String/camelCase)
+
+ - [capitalize](https://es-utils.netlify.app/docs/String/capitalize)
+
+ - [insertAt](https://es-utils.netlify.app/docs/String/insertAt)
+
+ - [isEmail](https://es-utils.netlify.app/docs/String/isEmail)
+
+ - [pascalCase](https://es-utils.netlify.app/docs/String/pascalCase)
+
+ - [replaceAt](https://es-utils.netlify.app/docs/String/replaceAt)
+
+#### Timers
+
+ - [sleep](https://es-utils.netlify.app/docs/Timers/sleep)
+
+#### Types
+
+ - [inferType](https://es-utils.netlify.app/docs/Types/inferType)
+
+ - [isNumber](https://es-utils.netlify.app/docs/Types/isNumber)
 
 ## License
 

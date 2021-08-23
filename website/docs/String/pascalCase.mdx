@@ -1,16 +1,16 @@
-> It converts a string to [Pascal case](https://en.wikipedia.org/wiki/Camel_case).
+> Convert a string to [Pascal case](https://en.wikipedia.org/wiki/Camel_case).
 
 ## Syntax
 
 ```ts
+import { pascalCase } from '@open-tech-world/es-utils';
+
 pascalCase(str: string): string;
 ```
 
 ## Examples
 
 ```ts
-import { pascalCase } from '@open-tech-world/es-utils';
-
 pascalCase() // It throws an error;
 
 pascalCase('na cl'); // 'NaCl'

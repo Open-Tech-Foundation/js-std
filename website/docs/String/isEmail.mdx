@@ -1,16 +1,16 @@
-> Checks whether a string is an email address.
+> Check whether a string is an email address.
 
 ## Syntax
 
 ```ts
-isEmail(str: string): boolean
+import { isEmail } from '@open-tech-world/es-utils';
+
+isEmail(str: string): boolean;
 ```
 
 ## Examples
 
 ```ts
-import { isEmail } from '@open-tech-world/es-utils';
-
 isEmail('user@example.com'); // true
 
 isEmail('test.email.with+symbol@example.org'); // true

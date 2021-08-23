@@ -3,17 +3,19 @@
 ## Syntax
 
 ```ts
-sleep(ms: number): Promise<void>
+import { sleep } from '@open-tech-world/es-utils';
+
+sleep(ms: number): Promise<void>;
 ```
 
 ## Examples
 
 ```ts
-import { sleep } from '@open-tech-world/es-utils';
+(async () => {
+  await sleep(); // It does not suspend the exection.
 
-await sleep(); // It does not suspend the exection.
+  await sleep(0); // It also does not suspend the exection.
 
-await sleep(0); // It also does not suspend the exection.
-
-await sleep(1000); // It suspends the exection for 1 second.
+  await sleep(1000); // It suspends the exection for 1 second.
+})();
 ```
