@@ -79,6 +79,12 @@ Please read the [documentation](https://es-utils.netlify.app/) for  complete lis
 
  - [isNumber](https://es-utils.netlify.app/docs/Types/isNumber)
 
+#### Object
+
+ - [getInObj](https://es-utils.netlify.app/docs/Object/getInObj)
+
+ - [setInObj](https://es-utils.netlify.app/docs/Object/setInObj)
+
 ## License
 
 Copyright (c) [Thanga Ganapathy](https://github.com/Thanga-Ganapathy) ([MIT License](./LICENSE)).
