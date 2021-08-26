@@ -10,3 +10,5 @@ export { default as percentage } from './maths/percentage';
 export { default as percentageOf } from './maths/percentageOf';
 export { default as isNumber } from './types/isNumber';
 export { default as inferType } from './types/inferType';
+export { default as setInObj } from './object/setInObj';
+export { default as getInObj } from './object/getInObj';

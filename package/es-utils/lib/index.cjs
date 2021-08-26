@@ -167,9 +167,43 @@ function inferType(str) {
     return 'unknown';
 }
 
+function setInObj(obj, path, value) {
+    let tempPath = obj;
+    const props = path.match(/(\w+)/g);
+    if (!props) {
+        return obj;
+    }
+    for (let i = 0; i < props.length; i++) {
+        const prop = props[i];
+        if (i === props.length - 1) {
+            tempPath[prop] = value;
+            continue;
+        }
+        if (!tempPath[prop]) {
+            tempPath[prop] = isNumber(props[i + 1]) ? [] : {};
+        }
+        tempPath = tempPath[prop];
+    }
+    return obj;
+}
+
+function getInObj(obj, path) {
+    let currentPath = obj;
+    const props = path.match(/(\w+)/g);
+    if (!props)
+        return;
+    for (let i = 0; i < props.length; i++) {
+        currentPath = currentPath[props[i]];
+        if (currentPath === undefined)
+            return;
+    }
+    return currentPath;
+}
+
 exports.arrayDiff = arrayDiff;
 exports.camelCase = camelCase;
 exports.capitalize = capitalize;
+exports.getInObj = getInObj;
 exports.inferType = inferType;
 exports.insertAt = insertAt;
 exports.isEmail = isEmail;
@@ -178,4 +212,5 @@ exports.pascalCase = pascalCase;
 exports.percentage = percentage;
 exports.percentageOf = percentageOf;
 exports.replaceAt = replaceAt;
+exports.setInObj = setInObj;
 exports.sleep = sleep;
