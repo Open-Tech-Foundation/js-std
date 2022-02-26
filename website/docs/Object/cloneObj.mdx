@@ -1,0 +1,81 @@
+> It deeply clones the given input [Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object).
+
+## Syntax
+
+```ts
+import { cloneObj } from '@open-tech-world/es-utils';
+
+cloneObj(obj: unknown): unknown;
+```
+
+:::info
+Cloning objects supports only the following types:
+
+- Primitive values:
+    - Boolean type
+    - Null type
+    - Undefined type
+    - Number type
+    - BigInt type
+    - String type
+
+- Objects (collections of properties)
+
+- Arrays
+
+- Dates
+:::
+
+## Examples
+
+```ts
+cloneObj(); // undefined
+
+cloneObj(undefined); // undefined
+
+cloneObj(null); // null
+
+cloneObj(true); // true
+
+cloneObj(false); // false
+
+cloneObj('abc'); // 'abc'
+
+cloneObj(1); // 1
+
+cloneObj(1n); // 1n
+
+let input = [];
+let output = cloneObj(input);
+console.log(output === input); // false
+
+input = [1];
+output = cloneObj(input);
+console.log(output === input); // false
+
+input = [1, 'abc', false, null, undefined];
+output = cloneObj(input);
+console.log(output === input); // false
+
+input = {};
+output = cloneObj(input);
+console.log(output === input); // false
+
+input = { a: undefined, b: null, c: '', d: true, e: 1, f: 5n };
+output = cloneObj(input);
+console.log(output === input); // false
+
+input = { arr: [1, 2, 3], obj: { a: 'abc', b: 123 } };
+output = cloneObj(input);
+console.log(output === input); // false
+console.log(output.arr === input.arr); // false
+console.log(output.obj === input.obj); // false
+
+input = new Date();
+output = cloneObj(input);
+console.log(output === input); // false
+
+input = new Date('2020-05-01');
+output = cloneObj(input);
+console.log(output === input); // false
+```
