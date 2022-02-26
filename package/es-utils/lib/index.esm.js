@@ -196,4 +196,34 @@ function getInObj(obj, path) {
     return currentPath;
 }
 
-export { arrayDiff, camelCase, capitalize, getInObj, inferType, insertAt, isEmail, isNumber, pascalCase, percentage, percentageOf, replaceAt, setInObj, sleep };
+function isObjType(obj) {
+    return Object.prototype.toString.call(obj) === '[object Object]';
+}
+
+function cloneObj(obj) {
+    if (typeof obj !== 'object') {
+        return obj;
+    }
+    if (isObjType(obj)) {
+        const cObj = {};
+        for (const k in obj) {
+            if (Object.prototype.hasOwnProperty.call(obj, k)) {
+                cObj[k] = cloneObj(obj[k]);
+            }
+        }
+        return cObj;
+    }
+    if (Array.isArray(obj)) {
+        const arr = [];
+        for (const i of obj) {
+            arr.push(cloneObj(i));
+        }
+        return arr;
+    }
+    if (obj instanceof Date) {
+        return new Date(obj);
+    }
+    return obj;
+}
+
+export { arrayDiff, camelCase, capitalize, cloneObj, getInObj, inferType, insertAt, isEmail, isNumber, isObjType, pascalCase, percentage, percentageOf, replaceAt, setInObj, sleep };

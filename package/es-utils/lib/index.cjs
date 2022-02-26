@@ -200,14 +200,46 @@ function getInObj(obj, path) {
     return currentPath;
 }
 
+function isObjType(obj) {
+    return Object.prototype.toString.call(obj) === '[object Object]';
+}
+
+function cloneObj(obj) {
+    if (typeof obj !== 'object') {
+        return obj;
+    }
+    if (isObjType(obj)) {
+        const cObj = {};
+        for (const k in obj) {
+            if (Object.prototype.hasOwnProperty.call(obj, k)) {
+                cObj[k] = cloneObj(obj[k]);
+            }
+        }
+        return cObj;
+    }
+    if (Array.isArray(obj)) {
+        const arr = [];
+        for (const i of obj) {
+            arr.push(cloneObj(i));
+        }
+        return arr;
+    }
+    if (obj instanceof Date) {
+        return new Date(obj);
+    }
+    return obj;
+}
+
 exports.arrayDiff = arrayDiff;
 exports.camelCase = camelCase;
 exports.capitalize = capitalize;
+exports.cloneObj = cloneObj;
 exports.getInObj = getInObj;
 exports.inferType = inferType;
 exports.insertAt = insertAt;
 exports.isEmail = isEmail;
 exports.isNumber = isNumber;
+exports.isObjType = isObjType;
 exports.pascalCase = pascalCase;
 exports.percentage = percentage;
 exports.percentageOf = percentageOf;

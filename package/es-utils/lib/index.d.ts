@@ -12,3 +12,5 @@ export { default as isNumber } from './types/isNumber';
 export { default as inferType } from './types/inferType';
 export { default as setInObj } from './object/setInObj';
 export { default as getInObj } from './object/getInObj';
+export { default as isObjType } from './object/isObjType';
+export { default as cloneObj } from './object/cloneObj';
