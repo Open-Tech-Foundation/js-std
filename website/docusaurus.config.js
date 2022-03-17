@@ -10,10 +10,10 @@ module.exports = {
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   organizationName: 'open-tech-world', // Usually your GitHub org/user name.
-  projectName: 'es-utils', // Usually your repo name.
+  projectName: 'js-utils', // Usually your repo name.
   themeConfig: {
     navbar: {
-      title: '@open-tech-world/es-utils',
+      title: '@open-tech-world/js-utils',
       items: [
         {
           type: 'doc',
@@ -22,7 +22,7 @@ module.exports = {
           label: 'Docs',
         },
         {
-          href: 'https://github.com/open-tech-world/es-utils',
+          href: 'https://github.com/open-tech-world/js-utils',
           label: 'GitHub',
           position: 'right',
         },
@@ -30,7 +30,7 @@ module.exports = {
     },
     footer: {
       style: 'dark',
-      copyright: `Copyright © ${new Date().getFullYear()} Contributors of <a href="https://github.com/open-tech-world/es-utils">open-tech-world/es-utils</a>. Built with <a href="https://docusaurus.io/">Docusaurus</a>.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Contributors of <a href="https://github.com/open-tech-world/js-utils">open-tech-world/js-utils</a>. Built with <a href="https://docusaurus.io/">Docusaurus</a>.`,
     },
     prism: {
       theme: lightCodeTheme,

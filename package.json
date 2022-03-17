@@ -1,15 +1,14 @@
 {
   "scripts": {
-    "start": "yarn workspace @open-tech-world/es-utils start",
-    "build": "yarn workspace @open-tech-world/es-utils build",
-    "test": "yarn workspace @open-tech-world/es-utils test",
+    "start": "yarn workspace @open-tech-world/js-utils start",
+    "build": "yarn workspace @open-tech-world/js-utils build",
+    "test": "yarn workspace @open-tech-world/js-utils test",
     "website": "yarn workspace website start",
     "build:website": "yarn workspace website build"
   },
   "workspaces": [
-    "package/es-utils",
+    "package/js-utils",
     "website"
   ],
-  "packageManager": "yarn@3.2.0",
-  "version": "0.1.0"
+  "packageManager": "yarn@3.2.0"
 }

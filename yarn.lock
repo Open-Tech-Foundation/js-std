@@ -2991,16 +2991,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@open-tech-world/es-utils@npm:^0.8.0":
+"@open-tech-world/js-utils@npm:^0.8.0":
   version: 0.8.0
-  resolution: "@open-tech-world/es-utils@npm:0.8.0"
+  resolution: "@open-tech-world/js-utils@npm:0.8.0"
   checksum: 3954f9653ff1777ae8e5170be6512113c957f988fb41182164f1ed59097cdc3f919fa4546eb2fa8d0ce89e27baa0abd8d0301190b27c99f9f70fa1a5db862e34
   languageName: node
   linkType: hard
 
-"@open-tech-world/es-utils@workspace:package/es-utils":
+"@open-tech-world/js-utils@workspace:package/js-utils":
   version: 0.0.0-use.local
-  resolution: "@open-tech-world/es-utils@workspace:package/es-utils"
+  resolution: "@open-tech-world/js-utils@workspace:package/js-utils"
   dependencies:
     "@open-tech-world/rollup-plugin-clean": ^0.13.0
     "@rollup/plugin-typescript": ^8.3.1
@@ -3023,7 +3023,7 @@ __metadata:
   resolution: "@open-tech-world/node-glob@npm:0.4.0"
   dependencies:
     "@open-tech-world/es-glob": ^0.8.1
-    "@open-tech-world/es-utils": ^0.8.0
+    "@open-tech-world/js-utils": ^0.8.0
   checksum: 62072d8cbc7ef29d3146aa1ad7cf43c9ba45e84277dd3870b874465f962c9d21d829ce85bd0e12ce9a77ff8dbad00d951e5291e73794bd3f688ff7c4b66c3ae7
   languageName: node
   linkType: hard

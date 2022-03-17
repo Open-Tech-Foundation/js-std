@@ -1,5 +1,5 @@
 {
-  "name": "@open-tech-world/es-utils",
+  "name": "@open-tech-world/js-utils",
   "version": "0.13.0",
   "description": "A Collection of ECMAScript Utility Functions.",
   "keywords": [
@@ -17,10 +17,10 @@
     "url": "https://thanga-ganapathy.github.io"
   },
   "license": "MIT",
-  "homepage": "https://es-utils.netlify.app",
+  "homepage": "https://js-utils.netlify.app",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/open-tech-world/es-utils.git"
+    "url": "git+https://github.com/open-tech-world/js-utils.git"
   },
   "type": "module",
   "main": "./lib/index.cjs",

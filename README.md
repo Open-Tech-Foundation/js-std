@@ -1,8 +1,8 @@
 <div align="center">
 
-# @open-tech-world/es-utils
+# @open-tech-world/js-utils
 
-[![Build](https://github.com/open-tech-world/es-utils/actions/workflows/build.yml/badge.svg)](https://github.com/open-tech-world/es-utils/actions/workflows/build.yml) [![Netlify Status](https://api.netlify.com/api/v1/badges/46461c00-ef9b-4e68-a60e-390f8d030ed4/deploy-status)](https://app.netlify.com/sites/es-utils/deploys) [![CodeFactor](https://www.codefactor.io/repository/github/open-tech-world/es-utils/badge/main)](https://www.codefactor.io/repository/github/open-tech-world/es-utils/overview/main) ![npm (scoped)](https://img.shields.io/npm/v/@open-tech-world/es-utils?color=blue)
+[![Build](https://github.com/open-tech-world/js-utils/actions/workflows/build.yml/badge.svg)](https://github.com/open-tech-world/js-utils/actions/workflows/build.yml) [![Netlify Status](https://api.netlify.com/api/v1/badges/46461c00-ef9b-4e68-a60e-390f8d030ed4/deploy-status)](https://app.netlify.com/sites/js-utils/deploys) [![CodeFactor](https://www.codefactor.io/repository/github/open-tech-world/js-utils/badge/main)](https://www.codefactor.io/repository/github/open-tech-world/js-utils/overview/main) ![npm (scoped)](https://img.shields.io/npm/v/@open-tech-world/js-utils?color=blue)
 
 </div>
 
@@ -10,7 +10,7 @@
 
 ## Documentation
 
-The full documentation available at [https://es-utils.netlify.app](https://es-utils.netlify.app)
+The full documentation available at [https://js-utils.netlify.app](https://js-utils.netlify.app)
 
 ## Requirements
 
@@ -23,67 +23,67 @@ The full documentation available at [https://es-utils.netlify.app](https://es-ut
 Using npm
 
 ```sh
-npm install @open-tech-world/es-utils
+npm install @open-tech-world/js-utils
 ```
 
 Using Yarn
 
 ```sh
-yarn add @open-tech-world/es-utils
+yarn add @open-tech-world/js-utils
 ```
 
 ## Usage
 
 ```ts
-import { utilityFn } from '@open-tech-world/es-utils';
+import { utilityFn } from '@open-tech-world/js-utils';
 
 // ⚠️ Here, the utilityFn is a placeholder for actual utility function name.
 utilityFn();
 ```
 
-Please read the [documentation](https://es-utils.netlify.app/) for  complete list of available utility functions.
+Please read the [documentation](https://js-utils.netlify.app/) for  complete list of available utility functions.
 
 ## API
 
 #### Array
 
- - [arrayDiff](https://es-utils.netlify.app/docs/Array/arrayDiff)
+ - [arrayDiff](https://js-utils.netlify.app/docs/Array/arrayDiff)
 
 #### Maths
 
- - [percentage](https://es-utils.netlify.app/docs/Maths/percentage)
+ - [percentage](https://js-utils.netlify.app/docs/Maths/percentage)
 
- - [percentageOf](https://es-utils.netlify.app/docs/Maths/percentageOf)
+ - [percentageOf](https://js-utils.netlify.app/docs/Maths/percentageOf)
 
 #### String
 
- - [camelCase](https://es-utils.netlify.app/docs/String/camelCase)
+ - [camelCase](https://js-utils.netlify.app/docs/String/camelCase)
 
- - [capitalize](https://es-utils.netlify.app/docs/String/capitalize)
+ - [capitalize](https://js-utils.netlify.app/docs/String/capitalize)
 
- - [insertAt](https://es-utils.netlify.app/docs/String/insertAt)
+ - [insertAt](https://js-utils.netlify.app/docs/String/insertAt)
 
- - [isEmail](https://es-utils.netlify.app/docs/String/isEmail)
+ - [isEmail](https://js-utils.netlify.app/docs/String/isEmail)
 
- - [pascalCase](https://es-utils.netlify.app/docs/String/pascalCase)
+ - [pascalCase](https://js-utils.netlify.app/docs/String/pascalCase)
 
- - [replaceAt](https://es-utils.netlify.app/docs/String/replaceAt)
+ - [replaceAt](https://js-utils.netlify.app/docs/String/replaceAt)
 
 #### Timers
 
- - [sleep](https://es-utils.netlify.app/docs/Timers/sleep)
+ - [sleep](https://js-utils.netlify.app/docs/Timers/sleep)
 
 #### Types
 
- - [inferType](https://es-utils.netlify.app/docs/Types/inferType)
+ - [inferType](https://js-utils.netlify.app/docs/Types/inferType)
 
- - [isNumber](https://es-utils.netlify.app/docs/Types/isNumber)
+ - [isNumber](https://js-utils.netlify.app/docs/Types/isNumber)
 
 #### Object
 
- - [getInObj](https://es-utils.netlify.app/docs/Object/getInObj)
+ - [getInObj](https://js-utils.netlify.app/docs/Object/getInObj)
 
- - [setInObj](https://es-utils.netlify.app/docs/Object/setInObj)
+ - [setInObj](https://js-utils.netlify.app/docs/Object/setInObj)
 
 ## License
 
