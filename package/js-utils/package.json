@@ -4,12 +4,14 @@
   "description": "A Collection of JavaScript Utility Functions.",
   "keywords": [
     "collection",
-    "es",
+    "js",
     "utils",
     "utilities",
     "string",
     "array",
-    "object"
+    "object",
+    "timers",
+    "types"
   ],
   "author": {
     "name": "Thanga Ganapathy",
