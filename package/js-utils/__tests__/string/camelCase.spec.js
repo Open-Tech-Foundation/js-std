@@ -1,4 +1,4 @@
-import { camelCase } from '../../lib/index.esm.js';
+import { camelCase } from '../../src';
 
 describe('String', () => {
   test('camelCase', () => {

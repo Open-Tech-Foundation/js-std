@@ -1,4 +1,4 @@
-import { sleep } from '../../lib/index.esm.js';
+import { sleep } from '../../src';
 
 describe('Timers', () => {
   test('sleep', async () => {

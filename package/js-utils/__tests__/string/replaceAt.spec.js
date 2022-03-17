@@ -1,4 +1,4 @@
-import { replaceAt } from '../../lib/index.esm.js';
+import { replaceAt } from '../../src';
 
 describe('String', () => {
   test('replaceAt', () => {

@@ -1,4 +1,4 @@
-import { getInObj } from '../../lib/index.esm.js';
+import { getInObj } from '../../src';
 
 describe('Object', () => {
   test('getInObj', () => {

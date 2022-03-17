@@ -22,20 +22,16 @@
     "type": "git",
     "url": "git+https://github.com/open-tech-world/js-utils.git"
   },
-  "type": "module",
-  "main": "./lib/index.cjs",
-  "exports": {
-    "import": "./lib/index.esm.js",
-    "require": "./lib/index.cjs"
-  },
-  "typings": "./lib/index.d.ts",
+  "source": "src/index.ts",
+  "main": "lib/main.js",
+  "module": "lib/module.js",
+  "types": "lib/types.d.ts",
   "sideEffects": false,
   "engines": {
-    "node": "^12.22.0 || ^14.17.0 || >=16.0.0"
+    "node": "^14.17.0 || >=16.0.0"
   },
   "scripts": {
-    "start": "rollup -c --watch",
-    "build": "rollup -c",
+    "build": "parcel build",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest"
   },
   "files": [
@@ -48,15 +44,15 @@
     "@open-tech-world/rollup-plugin-clean": "^0.13.0",
     "@rollup/plugin-typescript": "^8.3.1",
     "@types/jest": "^27.4.1",
-    "@typescript-eslint/eslint-plugin": "^5.12.1",
-    "@typescript-eslint/parser": "^5.12.1",
-    "eslint": "^8.9.0",
-    "eslint-config-prettier": "^8.4.0",
+    "@typescript-eslint/eslint-plugin": "^5.15.0",
+    "@typescript-eslint/parser": "^5.15.0",
+    "eslint": "^8.11.0",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-jest": "^26.1.1",
     "eslint-plugin-prettier": "^4.0.0",
     "jest": "^27.5.1",
-    "prettier": "^2.5.1",
-    "rollup": "^2.68.0",
-    "typescript": "^4.5.5"
+    "parcel": "^2.3.2",
+    "prettier": "^2.6.0",
+    "typescript": "^4.6.2"
   }
 }

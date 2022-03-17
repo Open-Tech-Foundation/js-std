@@ -1,4 +1,4 @@
-import { arrayDiff } from '../../lib/index.esm.js';
+import { arrayDiff } from '../../src';
 
 describe('Array', () => {
   test('arrayDiff', () => {

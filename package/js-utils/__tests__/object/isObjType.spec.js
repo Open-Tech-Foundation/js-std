@@ -1,4 +1,4 @@
-import { isObjType } from '../../lib/index.esm.js';
+import { isObjType } from '../../src';
 
 function fun(x) {
   return x;

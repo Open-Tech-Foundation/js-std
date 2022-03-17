@@ -1,4 +1,4 @@
-import { inferType } from '../../lib/index.esm.js';
+import { inferType } from '../../src';
 
 describe('String', () => {
   test('inferType', () => {

@@ -1,4 +1,4 @@
-import { percentageOf } from '../../lib/index.esm.js';
+import { percentageOf } from '../../src';
 
 describe('Maths', () => {
   test('percentage', async () => {

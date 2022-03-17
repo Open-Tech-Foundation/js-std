@@ -1,4 +1,4 @@
-import { pascalCase } from '../../lib/index.esm.js';
+import { pascalCase } from '../../src';
 
 describe('String', () => {
   test('pascalCase', () => {

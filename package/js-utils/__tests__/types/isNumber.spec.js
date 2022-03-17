@@ -1,4 +1,4 @@
-import { isNumber } from '../../lib/index.esm.js';
+import { isNumber } from '../../src';
 
 describe('String', () => {
   test('isNumber', () => {

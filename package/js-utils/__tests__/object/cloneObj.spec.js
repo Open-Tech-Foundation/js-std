@@ -1,4 +1,4 @@
-import { cloneObj } from '../../lib/index.esm.js';
+import { cloneObj } from '../../src';
 
 describe('Object', () => {
   test('cloneObj', () => {
