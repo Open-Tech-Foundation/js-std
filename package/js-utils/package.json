@@ -1,6 +1,6 @@
 {
   "name": "@open-tech-world/js-utils",
-  "version": "0.13.0",
+  "version": "0.13.1",
   "description": "A Collection of JavaScript Utility Functions.",
   "keywords": [
     "collection",
@@ -19,7 +19,7 @@
     "url": "https://thanga-ganapathy.github.io"
   },
   "license": "MIT",
-  "homepage": "https://js-utils.netlify.app",
+  "homepage": "https://js-utils.pages.dev",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/open-tech-world/js-utils.git"
