@@ -1,7 +1,7 @@
 {
   "name": "@open-tech-world/js-utils",
   "version": "0.13.0",
-  "description": "A Collection of ECMAScript Utility Functions.",
+  "description": "A Collection of JavaScript Utility Functions.",
   "keywords": [
     "collection",
     "es",

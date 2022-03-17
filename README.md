@@ -6,7 +6,7 @@
 
 </div>
 
-> A Collection of ECMAScript Utility Functions.
+> A Collection of JavaScript Utility Functions.
 
 ## Documentation
 

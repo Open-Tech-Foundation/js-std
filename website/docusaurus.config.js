@@ -4,7 +4,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
   title: 'ES Utils',
-  tagline: 'A Collection of ECMAScript Utility Functions.',
+  tagline: 'A Collection of JavaScript Utility Functions.',
   url: 'https://open-tech-world.github.io',
   baseUrl: '/',
   onBrokenLinks: 'throw',
