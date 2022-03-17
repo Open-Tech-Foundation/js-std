@@ -3,7 +3,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: 'ES Utils',
+  title: 'JS Utils',
   tagline: 'A Collection of JavaScript Utility Functions.',
   url: 'https://open-tech-world.github.io',
   baseUrl: '/',
@@ -15,12 +15,6 @@ module.exports = {
     navbar: {
       title: '@open-tech-world/js-utils',
       items: [
-        {
-          type: 'doc',
-          docId: 'intro',
-          position: 'left',
-          label: 'Docs',
-        },
         {
           href: 'https://github.com/open-tech-world/js-utils',
           label: 'GitHub',
@@ -42,6 +36,7 @@ module.exports = {
       '@docusaurus/preset-classic',
       {
         docs: {
+          routeBasePath: '/',
           sidebarPath: require.resolve('./sidebars.js'),
         },
         theme: {
