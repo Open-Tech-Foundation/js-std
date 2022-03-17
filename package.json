@@ -1,6 +1,5 @@
 {
   "scripts": {
-    "start": "yarn workspace @open-tech-world/js-utils start",
     "build": "yarn workspace @open-tech-world/js-utils build",
     "test": "yarn workspace @open-tech-world/js-utils test",
     "website": "yarn workspace website start",

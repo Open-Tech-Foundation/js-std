@@ -42,6 +42,8 @@
   },
   "devDependencies": {
     "@open-tech-world/rollup-plugin-clean": "^0.13.0",
+    "@parcel/packager-ts": "2.3.2",
+    "@parcel/transformer-typescript-types": "2.3.2",
     "@rollup/plugin-typescript": "^8.3.1",
     "@types/jest": "^27.4.1",
     "@typescript-eslint/eslint-plugin": "^5.15.0",
