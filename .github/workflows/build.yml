@@ -6,6 +6,8 @@ name: Build
 on:
   push:
     branches: [ main ]
+    paths-ignore: 
+      - 'website/**'
   pull_request:
     branches: [ main ]
 
@@ -27,5 +29,4 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'yarn'
     - run: yarn install
-    - run: yarn build
-    - run: yarn test
+    - run: yarn ci
