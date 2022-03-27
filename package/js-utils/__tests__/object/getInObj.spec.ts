@@ -2,8 +2,6 @@ import { getInObj } from '../../src';
 
 describe('Object', () => {
   test('getInObj', () => {
-    expect(() => getInObj()).toThrow();
-
     expect(getInObj({}, '')).toBe(undefined);
 
     expect(getInObj({}, 'a')).toBe(undefined);

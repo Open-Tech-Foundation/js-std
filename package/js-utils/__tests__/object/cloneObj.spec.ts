@@ -2,8 +2,6 @@ import { cloneObj } from '../../src';
 
 describe('Object', () => {
   test('cloneObj', () => {
-    expect(() => cloneObj()).not.toThrow();
-    expect(cloneObj()).toBe(undefined);
     expect(cloneObj(undefined)).toBe(undefined);
     expect(cloneObj(null)).toBe(null);
     expect(cloneObj(true)).toBe(true);
@@ -13,7 +11,7 @@ describe('Object', () => {
     expect(cloneObj(1)).toBe(1);
     expect(cloneObj(1n)).toBe(1n);
 
-    let input = [];
+    let input: unknown = [];
     let output = cloneObj(input);
     expect(output).not.toBe(input);
     expect(output).toStrictEqual(input);
@@ -73,6 +71,6 @@ describe('Object', () => {
     output = cloneObj(input);
     expect(output).not.toBe(input);
     expect(output).toStrictEqual(input);
-    expect(output).not.toStrictEqual({ ...input, obj3: {} });
+    expect(output).not.toStrictEqual({ ...(input as object), obj3: {} });
   });
 });

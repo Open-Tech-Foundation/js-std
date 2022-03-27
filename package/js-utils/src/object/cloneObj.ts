@@ -1,6 +1,7 @@
 import isObjType from './isObjType';
 
-export default function cloneObj(obj: unknown): unknown {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default function cloneObj(obj: any): any {
   if (typeof obj !== 'object') {
     return obj;
   }
@@ -9,7 +10,7 @@ export default function cloneObj(obj: unknown): unknown {
     const cObj: Record<string, unknown> = {};
     for (const k in obj) {
       if (Object.prototype.hasOwnProperty.call(obj, k)) {
-        cObj[k] = cloneObj((obj as Record<string, unknown>)[k]);
+        cObj[k] = cloneObj(obj[k as keyof typeof obj]);
       }
     }
 

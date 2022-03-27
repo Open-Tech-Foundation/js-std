@@ -1,8 +1,8 @@
-import { ObjType } from '../ObjType';
 import isNumber from '../types/isNumber';
 
-function setInObj(obj: ObjType, path: string, value: unknown): ObjType {
-  let tempPath: ObjType = obj;
+function setInObj(obj: object, path: string, value: unknown): object {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let tempPath: any = obj;
   const props = path.match(/(\w+)/g);
 
   if (!props) {
@@ -21,7 +21,7 @@ function setInObj(obj: ObjType, path: string, value: unknown): ObjType {
       tempPath[prop] = isNumber(props[i + 1]) ? [] : {};
     }
 
-    tempPath = tempPath[prop] as ObjType;
+    tempPath = tempPath[prop];
   }
 
   return obj;

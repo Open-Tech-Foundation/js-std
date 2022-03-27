@@ -2,12 +2,6 @@ import { setInObj } from '../../src';
 
 describe('Object', () => {
   test('setInObj', () => {
-    expect(() => setInObj()).toThrow();
-
-    expect(setInObj({}, '')).toEqual({});
-
-    expect(setInObj({}, 'a')).toEqual({ a: undefined });
-
     expect(setInObj({}, 'a', null)).toEqual({ a: null });
 
     expect(setInObj({}, 'a', 1)).toEqual({ a: 1 });

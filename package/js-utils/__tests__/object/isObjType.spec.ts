@@ -1,13 +1,12 @@
 import { isObjType } from '../../src';
 
-function fun(x) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function fun(x?: any) {
   return x;
 }
 
 describe('Object', () => {
   test('isObjType', () => {
-    expect(() => isObjType()).not.toThrow();
-    expect(isObjType()).toBeFalsy();
     expect(isObjType(undefined)).toBeFalsy();
     expect(isObjType(null)).toBeFalsy();
     expect(isObjType(true)).toBeFalsy();
@@ -34,7 +33,8 @@ describe('Object', () => {
 
     expect(isObjType({})).toBeTruthy();
     expect(isObjType({ a: 1 })).toBeTruthy();
-    expect(isObjType(new fun(1))).toBeTruthy();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    expect(isObjType(new (fun as any)(1))).toBeTruthy();
     expect(isObjType(new Object())).toBeTruthy();
     expect(isObjType(Object.create(null))).toBeTruthy();
   });
