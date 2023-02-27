@@ -2,7 +2,7 @@
 
 # Utils
 
-⚡ by <img src="https://open-tech-foundation.pages.dev/img/logo.png" width="50" height="50" style="vertical-align:middle" /> [Open Tech Foundation](https://open-tech-foundation.pages.dev/)
+⚡ by [Open Tech Foundation](https://open-tech-foundation.pages.dev/)
 
 </div>
 
@@ -24,7 +24,7 @@ Using Yarn
 yarn add @opentf/utils
 ```
 
-Using PnPm
+Using pnpm
 
 ```sh
 pnpm add @opentf/utils
