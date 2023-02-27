@@ -1,0 +1,60 @@
+> Infer primitive type from a given string.
+
+## Syntax
+
+```ts
+import { inferType } from '@opentf/utils';
+
+inferType(str: string): string;
+```
+
+## Examples
+
+```ts
+inferType(); // 'unknown'
+
+inferType(''); // 'string'
+
+inferType('a'); // 'string'
+
+inferType('abc'); // 'string'
+
+inferType('The quick brown fox'); // 'string'
+
+inferType('null'); // 'null'
+
+inferType('Null'); // 'null'
+
+inferType('NULL'); // 'null'
+
+inferType('true'); // 'boolean'
+
+inferType('True'); // 'boolean'
+
+inferType('TRUE'); // 'boolean'
+
+inferType('false'); // 'boolean'
+
+inferType('False'); // 'boolean'
+
+inferType('FALSE'); // 'boolean'
+
+inferType('undefined'); // 'undefined'
+
+inferType('Undefined'); // 'undefined'
+
+inferType('1'); // 'number'
+
+inferType('37'); // 'number'
+
+inferType('10.5'); // 'number'
+
+inferType('100.25'); // 'number'
+
+inferType('10_000_200'); // 'number'
+
+inferType('0xA'); // 'number'
+
+inferType('500K'); // 'string'
+
+```

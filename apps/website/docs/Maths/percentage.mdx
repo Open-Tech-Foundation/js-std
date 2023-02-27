@@ -1,0 +1,33 @@
+> Calculates percentage with optional floor value.
+
+## Syntax
+
+```ts
+import { percentage } from '@opentf/utils';
+
+percentage(value: number, total: number, floor?: boolean): number;
+```
+
+## Examples
+
+```ts
+percentage(0, 0); // NaN
+
+percentage(1, 0); // Infinity
+
+percentage(1, 1); // 100
+
+percentage(0.5, 1); // 50
+
+percentage(25, 100); // 25
+
+percentage(75, 150); // 50
+
+percentage(8, 800); // 1
+
+percentage(5, 150); // 3.33
+
+percentage(5, 150, true); // 3
+
+percentage(200, 100); // 200
+```

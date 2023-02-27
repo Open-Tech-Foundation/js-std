@@ -1,0 +1,86 @@
+> Check the given value is number.
+
+## Syntax
+
+```ts
+import { isNumber } from '@opentf/utils';
+
+isNumber(value: unknown): boolean;
+```
+
+## Examples
+
+```ts
+isNumber(); // false
+
+isNumber(undefined); // false
+
+isNumber(null); // false
+
+isNumber(true); // false
+
+isNumber(false); // false
+
+isNumber(1n); // false
+
+isNumber(''); // false
+
+isNumber(' '); // false
+
+isNumber('a'); // false
+
+isNumber('abc'); // false
+
+isNumber([]); // false
+
+isNumber([1, 2, 3]); // false
+
+isNumber({}); // false
+
+isNumber({ a: 55 }); // false
+
+isNumber(Symbol(1)); // false
+
+isNumber(1); // true
+
+isNumber(10); // true
+
+isNumber(600.75); // true
+
+isNumber(Math.PI); // true
+
+isNumber('1'); // true
+
+isNumber('1.5'); // true
+
+isNumber('0777'); // true
+
+isNumber('0o123'); // true
+
+isNumber('5e1'); // true
+
+isNumber('1e-3'); // true
+
+isNumber('0b10'); // true
+
+isNumber('0XA'); // true
+
+isNumber('0xFFFF'); // true
+
+isNumber('1_000'); // true
+
+isNumber('1_000_000_000_000'); // true
+
+isNumber('1_050.95'); // true
+
+isNumber('0b1010_0001_1000_0101'); // true
+
+isNumber('0o2_2_5_6'); // true
+
+isNumber('0xA0_B0_C0'); // true
+
+isNumber('100__000'); // false
+
+isNumber('100_'); // false
+
+```

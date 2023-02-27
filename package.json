@@ -1,14 +1,35 @@
 {
+  "private": true,
   "scripts": {
-    "start": "yarn workspace website start",
-    "build": "yarn workspace @open-tech-world/js-utils build",
-    "test": "yarn workspace @open-tech-world/js-utils test",
-    "build:website": "yarn workspace website build",
-    "ci": "yarn workspace @open-tech-world/js-utils ci"
+    "dev": "turbo run build --filter=utils -- --watch",
+    "test": "turbo run test --filter=utils",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "lint": "turbo run lint --filter=utils",
+    "build": "turbo run build --filter=utils",
+    "build:website": "turbo run build --filter=website",
+    "ci": "turbo run ci --filter=utils",
+    "prepare": "husky install",
+    "publish-packages": "turbo run build lint test && changeset version && changeset publish"
   },
   "workspaces": [
-    "package/js-utils",
-    "website"
+    "apps/*",
+    "packages/*"
   ],
-  "packageManager": "yarn@3.2.0"
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "pnpm run format",
+      "pnpm run lint --"
+    ],
+    "*.json": [
+      "npm run format"
+    ]
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.26.0",
+    "@commitlint/cli": "^17.4.4",
+    "@commitlint/config-conventional": "^17.4.4",
+    "husky": "^8.0.0",
+    "lint-staged": "^13.1.2",
+    "turbo": "^1.8.2"
+  }
 }

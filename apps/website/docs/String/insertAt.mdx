@@ -1,0 +1,33 @@
+> Insert a character or string at the index position.
+
+## Syntax
+
+```ts
+import { insertAt } from '@opentf/utils';
+
+insertAt(str: string, index: number, insertStr?: string): string;
+```
+
+## Examples
+
+```ts
+insertAt() // It throws an error;
+
+insertAt('')) // ''
+
+insertAt('', 0)) // ''
+
+insertAt('', 1, 'abc')) // ''
+
+insertAt('a', 0, 'b')) // 'ba'
+
+insertAt('a', 1, 'b')) // 'ab'
+
+insertAt('a', 1, 'bc')) // 'abc'
+
+insertAt('foo baz', 3, ' bar')) // 'foo bar baz'
+
+insertAt('I want apple', 6, ' an')) // 'I want an apple'
+
+insertAt('IU', 1, '❤️')) // 'I❤️U'
+```
