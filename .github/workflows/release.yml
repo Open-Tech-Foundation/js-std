@@ -9,6 +9,9 @@ on:
       
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
+env:
+  HUSKY: 0
+
 jobs:
   release:
     name: Release
