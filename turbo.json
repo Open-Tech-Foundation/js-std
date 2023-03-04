@@ -15,6 +15,7 @@
     },
     "lint": {},
     "ci": {},
-    "check-types": {}
+    "check-types": {},
+    "start": {}
   }
 }

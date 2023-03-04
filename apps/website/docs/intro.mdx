@@ -5,57 +5,59 @@ sidebar_label: Introduction
 slug: /
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 
-# @opentf/utils
+# Utils
 
 > A Collection of JavaScript Utility Functions.
 
-## Requirements
-
-- It supports Evergreen browsers only.
-
-- Node.js >=14.0.0
-
 ## Installation
 
-<Tabs
-  defaultValue="npm"
-  values={[
-    {label: 'npm', value: 'npm'},
-    {label: 'Yarn', value: 'yarn'},
-  ]}>
-  <TabItem value="npm">
+```mdx-code-block
+<Tabs>
+<TabItem value="npm">
+```
 
-```shell
+```bash
 npm install @opentf/utils
 ```
 
+```mdx-code-block
 </TabItem>
-  <TabItem value="yarn">
+<TabItem value="yarn">
+```
 
-```shell
+```bash
 yarn add @opentf/utils
 ```
 
-  </TabItem>
+```mdx-code-block
+</TabItem>
+<TabItem value="pnpm">
+```
+
+```bash
+pnpm add @opentf/utils
+```
+
+```mdx-code-block
+</TabItem>
 </Tabs>
+```
 
 ## Usage
 
 ```ts
-import { utilityFn } from '@opentf/utils';
+import { range, camelCase, sleep } from "@opentf/utils";
 
-// ⚠️ Here, the utilityFn is a placeholder for the actual utility function name.
-// For example: arrayDiff, cloneObj, camelCase, etc.
-utilityFn();
+range(1, 5); //=> [1, 2, 3, 4, 5]
+
+camelCase('i phone') //=> 'iPhone'
+
+await sleep(1000); // It suspends the exection for 1 second.
 ```
 
 :::tip
 The collections are grouped into Array, Maths, Object, String, Timers, and Types, respectively.
-:::
-
-:::info
-You can use the [bundlephobia](https://bundlephobia.com/package/@opentf/utils) to view GZIP sizes of individual exports.
 :::
