@@ -2,7 +2,7 @@
 
 # Utils
 
-⚡ by [Open Tech Foundation](https://open-tech-foundation.pages.dev/)
+⚡ by [OPEN TECH FOUNDATION](https://open-tech-foundation.pages.dev/)
 
 </div>
 
@@ -32,7 +32,7 @@ pnpm add @opentf/utils
 
 ## Documentation
 
-[https://js-utils.pages.dev](https://js-utils.pages.dev)
+Please visit [https://js-utils.pages.dev](https://js-utils.pages.dev) to get started.
 
 ## License
 

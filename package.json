@@ -2,6 +2,7 @@
   "private": true,
   "scripts": {
     "dev": "turbo run build --filter=utils -- --watch",
+    "dev:web": "turbo run start --filter=website",
     "test": "turbo run test --filter=utils",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "turbo run lint --filter=utils",
@@ -9,7 +10,7 @@
     "build:website": "turbo run build --filter=website",
     "ci": "turbo run ci --filter=utils",
     "prepare": "husky install",
-    "publish-packages": "turbo run build lint test && changeset version && changeset publish"
+    "publish-packages": "turbo run build lint test --filter=utils && changeset version && changeset publish"
   },
   "workspaces": [
     "apps/*",

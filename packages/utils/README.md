@@ -1,10 +1,12 @@
 <div align="center">
 
-# @opentf/utils
+# Utils
 
-[![Build](https://github.com/open-tech-foundation/js-utils/actions/workflows/build.yml/badge.svg)](https://github.com/open-tech-foundation/js-utils/actions/workflows/build.yml)
+⚡ by [OPEN TECH FOUNDATION](https://open-tech-foundation.pages.dev/)
 
 </div>
+
+[![Build](https://github.com/open-tech-foundation/js-utils/actions/workflows/build.yml/badge.svg)](https://github.com/open-tech-foundation/js-utils/actions/workflows/build.yml)
 
 > A Collection of JavaScript Utility Functions.
 
@@ -22,9 +24,15 @@ Using Yarn
 yarn add @opentf/utils
 ```
 
+Using pnpm
+
+```sh
+pnpm add @opentf/utils
+```
+
 ## Documentation
 
-[https://js-utils.pages.dev](https://js-utils.pages.dev)
+Please visit [https://js-utils.pages.dev](https://js-utils.pages.dev) to get started.
 
 ## License
 
