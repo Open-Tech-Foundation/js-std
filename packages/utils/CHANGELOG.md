@@ -1,5 +1,11 @@
 # @opentf/utils
 
+## 0.16.1
+
+### Patch Changes
+
+- 83a8f64: Added usage section to readme
+
 ## 0.16.0
 
 ### Minor Changes
