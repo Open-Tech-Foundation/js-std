@@ -30,6 +30,18 @@ Using pnpm
 pnpm add @opentf/utils
 ```
 
+## Usage
+
+```ts
+import { range, camelCase, sleep } from "@opentf/utils";
+
+range(1, 5); //=> [1, 2, 3, 4, 5]
+
+camelCase('i phone') //=> 'iPhone'
+
+await sleep(1000); // It suspends the exection for 1 second.
+```
+
 ## Documentation
 
 Please visit [https://js-utils.pages.dev](https://js-utils.pages.dev) to get started.
