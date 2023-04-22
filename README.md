@@ -10,6 +10,8 @@
 
 > A Collection of JavaScript Utility Functions.
 
+## [Playground](https://js-utils.pages.dev/playground)
+
 ## Installation
 
 Using npm
@@ -37,7 +39,7 @@ import { range, camelCase, sleep } from "@opentf/utils";
 
 range(1, 5); //=> [1, 2, 3, 4, 5]
 
-camelCase('i phone') //=> 'iPhone'
+camelCase("i phone"); //=> 'iPhone'
 
 await sleep(1000); // It suspends the exection for 1 second.
 ```
