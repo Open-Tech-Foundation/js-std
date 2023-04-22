@@ -15,6 +15,7 @@ module.exports = {
     navbar: {
       title: "Utils",
       items: [
+        { to: "/playground", label: "Playground", position: "right" },
         {
           href: "https://github.com/open-tech-foundation/js-utils",
           className: "header-github-link",
@@ -30,7 +31,7 @@ module.exports = {
           <div>
             Powered by
             <a href="https://open-tech-foundation.pages.dev/" target="_blank" rel="noreferrer noopener" aria-label="Built with docusaurus">
-              <img style="vertical-align:middle" src="https://open-tech-foundation.pages.dev/img/logo.png" alt="Deploys by Cloudflare Pages" width="32" height="32" />
+              <img style="vertical-align:middle" src="https://open-tech-foundation.pages.dev/img/Logo.svg" alt="Powered by open tech foundation" width="32" height="32" />
             </a>
             <span>-</span>
             Built with 
@@ -64,7 +65,7 @@ module.exports = {
           customCss: require.resolve("./src/css/custom.css"),
         },
         gtag: {
-          trackingID: 'G-G91RSVFLZB',
+          trackingID: "G-G91RSVFLZB",
           anonymizeIP: true,
         },
       },

@@ -16,6 +16,8 @@
     "lint": {},
     "ci": {},
     "check-types": {},
-    "start": {}
+    "start": {
+      "cache": false
+    }
   }
 }
