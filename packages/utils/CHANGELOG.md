@@ -1,5 +1,11 @@
 # @opentf/utils
 
+## 0.16.3
+
+### Patch Changes
+
+- 5076976: Added playground link to readme
+
 ## 0.16.2
 
 ### Patch Changes
