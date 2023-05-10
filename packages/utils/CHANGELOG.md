@@ -1,5 +1,11 @@
 # @opentf/utils
 
+## 0.17.0
+
+### Minor Changes
+
+- 648dc19: Fixed `replaceAt` to accept empty string to be replaced.
+
 ## 0.16.3
 
 ### Patch Changes
