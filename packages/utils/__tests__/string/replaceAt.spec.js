@@ -5,9 +5,10 @@ describe('String', () => {
     expect(() => replaceAt()).toThrow();
     expect(replaceAt('')).toBe('');
     expect(replaceAt('', 0)).toBe('');
-    expect(replaceAt('', 1, 'abc')).toBe('');
-    expect(replaceAt('a')).toBe('a');
-    expect(replaceAt('abc')).toBe('abc');
+    expect(replaceAt('', 0, 'a')).toBe('a');
+    expect(replaceAt('', 1, 'abc')).toBe('abc');
+    expect(replaceAt('a')).toBe('');
+    expect(replaceAt('abc')).toBe('bc');
     expect(replaceAt('abc', 1)).toBe('ac');
     expect(replaceAt('abc', 5)).toBe('abc');
     expect(replaceAt('abc', 1, '')).toBe('ac');

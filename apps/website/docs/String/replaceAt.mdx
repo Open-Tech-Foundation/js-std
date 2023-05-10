@@ -5,35 +5,41 @@
 ```ts
 import { replaceAt } from '@opentf/utils';
 
-replaceAt(str: string, index: number, replaceStr?: string): string;
+replaceAt(str: string, index?: number, replaceStr?: string): string;
 ```
+
+:::info
+Default index = 0
+:::
 
 ## Examples
 
 ```ts
-replaceAt() // It throws an error;
+replaceAt(); // Throws error
 
-replaceAt('')) // ''
+replaceAt(""); //=> ''
 
-replaceAt('', 0)) // ''
+replaceAt("", 0); //=> ''
 
-replaceAt('', 1, 'abc')) // ''
+replaceAt("", 0, "a"); //=> 'a'
 
-replaceAt('a')) // 'a'
+replaceAt("", 1, "abc"); //=> 'abc'
 
-replaceAt('abc')) // 'abc'
+replaceAt("a"); //=> ''
 
-replaceAt('abc', 1)) // 'ac'
+replaceAt("abc"); //=> 'bc'
 
-replaceAt('abc', 5)) // 'abc'
+replaceAt("abc", 1); //=> 'ac'
 
-replaceAt('abc', 1, '')) // 'ac'
+replaceAt("abc", 5); //=> 'abc'
 
-replaceAt('abc', 0, 'z')) // 'zbc'
+replaceAt("abc", 1, ""); //=> 'ac'
 
-replaceAt('iphone', 1, 'P')) // 'iPhone'
+replaceAt("abc", 0, "z"); //=> 'zbc'
 
-replaceAt('I__JS', 1, '❤️')) // 'I❤️JS'
+replaceAt("iphone", 1, "P"); //=> 'iPhone'
 
-replaceAt('I HATE U', 2, 'LOVE')) // 'I LOVE U'
+replaceAt("I__JS", 1, "❤️"); //=> 'I❤️JS'
+
+replaceAt("I HATE U", 2, "LOVE"); //=> 'I LOVE U'
 ```

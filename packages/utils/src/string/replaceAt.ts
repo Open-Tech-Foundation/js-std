@@ -1,17 +1,7 @@
-function replaceAt(str: string, index: number, replaceStr = ''): string {
+function replaceAt(str: string, index = 0, replaceStr = ''): string {
   const rStrLen = index + (replaceStr.length === 0 ? 1 : replaceStr.length);
 
-  if (str.length === 0) {
-    return '';
-  }
-
-  const result = str.substring(0, index) + replaceStr + str.substring(rStrLen);
-
-  if (typeof index !== 'number') {
-    return str;
-  }
-
-  return result;
+  return str.slice(0, index) + replaceStr + str.slice(rStrLen);
 }
 
 export default replaceAt;
