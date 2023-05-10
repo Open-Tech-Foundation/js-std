@@ -1,5 +1,11 @@
 # @opentf/utils
 
+## 0.18.0
+
+### Minor Changes
+
+- 34140c6: Fixed insertAt to allow empty string to be inserted.
+
 ## 0.17.0
 
 ### Minor Changes
