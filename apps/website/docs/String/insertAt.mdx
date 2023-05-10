@@ -5,29 +5,34 @@
 ```ts
 import { insertAt } from '@opentf/utils';
 
-insertAt(str: string, index: number, insertStr?: string): string;
+insertAt(str: string, index?: number, insertStr?: string): string;
 ```
+
+:::info
+Default index = 0
+:::
+
 
 ## Examples
 
 ```ts
 insertAt() // It throws an error;
 
-insertAt('')) // ''
+insertAt('') //=> ''
 
-insertAt('', 0)) // ''
+insertAt('', 0) //=> ''
 
-insertAt('', 1, 'abc')) // ''
+insertAt('', 1, 'abc') //=> 'abc'
 
-insertAt('a', 0, 'b')) // 'ba'
+insertAt('a', 0, 'b') //=> 'ba'
 
-insertAt('a', 1, 'b')) // 'ab'
+insertAt('a', 1, 'b') //=> 'ab'
 
-insertAt('a', 1, 'bc')) // 'abc'
+insertAt('a', 1, 'bc') //=> 'abc'
 
-insertAt('foo baz', 3, ' bar')) // 'foo bar baz'
+insertAt('foo baz', 3, ' bar') //=> 'foo bar baz'
 
-insertAt('I want apple', 6, ' an')) // 'I want an apple'
+insertAt('IU', 1, '❤️') //=> 'I❤️U'
 
-insertAt('IU', 1, '❤️')) // 'I❤️U'
+insertAt('I  🍊', 2, 'ate an') //=> 'I ate an 🍊'
 ```

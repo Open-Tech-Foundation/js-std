@@ -8,7 +8,7 @@
 
 [![Build](https://github.com/open-tech-foundation/js-utils/actions/workflows/build.yml/badge.svg)](https://github.com/open-tech-foundation/js-utils/actions/workflows/build.yml)
 
-> A Collection of JavaScript Utility Functions.
+> A collection of JavaScript utility functions.
 
 ## [Playground](https://js-utils.pages.dev/playground)
 

@@ -1,15 +1,5 @@
-function insertAt(str: string, index: number, insertStr = ''): string {
-  if (str.length === 0) {
-    return '';
-  }
-
-  const result = str.substring(0, index) + insertStr + str.substring(index);
-
-  if (typeof index !== 'number') {
-    return str;
-  }
-
-  return result;
+function insertAt(str: string, index = 0, insertStr = ''): string {
+  return str.slice(0, index) + insertStr + str.slice(index);
 }
 
 export default insertAt;

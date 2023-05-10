@@ -1,7 +1,7 @@
 {
   "name": "@opentf/utils",
   "version": "0.17.0",
-  "description": "A Collection of JavaScript Utility Functions.",
+  "description": "A collection of JavaScript utility functions.",
   "keywords": [
     "collection",
     "js",
