@@ -9,6 +9,7 @@ export { default as pascalCase } from './string/pascalCase';
 // Array
 export { default as arrayDiff } from './array/arrayDiff';
 export { default as range } from './array/range';
+export { default as asyncFilter } from './array/asyncFilter';
 
 // Timers
 export { default as sleep } from './timers/sleep';
