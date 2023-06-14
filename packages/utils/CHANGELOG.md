@@ -1,5 +1,11 @@
 # @opentf/utils
 
+## 0.19.0
+
+### Minor Changes
+
+- 2630912: Added array async filter fn
+
 ## 0.18.0
 
 ### Minor Changes
