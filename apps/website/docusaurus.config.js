@@ -5,7 +5,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 module.exports = {
   title: "JS Utils",
   tagline: "A Collection of JavaScript Utility Functions.",
-  url: "https://open-tech-foundation.github.io",
+  url: "https://js-utils.pages.dev",
   baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
