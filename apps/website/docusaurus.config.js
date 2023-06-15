@@ -68,6 +68,10 @@ module.exports = {
           trackingID: "G-G91RSVFLZB",
           anonymizeIP: true,
         },
+        sitemap: {
+          changefreq: 'weekly',
+          filename: 'sitemap.xml',
+        },
       },
     ],
   ],
