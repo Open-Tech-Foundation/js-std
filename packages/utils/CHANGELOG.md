@@ -1,5 +1,11 @@
 # @opentf/utils
 
+## 0.20.0
+
+### Minor Changes
+
+- c1d68f9: Added hexToRGB color values converting util.
+
 ## 0.19.0
 
 ### Minor Changes
