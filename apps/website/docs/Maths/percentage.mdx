@@ -1,11 +1,11 @@
-> Calculates percentage with optional floor value.
+> Calculates percentage of a value with total.
 
 ## Syntax
 
 ```ts
 import { percentage } from '@opentf/utils';
 
-percentage(value: number, total: number, floor?: boolean): number;
+percentage(value: number, total: number): number;
 ```
 
 ## Examples
@@ -25,9 +25,7 @@ percentage(75, 150); // 50
 
 percentage(8, 800); // 1
 
-percentage(5, 150); // 3.33
-
-percentage(5, 150, true); // 3
+percentage(5, 150); // 3.3333333333333335
 
 percentage(200, 100); // 200
 ```

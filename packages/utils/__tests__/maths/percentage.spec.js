@@ -14,8 +14,6 @@ describe('Maths', () => {
     expect(percentage(75, 150)).toBe(50);
     expect(percentage(8, 800)).toBe(1);
     expect(percentage(5, 150)).toBeCloseTo(3.33);
-    expect(percentage(5, 150, true)).toBe(3);
-    expect(percentage(5, 150, true)).not.toBe(3.33);
     expect(percentage(200, 100)).toBe(200);
   });
 });

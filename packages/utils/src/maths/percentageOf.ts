@@ -1,13 +1,9 @@
-function percentageOf(
-  percentage: number,
-  num: number,
-  floor?: boolean
-): number {
-  if (floor) {
-    return Math.floor((percentage / 100) * num);
-  }
-
+/**
+ * It returns percentage of a number.
+ * @param {number} percentage - The percentage to calculate
+ * @param {number} num - The number to find percentage
+ * @returns {number}
+ */
+export default function percentageOf(percentage: number, num: number): number {
   return (percentage / 100) * num;
 }
-
-export default percentageOf;
