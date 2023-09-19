@@ -1,5 +1,12 @@
 # @opentf/utils
 
+## 0.21.0
+
+### Minor Changes
+
+- d6be858: Added array groupBy util function.
+- 39b6947: Removed unwanted flooring of values in percentage calc.
+
 ## 0.20.0
 
 ### Minor Changes
