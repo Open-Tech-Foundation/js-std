@@ -36,9 +36,6 @@
     }
   },
   "sideEffects": false,
-  "engines": {
-    "node": "^14.17.0 || >=16.0.0"
-  },
   "scripts": {
     "build": "tsup",
     "test": "jest",
@@ -50,7 +47,8 @@
     "dist"
   ],
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "provenance": true
   },
   "devDependencies": {
     "@opentf/eslint-config-base": "^0.1.0",

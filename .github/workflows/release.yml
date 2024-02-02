@@ -4,9 +4,9 @@ on:
   push:
     branches:
       - main
-    paths-ignore: 
-      - 'apps/website/**'
-      
+    paths-ignore:
+      - "apps/website/**"
+
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 env:
@@ -16,6 +16,8 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v3
@@ -29,7 +31,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18.x
-          cache: 'pnpm'
+          cache: "pnpm"
 
       - name: Install Dependencies
         run: pnpm install
