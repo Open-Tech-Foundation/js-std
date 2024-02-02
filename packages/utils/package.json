@@ -20,10 +20,7 @@
   },
   "license": "MIT",
   "homepage": "https://js-utils.pages.dev",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/open-tech-foundation/js-utils.git"
-  },
+  "repository": "git@github.com:Open-Tech-Foundation/js-utils.git",
   "type": "module",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
