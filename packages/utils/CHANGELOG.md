@@ -1,5 +1,11 @@
 # @opentf/utils
 
+## 0.22.1
+
+### Patch Changes
+
+- aab4313: Updated readme.
+
 ## 0.22.0
 
 ### Minor Changes
