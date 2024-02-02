@@ -1,16 +1,18 @@
+<img align="left" src="https://open-tech-foundation.pages.dev/img/Logo.svg" width="50" height="50">
+
+&nbsp;[OPEN TECH FOUNDATION](https://open-tech-foundation.pages.dev/)
+
 <div align="center">
 
 # Utils
 
-⚡ by [OPEN TECH FOUNDATION](https://open-tech-foundation.pages.dev/)
+[![Build](https://github.com/open-tech-foundation/js-utils/actions/workflows/build.yml/badge.svg)](https://github.com/open-tech-foundation/js-utils/actions/workflows/build.yml)
 
 </div>
 
-[![Build](https://github.com/open-tech-foundation/js-utils/actions/workflows/build.yml/badge.svg)](https://github.com/open-tech-foundation/js-utils/actions/workflows/build.yml)
-
 > A collection of JavaScript utility functions.
 
-## [Playground](https://js-utils.pages.dev/playground)
+# [Playground](https://js-utils.pages.dev/playground) | [Documentation](https://js-utils.pages.dev)
 
 ## Installation
 
@@ -43,10 +45,6 @@ camelCase('i phone'); //=> 'iPhone'
 
 await sleep(1000); // It suspends the exection for 1 second.
 ```
-
-## Documentation
-
-Please visit [https://js-utils.pages.dev](https://js-utils.pages.dev) to get started.
 
 ## License
 
