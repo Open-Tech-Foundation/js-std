@@ -1,5 +1,11 @@
 # @opentf/utils
 
+## 0.22.0
+
+### Minor Changes
+
+- c7379da: Added pkg provenance support
+
 ## 0.21.0
 
 ### Minor Changes
