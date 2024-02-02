@@ -20,6 +20,8 @@ jobs:
     permissions:
       id-token: write
       contents: write
+      pull-requests: write
+      repository-projects: write
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v3
