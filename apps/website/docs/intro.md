@@ -14,37 +14,28 @@ import TabItem from "@theme/TabItem";
 
 ## Installation
 
-```mdx-code-block
 <Tabs>
-<TabItem value="npm">
-```
-
-```bash
-npm install @opentf/utils
-```
-
-```mdx-code-block
-</TabItem>
-<TabItem value="yarn">
-```
-
-```bash
-yarn add @opentf/utils
-```
-
-```mdx-code-block
-</TabItem>
-<TabItem value="pnpm">
-```
-
-```bash
-pnpm add @opentf/utils
-```
-
-```mdx-code-block
-</TabItem>
+  <TabItem value="npm" label="Npm" default>
+    ```bash
+    npm install @opentf/utils
+    ```
+  </TabItem>
+  <TabItem value="yarn" label="Yarn">
+    ```bash
+    yarn add @opentf/utils
+    ```
+  </TabItem>
+  <TabItem value="pnpm" label="Pnpm">
+    ```bash
+    pnpm add @opentf/utils
+    ```
+  </TabItem>
+  <TabItem value="bun" label="Bun">
+    ```bash
+    bun add @opentf/utils
+    ```
+  </TabItem>
 </Tabs>
-```
 
 ## Usage
 

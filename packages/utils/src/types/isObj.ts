@@ -1,3 +1,3 @@
-export default function isObjType(obj: unknown): boolean {
+export default function isObj(obj: unknown): boolean {
   return Object.prototype.toString.call(obj) === '[object Object]';
 }

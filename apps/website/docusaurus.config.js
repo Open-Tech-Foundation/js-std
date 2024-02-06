@@ -1,78 +1,92 @@
-const lightCodeTheme = require("prism-react-renderer/themes/github");
-const darkCodeTheme = require("prism-react-renderer/themes/dracula");
+// @ts-check
+// Note: type annotations allow type checking and IDEs autocompletion
+import { themes } from "prism-react-renderer";
+import { themes as prismThemes } from "prism-react-renderer";
 
-/** @type {import('@docusaurus/types').DocusaurusConfig} */
-module.exports = {
-  title: "JS Utils",
+const orgName = "open-tech-foundation";
+const repoName = "js-utils";
+const pkgVer = require(`../../packages/utils/package.json`).version;
+
+/** @type {import('@docusaurus/types').Config} */
+const config = {
+  title: "Utils",
   tagline: "A Collection of JavaScript Utility Functions.",
-  url: "https://js-utils.pages.dev",
+  url: "https://js-utils.pages.dev/",
   baseUrl: "/",
+  trailingSlash: false,
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
-  organizationName: "open-tech-foundation", // Usually your GitHub org/user name.
-  projectName: "js-utils", // Usually your repo name.
-  themeConfig: {
-    navbar: {
-      title: "Utils",
-      items: [
-        { to: "/playground", label: "Playground", position: "right" },
-        {
-          href: "https://github.com/open-tech-foundation/js-utils",
-          className: "header-github-link",
-          position: "right",
-        },
-      ],
-    },
-    footer: {
-      style: "dark",
-      links: [
-        {
-          html: `
-          <div>
-            Powered by
-            <a href="https://open-tech-foundation.pages.dev/" target="_blank" rel="noreferrer noopener" aria-label="Built with docusaurus">
-              <img style="vertical-align:middle" src="https://open-tech-foundation.pages.dev/img/Logo.svg" alt="Powered by open tech foundation" width="32" height="32" />
-            </a>
-            <span>-</span>
-            Built with 
-            <a href="https://docusaurus.io/" target="_blank" rel="noreferrer noopener" aria-label="Built with docusaurus">
-            <img style="vertical-align:middle" src="https://d33wubrfki0l68.cloudfront.net/c088b7acfcf11100903c44fe44f2f2d7e0f30531/47727/img/docusaurus.svg" alt="Deploys by Cloudflare Pages" width="32" height="32" />
-            </a>
-            <span>-</span>
-            Deploys by 
-            <a href="https://pages.cloudflare.com/" target="_blank" rel="noreferrer noopener" aria-label="Deploys by Cloudflare Pages">
-              <img style="vertical-align:middle" src="https://pages.cloudflare.com/resources/logo/logo.svg" alt="Deploys by Cloudflare Pages" width="32" height="32" />
-            </a>
-          </div>`,
-        },
-      ],
-      copyright: `Copyright © ${new Date().getFullYear()} <a href="https://github.com/open-tech-foundation">OPEN TECH FOUNDATION</a>.`,
-    },
-    prism: {
-      theme: lightCodeTheme,
-      darkTheme: darkCodeTheme,
-    },
-  },
+  favicon: "img/Logo.svg",
+  organizationName: orgName, // Usually your GitHub org/user name.
+  projectName: repoName, // Usually your repo name.
+
   presets: [
     [
-      "@docusaurus/preset-classic",
-      {
+      "classic",
+      /** @type {import('@docusaurus/preset-classic').Options} */
+      ({
         docs: {
-          routeBasePath: "/",
           sidebarPath: require.resolve("./sidebars.js"),
+          sidebarCollapsed: false,
+          // Please change this to your repo.
+          editUrl: `https://github.com/${orgName}/${repoName}/tree/main/`,
         },
+        blog: false,
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
-        gtag: {
-          trackingID: "G-G91RSVFLZB",
-          anonymizeIP: true,
-        },
-        sitemap: {
-          changefreq: 'weekly',
-          filename: 'sitemap.xml',
-        },
-      },
+      }),
     ],
   ],
+
+  themeConfig:
+    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
+    ({
+      navbar: {
+        title: "Utils",
+        logo: {
+          alt: "Logo",
+          src: "img/Logo.svg",
+        },
+        items: [
+          {
+            type: "docSidebar",
+            sidebarId: "docsSidebar",
+            position: "left",
+            label: "Docs",
+          },
+          {
+            label: "Playground",
+            position: "left",
+            to: "/playground",
+          },
+          {
+            html: `<div style="display: flex; align-items: center"><span>v.${pkgVer}</span><img style="margin-left: 8px" src="/img/Npm-logo.svg" width="48" height="32" /></div>`,
+            position: "right",
+            href: `https://www.npmjs.com/package/@opentf/utils`,
+            className: "npm-link",
+          },
+          {
+            href: `https://github.com/${orgName}/${repoName}`,
+            className: "header-github-link",
+            position: "right",
+          },
+        ],
+      },
+      footer: {
+        style: "dark",
+        links: [
+          {
+            html: `<a href="https://docusaurus.io/">📝 Built with Docusaurus.</a>`,
+          },
+        ],
+        copyright: `Copyright © ${new Date().getFullYear()} <a href="https://open-tech-foundation.pages.dev">Open Tech Foundation</a>.`,
+      },
+      prism: {
+        theme: themes.github,
+        darkTheme: themes.dracula,
+      },
+    }),
 };
+
+module.exports = config;

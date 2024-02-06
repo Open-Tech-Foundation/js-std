@@ -1,4 +1,4 @@
-import isObjType from './isObjType';
+import isObj from '../types/isObj';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function cloneObj(obj: any): any {
@@ -6,7 +6,7 @@ export default function cloneObj(obj: any): any {
     return obj;
   }
 
-  if (isObjType(obj)) {
+  if (isObj(obj)) {
     const cObj: Record<string, unknown> = {};
     for (const k in obj) {
       if (Object.prototype.hasOwnProperty.call(obj, k)) {

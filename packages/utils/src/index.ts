@@ -12,22 +12,20 @@ export { default as range } from './array/range';
 export { default as asyncFilter } from './array/asyncFilter';
 export { default as groupBy } from './array/groupBy';
 
-// Timers
-export { default as sleep } from './timers/sleep';
-
 // Maths
 export { default as percentage } from './maths/percentage';
 export { default as percentageOf } from './maths/percentageOf';
 
 // Types
 export { default as isNumber } from './types/isNumber';
-export { default as inferType } from './types/inferType';
+export { default as isObj } from './types/isObj';
 
 // Object
-export { default as setInObj } from './object/setInObj';
 export { default as getInObj } from './object/getInObj';
-export { default as isObjType } from './object/isObjType';
+export { default as setInObj } from './object/setInObj';
+export { default as delInObj } from './object/delInObj';
 export { default as cloneObj } from './object/cloneObj';
 
 // Misc
 export { default as hexToRGB } from './misc/hexToRGB';
+export { default as sleep } from './misc/sleep';
