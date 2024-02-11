@@ -11,6 +11,7 @@ export { default as arrayDiff } from './array/arrayDiff';
 export { default as range } from './array/range';
 export { default as asyncFilter } from './array/asyncFilter';
 export { default as groupBy } from './array/groupBy';
+export { default as move } from './array/move';
 
 // Maths
 export { default as percentage } from './maths/percentage';

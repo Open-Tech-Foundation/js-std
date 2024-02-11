@@ -52,6 +52,7 @@ await sleep(1000); // It suspends the exection for 1 second.
 - [asyncFilter](https://js-utils.pages.dev/Array/asyncFilter)
 - [groupBy](https://js-utils.pages.dev/Array/groupBy)
 - [range](https://js-utils.pages.dev/Array/range)
+- [move](https://js-utils.pages.dev/Array/move)
 
 ### Maths
 
