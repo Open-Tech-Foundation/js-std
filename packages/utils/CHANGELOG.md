@@ -1,5 +1,11 @@
 # @opentf/utils
 
+## 0.24.1
+
+### Patch Changes
+
+- a0937e1: Updated readme.
+
 ## 0.24.0
 
 ### Minor Changes
