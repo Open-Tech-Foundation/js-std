@@ -1,5 +1,11 @@
 # @opentf/utils
 
+## 0.24.0
+
+### Minor Changes
+
+- cb6520c: Added array move utility fn.
+
 ## 0.23.0
 
 ### Minor Changes
