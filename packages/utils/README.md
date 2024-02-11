@@ -48,37 +48,37 @@ await sleep(1000); // It suspends the exection for 1 second.
 
 ### Array
 
-- [arrayDiff](https://js-utils.pages.dev/Array/arrayDiff)
-- [asyncFilter](https://js-utils.pages.dev/Array/asyncFilter)
-- [groupBy](https://js-utils.pages.dev/Array/groupBy)
-- [range](https://js-utils.pages.dev/Array/range)
-- [move](https://js-utils.pages.dev/Array/move)
+- [arrayDiff](https://js-utils.pages.dev/docs/Array/arrayDiff)
+- [asyncFilter](https://js-utils.pages.dev/docs/Array/asyncFilter)
+- [groupBy](https://js-utils.pages.dev/docs/Array/groupBy)
+- [range](https://js-utils.pages.dev/docs/Array/range)
+- [move](https://js-utils.pages.dev/docs/Array/move)
 
 ### Maths
 
-- [percentage](https://js-utils.pages.dev/Maths/percentage)
-- [percentageOf](https://js-utils.pages.dev/Maths/percentageOf)
+- [percentage](https://js-utils.pages.dev/docs/Maths/percentage)
+- [percentageOf](https://js-utils.pages.dev/docs/Maths/percentageOf)
 
 ### Misc
 
-- [hexToRGB](https://js-utils.pages.dev/Misc/hexToRGB)
-- [sleep](https://js-utils.pages.dev/Timers/sleep)
+- [hexToRGB](https://js-utils.pages.dev/docs/Misc/hexToRGB)
+- [sleep](https://js-utils.pages.dev/docs/Timers/sleep)
 
 ### Object
 
-- [cloneObj](https://js-utils.pages.dev/Object/cloneObj)
-- [getInObj](https://js-utils.pages.dev/Object/getInObj)
-- [setInObj](https://js-utils.pages.dev/Object/setInObj)
-- [delInObj](https://js-utils.pages.dev/Object/delInObj)
+- [cloneObj](https://js-utils.pages.dev/docs/Object/cloneObj)
+- [getInObj](https://js-utils.pages.dev/docs/Object/getInObj)
+- [setInObj](https://js-utils.pages.dev/docs/Object/setInObj)
+- [delInObj](https://js-utils.pages.dev/docs/Object/delInObj)
 
 ### String
 
-- [camelCase](https://js-utils.pages.dev/String/camelCase)
-- [capitalize](https://js-utils.pages.dev/String/capitalize)
-- [insertAt](https://js-utils.pages.dev/String/insertAt)
-- [isEmail](https://js-utils.pages.dev/String/isEmail)
-- [pascalCase](https://js-utils.pages.dev/String/pascalCase)
-- [replaceAt](https://js-utils.pages.dev/String/replaceAt)
+- [camelCase](https://js-utils.pages.dev/docs/String/camelCase)
+- [capitalize](https://js-utils.pages.dev/docs/String/capitalize)
+- [insertAt](https://js-utils.pages.dev/docs/String/insertAt)
+- [isEmail](https://js-utils.pages.dev/docs/String/isEmail)
+- [pascalCase](https://js-utils.pages.dev/docs/String/pascalCase)
+- [replaceAt](https://js-utils.pages.dev/docs/String/replaceAt)
 
 ### Types
 
