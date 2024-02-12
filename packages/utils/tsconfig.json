@@ -70,5 +70,6 @@
     "noEmitOnError": true /* Do not emit outputs if any errors were reported. */,
     "skipLibCheck": true /* Skip type checking of declaration files. */,
     "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */
-  }
+  },
+  "include": ["src/**/*"]
 }
