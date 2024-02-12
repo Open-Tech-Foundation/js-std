@@ -1,5 +1,11 @@
 # @opentf/utils
 
+## 0.25.0
+
+### Minor Changes
+
+- 2942e8b: Fixed groupBy types.
+
 ## 0.24.1
 
 ### Patch Changes
