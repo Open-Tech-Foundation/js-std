@@ -1,10 +1,13 @@
-export type GroupKey = (a: unknown) => string | string;
+export type GroupKey<T> = ((a: T) => string) | string;
 
-export default function groupBy(arr: unknown[], key: GroupKey) {
-  return arr.reduce((acc: Record<string, unknown>, obj) => {
+export default function groupBy<T>(
+  arr: T[],
+  key: GroupKey<T>
+): Record<string, T[]> {
+  return arr.reduce((acc: Record<string, T[]>, obj: T) => {
     const k =
-      typeof key === 'function' ? key(obj) : (obj as Iterable<unknown>)[key];
+      typeof key === 'function' ? key(obj) : (obj[key as keyof T] as string);
     const curGroup = acc[k] ?? [];
-    return { ...acc, [k]: [...(curGroup as unknown[]), obj] };
+    return { ...acc, [k]: [...curGroup, obj] };
   }, {});
 }
