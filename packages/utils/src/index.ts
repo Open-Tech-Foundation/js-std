@@ -20,6 +20,7 @@ export { default as percentageOf } from './maths/percentageOf';
 // Types
 export { default as isNumber } from './types/isNumber';
 export { default as isObj } from './types/isObj';
+export { default as isJSON } from './types/isJSON';
 
 // Object
 export { default as getInObj } from './object/getInObj';

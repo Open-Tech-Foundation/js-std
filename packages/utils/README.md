@@ -84,6 +84,7 @@ await sleep(1000); // It suspends the exection for 1 second.
 
 - [isObj](https://js-utils.pages.dev/Object/isObj)
 - [isNumber](https://js-utils.pages.dev/Types/isNumber)
+- [isJSON](https://js-utils.pages.dev/docs/Types/isJSON)
 
 ## License
 

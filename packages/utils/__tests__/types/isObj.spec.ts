@@ -5,7 +5,7 @@ function fun(x?: any) {
   return x;
 }
 
-describe('Object', () => {
+describe('Types', () => {
   test('isObj', () => {
     expect(isObj(undefined)).toBeFalsy();
     expect(isObj(null)).toBeFalsy();

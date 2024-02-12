@@ -1,0 +1,53 @@
+> Checks whether the given string is a valid JSON plain object
+
+## Syntax
+
+```ts
+import { isJSON } from '@opentf/utils';
+
+isJSON(str: string): boolean;
+```
+
+## Examples
+
+```ts
+// Falsy cases
+// ***********
+
+isJSON(""); //=> false
+
+isJSON("undefined"); //=> false
+
+isJSON("null"); //=> false
+
+isJSON("true"); //=> false
+
+isJSON("false"); //=> false
+
+isJSON("1"); //=> false
+
+isJSON("12345"); //=> false
+
+isJSON("abc"); //=> false
+
+isJSON("{a}"); //=> false
+
+isJSON("{a:}"); //=> false
+
+isJSON("{a:1}"); //=> false
+
+isJSON('{"a": undefined}'); //=> false
+
+isJSON("[]"); //=> false
+
+// Truthy cases
+// ************
+
+isJSON("{}"); //=> true
+
+isJSON('{"a":1}'); //=> true
+
+isJSON(
+  '{"a": "abc", "b": true, "c": false, "d": [{"e": 1}, null, 5.0], "f": {}}'
+); //=> true
+```
