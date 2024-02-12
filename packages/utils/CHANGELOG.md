@@ -1,5 +1,11 @@
 # @opentf/utils
 
+## 0.26.0
+
+### Minor Changes
+
+- 8bafd6f: Added isJSON types utility fn.
+
 ## 0.25.0
 
 ### Minor Changes
