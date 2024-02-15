@@ -1,5 +1,11 @@
 # @opentf/utils
 
+## 0.27.0
+
+### Minor Changes
+
+- 5a4ff85: Added isShallowEql fn for comparing two values by shallow comparison.
+
 ## 0.26.0
 
 ### Minor Changes
