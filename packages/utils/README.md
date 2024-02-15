@@ -70,6 +70,7 @@ await sleep(1000); // It suspends the exection for 1 second.
 - [getInObj](https://js-utils.pages.dev/docs/Object/getInObj)
 - [setInObj](https://js-utils.pages.dev/docs/Object/setInObj)
 - [delInObj](https://js-utils.pages.dev/docs/Object/delInObj)
+- [isShallowEql](https://js-utils.pages.dev/docs/Object/isShallowEql)
 
 ### String
 
