@@ -1,5 +1,11 @@
 # @opentf/utils
 
+## 0.28.0
+
+### Minor Changes
+
+- 3c9b6cf: Added type assertion utility fns.
+
 ## 0.27.0
 
 ### Minor Changes
