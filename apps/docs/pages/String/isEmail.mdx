@@ -1,0 +1,32 @@
+import REPL from "../../components/REPL";
+
+> Check whether the given string is an email address.
+
+## Syntax
+
+```ts
+import { isEmail } from '@opentf/utils';
+
+isEmail(str: string): boolean;
+```
+
+## Examples
+
+```ts
+isEmail('user@example.com'); // true
+
+isEmail('test.email.with+symbol@example.org'); // true
+
+isEmail('example.net'); // false
+
+isEmail('email@example'); // false
+
+isEmail('email@example@example.com'); // false
+```
+
+## Try
+
+<REPL code={`const { isEmail } = require('@opentf/utils');
+
+isEmail('user@example.com');
+`} />

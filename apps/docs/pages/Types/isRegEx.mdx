@@ -1,0 +1,28 @@
+import REPL from "../../components/REPL";
+
+> Checks if the given value is a [RegExp](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp) object.
+
+## Syntax
+
+```ts
+import { isRegEx } from '@opentf/utils';
+
+isRegEx(value: unknown): boolean;
+```
+
+## Examples
+
+```ts
+isRegEx(new RegExp()) //=> true
+
+isRegEx(/\d+/) //=> true
+
+isRegEx({}) //=> false
+```
+
+## Try
+
+<REPL code={`const { isRegEx } = require('@opentf/utils');
+
+isRegEx(/\\d+/);
+`} />

@@ -1,0 +1,58 @@
+import { Tabs, Callout } from "nextra/components";
+
+# Introduction
+
+> A collection of JavaScript utility functions.
+
+## Features
+
+- Simple API
+- Practical Default Options
+- Includes Async Utils
+- TypeScript Support
+- ESM
+
+## Installation
+
+<Tabs items={["pnpm", "npm", "yarn", "bun"]}>
+  <Tabs.Tab>
+  ```sh copy 
+  pnpm add @opentf/utils 
+  ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+      ```sh copy 
+  npm install @opentf/utils 
+  ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+  ```sh copy 
+  yarn add @opentf/utils 
+  ```
+  </Tabs.Tab>
+  <Tabs.Tab>
+  ```sh copy 
+  bun add @opentf/utils 
+  ```
+  </Tabs.Tab>
+</Tabs>
+
+## Usage
+
+```ts
+import { isNum, range, camelCase, sleep } from "@opentf/utils";
+
+isNum(NaN); //=> false
+
+range(1, 5); //=> [1, 2, 3, 4, 5]
+
+camelCase("i phone"); //=> 'iPhone'
+
+await sleep(1000); // It suspends the exection for 1 second.
+```
+
+<Callout type="default">
+
+You can try out these examples on the [Playground](/playground).
+
+</Callout>

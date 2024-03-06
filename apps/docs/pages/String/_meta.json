@@ -1,0 +1,8 @@
+{
+  "camelCase": "camelCase",
+  "capitalize": "capitalize",
+  "insertAt": "insertAt",
+  "isEmail": "isEmail",
+  "pascalCase": "pascalCase",
+  "replaceAt": "replaceAt"
+}

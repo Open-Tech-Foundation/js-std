@@ -1,0 +1,28 @@
+import REPL from "../../components/REPL";
+
+> Checks if the given value is [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) object.
+
+## Syntax
+
+```ts
+import { isSet } from '@opentf/utils';
+
+isSet(value: unknown): boolean;
+```
+
+## Examples
+
+```ts
+isSet(new Set()) //=> true
+
+isSet(new WeakSet()) //=> false
+
+isSet({}) //=> false
+```
+
+## Try
+
+<REPL code={`const { isSet } = require('@opentf/utils');
+
+isSet(new Set());
+`} />

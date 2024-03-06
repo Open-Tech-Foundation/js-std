@@ -1,0 +1,28 @@
+import REPL from "../../components/REPL";
+
+> Checks if the given value is a [Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function).
+
+## Syntax
+
+```ts
+import { isFn } from '@opentf/utils';
+
+isFn(val: unknown): boolean;
+```
+
+## Examples
+
+```ts
+isFn(function() {}) //=> true
+
+isFn({}) //=> false
+```
+
+## Try
+
+<REPL code={`const { isFn } = require('@opentf/utils');
+
+function a() {}
+
+isFn(a);
+`} />

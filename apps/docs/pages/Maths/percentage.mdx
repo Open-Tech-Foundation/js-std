@@ -1,0 +1,39 @@
+import REPL from "../../components/REPL";
+
+> Calculates percentage of a value with total.
+
+## Syntax
+
+```ts
+import { percentage } from '@opentf/utils';
+
+percentage(value: number, total: number): number;
+```
+
+## Examples
+
+```ts
+percentage(0, 0); // NaN
+
+percentage(1, 0); // Infinity
+
+percentage(1, 1); // 100
+
+percentage(0.5, 1); // 50
+
+percentage(25, 100); // 25
+
+percentage(75, 150); // 50
+
+percentage(8, 800); // 1
+
+percentage(5, 150); // 3.3333333333333335
+
+percentage(200, 100); // 200
+```
+
+## Try
+
+<REPL code={`const { percentage } = require('@opentf/utils');
+
+percentage(75, 150);`} />

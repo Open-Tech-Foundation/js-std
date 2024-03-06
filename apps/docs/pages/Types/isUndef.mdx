@@ -1,0 +1,28 @@
+import REPL from "../../components/REPL";
+
+> Checks if the given value is [undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined).
+
+## Syntax
+
+```ts
+import { isUndef } from '@opentf/utils';
+
+isUndef(value: unknown): boolean;
+```
+
+## Examples
+
+```ts
+isUndef() //=> true
+
+isUndef(undefined) //=> true
+
+isUndef(null) //=> false
+```
+
+## Try
+
+<REPL code={`const { isUndef } = require('@opentf/utils');
+
+isUndef(undefined);
+`} />

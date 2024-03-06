@@ -1,0 +1,26 @@
+import REPL from "../../components/REPL";
+
+> Checks if the given value is [WeakMap](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap).
+
+## Syntax
+
+```ts
+import { isWkMap } from '@opentf/utils';
+
+isWkMap(value: unknown): boolean;
+```
+
+## Examples
+
+```ts
+isWkMap(new Map()) //=> false
+
+isWkMap(new WeakMap()) //=> true
+```
+
+## Try
+
+<REPL code={`const { isWkMap } = require('@opentf/utils');
+
+isWkMap(new WeakMap());
+`} />

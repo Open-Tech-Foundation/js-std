@@ -7,7 +7,7 @@
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": ["website"],
+  "ignore": ["docs"],
   "privatePackages": false,
   "bumpVersionsWithWorkspaceProtocolOnly": true
 }

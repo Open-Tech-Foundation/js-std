@@ -1,0 +1,10 @@
+{
+  "index": "Introduction",
+  "playground": {
+    "title": "Playground",
+    "type": "page",
+    "theme": {
+      "layout": "full"
+    }
+  }
+}

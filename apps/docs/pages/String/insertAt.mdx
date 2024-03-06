@@ -1,0 +1,43 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> Insert a character or string at the index position.
+
+## Syntax
+
+```ts
+import { insertAt } from '@opentf/utils';
+
+insertAt(str: string, index?: number, insertStr?: string): string;
+```
+
+<Callout type="info">
+Default index = 0
+</Callout>
+
+## Examples
+
+```ts
+insertAt() // It throws an error;
+
+insertAt('') //=> ''
+
+insertAt('', 0) //=> ''
+
+insertAt('', 1, 'abc') //=> 'abc'
+
+insertAt('a', 0, 'b') //=> 'ba'
+
+insertAt('a', 1, 'b') //=> 'ab'
+
+insertAt('a', 1, 'bc') //=> 'abc'
+
+insertAt('foo baz', 3, ' bar') //=> 'foo bar baz'
+```
+
+## Try
+
+<REPL code={`const { insertAt } = require('@opentf/utils');
+
+insertAt('The quick fox', 10, 'brown ');
+`} />

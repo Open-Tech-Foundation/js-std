@@ -1,0 +1,83 @@
+import REPL from "../../components/REPL";
+
+> Checks if the given value is plain [Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object).
+
+## Syntax
+
+```ts
+import { isObj } from '@opentf/utils';
+
+isObj(obj: unknown): boolean;
+```
+
+## Examples
+
+```ts
+isObj(); // false
+
+isObj(undefined); // false
+
+isObj(null); // false
+
+isObj(true); // false
+
+isObj(false); // false
+
+isObj(0); // false
+
+isObj(1n); // false
+
+isObj(''); // false
+
+isObj([]); // false
+
+isObj(() => {}); // false
+
+isObj(Symbol); // false
+
+isObj(Symbol('Sym')); // false
+
+isObj(Math); // false
+
+isObj(Math.min); // false
+
+isObj(Error); // false
+
+isObj(new Error()); // false
+
+function fun(x) {
+  return x;
+}
+
+isObj(fun); // false
+
+isObj(fun()); // false
+
+isObj(Map); // false
+
+isObj(new Map()); // false
+
+isObj(Set); // false
+
+isObj(new Set()); // false
+
+isObj(/./); // false
+
+isObj({}); // true
+
+isObj({ a: 1 }); // true
+
+isObj(new fun(1)); // true
+
+isObj(new Object()); // true
+
+isObj(Object.create(null)); // true
+
+```
+
+## Try
+
+<REPL code={`const { isObj } = require('@opentf/utils');
+
+isObj({});
+`} />

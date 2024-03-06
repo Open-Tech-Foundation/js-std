@@ -1,0 +1,26 @@
+import REPL from "../../components/REPL";
+
+> Checks if the given value is a [Blob](https://developer.mozilla.org/en-US/docs/Web/API/Blob).
+
+## Syntax
+
+```ts
+import { isBlob } from '@opentf/utils';
+
+isBlob(val: unknown): boolean;
+```
+
+## Examples
+
+```ts
+isBlob(new Blob()) //=> true
+ 
+isBlob({}) //=> false
+```
+
+## Try
+
+<REPL code={`const { isBlob } = require('@opentf/utils');
+
+isBlob(new Blob());
+`} />

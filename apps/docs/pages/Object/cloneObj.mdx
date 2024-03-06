@@ -1,0 +1,103 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> It deeply clones the given input [Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object).
+
+## Syntax
+
+```ts
+import { cloneObj } from '@opentf/utils';
+
+cloneObj(obj: unknown): unknown;
+```
+
+<Callout type="info">
+The following types are supported:
+
+- Primitive values:
+    - Boolean
+    - Null
+    - Undefined
+    - Number
+    - BigInt
+    - String
+
+- Objects
+
+- Arrays
+
+- Dates
+</Callout>
+
+## Examples
+
+```ts
+cloneObj(); // undefined
+
+cloneObj(undefined); // undefined
+
+cloneObj(null); // null
+
+cloneObj(true); // true
+
+cloneObj(false); // false
+
+cloneObj('abc'); // 'abc'
+
+cloneObj(1); // 1
+
+cloneObj(1n); // 1n
+
+let input = [];
+let output = cloneObj(input);
+console.log(output === input); // false
+
+input = [1];
+output = cloneObj(input);
+console.log(output === input); // false
+
+input = [1, 'abc', false, null, undefined];
+output = cloneObj(input);
+console.log(output === input); // false
+
+input = {};
+output = cloneObj(input);
+console.log(output === input); // false
+
+input = { a: undefined, b: null, c: '', d: true, e: 1, f: 5n };
+output = cloneObj(input);
+console.log(output === input); // false
+
+input = { arr: [1, 2, 3], obj: { a: 'abc', b: 123 } };
+output = cloneObj(input);
+console.log(output === input); // false
+console.log(output.arr === input.arr); // false
+console.log(output.obj === input.obj); // false
+
+input = new Date();
+output = cloneObj(input);
+console.log(output === input); // false
+
+input = new Date('2020-05-01');
+output = cloneObj(input);
+console.log(output === input); // false
+```
+
+## Try
+
+<REPL code={`const { cloneObj } = require('@opentf/utils');
+
+const input = { 
+  a: [1, 2, 3], 
+  b: null, 
+  c: 'abc', 
+  d: true, 
+  e: 1, 
+  f: 5n, 
+  g: new Date('2024-01-10'),
+};
+const output = cloneObj(input);
+log(output)
+log(input === output)
+input.a === output.a
+`} />

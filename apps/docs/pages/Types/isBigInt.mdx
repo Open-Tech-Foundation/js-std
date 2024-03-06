@@ -1,0 +1,26 @@
+import REPL from "../../components/REPL";
+
+> Checks if the given value is an [BigInt](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt).
+
+## Syntax
+
+```ts
+import { isBigInt } from '@opentf/utils';
+
+isBigInt(val: unknown): boolean;
+```
+
+## Examples
+
+```ts
+isBigInt(1) //=> false
+
+isBigInt(1n) //=> true
+```
+
+## Try
+
+<REPL code={`const { isBigInt } = require('@opentf/utils');
+
+isBigInt(1n);
+`} />

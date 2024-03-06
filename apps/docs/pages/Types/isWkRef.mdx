@@ -1,0 +1,28 @@
+import REPL from "../../components/REPL";
+
+> Checks if the given value is [WeakRef](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakRef).
+
+## Syntax
+
+```ts
+import { isWkRef } from '@opentf/utils';
+
+isWkRef(value: unknown): boolean;
+```
+
+## Examples
+
+```ts
+isWkRef({}) //=> false
+
+let user = { name: "John" };
+isWkRef(new WeakRef(user)) //=> true
+```
+
+## Try
+
+<REPL code={`const { isWkRef } = require('@opentf/utils');
+
+let user = { name: "John" };
+isWkRef(new WeakRef(user));
+`} />

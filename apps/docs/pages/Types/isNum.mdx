@@ -1,0 +1,89 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> Checks if the given value is [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) and it is finite.
+
+<Callout type="warning">
+It only coerces the string value, not other types like null, boolean, etc.
+</Callout>
+
+## Syntax
+
+```ts
+import { isNum } from '@opentf/utils';
+
+isNum(value: unknown, coerce = false): boolean;
+```
+
+## Examples
+
+```ts
+// Invalid cases
+// *************
+
+isNum(undefined) //=> false
+
+isNum(null) //=> false
+
+isNum(true) //=> false
+
+isNum(false) //=> false
+
+isNum('') //=> false
+
+isNum('a') //=> false
+
+isNum('1') //=> false
+
+isNum(1n) //=> false
+
+isNum([]) //=> false
+
+isNum({}) //=> false
+
+isNum(Symbol(1)) //=> false
+
+isNum(NaN) //=> false
+
+isNum(Infinity) //=> false
+
+isNum('1__000', true) //=> false
+
+// Valid cases
+// ***********
+
+isNum(0) //=> true
+
+isNum(-0) //=> true
+
+isNum(1) //=> true
+
+isNum(1.5) //=> true
+
+isNum('1', true) //=> true
+
+isNum('-1.1', true) //=> true
+
+isNum(1_000) //=> true
+
+isNum('1_000', true) //=> true
+
+isNum(0xff) //=> true
+
+isNum(0b11111111) //=> true
+
+isNum(0.255e3) //=> true
+
+isNum(Math.PI) //=> true
+```
+
+## Try
+
+<REPL code={`const { isNum } = require('@opentf/utils');
+
+log(isNum(NaN));
+log(isNum(1));
+log(isNum('1'));
+log(isNum('1.5', true));
+isNum('1_000', true)
+`} />

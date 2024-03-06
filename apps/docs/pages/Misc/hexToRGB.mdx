@@ -1,0 +1,44 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> It converts hexadecimal color values into RGB color values.
+
+<Callout type="warning">
+It does not work with shorthand form & alpha param.
+</Callout>
+
+## Syntax
+
+```ts
+import { hexToRGB } from '@opentf/utils';
+
+hexToRGB6(hex: string): number[];
+```
+
+## Examples
+
+```ts
+hexToRGB("#000000"); //=> [0, 0, 0]
+
+hexToRGB("#FFFFFF"); //=> [255, 255, 255]
+
+hexToRGB("#ffffff"); //=> [255, 255, 255]
+
+hexToRGB("#FF0000"); //=> [255, 0, 0]
+
+hexToRGB("#00FF00"); //=> [0, 255, 0]
+
+hexToRGB("#0000FF"); //=> [0, 0, 255]
+
+hexToRGB("#AAAAAA"); //=> [170, 170, 170]
+
+hexToRGB("#DDDDDD"); //=> [221, 221, 221]
+
+hexToRGB("#ff851b"); //=> [255, 133, 27]
+```
+
+## Try
+
+<REPL code={`const { hexToRGB } = require('@opentf/utils');
+
+hexToRGB('#FFFFFF');`} />

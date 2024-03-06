@@ -2,12 +2,12 @@
   "private": true,
   "scripts": {
     "dev": "turbo run build --filter=utils -- --watch",
-    "dev:web": "turbo run start --filter=website",
+    "dev:docs": "turbo run dev --filter=docs",
     "test": "turbo run test --filter=utils",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "turbo run lint --filter=utils",
     "build": "turbo run build --filter=utils",
-    "build:website": "turbo run build --filter=website",
+    "build:docs": "turbo run build --filter=docs",
     "ci": "turbo run ci --filter=utils",
     "prepare": "husky install",
     "publish-packages": "turbo run build lint test --filter=utils && changeset version && changeset publish"

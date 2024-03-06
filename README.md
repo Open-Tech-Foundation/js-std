@@ -6,13 +6,21 @@
 
 # Utils
 
-[![Build](https://github.com/open-tech-foundation/js-utils/actions/workflows/build.yml/badge.svg)](https://github.com/open-tech-foundation/js-utils/actions/workflows/build.yml) <a href="https://pkg-size.dev/@opentf/utils"><img src="https://pkg-size.dev/badge/bundle/3224" title="Bundle size for @opentf/utils"></a>
+[![Build](https://github.com/open-tech-foundation/js-utils/actions/workflows/build.yml/badge.svg)](https://github.com/open-tech-foundation/js-utils/actions/workflows/build.yml)
 
 </div>
 
 > A collection of JavaScript utility functions.
 
 # [Playground](https://js-utils.pages.dev/playground) | [Documentation](https://js-utils.pages.dev)
+
+## Features
+
+- Simple API
+- Practical Default Options
+- Includes Async Utils
+- TypeScript Support
+- ESM
 
 ## Installation
 
@@ -35,7 +43,9 @@ bun add @opentf/utils
 ## Usage
 
 ```ts
-import { range, camelCase, sleep } from "@opentf/utils";
+import { isNum, range, camelCase, sleep } from "@opentf/utils";
+
+isNum(NaN); //=> false
 
 range(1, 5); //=> [1, 2, 3, 4, 5]
 
@@ -83,9 +93,28 @@ await sleep(1000); // It suspends the exection for 1 second.
 
 ### Types
 
-- [isObj](https://js-utils.pages.dev/docs/Object/isObj)
-- [isNumber](https://js-utils.pages.dev/docs/Types/isNumber)
+- [isArr](https://js-utils.pages.dev/Types/isArr)
+- [isArrBuf](https://js-utils.pages.dev/Types/isArrBuf)
+- [isBigInt](https://js-utils.pages.dev/Types/isBigInt)
+- [isBlob](https://js-utils.pages.dev/Types/isBlob)
+- [isBool](https://js-utils.pages.dev/Types/isBool)
+- [isDate](https://js-utils.pages.dev/Types/isDate)
+- [isErr](https://js-utils.pages.dev/Types/isErr)
+- [isFn](https://js-utils.pages.dev/Types/isFn)
 - [isJSON](https://js-utils.pages.dev/docs/Types/isJSON)
+- [isMap](https://js-utils.pages.dev/Types/isMap)
+- [isNull](https://js-utils.pages.dev/Types/isNull)
+- [isNum](https://js-utils.pages.dev/Types/isNum)
+- [isObj](https://js-utils.pages.dev/Types/isObj)
+- [isRegEx](https://js-utils.pages.dev/Types/isRegEx)
+- [isSet](https://js-utils.pages.dev/Types/isSet)
+- [isStr](https://js-utils.pages.dev/Types/isStr)
+- [isSym](https://js-utils.pages.dev/Types/isSym)
+- [isTypedArr](https://js-utils.pages.dev/Types/isTypedArr)
+- [isUndef](https://js-utils.pages.dev/Types/isUndef)
+- [isWkMap](https://js-utils.pages.dev/Types/isWkMap)
+- [isWkRef](https://js-utils.pages.dev/Types/isWkRef)
+- [isWkSet](https://js-utils.pages.dev/Types/isWkSet)
 
 ## License
 

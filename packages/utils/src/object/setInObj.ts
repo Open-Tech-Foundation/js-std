@@ -1,4 +1,4 @@
-import isNumber from '../types/isNumber';
+import isNum from '../types/isNum';
 
 function setInObj(obj: object, path: string, value: unknown): object {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -18,7 +18,7 @@ function setInObj(obj: object, path: string, value: unknown): object {
     }
 
     if (!tempPath[prop]) {
-      tempPath[prop] = isNumber(props[i + 1]) ? [] : {};
+      tempPath[prop] = isNum(props[i + 1], true) ? [] : {};
     }
 
     tempPath = tempPath[prop];

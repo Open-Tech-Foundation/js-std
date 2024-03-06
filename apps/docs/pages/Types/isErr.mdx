@@ -1,0 +1,26 @@
+import REPL from "../../components/REPL";
+
+> Checks if the given value is an [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error).
+
+## Syntax
+
+```ts
+import { isErr } from '@opentf/utils';
+
+isErr(val: unknown): boolean;
+```
+
+## Examples
+
+```ts
+isErr(new Error()) //=> true
+
+isErr({}) //=> false
+```
+
+## Try
+
+<REPL code={`const { isErr } = require('@opentf/utils');
+
+isErr(new Error());
+`} />

@@ -1,0 +1,7 @@
+{
+  "cloneObj": "cloneObj",
+  "delInObj": "delInObj",
+  "getInObj": "getInObj",
+  "setInObj": "setInObj",
+  "isShallowEql": "isShallowEql"
+}

@@ -1,0 +1,46 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> It creates an array with the values, not included in the other array.
+
+<Callout type="warning">
+It does not work with non primitive values.
+</Callout>
+
+<Callout type="info">
+It uses [Object.is()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) for equality comparisons.
+</Callout>
+
+## Syntax
+
+```ts copy
+import { arrayDiff } from '@opentf/utils';
+
+arrayDiff(arr1: unknown[], arr2: unknown[]): unknown[];
+```
+
+## Examples
+
+```ts
+arrayDiff(); // It throws an error;
+
+arrayDiff([1], []); // [1]
+
+arrayDiff([1], [1, 2]); // []
+
+arrayDiff([1, "a"], [1, 2]); // ['a']
+
+arrayDiff([0], [0]); // []
+
+arrayDiff([-0], [0]); // [-0]
+
+arrayDiff([], []); // [[]]
+
+arrayDiff(["apple", "mango", "orange"], ["mango", "apple"]); // ['orange']
+```
+
+## Try
+
+<REPL code={`const { arrayDiff } = require('@opentf/utils');
+
+arrayDiff([1, 2, 3], [1, 3])`} />

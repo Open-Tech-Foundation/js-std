@@ -9,15 +9,6 @@ yarn-error.log*
 node_modules/
 jspm_packages/
 
-# Yarn
-.yarn/*
-!.yarn/patches
-!.yarn/releases
-!.yarn/plugins
-!.yarn/sdks
-!.yarn/versions
-.pnp.*
-
 # Artifacts
 dist
 build
@@ -28,3 +19,5 @@ lib
 
 play.js
 .turbo
+
+.next

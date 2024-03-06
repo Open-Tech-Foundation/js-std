@@ -1,0 +1,28 @@
+import REPL from "../../components/REPL";
+
+> Checks if the given value is [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String).
+
+## Syntax
+
+```ts
+import { isStr } from '@opentf/utils';
+
+isStr(value: unknown): boolean;
+```
+
+## Examples
+
+```ts
+isStr('abc') //=> true
+
+isStr(String(1)) //=> true
+
+isStr(1) //=> false
+```
+
+## Try
+
+<REPL code={`const { isStr } = require('@opentf/utils');
+
+isStr('abc');
+`} />

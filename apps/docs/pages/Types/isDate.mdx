@@ -1,0 +1,28 @@
+import REPL from "../../components/REPL";
+
+> Checks if the given value is a valid [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) object.
+
+## Syntax
+
+```ts
+import { isDate } from '@opentf/utils';
+
+isDate(val: unknown): boolean;
+```
+
+## Examples
+
+```ts
+isDate(new Date()) //=> true
+
+isDate(new Date('')) //=> false
+
+isDate('2000-01-01') //=> false
+```
+
+## Try
+
+<REPL code={`const { isDate } = require('@opentf/utils');
+
+isDate(new Date());
+`} />
