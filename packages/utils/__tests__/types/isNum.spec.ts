@@ -9,6 +9,7 @@ describe('Types > isNum', () => {
     expect(isNum(false)).toBe(false);
     expect(isNum(1n)).toBe(false);
     expect(isNum('')).toBe(false);
+    expect(isNum('', true)).toBe(false);
     expect(isNum(' ')).toBe(false);
     expect(isNum('a')).toBe(false);
     expect(isNum([])).toBe(false);

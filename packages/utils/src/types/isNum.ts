@@ -17,7 +17,7 @@
 
 export default function isNum(val: unknown, coerce = false): boolean {
   let n = val;
-  if (coerce && typeof val === 'string') {
+  if (coerce && typeof val === 'string' && val.trim().length) {
     const regex = /_{2,}|^0_1|^_|_$/;
     if (val.includes('_') && !regex.test(val.trim())) {
       n = val.replaceAll('_', '');
