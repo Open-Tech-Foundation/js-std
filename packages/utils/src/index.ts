@@ -31,6 +31,8 @@ export { default as isArr } from './types/isArr';
 export { default as isDate } from './types/isDate';
 export { default as isErr } from './types/isErr';
 export { default as isFn } from './types/isFn';
+export { default as isAsyFn } from './types/isAsyFn';
+export { default as isGenFn } from './types/isGenFn';
 export { default as isMap } from './types/isMap';
 export { default as isNull } from './types/isNull';
 export { default as isRegEx } from './types/isRegEx';
