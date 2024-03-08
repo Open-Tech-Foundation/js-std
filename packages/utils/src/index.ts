@@ -52,3 +52,4 @@ export { default as isShallowEql } from './object/isShallowEql';
 export { default as hexToRGB } from './misc/hexToRGB';
 export { default as sleep } from './misc/sleep';
 export { default as clamp } from './number/clamp';
+export { default as toNum } from './number/toNum';
