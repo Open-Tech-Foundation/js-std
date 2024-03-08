@@ -16,6 +16,7 @@ export { default as move } from './array/move';
 // Maths
 export { default as percentage } from './maths/percentage';
 export { default as percentageOf } from './maths/percentageOf';
+export { default as divMod } from './maths/divMod';
 export { default as sum } from './maths/sum';
 export { default as prod } from './maths/prod';
 
