@@ -1,63 +1,63 @@
-import { cloneObj } from '../../src';
+import { clone } from '../../src';
 
 describe('Object', () => {
-  test('cloneObj', () => {
-    expect(cloneObj(undefined)).toBe(undefined);
-    expect(cloneObj(null)).toBe(null);
-    expect(cloneObj(true)).toBe(true);
-    expect(cloneObj(false)).toBe(false);
-    expect(cloneObj('')).toBe('');
-    expect(cloneObj('abc')).toBe('abc');
-    expect(cloneObj(1)).toBe(1);
-    expect(cloneObj(1n)).toBe(1n);
+  test('clone', () => {
+    expect(clone(undefined)).toBe(undefined);
+    expect(clone(null)).toBe(null);
+    expect(clone(true)).toBe(true);
+    expect(clone(false)).toBe(false);
+    expect(clone('')).toBe('');
+    expect(clone('abc')).toBe('abc');
+    expect(clone(1)).toBe(1);
+    expect(clone(1n)).toBe(1n);
 
     let input: unknown = [];
-    let output = cloneObj(input);
+    let output = clone(input);
     expect(output).not.toBe(input);
     expect(output).toStrictEqual(input);
 
     input = [1];
-    output = cloneObj(input);
+    output = clone(input);
     expect(output).not.toBe(input);
     expect(output).toStrictEqual(input);
 
     input = [1, 'abc', false, null, undefined];
-    output = cloneObj(input);
+    output = clone(input);
     expect(output).not.toBe(input);
     expect(output).toStrictEqual(input);
 
     input = [[], [1, 2, 3]];
-    output = cloneObj(input);
+    output = clone(input);
     expect(output).not.toBe(input);
     expect(output).toStrictEqual(input);
 
     input = [[[]]];
-    output = cloneObj(input);
+    output = clone(input);
     expect(output).not.toBe(input);
     expect(output).toStrictEqual(input);
 
     input = {};
-    output = cloneObj(input);
+    output = clone(input);
     expect(output).not.toBe(input);
     expect(output).toStrictEqual(input);
 
     input = { a: undefined, b: null, c: '', d: true, e: 1, f: 5n };
-    output = cloneObj(input);
+    output = clone(input);
     expect(output).not.toBe(input);
     expect(output).toStrictEqual(input);
 
     input = { arr: [1, 2, 3], obj: { a: 'abc', b: 123 } };
-    output = cloneObj(input);
+    output = clone(input);
     expect(output).not.toBe(input);
     expect(output).toStrictEqual(input);
 
     input = new Date();
-    output = cloneObj(input);
+    output = clone(input);
     expect(output).not.toBe(input);
     expect(output).toStrictEqual(input);
 
     input = new Date('2020-05-01');
-    output = cloneObj(input);
+    output = clone(input);
     expect(output).not.toBe(input);
     expect(output).toStrictEqual(input);
 
@@ -68,7 +68,7 @@ describe('Object', () => {
       arr2: [{ prop1: 'abc', prop2: [undefined] }],
       prop1: new Date(),
     };
-    output = cloneObj(input);
+    output = clone(input);
     expect(output).not.toBe(input);
     expect(output).toStrictEqual(input);
     expect(output).not.toStrictEqual({ ...(input as object), obj3: {} });

@@ -1,5 +1,5 @@
 {
-  "cloneObj": "cloneObj",
+  "clone": "clone",
   "delInObj": "delInObj",
   "getInObj": "getInObj",
   "setInObj": "setInObj",

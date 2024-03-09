@@ -1,14 +1,14 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> It deeply clones the given input [Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object).
+> It deeply clones the given value.
 
 ## Syntax
 
 ```ts
-import { cloneObj } from '@opentf/utils';
+import { clone } from '@opentf/utils';
 
-cloneObj(obj: unknown): unknown;
+clone(obj: unknown): unknown;
 ```
 
 <Callout type="info">
@@ -32,60 +32,60 @@ The following types are supported:
 ## Examples
 
 ```ts
-cloneObj(); // undefined
+clone(); // undefined
 
-cloneObj(undefined); // undefined
+clone(undefined); // undefined
 
-cloneObj(null); // null
+clone(null); // null
 
-cloneObj(true); // true
+clone(true); // true
 
-cloneObj(false); // false
+clone(false); // false
 
-cloneObj('abc'); // 'abc'
+clone('abc'); // 'abc'
 
-cloneObj(1); // 1
+clone(1); // 1
 
-cloneObj(1n); // 1n
+clone(1n); // 1n
 
 let input = [];
-let output = cloneObj(input);
+let output = clone(input);
 console.log(output === input); // false
 
 input = [1];
-output = cloneObj(input);
+output = clone(input);
 console.log(output === input); // false
 
 input = [1, 'abc', false, null, undefined];
-output = cloneObj(input);
+output = clone(input);
 console.log(output === input); // false
 
 input = {};
-output = cloneObj(input);
+output = clone(input);
 console.log(output === input); // false
 
 input = { a: undefined, b: null, c: '', d: true, e: 1, f: 5n };
-output = cloneObj(input);
+output = clone(input);
 console.log(output === input); // false
 
 input = { arr: [1, 2, 3], obj: { a: 'abc', b: 123 } };
-output = cloneObj(input);
+output = clone(input);
 console.log(output === input); // false
 console.log(output.arr === input.arr); // false
 console.log(output.obj === input.obj); // false
 
 input = new Date();
-output = cloneObj(input);
+output = clone(input);
 console.log(output === input); // false
 
 input = new Date('2020-05-01');
-output = cloneObj(input);
+output = clone(input);
 console.log(output === input); // false
 ```
 
 ## Try
 
-<REPL code={`const { cloneObj } = require('@opentf/utils');
+<REPL code={`const { clone } = require('@opentf/utils');
 
 const input = { 
   a: [1, 2, 3], 
@@ -96,8 +96,9 @@ const input = {
   f: 5n, 
   g: new Date('2024-01-10'),
 };
-const output = cloneObj(input);
+const output = clone(input);
 log(output)
 log(input === output)
-input.a === output.a
+log(input.a === output.a)
+input.g.getTime() === output.g.getTime()
 `} />
