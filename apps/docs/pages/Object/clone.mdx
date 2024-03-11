@@ -8,25 +8,27 @@ import REPL from "../../components/REPL";
 ```ts
 import { clone } from '@opentf/utils';
 
-clone(obj: unknown): unknown;
+clone(val: T): T;
 ```
 
 <Callout type="info">
 The following types are supported:
-
 - Primitive values:
-    - Boolean
-    - Null
     - Undefined
+    - Null
+    - Boolean
     - Number
     - BigInt
     - String
+- Object
+- Array
+- Map
+- Set
+- Date
+</Callout>
 
-- Objects
-
-- Arrays
-
-- Dates
+<Callout type="info">
+If you need more types to clone, please use the native [structuredClone](https://developer.mozilla.org/en-US/docs/Web/API/structuredClone) global function.
 </Callout>
 
 ## Examples
@@ -48,39 +50,30 @@ clone(1); // 1
 
 clone(1n); // 1n
 
-let input = [];
-let output = clone(input);
-console.log(output === input); // false
-
-input = [1];
-output = clone(input);
-console.log(output === input); // false
-
-input = [1, 'abc', false, null, undefined];
-output = clone(input);
-console.log(output === input); // false
-
-input = {};
-output = clone(input);
-console.log(output === input); // false
-
-input = { a: undefined, b: null, c: '', d: true, e: 1, f: 5n };
-output = clone(input);
-console.log(output === input); // false
-
-input = { arr: [1, 2, 3], obj: { a: 'abc', b: 123 } };
-output = clone(input);
-console.log(output === input); // false
-console.log(output.arr === input.arr); // false
-console.log(output.obj === input.obj); // false
-
 input = new Date();
 output = clone(input);
-console.log(output === input); // false
+input === output; // false
 
-input = new Date('2020-05-01');
+input = [1, 2, 3];
 output = clone(input);
-console.log(output === input); // false
+input === output; // false
+
+input = { x: 0, y: 1 };
+output = clone(input);
+input === output; // false
+input.y === output.y; // true
+
+input = { 
+  arr: [1, 2, 3], 
+  obj: { a: 'abc', b: 123 },
+  date: new Date(),
+  map: new Map([['a', 1], ['b', 2]]) 
+};
+output = clone(input);
+input === output; // false
+output.arr === input.arr; // false
+output.obj === input.obj; // false
+output.map === input.map; // false
 ```
 
 ## Try
@@ -88,17 +81,16 @@ console.log(output === input); // false
 <REPL code={`const { clone } = require('@opentf/utils');
 
 const input = { 
-  a: [1, 2, 3], 
-  b: null, 
-  c: 'abc', 
-  d: true, 
-  e: 1, 
-  f: 5n, 
-  g: new Date('2024-01-10'),
+  arr: [1, 2, 3], 
+  obj: { a: 'abc', b: 123 },
+  date: new Date(),
+  map: new Map([['a', 1], ['b', 2]]) 
 };
 const output = clone(input);
 log(output)
 log(input === output)
-log(input.a === output.a)
-input.g.getTime() === output.g.getTime()
+log(output.arr === input.arr);
+log(output.obj === input.obj);
+log(output.map === input.map);
+input.date.getTime() === output.date.getTime()
 `} />

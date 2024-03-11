@@ -1,4 +1,8 @@
+import isArr from '../types/isArr';
+import isMap from '../types/isMap';
 import isObj from '../types/isObj';
+import isPureObj from '../types/isPureObj';
+import isSet from '../types/isSet';
 
 /**
  * It deeply clones the given value
@@ -9,34 +13,67 @@ import isObj from '../types/isObj';
  * obj1 === obj2 //=> false
  * obj1.b === obj2.b //=> false
  */
-export default function clone<T>(obj: T): T {
-  if (typeof obj !== 'object') {
-    return obj;
+function cloneObj<T>(obj: T, objRefMap: WeakMap<WeakKey, unknown>): T {
+  if (isPureObj(obj) && objRefMap.has(obj)) {
+    return objRefMap.get(obj) as T;
   }
 
   if (isObj(obj)) {
     const cObj: Record<string, unknown> = {};
+    objRefMap.set(obj, cObj);
+
     for (const k in obj) {
       if (Object.prototype.hasOwnProperty.call(obj, k)) {
-        cObj[k] = clone(obj[k as keyof typeof obj]);
+        cObj[k] = cloneObj(obj[k as keyof typeof obj], objRefMap);
       }
     }
 
     return cObj as T;
   }
 
-  if (Array.isArray(obj)) {
-    const arr = [];
-    for (const i of obj) {
-      arr.push(clone(i));
-    }
+  if (isArr(obj)) {
+    const arr = [] as unknown[];
+    objRefMap.set(obj, arr);
+
+    obj.forEach((i) => {
+      arr.push(cloneObj(i, objRefMap));
+    });
 
     return arr as T;
   }
 
   if (obj instanceof Date) {
-    return new Date(obj) as T;
+    const d = new Date(obj);
+    objRefMap.set(obj, d);
+    return d as T;
+  }
+
+  if (isMap(obj)) {
+    const map = new Map();
+    objRefMap.set(obj, map);
+
+    for (const [key, value] of obj) {
+      map.set(cloneObj(key, objRefMap), cloneObj(value, objRefMap));
+    }
+
+    return map as T;
+  }
+
+  if (isSet(obj)) {
+    const set = new Set();
+    objRefMap.set(obj, set);
+
+    for (const item of obj) {
+      set.add(cloneObj(item, objRefMap));
+    }
+
+    return set as T;
   }
 
   return obj;
+}
+
+export default function clone<T>(val: T): T {
+  const objRefMap = new WeakMap();
+  return cloneObj(val, objRefMap);
 }
