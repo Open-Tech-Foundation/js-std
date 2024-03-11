@@ -5,13 +5,26 @@
   "keywords": [
     "collection",
     "js",
+    "ts",
     "utils",
-    "utilities",
     "string",
     "array",
     "object",
     "timers",
-    "types"
+    "types",
+    "is",
+    "stdlib",
+    "number",
+    "maths",
+    "sleep",
+    "clone",
+    "async",
+    "rgb",
+    "hex",
+    "shallow",
+    "deep",
+    "case",
+    "assert"
   ],
   "author": {
     "name": "Thanga Ganapathy",

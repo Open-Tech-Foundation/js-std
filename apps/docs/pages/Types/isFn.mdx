@@ -16,6 +16,13 @@ isFn(val: unknown): boolean;
 isFn(function() {}) //=> true
 
 isFn({}) //=> false
+
+function* generator(i) {
+  yield i;
+  yield i + 10;
+}
+
+isFn(generator); //=> true
 ```
 
 ## Try

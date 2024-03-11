@@ -8,6 +8,6 @@
  * isErr({msg: '', name: ''}) //=> false
  */
 
-export default function isErr(val: unknown): boolean {
+export default function isErr(val: unknown): val is Error {
   return Object.prototype.toString.call(val) === '[object Error]';
 }

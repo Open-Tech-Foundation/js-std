@@ -8,7 +8,7 @@
  * isFn(function*() {}) //=> true
  */
 
-export default function isGenFn(val: unknown): boolean {
+export default function isGenFn(val: unknown): val is GeneratorFunction {
   const a = ['[object GeneratorFunction]', '[object AsyncGeneratorFunction]'];
   return a.includes(Object.prototype.toString.call(val));
 }

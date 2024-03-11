@@ -48,6 +48,7 @@ export { default as isWkRef } from './types/isWkRef';
 export { default as isBigInt } from './types/isBigInt';
 export { default as isBlob } from './types/isBlob';
 export { default as isPromise } from './types/isPromise';
+export { default as isPureObj } from './types/isPureObj';
 
 // Object
 export { default as getInObj } from './object/getInObj';

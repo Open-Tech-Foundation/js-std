@@ -10,6 +10,6 @@
  * isArr('abc') //=> false
  */
 
-export default function isArr(val: unknown): boolean {
+export default function isArr(val: unknown): val is Array<unknown> {
   return Array.isArray(val);
 }

@@ -12,6 +12,7 @@
   "isNull": "isNull",
   "isNum": "isNum",
   "isObj": "isObj",
+  "isPureObj": "isPureObj",
   "isRegEx": "isRegEx",
   "isSet": "isSet",
   "isStr": "isStr",

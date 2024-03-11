@@ -1,0 +1,77 @@
+import REPL from "../../components/REPL";
+
+> Checks if the given value is an [Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) and not null.
+
+## Syntax
+
+```ts
+import { isPureObj } from '@opentf/utils';
+
+isPureObj(val: unknown): boolean;
+```
+
+## Examples
+
+```ts
+//Invalid cases
+// ************
+
+isPureObj(undefined) //=> false
+
+isPureObj(null) //=> false
+
+isPureObj(true) //=> false
+
+isPureObj(false) //=> false
+
+isPureObj(0) //=> false
+
+isPureObj(1n) //=> false
+
+isPureObj('') //=> false
+
+isPureObj(() => {}) //=> false
+
+isPureObj(Symbol) //=> false
+
+isPureObj(Math.min) //=> false
+
+isPureObj(Map) //=> false
+
+isPureObj(Set) //=> false
+
+isPureObj(Error) //=> false
+
+
+// Valid cases
+// ***********
+
+isPureObj(/./) //=> true
+
+isPureObj(new Map()) //=> true
+
+isPureObj(new Set()) //=> true
+
+isPureObj(Math) //=> true
+
+isPureObj(new Error()) //=> true
+
+isPureObj([]) //=> true
+
+isPureObj({}) //=> true
+
+isPureObj({ a: 1 }) //=> true
+
+isPureObj(new Object()) //=> true
+
+isPureObj(Object.create(null)) //=> true
+```
+
+## Try
+
+<REPL code={`const { isPureObj } = require('@opentf/utils');
+
+log(isPureObj({}));
+log(isPureObj([]));
+isPureObj(null);
+`} />

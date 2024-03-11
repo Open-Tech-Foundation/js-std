@@ -11,6 +11,6 @@
  *
  */
 
-export default function isSet(val: unknown): boolean {
+export default function isSet(val: unknown): val is Set<unknown> {
   return Object.prototype.toString.call(val) === '[object Set]';
 }

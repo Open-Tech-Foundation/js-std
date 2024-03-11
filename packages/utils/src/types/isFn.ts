@@ -8,6 +8,7 @@
  * isFn({}) //=> false
  */
 
-export default function isFn(val: unknown): boolean {
+// eslint-disable-next-line @typescript-eslint/ban-types
+export default function isFn(val: unknown): val is Function {
   return typeof val === 'function';
 }

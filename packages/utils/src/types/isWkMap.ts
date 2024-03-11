@@ -9,6 +9,8 @@
  *
  */
 
-export default function isWkMap(val: unknown): boolean {
+export default function isWkMap(
+  val: unknown
+): val is WeakMap<WeakKey, unknown> {
   return Object.prototype.toString.call(val) === '[object WeakMap]';
 }

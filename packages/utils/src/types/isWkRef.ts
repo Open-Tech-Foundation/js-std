@@ -10,6 +10,6 @@
  *
  */
 
-export default function isWkRef(val: unknown): boolean {
+export default function isWkRef(val: unknown): val is WeakRef<WeakKey> {
   return Object.prototype.toString.call(val) === '[object WeakRef]';
 }

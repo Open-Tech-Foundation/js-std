@@ -11,6 +11,6 @@
  *
  */
 
-export default function isUndef(val: unknown): boolean {
+export default function isUndef(val: unknown): val is undefined {
   return typeof val === 'undefined';
 }

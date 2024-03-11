@@ -8,6 +8,6 @@
  * isBlob({}) //=> false
  */
 
-export default function isBlob(val: unknown): boolean {
+export default function isBlob(val: unknown): val is Blob {
   return Object.prototype.toString.call(val) === '[object Blob]';
 }

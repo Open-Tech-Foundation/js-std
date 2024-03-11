@@ -11,6 +11,6 @@
  *
  */
 
-export default function isSym(val: unknown): boolean {
+export default function isSym(val: unknown): val is symbol {
   return typeof val === 'symbol';
 }

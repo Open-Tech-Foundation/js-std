@@ -9,6 +9,6 @@
  *
  */
 
-export default function isWkSet(val: unknown): boolean {
+export default function isWkSet(val: unknown): val is WeakSet<WeakKey> {
   return Object.prototype.toString.call(val) === '[object WeakSet]';
 }

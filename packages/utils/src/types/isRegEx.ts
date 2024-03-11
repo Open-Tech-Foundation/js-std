@@ -11,6 +11,6 @@
  *
  */
 
-export default function isRegEx(obj: unknown): boolean {
-  return Object.prototype.toString.call(obj) === '[object RegExp]';
+export default function isRegEx(val: unknown): val is RegExp {
+  return Object.prototype.toString.call(val) === '[object RegExp]';
 }

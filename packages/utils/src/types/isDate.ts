@@ -10,7 +10,7 @@
  * isDate('2000-01-01') //=> false
  */
 
-export default function isDate(val: unknown): boolean {
+export default function isDate(val: unknown): val is Date {
   return (
     Object.prototype.toString.call(val) === '[object Date]' &&
     (val as Date).toString() !== 'Invalid Date'

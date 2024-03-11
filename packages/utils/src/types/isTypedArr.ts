@@ -10,7 +10,20 @@
  * isTypedArr(new Float64Array()) //=> true
  */
 
-export default function isTypedArr(val: unknown): boolean {
+type TypedArray =
+  | Int8Array
+  | Uint8Array
+  | Uint8ClampedArray
+  | Int16Array
+  | Uint16Array
+  | Int32Array
+  | Uint32Array
+  | Float32Array
+  | Float64Array
+  | BigInt64Array
+  | BigUint64Array;
+
+export default function isTypedArr(val: unknown): val is TypedArray {
   const typedArrClasses = [
     '[object Int8Array]',
     '[object Uint8Array]',

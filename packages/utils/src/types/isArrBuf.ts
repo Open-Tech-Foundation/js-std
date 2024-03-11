@@ -8,6 +8,6 @@
  * isArrBuf(new ArrayBuffer(8)) //=> true
  */
 
-export default function isArrBuf(val: unknown): boolean {
+export default function isArrBuf(val: unknown): val is ArrayBuffer {
   return Object.prototype.toString.call(val) === '[object ArrayBuffer]';
 }

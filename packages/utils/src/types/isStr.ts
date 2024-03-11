@@ -11,6 +11,6 @@
  *
  */
 
-export default function isStr(val: unknown): boolean {
+export default function isStr(val: unknown): val is string {
   return typeof val === 'string';
 }
