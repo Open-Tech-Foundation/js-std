@@ -5,6 +5,7 @@
   "isBlob": "isBlob",
   "isBool": "isBool",
   "isDate": "isDate",
+  "isDef": "isDef",
   "isErr": "isErr",
   "isFn": "isFn",
   "isJSON": "isJSON",

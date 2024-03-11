@@ -50,6 +50,7 @@ export { default as isBigInt } from './types/isBigInt';
 export { default as isBlob } from './types/isBlob';
 export { default as isPromise } from './types/isPromise';
 export { default as isPureObj } from './types/isPureObj';
+export { default as isDef } from './types/isDef';
 
 // Object
 export { default as getInObj } from './object/getInObj';
