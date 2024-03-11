@@ -17,7 +17,7 @@ export default {
     link: "https://github.com/open-tech-foundation/js-utils",
   },
   docsRepositoryBase:
-    "https://github.com/open-tech-foundation/js-utils/app/docs",
+    "https://github.com/open-tech-foundation/js-utils",
   head: () => {
     const { asPath } = useRouter();
     const { frontMatter } = useConfig();
@@ -25,6 +25,7 @@ export default {
 
     return (
       <>
+        <link rel="icon" href="/assets/Logo.svg" />
         <meta property="og:url" content={url} />
         <meta property="og:title" content={frontMatter.title || "Utils"} />
         <meta
@@ -34,7 +35,10 @@ export default {
             "A collection of JavaScript utility functions."
           }
         />
-        <meta name="google-site-verification" content="1GsNBEYX2lcJpmj3OyKi6bszF9n3-Uv6bG_diPCpDhc" />
+        <meta
+          name="google-site-verification"
+          content="1GsNBEYX2lcJpmj3OyKi6bszF9n3-Uv6bG_diPCpDhc"
+        />
       </>
     );
   },
