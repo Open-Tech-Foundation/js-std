@@ -50,6 +50,7 @@
     "build": "tsup",
     "test": "jest",
     "test:w": "jest --watch",
+    "test:b": "bun test --watch",
     "lint": "eslint src/** --fix",
     "check-types": "tsc --noEmit",
     "ci": "turbo run build test lint check-types"

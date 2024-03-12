@@ -43,13 +43,13 @@ bun add @opentf/utils
 ## Usage
 
 ```ts
-import { isNum, range, camelCase, sleep } from "@opentf/utils";
+import { isNum, range, pascalCase, sleep } from "@opentf/utils";
 
 isNum(NaN); //=> false
 
 range(1, 5); //=> [1, 2, 3, 4, 5]
 
-camelCase("i phone"); //=> 'iPhone'
+pascalCase("pascal case"); //=> PascalCase
 
 await sleep(1000); // It suspends the exection for 1 second.
 ```
