@@ -1,5 +1,11 @@
 # @opentf/utils
 
+## 0.29.0
+
+### Minor Changes
+
+- ff6d1f3: Added array, maths, types, object category utility fns.
+
 ## 0.28.0
 
 ### Minor Changes
