@@ -1,0 +1,62 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> Sorts a list of items and returns a new array.
+
+<Callout emoji="✅" type="info">
+This does not mutate the given array.
+</Callout>
+
+<Callout type="info">
+Currently, it supports sorting the following types:
+
+- number
+
+- string
+</Callout>
+
+<Callout type="warning">
+It cannot sort if the values in the array is of mixed types.
+</Callout>
+
+**Related:**
+
+- [sortObj](/Array/sortObj)
+
+## Syntax
+
+```ts
+sort<T>(arr: T[], order = 'asc'): T[]
+```
+<Callout type="info">
+The order param can be either `asc` or `desc`.
+</Callout>
+
+## Usage
+
+```ts
+import { sort } from "@opentf/utils";
+
+sort([...]);
+```
+
+## Examples
+
+```ts
+sort([1, 3, 2]) //=> [1, 2, 3]
+
+sort(['x', 'z', 'y'], 'desc') //=> ['z', 'y', 'x']
+```
+
+## Try
+
+<REPL code={`const { sort } = require('@opentf/utils');
+
+const months = ["Mar", "Jan", "Feb", "Dec"];
+const sortedMonths = sort(months);
+log(sortedMonths);
+
+const values = [1, 10, 21, 2];
+const sortedValues = sort(values, 'desc');
+sortedValues;
+`} />

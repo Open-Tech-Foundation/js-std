@@ -14,5 +14,6 @@ describe('Types > isDef', () => {
     expect(isDef('')).toBe(true);
     expect(isDef([])).toBe(true);
     expect(isDef({})).toBe(true);
+    expect([1, undefined, 2].filter(isDef)).toEqual([1, 2]);
   });
 });

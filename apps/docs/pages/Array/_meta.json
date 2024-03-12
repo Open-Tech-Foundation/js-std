@@ -3,5 +3,7 @@
   "asyncFilter": "asyncFilter",
   "groupBy": "groupBy",
   "move": "move",
-  "range": "range"
+  "range": "range",
+  "sort": "sort",
+  "sortObj": "sortObj"
 }

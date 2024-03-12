@@ -4,6 +4,8 @@
     "dev": "turbo run build --filter=utils -- --watch",
     "dev:docs": "turbo run dev --filter=docs",
     "test": "turbo run test --filter=utils",
+    "test:w": "pnpm --filter=@opentf/utils run test:w",
+    "test:b": "pnpm --filter=@opentf/utils run test:b",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "turbo run lint --filter=utils",
     "build": "turbo run build --filter=utils",

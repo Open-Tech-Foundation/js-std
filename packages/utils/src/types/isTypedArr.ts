@@ -10,7 +10,7 @@
  * isTypedArr(new Float64Array()) //=> true
  */
 
-type TypedArray =
+export type TypedArray =
   | Int8Array
   | Uint8Array
   | Uint8ClampedArray

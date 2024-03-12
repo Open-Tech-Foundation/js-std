@@ -1,0 +1,73 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> Sorts a list of objects and returns a new array.
+
+<Callout emoji="✅" type="info">
+This does not mutate the given array.
+</Callout>
+
+**Related:**
+
+- [sort](/Array/sort)
+
+## Syntax
+
+```ts
+sortObj<T>(arr: T[], ...tuples: [key: string, order: string][]): T[]
+```
+<Callout type="info">
+The `key` in the tuple array must one of object props.
+</Callout>
+
+## Usage
+
+```ts
+import { sortObj } from "@opentf/utils";
+
+sortObj([{...}]);
+```
+
+## Examples
+
+```ts
+const fruits = [
+  { name: 'banana', amount: 2 },
+  { name: 'apple', amount: 4 },
+  { name: 'pineapple', amount: 2 },
+  { name: 'mango', amount: 1 },
+  { name: 'orange', amount: 5 },
+];
+
+sortObj(fruits, ['name', 'asc']);
+//=> [
+//   { name: 'apple', amount: 4 },
+//   { name: 'banana', amount: 2 },
+//   { name: 'mango', amount: 1 },
+//   { name: 'orange', amount: 5 },
+//   { name: 'pineapple', amount: 2 },
+// ]
+
+sortObj(fruits, ['name', 'asc'], ['amount', 'desc']);
+//=> [
+//   { name: 'orange', amount: 5 },
+//   { name: 'apple', amount: 4 },
+//   { name: 'banana', amount: 2 },
+//   { name: 'pineapple', amount: 2 },
+//   { name: 'mango', amount: 1 },
+// ]
+```
+
+## Try
+
+<REPL code={`const { sortObj } = require('@opentf/utils');
+
+const fruits = [
+  { name: 'banana', amount: 2 },
+  { name: 'apple', amount: 4 },
+  { name: 'pineapple', amount: 2 },
+  { name: 'mango', amount: 1 },
+  { name: 'orange', amount: 5 },
+];
+sortObj(fruits, ['name', 'asc']);
+`} />
