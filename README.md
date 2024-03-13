@@ -116,6 +116,25 @@ await sleep(1000); // It suspends the exection for 1 second.
 - [isWkRef](https://js-utils.pages.dev/Types/isWkRef)
 - [isWkSet](https://js-utils.pages.dev/Types/isWkSet)
 
+## Benchmarks
+
+```sh
+Clone:
+┌───┬──────────────────────────┬─────────┬────────────────────┬────────┬─────────┐
+│   │ Task Name                │ ops/sec │ Average Time (ns)  │ Margin │ Samples │
+├───┼──────────────────────────┼─────────┼────────────────────┼────────┼─────────┤
+│ 0 │ structuredClone (Native) │ 446,726 │ 2238.5083159851647 │ ±1.28% │ 44673   │
+│ 1 │ _.cloneDeep (Lodash)     │ 570,462 │ 1752.963258365967  │ ±1.93% │ 57047   │
+│ 2 │ clone                    │ 770,096 │ 1298.5384625374643 │ ±1.77% │ 77010   │
+└───┴──────────────────────────┴─────────┴────────────────────┴────────┴─────────┘
+```
+
+### Running benchmarks
+
+```sh
+bun benchmark.js
+```
+
 ## License
 
 Copyright (c) [Thanga Ganapathy](https://github.com/Thanga-Ganapathy) ([MIT License](./LICENSE)).

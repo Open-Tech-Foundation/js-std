@@ -23,6 +23,12 @@ importers:
       lint-staged:
         specifier: ^15.2.2
         version: 15.2.2
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
+      tinybench:
+        specifier: ^2.6.0
+        version: 2.6.0
       turbo:
         specifier: ^1.12.2
         version: 1.12.2
@@ -8199,6 +8205,10 @@ packages:
 
   /through@2.3.8:
     resolution: {integrity: sha512-w89qg7PI8wAdvX60bMDP+bFoD5Dvhm9oLheFp5O4a2QF0cSBGsBX4qZmadPMvVqlLJBBci+WqGGOAPvcDeNSVg==}
+    dev: true
+
+  /tinybench@2.6.0:
+    resolution: {integrity: sha512-N8hW3PG/3aOoZAN5V/NSAEDz0ZixDSSt5b/a05iqtpgfLWMSVuCo7w0k2vVvEjdrIoeGqZzweX2WlyioNIHchA==}
     dev: true
 
   /title@3.5.3:
