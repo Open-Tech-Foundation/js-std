@@ -62,6 +62,8 @@ export { default as setInObj } from './object/setInObj';
 export { default as delInObj } from './object/delInObj';
 export { default as clone } from './object/clone';
 export { default as isShallowEql } from './object/isShallowEql';
+export { default as isEmpty } from './object/isEmpty';
+export { default as isNil } from './object/isNil';
 
 // Misc
 export { default as hexToRGB } from './misc/hexToRGB';
