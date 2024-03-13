@@ -25,6 +25,7 @@ export { default as sum } from './maths/sum';
 export { default as prod } from './maths/prod';
 export { default as mean } from './maths/mean';
 export { default as median } from './maths/median';
+export { default as mode } from './maths/mode';
 
 // Types
 export { default as isNum } from './types/isNum';
