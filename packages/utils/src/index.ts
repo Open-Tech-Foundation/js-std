@@ -64,6 +64,7 @@ export { default as clone } from './object/clone';
 export { default as isShallowEql } from './object/isShallowEql';
 export { default as isEmpty } from './object/isEmpty';
 export { default as isNil } from './object/isNil';
+export { default as size } from './object/size';
 
 // Misc
 export { default as hexToRGB } from './misc/hexToRGB';
