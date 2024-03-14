@@ -1,6 +1,6 @@
 import { noop } from '../../src';
 
-describe('Misc', () => {
+describe('Function', () => {
   test('noop', () => {
     expect(noop()).toBe(undefined);
     expect(noop(null)).toBe(undefined);

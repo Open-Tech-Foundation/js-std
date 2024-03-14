@@ -1,4 +1,11 @@
-function arrayDiff(arr1: unknown[], arr2: unknown[]): unknown[] {
+/**
+ *  It creates an array with the values, not included in the other array.
+ *
+ * @example
+ *
+ * arrDiff([1, "a"], [1, 2]); // ['a']
+ */
+function arrDiff(arr1: unknown[], arr2: unknown[]): unknown[] {
   const result = [];
   for (let i = 0; i < arr1.length; i++) {
     let skip = false;
@@ -17,4 +24,4 @@ function arrayDiff(arr1: unknown[], arr2: unknown[]): unknown[] {
   return result;
 }
 
-export default arrayDiff;
+export default arrDiff;

@@ -1,5 +1,5 @@
 {
-  "arrayDiff": "arrayDiff",
+  "arrDiff": "arrDiff",
   "asyncFilter": "asyncFilter",
   "groupBy": "groupBy",
   "move": "move",

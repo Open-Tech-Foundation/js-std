@@ -58,7 +58,7 @@ await sleep(1000); // It suspends the exection for 1 second.
 
 ### Array
 
-- [arrayDiff](https://js-utils.pages.dev/docs/Array/arrayDiff)
+- [arrDiff](https://js-utils.pages.dev/docs/Array/arrDiff)
 - [asyncFilter](https://js-utils.pages.dev/docs/Array/asyncFilter)
 - [groupBy](https://js-utils.pages.dev/docs/Array/groupBy)
 - [range](https://js-utils.pages.dev/docs/Array/range)

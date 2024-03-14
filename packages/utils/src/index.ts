@@ -7,7 +7,7 @@ export { default as camelCase } from './string/camelCase';
 export { default as pascalCase } from './string/pascalCase';
 
 // Array
-export { default as arrayDiff } from './array/arrayDiff';
+export { default as arrDiff } from './array/arrDiff';
 export { default as range } from './array/range';
 export { default as asyncFilter } from './array/asyncFilter';
 export { default as groupBy } from './array/groupBy';

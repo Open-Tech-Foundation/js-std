@@ -14,33 +14,33 @@ It uses [Object.is()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Re
 ## Syntax
 
 ```ts copy
-import { arrayDiff } from '@opentf/utils';
+import { arrDiff } from '@opentf/utils';
 
-arrayDiff(arr1: unknown[], arr2: unknown[]): unknown[];
+arrDiff(arr1: unknown[], arr2: unknown[]): unknown[];
 ```
 
 ## Examples
 
 ```ts
-arrayDiff(); // It throws an error;
+arrDiff(); // It throws an error;
 
-arrayDiff([1], []); // [1]
+arrDiff([1], []); // [1]
 
-arrayDiff([1], [1, 2]); // []
+arrDiff([1], [1, 2]); // []
 
-arrayDiff([1, "a"], [1, 2]); // ['a']
+arrDiff([1, "a"], [1, 2]); // ['a']
 
-arrayDiff([0], [0]); // []
+arrDiff([0], [0]); // []
 
-arrayDiff([-0], [0]); // [-0]
+arrDiff([-0], [0]); // [-0]
 
-arrayDiff([], []); // [[]]
+arrDiff([], []); // [[]]
 
-arrayDiff(["apple", "mango", "orange"], ["mango", "apple"]); // ['orange']
+arrDiff(["apple", "mango", "orange"], ["mango", "apple"]); // ['orange']
 ```
 
 ## Try
 
-<REPL code={`const { arrayDiff } = require('@opentf/utils');
+<REPL code={`const { arrDiff } = require('@opentf/utils');
 
-arrayDiff([1, 2, 3], [1, 3])`} />
+arrDiff([1, 2, 3], [1, 3])`} />
