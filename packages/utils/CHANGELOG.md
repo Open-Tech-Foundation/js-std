@@ -1,5 +1,11 @@
 # @opentf/utils
 
+## 0.30.0
+
+### Minor Changes
+
+- 9f6026e: Fixed sorting issues.
+
 ## 0.29.0
 
 ### Minor Changes
