@@ -43,13 +43,16 @@ bun add @opentf/utils
 ## Usage
 
 ```ts
-import { isNum, range, pascalCase, sleep } from "@opentf/utils";
+import { isNum, pascalCase, sort, clone, sleep } from "@opentf/utils";
 
 isNum(NaN); //=> false
 
-range(1, 5); //=> [1, 2, 3, 4, 5]
+pascalCase('pascal case'); //=> PascalCase
 
-pascalCase("pascal case"); //=> PascalCase
+sort([1, 10, 21, 2], 'desc'); //=> [ 21, 10, 2, 1 ]
+
+const obj = {a: 1, b: 'abc', c: new Map([['key', 'val']])}
+clone(obj); // It returns deeply cloned value.
 
 await sleep(1000); // It suspends the exection for 1 second.
 ```

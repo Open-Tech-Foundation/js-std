@@ -14,11 +14,23 @@ noop(): undefined;
 
 ```ts
 noop(); //=> undefined
+
+function test(cb) {
+  const fn = cb || noop;
+  fn();
+}
+
+test(); // It can safely calls the callback fn
 ```
 
 ## Try
 
 <REPL code={`const { noop } = require('@opentf/utils');
 
-noop();
+function test(cb) {
+  const fn = cb || noop;
+  fn();
+}
+
+test();
 `} />
