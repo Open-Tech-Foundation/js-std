@@ -66,9 +66,12 @@ export { default as isEmpty } from './object/isEmpty';
 export { default as isNil } from './object/isNil';
 export { default as size } from './object/size';
 
-// Misc
-export { default as hexToRGB } from './misc/hexToRGB';
-export { default as sleep } from './misc/sleep';
+// function
+export { default as sleep } from './function/sleep';
+export { default as noop } from './function/noop';
+
+// colors
+export { default as hexToRGB } from './colors/hexToRGB';
 
 // Number
 export { default as clamp } from './number/clamp';
