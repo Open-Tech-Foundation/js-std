@@ -4,7 +4,7 @@ import REPL from "../../components/REPL";
 > Sorts a list of objects and returns a new array.
 
 <Callout emoji="✅" type="info">
-This does not mutate the given array.
+Immutable: This does not mutate the given array.
 </Callout>
 
 **Related:**
@@ -14,18 +14,21 @@ This does not mutate the given array.
 ## Syntax
 
 ```ts
-sortObj<T>(arr: T[], ...tuples: [key: string, order: string][]): T[]
+sortBy<T>(
+  arr: T[],
+  ...tuples: [key: string | ((obj: T) => unknown), order: "asc" | "desc"][]
+): T[]
 ```
 <Callout type="info">
-The `key` in the tuple array must one of object props.
+The `key` in the tuple array must one of object first level props.
 </Callout>
 
 ## Usage
 
 ```ts
-import { sortObj } from "@opentf/utils";
+import { sortBy } from "@opentf/utils";
 
-sortObj([{...}]);
+sortBy([{...}], ['key', 'asc'], [o => o.prop, 'desc']);
 ```
 
 ## Examples
@@ -39,7 +42,8 @@ const fruits = [
   { name: 'orange', amount: 5 },
 ];
 
-sortObj(fruits, ['name', 'asc']);
+sortBy(fruits, ['name', 'asc']);
+sortBy(fruits, [(o) => o.name, 'asc']);
 //=> [
 //   { name: 'apple', amount: 4 },
 //   { name: 'banana', amount: 2 },
@@ -48,7 +52,8 @@ sortObj(fruits, ['name', 'asc']);
 //   { name: 'pineapple', amount: 2 },
 // ]
 
-sortObj(fruits, ['name', 'asc'], ['amount', 'desc']);
+sortBy(fruits, ['name', 'asc'], ['amount', 'desc']);
+sortBy(fruits, ['name', 'asc'], [(o) => o.amount, 'desc']);
 //=> [
 //   { name: 'orange', amount: 5 },
 //   { name: 'apple', amount: 4 },
@@ -60,7 +65,7 @@ sortObj(fruits, ['name', 'asc'], ['amount', 'desc']);
 
 ## Try
 
-<REPL code={`const { sortObj } = require('@opentf/utils');
+<REPL code={`const { sortBy } = require('@opentf/utils');
 
 const fruits = [
   { name: 'banana', amount: 2 },
@@ -69,5 +74,5 @@ const fruits = [
   { name: 'mango', amount: 1 },
   { name: 'orange', amount: 5 },
 ];
-sortObj(fruits, ['name', 'asc']);
+sortBy(fruits, ['name', 'asc']);
 `} />

@@ -26,6 +26,15 @@ importers:
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
+      moderndash:
+        specifier: ^3.11.0
+        version: 3.11.0
+      ramda:
+        specifier: ^0.29.1
+        version: 0.29.1
+      remeda:
+        specifier: ^1.48.0
+        version: 1.48.0
       tinybench:
         specifier: ^2.6.0
         version: 2.6.0
@@ -4875,6 +4884,10 @@ packages:
       lru-cache: 6.0.0
     dev: true
 
+  /hotscript@1.0.13:
+    resolution: {integrity: sha512-C++tTF1GqkGYecL+2S1wJTfoH6APGAsbb7PAWQ3iVIwgG/EFseAfEVOKFgAFq4yK3+6j1EjUD4UQ9dRJHX/sSQ==}
+    dev: true
+
   /html-escaper@2.0.2:
     resolution: {integrity: sha512-H2iMtd0I4Mt5eYiapRdIDjp+XzelXQ0tFE4JS7YFwFevXXMmOp9myNrUvCg0D6ws8iqkRPBfKHgbwig1SmlLfg==}
     dev: true
@@ -6786,6 +6799,13 @@ packages:
     engines: {node: '>= 8.0.0'}
     dev: true
 
+  /moderndash@3.11.0:
+    resolution: {integrity: sha512-vyqKCSljKji6tKVT0WG8doTosZkzaqc6zqQuLRTRZ/pYLnyJYRws4spSUy3u+tsBDpMHVo/Zd5IunQM6/CwyEg==}
+    engines: {node: '>=16.15', npm: '>=8'}
+    dependencies:
+      hotscript: 1.0.13
+    dev: true
+
   /mri@1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}
     engines: {node: '>=4'}
@@ -7400,6 +7420,10 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
+  /ramda@0.29.1:
+    resolution: {integrity: sha512-OfxIeWzd4xdUNxlWhgFazxsA/nl3mS4/jGZI5n00uWOoSSFRhC1b6gl6xvmzUamgmqELraWp0J/qqVlXYPDPyA==}
+    dev: true
+
   /react-dom@18.2.0(react@18.2.0):
     resolution: {integrity: sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==}
     peerDependencies:
@@ -7596,6 +7620,10 @@ packages:
       mdast-util-to-hast: 12.3.0
       unified: 10.1.2
     dev: false
+
+  /remeda@1.48.0:
+    resolution: {integrity: sha512-u0XLpaNB/qNY1icmUcosmpGKObmGuJtw7UYN+bS+Hiq0b8KRWvq3gkuqy/VCLalGUrlPrMLbt079Gg5WTuTYQw==}
+    dev: true
 
   /remove-accents@0.5.0:
     resolution: {integrity: sha512-8g3/Otx1eJaVD12e31UbJj1YzdtVvzH85HV7t+9MJYk/u3XmkOUJ5Ys9wQrf9PCPK8+xn4ymzqYCiZl6QWKn+A==}

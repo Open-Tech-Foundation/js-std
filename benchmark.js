@@ -1,9 +1,12 @@
-import { Bench } from "tinybench";
-import { clone } from "./packages/utils";
+import { Bench, hrtimeNow } from "tinybench";
+import { clone, sort, sortBy } from "./packages/utils/dist/index";
 import _ from "lodash";
+import * as R from "ramda";
+import * as R2 from "remeda";
+import { sort as mSort } from "moderndash";
 
 async function cloneBench() {
-  console.log("Clone:");
+  console.log("clone:");
   const bench = new Bench({ time: 100 });
   const obj = {
     a: undefined,
@@ -20,6 +23,7 @@ async function cloneBench() {
     ]),
     i: new Set([1, 2, 3, 4, 5]),
     j: new Date(),
+    k: { a: [{ b: [10, 20, 30] }] },
   };
 
   bench
@@ -28,6 +32,12 @@ async function cloneBench() {
     })
     .add("_.cloneDeep (Lodash)", () => {
       _.cloneDeep(obj);
+    })
+    .add("R.clone (ramda)", () => {
+      R.clone(obj);
+    })
+    .add("R2.clone (remeda)", () => {
+      R2.clone(obj);
     })
     .add("clone", () => {
       clone(obj);
@@ -38,6 +48,52 @@ async function cloneBench() {
   await bench.run();
 
   console.table(bench.table());
+  console.log(
+    "*Note: Here the ramda & remeda does not support cloning Map & Set."
+  );
 }
 
-await cloneBench();
+async function sortByBench() {
+  console.log("sortBy:");
+  const bench = new Bench({ time: 100, now: hrtimeNow });
+  const users = [
+    { name: "fred", age: 48 },
+    { name: "barney", age: 34 },
+    { name: "fred", age: 40 },
+    { name: "barney", age: 36 },
+  ];
+
+  await bench.warmup();
+  bench
+    .add("_.orderBy (Lodash)", () => {
+      _.orderBy(users, ["name", "age"], ["asc", "desc"]);
+    })
+    .add("R.sortWith (Ramda)", () => {
+      const ageNameSort = R.sortWith([
+        R.ascend(R.prop("name")),
+        R.descend(R.prop("age")),
+      ]);
+      ageNameSort(users);
+    })
+    .add("R2.sortBy (Remeda)", () => {
+      R2.sortBy(users, [(x) => x.name, "asc"], [(x) => x.age, "desc"]);
+    })
+    .add("sort (Moderndash)", () => {
+      mSort(
+        users,
+        { order: "asc", by: (item) => item.name },
+        { order: "desc", by: (item) => item.age }
+      );
+    })
+    .add("sortBy", () => {
+      sortBy(users, ["name", "asc"], ["age", "desc"]);
+    });
+
+  await bench.warmup();
+  await bench.run();
+
+  console.table(bench.table());
+}
+
+// await cloneBench();
+await sortByBench();

@@ -63,24 +63,33 @@ await sleep(1000); // It suspends the exection for 1 second.
 - [groupBy](https://js-utils.pages.dev/docs/Array/groupBy)
 - [range](https://js-utils.pages.dev/docs/Array/range)
 - [move](https://js-utils.pages.dev/docs/Array/move)
+- [sort](https://js-utils.pages.dev/docs/Array/sort)
+- [sortBy](https://js-utils.pages.dev/docs/Array/sortBy)
 
 ### Maths
 
 - [percentage](https://js-utils.pages.dev/docs/Maths/percentage)
 - [percentageOf](https://js-utils.pages.dev/docs/Maths/percentageOf)
 
-### Misc
+### Function
+
+- [sleep](https://js-utils.pages.dev/docs/Timers/sleep)
+- [noop](https://js-utils.pages.dev/docs/Timers/noop)
+
+### Colors
 
 - [hexToRGB](https://js-utils.pages.dev/docs/Misc/hexToRGB)
-- [sleep](https://js-utils.pages.dev/docs/Timers/sleep)
 
 ### Object
 
-- [cloneObj](https://js-utils.pages.dev/docs/Object/cloneObj)
+- [clone](https://js-utils.pages.dev/docs/Object/clone)
 - [getInObj](https://js-utils.pages.dev/docs/Object/getInObj)
-- [setInObj](https://js-utils.pages.dev/docs/Object/setInObj)
 - [delInObj](https://js-utils.pages.dev/docs/Object/delInObj)
+- [isEmpty](https://js-utils.pages.dev/docs/Object/isEmpty)
+- [isNil](https://js-utils.pages.dev/docs/Object/isNil)
 - [isShallowEql](https://js-utils.pages.dev/docs/Object/isShallowEql)
+- [setInObj](https://js-utils.pages.dev/docs/Object/setInObj)
+- [size](https://js-utils.pages.dev/docs/Object/size)
 
 ### String
 
@@ -118,15 +127,37 @@ await sleep(1000); // It suspends the exection for 1 second.
 
 ## Benchmarks
 
+Some benchmark outputs are shown here for reference.
+
+> [!IMPORTANT]  
+> Our priorities are reliability and accuracy rather than performance.
+
 ```sh
-Clone:
+clone:
 ┌───┬──────────────────────────┬─────────┬────────────────────┬────────┬─────────┐
 │   │ Task Name                │ ops/sec │ Average Time (ns)  │ Margin │ Samples │
 ├───┼──────────────────────────┼─────────┼────────────────────┼────────┼─────────┤
-│ 0 │ structuredClone (Native) │ 446,726 │ 2238.5083159851647 │ ±1.28% │ 44673   │
-│ 1 │ _.cloneDeep (Lodash)     │ 570,462 │ 1752.963258365967  │ ±1.93% │ 57047   │
-│ 2 │ clone                    │ 770,096 │ 1298.5384625374643 │ ±1.77% │ 77010   │
+│ 0 │ structuredClone (Native) │ 246,358 │ 4059.129038804869  │ ±1.65% │ 24636   │
+│ 1 │ _.cloneDeep (Lodash)     │ 169,432 │ 5902.043319168882  │ ±2.53% │ 16944   │
+│ 2 │ R.clone (ramda)          │ 178,957 │ 5587.9189808343945 │ ±2.26% │ 17897   │
+│ 3 │ R2.clone (remeda)        │ 314,247 │ 3182.204862216371  │ ±1.75% │ 31426   │
+│ 4 │ clone                    │ 399,634 │ 2502.2859323385046 │ ±2.06% │ 39964   │
 └───┴──────────────────────────┴─────────┴────────────────────┴────────┴─────────┘
+*Note: Here the ramda & remeda does not support cloning Map & Set.
+
+sortBy:
+┌───┬────────────────────┬───────────┬───────────────────┬────────┬─────────┐
+│   │ Task Name          │ ops/sec   │ Average Time (ns) │ Margin │ Samples │
+├───┼────────────────────┼───────────┼───────────────────┼────────┼─────────┤
+│ 0 │ _.orderBy (Lodash) │ 1,231,295 │ 812.1529684071648 │ ±3.09% │ 123130  │
+│ 1 │ R.sortWith (Ramda) │ 1,279,200 │ 781.7380570822326 │ ±2.27% │ 127921  │
+│ 2 │ R2.sortBy (Remeda) │ 1,419,707 │ 704.3703291518029 │ ±2.81% │ 141971  │
+│ 3 │ sort (Moderndash)  │ 2,697,568 │ 370.7042634668106 │ ±1.82% │ 269757  │
+│ 4 │ sortBy             │ 2,728,366 │ 366.5196435965459 │ ±2.19% │ 272837  │
+└───┴────────────────────┴───────────┴───────────────────┴────────┴─────────┘
+
+*Note: Here the Moderndash does not support passing object prop as string.
+
 ```
 
 ### Running benchmarks

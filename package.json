@@ -34,6 +34,9 @@
     "husky": "^9.0.10",
     "lint-staged": "^15.2.2",
     "lodash": "^4.17.21",
+    "moderndash": "^3.11.0",
+    "ramda": "^0.29.1",
+    "remeda": "^1.48.0",
     "tinybench": "^2.6.0",
     "turbo": "^1.12.2"
   }

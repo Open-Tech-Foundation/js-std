@@ -5,5 +5,5 @@
   "move": "move",
   "range": "range",
   "sort": "sort",
-  "sortObj": "sortObj"
+  "sortBy": "sortBy"
 }
