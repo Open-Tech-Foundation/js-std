@@ -4,15 +4,16 @@ import REPL from "../../components/REPL";
 > Sorts a list of items and returns a new array.
 
 <Callout emoji="✅" type="info">
-This does not mutate the given array.
+Immutable: This does not mutate the given array.
 </Callout>
 
 <Callout type="info">
-Currently, it supports sorting the following types:
+The following types are supported:
 
-- number
-
-- string
+- Number
+- String
+- Boolean
+- Date
 </Callout>
 
 <Callout type="warning">
@@ -21,7 +22,7 @@ It cannot sort if the values in the array is of mixed types.
 
 **Related:**
 
-- [sortObj](/Array/sortObj)
+- [sortBy](/Array/sortBy)
 
 ## Syntax
 
@@ -29,7 +30,7 @@ It cannot sort if the values in the array is of mixed types.
 sort<T>(arr: T[], order = 'asc'): T[]
 ```
 <Callout type="info">
-The order param can be either `asc` or `desc`.
+The order param can be either `'asc'` or `'desc'`.
 </Callout>
 
 ## Usage

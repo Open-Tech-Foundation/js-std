@@ -43,4 +43,23 @@ describe('Array > sort', () => {
     const sorted = sort(arr, 'desc');
     expect(sorted).toEqual(['may', 'mar', 'jan', 'feb', 'apr']);
   });
+
+  test('sorting booleans', () => {
+    const arr = [true, false, true];
+    let sorted = sort(arr);
+    expect(sorted).toEqual([false, true, true]);
+    sorted = sort(arr, 'desc');
+    expect(sorted).toEqual([true, true, false]);
+  });
+
+  test('sorting dates', () => {
+    const today = new Date();
+    const yesterday = new Date().setDate(today.getDate() - 1);
+    const tomorrow = new Date().setDate(today.getDate() + 1);
+    const arr = [today, yesterday, tomorrow];
+    let sorted = sort(arr);
+    expect(sorted).toEqual([yesterday, today, tomorrow]);
+    sorted = sort(arr, 'desc');
+    expect(sorted).toEqual([tomorrow, today, yesterday]);
+  });
 });
