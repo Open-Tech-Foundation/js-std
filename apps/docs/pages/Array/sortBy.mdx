@@ -52,14 +52,14 @@ sortBy(fruits, [(o) => o.name, 'asc']);
 //   { name: 'pineapple', amount: 2 },
 // ]
 
-sortBy(fruits, ['name', 'asc'], ['amount', 'desc']);
-sortBy(fruits, ['name', 'asc'], [(o) => o.amount, 'desc']);
+sortBy(fruits, ['amount', 'desc'], ['name', 'asc']);
+sortBy(fruits, [o => o.amount, 'desc'], [o => o.name, 'asc']);
 //=> [
-//   { name: 'orange', amount: 5 },
-//   { name: 'apple', amount: 4 },
-//   { name: 'banana', amount: 2 },
-//   { name: 'pineapple', amount: 2 },
-//   { name: 'mango', amount: 1 },
+//  { name: 'orange', amount: 5 },
+//  { name: 'apple', amount: 4 },
+//  { name: 'banana', amount: 2 },
+//  { name: 'pineapple', amount: 2 },
+//  { name: 'mango', amount: 1 }
 // ]
 ```
 
