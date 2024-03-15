@@ -1,0 +1,93 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> Returns the size of the given value or null.
+
+<Callout type="info">
+The following type of values are supported:
+
+- Array
+
+- Plain Object
+
+- String
+
+- Map
+
+- Set
+
+- ArrayBuffer
+</Callout>
+
+## Syntax
+
+```ts
+import { size } from '@opentf/utils';
+
+size(val: unknown): number | null;
+```
+
+## Examples
+
+```ts
+// Invalid objs
+// ************
+
+size() //=> null
+
+size(undefined) //=> null
+
+size(null) //=> null
+
+size(1) //=> null
+
+size(1.5) //=> null
+
+size(1n) //=> null
+
+size(false) //=> null
+
+size(true) //=> null
+
+// Eempty objs
+// ***********
+
+size('') //=> 0
+
+size([]) //=> 0
+
+size({}) //=> 0
+
+size(new Map()) //=> 0
+
+size(new Set()) //=> 0
+
+size(new ArrayBuffer(0)) //=> 0
+
+// Non empty objs
+// **************
+
+size(' ') //=> 1
+
+size('abc') //=> 3
+
+size([1]) //=> 1
+
+size({ length: 0, size: 0, byteLength: 0 }) //=> 3
+
+size(new Map([[1, 1]])) //=> 1
+
+size(new Set(['a', 'b'])) //=> 2
+
+size(new ArrayBuffer(8)) //=> 8
+```
+
+## Try
+
+<REPL code={`const { size } = require('@opentf/utils');
+
+log(size(true));
+log(size([]));
+log(size({a: 1, b: 2}));
+size('Hello World');
+`} />

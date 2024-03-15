@@ -1,0 +1,40 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> Checks if the given value is Nil / Noting.
+
+<Callout type="info">
+The `undefined` & `null` values are considered `Nil` here.
+</Callout>
+
+## Syntax
+
+```ts
+import { isNil } from '@opentf/utils';
+
+isNil(val: unknown): Boolean;
+```
+
+## Examples
+
+```ts
+isNil('') //=> false
+
+isNil([]) //=> false
+
+isNil({}) //=> false
+
+isNil() //=> true
+
+isNil(undefined) //=> true
+
+isNil(null) //=> true
+```
+
+## Try
+
+<REPL code={`const { isNil } = require('@opentf/utils');
+
+const arr = [1, null, 2, undefined, 3]
+arr.filter((i) => !isNil(i));
+`} />

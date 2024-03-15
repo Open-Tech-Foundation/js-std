@@ -1,0 +1,84 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> Checks if the given value is empty.
+
+<Callout type="info">
+The following type of values are supported:
+
+- Array
+
+- Plain Object
+
+- String
+
+- Map
+
+- Set
+
+- ArrayBuffer
+</Callout>
+
+## Syntax
+
+```ts
+import { isEmpty } from '@opentf/utils';
+
+isEmpty(val: unknown): Boolean;
+```
+
+## Examples
+
+```ts
+// Truthy cases
+// *********
+isEmpty('') //=> true
+
+isEmpty([]) //=> true
+
+isEmpty({}) //=> true
+
+isEmpty(new Map()) //=> true
+
+isEmpty(new Set()) //=> true
+
+isEmpty(new ArrayBuffer(0)) //=> true
+
+
+// Falsy cases
+// *********
+
+isEmpty() //=> false
+
+isEmpty(undefined) //=> false
+
+isEmpty(null) //=> false
+
+isEmpty(1) //=> false
+
+isEmpty(1.5) //=> false
+
+isEmpty(1n) //=> false
+
+isEmpty(false) //=> false
+
+isEmpty(true) //=> false
+
+isEmpty(' ') //=> false
+
+isEmpty('a') //=> false
+
+isEmpty([1]) //=> false
+
+isEmpty({ length: 0, size: 0, byteLength: 0 }) //=> false
+
+```
+
+## Try
+
+<REPL code={`const { isEmpty } = require('@opentf/utils');
+
+log(isEmpty([]));
+log(isEmpty({}));
+isEmpty(null);
+`} />
