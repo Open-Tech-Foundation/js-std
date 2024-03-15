@@ -20,6 +20,7 @@ log(camelCase('i phone'));
 `;
 
 const setupCode = `const _ = require('lodash');
+const R = require('ramda');
 const log = console.log;`;
 
 export default function PlaygroundREPL() {
@@ -30,7 +31,7 @@ export default function PlaygroundREPL() {
       <NodeREPL
         code={code}
         setupCode={setupCode}
-        deps={["@opentf/utils", "lodash"]}
+        deps={["@opentf/utils", "lodash", "ramda"]}
         layout="SPLIT_PANEL"
         editor={{
           darkMode: resolvedTheme === "dark",

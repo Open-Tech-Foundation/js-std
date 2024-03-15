@@ -1,0 +1,38 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> Shallow Merges objects or arrays.
+
+## Syntax
+
+```ts
+import { shallowMerge } from '@opentf/utils';
+
+shallowMerge(obj1, ...objN);
+```
+
+<Callout type="info" emoji="✅">
+Immutable: This does not mutate the given arrays or objects.
+</Callout>
+
+## Examples
+
+```ts
+const a = { a: 1 };
+const b = { b: 2 };
+shallowMerge(a, b); //=> { a: 1, b: 2 }
+
+const a = [1];
+const b = [2];
+const c = [3];
+shallowMerge(a, b, c); //=> [3]
+```
+
+## Try
+
+<REPL code={`const { shallowMerge } = require('@opentf/utils');
+
+const a = { a: 1 };
+const b = { b: 2 };
+shallowMerge(a, b);
+`} />

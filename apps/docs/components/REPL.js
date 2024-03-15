@@ -11,6 +11,7 @@ const NodeREPL = dynamic(
 );
 
 const setupCode = `const _ = require('lodash');
+const R = require('ramda');
 const log = console.log;`;
 
 export default function REPL({ code = "", layout = "DEFAULT" }) {
@@ -28,7 +29,7 @@ export default function REPL({ code = "", layout = "DEFAULT" }) {
           <NodeREPL
             code={code}
             setupCode={setupCode}
-            deps={["@opentf/utils", "lodash"]}
+            deps={["@opentf/utils", "lodash", 'ramda']}
             editor={{
               darkMode: resolvedTheme === "dark",
               header: false,

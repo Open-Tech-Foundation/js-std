@@ -3,5 +3,9 @@
   "delInObj": "delInObj",
   "getInObj": "getInObj",
   "setInObj": "setInObj",
-  "isShallowEql": "isShallowEql"
+  "isShallowEql": "isShallowEql",
+  "merge": "merge",
+  "mergeAll": "mergeAll",
+  "shallowMerge": "shallowMerge",
+  "shallowMergeAll": "shallowMergeAll"
 }

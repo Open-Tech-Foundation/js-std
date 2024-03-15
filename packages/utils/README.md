@@ -12,7 +12,11 @@
 
 > A collection of JavaScript utility functions.
 
-# [Playground](https://js-utils.pages.dev/playground) | [Documentation](https://js-utils.pages.dev)
+<div align="center">
+
+## [Playground](https://js-utils.pages.dev/playground) | [Documentation](https://js-utils.pages.dev)
+
+</div>
 
 ## Features
 
@@ -43,13 +47,16 @@ bun add @opentf/utils
 ## Usage
 
 ```ts
-import { isNum, range, pascalCase, sleep } from '@opentf/utils';
+import { isNum, pascalCase, sort, clone, sleep } from '@opentf/utils';
 
 isNum(NaN); //=> false
 
-range(1, 5); //=> [1, 2, 3, 4, 5]
-
 pascalCase('pascal case'); //=> PascalCase
+
+sort([1, 10, 21, 2], 'desc'); //=> [ 21, 10, 2, 1 ]
+
+const obj = { a: 1, b: 'abc', c: new Map([['key', 'val']]) };
+clone(obj); // It returns deeply cloned value.
 
 await sleep(1000); // It suspends the exection for 1 second.
 ```
@@ -90,6 +97,10 @@ await sleep(1000); // It suspends the exection for 1 second.
 - [isShallowEql](https://js-utils.pages.dev/docs/Object/isShallowEql)
 - [setInObj](https://js-utils.pages.dev/docs/Object/setInObj)
 - [size](https://js-utils.pages.dev/docs/Object/size)
+- [merge](https://js-utils.pages.dev/docs/Object/merge)
+- [mergeAll](https://js-utils.pages.dev/docs/Object/mergeAll)
+- [shallowMerge](https://js-utils.pages.dev/docs/Object/shallowMerge)
+- [shallowMergeAll](https://js-utils.pages.dev/docs/Object/shallowMergeAll)
 
 ### String
 

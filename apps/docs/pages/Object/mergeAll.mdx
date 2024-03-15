@@ -1,0 +1,33 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> It deeply merges objects and concatenates the arrays if any present.
+
+## Syntax
+
+```ts
+import { mergeAll } from '@opentf/utils';
+
+mergeAll(obj1, ...objN);
+```
+
+<Callout type="info" emoji="✅">
+Immutable: This does not mutate the given arrays or objects.
+</Callout>
+
+## Examples
+
+```ts
+const a = { a: { b: [1] } };
+const b = { a: { b: [2] } };
+mergeAll(a, b); //=> { a: { b: [1, 2] }
+```
+
+## Try
+
+<REPL code={`const { mergeAll } = require('@opentf/utils');
+
+const a = { a: { b: [1] } };
+const b = { a: { b: [2] } };
+mergeAll(a, b);
+`} />
