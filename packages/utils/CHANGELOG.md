@@ -1,5 +1,11 @@
 # @opentf/utils
 
+## 0.31.0
+
+### Minor Changes
+
+- 2ea7424: Added merge utils fns & renamed arrayDiff to arrDiff
+
 ## 0.30.0
 
 ### Minor Changes
