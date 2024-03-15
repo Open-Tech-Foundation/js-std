@@ -62,13 +62,15 @@ export { default as setInObj } from './object/setInObj';
 export { default as delInObj } from './object/delInObj';
 export { default as clone } from './object/clone';
 export { default as isShallowEql } from './object/isShallowEql';
-export { default as isEmpty } from './object/isEmpty';
-export { default as isNil } from './object/isNil';
 export { default as size } from './object/size';
 export { default as merge } from './object/merge';
 export { default as mergeAll } from './object/mergeAll';
 export { default as shallowMerge } from './object/shallowMerge';
 export { default as shallowMergeAll } from './object/shallowMergeAll';
+
+// Common
+export { default as isEmpty } from './common/isEmpty';
+export { default as isNil } from './common/isNil';
 
 // function
 export { default as sleep } from './function/sleep';

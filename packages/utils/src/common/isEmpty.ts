@@ -1,7 +1,7 @@
-import size from './size';
+import size from '../object/size';
 
 /**
- * Checks if the given value is empty.
+ * Checks if the given collection is empty.
  *
  * @example
  *

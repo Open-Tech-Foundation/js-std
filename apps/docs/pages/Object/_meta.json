@@ -8,7 +8,5 @@
   "mergeAll": "mergeAll",
   "shallowMerge": "shallowMerge",
   "shallowMergeAll": "shallowMergeAll",
-  "isEmpty": "isEmpty",
-  "isNil": "isNil",
   "size": "size"
 }
