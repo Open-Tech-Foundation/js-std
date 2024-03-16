@@ -71,6 +71,7 @@ export { default as shallowMergeAll } from './object/shallowMergeAll';
 
 // Common
 export { default as isEmpty } from './common/isEmpty';
+export { default as isEql } from './common/isEql';
 export { default as isNil } from './common/isNil';
 
 // function
