@@ -1,0 +1,30 @@
+import REPL from "../../components/REPL";
+
+> Returns a value clamped to the inclusive range of min and max.
+
+## Syntax
+
+```ts
+import { clamp } from '@opentf/utils';
+
+clamp(val: number, min: number, max: number): number;
+```
+
+## Examples
+
+```ts
+clamp(10, -5, 5) //=> 5
+
+clamp(0, 1000, 1366) //=> 1000
+
+clamp(1001, 1000, 1366) //=> 1001
+
+clamp(1500, 1000, 1366) //=> 1366
+```
+
+## Try
+
+<REPL code={`const { clamp } = require('@opentf/utils');
+
+clamp(0, 1000, 1366);
+`} />

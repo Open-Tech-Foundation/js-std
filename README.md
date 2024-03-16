@@ -78,6 +78,13 @@ await sleep(1000); // It suspends the exection for 1 second.
 - [percentage](https://js-utils.pages.dev/docs/Maths/percentage)
 - [percentageOf](https://js-utils.pages.dev/docs/Maths/percentageOf)
 
+## Number
+
+- [clamp](https://js-utils.pages.dev/docs/Number/clamp)
+- [isNegZero](https://js-utils.pages.dev/docs/Number/isNegZero)
+- [isZero](https://js-utils.pages.dev/docs/Number/isZero)
+- [toNum](https://js-utils.pages.dev/docs/Number/toNum)
+
 ### Function
 
 - [sleep](https://js-utils.pages.dev/docs/Timers/sleep)

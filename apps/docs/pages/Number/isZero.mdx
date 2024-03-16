@@ -1,0 +1,40 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> Checks if the given number is positive zero (0).
+
+<Callout type="info">
+In JavaScript 0 === -0 is true.
+</Callout>
+
+## Syntax
+
+```ts
+import { isZero } from '@opentf/utils';
+
+isZero(n: number): boolean;
+```
+
+## Examples
+
+```ts
+isZero(0) //=> true
+
+isZero(0.0) //=> true
+
+isZero(0x0) //=> true
+
+isZero(-0) //=> false
+
+isZero(-0.0) //=> false
+
+isZero(-0x0) //=> false
+```
+
+## Try
+
+<REPL code={`const { isZero } = require('@opentf/utils');
+
+log(isZero(0));
+isZero(-0);
+`} />

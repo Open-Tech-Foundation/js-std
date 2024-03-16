@@ -1,12 +1,17 @@
+import isArr from '../types/isArr';
+
 /**
- * Shallow merges objects or arrays and also returns union of array items.
+ * Shallow merges objects and concatenates the array.
  *
  * @example
- *
+ * const a = [1];
+ * const b = [2];
+ * const c = [3];
+ * shallowMergeAll(a, b, c); //=> [1, 2, 3]
  */
 export default function shallowMergeAll(...objs: object[]) {
   return objs.reduce((acc, cur) => {
-    if (Array.isArray(cur) && Array.isArray(acc)) {
+    if (isArr(cur) && isArr(acc)) {
       return [...acc, ...cur];
     }
 

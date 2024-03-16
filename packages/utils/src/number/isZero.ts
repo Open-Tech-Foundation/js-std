@@ -3,9 +3,6 @@
  *
  * @example
  *
- * isZero() //=> false
- * isZero(null) //=> false
- * isZero('') //=> false
  * isZero(-0) //=> false
  * isZero(0) //=> true
  */

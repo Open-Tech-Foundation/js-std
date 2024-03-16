@@ -1,6 +1,10 @@
 import isArr from '../types/isArr';
 import isObj from '../types/isObj';
 
+type IterableObj = {
+  [key: number | string]: unknown;
+};
+
 /**
  * It deeply merges objects or arrays.
  *
@@ -9,10 +13,6 @@ import isObj from '../types/isObj';
  * const b = { a: { c: 2 } };
  * merge(a, b); //=> {a: { b: 1, c: 2 } }
  */
-type IterableObj = {
-  [key: number | string]: unknown;
-};
-
 export default function merge(...objs: object[]) {
   const filteredObjs = objs.filter((v) => isArr(v) || isObj(v));
   const initialVal = isArr(filteredObjs[0]) ? [] : {};

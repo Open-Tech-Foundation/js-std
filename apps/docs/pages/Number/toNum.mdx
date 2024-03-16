@@ -1,0 +1,35 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> Try to convert the given value into a finite number.
+
+## Syntax
+
+```ts
+import { toNum } from '@opentf/utils';
+
+toNum(val: unknown): number;
+```
+
+## Examples
+
+```ts
+toNum(1) //=> 1
+
+toNum('1.3') //=> 1.3
+
+toNum('1_000') //=> 1000
+
+toNum(Infinity) //=> NaN
+
+toNum('a') //=> NaN
+
+toNum('0xF') //=> 15
+```
+
+## Try
+
+<REPL code={`const { toNum } = require('@opentf/utils');
+
+toNum('1_000');
+`} />
