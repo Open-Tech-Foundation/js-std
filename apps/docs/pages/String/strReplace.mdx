@@ -1,0 +1,59 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> Returns a new string with one, some, or all matches of a pattern replaced by a replacement.
+
+## Syntax
+
+```ts
+import { strReplace } from '@opentf/utils';
+
+strReplace(str: string,
+           pattern: string | RegExp,
+           replacement: string | Function,
+           options: {all: boolean, case: boolean}
+): string;
+```
+
+<Callout type="info">
+The replacement function can be in the form of [specifying_a_function_as_the_replacement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace#specifying_a_function_as_the_replacement)
+</Callout>
+
+<Callout type="info">
+ - The option `all` refers to RegExp `g` global flag.
+ - The option `case` refers to RegExp `i` ignore case / case insensitive flag.
+</Callout>
+
+## Examples
+
+```ts
+strReplace('abc', 'a', 'x') //=> 'xbc'
+
+strReplace('abbc', 'b', '', { all: true }) //=> 'ac'
+
+strReplace('aBbBc', 'B', '', { all: true, case: true }) //=> 'ac'
+
+const paragraph = "I think Ruth's dog is cuter than your dog!";
+const regex = /dog/;
+strReplace(paragraph, regex, 'ferret') //=> "I think Ruth's ferret is cuter than your dog!"
+
+const str = 'Twas the night before Xmas...';
+strReplace(str, /xmas/, 'Christmas', { case: true }) //=> 'Twas the night before Christmas...'
+
+const str = 'Apples are round, and apples are juicy.';
+strReplace(str, /apple/, 'Orange', { all: true, case: true }) //=> 'Oranges are round, and Oranges are juicy.'
+
+function convert(str, p1) {
+  return `${((p1 - 32) * 5) / 9}C`;
+}
+const test = /(-?\d+(?:\.\d*)?)F\b/;
+strReplace('212F', test, convert) //=> '100C'
+```
+
+## Try
+
+<REPL code={`const { strReplace } = require('@opentf/utils');
+
+const str = 'Apples are round, and apples are juicy.';
+strReplace(str, 'apple', 'orange');
+`} />

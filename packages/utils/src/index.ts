@@ -5,6 +5,7 @@ export { default as insertAt } from './string/insertAt';
 export { default as capitalize } from './string/capitalize';
 export { default as camelCase } from './string/camelCase';
 export { default as pascalCase } from './string/pascalCase';
+export { default as strReplace } from './string/strReplace';
 
 // Array
 export { default as arrDiff } from './array/arrDiff';

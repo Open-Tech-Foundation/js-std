@@ -4,5 +4,6 @@
   "insertAt": "insertAt",
   "isEmail": "isEmail",
   "pascalCase": "pascalCase",
-  "replaceAt": "replaceAt"
+  "replaceAt": "replaceAt",
+  "strReplace": "strReplace"
 }

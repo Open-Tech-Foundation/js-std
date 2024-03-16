@@ -117,6 +117,7 @@ await sleep(1000); // It suspends the exection for 1 second.
 - [isEmail](https://js-utils.pages.dev/docs/String/isEmail)
 - [pascalCase](https://js-utils.pages.dev/docs/String/pascalCase)
 - [replaceAt](https://js-utils.pages.dev/docs/String/replaceAt)
+- [strReplace](https://js-utils.pages.dev/docs/String/strReplace)
 
 ### Types
 
