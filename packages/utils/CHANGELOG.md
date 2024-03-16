@@ -1,5 +1,11 @@
 # @opentf/utils
 
+## 0.32.0
+
+### Minor Changes
+
+- bdbf93b: Added strReplace fn.
+
 ## 0.31.0
 
 ### Minor Changes
