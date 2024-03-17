@@ -1,5 +1,11 @@
 # @opentf/utils
 
+## 0.33.0
+
+### Minor Changes
+
+- 49fc010: Added isEql common util fn.
+
 ## 0.32.0
 
 ### Minor Changes
