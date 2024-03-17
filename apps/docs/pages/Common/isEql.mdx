@@ -6,15 +6,15 @@ import REPL from "../../components/REPL";
 <Callout type="info">
 The following type of values are supported:
 
-- Primitives
+- [Primitives](https://developer.mozilla.org/en-US/docs/Glossary/Primitive)
+
+- Array
 
 - Plain Object
 
 - Map
 
 - Set
-
-- ArrayBuffer
 
 - Date
 
@@ -26,7 +26,8 @@ The following type of values are supported:
 </Callout>
 
 <Callout type="info">
- It handles the circular references.
+  - It handles the circular references.
+  - Other types are checked by their references, Eg: Function.
 </Callout>
 
 ## Syntax
