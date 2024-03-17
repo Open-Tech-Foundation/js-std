@@ -47,7 +47,7 @@ bun add @opentf/utils
 ## Usage
 
 ```ts
-import { isNum, pascalCase, sort, clone, sleep } from '@opentf/utils';
+import { isNum, pascalCase, sort, clone, isEql, sleep } from '@opentf/utils';
 
 isNum(NaN); //=> false
 
@@ -58,6 +58,16 @@ sort([1, 10, 21, 2], 'desc'); //=> [ 21, 10, 2, 1 ]
 const obj = { a: 1, b: 'abc', c: new Map([['key', 'val']]) };
 clone(obj); // It returns deeply cloned value.
 
+const mapA = new Map([
+  ['a', 1],
+  ['b', 2],
+]);
+const mapB = new Map([
+  ['b', 2],
+  ['a', 1],
+]);
+isEql(mapA, mapB); //=> false
+
 await sleep(1000); // It suspends the exection for 1 second.
 ```
 
@@ -65,59 +75,63 @@ await sleep(1000); // It suspends the exection for 1 second.
 
 ### Array
 
-- [arrDiff](https://js-utils.pages.dev/docs/Array/arrDiff)
-- [asyncFilter](https://js-utils.pages.dev/docs/Array/asyncFilter)
-- [groupBy](https://js-utils.pages.dev/docs/Array/groupBy)
-- [range](https://js-utils.pages.dev/docs/Array/range)
-- [move](https://js-utils.pages.dev/docs/Array/move)
-- [sort](https://js-utils.pages.dev/docs/Array/sort)
-- [sortBy](https://js-utils.pages.dev/docs/Array/sortBy)
+- [arrDiff](https://js-utils.pages.dev/Array/arrDiff)
+- [asyncFilter](https://js-utils.pages.dev/Array/asyncFilter)
+- [groupBy](https://js-utils.pages.dev/Array/groupBy)
+- [range](https://js-utils.pages.dev/Array/range)
+- [move](https://js-utils.pages.dev/Array/move)
+- [sort](https://js-utils.pages.dev/Array/sort)
+- [sortBy](https://js-utils.pages.dev/Array/sortBy)
 
 ### Maths
 
-- [percentage](https://js-utils.pages.dev/docs/Maths/percentage)
-- [percentageOf](https://js-utils.pages.dev/docs/Maths/percentageOf)
+- [percentage](https://js-utils.pages.dev/Maths/percentage)
+- [percentageOf](https://js-utils.pages.dev/Maths/percentageOf)
 
-## Number
+### Number
 
-- [clamp](https://js-utils.pages.dev/docs/Number/clamp)
-- [isNegZero](https://js-utils.pages.dev/docs/Number/isNegZero)
-- [isZero](https://js-utils.pages.dev/docs/Number/isZero)
-- [toNum](https://js-utils.pages.dev/docs/Number/toNum)
+- [clamp](https://js-utils.pages.dev/Number/clamp)
+- [isNegZero](https://js-utils.pages.dev/Number/isNegZero)
+- [isZero](https://js-utils.pages.dev/Number/isZero)
+- [toNum](https://js-utils.pages.dev/Number/toNum)
 
 ### Function
 
-- [sleep](https://js-utils.pages.dev/docs/Timers/sleep)
-- [noop](https://js-utils.pages.dev/docs/Timers/noop)
+- [sleep](https://js-utils.pages.dev/Timers/sleep)
+- [noop](https://js-utils.pages.dev/Timers/noop)
 
 ### Colors
 
-- [hexToRGB](https://js-utils.pages.dev/docs/Misc/hexToRGB)
+- [hexToRGB](https://js-utils.pages.dev/Misc/hexToRGB)
+
+### Common
+
+- [isEmpty](https://js-utils.pages.dev/Common/isEmpty)
+- [isEql](https://js-utils.pages.dev/Common/isEql)
+- [isNil](https://js-utils.pages.dev/Common/isNil)
 
 ### Object
 
-- [clone](https://js-utils.pages.dev/docs/Object/clone)
-- [getInObj](https://js-utils.pages.dev/docs/Object/getInObj)
-- [delInObj](https://js-utils.pages.dev/docs/Object/delInObj)
-- [isEmpty](https://js-utils.pages.dev/docs/Object/isEmpty)
-- [isNil](https://js-utils.pages.dev/docs/Object/isNil)
-- [isShallowEql](https://js-utils.pages.dev/docs/Object/isShallowEql)
-- [setInObj](https://js-utils.pages.dev/docs/Object/setInObj)
-- [size](https://js-utils.pages.dev/docs/Object/size)
-- [merge](https://js-utils.pages.dev/docs/Object/merge)
-- [mergeAll](https://js-utils.pages.dev/docs/Object/mergeAll)
-- [shallowMerge](https://js-utils.pages.dev/docs/Object/shallowMerge)
-- [shallowMergeAll](https://js-utils.pages.dev/docs/Object/shallowMergeAll)
+- [clone](https://js-utils.pages.dev/Object/clone)
+- [getInObj](https://js-utils.pages.dev/Object/getInObj)
+- [delInObj](https://js-utils.pages.dev/Object/delInObj)
+- [isShallowEql](https://js-utils.pages.dev/Object/isShallowEql)
+- [setInObj](https://js-utils.pages.dev/Object/setInObj)
+- [size](https://js-utils.pages.dev/Object/size)
+- [merge](https://js-utils.pages.dev/Object/merge)
+- [mergeAll](https://js-utils.pages.dev/Object/mergeAll)
+- [shallowMerge](https://js-utils.pages.dev/Object/shallowMerge)
+- [shallowMergeAll](https://js-utils.pages.dev/Object/shallowMergeAll)
 
 ### String
 
-- [camelCase](https://js-utils.pages.dev/docs/String/camelCase)
-- [capitalize](https://js-utils.pages.dev/docs/String/capitalize)
-- [insertAt](https://js-utils.pages.dev/docs/String/insertAt)
-- [isEmail](https://js-utils.pages.dev/docs/String/isEmail)
-- [pascalCase](https://js-utils.pages.dev/docs/String/pascalCase)
-- [replaceAt](https://js-utils.pages.dev/docs/String/replaceAt)
-- [strReplace](https://js-utils.pages.dev/docs/String/strReplace)
+- [camelCase](https://js-utils.pages.dev/String/camelCase)
+- [capitalize](https://js-utils.pages.dev/String/capitalize)
+- [insertAt](https://js-utils.pages.dev/String/insertAt)
+- [isEmail](https://js-utils.pages.dev/String/isEmail)
+- [pascalCase](https://js-utils.pages.dev/String/pascalCase)
+- [replaceAt](https://js-utils.pages.dev/String/replaceAt)
+- [strReplace](https://js-utils.pages.dev/String/strReplace)
 
 ### Types
 
@@ -129,7 +143,7 @@ await sleep(1000); // It suspends the exection for 1 second.
 - [isDate](https://js-utils.pages.dev/Types/isDate)
 - [isErr](https://js-utils.pages.dev/Types/isErr)
 - [isFn](https://js-utils.pages.dev/Types/isFn)
-- [isJSON](https://js-utils.pages.dev/docs/Types/isJSON)
+- [isJSON](https://js-utils.pages.dev/Types/isJSON)
 - [isMap](https://js-utils.pages.dev/Types/isMap)
 - [isNull](https://js-utils.pages.dev/Types/isNull)
 - [isNum](https://js-utils.pages.dev/Types/isNum)
@@ -177,6 +191,23 @@ sortBy:
 
 *Note: Here the Moderndash does not support passing object prop as string.
 
+isEql:
+┌───┬─────────────────────────────────────┬─────────┬───────────────────┬────────┬─────────┐
+│   │ Task Name                           │ ops/sec │ Average Time (ns) │ Margin │ Samples │
+├───┼─────────────────────────────────────┼─────────┼───────────────────┼────────┼─────────┤
+│ 0 │ deepStrictEqual (Native)            │ 927,921 │ 1077.676882954431 │ ±0.38% │ 92793   │
+│ 1 │ fastDeepEqual (fast-deep-equal/es6) │ 638,108 │ 1567.132684562446 │ ±1.42% │ 63813   │
+│ 2 │ _.isEqual (Lodash)                  │ 142,592 │ 7013.003366058248 │ ±2.13% │ 14260   │
+│ 3 │ R.equals (Ramda)                    │ 50,346  │ 19862.42184707051 │ ±1.83% │ 5035    │
+│ 4 │ isEql                               │ 109,127 │ 9163.615962614227 │ ±1.28% │ 10913   │
+└───┴─────────────────────────────────────┴─────────┴───────────────────┴────────┴─────────┘
+
+*Note:
+
+- The native util `deepStrictEqual` not available in browsers, does not check `Map` ordering & returns false for same invalid dates.
+- The `fast-deep-equal/es6` does not support cyclic refs, Map ordering check, invalid dates, symbols, objects values in Set & TypedArrays.
+- The lodash `isEqual` does not check `Map` ordering & object values in `Set`.
+- The ramda `equals` does not check `Map` ordering & symbols.
 ```
 
 ### Running benchmarks

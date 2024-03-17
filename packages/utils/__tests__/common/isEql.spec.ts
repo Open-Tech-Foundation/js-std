@@ -70,9 +70,13 @@ describe('Object => isEql', () => {
       isEql(new Set().add({ foo: 'bar' }), new Set().add({ foo: 'bar' }))
     ).toBe(true);
 
-    const sym2 = Symbol('foo');
-    const symObj = { [sym2]: 'foo' };
-    expect(isEql(symObj, { [sym2]: 'foo2' })).toBe(true);
+    const sym = Symbol('foo');
+    const symObj = { [sym]: 'foo' };
+    expect(isEql(symObj, { [sym]: 'foo' })).toBe(true);
+
+    const e = new Error('Test msg.');
+    const e2 = new Error('Test msg.');
+    expect(isEql(e, e2)).toBe(true);
   });
 
   test('falsy', () => {
@@ -105,12 +109,19 @@ describe('Object => isEql', () => {
       ['b', 2],
       ['a', 1],
     ]);
-
     expect(isEql(mapA, mapB)).toBe(false);
 
     expect(isEql(new Set([1, [2, 3]]), new Set([1, [3, 2]]))).toBe(false);
 
     expect(isEql({ a: 1 }, null)).toBe(false);
+
+    const symbol1 = Symbol();
+    const symbol2 = Symbol();
+    expect(isEql({ [symbol1]: 1 }, { [symbol2]: 1 })).toBe(false);
+
+    const re = new RegExp('ab+c');
+    const re2 = new RegExp('ab+d');
+    expect(isEql(re, re2)).toBe(false);
   });
 
   test('Deep objs with all supported types in it', () => {

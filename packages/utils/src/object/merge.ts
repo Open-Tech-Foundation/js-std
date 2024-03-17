@@ -1,8 +1,8 @@
 import isArr from '../types/isArr';
 import isObj from '../types/isObj';
 
-type IterableObj = {
-  [key: number | string]: unknown;
+export type IterableObj = {
+  [key: number | string | symbol]: unknown;
 };
 
 /**

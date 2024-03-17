@@ -1,9 +1,11 @@
+import { isDeepStrictEqual } from "node:util";
 import { Bench, hrtimeNow } from "tinybench";
-import { clone, sort, sortBy } from "./packages/utils/dist/index";
+import { clone, sortBy, isEql } from "./packages/utils/dist/index";
 import _ from "lodash";
 import * as R from "ramda";
 import * as R2 from "remeda";
 import { sort as mSort } from "moderndash";
+import fastDeepEqual from "fast-deep-equal/es6";
 
 async function cloneBench() {
   console.log("clone:");
@@ -95,5 +97,56 @@ async function sortByBench() {
   console.table(bench.table());
 }
 
+async function isEqlBench() {
+  console.log("isEql:");
+  const bench = new Bench({ time: 100, now: hrtimeNow });
+  const obj = {
+    a: undefined,
+    b: null,
+    c: 0,
+    d: -0,
+    e: 1,
+    f: 1n,
+    g: "a",
+    h: [1, 2, 3],
+    i: {
+      j: true,
+      k: false,
+      l: new Date(),
+      l2: [new Uint8Array(10), new Float32Array(32)],
+    },
+    m: new Map([
+      ["1", 1],
+      ["2", 2],
+    ]),
+    n: new Set([1, 2, 3, 4, 5]),
+  };
+  const obj2 = structuredClone(obj);
+
+  await bench.warmup();
+  bench
+    .add("deepStrictEqual (Native)", () => {
+      isDeepStrictEqual(obj, obj2);
+    })
+    .add("fastDeepEqual (fast-deep-equal/es6)", () => {
+      fastDeepEqual(obj, obj2);
+    })
+    .add("_.isEqual (Lodash)", () => {
+      _.isEqual(obj, obj2);
+    })
+    .add("R.equals (Ramda)", () => {
+      R.equals(obj, obj2);
+    })
+    .add("isEql", () => {
+      isEql(obj, obj2);
+    });
+
+  await bench.warmup();
+  await bench.run();
+
+  console.table(bench.table());
+}
+
 // await cloneBench();
-await sortByBench();
+// await sortByBench();
+await isEqlBench();

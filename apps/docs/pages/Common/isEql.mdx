@@ -1,0 +1,68 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> Checks deeply if the given two values are equivalent.
+
+<Callout type="info">
+The following type of values are supported:
+
+- Primitives
+
+- Plain Object
+
+- Map
+
+- Set
+
+- ArrayBuffer
+
+- Date
+
+- Error 
+
+- RegExp
+
+- Typed Array 
+</Callout>
+
+<Callout type="info">
+ It handles the circular references.
+</Callout>
+
+## Syntax
+
+```ts
+import { isEql } from '@opentf/utils';
+
+isEql(val1: unknown, val2: unknown): Boolean;
+```
+
+## Examples
+
+```ts
+isEql({a: 1, b: 2}, {a: 1, b: 2}) //=> true
+
+const mapA = new Map([
+  ['a', 1],
+  ['b', 2],
+]);
+const mapB = new Map([
+  ['b', 2],
+  ['a', 1],
+]);
+isEql(mapA, mapB); //=> false
+
+const re = new RegExp('ab+c');
+const re2 = new RegExp('ab+d');
+isEql(re, re2); //=> false
+```
+
+## Try
+
+<REPL code={`const { isEql } = require('@opentf/utils');
+
+const obj1 = {a: 1, b: 2}
+const obj2 = {a: 1, b: 2}
+log(obj1 === obj2);
+isEql(obj1, obj2);
+`} />

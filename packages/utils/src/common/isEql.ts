@@ -1,7 +1,10 @@
+import { IterableObj } from '../object/merge';
 import size from '../object/size';
 import isArr from '../types/isArr';
+import isErr from '../types/isErr';
 import isMap from '../types/isMap';
 import isObj from '../types/isObj';
+import isRegEx from '../types/isRegEx';
 import isSet from '../types/isSet';
 import isTypedArr from '../types/isTypedArr';
 
@@ -15,15 +18,6 @@ function getMapKeys(map: Map<unknown, unknown>) {
   return arr;
 }
 
-/**
- * Checks deeply if the given two values are equivalent.
- *
- * @example
- *
- * isEql({a: [{b: 1}]}, {a: [{b: 1}]}) //=> true
- *
- * isEql(null, undefined) //=> false
- */
 function isEqlVal(
   val1: unknown,
   val2: unknown,
@@ -34,7 +28,7 @@ function isEqlVal(
     return true;
   }
 
-  if (objRefSet1.has(val1) && objRefSet2.has(val2)) {
+  if (objRefSet1.has(val1 as WeakKey) && objRefSet2.has(val2 as WeakKey)) {
     return true;
   }
 
@@ -51,9 +45,29 @@ function isEqlVal(
 
   if (isArr(val1) || isObj(val1) || isTypedArr(val1)) {
     objRefSet1.add(val1);
-    objRefSet2.add(val2);
+    objRefSet2.add(val2 as WeakKey);
     for (const key of Object.keys(val1)) {
-      if (!isEqlVal(val1[key], val2[key], objRefSet1, objRefSet2)) {
+      if (
+        !isEqlVal(
+          (val1 as IterableObj)[key],
+          (val2 as IterableObj)[key],
+          objRefSet1,
+          objRefSet2
+        )
+      ) {
+        return false;
+      }
+    }
+
+    for (const key of Object.getOwnPropertySymbols(val1)) {
+      if (
+        !isEqlVal(
+          (val1 as IterableObj)[key],
+          (val2 as IterableObj)[key],
+          objRefSet1,
+          objRefSet2
+        )
+      ) {
         return false;
       }
     }
@@ -62,19 +76,26 @@ function isEqlVal(
   }
 
   if (val1 instanceof Date) {
-    return Object.is(val1.getTime(), val2.getTime());
+    return Object.is(val1.getTime(), (val2 as Date).getTime());
   }
 
   if (isMap(val1)) {
     const map1Keys = getMapKeys(val1);
-    const map2Keys = getMapKeys(val2);
+    const map2Keys = getMapKeys(val2 as Map<unknown, unknown>);
 
     if (!isEqlVal(map1Keys, map2Keys, objRefSet1, objRefSet2)) {
       return false;
     }
 
     for (const [key, value] of val1) {
-      if (!isEqlVal(value, val2.get(key), objRefSet1, objRefSet2)) {
+      if (
+        !isEqlVal(
+          value,
+          (val2 as Map<unknown, unknown>).get(key),
+          objRefSet1,
+          objRefSet2
+        )
+      ) {
         return false;
       }
     }
@@ -82,7 +103,7 @@ function isEqlVal(
   }
 
   if (isSet(val1)) {
-    const itVal2 = val2.values();
+    const itVal2 = (val2 as Set<unknown>).values();
     for (const value of val1) {
       if (!isEqlVal(value, itVal2.next().value, objRefSet1, objRefSet2)) {
         return false;
@@ -91,9 +112,37 @@ function isEqlVal(
     return true;
   }
 
+  if (isErr(val1)) {
+    if (
+      val1.name === (val2 as Error).name &&
+      val1.message === (val2 as Error).message
+    ) {
+      return true;
+    }
+  }
+
+  if (isRegEx(val1)) {
+    if (
+      val1.source === (val2 as RegExp).source &&
+      val1.flags === (val2 as RegExp).flags &&
+      val1.lastIndex === (val2 as RegExp).lastIndex
+    ) {
+      return true;
+    }
+  }
+
   return false;
 }
 
+/**
+ * Checks deeply if the given two values are equivalent.
+ *
+ * @example
+ *
+ * isEql({a: [{b: 1}]}, {a: [{b: 1}]}) //=> true
+ *
+ * isEql(null, undefined) //=> false
+ */
 export default function isEql(val1: unknown, val2: unknown): boolean {
   const objRefSet1 = new WeakSet();
   const objRefSet2 = new WeakSet();

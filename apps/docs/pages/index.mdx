@@ -40,7 +40,7 @@ import { Tabs, Callout } from "nextra/components";
 ## Usage
 
 ```ts
-import { isNum, pascalCase, sort, clone, sleep } from "@opentf/utils";
+import { isNum, pascalCase, sort, clone, isEql, sleep } from "@opentf/utils";
 
 isNum(NaN); //=> false
 
@@ -50,6 +50,10 @@ sort([1, 10, 21, 2], 'desc'); //=> [ 21, 10, 2, 1 ]
 
 const obj = {a: 1, b: 'abc', c: new Map([['key', 'val']])}
 clone(obj); // It returns deeply cloned value.
+
+const mapA = new Map([ ['a', 1], ['b', 2] ])
+const mapB = new Map([ ['b', 2], ['a', 1] ])
+isEql(mapA, mapB); //=> false
 
 await sleep(1000); // It suspends the exection for 1 second.
 ```
@@ -78,6 +82,7 @@ clone:
 │ 3 │ R2.clone (remeda)        │ 314,247 │ 3182.204862216371  │ ±1.75% │ 31426   │
 │ 4 │ clone                    │ 399,634 │ 2502.2859323385046 │ ±2.06% │ 39964   │
 └───┴──────────────────────────┴─────────┴────────────────────┴────────┴─────────┘
+
 *Note: Here the ramda & remeda does not support cloning Map & Set.
 
 sortBy:
@@ -93,11 +98,29 @@ sortBy:
 
 *Note: Here the Moderndash does not support passing object prop as string.
 
+isEql:
+┌───┬─────────────────────────────────────┬─────────┬───────────────────┬────────┬─────────┐
+│   │ Task Name                           │ ops/sec │ Average Time (ns) │ Margin │ Samples │
+├───┼─────────────────────────────────────┼─────────┼───────────────────┼────────┼─────────┤
+│ 0 │ deepStrictEqual (Native)            │ 927,921 │ 1077.676882954431 │ ±0.38% │ 92793   │
+│ 1 │ fastDeepEqual (fast-deep-equal/es6) │ 638,108 │ 1567.132684562446 │ ±1.42% │ 63813   │
+│ 2 │ _.isEqual (Lodash)                  │ 142,592 │ 7013.003366058248 │ ±2.13% │ 14260   │
+│ 3 │ R.equals (Ramda)                    │ 50,346  │ 19862.42184707051 │ ±1.83% │ 5035    │
+│ 4 │ isEql                               │ 109,127 │ 9163.615962614227 │ ±1.28% │ 10913   │
+└───┴─────────────────────────────────────┴─────────┴───────────────────┴────────┴─────────┘
+
+*Note: 
+
+- The native util `deepStrictEqual` not available in browsers, does not check `Map` ordering & returns false for same invalid dates.
+- The `fast-deep-equal/es6` does not support cyclic refs, Map ordering check, invalid dates, symbols, objects values in Set & TypedArrays. 
+- The lodash `isEqual` does not check `Map` ordering & object values in `Set`.
+- The ramda `equals` does not check `Map` ordering & symbols.
 ```
 
 ### Running benchmarks
 
 ```sh
+bun run build
 bun benchmark.js
 ```
 
