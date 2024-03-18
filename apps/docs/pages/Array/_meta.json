@@ -5,7 +5,7 @@
   "arrIns": "arrIns",
   "arrReplace": "arrReplace",
   "arrRm": "arrRm",
-  "asyncFilter": "asyncFilter",
+  "countBy": "countBy",
   "groupBy": "groupBy",
   "intersection": "intersection",
   "move": "move",

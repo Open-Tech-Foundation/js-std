@@ -10,7 +10,6 @@ export { default as strReplace } from './string/strReplace';
 // Array
 export { default as arrDiff } from './array/arrDiff';
 export { default as range } from './array/range';
-export { default as asyncFilter } from './array/asyncFilter';
 export { default as groupBy } from './array/groupBy';
 export { default as move } from './array/move';
 export { default as sort } from './array/sort';
@@ -21,6 +20,10 @@ export { default as intersection } from './array/intersection';
 export { default as arrIns } from './array/arrIns';
 export { default as arrReplace } from './array/arrReplace';
 export { default as arrRm } from './array/arrRm';
+export { default as countBy } from './array/countBy';
+
+// Async
+export { default as asyncFilter } from './async/asyncFilter';
 
 // Maths
 export { default as percentage } from './maths/percentage';

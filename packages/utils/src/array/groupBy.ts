@@ -1,5 +1,9 @@
 export type GroupKey<T> = ((a: T) => string) | string;
 
+/**
+ * It groups the elements of a given array according to the given key.
+ *
+ */
 export default function groupBy<T>(
   arr: T[],
   key: GroupKey<T>

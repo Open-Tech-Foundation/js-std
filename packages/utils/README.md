@@ -47,7 +47,15 @@ bun add @opentf/utils
 ## Usage
 
 ```ts
-import { isNum, pascalCase, sort, clone, isEql, isEqlArr, sleep } from "@opentf/utils";
+import {
+  isNum,
+  pascalCase,
+  sort,
+  clone,
+  isEql,
+  isEqlArr,
+  sleep,
+} from '@opentf/utils';
 
 isNum(NaN); //=> false
 
@@ -56,14 +64,20 @@ pascalCase('pascal case'); //=> PascalCase
 sort([1, 10, 21, 2], 'desc'); //=> [ 21, 10, 2, 1 ]
 
 const obj = {
-  a: 1, 
-  b: 'abc', 
-  c: new Map([['key', 'val']])
+  a: 1,
+  b: 'abc',
+  c: new Map([['key', 'val']]),
 };
 clone(obj); // It returns deeply cloned value.
 
-const mapA = new Map([ ['a', 1], ['b', 2] ])
-const mapB = new Map([ ['b', 2], ['a', 1] ])
+const mapA = new Map([
+  ['a', 1],
+  ['b', 2],
+]);
+const mapB = new Map([
+  ['b', 2],
+  ['a', 1],
+]);
 isEql(mapA, mapB); //=> false
 
 isEqlArr([1, 2, 3], [2, 3, 1]); //=> true
@@ -78,13 +92,20 @@ await sleep(1000); // It suspends the exection for 1 second.
 - [arrChunk](https://js-utils.pages.dev/Array/arrChunk)
 - [arrCompact](https://js-utils.pages.dev/Array/arrCompact)
 - [arrDiff](https://js-utils.pages.dev/Array/arrDiff)
-- [asyncFilter](https://js-utils.pages.dev/Array/asyncFilter)
+- [arrIns](https://js-utils.pages.dev/Array/arrIns)
+- [arrReplace](https://js-utils.pages.dev/Array/arrReplace)
+- [arrRm](https://js-utils.pages.dev/Array/arrRm)
+- [countBy](https://js-utils.pages.dev/Array/countBy)
 - [groupBy](https://js-utils.pages.dev/Array/groupBy)
 - [intersection](https://js-utils.pages.dev/Array/intersection)
 - [range](https://js-utils.pages.dev/Array/range)
 - [move](https://js-utils.pages.dev/Array/move)
 - [sort](https://js-utils.pages.dev/Array/sort)
 - [sortBy](https://js-utils.pages.dev/Array/sortBy)
+
+## Async
+
+- [asyncFilter](https://js-utils.pages.dev/Array/asyncFilter)
 
 ### Maths
 

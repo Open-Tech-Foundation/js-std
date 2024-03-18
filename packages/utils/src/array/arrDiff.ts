@@ -1,4 +1,4 @@
-import isEql from '../common/isEql';
+import isEql from '../assert/isEql';
 
 /**
  *  It creates an array with the values, not included in the other array by deep comparison.
