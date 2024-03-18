@@ -4,6 +4,7 @@
   "arrDiff": "arrDiff",
   "arrIns": "arrIns",
   "arrReplace": "arrReplace",
+  "arrRm": "arrRm",
   "asyncFilter": "asyncFilter",
   "groupBy": "groupBy",
   "intersection": "intersection",

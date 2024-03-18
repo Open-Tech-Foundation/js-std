@@ -1,0 +1,48 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> Removes items at the given index from the given array.
+
+## Syntax
+
+```ts copy
+import { arrReplace } from '@opentf/utils';
+
+arrRm(
+  arr: unknown[] = [],
+  index?: number,
+  count: number = 1
+)
+```
+
+## Examples
+
+```ts
+arrRm([]) // => []);
+
+arrRm([1]) // => []);
+
+arrRm([1, 2]) // => [1]);
+
+arrRm([1, 2], 1) // => [1]);
+
+arrRm([1, 2], 1, 1) // => [1]);
+
+arrRm([1, 2, 3, 4, 5], -1) // => [1, 2, 3, 4]);
+
+arrRm([1, 2, 3, 4, 5], -1, 1) // => [1, 2, 3, 4]);
+
+arrRm([1, 2, 3, 4, 5], -1, 3) // => [1, 2, 3, 4]);
+
+arrRm([1, 2, 3, 4, 5], -2, 2) // => [1, 2, 3]);
+
+const myFish = ['angel', 'clown', 'mandarin', 'sturgeon'];
+arrRm(myFish, 2, Infinity) // => ['angel', 'clown']);
+```
+
+## Try
+
+<REPL code={`const { arrRm } = require('@opentf/utils');
+
+arrRm([1, 2, 3, 4, 5], 2);
+`} />
