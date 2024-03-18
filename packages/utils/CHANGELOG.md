@@ -1,5 +1,11 @@
 # @opentf/utils
 
+## 0.35.0
+
+### Minor Changes
+
+- 4354b39: Added arrIns, arrReplace, arrRm & countBy array util fns.
+
 ## 0.34.0
 
 ### Minor Changes
