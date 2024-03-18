@@ -1,0 +1,66 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> Returns a new set or array containing elements in all given collections.
+
+<Callout type="info">
+It always returns unique values.
+</Callout>
+
+<Callout type="info">
+The collections can be either `Arrays` or `Sets`.
+</Callout>
+
+## Venn Diagram
+<div style={{padding: '15px', backgroundColor: 'white'}}>
+  ![Intersection Venn Diagram](/assets/intersection-venn-diagram.svg)
+  <div style={{textAlign: 'right', fontSize: '14px'}}>
+    [Source](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
+  </div>
+</div>
+
+## Syntax
+
+```ts copy
+import { intersection } from '@opentf/utils';
+
+intersection(
+  ...collections: (unknown[] | Set<unknown>)[]
+): unknown[] | Set<unknown>
+```
+
+## Examples
+
+```ts
+const setA = new Set([1, 2, 3, 4]);
+const setB = new Set([2, 3]);
+intersection(setA, setB) //=> new Set([2, 3])
+
+const setA = new Set([1, 2, 3, 4]);
+const setB = new Set([2, 3]);
+const setC = new Set([3, 4, 5, 6]);
+intersection(setA, setB, setC) //=> new Set([3])
+
+const setA = [1, 2];
+const setB = [2, 3];
+intersection(setA, setB) //=> [2]
+
+const arrays = [
+  [1, 2, 3],
+  [101, 2, 1, 10],
+  [2, 1],
+];
+intersection(...arrays) //=> [2, 1]
+
+const arrays2 = [[1, 2, 3], [101, 2, 1, 10], [2, 1], [1]];
+intersection(...arrays2) //=> [1]
+```
+
+## Try
+
+<REPL code={`const { intersection } = require('@opentf/utils');
+
+const setA = [1, 2];
+const setB = [2, 3];
+intersection(setA, setB);
+`} />

@@ -17,6 +17,7 @@ export { default as sort } from './array/sort';
 export { default as sortBy } from './array/sortBy';
 export { default as arrChunk } from './array/arrChunk';
 export { default as arrCompact } from './array/arrCompact';
+export { default as intersection } from './array/intersection';
 
 // Maths
 export { default as percentage } from './maths/percentage';
