@@ -15,6 +15,8 @@ export { default as groupBy } from './array/groupBy';
 export { default as move } from './array/move';
 export { default as sort } from './array/sort';
 export { default as sortBy } from './array/sortBy';
+export { default as arrChunk } from './array/arrChunk';
+export { default as arrCompact } from './array/arrCompact';
 
 // Maths
 export { default as percentage } from './maths/percentage';

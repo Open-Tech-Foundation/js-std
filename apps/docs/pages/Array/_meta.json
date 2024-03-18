@@ -1,4 +1,6 @@
 {
+  "arrChunk": "arrChunk",
+  "arrCompact": "arrCompact",
   "arrDiff": "arrDiff",
   "asyncFilter": "asyncFilter",
   "groupBy": "groupBy",
