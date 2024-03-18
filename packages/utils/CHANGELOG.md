@@ -1,5 +1,11 @@
 # @opentf/utils
 
+## 0.34.0
+
+### Minor Changes
+
+- 08dc207: Added arrChunk, arrCompact, intersection, isEqlArr util fns.
+
 ## 0.33.0
 
 ### Minor Changes
