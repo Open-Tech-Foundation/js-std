@@ -43,6 +43,12 @@ function isEqlVal(
     return false;
   }
 
+  if (isArr(val1)) {
+    if (size(Object.keys(val1)) !== size(Object.keys(val2 as IterableObj))) {
+      return false;
+    }
+  }
+
   if (isArr(val1) || isObj(val1) || isTypedArr(val1)) {
     objRefSet1.add(val1);
     objRefSet2.add(val2 as WeakKey);

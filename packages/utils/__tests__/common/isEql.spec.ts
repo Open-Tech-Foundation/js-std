@@ -14,6 +14,8 @@ describe('Object => isEql', () => {
     expect(isEql('', '')).toBe(true);
     expect(isEql('abc', 'abc')).toBe(true);
     expect(isEql([], [])).toBe(true);
+    expect(isEql([,], [,])).toBe(true);
+    expect(isEql([1, , 2], [1, , 2])).toBe(true);
     expect(isEql([1], [1])).toBe(true);
     expect(isEql([1, 2, 3, 4, 5], [1, 2, 3, 4, 5])).toBe(true);
     expect(isEql([1, '2', 3.5, 4n, true], [1, '2', 3.5, 4n, true])).toBe(true);
@@ -77,6 +79,8 @@ describe('Object => isEql', () => {
     const e = new Error('Test msg.');
     const e2 = new Error('Test msg.');
     expect(isEql(e, e2)).toBe(true);
+
+    expect(isEql([[]], [[]])).toBe(true);
   });
 
   test('falsy', () => {
@@ -122,6 +126,8 @@ describe('Object => isEql', () => {
     const re = new RegExp('ab+c');
     const re2 = new RegExp('ab+d');
     expect(isEql(re, re2)).toBe(false);
+
+    expect(isEql([1, , 2], [1, undefined, 2])).toBe(false);
   });
 
   test('Deep objs with all supported types in it', () => {
