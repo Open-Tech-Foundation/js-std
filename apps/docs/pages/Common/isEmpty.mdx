@@ -24,8 +24,11 @@ The following type of values are supported:
 ```ts
 import { isEmpty } from '@opentf/utils';
 
-isEmpty(val: unknown): Boolean;
+isEmpty(val: unknown, sparse = false): boolean;
 ```
+<Callout type="info">
+If `sparse` is `true`, then it skips counting [Sparsed](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Indexed_collections#sparse_arrays) array empty slots.
+</Callout>
 
 ## Examples
 
@@ -44,6 +47,7 @@ isEmpty(new Set()) //=> true
 
 isEmpty(new ArrayBuffer(0)) //=> true
 
+isEmpty(new Array(5), true) //=> true
 
 // Falsy cases
 // *********
@@ -72,6 +76,7 @@ isEmpty([1]) //=> false
 
 isEmpty({ length: 0, size: 0, byteLength: 0 }) //=> false
 
+isEmpty([,]) //=> false
 ```
 
 ## Try
