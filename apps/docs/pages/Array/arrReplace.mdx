@@ -1,0 +1,41 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> Replaces items at the given index from the given array.
+
+## Syntax
+
+```ts copy
+import { arrReplace } from '@opentf/utils';
+
+arrReplace(
+  arr: unknown[] = [],
+  index?: number | null,
+  ...replacements: unknown[]
+)
+```
+
+## Examples
+
+```ts
+arrReplace([]) // => []
+
+arrReplace([1]) // => [1]
+
+arrReplace([1, 2, 3], null, 'a') // => [1, 2, 'a']
+
+arrReplace([1, 2, 3], 0, 'a') // => ['a', 2, 3]
+
+arrReplace([1, 2, 3], 1, 'a', 'b') // => [1, 'a', 'b']
+
+arrReplace([1, 2, 3], 3, 'c') // => [1, 2, 3, 'c']
+
+arrReplace([1, 2, 3], 5, 'c', 'd') // => [1, 2, 3, 'c', 'd']
+```
+
+## Try
+
+<REPL code={`const { arrReplace } = require('@opentf/utils');
+
+arrReplace([1, 2, 3], 1, 'Two');
+`} />

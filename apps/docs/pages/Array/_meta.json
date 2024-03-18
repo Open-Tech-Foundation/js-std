@@ -3,6 +3,7 @@
   "arrCompact": "arrCompact",
   "arrDiff": "arrDiff",
   "arrIns": "arrIns",
+  "arrReplace": "arrReplace",
   "asyncFilter": "asyncFilter",
   "groupBy": "groupBy",
   "intersection": "intersection",

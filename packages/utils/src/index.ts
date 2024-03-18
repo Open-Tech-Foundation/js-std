@@ -19,6 +19,7 @@ export { default as arrChunk } from './array/arrChunk';
 export { default as arrCompact } from './array/arrCompact';
 export { default as intersection } from './array/intersection';
 export { default as arrIns } from './array/arrIns';
+export { default as arrReplace } from './array/arrReplace';
 
 // Maths
 export { default as percentage } from './maths/percentage';
