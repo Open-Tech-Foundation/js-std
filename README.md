@@ -47,26 +47,26 @@ bun add @opentf/utils
 ## Usage
 
 ```ts
-import { isNum, pascalCase, sort, clone, isEql, sleep } from "@opentf/utils";
+import { isNum, pascalCase, sort, clone, isEql, isEqlArr, sleep } from "@opentf/utils";
 
 isNum(NaN); //=> false
 
-pascalCase("pascal case"); //=> PascalCase
+pascalCase('pascal case'); //=> PascalCase
 
-sort([1, 10, 21, 2], "desc"); //=> [ 21, 10, 2, 1 ]
+sort([1, 10, 21, 2], 'desc'); //=> [ 21, 10, 2, 1 ]
 
-const obj = { a: 1, b: "abc", c: new Map([["key", "val"]]) };
+const obj = {
+  a: 1, 
+  b: 'abc', 
+  c: new Map([['key', 'val']])
+};
 clone(obj); // It returns deeply cloned value.
 
-const mapA = new Map([
-  ["a", 1],
-  ["b", 2],
-]);
-const mapB = new Map([
-  ["b", 2],
-  ["a", 1],
-]);
+const mapA = new Map([ ['a', 1], ['b', 2] ])
+const mapB = new Map([ ['b', 2], ['a', 1] ])
 isEql(mapA, mapB); //=> false
+
+isEqlArr([1, 2, 3], [2, 3, 1]); //=> true
 
 await sleep(1000); // It suspends the exection for 1 second.
 ```
@@ -81,7 +81,6 @@ await sleep(1000); // It suspends the exection for 1 second.
 - [asyncFilter](https://js-utils.pages.dev/Array/asyncFilter)
 - [groupBy](https://js-utils.pages.dev/Array/groupBy)
 - [intersection](https://js-utils.pages.dev/Array/intersection)
-- [isEqlArr](https://js-utils.pages.dev/Array/isEqlArr)
 - [range](https://js-utils.pages.dev/Array/range)
 - [move](https://js-utils.pages.dev/Array/move)
 - [sort](https://js-utils.pages.dev/Array/sort)
@@ -108,12 +107,13 @@ await sleep(1000); // It suspends the exection for 1 second.
 
 - [hexToRGB](https://js-utils.pages.dev/Misc/hexToRGB)
 
-### Common
+### Assert
 
-- [isEmpty](https://js-utils.pages.dev/Common/isEmpty)
-- [isEql](https://js-utils.pages.dev/Common/isEql)
-- [isNil](https://js-utils.pages.dev/Common/isNil)
-- [isShallowEql](https://js-utils.pages.dev/Common/isShallowEql)
+- [isEmpty](https://js-utils.pages.dev/Assert/isEmpty)
+- [isEql](https://js-utils.pages.dev/Assert/isEql)
+- [isEqlArr](https://js-utils.pages.dev/Assert/isEqlArr)
+- [isNil](https://js-utils.pages.dev/Assert/isNil)
+- [isShallowEql](https://js-utils.pages.dev/Assert/isShallowEql)
 
 ### Object
 

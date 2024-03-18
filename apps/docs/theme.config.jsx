@@ -16,8 +16,8 @@ export default {
   project: {
     link: "https://github.com/open-tech-foundation/js-utils",
   },
-  docsRepositoryBase:
-    "https://github.com/open-tech-foundation/js-utils",
+  docsRepositoryBase: "https://github.com/open-tech-foundation/js-utils",
+  editLink: { component: null },
   head: () => {
     const { asPath } = useRouter();
     const { frontMatter } = useConfig();

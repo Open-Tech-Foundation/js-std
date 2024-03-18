@@ -1,6 +1,7 @@
 {
   "isEmpty": "isEmpty",
   "isEql": "isEql",
+  "isEqlArr": "isEqlArr",
   "isNil": "isNil",
   "isShallowEql": "isShallowEql"
 }

@@ -72,11 +72,12 @@ export { default as mergeAll } from './object/mergeAll';
 export { default as shallowMerge } from './object/shallowMerge';
 export { default as shallowMergeAll } from './object/shallowMergeAll';
 
-// Common
-export { default as isEmpty } from './common/isEmpty';
-export { default as isEql } from './common/isEql';
-export { default as isNil } from './common/isNil';
-export { default as isShallowEql } from './common/isShallowEql';
+// Assert
+export { default as isEmpty } from './assert/isEmpty';
+export { default as isEql } from './assert/isEql';
+export { default as isNil } from './assert/isNil';
+export { default as isShallowEql } from './assert/isShallowEql';
+export { default as isEqlArr } from './assert/isEqlArr';
 
 // function
 export { default as sleep } from './function/sleep';

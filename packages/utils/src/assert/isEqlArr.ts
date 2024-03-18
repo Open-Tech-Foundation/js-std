@@ -1,4 +1,4 @@
-import isEql from '../common/isEql';
+import isEql from './isEql';
 
 /**
  * Checks deeply if the given two arrays with different orders are equivalent.

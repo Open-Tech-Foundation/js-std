@@ -3,7 +3,6 @@
   "delInObj": "delInObj",
   "getInObj": "getInObj",
   "setInObj": "setInObj",
-  "isShallowEql": "isShallowEql",
   "merge": "merge",
   "mergeAll": "mergeAll",
   "shallowMerge": "shallowMerge",
