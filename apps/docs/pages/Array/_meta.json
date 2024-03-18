@@ -2,6 +2,7 @@
   "arrChunk": "arrChunk",
   "arrCompact": "arrCompact",
   "arrDiff": "arrDiff",
+  "arrIns": "arrIns",
   "asyncFilter": "asyncFilter",
   "groupBy": "groupBy",
   "intersection": "intersection",
