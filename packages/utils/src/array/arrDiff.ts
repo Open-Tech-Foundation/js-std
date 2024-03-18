@@ -1,17 +1,19 @@
+import isEql from '../common/isEql';
+
 /**
- *  It creates an array with the values, not included in the other array.
+ *  It creates an array with the values, not included in the other array by deep comparison.
  *
  * @example
  *
  * arrDiff([1, "a"], [1, 2]); // ['a']
  */
-function arrDiff(arr1: unknown[], arr2: unknown[]): unknown[] {
+export default function arrDiff(arr1: unknown[] = [], arr2: unknown[] = []) {
   const result = [];
   for (let i = 0; i < arr1.length; i++) {
     let skip = false;
 
     for (let j = 0; j < arr2.length; j++) {
-      if (Object.is(arr1[i], arr2[j])) {
+      if (isEql(arr1[i], arr2[j])) {
         skip = true;
       }
     }
@@ -23,5 +25,3 @@ function arrDiff(arr1: unknown[], arr2: unknown[]): unknown[] {
 
   return result;
 }
-
-export default arrDiff;

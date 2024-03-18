@@ -2,8 +2,7 @@ import { arrDiff } from '../../src';
 
 describe('Array', () => {
   test('arrDiff', () => {
-    expect(() => arrDiff()).toThrow();
-    expect(() => arrDiff([])).not.toThrow();
+    expect(arrDiff()).toEqual([]);
     expect(arrDiff([])).toEqual([]);
     expect(arrDiff([], [])).toEqual([]);
     expect(arrDiff([undefined], [])).toEqual([undefined]);
@@ -20,10 +19,12 @@ describe('Array', () => {
     expect(arrDiff([1, 'b'], ['b', 'c', 2])).toEqual([1]);
     expect(arrDiff([0], [0])).toEqual([]);
     expect(arrDiff([-0], [0])).toEqual([-0]);
-    expect(arrDiff([[]], [[]])).toEqual([[]]);
-    expect(arrDiff([{ a: 1 }], [{ a: 1 }])).toEqual([{ a: 1 }]);
-    expect(arrDiff(['apple', 'mango', 'orange'], ['mango', 'apple'])).toEqual(
-      ['orange']
-    );
+    expect(arrDiff([[]], [[]])).toEqual([]);
+    expect(arrDiff([{ a: 1 }], [{ a: 1 }])).toEqual([]);
+    expect(arrDiff([{ a: 1 }], [{ a: 1 }, { a: 2 }])).toEqual([]);
+    expect(arrDiff([{ a: 1 }, {a: 3}], [{ a: 1 }, { a: 2 }])).toEqual([{a: 3}]);
+    expect(arrDiff(['apple', 'mango', 'orange'], ['mango', 'apple'])).toEqual([
+      'orange',
+    ]);
   });
 });

@@ -1,15 +1,15 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> It creates an array with the values, not included in the other array.
+> It creates an array with the values, not included in the other array by deep comparison.
 
-<Callout type="warning">
-It does not work with non primitive values.
-</Callout>
-
-<Callout type="info">
-It uses [Object.is()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) for equality comparisons.
-</Callout>
+## Venn Diagram
+<div style={{padding: '15px', backgroundColor: 'white'}}>
+  ![Difference Venn Diagram](/assets/diff-venn-diagram.svg)
+  <div style={{textAlign: 'right', fontSize: '14px'}}>
+    [Source](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
+  </div>
+</div>
 
 ## Syntax
 
@@ -22,8 +22,6 @@ arrDiff(arr1: unknown[], arr2: unknown[]): unknown[];
 ## Examples
 
 ```ts
-arrDiff(); // It throws an error;
-
 arrDiff([1], []); // [1]
 
 arrDiff([1], [1, 2]); // []
@@ -34,9 +32,11 @@ arrDiff([0], [0]); // []
 
 arrDiff([-0], [0]); // [-0]
 
-arrDiff([], []); // [[]]
+arrDiff([], []); // []
 
 arrDiff(["apple", "mango", "orange"], ["mango", "apple"]); // ['orange']
+
+arrDiff([{ a: 1 }, {a: 3}], [{ a: 1 }, { a: 2 }]); //=> [{a: 3}]
 ```
 
 ## Try
