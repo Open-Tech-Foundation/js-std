@@ -1,0 +1,40 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> Checks deeply if the given two arrays with different orders are equivalent.
+
+<Callout type="info">
+It performs comparisons using [isEql](/Common/isEql) function.
+</Callout>
+
+<Callout type="info">
+It also supports comparing [Sparse](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Indexed_collections#sparse_arrays) arrays.
+</Callout>
+
+**Related**
+ - [isEql](/Common/isEql)
+
+ - [isShallowEql](/Common/isShallowEql)
+ 
+## Syntax
+
+```ts
+import { isEqlArr } from '@opentf/utils';
+
+isEqlArr(arr1: unknown[], arr2: unknown[]): Boolean;
+```
+
+## Examples
+
+```ts
+isEqlArr([1, 3, 2], [2, 1, 3]) //=> true
+
+isEqlArr([1, 3, 2], [2, 1, 5]) //=> false
+```
+
+## Try
+
+<REPL code={`const { isEqlArr } = require('@opentf/utils');
+
+isEqlArr([1, 3, 2], [2, 1, 3])
+`} />

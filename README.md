@@ -75,9 +75,13 @@ await sleep(1000); // It suspends the exection for 1 second.
 
 ### Array
 
+- [arrChunk](https://js-utils.pages.dev/Array/arrChunk)
+- [arrCompact](https://js-utils.pages.dev/Array/arrCompact)
 - [arrDiff](https://js-utils.pages.dev/Array/arrDiff)
 - [asyncFilter](https://js-utils.pages.dev/Array/asyncFilter)
 - [groupBy](https://js-utils.pages.dev/Array/groupBy)
+- [intersection](https://js-utils.pages.dev/Array/intersection)
+- [isEqlArr](https://js-utils.pages.dev/Array/isEqlArr)
 - [range](https://js-utils.pages.dev/Array/range)
 - [move](https://js-utils.pages.dev/Array/move)
 - [sort](https://js-utils.pages.dev/Array/sort)
@@ -109,19 +113,19 @@ await sleep(1000); // It suspends the exection for 1 second.
 - [isEmpty](https://js-utils.pages.dev/Common/isEmpty)
 - [isEql](https://js-utils.pages.dev/Common/isEql)
 - [isNil](https://js-utils.pages.dev/Common/isNil)
+- [isShallowEql](https://js-utils.pages.dev/Common/isShallowEql)
 
 ### Object
 
 - [clone](https://js-utils.pages.dev/Object/clone)
 - [getInObj](https://js-utils.pages.dev/Object/getInObj)
 - [delInObj](https://js-utils.pages.dev/Object/delInObj)
-- [isShallowEql](https://js-utils.pages.dev/Object/isShallowEql)
-- [setInObj](https://js-utils.pages.dev/Object/setInObj)
-- [size](https://js-utils.pages.dev/Object/size)
 - [merge](https://js-utils.pages.dev/Object/merge)
 - [mergeAll](https://js-utils.pages.dev/Object/mergeAll)
+- [setInObj](https://js-utils.pages.dev/Object/setInObj)
 - [shallowMerge](https://js-utils.pages.dev/Object/shallowMerge)
 - [shallowMergeAll](https://js-utils.pages.dev/Object/shallowMergeAll)
+- [size](https://js-utils.pages.dev/Object/size)
 
 ### String
 
@@ -213,7 +217,8 @@ isEql:
 ### Running benchmarks
 
 ```sh
-bun benchmark.js
+$ bun run build
+$ bun benchmark.js
 ```
 
 ## License

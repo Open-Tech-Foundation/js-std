@@ -5,6 +5,7 @@
   "asyncFilter": "asyncFilter",
   "groupBy": "groupBy",
   "intersection": "intersection",
+  "isEqlArr": "isEqlArr",
   "move": "move",
   "range": "range",
   "sort": "sort",

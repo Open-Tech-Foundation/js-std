@@ -1,4 +1,5 @@
 {
   "root": true,
-  "extends": ["@opentf/eslint-config-base"]
+  "extends": ["@opentf/eslint-config-base"],
+  "ignorePatterns": ["*.spec.[tj]s"]
 }
