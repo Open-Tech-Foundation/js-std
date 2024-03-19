@@ -5,9 +5,9 @@ import isArr from '../types/isArr';
  *
  * @example
  *
- * arrChunk([1, 2, 3, 4, 5], 2) //=> [[1, 2], [3, 4], [5]]
+ * chunk([1, 2, 3, 4, 5], 2) //=> [[1, 2], [3, 4], [5]]
  */
-export default function arrChunk<T>(arr: T[] = [], size = 1) {
+export default function chunk<T>(arr: T[] = [], size = 1) {
   if (size < 1 || !isArr(arr)) {
     return [];
   }

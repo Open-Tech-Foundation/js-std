@@ -8,19 +8,22 @@ export { default as pascalCase } from './string/pascalCase';
 export { default as strReplace } from './string/strReplace';
 
 // Array
-export { default as arrDiff } from './array/arrDiff';
+export { default as diff } from './array/diff';
+export { default as symDiff } from './array/symDiff';
 export { default as range } from './array/range';
 export { default as groupBy } from './array/groupBy';
 export { default as move } from './array/move';
 export { default as sort } from './array/sort';
 export { default as sortBy } from './array/sortBy';
-export { default as arrChunk } from './array/arrChunk';
-export { default as arrCompact } from './array/arrCompact';
+export { default as chunk } from './array/chunk';
+export { default as compact } from './array/compact';
 export { default as intersection } from './array/intersection';
 export { default as arrIns } from './array/arrIns';
 export { default as arrReplace } from './array/arrReplace';
 export { default as arrRm } from './array/arrRm';
 export { default as countBy } from './array/countBy';
+export { default as union } from './array/union';
+export { default as uniq } from './array/uniq';
 
 // Async
 export { default as asyncFilter } from './async/asyncFilter';

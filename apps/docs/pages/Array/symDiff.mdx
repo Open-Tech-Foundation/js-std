@@ -1,0 +1,54 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> Returns a new array containing elements which are in either this or other, but not in both.
+
+<Callout type="info">
+It uses [isEql](/Assert/isEql) for deep comparison of values.
+</Callout>
+
+## Venn Diagram
+<div style={{padding: '15px', backgroundColor: 'white'}}>
+  ![Difference Venn Diagram](/assets/sym-diff-venn-diagram.svg)
+  <div style={{textAlign: 'right', fontSize: '14px'}}>
+    [Source](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
+  </div>
+</div>
+
+## Syntax
+
+```ts copy
+import { symDiff } from '@opentf/utils';
+
+symDiff(
+  collections: unknown[][] = [],
+  by?: (val: unknown) => unknown
+)
+```
+
+## Examples
+
+```ts
+const evens = [2, 4, 6, 8];
+const squares = [1, 4, 9];
+symDiff([evens, squares]) //=> [2, 6, 8, 1, 9]);
+
+const bucket1 = ['Fruits', 'Vegs', 'Eggs', 'Cookies', 'Nuts'];
+const bucket2 = ['fruits', 'Snacks', 'cookies'];
+symDiff([bucket1, bucket2], (v) => v.toLowerCase()) 
+//=> [
+//  'Vegs',
+//  'Eggs',
+//  'Nuts',
+//  'Snacks',
+// ]
+```
+
+## Try
+
+<REPL code={`const { symDiff } = require('@opentf/utils');
+
+const bucket1 = ['Fruits', 'Vegs', 'Eggs', 'Cookies', 'Nuts'];
+const bucket2 = ['fruits', 'Snacks', 'cookies'];
+symDiff([bucket1, bucket2], (v) => v.toLowerCase())
+`} />

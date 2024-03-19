@@ -1,0 +1,32 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> Splits the given array values into groups of a given size.
+
+## Syntax
+
+```ts copy
+import { chunk } from '@opentf/utils';
+
+chunk(arr: unknown[], size = 1): unknown[];
+```
+
+## Examples
+
+```ts
+chunk([1, 2, 3]) //=> [[1], [2], [3]]
+
+chunk([1, 2, 3], 1) //=> [[1], [2], [3]]
+
+chunk([1, 2, 3], 2) //=> [[1, 2], [3]]
+
+chunk([1, 2, 3], 3) //=> [[1, 2, 3]]
+
+chunk([1, 2, 3], 4) //=> [[1, 2, 3]]
+```
+
+## Try
+
+<REPL code={`const { chunk } = require('@opentf/utils');
+
+chunk([1, 2, 3, 4, 5], 2);`} />

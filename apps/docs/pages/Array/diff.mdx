@@ -1,0 +1,51 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> Creates an array with the values of first, not included in the other arrays.
+
+<Callout type="info">
+It uses [isEql](/Assert/isEql) for deep comparison of values.
+</Callout>
+
+## Venn Diagram
+<div style={{padding: '15px', backgroundColor: 'white'}}>
+  ![Difference Venn Diagram](/assets/diff-venn-diagram.svg)
+  <div style={{textAlign: 'right', fontSize: '14px'}}>
+    [Source](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
+  </div>
+</div>
+
+## Syntax
+
+```ts copy
+import { diff } from '@opentf/utils';
+
+diff(
+  collections: unknown[][] = [],
+  by?: (val: unknown) => unknown
+)
+```
+
+## Examples
+
+```ts
+const odds = [1, 3, 5, 7, 9];
+const squares = [1, 4, 9];
+diff([odds, squares]); //=> [3, 5, 7]
+
+const bucket1 = ["apple", "mango", "orange"]
+const bucket2 =["Mango", "Apple"]
+
+diff([bucket1, bucket2], (f) => f.toLowerCase()); // ['orange']
+
+diff([[{ a: 1 }, {a: 3}], [{ a: 1 }, { a: 2 }]]); //=> [{a: 3}]
+```
+
+## Try
+
+<REPL code={`const { diff } = require('@opentf/utils');
+
+const odds = [1, 3, 5, 7, 9];
+const squares = [1, 4, 9];
+diff([odds, squares]);
+`} />

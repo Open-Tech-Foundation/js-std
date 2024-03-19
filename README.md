@@ -89,19 +89,22 @@ await sleep(1000); // It suspends the exection for 1 second.
 
 ### Array
 
-- [arrChunk](https://js-utils.pages.dev/Array/arrChunk)
-- [arrCompact](https://js-utils.pages.dev/Array/arrCompact)
-- [arrDiff](https://js-utils.pages.dev/Array/arrDiff)
 - [arrIns](https://js-utils.pages.dev/Array/arrIns)
 - [arrReplace](https://js-utils.pages.dev/Array/arrReplace)
 - [arrRm](https://js-utils.pages.dev/Array/arrRm)
+- [chunk](https://js-utils.pages.dev/Array/chunk)
+- [compact](https://js-utils.pages.dev/Array/compact)
 - [countBy](https://js-utils.pages.dev/Array/countBy)
+- [diff](https://js-utils.pages.dev/Array/diff)
 - [groupBy](https://js-utils.pages.dev/Array/groupBy)
 - [intersection](https://js-utils.pages.dev/Array/intersection)
-- [range](https://js-utils.pages.dev/Array/range)
 - [move](https://js-utils.pages.dev/Array/move)
+- [range](https://js-utils.pages.dev/Array/range)
 - [sort](https://js-utils.pages.dev/Array/sort)
 - [sortBy](https://js-utils.pages.dev/Array/sortBy)
+- [symDiff](https://js-utils.pages.dev/Array/symDiff)
+- [union](https://js-utils.pages.dev/Array/union)
+- [uniq](https://js-utils.pages.dev/Array/uniq)
 
 ## Async
 

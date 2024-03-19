@@ -1,0 +1,37 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> Creates a unique array by removing all duplicate values from the given array.
+
+<Callout type="info">
+It uses [isEql](/Assert/isEql) for deep comparison of values.
+</Callout>
+
+## Syntax
+
+```ts copy
+import { uniq } from '@opentf/utils';
+
+uniq<T>(
+  arr: T[] = [],
+  by?: (val: T) => unknown
+): Partial<T[]>
+```
+
+## Examples
+
+```ts
+const arr = [1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5];
+uniq(arr) //=> [1, 2, 3, 4, 5]
+
+const arr = [2.1, 1.2, 2.3];
+uniq(a, Math.floor) //=> [2.1, 1.2]
+```
+
+## Try
+
+<REPL code={`const { uniq } = require('@opentf/utils');
+
+const arr = [1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5];
+uniq(arr);
+`} />

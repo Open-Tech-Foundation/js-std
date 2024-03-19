@@ -8,9 +8,9 @@ type WithFalsy<T> = T & Falsy;
  *
  * @example
  *
- * arrCompact([1, null, 2, 0, 3]) //=> [1, 2, 3]
+ * compact([1, null, 2, 0, 3]) //=> [1, 2, 3]
  */
-export default function arrCompact<T>(arr: WithFalsy<T>[] = []): Partial<T[]> {
+export default function compact<T>(arr: WithFalsy<T>[] = []): Partial<T[]> {
   if (!isArr(arr)) {
     return [];
   }

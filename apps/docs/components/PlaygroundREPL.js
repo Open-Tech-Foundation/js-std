@@ -9,9 +9,9 @@ const NodeREPL = dynamic(
   { ssr: false }
 );
 
-const code = `const { range, arrDiff, camelCase } = require('@opentf/utils');
+const code = `const { range, diff, camelCase } = require('@opentf/utils');
 
-log(arrDiff(
+log(diff(
   ['apple', 'mango', 'orange'], 
   ['mango', 'apple']
 ));

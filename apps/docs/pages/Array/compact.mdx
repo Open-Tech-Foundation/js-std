@@ -1,0 +1,42 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> Removes all the [falsy](https://developer.mozilla.org/en-US/docs/Glossary/Falsy) values in the given array.
+
+<Callout emoji="✅" type="info">
+Immutable: This does not mutate the given array.
+</Callout>
+
+## Syntax
+
+```ts copy
+import { compact } from '@opentf/utils';
+
+compact<T>(arr: T[]): Partial<T[]>;
+```
+
+## Examples
+
+```ts
+compact([undefined]) //=>[]
+
+compact([undefined, null]) //=>[]
+
+compact([undefined, null, 0]) //=>[]
+
+compact([undefined, null, 0, 1]) //=>[1]
+
+compact([undefined, null, 0, 1, -0, 2]) //=>[1, 2]
+
+compact([undefined, null, 0, 1, -0, 2, false, 3]) //=> [1, 2, 3];
+
+compact([undefined, null, 0, 1, -0, 2, false, 3, true, NaN]) //=> [1, 2, 3, true]
+
+compact(['apple', '', 'Mango']) //=>['apple', 'Mango']);
+```
+
+## Try
+
+<REPL code={`const { compact } = require('@opentf/utils');
+
+compact([1, null, 2, 0, 3]);`} />

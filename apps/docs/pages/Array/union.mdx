@@ -1,7 +1,7 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Returns a unique array of values only containing elements from each of the collections.
+> Returns unique values in all the given collections.
 
 <Callout type="info">
 It uses [isEql](/Assert/isEql) for deep comparison of values.
@@ -9,7 +9,7 @@ It uses [isEql](/Assert/isEql) for deep comparison of values.
 
 ## Venn Diagram
 <div style={{padding: '15px', backgroundColor: 'white'}}>
-  ![Intersection Venn Diagram](/assets/intersection-venn-diagram.svg)
+  ![Difference Venn Diagram](/assets/union-venn-diagram.svg)
   <div style={{textAlign: 'right', fontSize: '14px'}}>
     [Source](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
   </div>
@@ -18,9 +18,9 @@ It uses [isEql](/Assert/isEql) for deep comparison of values.
 ## Syntax
 
 ```ts copy
-import { intersection } from '@opentf/utils';
+import { union } from '@opentf/utils';
 
-intersection(
+union(
   collections: unknown[][] = [],
   by?: (val: unknown) => unknown
 )
@@ -29,31 +29,21 @@ intersection(
 ## Examples
 
 ```ts
-const setA = [1, 2];
+const evens = [2, 4, 6, 8];
+const squares = [1, 4, 9];
+union([evens, squares]) //=> [2, 4, 6, 8, 1, 9]
+
+const setA = [1, 2, 3];
 const setB = [2, 3];
-intersection([setA, setB]) //=> [2]
-
-const arrays = [
-  [1, 2, 3],
-  [2, 1, 5],
-  [3, 1],
-];
-intersection([...arrays]) //=> [1]
-
-intersection(
-  [
-    [2.1, 1.2],
-    [2.3, 3.4],
-  ],
-  Math.floor
-) //=> [2.1]
+const setC = [2, 3, 4, 5];
+union([setA, setB, setC]) //=> [1, 2, 3, 4, 5]
 ```
 
 ## Try
 
-<REPL code={`const { intersection } = require('@opentf/utils');
+<REPL code={`const { union } = require('@opentf/utils');
 
-const setA = [1, 2];
-const setB = [2, 3];
-intersection([setA, setB]);
+const evens = [2, 4, 6, 8];
+const squares = [1, 4, 9];
+union([evens, squares])
 `} />

@@ -22,7 +22,7 @@
 
 ### Minor Changes
 
-- 08dc207: Added arrChunk, arrCompact, intersection, isEqlArr util fns.
+- 08dc207: Added chunk, compact, intersection, isEqlArr util fns.
 
 ## 0.33.0
 
@@ -40,7 +40,7 @@
 
 ### Minor Changes
 
-- 2ea7424: Added merge utils fns & renamed arrayDiff to arrDiff
+- 2ea7424: Added merge utils fns & renamed arrayDiff to diff
 
 ## 0.30.0
 

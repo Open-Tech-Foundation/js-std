@@ -1,15 +1,18 @@
 {
-  "arrChunk": "arrChunk",
-  "arrCompact": "arrCompact",
-  "arrDiff": "arrDiff",
   "arrIns": "arrIns",
   "arrReplace": "arrReplace",
   "arrRm": "arrRm",
+  "chunk": "chunk",
+  "compact": "compact",
   "countBy": "countBy",
+  "diff": "diff",
   "groupBy": "groupBy",
   "intersection": "intersection",
   "move": "move",
   "range": "range",
   "sort": "sort",
-  "sortBy": "sortBy"
+  "sortBy": "sortBy",
+  "symDiff": "symDiff",
+  "union": "union",
+  "uniq": "uniq"
 }

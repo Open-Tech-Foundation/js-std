@@ -1,28 +1,34 @@
-import isArr from '../types/isArr';
+import isEql from '../assert/isEql';
+import isFn from '../types/isFn';
+import uniq from './uniq';
 
 /**
- * Returns a new set or array containing elements in all given collections.
+ * Returns a unique array of values only containing elements from each of the collections.
  *
  * @example
  *
- * const setA = new Set([1, 2, 3, 4]);
- * const setB = new Set([3, 5]);
- * intersection(setA, setB) //=> Set {3}
+ * const setA = [1, 2, 3, 4];
+ * const setB = [3, 5];
+ * intersection(setA, setB) //=> [3]
  */
 export default function intersection(
-  ...collections: (unknown[] | Set<unknown>)[]
+  collections: unknown[][] = [],
+  by?: (val: unknown) => unknown
 ) {
+  const byFlag = isFn(by);
   const out = collections.reduce((acc, cur) => {
-    const _intersection = new Set();
-    const prev = isArr(acc) ? new Set(acc) : acc;
-    for (const elem of cur) {
-      if (prev.has(elem)) {
-        _intersection.add(elem);
+    const _intersection = [];
+    for (const val of acc) {
+      for (const val2 of cur) {
+        const v1 = byFlag ? by(val) : val;
+        const v2 = byFlag ? by(val2) : val2;
+        if (isEql(v1, v2)) {
+          _intersection.push(val);
+        }
       }
     }
-
     return _intersection;
   });
 
-  return isArr(collections[0]) ? [...out] : out;
+  return uniq(out);
 }
