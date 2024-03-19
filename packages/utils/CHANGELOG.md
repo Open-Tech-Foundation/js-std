@@ -1,5 +1,11 @@
 # @opentf/utils
 
+## 0.37.0
+
+### Minor Changes
+
+- 9472d6c: Added async map & forEach fns.
+
 ## 0.36.0
 
 ### Minor Changes
