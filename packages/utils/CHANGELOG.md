@@ -1,5 +1,11 @@
 # @opentf/utils
 
+## 0.38.0
+
+### Minor Changes
+
+- 133b4d0: Added symDiff, union, uniq & renamed some array utils.
+
 ## 0.37.0
 
 ### Minor Changes
