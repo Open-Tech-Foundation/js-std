@@ -5,7 +5,10 @@ import REPL from "../../components/REPL";
 ## Syntax
 
 ```ts
-asyncFilter(arr: unknown[], cb: (value: unknown, index: number) => Promise<boolean>): Promise<unknown[]>
+asyncFilter(
+  arr: T[], 
+  cb: (value: T, index: number) => Promise<boolean>
+): Promise<Partial<T[]>>
 ```
 
 ## Usage
@@ -13,7 +16,7 @@ asyncFilter(arr: unknown[], cb: (value: unknown, index: number) => Promise<boole
 ```ts
 import { asyncFilter } from "@opentf/utils";
 
-asyncFilter(arr, async (value, index) => {});
+asyncFilter([], async (value, index) => {});
 ```
 
 ## Examples
@@ -36,18 +39,16 @@ console.log(filteredArr); //=> [2, 4]
 
 <REPL code={`const { asyncFilter } = require('@opentf/utils');
 
-const arr = [1, 2, 3, 4, 5];
-
 function isEven(n) {
   return new Promise((resolve) => {
     resolve(n % 2 === 0);
   });
 }
 
-
 async function main() {
+  const arr = [1, 2, 3, 4, 5];
   const out = await asyncFilter(arr, async (n) => await isEven(n));
-  console.log(out);
+  log(out);
 }
 
 main();

@@ -24,6 +24,8 @@ export { default as countBy } from './array/countBy';
 
 // Async
 export { default as asyncFilter } from './async/asyncFilter';
+export { default as asyncMap } from './async/asyncMap';
+export { default as asyncForEach } from './async/asyncForEach';
 
 // Maths
 export { default as percentage } from './maths/percentage';

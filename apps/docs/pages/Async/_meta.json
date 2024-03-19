@@ -1,3 +1,5 @@
 {
-  "asyncFilter": "asyncFilter"
+  "asyncFilter": "asyncFilter",
+  "asyncForEach": "asyncForEach",
+  "asyncMap": "asyncMap"
 }

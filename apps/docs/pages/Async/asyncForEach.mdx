@@ -1,0 +1,62 @@
+import REPL from "../../components/REPL";
+
+> Array forEach with `Async` callback function.
+
+## Syntax
+
+```ts
+asyncForEach(
+  arr: T[], 
+  cb: (value: T, index: number) => Promise<void>
+): Promise<undefined>
+```
+
+## Usage
+
+```ts
+import { asyncForEach } from "@opentf/utils";
+
+asyncForEach([], async (value, index) => {});
+```
+
+## Examples
+
+```ts
+const flatten = async (val) => {
+  return new Promise((resolve) => {
+    Array.isArray(val) ? resolve(val.flat()) : resolve(val);
+  });
+};
+
+const nested = [1, 2, 3, [4, 5, [6, 7], 8, 9]];
+const tmpArr = [];
+await asyncForEach(nested, async (n) => {
+  const val = await flatten(n);
+  Array.isArray(val) ? tmpArr.push(...val) : tmpArr.push(val);
+});
+console.log(tmpArr) // [1, 2, 3, 4, 5, 6, 7, 8, 9]
+```
+
+## Try
+
+<REPL code={`const { asyncForEach } = require('@opentf/utils');
+
+const flatten = async (val) => {
+  return new Promise((resolve) => {
+    Array.isArray(val) ? resolve(val.flat()) : resolve(val);
+  });
+};
+
+
+async function main() {
+  const nested = [1, 2, 3, [4, 5, [6, 7], 8, 9]];
+  const tmpArr = [];
+  await asyncForEach(nested, async (n) => {
+    const val = await flatten(n);
+    Array.isArray(val) ? tmpArr.push(...val) : tmpArr.push(val);
+  });
+  log(tmpArr);
+}
+
+main();
+`} />

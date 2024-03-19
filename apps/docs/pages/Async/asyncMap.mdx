@@ -1,0 +1,55 @@
+import REPL from "../../components/REPL";
+
+> Array map with `Async` callback function.
+
+## Syntax
+
+```ts
+asyncMap(
+  arr: T[], 
+  cb: (value: T, index: number) => Promise<unknown>
+): Promise<unknown[]>
+```
+
+## Usage
+
+```ts
+import { asyncMap } from "@opentf/utils";
+
+asyncMap([], async (value, index) => {});
+```
+
+## Examples
+
+```ts
+const arr = [1, 2, 3, 4, 5];
+
+function multiply(n, i) {
+  return new Promise((resolve) => {
+    resolve(n * i);
+  });
+}
+
+const result = await asyncMap(arr, async (n, i) => await multiply(n, i));
+console.log(result); // [0, 2, 6, 12, 20]
+```
+
+## Try
+
+<REPL code={`const { asyncMap } = require('@opentf/utils');
+
+function multiply(n, i) {
+  return new Promise((resolve) => {
+    resolve(n * i);
+  });
+}
+
+
+async function main() {
+  const arr = [1, 2, 3, 4, 5];
+  const result = await asyncMap(arr, async (n, i) => await multiply(n, i));
+  log(result);
+}
+
+main();
+`} />

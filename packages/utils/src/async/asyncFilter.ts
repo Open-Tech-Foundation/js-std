@@ -5,17 +5,12 @@
  * @param cb - The callback funtion
  * @returns The filtered array
  */
-export default async function asyncFilter(
-  arr: unknown[],
-  cb: (value: unknown, index: number) => Promise<boolean>
-): Promise<unknown[]> {
-  const newArr = await arr.reduce(
-    async (acc: unknown, curVal: unknown, i: number) => {
-      const bool = await cb(curVal, i);
-      return bool ? ((await acc) as unknown[]).concat(arr[i]) : acc;
-    },
-    []
-  );
-
-  return newArr as unknown[];
+export default async function asyncFilter<T>(
+  arr: T[],
+  cb: (value: T, index: number) => Promise<boolean>
+): Promise<Partial<T[]>> {
+  return arr.reduce(async (acc: unknown, cur: T, i: number) => {
+    const bool = await cb(cur, i);
+    return bool ? [...(await (acc as Promise<unknown[]>)), arr[i]] : acc;
+  }, []) as Partial<T[]>;
 }
