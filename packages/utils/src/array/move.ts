@@ -13,7 +13,8 @@ export default function move<T>(arr: T[], from: number, to: number): T[] {
     return arr;
   }
 
-  arr.splice(to, 0, arr.splice(from, 1)[0]);
+  const a = [...arr];
+  a.splice(to, 0, a.splice(from, 1)[0]);
 
-  return arr;
+  return a;
 }

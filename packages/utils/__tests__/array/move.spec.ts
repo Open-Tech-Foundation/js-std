@@ -10,6 +10,11 @@ describe('Array > move', () => {
     expect(move(arr, 0, 0)).toBe(arr);
   });
 
+  it('returns new ref', () => {
+    const arr = [1, 5, 8];
+    expect(move(arr, 0, 1)).not.toBe(arr);
+  });
+
   it('moves within range', () => {
     expect(move([1, 2, 3], 0, 2)).toEqual([2, 3, 1]);
   });
