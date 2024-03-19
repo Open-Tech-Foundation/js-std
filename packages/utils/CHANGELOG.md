@@ -1,5 +1,11 @@
 # @opentf/utils
 
+## 0.36.0
+
+### Minor Changes
+
+- fec646b: Changed move fn to return new array.
+
 ## 0.35.0
 
 ### Minor Changes
