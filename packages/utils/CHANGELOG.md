@@ -1,5 +1,11 @@
 # @opentf/utils
 
+## 0.39.0
+
+### Minor Changes
+
+- 1c8ea8b: Added object get, set, has, unset, fromPath & toPath utils.
+
 ## 0.38.0
 
 ### Minor Changes
