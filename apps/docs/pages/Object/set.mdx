@@ -1,0 +1,62 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> Sets the value to an object at the given path.
+
+<Callout emoji="✅" type="info">
+Immutable: This does not mutate the original object.
+</Callout>
+
+## Syntax
+
+```ts
+import { set } from '@opentf/utils';
+
+set<T>(
+  obj: T,
+  path: string | (string | number)[],
+  value: unknown | ((val: unknown) => unknown)
+): T
+```
+<Callout type="info">
+The value param can be either any `value` or `callback` function.
+</Callout>
+
+<Callout type="info">
+The `callback` fn can be called with the property path value if it exist.
+</Callout>
+
+## Examples
+
+```ts
+set({}, 'a', null) //=> { a: null }
+
+set({}, 'a', 1) //=> { a: 1 }
+
+set({}, 'a.b', 25) //=> { a: { b: 25 } }
+
+set({}, 'user.email', 'user@example.com') 
+//=> 
+// {
+//    user: { email: 'user@example.com' }
+// }  
+
+set({}, '0', 'Apple') //=>   { '0': 'Apple' }
+
+set({}, 'fruits[0]', 'Apple') //=>  { fruits: ['Apple'] }
+
+set({ a: 1 }, 'a', (val) => val + 1) //=> { a: 2 }
+
+const fn = () => render('My Component')
+set({ subscribeFns: [] }, 'subscribeFns[0]', () => fn)
+//=> { subscribeFns: [fn] }
+```
+
+## Try
+
+<REPL code={`const { set } = require('@opentf/utils');
+
+log(set({}, 'a.b', 25));
+
+set({ a: 1 }, 'a', (val) => val + 1)
+`} />

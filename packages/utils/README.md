@@ -92,12 +92,15 @@ await sleep(1000); // It suspends the exection for 1 second.
 - [arrIns](https://js-utils.pages.dev/Array/arrIns)
 - [arrReplace](https://js-utils.pages.dev/Array/arrReplace)
 - [arrRm](https://js-utils.pages.dev/Array/arrRm)
+- [bounds](https://js-utils.pages.dev/Array/bounds)
 - [chunk](https://js-utils.pages.dev/Array/chunk)
 - [compact](https://js-utils.pages.dev/Array/compact)
 - [countBy](https://js-utils.pages.dev/Array/countBy)
 - [diff](https://js-utils.pages.dev/Array/diff)
 - [groupBy](https://js-utils.pages.dev/Array/groupBy)
 - [intersection](https://js-utils.pages.dev/Array/intersection)
+- [max](https://js-utils.pages.dev/Array/max)
+- [min](https://js-utils.pages.dev/Array/min)
 - [move](https://js-utils.pages.dev/Array/move)
 - [range](https://js-utils.pages.dev/Array/range)
 - [sort](https://js-utils.pages.dev/Array/sort)
@@ -144,14 +147,17 @@ await sleep(1000); // It suspends the exection for 1 second.
 ### Object
 
 - [clone](https://js-utils.pages.dev/Object/clone)
-- [getInObj](https://js-utils.pages.dev/Object/getInObj)
-- [delInObj](https://js-utils.pages.dev/Object/delInObj)
+- [fromPath](https://js-utils.pages.dev/Object/fromPath)
+- [get](https://js-utils.pages.dev/Object/get)
+- [has](https://js-utils.pages.dev/Object/has)
 - [merge](https://js-utils.pages.dev/Object/merge)
 - [mergeAll](https://js-utils.pages.dev/Object/mergeAll)
-- [setInObj](https://js-utils.pages.dev/Object/setInObj)
+- [set](https://js-utils.pages.dev/Object/set)
 - [shallowMerge](https://js-utils.pages.dev/Object/shallowMerge)
 - [shallowMergeAll](https://js-utils.pages.dev/Object/shallowMergeAll)
 - [size](https://js-utils.pages.dev/Object/size)
+- [toPath](https://js-utils.pages.dev/Object/toPath)
+- [unset](https://js-utils.pages.dev/Object/unset)
 
 ### String
 

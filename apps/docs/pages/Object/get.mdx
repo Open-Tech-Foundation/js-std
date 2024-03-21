@@ -1,0 +1,48 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> Gets the value of an object at the given path.
+
+<Callout type="info">
+You can provide an optional default value to return if the given path does not exist.
+</Callout>
+
+## Syntax
+
+```ts
+import { get } from '@opentf/utils';
+
+get(
+  obj: object,
+  path: string | (string | number)[],
+  defVal?: unknown
+): unknown
+```
+
+## Examples
+
+```ts
+get({}, '') //=> undefined
+
+get({}, '', undefined) //=> undefined
+
+get({}, '', null) //=> null
+
+get({}, 'a') //=> undefined
+
+get({ a: null }, 'a') //=> null
+
+get({ a: 1 }, 'a') //=> 1
+
+get({ user: { email: 'user@example.com' } }, 'user.email'); // 'user@example.com'
+
+get({ fruits: ['Apple', 'Mango', 'Orange'] }, 'fruits'); // ['Apple', 'Mango', 'Orange']
+
+get({ a: [{ b: { c: 99 } }] }, 'a[0].b.c'); // 99
+```
+## Try
+
+<REPL code={`const { get } = require('@opentf/utils');
+
+get({ a: { b: 25 } }, 'a.b');
+`} />

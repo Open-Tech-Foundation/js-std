@@ -1,0 +1,43 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> Checks if the given path exists in the given object.
+
+## Syntax
+
+```ts
+import { has } from '@opentf/utils';
+
+has(
+  obj: object,
+  path: string | (string | number)[] = []
+): boolean
+```
+
+## Examples
+
+```ts
+has() //=> false
+
+has({}, '') //=> false
+
+has({ a: undefined }, 'a') //=> true
+
+has({ a: undefined }, ['a']) //=> true
+
+has({ a: null }, 'a') //=> true
+
+has({ a: 1 }, 'a') //=> true
+
+has({ a: { b: [1, 2, 3, { c: 5 }] } }, 'a.b[3].c') //=> true
+
+has({ a: { b: [1, 2, 3, { c: 5 }] } }, 'a.b[5].c') //=> false
+
+has({ a: { 'b.c': 1 } }, ['a', 'b.c']) //=> true
+```
+## Try
+
+<REPL code={`const { has } = require('@opentf/utils');
+
+has({ a: 1 }, 'a');
+`} />

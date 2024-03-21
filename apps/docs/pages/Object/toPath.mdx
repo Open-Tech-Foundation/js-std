@@ -1,0 +1,25 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> Converts the given string into an object property path array.
+
+## Syntax
+
+```ts
+import { toPath } from '@opentf/utils';
+
+toPath(str: string): (string | number)[]
+```
+
+## Examples
+
+```ts
+toPath('a[0].b.c') //=> ['a', 0, 'b', 'c']
+```
+
+## Try
+
+<REPL code={`const { toPath } = require('@opentf/utils');
+
+toPath('a[0].b.c');
+`} />

@@ -100,7 +100,7 @@
 
 ### Minor Changes
 
-- 29b2671: Added delInObj util fn & removed inferType util.
+- 29b2671: Added unset util fn & removed inferType util.
 
 ## 0.22.1
 

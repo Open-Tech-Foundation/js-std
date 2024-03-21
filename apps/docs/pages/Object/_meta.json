@@ -1,11 +1,14 @@
 {
   "clone": "clone",
-  "delInObj": "delInObj",
-  "getInObj": "getInObj",
-  "setInObj": "setInObj",
+  "fromPath": "fromPath",
+  "get": "get",
+  "has": "has",
   "merge": "merge",
   "mergeAll": "mergeAll",
+  "set": "set",
   "shallowMerge": "shallowMerge",
   "shallowMergeAll": "shallowMergeAll",
-  "size": "size"
+  "size": "size",
+  "toPath": "toPath",
+  "unset": "unset"
 }

@@ -1,7 +1,6 @@
 import isArr from '../types/isArr';
 
 type Falsy = null | undefined | boolean | number | string;
-type WithFalsy<T> = T & Falsy;
 
 /**
  * Removes all the falsy values in the given array.
@@ -10,12 +9,12 @@ type WithFalsy<T> = T & Falsy;
  *
  * compact([1, null, 2, 0, 3]) //=> [1, 2, 3]
  */
-export default function compact<T>(arr: WithFalsy<T>[] = []): Partial<T[]> {
+export default function compact<T>(arr: T[] = []): Partial<T[]> {
   if (!isArr(arr)) {
     return [];
   }
 
-  const falsy = [undefined, null, false, NaN, 0, ''];
+  const falsy: (T | Falsy)[] = [undefined, null, false, NaN, 0, ''];
 
   return arr.filter((val) => !falsy.includes(val));
 }

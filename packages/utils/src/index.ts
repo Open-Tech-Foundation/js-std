@@ -75,15 +75,18 @@ export { default as isPureObj } from './types/isPureObj';
 export { default as isDef } from './types/isDef';
 
 // Object
-export { default as getInObj } from './object/getInObj';
-export { default as setInObj } from './object/setInObj';
-export { default as delInObj } from './object/delInObj';
+export { default as has } from './object/has';
+export { default as get } from './object/get';
+export { default as set } from './object/set';
+export { default as unset } from './object/unset';
 export { default as clone } from './object/clone';
 export { default as size } from './object/size';
 export { default as merge } from './object/merge';
 export { default as mergeAll } from './object/mergeAll';
 export { default as shallowMerge } from './object/shallowMerge';
 export { default as shallowMergeAll } from './object/shallowMergeAll';
+export { default as fromPath } from './object/fromPath';
+export { default as toPath } from './object/toPath';
 
 // Assert
 export { default as isEmpty } from './assert/isEmpty';
