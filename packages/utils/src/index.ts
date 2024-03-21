@@ -24,6 +24,9 @@ export { default as arrRm } from './array/arrRm';
 export { default as countBy } from './array/countBy';
 export { default as union } from './array/union';
 export { default as uniq } from './array/uniq';
+export { default as max } from './array/max';
+export { default as min } from './array/min';
+export { default as bounds } from './array/bounds';
 
 // Async
 export { default as asyncFilter } from './async/asyncFilter';

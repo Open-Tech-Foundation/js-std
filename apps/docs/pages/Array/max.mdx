@@ -1,0 +1,62 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> Returns the maximum value of the given array.
+
+<Callout type="info">
+If duplicate values are present in the array, then the first match will be returned.
+</Callout>
+
+**Related**
+- [min](/Array/min)
+- [bounds](/Array/bounds)
+
+## Syntax
+
+```ts copy
+import { max } from '@opentf/utils';
+
+max<T>(
+  arr: T[] = [],
+  by: (val: T) => number = (x: T) => x as number
+): T | null
+```
+
+## Examples
+
+```ts
+max([]) //=> null
+
+max([1, undefined, 2, null, 3]) //=> 3
+
+max([1, 2, 3, 4, 5]) //=> 5
+
+const arr = [
+  {
+    name: 'x',
+    age: 10,
+  },
+  {
+    name: 'y',
+    age: 16,
+  },
+  {
+    name: 'z',
+    age: 13,
+  },
+  { name: 'y2', age: 16 },
+];
+max(arr, (o) => o.age))
+//=> 
+// {
+//  name: 'y',
+//  age: 16,
+// }
+```
+
+## Try
+
+<REPL code={`const { max } = require('@opentf/utils');
+
+max([1, 2, 3, 4, 5]);
+`} />
