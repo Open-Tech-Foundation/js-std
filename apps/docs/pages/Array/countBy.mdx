@@ -38,7 +38,7 @@ const inventory = [
   { name: 'cherries', type: 'fruit', qty: 5 },
   { name: 'fish', type: 'meat', qty: 22 },
 ];
-countBy(inventory, ({ qty }) => (qty === 0 ? 'OutOfStock' : 'InStock'))
+countBy(inventory, ({ qty }) => (qty === 0 ? 'Out-Of-Stock' : 'In-Stock'))
 //=> { OutOfStock: 1, InStock: 4 });
 
 const letters = ['a', 'b', 'A', 'a', 'B', 'c'];
