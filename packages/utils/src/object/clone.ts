@@ -4,15 +4,6 @@ import isObj from '../types/isObj';
 import isPureObj from '../types/isPureObj';
 import isSet from '../types/isSet';
 
-/**
- * It deeply clones the given value
- *
- * @example
- * const obj1 = {a: 1, b: ['x']}
- * const obj2 = clone(obj1)
- * obj1 === obj2 //=> false
- * obj1.b === obj2.b //=> false
- */
 function cloneObj<T>(obj: T, objRefMap: WeakMap<WeakKey, unknown>): T {
   if (isPureObj(obj) && objRefMap.has(obj)) {
     return objRefMap.get(obj) as T;
@@ -73,6 +64,15 @@ function cloneObj<T>(obj: T, objRefMap: WeakMap<WeakKey, unknown>): T {
   return obj;
 }
 
+/**
+ * It deeply clones the given value
+ *
+ * @example
+ * const obj1 = {a: 1, b: ['x']}
+ * const obj2 = clone(obj1)
+ * obj1 === obj2 //=> false
+ * obj1.b === obj2.b //=> false
+ */
 export default function clone<T>(val: T): T {
   const objRefMap = new WeakMap();
   return cloneObj(val, objRefMap);

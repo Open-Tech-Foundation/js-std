@@ -1,7 +1,6 @@
 import isEmpty from '../assert/isEmpty';
 import isFn from '../types/isFn';
 import isNum from '../types/isNum';
-import isStr from '../types/isStr';
 import clone from './clone';
 import { IterableObj } from './merge';
 import toPath from './toPath';
@@ -15,10 +14,10 @@ import toPath from './toPath';
  */
 export default function set<T>(
   obj: T,
-  path: string | (string | number)[],
+  path: string | unknown[],
   value: unknown | ((val: unknown) => unknown)
 ): T {
-  const pathArr = isStr(path) ? toPath(path) : path;
+  const pathArr = toPath(path);
   const cObj = clone(obj);
   let curObj: IterableObj = cObj as IterableObj;
 
@@ -27,7 +26,7 @@ export default function set<T>(
   }
 
   for (let i = 0; i < pathArr.length; i++) {
-    const prop = pathArr[i];
+    const prop = pathArr[i] as PropertyKey;
 
     if (i === pathArr.length - 1) {
       const v = isFn(value) ? value(curObj[prop]) : value;

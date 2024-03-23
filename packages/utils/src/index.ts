@@ -87,6 +87,8 @@ export { default as shallowMerge } from './object/shallowMerge';
 export { default as shallowMergeAll } from './object/shallowMergeAll';
 export { default as fromPath } from './object/fromPath';
 export { default as toPath } from './object/toPath';
+export { default as omit } from './object/omit';
+export { default as pick } from './object/pick';
 
 // Assert
 export { default as isEmpty } from './assert/isEmpty';

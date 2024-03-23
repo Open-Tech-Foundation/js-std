@@ -1,6 +1,5 @@
 import isEmpty from '../assert/isEmpty';
 import isPureObj from '../types/isPureObj';
-import isStr from '../types/isStr';
 import { IterableObj } from './merge';
 import toPath from './toPath';
 
@@ -12,11 +11,8 @@ import toPath from './toPath';
  * has({a: {b: 2}}, ['a', 'b']) //=> true
  * has({a: {b: 2}}, ['a', 'b', 'c']) //=> false
  */
-export default function has(
-  obj: object,
-  path: string | (string | number)[] = []
-): boolean {
-  const pathArr = isStr(path) ? toPath(path) : path;
+export default function has(obj: object, path: string | unknown[]): boolean {
+  const pathArr = toPath(path);
 
   if (isEmpty(pathArr)) {
     return false;
@@ -28,11 +24,11 @@ export default function has(
       return false;
     }
 
-    if (!Object.hasOwn(curObj, prop)) {
+    if (!Object.hasOwn(curObj, prop as PropertyKey)) {
       return false;
     }
 
-    curObj = (curObj as IterableObj)[prop] as object;
+    curObj = (curObj as IterableObj)[prop as PropertyKey] as object;
   }
 
   return true;

@@ -152,6 +152,8 @@ await sleep(1000); // It suspends the exection for 1 second.
 - [has](https://js-utils.pages.dev/Object/has)
 - [merge](https://js-utils.pages.dev/Object/merge)
 - [mergeAll](https://js-utils.pages.dev/Object/mergeAll)
+- [omit](https://js-utils.pages.dev/Object/omit)
+- [pick](https://js-utils.pages.dev/Object/pick)
 - [set](https://js-utils.pages.dev/Object/set)
 - [shallowMerge](https://js-utils.pages.dev/Object/shallowMerge)
 - [shallowMergeAll](https://js-utils.pages.dev/Object/shallowMergeAll)

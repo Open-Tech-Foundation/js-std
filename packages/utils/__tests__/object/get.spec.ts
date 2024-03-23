@@ -19,6 +19,10 @@ describe('Object > get', () => {
     expect(get({ a: 1 }, 'a')).toBe(1);
 
     expect(get({ a: { b: 25 } }, 'a.b')).toBe(25);
+    expect(get({ 'a.b': 1, b: 2 }, ['a.b'])).toBe(1);
+    const obj = { 'a.b': 2, a: { b: [1, 2, 3] } };
+    expect(get(obj, ['a.b'])).toBe(2);
+    expect(get(obj, 'a.b')).toEqual([1, 2, 3]);
 
     expect(get({ user: { email: 'user@example.com' } }, 'user.email')).toBe(
       'user@example.com'

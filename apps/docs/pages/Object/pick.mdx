@@ -1,0 +1,36 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> Includes all the property paths from the given object for the given list of paths.
+
+<Callout type="info">
+The source object can `Plain Object` or `Array`.
+</Callout>
+
+## Syntax
+
+```ts
+import { pick } from '@opentf/utils';
+
+pick(obj: object, ...paths: (string | unknown[])[])
+```
+
+## Examples
+
+```ts
+pick({ a: 1, b: 2 }, 'a') //=> { a: 1 }
+
+pick([1, 2, 3], '0') //=> [1]
+
+pick({ a: { b: { c: 1 }, d: null, e: [10, 20, 30] } }, 'a.b', ['a', 'e', '2'])
+//=> {
+//   a: { b: { c: 1 } },
+//   e: [30] 
+// }
+```
+## Try
+
+<REPL code={`const { pick } = require('@opentf/utils');
+
+pick({ a: 1, b: 2 }, 'a');
+`} />

@@ -5,10 +5,10 @@
  *
  * arrReplace([1, 2, 3], 1, 5); // [1, 5, 3]
  */
-export default function arrReplace(
-  arr: unknown[] = [],
+export default function arrReplace<T>(
+  arr: T[] = [],
   index?: number | null,
-  ...replacements: unknown[]
+  ...replacements: T[]
 ) {
   const idx = index ?? arr.length - 1;
   const a = [...arr];

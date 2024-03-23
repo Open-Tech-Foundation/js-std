@@ -12,8 +12,8 @@ Immutable: This does not mutate the given array.
 ```ts copy
 import { arrRm } from '@opentf/utils';
 
-arrRm(
-  arr: unknown[] = [],
+arrRm<T>(
+  arr: T[] = [],
   index?: number,
   count: number = 1
 )

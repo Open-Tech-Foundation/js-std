@@ -5,10 +5,10 @@
  *
  * arrIns([1, 2, 3], 1, 5); // [1, 5, 2, 3]
  */
-export default function arrIns(
-  arr: unknown[] = [],
+export default function arrIns<T>(
+  arr: T[] = [],
   index: number | null | undefined,
-  ...items: unknown[]
+  ...items: T[]
 ) {
   const idx = index ?? arr.length;
   const a = [...arr];

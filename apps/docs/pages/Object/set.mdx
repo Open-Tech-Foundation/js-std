@@ -14,7 +14,7 @@ import { set } from '@opentf/utils';
 
 set<T>(
   obj: T,
-  path: string | (string | number)[],
+  path: string | unknown[],
   value: unknown | ((val: unknown) => unknown)
 ): T
 ```

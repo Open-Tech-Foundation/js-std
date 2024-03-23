@@ -5,8 +5,8 @@
  *
  * arrRm([1, 2, 3], 1, 2); // [1]
  */
-export default function arrRm(
-  arr: unknown[] = [],
+export default function arrRm<T>(
+  arr: T[] = [],
   index?: number,
   count: number = 1
 ) {

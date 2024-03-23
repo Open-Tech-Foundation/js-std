@@ -1,3 +1,4 @@
+import size from '../object/size';
 import isEql from './isEql';
 
 /**
@@ -10,28 +11,21 @@ import isEql from './isEql';
  * isEqlArr([1, 3, 2], [2, 1, 5]) //=> false
  */
 export default function isEqlArr(arr1: unknown[], arr2: unknown[]): boolean {
-  const tmpArr1: unknown[] = [];
-  const tmpArr2: unknown[] = [];
+  const a1: unknown[] = arr1.flat();
+  const a2: unknown[] = arr2.flat();
 
-  arr1.forEach((i) => {
-    tmpArr1.push(i);
-  });
-  arr2.forEach((i) => {
-    tmpArr2.push(i);
-  });
-
-  if (tmpArr1.length !== tmpArr2.length) {
+  if (size(a1) !== size(a2)) {
     return false;
   }
 
-  for (const val of tmpArr1) {
-    const index = tmpArr2.findIndex((item) => isEql(val, item));
+  for (const val of a1) {
+    const index = a2.findIndex((item) => isEql(val, item));
 
     if (index < 0) {
       return false;
     }
 
-    delete tmpArr2[index];
+    delete a2[index];
   }
 
   return true;

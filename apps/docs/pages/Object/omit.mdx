@@ -1,0 +1,43 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> Removes all the property paths from the given object for the given list of paths.
+
+<Callout type="info">
+The source object can `Plain Object` or `Array`.
+</Callout>
+
+## Syntax
+
+```ts
+import { omit } from '@opentf/utils';
+
+omit(obj: object, ...paths: (string | unknown[])[])
+```
+
+## Examples
+
+```ts
+omit({ a: 1, b: 2 }, 'a') //=> { b: 2 }
+
+omit({ a: 1, b: 2 }, ['a']) //=> { b: 2 }
+
+omit([1, 2, 3], '1') //=> [1, 3]
+
+omit([1, 2, 3], 2) //=> [1, 2]
+
+omit({ a: 1, b: 2, c: 3, d: 4 }, 'b', 'd') 
+//=> {
+//   a: 1,
+//   c: 3,
+// }
+
+obj = { a: { b: [1, 3, 5] } };
+omit(obj, 'a.b[2]') //=> { a: { b: [1, 3] } });
+```
+## Try
+
+<REPL code={`const { omit } = require('@opentf/utils');
+
+omit({ a: 1, b: 2 }, 'a');
+`} />

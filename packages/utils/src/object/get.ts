@@ -1,4 +1,3 @@
-import isStr from '../types/isStr';
 import has from './has';
 import { IterableObj } from './merge';
 import toPath from './toPath';
@@ -12,7 +11,7 @@ import toPath from './toPath';
  */
 export default function get(
   obj: object,
-  path: string | (string | number)[],
+  path: string | unknown[],
   defVal?: unknown
 ): unknown {
   if (!has(obj, path)) {
@@ -20,9 +19,9 @@ export default function get(
   }
 
   let curObj = obj;
-  const pathArr = isStr(path) ? toPath(path) : path;
+  const pathArr = toPath(path);
   for (const prop of pathArr) {
-    curObj = (curObj as IterableObj)[prop] as object;
+    curObj = (curObj as IterableObj)[prop as PropertyKey] as object;
   }
 
   return curObj;

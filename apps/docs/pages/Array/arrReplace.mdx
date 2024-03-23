@@ -12,10 +12,10 @@ Immutable: This does not mutate the given array.
 ```ts copy
 import { arrReplace } from '@opentf/utils';
 
-arrReplace(
-  arr: unknown[] = [],
+arrReplace<T>(
+  arr: T[] = [],
   index?: number | null,
-  ...replacements: unknown[]
+  ...replacements: T[]
 )
 ```
 

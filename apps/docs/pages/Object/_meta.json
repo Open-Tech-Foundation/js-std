@@ -5,6 +5,8 @@
   "has": "has",
   "merge": "merge",
   "mergeAll": "mergeAll",
+  "omit": "omit",
+  "pick": "pick",
   "set": "set",
   "shallowMerge": "shallowMerge",
   "shallowMergeAll": "shallowMergeAll",

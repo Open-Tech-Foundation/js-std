@@ -12,11 +12,11 @@ Immutable: This does not mutate the given array.
 ```ts copy
 import { arrIns } from '@opentf/utils';
 
-arrIns(
-  arr: unknown[] = [],
-  index: number | null,
-  ...items: unknown[]
-)
+arrIns<T>(
+  arr: T[] = [],
+  index: number | null | undefined,
+  ...items: T[]
+) 
 ```
 
 ## Examples
