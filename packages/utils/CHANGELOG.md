@@ -1,5 +1,11 @@
 # @opentf/utils
 
+## 0.40.0
+
+### Minor Changes
+
+- 39f3fc1: Added object omit & pick util fns.
+
 ## 0.39.0
 
 ### Minor Changes
