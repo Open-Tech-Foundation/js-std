@@ -1,5 +1,11 @@
 # @opentf/utils
 
+## 0.42.0
+
+### Minor Changes
+
+- 3106d1c: Fixed range fn based on the iterator range proposal.
+
 ## 0.41.0
 
 ### Minor Changes
