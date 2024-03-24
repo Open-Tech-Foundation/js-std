@@ -77,8 +77,8 @@ describe('Object > Clone', () => {
     const array1 = [1, 2, 3, 4, 5];
     delete array1[1];
     const output = clone(array1);
-    expect(output).toEqual([1, 3, 4, 5]);
-    expect(output.length).toBe(4);
+    expect(output).toEqual([1, , 3, 4, 5]);
+    expect(output.length).toBe(5);
   });
 
   test('keepRef=true', () => {

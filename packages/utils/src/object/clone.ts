@@ -13,21 +13,18 @@ function cloneObj<T>(obj: T, objRefMap: WeakMap<WeakKey, unknown>): T {
     const cObj: Record<string, unknown> = {};
     objRefMap.set(obj, cObj);
 
-    for (const k in obj) {
-      if (Object.prototype.hasOwnProperty.call(obj, k)) {
-        cObj[k] = cloneObj(obj[k as keyof typeof obj], objRefMap);
-      }
+    for (const [k, v] of Object.entries(obj)) {
+      cObj[k] = cloneObj(v, objRefMap);
     }
 
     return cObj as T;
   }
 
   if (isArr(obj)) {
-    const arr = [] as unknown[];
+    const arr = new Array(obj.length);
     objRefMap.set(obj, arr);
-
-    obj.forEach((i) => {
-      arr.push(cloneObj(i, objRefMap));
+    obj.forEach((v, i) => {
+      arr[i] = cloneObj(v, objRefMap);
     });
 
     return arr as T;
