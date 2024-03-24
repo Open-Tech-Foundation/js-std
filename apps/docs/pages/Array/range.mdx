@@ -1,57 +1,73 @@
+import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> It generates a sequence of numbers starting at the first argument, progressing by the third argument, and stopping at the second argument.
+> Generates a sequence of numbers starting at the `first` argument, progressing by the `step` argument, and stopping at the `second` argument.
+
+<Callout emoji="✅" type="info">
+It is based on the [Range proposal](https://tc39.es/proposal-iterator.range/) & [Iterator.range](https://github.com/tc39/proposal-iterator.range).
+</Callout>
 
 ## Syntax
 
 ```ts
-range(start: number, stop: number, step?: number): number[];
+range(
+  start: number,
+  end: number,
+  options?: number | { step: number; inclusive: false }
+): number[]
 ```
+
+<Callout type="info">
+The `step` value can be auto infered based on the `start` & `end` values.
+</Callout>
+
+<Callout type="info">
+The `third` argument can be either a `step` value or `options` object.
+</Callout>
+
 ## Usage
 
 ```ts
 import { range } from '@opentf/utils';
 
-range();
+range(start, stop);
 ```
 
 ## Examples
 
 ```ts
-range() //=> []
+range() // It throws error
 
-range(0) //=> []
+range(0) // It throws error
 
-range(1) //=> []
+range(NaN, 0) // It throws error
 
-range(1, 2) //=> [1, 2]
+range(0, 0) //=> []
 
-range(10, 50, 10) //=> [10, 20, 30, 40, 50]
+range(0, 0, { inclusive: true }) //=> [0]
 
-range(10, 12, 0.5) //=> [10, 10.5, 11, 11.5, 12]
+range(0, 5) //=> [0, 1, 2, 3, 4]
 
-range(-10, -5) //=> [-10, -9, -8, -7, -6, -5]
+range(0, 5, { inclusive: true }) //=> [0, 1, 2, 3, 4, 5]
 
-range(0, -4, -1) //=> [0, -1, -2, -3, -4]
+range(3, 9, { step: 3 }) //=> [3, 6]
 
-range(-4) //=> []
+range(0, -5) //=> [0, -1, -2, -3, -4]
 
-range(1, 2, 0) //=> []
+range(0, -4, { step: -1 }) //=> [0, -1, -2, -3]
 
-range(-1, -2, 1) //=> []
+range(-10, -5) //=> [-10, -9, -8, -7, -6]
 
-range(-1, -2, -1) //=> [-1, -2]
-
-range(1, 2, 1) //=> [1, 2]
-
-range(0, 5) //=> [0, 1, 2, 3, 4, 5]
-
-range(3, 9, 3) //=> [3, 6, 9]
-
+range(10, 12, { step: 0.5 }) //=> [10, 10.5, 11, 11.5]
 ```
 
 ## Try
 
 <REPL code={`const { range } = require('@opentf/utils');
 
-range(1, 5);`} />
+log(range(1, 5));
+
+for (const item of range(1, 5, {inclusive: true})) {
+  log(item);
+}
+`} />

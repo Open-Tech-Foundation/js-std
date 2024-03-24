@@ -73,6 +73,7 @@ export { default as isBlob } from './types/isBlob';
 export { default as isPromise } from './types/isPromise';
 export { default as isPureObj } from './types/isPureObj';
 export { default as isDef } from './types/isDef';
+export { default as isInfinity } from './types/isInfinity';
 
 // Object
 export { default as has } from './object/has';

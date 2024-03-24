@@ -14,7 +14,6 @@
  * isNum(Infinity) //=> false
  *
  */
-
 export default function isNum(val: unknown, coerce = false): val is number {
   let n = val;
   if (coerce && typeof val === 'string' && val.trim().length) {
