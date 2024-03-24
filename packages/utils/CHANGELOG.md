@@ -1,5 +1,11 @@
 # @opentf/utils
 
+## 0.41.0
+
+### Minor Changes
+
+- b6d79ca: Fixed cloning sparsed arrays.
+
 ## 0.40.0
 
 ### Minor Changes
