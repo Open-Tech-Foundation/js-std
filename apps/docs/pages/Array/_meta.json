@@ -7,6 +7,7 @@
   "compact": "compact",
   "countBy": "countBy",
   "diff": "diff",
+  "drop": "drop",
   "groupBy": "groupBy",
   "intersection": "intersection",
   "max": "max",
@@ -16,6 +17,7 @@
   "sort": "sort",
   "sortBy": "sortBy",
   "symDiff": "symDiff",
+  "take": "take",
   "union": "union",
   "uniq": "uniq"
 }

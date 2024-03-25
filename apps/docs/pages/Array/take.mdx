@@ -1,0 +1,66 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> Slices the given array from the start to the given limit.
+
+<Callout type="info">
+It is loosely based on the experimental [Iterator.prototype.take()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Iterator/take).
+</Callout>
+
+**Related**
+- [dropRight](/Array/dropRight)
+- [take](/Array/take)
+- [takeRight](/Array/takeRight)
+
+## Syntax
+
+```ts copy
+import { take } from '@opentf/std';
+
+take<T>(
+  arr: T[],
+  limit: number | null = 1,
+  cb?: (val: T) => boolean
+)
+```
+
+## Examples
+
+```ts
+take([1, 2, 3], -1) // It throws the RangeError for negative limit
+
+take([1, 2, 3], 0) // => []
+
+take([1, 2, 3]) // => [1]
+
+take([1, 2, 3], 1) // => [1]
+
+take([1, 2, 3], 2) // => [1, 2]
+
+take([1, 2, 3, 4, 5], 5) // => [1, 2, 3, 4, 5]
+
+take([1, 2, 3, 4, 5], 6) // => [1, 2, 3, 4, 5]
+
+take([1, 2, 3, 4, 5], null) // => [1, 2, 3, 4, 5]
+
+take([1, 2, 3, 4, 5], 2, (val) => val % 2 === 0) // => [2, 4]
+
+take([1, 2, 3, 4, 5], 3, (val) => val % 2 !== 0) // => [1, 3, 5]
+
+const users = [
+  { name: 'x', active: false },
+  { name: 'y', active: true },
+  { name: 'z', active: false },
+];
+take(users, null, (val) => val.active) 
+// => [
+//   { name: 'y', active: true },
+// ]
+```
+
+## Try
+
+<REPL code={`const { take } = require('@opentf/std');
+
+take([1, 2, 3], 2);
+`} />

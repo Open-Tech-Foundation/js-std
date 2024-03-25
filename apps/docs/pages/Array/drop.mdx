@@ -1,0 +1,67 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> Skips the given number of elements at the `start` of the given array.
+
+<Callout type="info">
+It is loosely based on the experimental [Iterator.prototype.drop()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Iterator/drop).
+</Callout>
+
+**Related**
+- [dropRight](/Array/dropRight)
+- [take](/Array/take)
+- [takeRight](/Array/takeRight)
+
+## Syntax
+
+```ts copy
+import { drop } from '@opentf/std';
+
+drop<T>(
+  arr: T[],
+  limit: number | null = 1,
+  cb?: (val: T) => boolean
+)
+```
+
+## Examples
+
+```ts
+drop([1, 2, 3], -1) // It throws the RangeError for negative limit
+
+drop([1, 2, 3], 0) // => [1, 2, 3]
+
+drop([1, 2, 3]) // => [2, 3]
+
+drop([1, 2, 3], 1) // => [2, 3]
+
+drop([1, 2, 3], 2) // => [3]
+
+drop([1, 2, 3, 4, 5], 5) // => []
+
+drop([1, 2, 3, 4, 5], 6) // => []
+
+drop([1, 2, 3, 4, 5], null) // => []
+
+drop([1, 2, 3, 4, 5], 2, (val) => val % 2 === 0) // => [1, 3, 5]
+
+drop([1, 2, 3, 4, 5], 3, (val) => val % 2 !== 0) // => [2, 4]
+
+const users = [
+  { name: 'x', active: false },
+  { name: 'y', active: true },
+  { name: 'z', active: false },
+];
+drop(users, null, (val) => val.active) 
+// => [
+//   { name: 'x', active: false },
+//   { name: 'z', active: false },
+// ]
+```
+
+## Try
+
+<REPL code={`const { drop } = require('@opentf/std');
+
+drop([1, 2, 3], 2);
+`} />

@@ -27,6 +27,8 @@ export { default as uniq } from './array/uniq';
 export { default as max } from './array/max';
 export { default as min } from './array/min';
 export { default as bounds } from './array/bounds';
+export { default as take } from './array/take';
+export { default as drop } from './array/drop';
 
 // Async
 export { default as asyncFilter } from './async/asyncFilter';
