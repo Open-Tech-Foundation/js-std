@@ -1,5 +1,11 @@
 # @opentf/std
 
+## 0.1.1
+
+### Patch Changes
+
+- b9e7b07: Updated readme.
+
 ## 0.1.0
 
 ### Minor Changes
