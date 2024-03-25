@@ -41,7 +41,7 @@
   },
   "license": "MIT",
   "homepage": "https://js-std.pages.dev",
-  "repository": "git@github.com:Open-Tech-Foundation/js-utils.git",
+  "repository": "git@github.com:Open-Tech-Foundation/js-std.git",
   "type": "module",
   "main": "dist/index.cjs",
   "module": "dist/index.js",

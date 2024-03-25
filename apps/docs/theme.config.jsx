@@ -14,9 +14,9 @@ export default {
     </>
   ),
   project: {
-    link: "https://github.com/open-tech-foundation/js-utils",
+    link: "https://github.com/open-tech-foundation/js-std",
   },
-  docsRepositoryBase: "https://github.com/open-tech-foundation/js-utils",
+  docsRepositoryBase: "https://github.com/open-tech-foundation/js-std",
   editLink: { component: null },
   head: () => {
     const { asPath } = useRouter();
