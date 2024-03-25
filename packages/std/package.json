@@ -1,6 +1,6 @@
 {
   "name": "@opentf/std",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "An Extensive JavaScript Standard Library.",
   "keywords": [
     "collection",

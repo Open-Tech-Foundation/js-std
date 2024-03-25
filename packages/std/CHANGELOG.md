@@ -1,5 +1,11 @@
 # @opentf/std
 
+## 0.1.0
+
+### Minor Changes
+
+- b0bbd90: Release initial version for @opentf/std
+
 ## 0.42.0
 
 ### Minor Changes
