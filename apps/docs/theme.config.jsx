@@ -21,7 +21,7 @@ export default {
   head: () => {
     const { asPath } = useRouter();
     const { frontMatter } = useConfig();
-    const url = "https://js-utils.pages.dev/" + asPath;
+    const url = "https://js-std.pages.dev/" + asPath;
 
     return (
       <>

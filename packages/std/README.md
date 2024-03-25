@@ -14,7 +14,7 @@
 
 <div align="center">
 
-## [Playground](https://js-utils.pages.dev/playground) | [Documentation](https://js-utils.pages.dev)
+## [Playground](https://js-std.pages.dev/playground) | [Documentation](https://js-std.pages.dev)
 
 </div>
 
@@ -89,112 +89,112 @@ await sleep(1000); // It suspends the exection for 1 second.
 
 ### Array
 
-- [arrIns](https://js-utils.pages.dev/Array/arrIns)
-- [arrReplace](https://js-utils.pages.dev/Array/arrReplace)
-- [arrRm](https://js-utils.pages.dev/Array/arrRm)
-- [bounds](https://js-utils.pages.dev/Array/bounds)
-- [chunk](https://js-utils.pages.dev/Array/chunk)
-- [compact](https://js-utils.pages.dev/Array/compact)
-- [countBy](https://js-utils.pages.dev/Array/countBy)
-- [diff](https://js-utils.pages.dev/Array/diff)
-- [groupBy](https://js-utils.pages.dev/Array/groupBy)
-- [intersection](https://js-utils.pages.dev/Array/intersection)
-- [max](https://js-utils.pages.dev/Array/max)
-- [min](https://js-utils.pages.dev/Array/min)
-- [move](https://js-utils.pages.dev/Array/move)
-- [range](https://js-utils.pages.dev/Array/range)
-- [sort](https://js-utils.pages.dev/Array/sort)
-- [sortBy](https://js-utils.pages.dev/Array/sortBy)
-- [symDiff](https://js-utils.pages.dev/Array/symDiff)
-- [union](https://js-utils.pages.dev/Array/union)
-- [uniq](https://js-utils.pages.dev/Array/uniq)
+- [arrIns](https://js-std.pages.dev/Array/arrIns)
+- [arrReplace](https://js-std.pages.dev/Array/arrReplace)
+- [arrRm](https://js-std.pages.dev/Array/arrRm)
+- [bounds](https://js-std.pages.dev/Array/bounds)
+- [chunk](https://js-std.pages.dev/Array/chunk)
+- [compact](https://js-std.pages.dev/Array/compact)
+- [countBy](https://js-std.pages.dev/Array/countBy)
+- [diff](https://js-std.pages.dev/Array/diff)
+- [groupBy](https://js-std.pages.dev/Array/groupBy)
+- [intersection](https://js-std.pages.dev/Array/intersection)
+- [max](https://js-std.pages.dev/Array/max)
+- [min](https://js-std.pages.dev/Array/min)
+- [move](https://js-std.pages.dev/Array/move)
+- [range](https://js-std.pages.dev/Array/range)
+- [sort](https://js-std.pages.dev/Array/sort)
+- [sortBy](https://js-std.pages.dev/Array/sortBy)
+- [symDiff](https://js-std.pages.dev/Array/symDiff)
+- [union](https://js-std.pages.dev/Array/union)
+- [uniq](https://js-std.pages.dev/Array/uniq)
 
 ## Async
 
-- [asyncFilter](https://js-utils.pages.dev/Array/asyncFilter)
-- [asyncForEach](https://js-utils.pages.dev/Array/asyncForEach)
-- [asyncMap](https://js-utils.pages.dev/Array/asyncMap)
+- [asyncFilter](https://js-std.pages.dev/Array/asyncFilter)
+- [asyncForEach](https://js-std.pages.dev/Array/asyncForEach)
+- [asyncMap](https://js-std.pages.dev/Array/asyncMap)
 
 ### Maths
 
-- [percentage](https://js-utils.pages.dev/Maths/percentage)
-- [percentageOf](https://js-utils.pages.dev/Maths/percentageOf)
+- [percentage](https://js-std.pages.dev/Maths/percentage)
+- [percentageOf](https://js-std.pages.dev/Maths/percentageOf)
 
 ### Number
 
-- [clamp](https://js-utils.pages.dev/Number/clamp)
-- [isNegZero](https://js-utils.pages.dev/Number/isNegZero)
-- [isZero](https://js-utils.pages.dev/Number/isZero)
-- [toNum](https://js-utils.pages.dev/Number/toNum)
+- [clamp](https://js-std.pages.dev/Number/clamp)
+- [isNegZero](https://js-std.pages.dev/Number/isNegZero)
+- [isZero](https://js-std.pages.dev/Number/isZero)
+- [toNum](https://js-std.pages.dev/Number/toNum)
 
 ### Function
 
-- [sleep](https://js-utils.pages.dev/Timers/sleep)
-- [noop](https://js-utils.pages.dev/Timers/noop)
+- [sleep](https://js-std.pages.dev/Timers/sleep)
+- [noop](https://js-std.pages.dev/Timers/noop)
 
 ### Colors
 
-- [hexToRGB](https://js-utils.pages.dev/Misc/hexToRGB)
+- [hexToRGB](https://js-std.pages.dev/Misc/hexToRGB)
 
 ### Assert
 
-- [isEmpty](https://js-utils.pages.dev/Assert/isEmpty)
-- [isEql](https://js-utils.pages.dev/Assert/isEql)
-- [isEqlArr](https://js-utils.pages.dev/Assert/isEqlArr)
-- [isNil](https://js-utils.pages.dev/Assert/isNil)
-- [isShallowEql](https://js-utils.pages.dev/Assert/isShallowEql)
+- [isEmpty](https://js-std.pages.dev/Assert/isEmpty)
+- [isEql](https://js-std.pages.dev/Assert/isEql)
+- [isEqlArr](https://js-std.pages.dev/Assert/isEqlArr)
+- [isNil](https://js-std.pages.dev/Assert/isNil)
+- [isShallowEql](https://js-std.pages.dev/Assert/isShallowEql)
 
 ### Object
 
-- [clone](https://js-utils.pages.dev/Object/clone)
-- [fromPath](https://js-utils.pages.dev/Object/fromPath)
-- [get](https://js-utils.pages.dev/Object/get)
-- [has](https://js-utils.pages.dev/Object/has)
-- [merge](https://js-utils.pages.dev/Object/merge)
-- [mergeAll](https://js-utils.pages.dev/Object/mergeAll)
-- [omit](https://js-utils.pages.dev/Object/omit)
-- [pick](https://js-utils.pages.dev/Object/pick)
-- [set](https://js-utils.pages.dev/Object/set)
-- [shallowMerge](https://js-utils.pages.dev/Object/shallowMerge)
-- [shallowMergeAll](https://js-utils.pages.dev/Object/shallowMergeAll)
-- [size](https://js-utils.pages.dev/Object/size)
-- [toPath](https://js-utils.pages.dev/Object/toPath)
-- [unset](https://js-utils.pages.dev/Object/unset)
+- [clone](https://js-std.pages.dev/Object/clone)
+- [fromPath](https://js-std.pages.dev/Object/fromPath)
+- [get](https://js-std.pages.dev/Object/get)
+- [has](https://js-std.pages.dev/Object/has)
+- [merge](https://js-std.pages.dev/Object/merge)
+- [mergeAll](https://js-std.pages.dev/Object/mergeAll)
+- [omit](https://js-std.pages.dev/Object/omit)
+- [pick](https://js-std.pages.dev/Object/pick)
+- [set](https://js-std.pages.dev/Object/set)
+- [shallowMerge](https://js-std.pages.dev/Object/shallowMerge)
+- [shallowMergeAll](https://js-std.pages.dev/Object/shallowMergeAll)
+- [size](https://js-std.pages.dev/Object/size)
+- [toPath](https://js-std.pages.dev/Object/toPath)
+- [unset](https://js-std.pages.dev/Object/unset)
 
 ### String
 
-- [camelCase](https://js-utils.pages.dev/String/camelCase)
-- [capitalize](https://js-utils.pages.dev/String/capitalize)
-- [insertAt](https://js-utils.pages.dev/String/insertAt)
-- [isEmail](https://js-utils.pages.dev/String/isEmail)
-- [pascalCase](https://js-utils.pages.dev/String/pascalCase)
-- [replaceAt](https://js-utils.pages.dev/String/replaceAt)
-- [strReplace](https://js-utils.pages.dev/String/strReplace)
+- [camelCase](https://js-std.pages.dev/String/camelCase)
+- [capitalize](https://js-std.pages.dev/String/capitalize)
+- [insertAt](https://js-std.pages.dev/String/insertAt)
+- [isEmail](https://js-std.pages.dev/String/isEmail)
+- [pascalCase](https://js-std.pages.dev/String/pascalCase)
+- [replaceAt](https://js-std.pages.dev/String/replaceAt)
+- [strReplace](https://js-std.pages.dev/String/strReplace)
 
 ### Types
 
-- [isArr](https://js-utils.pages.dev/Types/isArr)
-- [isArrBuf](https://js-utils.pages.dev/Types/isArrBuf)
-- [isBigInt](https://js-utils.pages.dev/Types/isBigInt)
-- [isBlob](https://js-utils.pages.dev/Types/isBlob)
-- [isBool](https://js-utils.pages.dev/Types/isBool)
-- [isDate](https://js-utils.pages.dev/Types/isDate)
-- [isErr](https://js-utils.pages.dev/Types/isErr)
-- [isFn](https://js-utils.pages.dev/Types/isFn)
-- [isJSON](https://js-utils.pages.dev/Types/isJSON)
-- [isMap](https://js-utils.pages.dev/Types/isMap)
-- [isNull](https://js-utils.pages.dev/Types/isNull)
-- [isNum](https://js-utils.pages.dev/Types/isNum)
-- [isObj](https://js-utils.pages.dev/Types/isObj)
-- [isRegEx](https://js-utils.pages.dev/Types/isRegEx)
-- [isSet](https://js-utils.pages.dev/Types/isSet)
-- [isStr](https://js-utils.pages.dev/Types/isStr)
-- [isSym](https://js-utils.pages.dev/Types/isSym)
-- [isTypedArr](https://js-utils.pages.dev/Types/isTypedArr)
-- [isUndef](https://js-utils.pages.dev/Types/isUndef)
-- [isWkMap](https://js-utils.pages.dev/Types/isWkMap)
-- [isWkRef](https://js-utils.pages.dev/Types/isWkRef)
-- [isWkSet](https://js-utils.pages.dev/Types/isWkSet)
+- [isArr](https://js-std.pages.dev/Types/isArr)
+- [isArrBuf](https://js-std.pages.dev/Types/isArrBuf)
+- [isBigInt](https://js-std.pages.dev/Types/isBigInt)
+- [isBlob](https://js-std.pages.dev/Types/isBlob)
+- [isBool](https://js-std.pages.dev/Types/isBool)
+- [isDate](https://js-std.pages.dev/Types/isDate)
+- [isErr](https://js-std.pages.dev/Types/isErr)
+- [isFn](https://js-std.pages.dev/Types/isFn)
+- [isJSON](https://js-std.pages.dev/Types/isJSON)
+- [isMap](https://js-std.pages.dev/Types/isMap)
+- [isNull](https://js-std.pages.dev/Types/isNull)
+- [isNum](https://js-std.pages.dev/Types/isNum)
+- [isObj](https://js-std.pages.dev/Types/isObj)
+- [isRegEx](https://js-std.pages.dev/Types/isRegEx)
+- [isSet](https://js-std.pages.dev/Types/isSet)
+- [isStr](https://js-std.pages.dev/Types/isStr)
+- [isSym](https://js-std.pages.dev/Types/isSym)
+- [isTypedArr](https://js-std.pages.dev/Types/isTypedArr)
+- [isUndef](https://js-std.pages.dev/Types/isUndef)
+- [isWkMap](https://js-std.pages.dev/Types/isWkMap)
+- [isWkRef](https://js-std.pages.dev/Types/isWkRef)
+- [isWkSet](https://js-std.pages.dev/Types/isWkSet)
 
 ## Benchmarks
 

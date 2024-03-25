@@ -40,7 +40,7 @@
     "url": "https://thanga-ganapathy.github.io"
   },
   "license": "MIT",
-  "homepage": "https://js-utils.pages.dev",
+  "homepage": "https://js-std.pages.dev",
   "repository": "git@github.com:Open-Tech-Foundation/js-utils.git",
   "type": "module",
   "main": "dist/index.cjs",
