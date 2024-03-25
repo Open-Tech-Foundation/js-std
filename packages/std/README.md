@@ -4,7 +4,7 @@
 
 <div align="center">
 
-# Utils
+# JavaScript Standard Library
 
 [![Build](https://github.com/open-tech-foundation/js-std/actions/workflows/build.yml/badge.svg)](https://github.com/open-tech-foundation/js-std/actions/workflows/build.yml)
 
@@ -55,28 +55,28 @@ import {
   isEql,
   isEqlArr,
   sleep,
-} from '@opentf/std';
+} from "@opentf/std";
 
 isNum(NaN); //=> false
 
-pascalCase('pascal case'); //=> PascalCase
+pascalCase("pascal case"); //=> PascalCase
 
-sort([1, 10, 21, 2], 'desc'); //=> [ 21, 10, 2, 1 ]
+sort([1, 10, 21, 2], "desc"); //=> [ 21, 10, 2, 1 ]
 
 const obj = {
   a: 1,
-  b: 'abc',
-  c: new Map([['key', 'val']]),
+  b: "abc",
+  c: new Map([["key", "val"]]),
 };
 clone(obj); // It returns deeply cloned value.
 
 const mapA = new Map([
-  ['a', 1],
-  ['b', 2],
+  ["a", 1],
+  ["b", 2],
 ]);
 const mapB = new Map([
-  ['b', 2],
-  ['a', 1],
+  ["b", 2],
+  ["a", 1],
 ]);
 isEql(mapA, mapB); //=> false
 
@@ -97,6 +97,7 @@ await sleep(1000); // It suspends the exection for 1 second.
 - [compact](https://js-std.pages.dev/Array/compact)
 - [countBy](https://js-std.pages.dev/Array/countBy)
 - [diff](https://js-std.pages.dev/Array/diff)
+- [drop](https://js-std.pages.dev/Array/drop)
 - [groupBy](https://js-std.pages.dev/Array/groupBy)
 - [intersection](https://js-std.pages.dev/Array/intersection)
 - [max](https://js-std.pages.dev/Array/max)
@@ -106,6 +107,7 @@ await sleep(1000); // It suspends the exection for 1 second.
 - [sort](https://js-std.pages.dev/Array/sort)
 - [sortBy](https://js-std.pages.dev/Array/sortBy)
 - [symDiff](https://js-std.pages.dev/Array/symDiff)
+- [take](https://js-std.pages.dev/Array/take)
 - [union](https://js-std.pages.dev/Array/union)
 - [uniq](https://js-std.pages.dev/Array/uniq)
 

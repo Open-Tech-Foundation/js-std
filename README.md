@@ -97,6 +97,7 @@ await sleep(1000); // It suspends the exection for 1 second.
 - [compact](https://js-std.pages.dev/Array/compact)
 - [countBy](https://js-std.pages.dev/Array/countBy)
 - [diff](https://js-std.pages.dev/Array/diff)
+- [drop](https://js-std.pages.dev/Array/drop)
 - [groupBy](https://js-std.pages.dev/Array/groupBy)
 - [intersection](https://js-std.pages.dev/Array/intersection)
 - [max](https://js-std.pages.dev/Array/max)
@@ -106,6 +107,7 @@ await sleep(1000); // It suspends the exection for 1 second.
 - [sort](https://js-std.pages.dev/Array/sort)
 - [sortBy](https://js-std.pages.dev/Array/sortBy)
 - [symDiff](https://js-std.pages.dev/Array/symDiff)
+- [take](https://js-std.pages.dev/Array/take)
 - [union](https://js-std.pages.dev/Array/union)
 - [uniq](https://js-std.pages.dev/Array/uniq)
 
