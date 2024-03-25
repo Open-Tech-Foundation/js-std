@@ -1,18 +1,18 @@
 {
   "private": true,
   "scripts": {
-    "dev": "turbo run build --filter=utils -- --watch",
+    "dev": "turbo run build --filter=std -- --watch",
     "dev:docs": "turbo run dev --filter=docs",
-    "test": "turbo run test --filter=utils",
-    "test:w": "pnpm --filter=@opentf/utils run test:w",
-    "test:b": "pnpm --filter=@opentf/utils run test:b",
+    "test": "turbo run test --filter=std",
+    "test:w": "pnpm --filter=@opentf/std run test:w",
+    "test:b": "pnpm --filter=@opentf/std run test:b",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "lint": "turbo run lint --filter=utils",
-    "build": "turbo run build --filter=utils",
+    "lint": "turbo run lint --filter=std",
+    "build": "turbo run build --filter=std",
     "build:docs": "turbo run build --filter=docs",
-    "ci": "turbo run ci --filter=utils",
+    "ci": "turbo run ci --filter=std",
     "prepare": "husky install",
-    "publish-packages": "turbo run build lint test --filter=utils && changeset version && changeset publish"
+    "publish-packages": "turbo run build lint test --filter=std && changeset version && changeset publish"
   },
   "workspaces": [
     "apps/*",

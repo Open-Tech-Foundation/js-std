@@ -10,7 +10,7 @@ Immutable: This does not mutate the original object.
 ## Syntax
 
 ```ts
-import { set } from '@opentf/utils';
+import { set } from '@opentf/std';
 
 set<T>(
   obj: T,
@@ -54,7 +54,7 @@ set({ subscribeFns: [] }, 'subscribeFns[0]', () => fn)
 
 ## Try
 
-<REPL code={`const { set } = require('@opentf/utils');
+<REPL code={`const { set } = require('@opentf/std');
 
 log(set({}, 'a.b', 25));
 

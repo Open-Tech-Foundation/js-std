@@ -14,7 +14,7 @@ If duplicate values are present in the array, then the first match will be retur
 ## Syntax
 
 ```ts copy
-import { min } from '@opentf/utils';
+import { min } from '@opentf/std';
 
 min<T>(
   arr: T[] = [],
@@ -60,7 +60,7 @@ min(arr, (f) => f.age)
 
 ## Try
 
-<REPL code={`const { min } = require('@opentf/utils');
+<REPL code={`const { min } = require('@opentf/std');
 
 min([1, 2, -3, 4, 5]);
 `} />

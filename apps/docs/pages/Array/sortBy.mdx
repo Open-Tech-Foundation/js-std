@@ -26,7 +26,7 @@ The `key` in the tuple array must one of object first level props.
 ## Usage
 
 ```ts
-import { sortBy } from "@opentf/utils";
+import { sortBy } from "@opentf/std";
 
 sortBy([{...}], ['key', 'asc'], [o => o.prop, 'desc']);
 ```
@@ -65,7 +65,7 @@ sortBy(fruits, [o => o.amount, 'desc'], [o => o.name, 'asc']);
 
 ## Try
 
-<REPL code={`const { sortBy } = require('@opentf/utils');
+<REPL code={`const { sortBy } = require('@opentf/std');
 
 const fruits = [
   { name: 'banana', amount: 2 },

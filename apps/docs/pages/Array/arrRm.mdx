@@ -10,7 +10,7 @@ Immutable: This does not mutate the given array.
 ## Syntax
 
 ```ts copy
-import { arrRm } from '@opentf/utils';
+import { arrRm } from '@opentf/std';
 
 arrRm<T>(
   arr: T[] = [],
@@ -46,7 +46,7 @@ arrRm(myFish, 2, Infinity) // => ['angel', 'clown']);
 
 ## Try
 
-<REPL code={`const { arrRm } = require('@opentf/utils');
+<REPL code={`const { arrRm } = require('@opentf/std');
 
 arrRm([1, 2, 3, 4, 5], 2);
 `} />

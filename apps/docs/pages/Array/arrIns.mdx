@@ -10,7 +10,7 @@ Immutable: This does not mutate the given array.
 ## Syntax
 
 ```ts copy
-import { arrIns } from '@opentf/utils';
+import { arrIns } from '@opentf/std';
 
 arrIns<T>(
   arr: T[] = [],
@@ -52,7 +52,7 @@ arrIns([1, 2, 3], 0, ...[5, 6]) //=> [5, 6, 1, 2, 3]
 
 ## Try
 
-<REPL code={`const { arrIns } = require('@opentf/utils');
+<REPL code={`const { arrIns } = require('@opentf/std');
 
 arrIns([1, 2, 3], 1, 5);
 `} />

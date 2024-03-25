@@ -10,7 +10,7 @@ The `undefined` & `null` values are considered [Nullish](https://developer.mozil
 ## Syntax
 
 ```ts
-import { isNil } from '@opentf/utils';
+import { isNil } from '@opentf/std';
 
 isNil(val: unknown): Boolean;
 ```
@@ -33,7 +33,7 @@ isNil(null) //=> true
 
 ## Try
 
-<REPL code={`const { isNil } = require('@opentf/utils');
+<REPL code={`const { isNil } = require('@opentf/std');
 
 const arr = [1, null, 2, undefined, 3]
 arr.filter((i) => !isNil(i));

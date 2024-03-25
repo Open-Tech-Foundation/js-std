@@ -10,7 +10,7 @@ The source object can `Plain Object` or `Array`.
 ## Syntax
 
 ```ts
-import { omit } from '@opentf/utils';
+import { omit } from '@opentf/std';
 
 omit(obj: object, ...paths: (string | unknown[])[])
 ```
@@ -37,7 +37,7 @@ omit(obj, 'a.b[2]') //=> { a: { b: [1, 3] } });
 ```
 ## Try
 
-<REPL code={`const { omit } = require('@opentf/utils');
+<REPL code={`const { omit } = require('@opentf/std');
 
 omit({ a: 1, b: 2 }, 'a');
 `} />

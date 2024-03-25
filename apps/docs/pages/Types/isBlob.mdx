@@ -5,7 +5,7 @@ import REPL from "../../components/REPL";
 ## Syntax
 
 ```ts
-import { isBlob } from '@opentf/utils';
+import { isBlob } from '@opentf/std';
 
 isBlob(val: unknown): boolean;
 ```
@@ -20,7 +20,7 @@ isBlob({}) //=> false
 
 ## Try
 
-<REPL code={`const { isBlob } = require('@opentf/utils');
+<REPL code={`const { isBlob } = require('@opentf/std');
 
 isBlob(new Blob());
 `} />

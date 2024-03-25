@@ -9,7 +9,7 @@ import REPL from "../../components/REPL";
 ## Syntax
 
 ```ts
-import { isShallowEql } from '@opentf/utils';
+import { isShallowEql } from '@opentf/std';
 
 isShallowEql(val1: unknown, val2: unknown): Boolean;
 ```
@@ -87,7 +87,7 @@ isShallowEql(
 
 ## Try
 
-<REPL code={`const { isShallowEql } = require('@opentf/utils');
+<REPL code={`const { isShallowEql } = require('@opentf/std');
 
 const obj1 = {a: 1, b: 'abc', c: 5.2};
 const obj2 = {a: 1, b: 'abc', c: 5.2};

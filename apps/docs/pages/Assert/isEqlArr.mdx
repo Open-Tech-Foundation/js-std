@@ -19,7 +19,7 @@ It also supports comparing [Sparse](https://developer.mozilla.org/en-US/docs/Web
 ## Syntax
 
 ```ts
-import { isEqlArr } from '@opentf/utils';
+import { isEqlArr } from '@opentf/std';
 
 isEqlArr(arr1: unknown[], arr2: unknown[]): Boolean;
 ```
@@ -34,7 +34,7 @@ isEqlArr([1, 3, 2], [2, 1, 5]) //=> false
 
 ## Try
 
-<REPL code={`const { isEqlArr } = require('@opentf/utils');
+<REPL code={`const { isEqlArr } = require('@opentf/std');
 
 isEqlArr([1, 3, 2], [2, 1, 3])
 `} />

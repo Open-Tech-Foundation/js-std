@@ -6,7 +6,7 @@ import REPL from "../../components/REPL";
 ## Syntax
 
 ```ts
-import { replaceAt } from '@opentf/utils';
+import { replaceAt } from '@opentf/std';
 
 replaceAt(str: string, index?: number, replaceStr?: string): string;
 ```
@@ -45,7 +45,7 @@ replaceAt("iphone", 1, "P"); //=> 'iPhone'
 
 ## Try
 
-<REPL code={`const { replaceAt } = require('@opentf/utils');
+<REPL code={`const { replaceAt } = require('@opentf/std');
 
 replaceAt('hello world', 0, 'H');
 `} />

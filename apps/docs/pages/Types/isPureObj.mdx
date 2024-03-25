@@ -10,7 +10,7 @@ In JavaScript `typeof null` is `'object'`.
 ## Syntax
 
 ```ts
-import { isPureObj } from '@opentf/utils';
+import { isPureObj } from '@opentf/std';
 
 isPureObj(val: unknown): boolean;
 ```
@@ -74,7 +74,7 @@ isPureObj(Object.create(null)) //=> true
 
 ## Try
 
-<REPL code={`const { isPureObj } = require('@opentf/utils');
+<REPL code={`const { isPureObj } = require('@opentf/std');
 
 log(isPureObj({}));
 log(isPureObj([]));

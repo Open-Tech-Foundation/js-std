@@ -5,7 +5,7 @@ import REPL from "../../components/REPL";
 ## Syntax
 
 ```ts
-import { isObj } from '@opentf/utils';
+import { isObj } from '@opentf/std';
 
 isObj(obj: unknown): boolean;
 ```
@@ -77,7 +77,7 @@ isObj(Object.create(null)); // true
 
 ## Try
 
-<REPL code={`const { isObj } = require('@opentf/utils');
+<REPL code={`const { isObj } = require('@opentf/std');
 
 isObj({});
 `} />

@@ -23,7 +23,7 @@ It uses [isEql](/Assert/isEql) for deep comparison of values.
 ## Syntax
 
 ```ts copy
-import { diff } from '@opentf/utils';
+import { diff } from '@opentf/std';
 
 diff(
   collections: unknown[][] = [],
@@ -48,7 +48,7 @@ diff([[{ a: 1 }, {a: 3}], [{ a: 1 }, { a: 2 }]]); //=> [{a: 3}]
 
 ## Try
 
-<REPL code={`const { diff } = require('@opentf/utils');
+<REPL code={`const { diff } = require('@opentf/std');
 
 const odds = [1, 3, 5, 7, 9];
 const squares = [1, 4, 9];

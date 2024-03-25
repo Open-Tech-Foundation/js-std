@@ -5,7 +5,7 @@ import REPL from "../../components/REPL";
 ## Syntax
 
 ```ts
-import { isWkRef } from '@opentf/utils';
+import { isWkRef } from '@opentf/std';
 
 isWkRef(value: unknown): boolean;
 ```
@@ -21,7 +21,7 @@ isWkRef(new WeakRef(user)) //=> true
 
 ## Try
 
-<REPL code={`const { isWkRef } = require('@opentf/utils');
+<REPL code={`const { isWkRef } = require('@opentf/std');
 
 let user = { name: "John" };
 isWkRef(new WeakRef(user));

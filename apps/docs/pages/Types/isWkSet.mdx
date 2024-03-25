@@ -5,7 +5,7 @@ import REPL from "../../components/REPL";
 ## Syntax
 
 ```ts
-import { isWkSet } from '@opentf/utils';
+import { isWkSet } from '@opentf/std';
 
 isWkSet(value: unknown): boolean;
 ```
@@ -20,7 +20,7 @@ isWkSet(new WeakSet()) //=> true
 
 ## Try
 
-<REPL code={`const { isWkSet } = require('@opentf/utils');
+<REPL code={`const { isWkSet } = require('@opentf/std');
 
 isWkSet(new WeakSet());
 `} />

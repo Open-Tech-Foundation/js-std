@@ -6,7 +6,7 @@ import REPL from "../../components/REPL";
 ## Syntax
 
 ```ts
-import { countBy } from '@opentf/utils';
+import { countBy } from '@opentf/std';
 
 countBy<T>(
   arr: T[] = [],
@@ -53,7 +53,7 @@ countBy(letters, (l) => l.toLowerCase())
 
 ## Try
 
-<REPL code={`const { countBy } = require('@opentf/utils');
+<REPL code={`const { countBy } = require('@opentf/std');
 
 const letters = ['a', 'b', 'A', 'a', 'B', 'c'];
 countBy(letters, (l) => l.toLowerCase());

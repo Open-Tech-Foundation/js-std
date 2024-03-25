@@ -5,7 +5,7 @@ import REPL from "../../components/REPL";
 ## Syntax
 
 ```ts
-import { clamp } from '@opentf/utils';
+import { clamp } from '@opentf/std';
 
 clamp(val: number, min: number, max: number): number;
 ```
@@ -24,7 +24,7 @@ clamp(1500, 1000, 1366) //=> 1366
 
 ## Try
 
-<REPL code={`const { clamp } = require('@opentf/utils');
+<REPL code={`const { clamp } = require('@opentf/std');
 
 clamp(0, 1000, 1366);
 `} />

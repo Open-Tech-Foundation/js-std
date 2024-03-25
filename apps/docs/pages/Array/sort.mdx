@@ -36,7 +36,7 @@ The order param can be either `'asc'` or `'desc'`.
 ## Usage
 
 ```ts
-import { sort } from "@opentf/utils";
+import { sort } from "@opentf/std";
 
 sort([...]);
 ```
@@ -51,7 +51,7 @@ sort(['x', 'z', 'y'], 'desc') //=> ['z', 'y', 'x']
 
 ## Try
 
-<REPL code={`const { sort } = require('@opentf/utils');
+<REPL code={`const { sort } = require('@opentf/std');
 
 const months = ["Mar", "Jan", "Feb", "Dec"];
 const sortedMonths = sort(months);

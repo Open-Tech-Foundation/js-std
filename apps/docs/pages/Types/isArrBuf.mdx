@@ -5,7 +5,7 @@ import REPL from "../../components/REPL";
 ## Syntax
 
 ```ts
-import { isArrBuf } from '@opentf/utils';
+import { isArrBuf } from '@opentf/std';
 
 isArrBuf(val: unknown): boolean;
 ```
@@ -20,7 +20,7 @@ isArrBuf(new ArrayBuffer(8)) //=> true
 
 ## Try
 
-<REPL code={`const { isArrBuf } = require('@opentf/utils');
+<REPL code={`const { isArrBuf } = require('@opentf/std');
 
 isArrBuf(new ArrayBuffer(8));
 `} />

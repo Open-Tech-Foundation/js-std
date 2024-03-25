@@ -5,7 +5,7 @@ import REPL from "../../components/REPL";
 ## Syntax
 
 ```ts
-import { sleep } from '@opentf/utils';
+import { sleep } from '@opentf/std';
 
 sleep(ms: number): Promise<void>;
 ```
@@ -24,7 +24,7 @@ sleep(ms: number): Promise<void>;
 
 ## Try
 
-<REPL code={`const { sleep } = require('@opentf/utils');
+<REPL code={`const { sleep } = require('@opentf/std');
 
 console.log('First');
 (async () => {

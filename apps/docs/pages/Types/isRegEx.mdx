@@ -5,7 +5,7 @@ import REPL from "../../components/REPL";
 ## Syntax
 
 ```ts
-import { isRegEx } from '@opentf/utils';
+import { isRegEx } from '@opentf/std';
 
 isRegEx(value: unknown): boolean;
 ```
@@ -22,7 +22,7 @@ isRegEx({}) //=> false
 
 ## Try
 
-<REPL code={`const { isRegEx } = require('@opentf/utils');
+<REPL code={`const { isRegEx } = require('@opentf/std');
 
 isRegEx(/\\d+/);
 `} />

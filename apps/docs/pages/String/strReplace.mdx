@@ -6,7 +6,7 @@ import REPL from "../../components/REPL";
 ## Syntax
 
 ```ts
-import { strReplace } from '@opentf/utils';
+import { strReplace } from '@opentf/std';
 
 strReplace(str: string,
            pattern: string | RegExp,
@@ -52,7 +52,7 @@ strReplace('212F', test, convert) //=> '100C'
 
 ## Try
 
-<REPL code={`const { strReplace } = require('@opentf/utils');
+<REPL code={`const { strReplace } = require('@opentf/std');
 
 const str = 'Apples are round, and apples are juicy.';
 strReplace(str, 'apple', 'orange');

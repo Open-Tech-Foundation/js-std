@@ -5,7 +5,7 @@ import REPL from "../../components/REPL";
 ## Syntax
 
 ```ts
-import { isSym } from '@opentf/utils';
+import { isSym } from '@opentf/std';
 
 isSym(value: unknown): boolean;
 ```
@@ -22,7 +22,7 @@ isSym('abc') //=> false
 
 ## Try
 
-<REPL code={`const { isSym } = require('@opentf/utils');
+<REPL code={`const { isSym } = require('@opentf/std');
 
 isSym(Symbol('abc'));
 `} />

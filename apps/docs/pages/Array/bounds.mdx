@@ -14,7 +14,7 @@ If duplicate values are present in the array, then the first match will be retur
 ## Syntax
 
 ```ts copy
-import { bounds } from '@opentf/utils';
+import { bounds } from '@opentf/std';
 
 bounds<T>(
   arr: T[] = [],
@@ -58,7 +58,7 @@ bounds(arr, (o) => o.age)
 
 ## Try
 
-<REPL code={`const { bounds } = require('@opentf/utils');
+<REPL code={`const { bounds } = require('@opentf/std');
 
 bounds([1, 2, 3, 4, 5]);
 `} />

@@ -6,7 +6,7 @@ import REPL from "../../components/REPL";
 ## Syntax
 
 ```ts
-import { insertAt } from '@opentf/utils';
+import { insertAt } from '@opentf/std';
 
 insertAt(str: string, index?: number, insertStr?: string): string;
 ```
@@ -37,7 +37,7 @@ insertAt('foo baz', 3, ' bar') //=> 'foo bar baz'
 
 ## Try
 
-<REPL code={`const { insertAt } = require('@opentf/utils');
+<REPL code={`const { insertAt } = require('@opentf/std');
 
 insertAt('The quick fox', 10, 'brown ');
 `} />

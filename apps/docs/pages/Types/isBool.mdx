@@ -5,7 +5,7 @@ import REPL from "../../components/REPL";
 ## Syntax
 
 ```ts
-import { isBool } from '@opentf/utils';
+import { isBool } from '@opentf/std';
 
 isBool(val: unknown): boolean;
 ```
@@ -26,7 +26,7 @@ isBool() //=> false
 
 ## Try
 
-<REPL code={`const { isBool } = require('@opentf/utils');
+<REPL code={`const { isBool } = require('@opentf/std');
 
 isBool(false);
 `} />

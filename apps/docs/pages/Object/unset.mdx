@@ -14,7 +14,7 @@ If an array value is removed, then it will not return a [sparsed](https://develo
 ## Syntax
 
 ```ts
-import { unset } from '@opentf/utils';
+import { unset } from '@opentf/std';
 
 unset<T>(
   obj: T,
@@ -45,7 +45,7 @@ unset(nestedObj, 'x.y.z') //=> { x: { y: {} } }
 
 ## Try
 
-<REPL code={`const { unset } = require('@opentf/utils');
+<REPL code={`const { unset } = require('@opentf/std');
 
 const obj = { a: 1, b: 2 };
 unset(obj, 'a');

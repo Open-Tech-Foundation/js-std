@@ -6,7 +6,7 @@ import REPL from "../../components/REPL";
 ## Syntax
 
 ```ts
-import { clone } from '@opentf/utils';
+import { clone } from '@opentf/std';
 
 clone<T>(val: T): T;
 ```
@@ -78,7 +78,7 @@ output.map === input.map; // false
 
 ## Try
 
-<REPL code={`const { clone } = require('@opentf/utils');
+<REPL code={`const { clone } = require('@opentf/std');
 
 const input = { 
   arr: [1, 2, 3], 

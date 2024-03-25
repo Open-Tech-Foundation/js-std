@@ -32,7 +32,7 @@ export default {
           property="og:description"
           content={
             frontMatter.description ||
-            "A collection of JavaScript utility functions."
+            "An Extensive JavaScript Standard Library."
           }
         />
         <meta

@@ -38,7 +38,7 @@ The following type of values are supported:
 ## Syntax
 
 ```ts
-import { isEql } from '@opentf/utils';
+import { isEql } from '@opentf/std';
 
 isEql(val1: unknown, val2: unknown): Boolean;
 ```
@@ -65,7 +65,7 @@ isEql(re, re2); //=> false
 
 ## Try
 
-<REPL code={`const { isEql } = require('@opentf/utils');
+<REPL code={`const { isEql } = require('@opentf/std');
 
 const obj1 = {a: 1, b: 2}
 const obj2 = {a: 1, b: 2}

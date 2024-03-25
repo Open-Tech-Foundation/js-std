@@ -14,7 +14,7 @@ asyncFilter(
 ## Usage
 
 ```ts
-import { asyncFilter } from "@opentf/utils";
+import { asyncFilter } from "@opentf/std";
 
 asyncFilter([], async (value, index) => {});
 ```
@@ -37,7 +37,7 @@ console.log(filteredArr); //=> [2, 4]
 
 ## Try
 
-<REPL code={`const { asyncFilter } = require('@opentf/utils');
+<REPL code={`const { asyncFilter } = require('@opentf/std');
 
 function isEven(n) {
   return new Promise((resolve) => {

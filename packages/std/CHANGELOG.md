@@ -1,4 +1,4 @@
-# @opentf/utils
+# @opentf/std
 
 ## 0.42.0
 

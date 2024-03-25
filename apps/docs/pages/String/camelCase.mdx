@@ -5,7 +5,7 @@ import REPL from "../../components/REPL";
 ## Syntax
 
 ```ts
-import { camelCase } from '@opentf/utils';
+import { camelCase } from '@opentf/std';
 
 camelCase(str: string): string;
 ```
@@ -53,7 +53,7 @@ camelCase('1 apple') // '1Apple'
 
 ## Try
 
-<REPL code={`const { camelCase } = require('@opentf/utils');
+<REPL code={`const { camelCase } = require('@opentf/std');
 
 camelCase('camel case');
 `} />

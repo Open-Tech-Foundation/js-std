@@ -5,7 +5,7 @@ import REPL from "../../components/REPL";
 ## Syntax
 
 ```ts
-import { isWkMap } from '@opentf/utils';
+import { isWkMap } from '@opentf/std';
 
 isWkMap(value: unknown): boolean;
 ```
@@ -20,7 +20,7 @@ isWkMap(new WeakMap()) //=> true
 
 ## Try
 
-<REPL code={`const { isWkMap } = require('@opentf/utils');
+<REPL code={`const { isWkMap } = require('@opentf/std');
 
 isWkMap(new WeakMap());
 `} />

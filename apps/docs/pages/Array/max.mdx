@@ -14,7 +14,7 @@ If duplicate values are present in the array, then the first match will be retur
 ## Syntax
 
 ```ts copy
-import { max } from '@opentf/utils';
+import { max } from '@opentf/std';
 
 max<T>(
   arr: T[] = [],
@@ -56,7 +56,7 @@ max(arr, (o) => o.age))
 
 ## Try
 
-<REPL code={`const { max } = require('@opentf/utils');
+<REPL code={`const { max } = require('@opentf/std');
 
 max([1, 2, 3, 4, 5]);
 `} />

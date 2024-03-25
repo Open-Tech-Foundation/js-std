@@ -6,7 +6,7 @@ import REPL from "../../components/REPL";
 ## Syntax
 
 ```ts
-import { shallowMerge } from '@opentf/utils';
+import { shallowMerge } from '@opentf/std';
 
 shallowMerge(obj1, ...objN);
 ```
@@ -30,7 +30,7 @@ shallowMerge(a, b, c); //=> [3]
 
 ## Try
 
-<REPL code={`const { shallowMerge } = require('@opentf/utils');
+<REPL code={`const { shallowMerge } = require('@opentf/std');
 
 const a = { a: 1 };
 const b = { b: 2 };

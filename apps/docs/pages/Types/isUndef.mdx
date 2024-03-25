@@ -5,7 +5,7 @@ import REPL from "../../components/REPL";
 ## Syntax
 
 ```ts
-import { isUndef } from '@opentf/utils';
+import { isUndef } from '@opentf/std';
 
 isUndef(value: unknown): boolean;
 ```
@@ -22,7 +22,7 @@ isUndef(null) //=> false
 
 ## Try
 
-<REPL code={`const { isUndef } = require('@opentf/utils');
+<REPL code={`const { isUndef } = require('@opentf/std');
 
 let a;
 isUndef(a);

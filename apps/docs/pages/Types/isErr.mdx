@@ -5,7 +5,7 @@ import REPL from "../../components/REPL";
 ## Syntax
 
 ```ts
-import { isErr } from '@opentf/utils';
+import { isErr } from '@opentf/std';
 
 isErr(val: unknown): boolean;
 ```
@@ -20,7 +20,7 @@ isErr({}) //=> false
 
 ## Try
 
-<REPL code={`const { isErr } = require('@opentf/utils');
+<REPL code={`const { isErr } = require('@opentf/std');
 
 isErr(new Error());
 `} />

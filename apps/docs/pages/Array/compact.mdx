@@ -10,7 +10,7 @@ Immutable: This does not mutate the given array.
 ## Syntax
 
 ```ts copy
-import { compact } from '@opentf/utils';
+import { compact } from '@opentf/std';
 
 compact<T>(arr: T[] = []): Partial<T[]>;
 ```
@@ -37,6 +37,6 @@ compact(['apple', '', 'Mango']) //=>['apple', 'Mango']);
 
 ## Try
 
-<REPL code={`const { compact } = require('@opentf/utils');
+<REPL code={`const { compact } = require('@opentf/std');
 
 compact([1, null, 2, 0, 3]);`} />

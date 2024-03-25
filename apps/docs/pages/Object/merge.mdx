@@ -6,7 +6,7 @@ import REPL from "../../components/REPL";
 ## Syntax
 
 ```ts
-import { merge } from '@opentf/utils';
+import { merge } from '@opentf/std';
 
 merge(obj1, ...objN);
 ```
@@ -30,7 +30,7 @@ merge(a, b, c); //=> { a: [7, 8, 5] }
 
 ## Try
 
-<REPL code={`const { merge } = require('@opentf/utils');
+<REPL code={`const { merge } = require('@opentf/std');
 
 const a = { a: { b: 1 }, d: 3 };
 const b = { a: { c: 2 }, e: 5 };

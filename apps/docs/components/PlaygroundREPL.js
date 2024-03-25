@@ -9,7 +9,7 @@ const NodeREPL = dynamic(
   { ssr: false }
 );
 
-const code = `const { range, diff, camelCase } = require('@opentf/utils');
+const code = `const { range, diff, camelCase } = require('@opentf/std');
 
 log(diff(
   ['apple', 'mango', 'orange'], 
@@ -31,7 +31,7 @@ export default function PlaygroundREPL() {
       <NodeREPL
         code={code}
         setupCode={setupCode}
-        deps={["@opentf/utils", "lodash", "ramda"]}
+        deps={["@opentf/std", "lodash", "ramda"]}
         layout="SPLIT_PANEL"
         editor={{
           darkMode: resolvedTheme === "dark",

@@ -6,7 +6,7 @@ import REPL from "../../components/REPL";
 ## Syntax
 
 ```ts
-import { has } from '@opentf/utils';
+import { has } from '@opentf/std';
 
 has(obj: object, path: string | unknown[]): boolean
 ```
@@ -34,7 +34,7 @@ has({ a: { 'b.c': 1 } }, ['a', 'b.c']) //=> true
 ```
 ## Try
 
-<REPL code={`const { has } = require('@opentf/utils');
+<REPL code={`const { has } = require('@opentf/std');
 
 has({ a: 1 }, 'a');
 `} />

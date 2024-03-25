@@ -10,7 +10,7 @@
 
 </div>
 
-> A collection of JavaScript utility functions.
+> An Extensive JavaScript Standard Library.
 
 <div align="center">
 
@@ -29,19 +29,19 @@
 ## Installation
 
 ```sh
-npm install @opentf/utils
+npm install @opentf/std
 ```
 
 ```sh
-yarn add @opentf/utils
+yarn add @opentf/std
 ```
 
 ```sh
-pnpm add @opentf/utils
+pnpm add @opentf/std
 ```
 
 ```sh
-bun add @opentf/utils
+bun add @opentf/std
 ```
 
 ## Usage
@@ -55,7 +55,7 @@ import {
   isEql,
   isEqlArr,
   sleep,
-} from '@opentf/utils';
+} from '@opentf/std';
 
 isNum(NaN); //=> false
 

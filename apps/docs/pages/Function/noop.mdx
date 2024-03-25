@@ -5,7 +5,7 @@ import REPL from "../../components/REPL";
 ## Syntax
 
 ```ts
-import { noop } from '@opentf/utils';
+import { noop } from '@opentf/std';
 
 noop(): undefined;
 ```
@@ -25,7 +25,7 @@ test(); // It can safely calls the callback fn
 
 ## Try
 
-<REPL code={`const { noop } = require('@opentf/utils');
+<REPL code={`const { noop } = require('@opentf/std');
 
 function test(cb) {
   const fn = cb || noop;

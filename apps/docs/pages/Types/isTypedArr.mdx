@@ -5,7 +5,7 @@ import REPL from "../../components/REPL";
 ## Syntax
 
 ```ts
-import { isTypedArr } from '@opentf/utils';
+import { isTypedArr } from '@opentf/std';
 
 isTypedArr(value: unknown): boolean;
 ```
@@ -22,7 +22,7 @@ isTypedArr(new Float64Array()) //=> true
 
 ## Try
 
-<REPL code={`const { isTypedArr } = require('@opentf/utils');
+<REPL code={`const { isTypedArr } = require('@opentf/std');
 
 isTypedArr(new Int8Array());
 `} />

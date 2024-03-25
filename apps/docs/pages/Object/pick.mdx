@@ -10,7 +10,7 @@ The source object can `Plain Object` or `Array`.
 ## Syntax
 
 ```ts
-import { pick } from '@opentf/utils';
+import { pick } from '@opentf/std';
 
 pick(obj: object, ...paths: (string | unknown[])[])
 ```
@@ -30,7 +30,7 @@ pick({ a: { b: { c: 1 }, d: null, e: [10, 20, 30] } }, 'a.b', ['a', 'e', '2'])
 ```
 ## Try
 
-<REPL code={`const { pick } = require('@opentf/utils');
+<REPL code={`const { pick } = require('@opentf/std');
 
 pick({ a: 1, b: 2 }, 'a');
 `} />

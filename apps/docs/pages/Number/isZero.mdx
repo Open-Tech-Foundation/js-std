@@ -10,7 +10,7 @@ In JavaScript 0 === -0 is true.
 ## Syntax
 
 ```ts
-import { isZero } from '@opentf/utils';
+import { isZero } from '@opentf/std';
 
 isZero(n: number): boolean;
 ```
@@ -33,7 +33,7 @@ isZero(-0x0) //=> false
 
 ## Try
 
-<REPL code={`const { isZero } = require('@opentf/utils');
+<REPL code={`const { isZero } = require('@opentf/std');
 
 log(isZero(0));
 isZero(-0);

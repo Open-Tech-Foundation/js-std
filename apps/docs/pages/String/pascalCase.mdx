@@ -5,7 +5,7 @@ import REPL from "../../components/REPL";
 ## Syntax
 
 ```ts
-import { pascalCase } from '@opentf/utils';
+import { pascalCase } from '@opentf/std';
 
 pascalCase(str: string): string;
 ```
@@ -32,7 +32,7 @@ pascalCase('cinema Scope'); // 'CinemaScope'
 
 ## Try
 
-<REPL code={`const { pascalCase } = require('@opentf/utils');
+<REPL code={`const { pascalCase } = require('@opentf/std');
 
 pascalCase('pascal case');
 `} />

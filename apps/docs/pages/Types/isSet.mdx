@@ -5,7 +5,7 @@ import REPL from "../../components/REPL";
 ## Syntax
 
 ```ts
-import { isSet } from '@opentf/utils';
+import { isSet } from '@opentf/std';
 
 isSet(value: unknown): boolean;
 ```
@@ -22,7 +22,7 @@ isSet({}) //=> false
 
 ## Try
 
-<REPL code={`const { isSet } = require('@opentf/utils');
+<REPL code={`const { isSet } = require('@opentf/std');
 
 isSet(new Set());
 `} />

@@ -22,15 +22,15 @@ The `step` value can be auto infered based on the `start` & `end` values.
 </Callout>
 
 <Callout type="info">
-The `third` argument can be either a `step` value or `options` object.
+The `third` argument can be either a `step` value or an `options` object.
 </Callout>
 
 ## Usage
 
 ```ts
-import { range } from '@opentf/utils';
+import { range } from '@opentf/std';
 
-range(start, stop);
+range(start, end);
 ```
 
 ## Examples
@@ -63,7 +63,7 @@ range(10, 12, { step: 0.5 }) //=> [10, 10.5, 11, 11.5]
 
 ## Try
 
-<REPL code={`const { range } = require('@opentf/utils');
+<REPL code={`const { range } = require('@opentf/std');
 
 log(range(1, 5));
 

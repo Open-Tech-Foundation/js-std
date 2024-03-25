@@ -5,7 +5,7 @@ import REPL from "../../components/REPL";
 ## Syntax
 
 ```ts
-import { isMap } from '@opentf/utils';
+import { isMap } from '@opentf/std';
 
 isMap(val: unknown): boolean;
 ```
@@ -20,7 +20,7 @@ isMap({}) //=> false
 
 ## Try
 
-<REPL code={`const { isMap } = require('@opentf/utils');
+<REPL code={`const { isMap } = require('@opentf/std');
 
 isMap(new Map());
 `} />

@@ -10,7 +10,7 @@ It uses [isEql](/Assert/isEql) for deep comparison of values.
 ## Syntax
 
 ```ts copy
-import { uniq } from '@opentf/utils';
+import { uniq } from '@opentf/std';
 
 uniq<T>(
   arr: T[] = [],
@@ -30,7 +30,7 @@ uniq(a, Math.floor) //=> [2.1, 1.2]
 
 ## Try
 
-<REPL code={`const { uniq } = require('@opentf/utils');
+<REPL code={`const { uniq } = require('@opentf/std');
 
 const arr = [1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5];
 uniq(arr);

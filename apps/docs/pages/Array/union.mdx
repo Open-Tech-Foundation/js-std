@@ -23,7 +23,7 @@ It uses [isEql](/Assert/isEql) for deep comparison of values.
 ## Syntax
 
 ```ts copy
-import { union } from '@opentf/utils';
+import { union } from '@opentf/std';
 
 union(
   collections: unknown[][] = [],
@@ -46,7 +46,7 @@ union([setA, setB, setC]) //=> [1, 2, 3, 4, 5]
 
 ## Try
 
-<REPL code={`const { union } = require('@opentf/utils');
+<REPL code={`const { union } = require('@opentf/std');
 
 const evens = [2, 4, 6, 8];
 const squares = [1, 4, 9];

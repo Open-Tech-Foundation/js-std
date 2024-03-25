@@ -6,7 +6,7 @@ import REPL from "../../components/REPL";
 ## Syntax
 
 ```ts
-import { toPath } from '@opentf/utils';
+import { toPath } from '@opentf/std';
 
 toPath(str: string): (string | number)[]
 ```
@@ -19,7 +19,7 @@ toPath('a[0].b.c') //=> ['a', 0, 'b', 'c']
 
 ## Try
 
-<REPL code={`const { toPath } = require('@opentf/utils');
+<REPL code={`const { toPath } = require('@opentf/std');
 
 toPath('a[0].b.c');
 `} />

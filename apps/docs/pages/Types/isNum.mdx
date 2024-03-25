@@ -10,7 +10,7 @@ It only coerces the string value, not other types like null, boolean, etc.
 ## Syntax
 
 ```ts
-import { isNum } from '@opentf/utils';
+import { isNum } from '@opentf/std';
 
 isNum(value: unknown, coerce = false): boolean;
 ```
@@ -79,7 +79,7 @@ isNum(Math.PI) //=> true
 
 ## Try
 
-<REPL code={`const { isNum } = require('@opentf/utils');
+<REPL code={`const { isNum } = require('@opentf/std');
 
 log(isNum(NaN));
 log(isNum(1));

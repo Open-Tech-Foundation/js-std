@@ -5,7 +5,7 @@ import REPL from "../../components/REPL";
 ## Syntax
 
 ```ts
-import { isDate } from '@opentf/utils';
+import { isDate } from '@opentf/std';
 
 isDate(val: unknown): boolean;
 ```
@@ -22,7 +22,7 @@ isDate('2000-01-01') //=> false
 
 ## Try
 
-<REPL code={`const { isDate } = require('@opentf/utils');
+<REPL code={`const { isDate } = require('@opentf/std');
 
 isDate(new Date());
 `} />

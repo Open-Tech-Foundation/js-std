@@ -5,7 +5,7 @@ import REPL from "../../components/REPL";
 ## Syntax
 
 ```ts
-import { isStr } from '@opentf/utils';
+import { isStr } from '@opentf/std';
 
 isStr(value: unknown): boolean;
 ```
@@ -22,7 +22,7 @@ isStr(1) //=> false
 
 ## Try
 
-<REPL code={`const { isStr } = require('@opentf/utils');
+<REPL code={`const { isStr } = require('@opentf/std');
 
 isStr('abc');
 `} />

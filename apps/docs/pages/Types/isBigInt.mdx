@@ -5,7 +5,7 @@ import REPL from "../../components/REPL";
 ## Syntax
 
 ```ts
-import { isBigInt } from '@opentf/utils';
+import { isBigInt } from '@opentf/std';
 
 isBigInt(val: unknown): boolean;
 ```
@@ -20,7 +20,7 @@ isBigInt(1n) //=> true
 
 ## Try
 
-<REPL code={`const { isBigInt } = require('@opentf/utils');
+<REPL code={`const { isBigInt } = require('@opentf/std');
 
 isBigInt(1n);
 `} />

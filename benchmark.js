@@ -147,6 +147,6 @@ async function isEqlBench() {
   console.table(bench.table());
 }
 
-// await cloneBench();
+await cloneBench();
 // await sortByBench();
-await isEqlBench();
+// await isEqlBench();

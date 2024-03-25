@@ -22,7 +22,7 @@ The following type of values are supported:
 ## Syntax
 
 ```ts
-import { isEmpty } from '@opentf/utils';
+import { isEmpty } from '@opentf/std';
 
 isEmpty(val: unknown, sparse = false): boolean;
 ```
@@ -81,7 +81,7 @@ isEmpty([,]) //=> false
 
 ## Try
 
-<REPL code={`const { isEmpty } = require('@opentf/utils');
+<REPL code={`const { isEmpty } = require('@opentf/std');
 
 log(isEmpty([]));
 log(isEmpty({}));

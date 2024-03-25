@@ -6,7 +6,7 @@ import REPL from "../../components/REPL";
 ## Syntax
 
 ```ts
-import { mergeAll } from '@opentf/utils';
+import { mergeAll } from '@opentf/std';
 
 mergeAll(obj1, ...objN);
 ```
@@ -25,7 +25,7 @@ mergeAll(a, b); //=> { a: { b: [1, 2] }
 
 ## Try
 
-<REPL code={`const { mergeAll } = require('@opentf/utils');
+<REPL code={`const { mergeAll } = require('@opentf/std');
 
 const a = { a: { b: [1] } };
 const b = { a: { b: [2] } };

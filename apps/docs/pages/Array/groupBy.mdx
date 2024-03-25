@@ -10,7 +10,7 @@ The key can be a string or a callback function that must return a string.
 ## Syntax
 
 ```ts
-import { groupBy } from '@opentf/utils';
+import { groupBy } from '@opentf/std';
 
 groupBy(arr: unknown[], key: string | x => string);
 ```
@@ -51,7 +51,7 @@ groupBy(["one", "two", "three"], "length"))
 
 ## Try
 
-<REPL code={`const { groupBy } = require('@opentf/utils');
+<REPL code={`const { groupBy } = require('@opentf/std');
 
 const products = [
   { name: "apples", category: "fruits" },

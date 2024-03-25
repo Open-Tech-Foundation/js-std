@@ -23,7 +23,7 @@ It uses [isEql](/Assert/isEql) for deep comparison of values.
 ## Syntax
 
 ```ts copy
-import { symDiff } from '@opentf/utils';
+import { symDiff } from '@opentf/std';
 
 symDiff(
   collections: unknown[][] = [],
@@ -51,7 +51,7 @@ symDiff([bucket1, bucket2], (v) => v.toLowerCase())
 
 ## Try
 
-<REPL code={`const { symDiff } = require('@opentf/utils');
+<REPL code={`const { symDiff } = require('@opentf/std');
 
 const bucket1 = ['Fruits', 'Vegs', 'Eggs', 'Cookies', 'Nuts'];
 const bucket2 = ['fruits', 'Snacks', 'cookies'];

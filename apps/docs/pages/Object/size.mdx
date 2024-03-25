@@ -22,7 +22,7 @@ The following type of values are supported:
 ## Syntax
 
 ```ts
-import { size } from '@opentf/utils';
+import { size } from '@opentf/std';
 
 size(val: unknown): number | null;
 ```
@@ -84,7 +84,7 @@ size(new ArrayBuffer(8)) //=> 8
 
 ## Try
 
-<REPL code={`const { size } = require('@opentf/utils');
+<REPL code={`const { size } = require('@opentf/std');
 
 log(size(true));
 log(size([]));

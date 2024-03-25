@@ -6,7 +6,7 @@ import REPL from "../../components/REPL";
 ## Syntax
 
 ```ts copy
-import { chunk } from '@opentf/utils';
+import { chunk } from '@opentf/std';
 
 chunk(arr: unknown[], size = 1): unknown[];
 ```
@@ -27,6 +27,6 @@ chunk([1, 2, 3], 4) //=> [[1, 2, 3]]
 
 ## Try
 
-<REPL code={`const { chunk } = require('@opentf/utils');
+<REPL code={`const { chunk } = require('@opentf/std');
 
 chunk([1, 2, 3, 4, 5], 2);`} />
