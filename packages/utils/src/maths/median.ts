@@ -1,5 +1,5 @@
 import sort from '../array/sort';
-import even from './even';
+import isEven from './isEven';
 
 /**
  * Calculates the median value of the given array.
@@ -17,7 +17,7 @@ export default function median(
   let a = cb ? arr.map(cb) : arr;
   a = sort(arr);
 
-  if (even(a.length)) {
+  if (isEven(a.length)) {
     const i = a.length / 2;
     return (arr[i] + arr[i - 1]) / 2;
   }
