@@ -4,13 +4,13 @@ import { useConfig } from "nextra-theme-docs";
 export default {
   useNextSeoProps() {
     return {
-      titleTemplate: "%s – Utils",
+      titleTemplate: "%s – JS Standard Library",
     };
   },
   logo: (
     <>
       <img src="/assets/Logo.svg" width={35} height={35} />
-      <span style={{ marginLeft: ".4em", fontWeight: 800 }}>Utils</span>
+      <span style={{ marginLeft: ".4em", fontWeight: 800 }}>JS Standard Library</span>
     </>
   ),
   project: {
@@ -27,7 +27,7 @@ export default {
       <>
         <link rel="icon" href="/assets/Logo.svg" />
         <meta property="og:url" content={url} />
-        <meta property="og:title" content={frontMatter.title || "Utils"} />
+        <meta property="og:title" content={frontMatter.title || "JS Standard Library"} />
         <meta
           property="og:description"
           content={
