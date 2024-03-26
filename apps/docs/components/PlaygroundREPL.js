@@ -9,14 +9,45 @@ const NodeREPL = dynamic(
   { ssr: false }
 );
 
-const code = `const { range, diff, camelCase } = require('@opentf/std');
+const code = `const {
+  isNum,
+  pascalCase,
+  sort,
+  clone,
+  isEql,
+  isEqlArr,
+  diff,
+} = require("@opentf/std");
 
-log(diff(
+log(isNum(NaN));
+
+log(pascalCase("pascal case"));
+
+log(sort([1, 10, 21, 2], "desc"));
+
+const obj = {
+  a: 1,
+  b: "abc",
+  c: new Map([["key", "val"]]),
+};
+log(clone(obj));
+
+const mapA = new Map([
+  ["a", 1],
+  ["b", 2],
+]);
+const mapB = new Map([
+  ["b", 2],
+  ["a", 1],
+]);
+log(isEql(mapA, mapB));
+
+log(isEqlArr([1, 2, 3], [2, 3, 1]));
+
+diff([
   ['apple', 'mango', 'orange'], 
   ['mango', 'apple']
-));
-log(range(1, 8));
-log(camelCase('i phone'));
+])
 `;
 
 const setupCode = `const _ = require('lodash');

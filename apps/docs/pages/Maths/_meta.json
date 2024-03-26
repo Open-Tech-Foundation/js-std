@@ -1,4 +1,5 @@
 {
+  "clamp": "clamp",
   "percentage": "percentage",
   "percentageOf": "percentageOf"
 }

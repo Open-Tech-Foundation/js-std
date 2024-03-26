@@ -55,28 +55,28 @@ import {
   isEql,
   isEqlArr,
   sleep,
-} from "@opentf/std";
+} from '@opentf/std';
 
 isNum(NaN); //=> false
 
-pascalCase("pascal case"); //=> PascalCase
+pascalCase('pascal case'); //=> PascalCase
 
-sort([1, 10, 21, 2], "desc"); //=> [ 21, 10, 2, 1 ]
+sort([1, 10, 21, 2], 'desc'); //=> [ 21, 10, 2, 1 ]
 
 const obj = {
   a: 1,
-  b: "abc",
-  c: new Map([["key", "val"]]),
+  b: 'abc',
+  c: new Map([['key', 'val']]),
 };
 clone(obj); // It returns deeply cloned value.
 
 const mapA = new Map([
-  ["a", 1],
-  ["b", 2],
+  ['a', 1],
+  ['b', 2],
 ]);
 const mapB = new Map([
-  ["b", 2],
-  ["a", 1],
+  ['b', 2],
+  ['a', 1],
 ]);
 isEql(mapA, mapB); //=> false
 
