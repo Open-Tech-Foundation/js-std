@@ -1,0 +1,32 @@
+import REPL from "../../components/REPL";
+
+> Checks if the given number is an `Even` number.
+
+## Syntax
+
+```ts
+import { isEven } from '@opentf/std';
+
+isEven(n: number): boolean
+```
+
+## Examples
+
+```ts
+isEven(0) //=> true
+
+isEven(1) //=> false
+
+isEven(2) //=> true
+
+isEven(-1) //=> false
+
+isEven(-2) //=> true
+```
+
+## Try
+
+<REPL code={`const { isEven } = require('@opentf/std');
+
+isEven(42);
+`} />

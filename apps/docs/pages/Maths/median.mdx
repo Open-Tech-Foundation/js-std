@@ -1,0 +1,45 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> Calculates the `median` value of the given array.
+
+<Callout type="info">
+Median: The middle number; found by ordering all data points and picking out the one in the middle (or if there are two middle numbers, taking the mean of those two numbers).
+<div style={{textAlign: 'right'}}>
+\- [Khan Academy](https://www.khanacademy.org/math/statistics-probability/summarizing-quantitative-data/mean-median-basics/a/mean-median-and-mode-review)
+</div>
+</Callout>
+
+## Syntax
+
+```ts
+import { median } from '@opentf/std';
+
+median(
+  arr: number[] = [],
+  cb?: (val: number, index: number) => number
+): number
+```
+
+## Examples
+
+```ts
+median([]) //=> NaN
+
+median([1]) //=> 1
+
+median([4, 1, 7]) //=> 1
+
+median([4, 2, 8]) //=> 2
+
+median([1, 4, 2, 5, 0]) //=> 2
+
+median([10, 20, 40, 50]) //=> 30
+```
+
+## Try
+
+<REPL code={`const { median } = require('@opentf/std');
+
+median([10, 20, 40, 50]);
+`} />

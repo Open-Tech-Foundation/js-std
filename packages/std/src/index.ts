@@ -46,6 +46,7 @@ export { default as prod } from './maths/prod';
 export { default as mean } from './maths/mean';
 export { default as median } from './maths/median';
 export { default as mode } from './maths/mode';
+export { default as clamp } from './maths/clamp';
 
 // Types
 export { default as isNum } from './types/isNum';
@@ -108,7 +109,6 @@ export { default as noop } from './function/noop';
 export { default as hexToRGB } from './colors/hexToRGB';
 
 // Number
-export { default as clamp } from './number/clamp';
 export { default as isZero } from './number/isZero';
 export { default as isNegZero } from './number/isNegZero';
 export { default as toNum } from './number/toNum';

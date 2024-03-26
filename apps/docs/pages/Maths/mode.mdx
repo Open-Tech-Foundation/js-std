@@ -1,0 +1,46 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> Calculates the `mode` value of the given array.
+
+<Callout type="info">
+Mode: The most frequent number—that is, the number that occurs the highest number of times.
+<div style={{textAlign: 'right'}}>
+\- [Khan Academy](https://www.khanacademy.org/math/statistics-probability/summarizing-quantitative-data/mean-median-basics/a/mean-median-and-mode-review)
+</div>
+</Callout>
+
+## Syntax
+
+```ts
+import { mode } from '@opentf/std';
+
+mode<T>(
+  arr: T[] = [],
+  cb?: (val: T, index: number) => number
+): number[]
+```
+
+## Examples
+
+```ts
+mode([1]) //=> []
+
+mode([1, 2, 3, 4, 5]) //=> []
+
+mode([4, 2]) //=> []
+
+mode([4, 2, 3, 2, 2]) //=> [2]
+
+mode([0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 4]) //=> [1, 2]
+
+mode([{ n: 1 }, { n: 2 }, { n: 3 }, { n: 2 }], ({ n }) => n) //=> [2]
+
+```
+
+## Try
+
+<REPL code={`const { mode } = require('@opentf/std');
+
+mode([0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 4]);
+`} />

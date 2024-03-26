@@ -1,5 +1,13 @@
 {
   "clamp": "clamp",
+  "divMod": "divMod",
+  "isEven": "isEven",
+  "isOdd": "isOdd",
+  "mean": "mean",
+  "median": "median",
+  "mode": "mode",
   "percentage": "percentage",
-  "percentageOf": "percentageOf"
+  "percentageOf": "percentageOf",
+  "prod": "prod",
+  "sum": "sum"
 }

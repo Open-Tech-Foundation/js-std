@@ -1,0 +1,40 @@
+import REPL from "../../components/REPL";
+
+> Calculates the `product` of values in the given array.
+
+## Syntax
+
+```ts
+import { prod } from '@opentf/std';
+
+prod(
+  arr: number[] = [],
+  cb?: (val: number, index: number) => number
+): number
+```
+
+## Examples
+
+```ts
+prod() //=> 1
+
+prod([]) //=> 1
+
+prod([1]) //=> 1
+
+prod([1, -1]) //=> -1
+
+prod([-1, -2]) //=> 2
+
+prod([1, 2, 3, 4, 5]) //=> 120
+
+const objects = [{ n: 4 }, { n: 2 }, { n: 8 }, { n: 6 }];
+prod(objects, (v) => v.n) //=> 384
+```
+
+## Try
+
+<REPL code={`const { prod } = require('@opentf/std');
+
+prod([1, 2, 3, 4, 5]);
+`} />

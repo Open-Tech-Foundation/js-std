@@ -119,12 +119,20 @@ await sleep(1000); // It suspends the exection for 1 second.
 
 ### Maths
 
+- [clamp](https://js-std.pages.dev/Maths/clamp)
+- [divMod](https://js-std.pages.dev/Maths/divMod)
+- [isEven](https://js-std.pages.dev/Maths/isEven)
+- [isOdd](https://js-std.pages.dev/Maths/isOdd)
+- [mean](https://js-std.pages.dev/Maths/mean)
+- [median](https://js-std.pages.dev/Maths/median)
+- [mode](https://js-std.pages.dev/Maths/mode)
 - [percentage](https://js-std.pages.dev/Maths/percentage)
 - [percentageOf](https://js-std.pages.dev/Maths/percentageOf)
+- [prod](https://js-std.pages.dev/Maths/prod)
+- [sum](https://js-std.pages.dev/Maths/sum)
 
 ### Number
 
-- [clamp](https://js-std.pages.dev/Number/clamp)
 - [isNegZero](https://js-std.pages.dev/Number/isNegZero)
 - [isZero](https://js-std.pages.dev/Number/isZero)
 - [toNum](https://js-std.pages.dev/Number/toNum)

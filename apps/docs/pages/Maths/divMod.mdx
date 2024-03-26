@@ -1,0 +1,32 @@
+import REPL from "../../components/REPL";
+
+> Returns a tuple with `Quotient` and `Remainder`.
+
+## Syntax
+
+```ts
+import { divMod } from '@opentf/std';
+
+divMod(a: number, b: number): [number, number]
+```
+
+## Examples
+
+```ts
+divMod(4, 2) //=> [2, 0]);
+
+divMod(11, 4) //=> [2.75, 3]);
+
+divMod(1, 0) //=> [Infinity, NaN]);
+
+divMod(0, 1) //=> [0, 0]);
+
+divMod(-9, -2) //=> [4.5, -1]);
+```
+
+## Try
+
+<REPL code={`const { divMod } = require('@opentf/std');
+
+divMod(4, 2);
+`} />

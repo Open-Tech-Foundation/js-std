@@ -1,0 +1,41 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> Calculates the `mean` value of the given array.
+
+<Callout type="info">
+Mean: The "average" number; found by adding all data points and dividing by the number of data points.
+<div style={{textAlign: 'right'}}>
+\- [Khan Academy](https://www.khanacademy.org/math/statistics-probability/summarizing-quantitative-data/mean-median-basics/a/mean-median-and-mode-review)
+</div>
+</Callout>
+
+## Syntax
+
+```ts
+import { mean } from '@opentf/std';
+
+mean(
+  arr: number[] = [],
+  cb?: (v: number, index: number) => number
+): number
+```
+
+## Examples
+
+```ts
+mean([]) //=> NaN
+
+mean([1]) //=> 1
+
+mean([4, 1, 7]) //=> 4
+
+mean([4, 2, 8]) //=> 4.67
+```
+
+## Try
+
+<REPL code={`const { mean } = require('@opentf/std');
+
+mean([4, 2, 8]);
+`} />

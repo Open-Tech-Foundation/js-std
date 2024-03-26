@@ -1,0 +1,49 @@
+import REPL from "../../components/REPL";
+
+> Calculates the `sum` of values in the given array.
+
+## Syntax
+
+```ts
+import { sum } from '@opentf/std';
+
+sum(
+  arr: number[] = [],
+  cb?: (val: number, index: number) => number
+): number
+```
+
+## Examples
+
+```ts
+sum() //=> 0
+
+sum([]) //=> 0
+
+sum([1]) //=> 1
+
+sum([1, -1]) //=> 0
+
+sum([-1, -2]) //=> -3
+
+sum([1, 2, 3, 4, 5]) //=> 15
+
+sum([1.2, Math.PI]) //=> 4.34
+
+sum([1, 2, 3, 4, 5.4], Math.round) //=> 15
+
+const objects = [{ n: 4 }, { n: 2 }, { n: 8 }, { n: 6 }];
+sum(objects, (v) => v.n) //=> 20
+
+sum(objects, (v, i) => v.n * i) //=> 36
+
+sum([Infinity, Infinity]) //=> Infinity
+
+```
+
+## Try
+
+<REPL code={`const { sum } = require('@opentf/std');
+
+sum([1, 2, 3, 4, 5]);
+`} />
