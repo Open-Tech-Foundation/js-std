@@ -1,6 +1,7 @@
 {
   "isArr": "isArr",
   "isArrBuf": "isArrBuf",
+  "isAsyFn": "isAsyFn",
   "isBigInt": "isBigInt",
   "isBlob": "isBlob",
   "isBool": "isBool",
@@ -8,6 +9,8 @@
   "isDef": "isDef",
   "isErr": "isErr",
   "isFn": "isFn",
+  "isGenFn": "isGenFn",
+  "isInfinity": "isInfinity",
   "isJSON": "isJSON",
   "isMap": "isMap",
   "isNull": "isNull",

@@ -1,0 +1,37 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> Checks if the given value is [Infinity](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity).
+
+## Syntax
+
+```ts
+import { isInfinity } from '@opentf/std';
+
+isInfinity(value: unknown): boolean;
+```
+
+## Examples
+
+```ts
+isInfinity(0) //=> false
+
+isInfinity(false) //=> false
+
+isInfinity(null) //=> false
+
+isInfinity(NaN) //=> false
+
+isInfinity(1/0) //=> true
+
+isInfinity(Infinity) //=> true
+
+isInfinity(-Infinity) //=> true
+```
+
+## Try
+
+<REPL code={`const { isInfinity } = require('@opentf/std');
+
+isInfinity(1/0);
+`} />

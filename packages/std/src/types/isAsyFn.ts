@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-types */
 /**
- * Checks if the given value is an async function.
+ * Checks if the given value is an Async function.
  *
  * @example
  *

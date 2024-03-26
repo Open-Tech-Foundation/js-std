@@ -1,0 +1,50 @@
+import REPL from "../../components/REPL";
+
+> Checks if the given value is an [AsyncFunction](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/AsyncFunction).
+
+## Syntax
+
+```ts
+import { isAsyFn } from '@opentf/std';
+
+isAsyFn(
+  val: unknown
+): boolean
+```
+
+## Examples
+
+```ts
+isAsyFn(function() {}) //=> false
+
+isAsyFn({}) //=> false
+
+function* generator(i) {
+  yield i;
+  yield i + 10;
+}
+
+isAsyFn(generator); //=> false
+
+const afn = async () => {}
+isAsyFn(afn) //=> true
+
+async function getUsers() {}
+isAsyFn(getUsers) //=> true
+
+async function* aGen(i) {
+  yield i;
+  yield i + 10;
+}
+
+isAsyFn(aGen); //=> true
+```
+
+## Try
+
+<REPL code={`const { isAsyFn } = require('@opentf/std');
+
+async function a() {}
+
+isAsyFn(a);
+`} />

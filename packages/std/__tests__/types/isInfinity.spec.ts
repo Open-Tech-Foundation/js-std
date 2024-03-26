@@ -13,7 +13,7 @@ describe('Types > isInfinity', () => {
   });
 
   test('valid cases', () => {
-    expect(isInfinity(Infinity)).toBe(true);
+    expect(isInfinity(1 / 0)).toBe(true);
     expect(isInfinity(Infinity)).toBe(true);
     expect(isInfinity(-Infinity)).toBe(true);
   });

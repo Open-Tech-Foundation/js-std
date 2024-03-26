@@ -9,7 +9,7 @@
  *
  * isInfinity(Infinity) //=> true
  */
-export default function isInfinity(x: unknown) {
+export default function isInfinity(x: unknown): x is typeof Infinity {
   if (typeof x !== 'number') return false;
   if (Number.isNaN(x)) return false;
   if (Number.isFinite(x)) return false;
