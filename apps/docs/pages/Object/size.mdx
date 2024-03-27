@@ -6,17 +6,21 @@ import REPL from "../../components/REPL";
 <Callout type="info">
 The following type of values are supported:
 
-- Array
+- [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
 
-- Plain Object
+- [ArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer)
 
-- String
+- [DataView](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView)
 
-- Map
+- [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
 
-- Set
+- [Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) objects: but only plain objects (e.g. from object literals).
 
-- ArrayBuffer
+- [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
+
+- [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
+
+- [TypedArray](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray)
 </Callout>
 
 ## Syntax
@@ -64,6 +68,8 @@ size(new Set()) //=> 0
 
 size(new ArrayBuffer(0)) //=> 0
 
+size(new Uint8Array(0)) //=> 0
+
 // Non empty objs
 // **************
 
@@ -80,6 +86,13 @@ size(new Map([[1, 1]])) //=> 1
 size(new Set(['a', 'b'])) //=> 2
 
 size(new ArrayBuffer(8)) //=> 8
+
+size(new Uint8Array(10)) //=> 10
+
+size(new Uint8Array(new ArrayBuffer(10), 1, 5)) //=> 5
+
+const buffer = new ArrayBuffer(16);
+size(new DataView(buffer)) //=> 16
 ```
 
 ## Try

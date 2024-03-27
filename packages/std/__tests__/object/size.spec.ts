@@ -19,6 +19,7 @@ describe('Object => size', () => {
     expect(size(new Map())).toBe(0);
     expect(size(new Set())).toBe(0);
     expect(size(new ArrayBuffer(0))).toBe(0);
+    expect(size(new Uint8Array(0))).toBe(0);
   });
 
   test('Non empty objs', () => {
@@ -29,5 +30,10 @@ describe('Object => size', () => {
     expect(size(new Map([[1, 1]]))).toBe(1);
     expect(size(new Set(['a', 'b']))).toBe(2);
     expect(size(new ArrayBuffer(8))).toBe(8);
+    expect(size(new Uint8Array(10))).toBe(10);
+    expect(size(new Uint8Array(new ArrayBuffer(10), 1, 5))).toBe(5);
+    const buffer = new ArrayBuffer(16);
+    expect(size(new DataView(buffer))).toBe(16);
+    expect(size(new DataView(buffer, 12, 4))).toBe(4);
   });
 });
