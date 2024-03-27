@@ -1,4 +1,3 @@
-import crypto from 'crypto';
 import { clone } from '../../src';
 
 // const clone = structuredClone
