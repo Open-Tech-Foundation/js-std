@@ -13,22 +13,33 @@ clone<T>(val: T): T;
 
 <Callout type="info">
 The following types are supported:
-- Primitive values:
-    - Undefined
-    - Null
-    - Boolean
-    - Number
-    - BigInt
-    - String
-- Object
-- Array
-- Map
-- Set
-- Date
+
+
+- [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
+
+- [ArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer)
+
+- [DataView](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView)
+
+- [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)
+
+- [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
+
+- [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
+
+- [Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) objects: but only plain objects (e.g. from object literals).
+
+- [Primitive types,](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#primitive_values) except symbol.
+
+- [RegExp](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp): but note that lastIndex is not preserved.
+
+- [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
+
+- [TypedArray](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray)
 </Callout>
 
 <Callout type="info">
-If you need more types to clone, please use the native [structuredClone](https://developer.mozilla.org/en-US/docs/Web/API/structuredClone) global function.
+If you need more types to clone with transferable objects, please use the native [structuredClone](https://developer.mozilla.org/en-US/docs/Web/API/structuredClone) global function.
 </Callout>
 
 ## Examples

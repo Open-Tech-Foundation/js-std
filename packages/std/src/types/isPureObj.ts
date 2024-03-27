@@ -11,6 +11,6 @@
  *
  */
 
-export default function isPureObj(val: unknown): val is object {
+export default function isPureObj(val: unknown): boolean {
   return typeof val === 'object' && val !== null;
 }

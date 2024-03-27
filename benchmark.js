@@ -6,7 +6,9 @@ import * as R from "ramda";
 import * as R2 from "remeda";
 import { sort as mSort } from "moderndash";
 import fastDeepEqual from "fast-deep-equal/es6";
-import { dequal } from 'dequal';
+import { dequal } from "dequal";
+import cloneDeep from "clone-deep";
+import copy from "fast-copy";
 
 async function cloneBench() {
   console.log("clone:");
@@ -42,18 +44,29 @@ async function cloneBench() {
     .add("R2.clone (remeda)", () => {
       R2.clone(obj);
     })
+    .add("cloneDeep (clone-deep)", () => {
+      cloneDeep(obj);
+    })
+    .add("copy (fast-copy)", () => {
+      copy(obj);
+    })
     .add("clone", () => {
       clone(obj);
-    })
-    .todo("unimplemented bench");
+    });
 
   await bench.warmup();
   await bench.run();
 
   console.table(bench.table());
-  console.log(
-    "*Note: Here the ramda & remeda does not support cloning Map & Set."
-  );
+  console.log(`*Note:
+    - Here the lodash does not support errors, sparse arrays & objects in map keys.
+
+    - Here the ramda & remeda does not support cloning Map & Set.
+    
+    - The fast-copy does not clone objects within Map, buffers in TypedArray, sparse arrays..
+
+    - The clone-deep does not handle circular refs, does not clone objects within map, sparse arrays, internal refs within the object, TypedArray buffers & DataView.
+  `);
 }
 
 async function sortByBench() {
@@ -149,8 +162,16 @@ async function isEqlBench() {
   await bench.run();
 
   console.table(bench.table());
+  console.log(`*Note:
+ 
+    - The native util deepStrictEqual not available in browsers, does not check Map ordering & same invalid dates.
+    - The fast-deep-equal/es6 does not support cyclic refs, Map ordering check, invalid dates, symbols, objects values in Set & TypedArrays.
+    - The lodash isEqual does not check Map ordering & object values in Set.
+    - The ramda equals does not check Map ordering & symbols.
+    - The dequal does not support cyclic refs, Map ordering, symbols & same invalid dates.
+  `);
 }
 
-// await cloneBench();
+await cloneBench();
 // await sortByBench();
-await isEqlBench();
+// await isEqlBench();

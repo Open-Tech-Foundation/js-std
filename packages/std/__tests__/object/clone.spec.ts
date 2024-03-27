@@ -1,4 +1,9 @@
+import crypto from 'crypto';
 import { clone } from '../../src';
+
+// const clone = structuredClone
+
+// import { cloneDeep as clone } from 'lodash';
 
 describe('Object > Clone', () => {
   test('Primitives', () => {
@@ -79,6 +84,8 @@ describe('Object > Clone', () => {
     const output = clone(array1);
     expect(output).toEqual([1, , 3, 4, 5]);
     expect(output.length).toBe(5);
+    const values = Object.values(output);
+    expect(values).toEqual([1, 3, 4, 5]);
   });
 
   test('keepRef=true', () => {
@@ -121,5 +128,184 @@ describe('Object > Clone', () => {
     const output = clone(input);
 
     expect(output.self).toBe(output);
+
+    const CIRCULAR = {
+      deeply: {
+        nested: {
+          reference: {},
+        },
+      },
+      other: {
+        reference: {},
+      },
+    };
+
+    CIRCULAR.deeply.nested.reference = CIRCULAR;
+    CIRCULAR.other.reference = CIRCULAR;
+    const result = clone(CIRCULAR);
+    expect(result).not.toBe(CIRCULAR);
+    expect(result).toEqual(CIRCULAR);
+  });
+
+  test('ArrayBuffer', () => {
+    let buffer = new ArrayBuffer(8);
+    const view = new Int32Array(buffer);
+    view[1] = 42;
+    let output = clone(buffer);
+
+    expect(output).not.toBe(buffer);
+    expect(output).toEqual(buffer);
+    expect(new Int32Array(output)[1]).toBe(42);
+
+    buffer = new ArrayBuffer(8, { maxByteLength: 16 });
+    output = clone(buffer);
+    expect(output).not.toBe(buffer);
+    expect(output).toEqual(buffer);
+    expect(buffer.byteLength).toBe(8);
+    expect(buffer.maxByteLength).toBe(16);
+  });
+
+  test('TypedArray', () => {
+    const buffer = new ArrayBuffer(8);
+    const view = new Uint32Array(buffer);
+    view[0] = 1;
+    view[1] = 5;
+    let output = clone(view);
+
+    expect(output.buffer).not.toBe(buffer);
+    expect(output).not.toBe(view);
+    expect(output.buffer).toEqual(buffer);
+    expect(output).toEqual(view);
+    expect(output[1]).toBe(5);
+
+    const buf2 = new ArrayBuffer(16);
+    const v2 = new Uint8Array(buf2, 8);
+    v2[0] = 3;
+    output = clone(v2);
+    expect(output.buffer).not.toBe(buf2);
+    expect(output).not.toBe(v2);
+    expect(output).toEqual(v2);
+    // expect(output.buffer).toEqual(v2.buffer);
+    expect(output[0]).toBe(3);
+
+    const buff3 = new ArrayBuffer(16);
+    const v3 = new Int16Array(buff3, 4, 2);
+    v3[0] = 8;
+    v3[1] = 9;
+    output = clone(v3);
+    expect(output.buffer).not.toBe(buff3);
+    expect(output.buffer).toEqual(buff3);
+    expect(output).not.toBe(v3);
+    expect(output).toEqual(v3);
+    expect(output[0]).toBe(8);
+    expect(output[1]).toBe(9);
+  });
+
+  test('DataView', () => {
+    const buffer = new ArrayBuffer(16);
+    const view = new DataView(buffer, 0);
+
+    view.setInt16(1, 42);
+    const output = clone(view);
+    expect(output.buffer).not.toBe(buffer);
+    expect(output.buffer).toEqual(buffer);
+    expect(output).not.toBe(view);
+    expect(output).toEqual(view);
+    expect(output.getInt16(1)).toBe(42);
+  });
+
+  test('Errors', () => {
+    let error = new RangeError('Out of bounds!');
+    let output = clone(error);
+    expect(output).not.toBe(error);
+    expect(output).toEqual(error);
+    expect(output.name).toBe(error.name);
+    expect(output.message).toBe(error.message);
+    expect(output.stack).toBe(error.stack);
+    expect(output).toBeInstanceOf(RangeError);
+
+    error = new Error('Whoops!', { cause: 'Cloning' });
+    output = clone(error);
+    expect(output).not.toBe(error);
+    expect(output).toEqual(error);
+    expect(output.name).toBe(error.name);
+    expect(output.message).toBe(error.message);
+    expect(output.stack).toBe(error.stack);
+    expect(output.cause).toBe(error.cause);
+    expect(output).toBeInstanceOf(Error);
+  });
+
+  test('functions', () => {
+    const fn = (a, b) => a + b;
+    const obj = { sum: fn };
+    const output = clone(obj);
+    expect(output).not.toBe(obj);
+    expect(output).toEqual(obj);
+    expect(output.sum).toBe(obj.sum);
+  });
+
+  test('regexp', () => {
+    let regex = new RegExp('foo', 'g');
+    let output = clone(regex);
+    expect(output).not.toBe(regex);
+    expect(output).toEqual(regex);
+    expect(output.global).toBe(true);
+    expect(output.ignoreCase).toBe(false);
+
+    regex = /ab+c/gi;
+    output = clone(regex);
+    expect(output).not.toBe(regex);
+    expect(output).toEqual(regex);
+    expect(output.global).toBe(true);
+    expect(output.ignoreCase).toBe(true);
+  });
+
+  // From fast-copy
+  test('Complex types', () => {
+    const hash = crypto.createHash('sha256');
+    const COMPLEX_TYPES = {
+      arguments: (function (foo, bar, baz) {
+        // Specifically testing arguments object
+        // eslint-disable-next-line prefer-rest-params
+        return arguments;
+      })('foo', 'bar', 'baz'),
+      array: ['foo', { bar: 'baz' }],
+      arrayBuffer: new ArrayBuffer(8),
+      buffer: Buffer.from('this is a test buffer'),
+      customPrototype: Object.create({
+        method() {
+          return 'foo';
+        },
+        value: 'value',
+      }),
+      dataView: new DataView(new ArrayBuffer(16)),
+      date: new Date(),
+      float32Array: new Float32Array([1, 2]),
+      float64Array: new Float64Array([3, 4]),
+      hash,
+      int8Array: new Int8Array([5, 6]),
+      int16Array: new Int16Array([7, 8]),
+      int32Array: new Int32Array([9, 10]),
+      map: new Map().set('foo', { bar: { baz: 'quz' } }),
+      object: { foo: { bar: 'baz' } },
+      regexp: /foo/,
+      set: new Set().add('foo').add({ bar: { baz: 'quz' } }),
+      // Disabling, as jest fails intermittently with blob construction.
+      // blob: new Blob(['<a id="a">hey!</a>'], {type : 'text/html'}),
+      uint8Array: new Uint8Array([11, 12]),
+      uint8ClampedArray: new Uint8ClampedArray([13, 14]),
+      uint16Array: new Uint16Array([15, 16]),
+      uint32Array: new Uint32Array([17, 18]),
+    };
+
+    const result = clone(COMPLEX_TYPES);
+
+    expect(result).not.toBe(COMPLEX_TYPES);
+
+    const complexTypes = { ...COMPLEX_TYPES };
+
+    complexTypes.arguments = { ...COMPLEX_TYPES.arguments };
+
+    expect(result).toEqual(complexTypes);
   });
 });

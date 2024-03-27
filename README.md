@@ -223,13 +223,23 @@ clone:
 ┌───┬──────────────────────────┬─────────┬────────────────────┬────────┬─────────┐
 │   │ Task Name                │ ops/sec │ Average Time (ns)  │ Margin │ Samples │
 ├───┼──────────────────────────┼─────────┼────────────────────┼────────┼─────────┤
-│ 0 │ structuredClone (Native) │ 246,358 │ 4059.129038804869  │ ±1.65% │ 24636   │
-│ 1 │ _.cloneDeep (Lodash)     │ 169,432 │ 5902.043319168882  │ ±2.53% │ 16944   │
-│ 2 │ R.clone (ramda)          │ 178,957 │ 5587.9189808343945 │ ±2.26% │ 17897   │
-│ 3 │ R2.clone (remeda)        │ 314,247 │ 3182.204862216371  │ ±1.75% │ 31426   │
-│ 4 │ clone                    │ 399,634 │ 2502.2859323385046 │ ±2.06% │ 39964   │
+│ 0 │ structuredClone (Native) │ 276,824 │ 3612.3959469709525 │ ±1.29% │ 27683   │
+│ 1 │ _.cloneDeep (Lodash)     │ 216,965 │ 4609.032953864744  │ ±2.41% │ 21697   │
+│ 2 │ R.clone (ramda)          │ 174,567 │ 5728.439422580611  │ ±1.92% │ 17457   │
+│ 3 │ R2.clone (remeda)        │ 310,268 │ 3223.0154703960834 │ ±2.40% │ 31027   │
+│ 4 │ cloneDeep (clone-deep)   │ 468,908 │ 2132.611673882092  │ ±1.70% │ 46891   │
+│ 5 │ copy (fast-copy)         │ 486,179 │ 2056.852050680814  │ ±1.91% │ 48618   │
+│ 6 │ clone                    │ 535,302 │ 1868.1028376072306 │ ±2.07% │ 53531   │
 └───┴──────────────────────────┴─────────┴────────────────────┴────────┴─────────┘
-*Note: Here the ramda & remeda does not support cloning Map & Set.
+*Note:
+    - Here the lodash does not support errors, sparse arrays & objects in map keys.
+
+    - Here the ramda & remeda does not support cloning Map & Set.
+
+    - The fast-copy does not clone objects within Map, buffers in TypedArray, sparse arrays.
+
+    - The clone-deep does not handle circular refs, does not clone objects within map,
+    sparse arrays, internal refs within the object, TypedArray buffers & DataView.
 
 sortBy:
 ┌───┬────────────────────┬───────────┬───────────────────┬────────┬─────────┐
