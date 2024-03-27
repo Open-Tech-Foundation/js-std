@@ -6,28 +6,35 @@ import REPL from "../../components/REPL";
 <Callout type="info">
 The following type of values are supported:
 
-- [Primitives](https://developer.mozilla.org/en-US/docs/Glossary/Primitive)
+- [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
 
-- Array
+- [ArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer)
 
-- Plain Object
+- [DataView](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView)
 
-- Map
+- [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)
 
-- Set
+- [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error) 
 
-- Date
+- [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
 
-- Error 
+- [Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) objects: but only plain objects (e.g. from object literals).
 
-- RegExp
+- [Primitive types](https://developer.mozilla.org/en-US/docs/Glossary/Primitive)
 
-- Typed Array 
+- [RegExp](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp)
+
+- [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
+
+- [TypedArray](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray)
+</Callout>
+
+<Callout emoji="✅" type="info">
+  It handles the circular references.
 </Callout>
 
 <Callout type="info">
-  - It handles the circular references.
-  - Other types are checked by their references, Eg: Function.
+  Other types are checked by their references, Eg: Function.
 </Callout>
 
 **Related**
@@ -61,6 +68,12 @@ isEql(mapA, mapB); //=> false
 const re = new RegExp('ab+c');
 const re2 = new RegExp('ab+d');
 isEql(re, re2); //=> false
+
+const ta1 = new Uint8Array([42, 43]);
+const ta2 = new Uint8Array([42, 43]);
+const ta3 = new Uint8Array([42, 45]);
+isEql(ta1, ta2); //=> true
+isEql(ta2, ta3); //=> false
 ```
 
 ## Try

@@ -245,22 +245,24 @@ sortBy:
 *Note: Here the Moderndash does not support passing object prop as string.
 
 isEql:
-┌───┬─────────────────────────────────────┬─────────┬───────────────────┬────────┬─────────┐
-│   │ Task Name                           │ ops/sec │ Average Time (ns) │ Margin │ Samples │
-├───┼─────────────────────────────────────┼─────────┼───────────────────┼────────┼─────────┤
-│ 0 │ deepStrictEqual (Native)            │ 927,921 │ 1077.676882954431 │ ±0.38% │ 92793   │
-│ 1 │ fastDeepEqual (fast-deep-equal/es6) │ 638,108 │ 1567.132684562446 │ ±1.42% │ 63813   │
-│ 2 │ _.isEqual (Lodash)                  │ 142,592 │ 7013.003366058248 │ ±2.13% │ 14260   │
-│ 3 │ R.equals (Ramda)                    │ 50,346  │ 19862.42184707051 │ ±1.83% │ 5035    │
-│ 4 │ isEql                               │ 109,127 │ 9163.615962614227 │ ±1.28% │ 10913   │
-└───┴─────────────────────────────────────┴─────────┴───────────────────┴────────┴─────────┘
+┌───┬─────────────────────────────────────┬─────────┬────────────────────┬────────┬─────────┐
+│   │ Task Name                           │ ops/sec │ Average Time (ns)  │ Margin │ Samples │
+├───┼─────────────────────────────────────┼─────────┼────────────────────┼────────┼─────────┤
+│ 0 │ deepStrictEqual (Native)            │ 950,686 │ 1051.871609041841  │ ±0.24% │ 95069   │
+│ 1 │ fastDeepEqual (fast-deep-equal/es6) │ 652,611 │ 1532.3058134904193 │ ±1.49% │ 65262   │
+│ 2 │ dequal                              │ 120,791 │ 8278.7573675501    │ ±0.74% │ 12080   │
+│ 3 │ _.isEqual (Lodash)                  │ 152,075 │ 6575.660376117521  │ ±2.02% │ 15208   │
+│ 4 │ R.equals (Ramda)                    │ 51,496  │ 19418.976504855284 │ ±1.70% │ 5150    │
+│ 5 │ isEql                               │ 104,355 │ 9582.655710998957  │ ±1.13% │ 10436   │
+└───┴─────────────────────────────────────┴─────────┴────────────────────┴────────┴─────────┘
 
 *Note:
 
-- The native util `deepStrictEqual` not available in browsers, does not check `Map` ordering & returns false for same invalid dates.
+- The native util `deepStrictEqual` not available in browsers, does not check `Map` ordering & same invalid dates.
 - The `fast-deep-equal/es6` does not support cyclic refs, Map ordering check, invalid dates, symbols, objects values in Set & TypedArrays.
 - The lodash `isEqual` does not check `Map` ordering & object values in `Set`.
 - The ramda `equals` does not check `Map` ordering & symbols.
+- The dequal does not support cyclic refs, Map ordering, symbols & same invalid dates.
 ```
 
 ### Running benchmarks

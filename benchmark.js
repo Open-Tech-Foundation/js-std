@@ -1,11 +1,12 @@
 import { isDeepStrictEqual } from "node:util";
 import { Bench, hrtimeNow } from "tinybench";
-import { clone, sortBy, isEql } from "./packages/utils/dist/index";
+import { clone, sortBy, isEql } from "./packages/std/dist/index";
 import _ from "lodash";
 import * as R from "ramda";
 import * as R2 from "remeda";
 import { sort as mSort } from "moderndash";
 import fastDeepEqual from "fast-deep-equal/es6";
+import { dequal } from 'dequal';
 
 async function cloneBench() {
   console.log("clone:");
@@ -131,6 +132,9 @@ async function isEqlBench() {
     .add("fastDeepEqual (fast-deep-equal/es6)", () => {
       fastDeepEqual(obj, obj2);
     })
+    .add("dequal", () => {
+      dequal(obj, obj2);
+    })
     .add("_.isEqual (Lodash)", () => {
       _.isEqual(obj, obj2);
     })
@@ -147,6 +151,6 @@ async function isEqlBench() {
   console.table(bench.table());
 }
 
-await cloneBench();
+// await cloneBench();
 // await sortByBench();
-// await isEqlBench();
+await isEqlBench();

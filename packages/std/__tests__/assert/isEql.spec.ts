@@ -164,4 +164,53 @@ describe('Object => isEql', () => {
     obj2.self = obj2;
     expect(isEql(obj1, obj2)).toBe(true);
   });
+
+  test('TypedArray', () => {
+    const ta1 = new Uint8Array([42, 43]);
+    const ta2 = new Uint8Array([42, 43]);
+    const ta3 = new Uint8Array([42, 45]);
+    expect(isEql(ta1, ta2)).toBe(true);
+    expect(isEql(ta2, ta3)).toBe(false);
+
+    const obj1 = { ta: new Uint8Array(10) };
+    const obj2 = { ta: new Uint8Array(100) };
+    expect(isEql(obj1, obj2)).toBe(false);
+
+    const buffer = new ArrayBuffer(8);
+    const buffer2 = new ArrayBuffer(8);
+    const ta132 = new Uint32Array(buffer);
+    ta132[0] = 100;
+    const ta232 = new Uint32Array(buffer2, 4);
+    ta232[0] = 100;
+    expect(isEql(ta132, ta232)).toBe(false);
+  });
+
+  test('ArrayBuffer', () => {
+    const buffer = new ArrayBuffer(8);
+    const buffer2 = new ArrayBuffer(8);
+    const buffer3 = new ArrayBuffer(8);
+    const ta1 = new Uint8Array(buffer);
+    ta1[0] = 100;
+    const ta2 = new Uint8Array(buffer2);
+    ta2[0] = 100;
+    const ta3 = new Uint32Array(buffer3);
+    ta3[0] = 1000;
+    expect(isEql(buffer, buffer2)).toBe(true);
+    expect(isEql(buffer2, buffer3)).toBe(false);
+  });
+
+  test('DataView', () => {
+    const buf1 = new ArrayBuffer(8);
+    const buf2 = new ArrayBuffer(8);
+    const v1 = new DataView(buf1);
+    const v2 = new DataView(buf2);
+    v1.setInt8(0, 3);
+    v2.setInt8(0, 3);
+    expect(isEql(v1, v2)).toBe(true);
+    v1.setInt8(1, 5);
+    v2.setInt8(1, 6);
+    expect(isEql(v1, v2)).toBe(false);
+    v2.setInt8(1, 5);
+    expect(isEql(v1, v2)).toBe(true);
+  });
 });

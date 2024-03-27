@@ -1,9 +1,12 @@
 import { IterableObj } from '../object/merge';
 import size from '../object/size';
 import isArr from '../types/isArr';
+import isArrBuf from '../types/isArrBuf';
+import isDataView from '../types/isDataView';
 import isErr from '../types/isErr';
 import isMap from '../types/isMap';
 import isObj from '../types/isObj';
+import isPureObj from '../types/isPureObj';
 import isRegEx from '../types/isRegEx';
 import isSet from '../types/isSet';
 import isTypedArr from '../types/isTypedArr';
@@ -24,14 +27,17 @@ function isEqlVal(
   objRefSet1: WeakSet<WeakKey>,
   objRefSet2: WeakSet<WeakKey>
 ): boolean {
+  // Handles primitives
   if (Object.is(val1, val2)) {
     return true;
   }
 
+  // For circular refs
   if (objRefSet1.has(val1 as WeakKey) && objRefSet2.has(val2 as WeakKey)) {
     return true;
   }
 
+  // Check both has same type string tag
   if (
     Object.prototype.toString.call(val1) !==
     Object.prototype.toString.call(val2)
@@ -43,15 +49,19 @@ function isEqlVal(
     return false;
   }
 
+  if (isPureObj(val1) && isPureObj(val2)) {
+    objRefSet1.add(val1 as WeakKey);
+    objRefSet2.add(val2 as WeakKey);
+  }
+
   if (isArr(val1)) {
+    // For sparse arrays
     if (size(Object.keys(val1)) !== size(Object.keys(val2 as IterableObj))) {
       return false;
     }
   }
 
   if (isArr(val1) || isObj(val1) || isTypedArr(val1)) {
-    objRefSet1.add(val1);
-    objRefSet2.add(val2 as WeakKey);
     for (const key of Object.keys(val1)) {
       if (
         !isEqlVal(
@@ -135,6 +145,36 @@ function isEqlVal(
     ) {
       return true;
     }
+  }
+
+  if (isArrBuf(val1)) {
+    const ta1 = new Uint8Array(val1);
+    const ta2 = new Uint8Array(val2 as ArrayBuffer);
+
+    for (const key of ta1.keys()) {
+      if (!isEqlVal(ta1[key], ta2[key], objRefSet1, objRefSet2)) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  if (isDataView(val1)) {
+    for (let i = 0; i < val1.byteLength; i++) {
+      if (
+        !isEqlVal(
+          val1.getUint8(i),
+          (val2 as DataView).getUint8(i),
+          objRefSet1,
+          objRefSet2
+        )
+      ) {
+        return false;
+      }
+    }
+
+    return true;
   }
 
   return false;
