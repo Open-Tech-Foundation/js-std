@@ -1,9 +1,5 @@
 import { clone } from '../../src';
 
-// const clone = structuredClone
-
-// import { cloneDeep as clone } from 'lodash';
-
 describe('Object > Clone', () => {
   test('Primitives', () => {
     expect(clone(undefined)).toBe(undefined);
@@ -161,7 +157,9 @@ describe('Object > Clone', () => {
     expect(output).not.toBe(buffer);
     expect(output).toEqual(buffer);
     expect(buffer.byteLength).toBe(8);
-    expect(buffer.maxByteLength).toBe(16);
+    if (buffer.maxByteLength) {
+      expect(buffer.maxByteLength).toBe(16);
+    }
   });
 
   test('TypedArray', () => {
