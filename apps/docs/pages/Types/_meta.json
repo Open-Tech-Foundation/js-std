@@ -5,6 +5,7 @@
   "isBigInt": "isBigInt",
   "isBlob": "isBlob",
   "isBool": "isBool",
+  "isDataView": "isDataView",
   "isDate": "isDate",
   "isDef": "isDef",
   "isErr": "isErr",

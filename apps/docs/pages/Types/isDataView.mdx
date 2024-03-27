@@ -1,0 +1,31 @@
+import REPL from "../../components/REPL";
+
+> Checks if the given value is a [DataView](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView) object.
+
+## Syntax
+
+```ts
+import { isDataView } from '@opentf/std';
+
+isDataView(val: unknown): boolean;
+```
+
+## Examples
+
+```ts
+const buffer = new ArrayBuffer(8);
+
+isDataView(buffer) //=> false
+
+isDataView(new Uint8Array(buffer)) //=> false
+
+isDataView(new DataView(buffer)) //=> true
+```
+
+## Try
+
+<REPL code={`const { isDataView } = require('@opentf/std');
+
+const buffer = new ArrayBuffer(16);
+isDataView(new DataView(buffer));
+`} />

@@ -77,6 +77,7 @@ export { default as isPromise } from './types/isPromise';
 export { default as isPureObj } from './types/isPureObj';
 export { default as isDef } from './types/isDef';
 export { default as isInfinity } from './types/isInfinity';
+export { default as isDataView } from './types/isDataView';
 
 // Object
 export { default as has } from './object/has';

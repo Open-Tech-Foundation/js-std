@@ -189,6 +189,7 @@ await sleep(1000); // It suspends the exection for 1 second.
 - [isBigInt](https://js-std.pages.dev/Types/isBigInt)
 - [isBlob](https://js-std.pages.dev/Types/isBlob)
 - [isBool](https://js-std.pages.dev/Types/isBool)
+- [isDataView](https://js-std.pages.dev/Types/isDataView)
 - [isDate](https://js-std.pages.dev/Types/isDate)
 - [isErr](https://js-std.pages.dev/Types/isErr)
 - [isFn](https://js-std.pages.dev/Types/isFn)
