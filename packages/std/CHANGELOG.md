@@ -1,5 +1,11 @@
 # @opentf/std
 
+## 0.3.0
+
+### Minor Changes
+
+- 7bbe29a: Added buffers, errors, regex support for clone fn.
+
 ## 0.2.0
 
 ### Minor Changes
