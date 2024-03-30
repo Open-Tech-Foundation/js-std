@@ -100,6 +100,7 @@ await sleep(1000); // It suspends the exection for 1 second.
 - [drop](https://js-std.pages.dev/Array/drop)
 - [groupBy](https://js-std.pages.dev/Array/groupBy)
 - [intersection](https://js-std.pages.dev/Array/intersection)
+- [intersperse](https://js-std.pages.dev/Array/intersperse)
 - [max](https://js-std.pages.dev/Array/max)
 - [min](https://js-std.pages.dev/Array/min)
 - [move](https://js-std.pages.dev/Array/move)

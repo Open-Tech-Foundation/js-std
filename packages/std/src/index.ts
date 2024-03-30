@@ -29,6 +29,7 @@ export { default as min } from './array/min';
 export { default as bounds } from './array/bounds';
 export { default as take } from './array/take';
 export { default as drop } from './array/drop';
+export { default as intersperse } from './array/intersperse';
 
 // Async
 export { default as asyncFilter } from './async/asyncFilter';

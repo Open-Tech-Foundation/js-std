@@ -10,6 +10,7 @@
   "drop": "drop",
   "groupBy": "groupBy",
   "intersection": "intersection",
+  "intersperse": "intersperse",
   "max": "max",
   "min": "min",
   "move": "move",

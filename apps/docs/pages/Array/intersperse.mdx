@@ -1,0 +1,87 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> Inserts a separator between the elements of its list argument.
+
+<Callout type="info">
+The list can be an Array or String.
+</Callout>
+
+## Syntax
+
+```ts copy
+import { intersperse } from '@opentf/std';
+
+intersperse(
+  list: string | unknown[] = [],
+  sep: ((index: number) => unknown) | unknown
+): string | unknown[]
+```
+
+## Examples
+
+```ts
+const arr = [1, 2, 3];
+intersperse(arr, '&') // => [1, '&', 2, '&', 3]
+
+const arr = ['Home', 'Menu', 'Sub Menu'];
+intersperse(arr, '>') 
+// => [
+//  'Home',
+//  '>',
+//  'Menu',
+//  '>',
+//  'Sub Menu',
+// ]
+
+intersperse('Hello', '-') // => 'H-e-l-l-o'
+
+const items = [
+  { type: 'div', text: 'Apple' },
+  { type: 'div', text: 'Orange' },
+  { type: 'div', text: 'Mango' },
+];
+intersperse(items, { type: 'br' }) 
+// => [
+//   {
+//     type: 'div',
+//     text: 'Apple',
+//   },
+//   {
+//     type: 'br',
+//   },
+//   {
+//     type: 'div',
+//     text: 'Orange',
+//   },
+//   {
+//     type: 'br',
+//   },
+//   {
+//     type: 'div',
+//     text: 'Mango',
+//   },
+// ]
+
+intersperse(['a', 'b', 'c'], (i) => `<span key="sep-${i}"> , </span>`)
+// [
+//   'a',
+//   '<span key="sep-0"> , </span>',
+//   'b',
+//   '<span key="sep-1"> , </span>',
+//   'c',
+// ]
+```
+
+## Try
+
+<REPL code={`const { intersperse } = require('@opentf/std');
+
+const arr = [1, 2, 3];
+log(intersperse(arr, '&'))
+
+const arr2 = ['Home', 'Menu', 'Sub Menu'];
+log(intersperse(arr2, '>'))
+
+intersperse('Hello', '-')
+`} />
