@@ -32,7 +32,8 @@
     "sort",
     "merge",
     "zero",
-    "neg"
+    "neg",
+    "intersperse"
   ],
   "author": {
     "name": "Thanga Ganapathy",
