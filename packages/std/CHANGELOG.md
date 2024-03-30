@@ -1,5 +1,11 @@
 # @opentf/std
 
+## 0.4.0
+
+### Minor Changes
+
+- 15b0271: Added array intersperse fn.
+
 ## 0.3.0
 
 ### Minor Changes
