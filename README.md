@@ -219,7 +219,7 @@ Some benchmark outputs are shown here for reference.
 > [!IMPORTANT]  
 > Our priorities are reliability and accuracy rather than performance.
 
-```sh
+```diff
 clone:
 ┌───┬──────────────────────────┬─────────┬────────────────────┬────────┬─────────┐
 │   │ Task Name                │ ops/sec │ Average Time (ns)  │ Margin │ Samples │
@@ -230,7 +230,7 @@ clone:
 │ 3 │ R2.clone (remeda)        │ 310,268 │ 3223.0154703960834 │ ±2.40% │ 31027   │
 │ 4 │ cloneDeep (clone-deep)   │ 468,908 │ 2132.611673882092  │ ±1.70% │ 46891   │
 │ 5 │ copy (fast-copy)         │ 486,179 │ 2056.852050680814  │ ±1.91% │ 48618   │
-│ 6 │ clone                    │ 535,302 │ 1868.1028376072306 │ ±2.07% │ 53531   │
++ 6 │ clone                    │ 535,302 │ 1868.1028376072306 │ ±2.07% │ 53531   │
 └───┴──────────────────────────┴─────────┴────────────────────┴────────┴─────────┘
 *Note:
     - Here the lodash does not support errors, sparse arrays & objects in map keys.
@@ -250,7 +250,7 @@ sortBy:
 │ 1 │ R.sortWith (Ramda) │ 1,279,200 │ 781.7380570822326 │ ±2.27% │ 127921  │
 │ 2 │ R2.sortBy (Remeda) │ 1,419,707 │ 704.3703291518029 │ ±2.81% │ 141971  │
 │ 3 │ sort (Moderndash)  │ 2,697,568 │ 370.7042634668106 │ ±1.82% │ 269757  │
-│ 4 │ sortBy             │ 2,728,366 │ 366.5196435965459 │ ±2.19% │ 272837  │
++ 4 │ sortBy             │ 2,728,366 │ 366.5196435965459 │ ±2.19% │ 272837  │
 └───┴────────────────────┴───────────┴───────────────────┴────────┴─────────┘
 
 *Note: Here the Moderndash does not support passing object prop as string.
@@ -264,16 +264,16 @@ isEql:
 │ 2 │ dequal                              │ 120,791 │ 8278.7573675501    │ ±0.74% │ 12080   │
 │ 3 │ _.isEqual (Lodash)                  │ 152,075 │ 6575.660376117521  │ ±2.02% │ 15208   │
 │ 4 │ R.equals (Ramda)                    │ 51,496  │ 19418.976504855284 │ ±1.70% │ 5150    │
-│ 5 │ isEql                               │ 104,355 │ 9582.655710998957  │ ±1.13% │ 10436   │
++ 5 │ isEql                               │ 104,355 │ 9582.655710998957  │ ±1.13% │ 10436   │
 └───┴─────────────────────────────────────┴─────────┴────────────────────┴────────┴─────────┘
 
 *Note:
 
-- The native util `deepStrictEqual` not available in browsers, does not check `Map` ordering & same invalid dates.
-- The `fast-deep-equal/es6` does not support cyclic refs, Map ordering check, invalid dates, symbols, objects values in Set & TypedArrays.
-- The lodash `isEqual` does not check `Map` ordering & object values in `Set`.
-- The ramda `equals` does not check `Map` ordering & symbols.
-- The dequal does not support cyclic refs, Map ordering, symbols & same invalid dates.
+  - The native util `deepStrictEqual` not available in browsers, does not check `Map` ordering & same invalid dates.
+  - The `fast-deep-equal/es6` does not support cyclic refs, Map ordering check, invalid dates, symbols, objects values in Set & TypedArrays.
+  - The lodash `isEqual` does not check `Map` ordering & object values in `Set`.
+  - The ramda `equals` does not check `Map` ordering & symbols.
+  - The dequal does not support cyclic refs, Map ordering, symbols & same invalid dates.
 ```
 
 ### Running benchmarks
