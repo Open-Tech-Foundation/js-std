@@ -1,5 +1,11 @@
 # @opentf/std
 
+## 0.5.0
+
+### Minor Changes
+
+- 9b23586: Fixed async fns not awaiting within cb fn.
+
 ## 0.4.0
 
 ### Minor Changes
