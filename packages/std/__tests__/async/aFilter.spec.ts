@@ -1,7 +1,7 @@
-import { asyncFilter } from '../../src';
+import { aFilter } from '../../src';
 
-describe('Array', () => {
-  test('asyncFilter', async () => {
+describe('Array > aFilter', () => {
+  test('filters only even numbers', async () => {
     const arr = [1, 2, 3, 4, 5];
 
     function isEven(n) {
@@ -10,7 +10,7 @@ describe('Array', () => {
       });
     }
 
-    const filteredArr = await asyncFilter(arr, async (n) => await isEven(n));
+    const filteredArr = await aFilter(arr, async (n) => await isEven(n));
 
     expect(filteredArr).toEqual([2, 4]);
   });

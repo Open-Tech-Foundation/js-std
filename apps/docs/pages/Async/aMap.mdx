@@ -5,7 +5,7 @@ import REPL from "../../components/REPL";
 ## Syntax
 
 ```ts
-asyncMap(
+aMap(
   arr: T[], 
   cb: (value: T, index: number) => Promise<unknown>
 ): Promise<unknown[]>
@@ -14,9 +14,9 @@ asyncMap(
 ## Usage
 
 ```ts
-import { asyncMap } from "@opentf/std";
+import { aMap } from "@opentf/std";
 
-asyncMap([], async (value, index) => {});
+aMap([], async (value, index) => {});
 ```
 
 ## Examples
@@ -30,13 +30,13 @@ function multiply(n, i) {
   });
 }
 
-const result = await asyncMap(arr, async (n, i) => await multiply(n, i));
+const result = await aMap(arr, async (n, i) => await multiply(n, i));
 console.log(result); // [0, 2, 6, 12, 20]
 ```
 
 ## Try
 
-<REPL code={`const { asyncMap } = require('@opentf/std');
+<REPL code={`const { aMap } = require('@opentf/std');
 
 function multiply(n, i) {
   return new Promise((resolve) => {
@@ -47,7 +47,7 @@ function multiply(n, i) {
 
 async function main() {
   const arr = [1, 2, 3, 4, 5];
-  const result = await asyncMap(arr, async (n, i) => await multiply(n, i));
+  const result = await aMap(arr, async (n, i) => await multiply(n, i));
   log(result);
 }
 

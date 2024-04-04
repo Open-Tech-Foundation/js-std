@@ -114,9 +114,9 @@ await sleep(1000); // It suspends the exection for 1 second.
 
 ## Async
 
-- [asyncFilter](https://js-std.pages.dev/Array/asyncFilter)
-- [asyncForEach](https://js-std.pages.dev/Array/asyncForEach)
-- [asyncMap](https://js-std.pages.dev/Array/asyncMap)
+- [aFilter](https://js-std.pages.dev/Async/aFilter)
+- [aForEach](https://js-std.pages.dev/Async/aForEach)
+- [aMap](https://js-std.pages.dev/Async/aMap)
 
 ### Maths
 

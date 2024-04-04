@@ -32,9 +32,9 @@ export { default as drop } from './array/drop';
 export { default as intersperse } from './array/intersperse';
 
 // Async
-export { default as asyncFilter } from './async/asyncFilter';
-export { default as asyncMap } from './async/asyncMap';
-export { default as asyncForEach } from './async/asyncForEach';
+export { default as aFilter } from './async/aFilter';
+export { default as aMap } from './async/aMap';
+export { default as aForEach } from './async/aForEach';
 
 // Maths
 export { default as percentage } from './maths/percentage';

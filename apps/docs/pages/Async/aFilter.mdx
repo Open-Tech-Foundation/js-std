@@ -5,7 +5,7 @@ import REPL from "../../components/REPL";
 ## Syntax
 
 ```ts
-asyncFilter(
+aFilter(
   arr: T[], 
   cb: (value: T, index: number) => Promise<boolean>
 ): Promise<Partial<T[]>>
@@ -14,9 +14,9 @@ asyncFilter(
 ## Usage
 
 ```ts
-import { asyncFilter } from "@opentf/std";
+import { aFilter } from "@opentf/std";
 
-asyncFilter([], async (value, index) => {});
+aFilter([], async (value, index) => {});
 ```
 
 ## Examples
@@ -30,14 +30,14 @@ function isEven(n) {
   });
 }
 
-const filteredArr = await asyncFilter(arr, async (n) => await isEven(n));
+const filteredArr = await aFilter(arr, async (n) => await isEven(n));
 
 console.log(filteredArr); //=> [2, 4]
 ```
 
 ## Try
 
-<REPL code={`const { asyncFilter } = require('@opentf/std');
+<REPL code={`const { aFilter } = require('@opentf/std');
 
 function isEven(n) {
   return new Promise((resolve) => {
@@ -47,7 +47,7 @@ function isEven(n) {
 
 async function main() {
   const arr = [1, 2, 3, 4, 5];
-  const out = await asyncFilter(arr, async (n) => await isEven(n));
+  const out = await aFilter(arr, async (n) => await isEven(n));
   log(out);
 }
 
