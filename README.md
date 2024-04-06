@@ -28,6 +28,8 @@
 
 ## Installation
 
+Install it using your favourite package manager.
+
 ```sh
 npm install @opentf/std
 ```
@@ -44,31 +46,51 @@ pnpm add @opentf/std
 bun add @opentf/std
 ```
 
+```sh
+deno add @opentf/std
+```
+
 ## Usage
 
-```ts
-import {
-  isNum,
-  pascalCase,
-  sort,
-  clone,
-  isEql,
-  isEqlArr,
-  sleep,
-} from "@opentf/std";
+Let’s explore some of the library’s capabilities:
 
-isNum(NaN); //=> false
+1. Checking if a Value is Numeric:
 
-pascalCase("pascal case"); //=> PascalCase
+```js
+import { isNum } from "@opentf/std";
 
-sort([1, 10, 21, 2], "desc"); //=> [ 21, 10, 2, 1 ]
+console.log(isNum(NaN)); //=> false
+```
 
-const obj = {
-  a: 1,
-  b: "abc",
-  c: new Map([["key", "val"]]),
-};
-clone(obj); // It returns deeply cloned value.
+2. Converting Strings to PascalCase:
+
+```js
+import { pascalCase } from "@opentf/std";
+
+console.log(pascalCase("pascal case")); //=> PascalCase
+```
+
+3. Sorting an Array in Descending Order:
+
+```js
+import { sort } from "@opentf/std";
+
+console.log(sort([1, 10, 21, 2], "desc")); //=> [21, 10, 2, 1]
+```
+
+4. Deep Cloning an Object:
+
+```js
+import { clone } from "@opentf/std";
+
+const obj = { a: 1, b: "abc", c: new Map([["key", "val"]]) };
+console.log(clone(obj)); // Deeply cloned value
+```
+
+5. Checking Equality of Objects & Arrays:
+
+```js
+import { isEql, isEqlArr } from "@opentf/std";
 
 const mapA = new Map([
   ["a", 1],
@@ -78,11 +100,17 @@ const mapB = new Map([
   ["b", 2],
   ["a", 1],
 ]);
-isEql(mapA, mapB); //=> false
+console.log(isEql(mapA, mapB)); //=> false
 
-isEqlArr([1, 2, 3], [2, 3, 1]); //=> true
+console.log(isEqlArr([1, 2, 3], [2, 3, 1])); //=> true
+```
 
-await sleep(1000); // It suspends the exection for 1 second.
+6. Adding a Delay (1 second) with sleep:
+
+```js
+import { sleep } from "@opentf/std";
+
+await sleep(1000); // Suspends execution for 1 second
 ```
 
 ## API
