@@ -10,7 +10,7 @@ import isSym from '../types/isSym';
  * @example
  * toPath('a.b.c') //=> ['a', 'b', 'c']
  */
-export default function toPath(val: string | unknown | unknown[]) {
+export default function toPath(val: string | unknown | unknown[]): unknown[] {
   if (isStr(val)) {
     const res = [];
     const regex = /\[(\d+)\]|\[(-?\d+\.?\d+)\]|([^.[\]]+)/g;

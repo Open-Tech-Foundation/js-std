@@ -11,7 +11,7 @@ export default function take<T>(
   arr: T[],
   limit: number | null = 1,
   cb?: (val: T) => boolean
-) {
+): Partial<T[]> {
   if (!isNull(limit) && (!Number.isInteger(limit) || limit < 0)) {
     throw RangeError('The limit must be positive');
   }

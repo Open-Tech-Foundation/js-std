@@ -13,7 +13,7 @@ import isEven from './isEven';
 export default function median(
   arr: number[] = [],
   cb?: (val: number, index: number) => number
-) {
+): number {
   let a = cb ? arr.map(cb) : arr;
   a = sort(arr);
 

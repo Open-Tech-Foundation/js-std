@@ -1,4 +1,5 @@
-import { max, min } from '..';
+import max from './max';
+import min from './min';
 import isEmpty from '../assert/isEmpty';
 import compact from './compact';
 

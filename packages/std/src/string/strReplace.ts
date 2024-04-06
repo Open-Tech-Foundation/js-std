@@ -15,7 +15,7 @@ export default function strReplace(
   pattern: string | RegExp,
   replacement: string,
   options: StrReplaceOptions
-) {
+): string {
   const defaultOptions: StrReplaceOptions = { all: false, case: false };
   const opts = shallowMerge(defaultOptions, options) as StrReplaceOptions;
   let flags = '';

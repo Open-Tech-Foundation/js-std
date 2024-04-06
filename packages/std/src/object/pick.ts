@@ -10,7 +10,10 @@ import toPath from './toPath';
  *
  * pick({a: 1, b: 2}, 'a') //=> {a: 1}
  */
-export default function pick(obj: object, ...paths: (string | unknown[])[]) {
+export default function pick(
+  obj: object,
+  ...paths: (string | unknown[])[]
+): object {
   const outObj = isArr(obj) ? [] : {};
 
   for (const path of paths) {

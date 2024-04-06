@@ -13,7 +13,7 @@ type IterableObj = {
  * const b = { a: [3, 4], b: 5 };
  * mergeAll(a, b) //=> {a: [1, 2, 3, 4], b: 5}
  */
-export default function mergeAll(...objs: object[]) {
+export default function mergeAll(...objs: object[]): object {
   const filteredObjs = objs.filter((v) => isArr(v) || isObj(v));
   const initialVal = isArr(filteredObjs[0]) ? [] : {};
 

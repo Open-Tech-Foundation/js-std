@@ -34,7 +34,10 @@ function walk(
  *
  * omit({a: 1, b: 2}, 'a') //=> {b: 2}
  */
-export default function omit(obj: object, ...paths: (string | unknown[])[]) {
+export default function omit(
+  obj: object,
+  ...paths: (string | unknown[])[]
+): object {
   let c = clone(obj);
   const arrPathSet = new Set();
 

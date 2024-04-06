@@ -1,5 +1,5 @@
 {
   "name": "@opentf/std",
   "version": "0.5.0",
-  "exports": "./packages/std/src/index.ts"
+  "exports": "./src/index.ts"
 }

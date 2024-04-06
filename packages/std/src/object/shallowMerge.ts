@@ -8,7 +8,7 @@ import isArr from '../types/isArr';
  * const b = { b: 2 };
  * shallowMerge(a, b); //=> { a: 1, b: 2 }
  */
-export default function shallowMerge(...objs: object[]) {
+export default function shallowMerge(...objs: object[]): object {
   return objs.reduce((acc, cur) => {
     if (isArr(cur) && isArr(acc)) {
       return Object.assign([], acc, cur);

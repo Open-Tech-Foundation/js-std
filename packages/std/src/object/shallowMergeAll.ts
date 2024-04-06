@@ -9,7 +9,7 @@ import isArr from '../types/isArr';
  * const c = [3];
  * shallowMergeAll(a, b, c); //=> [1, 2, 3]
  */
-export default function shallowMergeAll(...objs: object[]) {
+export default function shallowMergeAll(...objs: object[]): object {
   return objs.reduce((acc, cur) => {
     if (isArr(cur) && isArr(acc)) {
       return [...acc, ...cur];

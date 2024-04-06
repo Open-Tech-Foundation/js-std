@@ -14,7 +14,7 @@ import uniq from './uniq';
 export default function intersection(
   collections: unknown[][] = [],
   by?: (val: unknown) => unknown
-) {
+): unknown[] {
   const byFlag = isFn(by);
   const out = collections.reduce((acc, cur) => {
     const _intersection = [];

@@ -10,7 +10,7 @@ import isFn from '../types/isFn';
 export default function countBy<T>(
   arr: T[] = [],
   by: ((val: T) => string) | string
-) {
+): { [k: string]: number } {
   return arr.reduce((acc: Record<string, number>, cur: T) => {
     const k = isFn(by) ? by(cur) : (cur[by as keyof T] as string);
     const count = acc[k] ? acc[k] + 1 : 1;

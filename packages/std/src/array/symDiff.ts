@@ -14,7 +14,7 @@ import uniq from './uniq';
 export default function symDiff(
   collections: unknown[][] = [],
   by?: (val: unknown) => unknown
-) {
+): unknown[] {
   const byFlag = isFn(by);
   const out = collections.slice(1).reduce(
     (acc, cur) => {

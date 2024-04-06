@@ -11,7 +11,7 @@ import isObj from './isObj';
  * isJSON("{}") //=> true
  */
 
-export default function isJSON(str: string) {
+export default function isJSON(str: string): boolean {
   try {
     const o = JSON.parse(str);
     return isObj(o);

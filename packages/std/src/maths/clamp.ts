@@ -9,6 +9,6 @@
  * clamp(1500, 1000, 1366) //=> 1366
  */
 
-export default function clamp(val: number, min: number, max: number) {
+export default function clamp(val: number, min: number, max: number): number {
   return Math.min(Math.max(val, min), max);
 }

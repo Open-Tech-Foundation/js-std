@@ -13,7 +13,7 @@ export default function range(
   start: number,
   end: number,
   options?: number | { step: number; inclusive: boolean }
-) {
+): number[] {
   if (Number.isNaN(start) || Number.isNaN(end)) {
     throw new RangeError();
   }

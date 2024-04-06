@@ -7,7 +7,7 @@ import isArr from '../types/isArr';
  *
  * chunk([1, 2, 3, 4, 5], 2) //=> [[1, 2], [3, 4], [5]]
  */
-export default function chunk<T>(arr: T[] = [], size = 1) {
+export default function chunk<T>(arr: T[] = [], size = 1): unknown[] {
   if (size < 1 || !isArr(arr)) {
     return [];
   }
