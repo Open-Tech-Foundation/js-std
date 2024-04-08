@@ -15,6 +15,7 @@
   "min": "min",
   "move": "move",
   "range": "range",
+  "reverse": "reverse",
   "sort": "sort",
   "sortBy": "sortBy",
   "symDiff": "symDiff",

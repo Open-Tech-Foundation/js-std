@@ -1,5 +1,9 @@
 {
+  "aCompose": "aCompose",
+  "aComposeFn": "aComposeFn",
   "aFilter": "aFilter",
   "aForEach": "aForEach",
-  "aMap": "aMap"
+  "aMap": "aMap",
+  "aPipe": "aPipe",
+  "aPipeFn": "aPipeFn"
 }

@@ -24,7 +24,7 @@
 - Practical Default Options
 - Includes Async Utils
 - TypeScript Support
-- ESM
+- Works with both CJS & ESM
 
 ## Installation
 
@@ -57,7 +57,7 @@ Let’s explore some of the library’s capabilities:
 1. Checking if a Value is Numeric:
 
 ```js
-import { isNum } from '@opentf/std';
+import { isNum } from "@opentf/std";
 
 console.log(isNum(NaN)); //=> false
 ```
@@ -65,40 +65,40 @@ console.log(isNum(NaN)); //=> false
 2. Converting Strings to PascalCase:
 
 ```js
-import { pascalCase } from '@opentf/std';
+import { pascalCase } from "@opentf/std";
 
-console.log(pascalCase('pascal case')); //=> PascalCase
+console.log(pascalCase("pascal case")); //=> PascalCase
 ```
 
 3. Sorting an Array in Descending Order:
 
 ```js
-import { sort } from '@opentf/std';
+import { sort } from "@opentf/std";
 
-console.log(sort([1, 10, 21, 2], 'desc')); //=> [21, 10, 2, 1]
+console.log(sort([1, 10, 21, 2], "desc")); //=> [21, 10, 2, 1]
 ```
 
 4. Deep Cloning an Object:
 
 ```js
-import { clone } from '@opentf/std';
+import { clone } from "@opentf/std";
 
-const obj = { a: 1, b: 'abc', c: new Map([['key', 'val']]) };
+const obj = { a: 1, b: "abc", c: new Map([["key", "val"]]) };
 console.log(clone(obj)); // Deeply cloned value
 ```
 
 5. Checking Equality of Objects & Arrays:
 
 ```js
-import { isEql, isEqlArr } from '@opentf/std';
+import { isEql, isEqlArr } from "@opentf/std";
 
 const mapA = new Map([
-  ['a', 1],
-  ['b', 2],
+  ["a", 1],
+  ["b", 2],
 ]);
 const mapB = new Map([
-  ['b', 2],
-  ['a', 1],
+  ["b", 2],
+  ["a", 1],
 ]);
 console.log(isEql(mapA, mapB)); //=> false
 
@@ -108,9 +108,27 @@ console.log(isEqlArr([1, 2, 3], [2, 3, 1])); //=> true
 6. Adding a Delay (1 second) with sleep:
 
 ```js
-import { sleep } from '@opentf/std';
+import { sleep } from "@opentf/std";
 
 await sleep(1000); // Suspends execution for 1 second
+```
+
+7. Functions composition using `pipe` & `compose` functions:
+
+```js
+import { pipe, compose } from "@opentf/std";
+
+pipe(
+  1,
+  (x) => x + 1,
+  (x) => x * 5
+); //=> 10
+
+compose(
+  1,
+  (x) => x + 1,
+  (x) => x * 5
+); //=> 6
 ```
 
 ## API
@@ -133,6 +151,7 @@ await sleep(1000); // Suspends execution for 1 second
 - [min](https://js-std.pages.dev/Array/min)
 - [move](https://js-std.pages.dev/Array/move)
 - [range](https://js-std.pages.dev/Array/range)
+- [reverse](https://js-std.pages.dev/Array/reverse)
 - [sort](https://js-std.pages.dev/Array/sort)
 - [sortBy](https://js-std.pages.dev/Array/sortBy)
 - [symDiff](https://js-std.pages.dev/Array/symDiff)
@@ -142,12 +161,17 @@ await sleep(1000); // Suspends execution for 1 second
 
 ## Async
 
+- [aCompose](https://js-std.pages.dev/Async/aCompose)
+- [aComposeFn](https://js-std.pages.dev/Async/aComposeFn)
 - [aFilter](https://js-std.pages.dev/Async/aFilter)
 - [aForEach](https://js-std.pages.dev/Async/aForEach)
 - [aMap](https://js-std.pages.dev/Async/aMap)
+- [aPipe](https://js-std.pages.dev/Async/aPipe)
+- [aPipeFn](https://js-std.pages.dev/Async/aPipeFn)
 
 ### Maths
 
+- [avg](https://js-std.pages.dev/Maths/avg)
 - [clamp](https://js-std.pages.dev/Maths/clamp)
 - [divMod](https://js-std.pages.dev/Maths/divMod)
 - [isEven](https://js-std.pages.dev/Maths/isEven)
@@ -168,8 +192,12 @@ await sleep(1000); // Suspends execution for 1 second
 
 ### Function
 
-- [sleep](https://js-std.pages.dev/Timers/sleep)
-- [noop](https://js-std.pages.dev/Timers/noop)
+- [compose](https://js-std.pages.dev/Function/compose)
+- [composeFn](https://js-std.pages.dev/Function/composeFn)
+- [noop](https://js-std.pages.dev/Function/noop)
+- [pipe](https://js-std.pages.dev/Function/pipe)
+- [pipeFn](https://js-std.pages.dev/Function/pipeFn)
+- [sleep](https://js-std.pages.dev/Function/sleep)
 
 ### Colors
 

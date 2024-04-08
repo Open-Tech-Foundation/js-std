@@ -1,0 +1,63 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> Performs functions composition from left to right.
+
+<Callout type="default">
+  The `pipe` function is equivalent to `c(b(a(val)))`.
+</Callout>
+
+**Related**
+
+- [pipeFn](/Function/pipeFn)
+- [aPipe](/Async/aPipe)
+- [aPipeFn](/Async/aPipeFn)
+- [compose](/Function/compose)
+- [composeFn](/Function/composeFn)
+- [aCompose](/Async/aCompose)
+- [aComposeFn](/Async/aComposeFn)
+
+## Syntax
+
+```ts
+import { pipe } from '@opentf/std';
+
+pipe(val: unknown, ...fns: Function[]): unknown
+```
+
+## Examples
+
+```ts
+pipe(1); //=> 1
+
+pipe(-1, Math.abs); //=> 1
+
+pipe(-4, Math.abs, Math.sqrt); //=> 2
+
+pipe(
+  1,
+  (x) => x + 1,
+  (x) => x * 5
+); //=> 10
+```
+
+## Try
+
+<REPL code={`const { pipe } = require('@opentf/std');
+
+pipe(1, (x) => x + 1, (x) => x \* 5);
+`} />
+
+## Learn
+
+Why we need function composition?
+
+- The deep nesting of functions is hard to read.
+- It eliminates temporary variables.
+- Method chaining is limited, for Eg: await, yeild, etc.
+
+### Resources
+
+- [tc39/proposal-pipeline-operator](https://github.com/tc39/proposal-pipeline-operator)
+
+- [Hack Pipe Operator](https://docs.hhvm.com/hack/expressions-and-operators/pipe)

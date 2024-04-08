@@ -1,0 +1,46 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> Calculates the `average` value of the given array.
+
+## Syntax
+
+```ts
+import { avg } from '@opentf/std';
+
+avg(
+  arr: number[] = [],
+  cb?: (val: number, index: number) => number
+): number
+```
+
+## Examples
+
+```ts
+avg() //=> 0
+
+avg([]) //=> 0
+
+avg([1]) //=> 1
+
+avg([4, 1, 7]) //=> 4
+
+avg([4, 2, 8]) //=> 4.666666666666667
+
+avg([1, 4, 2, 5, 0]) //=> 2.4
+
+avg([10, 20, 40, 50]) //=> 30
+
+avg([1, 2, 3, 4, 5]) //=> 3
+
+avg([-1, -2]) //=> -1.5
+
+avg([1, 2, 3, 4, 5], (n) => n ** 2) //=> 11
+```
+
+## Try
+
+<REPL code={`const { avg } = require('@opentf/std');
+
+avg([1, 2, 3, 4, 5]);
+`} />

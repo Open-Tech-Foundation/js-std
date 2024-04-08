@@ -10,11 +10,11 @@ import { Tabs, Callout } from "nextra/components";
 - Practical Default Options
 - Includes Async Utils
 - TypeScript Support
-- ESM
+- Works with both CJS & ESM
 
 ## Installation
 
-<Tabs items={["pnpm", "npm", "yarn", "bun"]}>
+<Tabs items={["pnpm", "npm", "yarn", "bun", "deno"]}>
   <Tabs.Tab>
   ```sh copy 
   pnpm add @opentf/std 
@@ -35,6 +35,11 @@ import { Tabs, Callout } from "nextra/components";
   bun add @opentf/std 
   ```
   </Tabs.Tab>
+  <Tabs.Tab>
+  ```sh copy 
+  deno add @opentf/std
+  ```
+  </Tabs.Tab>
 </Tabs>
 
 ## Usage
@@ -44,14 +49,14 @@ Let’s explore some of the library’s capabilities:
 ```js
 import { isNum } from "@opentf/std";
 
-console.log(isNum(NaN)); //=> false
+isNum(NaN); //=> false
 ```
 
 2. Converting Strings to PascalCase:
 ```js
 import { pascalCase } from "@opentf/std";
 
-console.log(pascalCase("pascal case")); //=> PascalCase
+pascalCase("pascal case"); //=> PascalCase
 ```
 
 3. Sorting an Array in Descending Order:
@@ -59,7 +64,7 @@ console.log(pascalCase("pascal case")); //=> PascalCase
 ```js
 import { sort } from "@opentf/std";
 
-console.log(sort([1, 10, 21, 2], "desc")); //=> [21, 10, 2, 1]
+sort([1, 10, 21, 2], "desc"); //=> [21, 10, 2, 1]
 ```
 
 4. Deep Cloning an Object:
@@ -68,7 +73,7 @@ console.log(sort([1, 10, 21, 2], "desc")); //=> [21, 10, 2, 1]
 import { clone } from "@opentf/std";
 
 const obj = { a: 1, b: "abc", c: new Map([["key", "val"]]) };
-console.log(clone(obj)); // Deeply cloned value
+clone(obj); // Returns deeply cloned value
 ```
 
 5. Checking Equality of Objects & Arrays:
@@ -78,9 +83,9 @@ import { isEql, isEqlArr } from "@opentf/std";
 
 const mapA = new Map([["a", 1], ["b", 2]]);
 const mapB = new Map([["b", 2], ["a", 1]]);
-console.log(isEql(mapA, mapB)); //=> false
+isEql(mapA, mapB); //=> false
 
-console.log(isEqlArr([1, 2, 3], [2, 3, 1])); //=> true
+isEqlArr([1, 2, 3], [2, 3, 1]); //=> true
 ```
 
 6. Adding a Delay (1 second) with sleep:
@@ -91,6 +96,23 @@ import { sleep } from "@opentf/std";
 await sleep(1000); // Suspends execution for 1 second
 ```
 
+7. Functions composition using `pipe` & `compose` functions:
+
+```js
+import { pipe, compose } from "@opentf/std";
+
+pipe(
+  1,
+  (x) => x + 1,
+  (x) => x * 5
+); //=> 10
+
+compose(
+  1,
+  (x) => x + 1,
+  (x) => x * 5
+); //=> 6
+```
 
 <Callout type="default">
 

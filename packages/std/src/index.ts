@@ -30,11 +30,16 @@ export { default as bounds } from './array/bounds';
 export { default as take } from './array/take';
 export { default as drop } from './array/drop';
 export { default as intersperse } from './array/intersperse';
+export { default as reverse } from './array/reverse';
 
 // Async
 export { default as aFilter } from './async/aFilter';
 export { default as aMap } from './async/aMap';
 export { default as aForEach } from './async/aForEach';
+export { default as aPipe } from './async/aPipe';
+export { default as aPipeFn } from './async/aPipeFn';
+export { default as aCompose } from './async/aCompose';
+export { default as aComposeFn } from './async/aComposeFn';
 
 // Maths
 export { default as percentage } from './maths/percentage';
@@ -48,6 +53,7 @@ export { default as mean } from './maths/mean';
 export { default as median } from './maths/median';
 export { default as mode } from './maths/mode';
 export { default as clamp } from './maths/clamp';
+export { default as avg } from './maths/avg';
 
 // Types
 export { default as isNum } from './types/isNum';
@@ -106,6 +112,10 @@ export { default as isEqlArr } from './assert/isEqlArr';
 // function
 export { default as sleep } from './function/sleep';
 export { default as noop } from './function/noop';
+export { default as pipe } from './function/pipe';
+export { default as pipeFn } from './function/pipeFn';
+export { default as compose } from './function/compose';
+export { default as composeFn } from './function/composeFn';
 
 // colors
 export { default as hexToRGB } from './colors/hexToRGB';

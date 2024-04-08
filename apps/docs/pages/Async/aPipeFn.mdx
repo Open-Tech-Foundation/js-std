@@ -1,0 +1,70 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> Returns a function that performs functions composition from left to right asynchronously.
+
+<Callout type="default">
+  The `pipe` function is equivalent to `c(b(a(val)))`.
+</Callout>
+
+**Related**
+
+- [pipe](/Function/pipe)
+- [pipeFn](/Function/pipeFn)
+- [aPipe](/Async/aPipe)
+- [compose](/Function/compose)
+- [composeFn](/Function/composeFn)
+- [aCompose](/Async/aCompose)
+- [aComposeFn](/Async/aComposeFn)
+
+## Syntax
+
+```ts
+import { aPipeFn } from '@opentf/std';
+
+aPipeFn(
+  ...fns: Function[]
+): (...args: unknown[]) => unknown
+```
+
+## Examples
+
+```ts
+const transform = aPipeFn(
+  (s) => capitalize(s),
+  (x) => Promise.resolve(`Welcome ${x}`),
+  (x) => Promise.resolve(`${x}...`)
+);
+await transform("guest"); //=> 'Welcome Guest...'
+```
+
+## Try
+
+<REPL code={`const { aPipeFn, capitalize } = require('@opentf/std');
+
+async function main() {
+const transform = aPipeFn(
+(s) => capitalize(s),
+(x) => Promise.resolve(\`Welcome \${x}\`),
+(x) => Promise.resolve(\`\${x}...\`)
+);
+const out = await transform('guest');
+log(out);
+}
+
+main();
+`} />
+
+## Learn
+
+Why we need function composition?
+
+- The deep nesting of functions is hard to read.
+- It eliminates temporary variables.
+- Method chaining is limited, for Eg: await, yeild, etc.
+
+### Resources
+
+- [tc39/proposal-pipeline-operator](https://github.com/tc39/proposal-pipeline-operator)
+
+- [Hack Pipe Operator](https://docs.hhvm.com/hack/expressions-and-operators/pipe)

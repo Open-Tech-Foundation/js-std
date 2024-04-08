@@ -24,7 +24,7 @@
 - Practical Default Options
 - Includes Async Utils
 - TypeScript Support
-- ESM
+- Works with both CJS & ESM
 
 ## Installation
 
@@ -113,6 +113,24 @@ import { sleep } from "@opentf/std";
 await sleep(1000); // Suspends execution for 1 second
 ```
 
+7. Functions composition using `pipe` & `compose` functions:
+
+```js
+import { pipe, compose } from "@opentf/std";
+
+pipe(
+  1,
+  (x) => x + 1,
+  (x) => x * 5,
+); //=> 10
+
+compose(
+  1,
+  (x) => x + 1,
+  (x) => x * 5,
+); //=> 6
+```
+
 ## API
 
 ### Array
@@ -133,6 +151,7 @@ await sleep(1000); // Suspends execution for 1 second
 - [min](https://js-std.pages.dev/Array/min)
 - [move](https://js-std.pages.dev/Array/move)
 - [range](https://js-std.pages.dev/Array/range)
+- [reverse](https://js-std.pages.dev/Array/reverse)
 - [sort](https://js-std.pages.dev/Array/sort)
 - [sortBy](https://js-std.pages.dev/Array/sortBy)
 - [symDiff](https://js-std.pages.dev/Array/symDiff)
@@ -142,12 +161,17 @@ await sleep(1000); // Suspends execution for 1 second
 
 ## Async
 
+- [aCompose](https://js-std.pages.dev/Async/aCompose)
+- [aComposeFn](https://js-std.pages.dev/Async/aComposeFn)
 - [aFilter](https://js-std.pages.dev/Async/aFilter)
 - [aForEach](https://js-std.pages.dev/Async/aForEach)
 - [aMap](https://js-std.pages.dev/Async/aMap)
+- [aPipe](https://js-std.pages.dev/Async/aPipe)
+- [aPipeFn](https://js-std.pages.dev/Async/aPipeFn)
 
 ### Maths
 
+- [avg](https://js-std.pages.dev/Maths/avg)
 - [clamp](https://js-std.pages.dev/Maths/clamp)
 - [divMod](https://js-std.pages.dev/Maths/divMod)
 - [isEven](https://js-std.pages.dev/Maths/isEven)
@@ -168,8 +192,12 @@ await sleep(1000); // Suspends execution for 1 second
 
 ### Function
 
-- [sleep](https://js-std.pages.dev/Timers/sleep)
-- [noop](https://js-std.pages.dev/Timers/noop)
+- [compose](https://js-std.pages.dev/Function/compose)
+- [composeFn](https://js-std.pages.dev/Function/composeFn)
+- [noop](https://js-std.pages.dev/Function/noop)
+- [pipe](https://js-std.pages.dev/Function/pipe)
+- [pipeFn](https://js-std.pages.dev/Function/pipeFn)
+- [sleep](https://js-std.pages.dev/Function/sleep)
 
 ### Colors
 

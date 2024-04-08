@@ -1,4 +1,5 @@
 {
+  "avg": "avg",
   "clamp": "clamp",
   "divMod": "divMod",
   "isEven": "isEven",

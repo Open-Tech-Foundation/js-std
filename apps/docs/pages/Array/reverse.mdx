@@ -1,0 +1,46 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> Reverses the given list of elements order.
+
+<Callout emoji="✅" type="info">
+Immutable: This does not mutate the given array.
+</Callout>
+
+## Syntax
+
+```ts
+import { reverse } from '@opentf/std';
+
+reverse<T>(arr: T[] = []): T[]
+```
+
+## Examples
+
+```ts
+reverse([1, 2, 3]) //=> [3, 2, 1]
+
+reverse([{ a: 1 }, { b: 2 }, { c: 3 }])
+//=> [
+//  {
+//    c: 3,
+//  },
+//  {
+//    b: 2,
+//  },
+//  {
+//    a: 1,
+//  },
+// ]
+
+reverse('Apple')//=> ['e', 'l', 'p', 'p', 'A']
+
+reverse([1, , 3])//=> [3, undefined, 1]
+```
+
+## Try
+
+<REPL code={`const { reverse } = require('@opentf/std');
+
+reverse([1, 2, 3]);
+`} />
