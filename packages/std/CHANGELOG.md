@@ -1,5 +1,11 @@
 # @opentf/std
 
+## 0.6.0
+
+### Minor Changes
+
+- 3d6e4d9: Added functions composition related functions, Math avg & Array reverse fns.
+
 ## 0.5.1
 
 ### Patch Changes
