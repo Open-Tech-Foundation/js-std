@@ -1,5 +1,11 @@
 # @opentf/std
 
+## 0.6.1
+
+### Patch Changes
+
+- 2306bde: Updated readme with jsr badge.
+
 ## 0.6.0
 
 ### Minor Changes
