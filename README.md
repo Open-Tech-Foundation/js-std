@@ -6,7 +6,7 @@
 
 # JavaScript Standard Library
 
-[![Build](https://github.com/open-tech-foundation/js-std/actions/workflows/build.yml/badge.svg)](https://github.com/open-tech-foundation/js-std/actions/workflows/build.yml)
+[![Build](https://github.com/open-tech-foundation/js-std/actions/workflows/build.yml/badge.svg)](https://github.com/open-tech-foundation/js-std/actions/workflows/build.yml) &nbsp; [![JSR Score](https://jsr.io/badges/@opentf/std/score)](https://jsr.io/@opentf/std)
 
 </div>
 
