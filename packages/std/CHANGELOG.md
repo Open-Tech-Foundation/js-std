@@ -1,5 +1,11 @@
 # @opentf/std
 
+## 0.7.0
+
+### Minor Changes
+
+- 7b26d14: Added rgbToHex color function.
+
 ## 0.6.2
 
 ### Patch Changes
