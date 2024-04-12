@@ -119,6 +119,7 @@ export { default as composeFn } from './function/composeFn';
 
 // colors
 export { default as hexToRGB } from './colors/hexToRGB';
+export { default as rgbToHex } from './colors/rgbToHex';
 
 // Number
 export { default as isZero } from './number/isZero';

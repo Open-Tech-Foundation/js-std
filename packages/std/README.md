@@ -14,7 +14,7 @@
 
 <div align="center">
 
-## [Playground](https://js-std.pages.dev/playground) | [Documentation](https://js-std.pages.dev)
+### [Playground](https://js-std.pages.dev/playground) | [Documentation](https://js-std.pages.dev)
 
 </div>
 
@@ -193,7 +193,8 @@ compose(
 
 ### Colors
 
-- [hexToRGB](https://js-std.pages.dev/Misc/hexToRGB)
+- [hexToRGB](https://js-std.pages.dev/Colors/hexToRGB)
+- [rgbToHex](https://js-std.pages.dev/Colors/rgbToHex)
 
 ### Assert
 

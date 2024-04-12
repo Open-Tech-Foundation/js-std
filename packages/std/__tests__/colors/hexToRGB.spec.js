@@ -1,7 +1,7 @@
 import { hexToRGB } from '../../src';
 
-describe('Misc', () => {
-  test('hexToRGB', async () => {
+describe('Colors > hexToRGB', () => {
+  test('colors', async () => {
     expect(hexToRGB('#000000')).toEqual([0, 0, 0]);
     expect(hexToRGB('#FFFFFF')).toEqual([255, 255, 255]);
     expect(hexToRGB('#ffffff')).toEqual([255, 255, 255]);

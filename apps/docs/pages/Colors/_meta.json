@@ -1,3 +1,4 @@
 {
-  "hexToRGB": "hexToRGB"
+  "hexToRGB": "hexToRGB",
+  "rgbToHex": "rgbToHex"
 }
