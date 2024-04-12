@@ -55,19 +55,17 @@ deno add @opentf/std
 Let’s explore some of the library’s capabilities:
 
 1. Checking if a Value is Numeric:
-
 ```js
 import { isNum } from "@opentf/std";
 
-console.log(isNum(NaN)); //=> false
+isNum(NaN); //=> false
 ```
 
 2. Converting Strings to PascalCase:
-
 ```js
 import { pascalCase } from "@opentf/std";
 
-console.log(pascalCase("pascal case")); //=> PascalCase
+pascalCase("pascal case"); //=> PascalCase
 ```
 
 3. Sorting an Array in Descending Order:
@@ -75,7 +73,7 @@ console.log(pascalCase("pascal case")); //=> PascalCase
 ```js
 import { sort } from "@opentf/std";
 
-console.log(sort([1, 10, 21, 2], "desc")); //=> [21, 10, 2, 1]
+sort([1, 10, 21, 2], "desc"); //=> [21, 10, 2, 1]
 ```
 
 4. Deep Cloning an Object:
@@ -84,7 +82,7 @@ console.log(sort([1, 10, 21, 2], "desc")); //=> [21, 10, 2, 1]
 import { clone } from "@opentf/std";
 
 const obj = { a: 1, b: "abc", c: new Map([["key", "val"]]) };
-console.log(clone(obj)); // Deeply cloned value
+clone(obj); // Returns deeply cloned value
 ```
 
 5. Checking Equality of Objects & Arrays:
@@ -92,17 +90,11 @@ console.log(clone(obj)); // Deeply cloned value
 ```js
 import { isEql, isEqlArr } from "@opentf/std";
 
-const mapA = new Map([
-  ["a", 1],
-  ["b", 2],
-]);
-const mapB = new Map([
-  ["b", 2],
-  ["a", 1],
-]);
-console.log(isEql(mapA, mapB)); //=> false
+const mapA = new Map([["a", 1], ["b", 2]]);
+const mapB = new Map([["b", 2], ["a", 1]]);
+isEql(mapA, mapB); //=> false
 
-console.log(isEqlArr([1, 2, 3], [2, 3, 1])); //=> true
+isEqlArr([1, 2, 3], [2, 3, 1]); //=> true
 ```
 
 6. Adding a Delay (1 second) with sleep:
