@@ -1,5 +1,11 @@
 # @opentf/std
 
+## 0.6.2
+
+### Patch Changes
+
+- 27f58d2: Updated pkg repo field.
+
 ## 0.6.1
 
 ### Patch Changes
