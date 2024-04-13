@@ -7,13 +7,14 @@
  */
 export default function arrReplace<T>(
   arr: T[] = [],
-  index?: number | null,
+  index: number | null,
+  deleteCount: number | null,
   ...replacements: T[]
 ): T[] {
   const idx = index ?? arr.length - 1;
   const a = [...arr];
 
-  a.splice(idx, replacements.length, ...replacements);
+  a.splice(idx, deleteCount ?? replacements.length, ...replacements);
 
   return a;
 }

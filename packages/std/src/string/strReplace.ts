@@ -14,10 +14,13 @@ export default function strReplace(
   str: string,
   pattern: string | RegExp,
   replacement: string,
-  options: StrReplaceOptions
+  options?: StrReplaceOptions
 ): string {
   const defaultOptions: StrReplaceOptions = { all: false, case: false };
-  const opts = shallowMerge(defaultOptions, options) as StrReplaceOptions;
+  const opts = shallowMerge(
+    defaultOptions,
+    options as object
+  ) as StrReplaceOptions;
   let flags = '';
   flags = opts.all ? flags + 'g' : flags;
   flags = opts.case ? flags + 'i' : flags;

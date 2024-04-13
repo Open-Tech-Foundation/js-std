@@ -14,7 +14,8 @@ import { arrReplace } from '@opentf/std';
 
 arrReplace<T>(
   arr: T[] = [],
-  index?: number | null,
+  index: number | null,
+  deleteCount: number | null,
   ...replacements: T[]
 )
 ```
@@ -26,20 +27,23 @@ arrReplace([]) // => []
 
 arrReplace([1]) // => [1]
 
-arrReplace([1, 2, 3], null, 'a') // => [1, 2, 'a']
+arrReplace([1, 2, 3], 0, 1, 'a') // => ['a', 2, 3]
 
-arrReplace([1, 2, 3], 0, 'a') // => ['a', 2, 3]
+arrReplace([1, 2, 3], null, 1, 'a') // => [1, 2, 'a']
 
-arrReplace([1, 2, 3], 1, 'a', 'b') // => [1, 'a', 'b']
+arrReplace([1, 2, 3], 3, null, 'c') // => [1, 2, 3, 'c']
 
-arrReplace([1, 2, 3], 3, 'c') // => [1, 2, 3, 'c']
+const months = ['Jan', 'Feb', 'Apr', 'May'];
+arrReplace(months, 1, 1, 'Feb', 'Mar') //=> ['Jan', 'Feb', 'Mar', 'Apr', 'May']
 
-arrReplace([1, 2, 3], 5, 'c', 'd') // => [1, 2, 3, 'c', 'd']
+arrReplace(months, 1, null, 'Feb', 'Mar') //=> ['Jan', 'Feb', 'Mar', 'May']
 ```
 
 ## Try
 
 <REPL code={`const { arrReplace } = require('@opentf/std');
 
-arrReplace([1, 2, 3], 1, 'Two');
+const months = ['Jan', 'Feb', 'Apr', 'May'];
+
+arrReplace(months, 1, 1, 'Feb', 'Mar');
 `} />
