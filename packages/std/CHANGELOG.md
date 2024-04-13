@@ -1,5 +1,11 @@
 # @opentf/std
 
+## 0.8.0
+
+### Minor Changes
+
+- 1de5642: Fixed arrReplace by adding deleteCount param.
+
 ## 0.7.0
 
 ### Minor Changes
