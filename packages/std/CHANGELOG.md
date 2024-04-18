@@ -1,5 +1,11 @@
 # @opentf/std
 
+## 0.8.1
+
+### Patch Changes
+
+- f12c647: Updated readme with articles section.
+
 ## 0.8.0
 
 ### Minor Changes
