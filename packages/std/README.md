@@ -332,6 +332,14 @@ $ bun run build
 $ bun benchmark.js
 ```
 
+## Articles
+
+Please read our important articles:
+
+- [Introducing Our New JavaScript Standard Library](https://ganapathy.hashnode.dev/introducing-our-new-javascript-standard-library)
+
+- [You Don’t Need JavaScript Native Methods](https://ganapathy.hashnode.dev/you-dont-need-javascript-native-methods)
+
 ## License
 
 Copyright (c) [Thanga Ganapathy](https://github.com/Thanga-Ganapathy) ([MIT License](../../LICENSE)).
