@@ -1,6 +1,6 @@
 import { isNil } from '../../src';
 
-describe('Object => isNil', () => {
+describe('Assert => isNil', () => {
   test('falsy', () => {
     expect(isNil('')).toBe(false);
     expect(isNil([])).toBe(false);

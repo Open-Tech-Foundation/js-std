@@ -1,7 +1,7 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Returns the size of the given value or null.
+> Returns the size of the given collection.
 
 <Callout type="info">
 The following type of values are supported:
@@ -23,12 +23,16 @@ The following type of values are supported:
 - [TypedArray](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray)
 </Callout>
 
+<Callout type="warning">
+  It returns `-1` if the value is an unsupported type.
+</Callout>
+
 ## Syntax
 
 ```ts
 import { size } from '@opentf/std';
 
-size(val: unknown): number | null;
+size(val: unknown): number;
 ```
 
 ## Examples
@@ -37,21 +41,21 @@ size(val: unknown): number | null;
 // Invalid objs
 // ************
 
-size() //=> null
+size() //=> -1
 
-size(undefined) //=> null
+size(undefined) //=> -1
 
-size(null) //=> null
+size(null) //=> -1
 
-size(1) //=> null
+size(1) //=> -1
 
-size(1.5) //=> null
+size(1.5) //=> -1
 
-size(1n) //=> null
+size(1n) //=> -1
 
-size(false) //=> null
+size(false) //=> -1
 
-size(true) //=> null
+size(true) //=> -1
 
 // Eempty objs
 // ***********

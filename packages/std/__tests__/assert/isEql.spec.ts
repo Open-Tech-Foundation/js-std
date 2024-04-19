@@ -1,6 +1,6 @@
 import { isEql } from '../../src';
 
-describe('Object => isEql', () => {
+describe('Assert => isEql', () => {
   test('truthy', () => {
     expect(isEql()).toBe(true);
     expect(isEql(undefined, undefined)).toBe(true);

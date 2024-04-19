@@ -1,6 +1,6 @@
 import { isEqlArr } from '../../src';
 
-describe('Array > isEqlArr', () => {
+describe('Assert > isEqlArr', () => {
   test('same ordered arrays', () => {
     const arr1 = [1, 2, 3, 4];
     const arr2 = [1, 2, 3, 4];

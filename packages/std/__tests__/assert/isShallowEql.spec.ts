@@ -1,6 +1,6 @@
 import { isShallowEql } from '../../src';
 
-describe('Object => isShallowEql', () => {
+describe('Assert => isShallowEql', () => {
   test('not equal', () => {
     expect(isShallowEql(undefined, null)).toBe(false);
     expect(isShallowEql(false, 0)).toBe(false);

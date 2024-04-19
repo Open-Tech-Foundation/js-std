@@ -1,6 +1,6 @@
 import { isEmpty } from '../../src';
 
-describe('Object => isEmpty', () => {
+describe('Assert => isEmpty', () => {
   test('truthy', () => {
     expect(isEmpty('')).toBe(true);
     expect(isEmpty([])).toBe(true);

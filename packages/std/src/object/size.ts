@@ -18,7 +18,7 @@ import isTypedArr from '../types/isTypedArr';
  *
  * size({a: 1, b: 3}) //=> 2
  */
-export default function size(val: unknown): number | null {
+export default function size(val: unknown): number {
   if (isArr(val) || isStr(val) || isTypedArr(val)) {
     return val.length;
   }
@@ -35,5 +35,5 @@ export default function size(val: unknown): number | null {
     return val.byteLength;
   }
 
-  return null;
+  return -1;
 }

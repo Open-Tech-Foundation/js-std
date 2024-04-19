@@ -2,14 +2,14 @@ import { size } from '../../src';
 
 describe('Object => size', () => {
   test('Invalid objs', () => {
-    expect(size()).toBe(null);
-    expect(size(undefined)).toBe(null);
-    expect(size(null)).toBe(null);
-    expect(size(1)).toBe(null);
-    expect(size(1.5)).toBe(null);
-    expect(size(1n)).toBe(null);
-    expect(size(false)).toBe(null);
-    expect(size(true)).toBe(null);
+    expect(size()).toBe(-1);
+    expect(size(undefined)).toBe(-1);
+    expect(size(0)).toBe(-1);
+    expect(size(1)).toBe(-1);
+    expect(size(1.5)).toBe(-1);
+    expect(size(1n)).toBe(-1);
+    expect(size(false)).toBe(-1);
+    expect(size(true)).toBe(-1);
   });
 
   test('empty objs', () => {
