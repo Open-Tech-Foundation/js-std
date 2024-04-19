@@ -1,5 +1,11 @@
 # @opentf/std
 
+## 0.9.0
+
+### Minor Changes
+
+- 928a959: Added Set Composition methods like isSubsetOf, isSupersetOf & isDisjointFrom and Fixed size function to return -1 instead of null for unsupported types.
+
 ## 0.8.1
 
 ### Patch Changes
