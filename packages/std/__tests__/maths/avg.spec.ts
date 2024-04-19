@@ -1,6 +1,6 @@
 import { avg } from '../../src';
 
-describe('Number', () => {
+describe('Maths', () => {
   test('avg', () => {
     expect(avg()).toBe(0);
     expect(avg([])).toBe(0);

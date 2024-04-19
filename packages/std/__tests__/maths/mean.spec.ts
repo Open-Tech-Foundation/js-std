@@ -1,6 +1,6 @@
 import { mean } from '../../src';
 
-describe('Number', () => {
+describe('Maths', () => {
   test('mean', () => {
     expect(mean()).toBe(NaN);
     expect(mean([])).toBe(NaN);

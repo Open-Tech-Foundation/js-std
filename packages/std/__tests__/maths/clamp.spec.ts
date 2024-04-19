@@ -1,6 +1,6 @@
 import { clamp } from '../../src';
 
-describe('Number', () => {
+describe('Maths', () => {
   test('clamp', () => {
     expect(clamp(10, -5, 5)).toBe(5);
     expect(clamp(-10, -5, 5)).toBe(-5);

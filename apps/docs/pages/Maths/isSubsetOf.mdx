@@ -1,0 +1,89 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> Returns a boolean indicating if all elements of this set are in the given set.
+
+<Callout type="info">
+  The set can be either an `Array` or `Set`.
+</Callout>
+
+<Callout>
+  The subset relationship can determined by passing boolean value to the `proper` param. 
+</Callout>
+
+### Venn Diagram
+<div style={{padding: '15px', backgroundColor: 'white'}}>
+  ![Venn Diagram](/assets/isSubsetOf-venn-diagram.svg)
+  <div style={{textAlign: 'right', fontSize: '14px'}}>
+    [Source: MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
+  </div>
+</div>
+
+**Related**
+- [diff](/Array/diff)
+- [intersection](/Array/intersection)
+- [symDiff](/Array/symDiff)
+- [union](/Array/union)
+- [isSupersetOf](/Maths/isSupersetOf)
+- [isDisjointFrom](/Maths/isDisjointFrom)
+
+
+## Syntax
+
+```ts
+import { isSubsetOf } from '@opentf/std';
+
+isSubsetOf(
+  a: unknown[] | Set<unknown>,
+  b: unknown[] | Set<unknown>,
+  proper = false
+): boolean
+```
+
+## Examples
+
+```ts
+const a = [1, 2, 3];
+
+isSubsetOf([], a) //=> true
+
+isSubsetOf([1], a) //=> true
+
+isSubsetOf([1, 2], a) //=> true
+
+isSubsetOf([1, 2, 3], a) //=> true
+
+const fours = new Set([4, 8, 12, 16]);
+const evens = new Set([2, 4, 6, 8, 10, 12, 14, 16, 18]);
+
+isSubsetOf(fours, evens) //=> true
+
+isSubsetOf([1, 2, 3, 4, 5], a) //=> false
+
+const primes = new Set([2, 3, 5, 7, 11, 13, 17, 19]);
+const odds = new Set([3, 5, 7, 9, 11, 13, 15, 17, 19]);
+
+isSubsetOf(primes, odds) //=> false
+
+const set1 = new Set([1, 2, 3]);
+const set2 = new Set([1, 2, 3]);
+const set3 = new Set([1, 2]);
+
+isSubsetOf(set1, set2) //=> true
+
+isSubsetOf(set1, set2, false) //=> true
+
+isSubsetOf(set1, set2, true) //=> false
+
+isSubsetOf(set1, set3, true) //=> true
+```
+
+## Try
+
+<REPL code={`const { isSubsetOf } = require('@opentf/std');
+
+const fours = new Set([4, 8, 12, 16]);
+const evens = new Set([2, 4, 6, 8, 10, 12, 14, 16, 18]);
+
+isSubsetOf(fours, evens);
+`} />

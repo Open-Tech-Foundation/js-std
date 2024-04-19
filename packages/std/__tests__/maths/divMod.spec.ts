@@ -1,6 +1,6 @@
 import { divMod } from '../../src';
 
-describe('Number', () => {
+describe('Maths', () => {
   test('divMod', () => {
     expect(divMod(4, 2)).toEqual([2, 0]);
     expect(divMod(11, 4)).toEqual([2.75, 3]);

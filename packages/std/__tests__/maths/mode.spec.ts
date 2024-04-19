@@ -1,6 +1,6 @@
 import { mode } from '../../src';
 
-describe('Number', () => {
+describe('Maths', () => {
   test('mode', () => {
     expect(mode()).toEqual([]);
     expect(mode([1])).toEqual([]);

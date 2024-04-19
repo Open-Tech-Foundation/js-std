@@ -20,11 +20,14 @@
 
 ## Features
 
-- Simple API
+- Simple & Familiar API with some differences
+
+- Cross-Environment Compatibility: Execute seamlessly in browsers, Node.js, Bun, Deno, etc.
 - Practical Default Options
 - Includes Async Utils
 - TypeScript Support
 - Works with both CJS & ESM
+- Supports some Older Browsers & Node.js >= 16
 
 ## Installation
 
@@ -62,7 +65,7 @@ import { isNum } from "@opentf/std";
 isNum(NaN); //=> false
 ```
 
-2. Converting Strings to PascalCase:
+2. Converting Strings to Pascal Case:
 
 ```js
 import { pascalCase } from "@opentf/std";
@@ -84,6 +87,7 @@ sort([1, 10, 21, 2], "desc"); //=> [21, 10, 2, 1]
 import { clone } from "@opentf/std";
 
 const obj = { a: 1, b: "abc", c: new Map([["key", "val"]]) };
+
 clone(obj); // Returns deeply cloned value
 ```
 
@@ -100,6 +104,7 @@ const mapB = new Map([
   ["b", 2],
   ["a", 1],
 ]);
+
 isEql(mapA, mapB); //=> false
 
 isEqlArr([1, 2, 3], [2, 3, 1]); //=> true
@@ -174,8 +179,11 @@ compose(
 - [avg](https://js-std.pages.dev/Maths/avg)
 - [clamp](https://js-std.pages.dev/Maths/clamp)
 - [divMod](https://js-std.pages.dev/Maths/divMod)
+- [isDisjointFrom](https://js-std.pages.dev/Maths/isDisjointFrom)
 - [isEven](https://js-std.pages.dev/Maths/isEven)
 - [isOdd](https://js-std.pages.dev/Maths/isOdd)
+- [isSubsetOf](https://js-std.pages.dev/Maths/isSubsetOf)
+- [isSupersetOf](https://js-std.pages.dev/Maths/isSupersetOf)
 - [mean](https://js-std.pages.dev/Maths/mean)
 - [median](https://js-std.pages.dev/Maths/median)
 - [mode](https://js-std.pages.dev/Maths/mode)

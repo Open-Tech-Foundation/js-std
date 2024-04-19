@@ -13,6 +13,7 @@ export default function diff(
   by?: (val: unknown) => unknown
 ): unknown[] {
   const byFlag = isFn(by);
+
   return collections.slice(1).reduce(
     (acc, cur) => {
       const removeIdxs: number[] = [];

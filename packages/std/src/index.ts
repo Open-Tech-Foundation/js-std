@@ -54,6 +54,9 @@ export { default as median } from './maths/median';
 export { default as mode } from './maths/mode';
 export { default as clamp } from './maths/clamp';
 export { default as avg } from './maths/avg';
+export { default as isSubsetOf } from './maths/isSubsetOf';
+export { default as isSupersetOf } from './maths/isSupersetOf';
+export { default as isDisjointFrom } from './maths/isDisjointFrom';
 
 // Types
 export { default as isNum } from './types/isNum';

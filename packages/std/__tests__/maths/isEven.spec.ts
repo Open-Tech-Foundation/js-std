@@ -1,6 +1,6 @@
 import { isEven } from '../../src';
 
-describe('Number', () => {
+describe('Maths', () => {
   test('isEven', () => {
     expect(isEven(0)).toBe(true);
     expect(isEven(1)).toBe(false);

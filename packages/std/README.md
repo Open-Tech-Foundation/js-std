@@ -6,8 +6,8 @@
 
 # JavaScript Standard Library
 
-[![Build](https://github.com/open-tech-foundation/js-std/actions/workflows/build.yml/badge.svg)](https://github.com/open-tech-foundation/js-std/actions/workflows/build.yml)
-&nbsp; [![JSR Score](https://jsr.io/badges/@opentf/std/score)](https://jsr.io/@opentf/std)
+[![Build](https://github.com/open-tech-foundation/js-std/actions/workflows/build.yml/badge.svg)](https://github.com/open-tech-foundation/js-std/actions/workflows/build.yml) &nbsp; [![JSR Score](https://jsr.io/badges/@opentf/std/score)](https://jsr.io/@opentf/std)
+
 </div>
 
 > An Extensive JavaScript Standard Library.
@@ -20,11 +20,14 @@
 
 ## Features
 
-- Simple API
+- Simple & Familiar API with some differences
+
+- Cross-Environment Compatibility: Execute seamlessly in browsers, Node.js, Bun, Deno, etc.
 - Practical Default Options
 - Includes Async Utils
 - TypeScript Support
 - Works with both CJS & ESM
+- Supports some Older Browsers & Node.js >= 16
 
 ## Installation
 
@@ -55,13 +58,15 @@ deno add @opentf/std
 Let’s explore some of the library’s capabilities:
 
 1. Checking if a Value is Numeric:
+
 ```js
 import { isNum } from "@opentf/std";
 
 isNum(NaN); //=> false
 ```
 
-2. Converting Strings to PascalCase:
+2. Converting Strings to Pascal Case:
+
 ```js
 import { pascalCase } from "@opentf/std";
 
@@ -82,6 +87,7 @@ sort([1, 10, 21, 2], "desc"); //=> [21, 10, 2, 1]
 import { clone } from "@opentf/std";
 
 const obj = { a: 1, b: "abc", c: new Map([["key", "val"]]) };
+
 clone(obj); // Returns deeply cloned value
 ```
 
@@ -90,8 +96,15 @@ clone(obj); // Returns deeply cloned value
 ```js
 import { isEql, isEqlArr } from "@opentf/std";
 
-const mapA = new Map([["a", 1], ["b", 2]]);
-const mapB = new Map([["b", 2], ["a", 1]]);
+const mapA = new Map([
+  ["a", 1],
+  ["b", 2],
+]);
+const mapB = new Map([
+  ["b", 2],
+  ["a", 1],
+]);
+
 isEql(mapA, mapB); //=> false
 
 isEqlArr([1, 2, 3], [2, 3, 1]); //=> true
@@ -113,13 +126,13 @@ import { pipe, compose } from "@opentf/std";
 pipe(
   1,
   (x) => x + 1,
-  (x) => x * 5
+  (x) => x * 5,
 ); //=> 10
 
 compose(
   1,
   (x) => x + 1,
-  (x) => x * 5
+  (x) => x * 5,
 ); //=> 6
 ```
 
@@ -166,8 +179,11 @@ compose(
 - [avg](https://js-std.pages.dev/Maths/avg)
 - [clamp](https://js-std.pages.dev/Maths/clamp)
 - [divMod](https://js-std.pages.dev/Maths/divMod)
+- [isDisjointFrom](https://js-std.pages.dev/Maths/isDisjointFrom)
 - [isEven](https://js-std.pages.dev/Maths/isEven)
 - [isOdd](https://js-std.pages.dev/Maths/isOdd)
+- [isSubsetOf](https://js-std.pages.dev/Maths/isSubsetOf)
+- [isSupersetOf](https://js-std.pages.dev/Maths/isSupersetOf)
 - [mean](https://js-std.pages.dev/Maths/mean)
 - [median](https://js-std.pages.dev/Maths/median)
 - [mode](https://js-std.pages.dev/Maths/mode)

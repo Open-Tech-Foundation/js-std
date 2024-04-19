@@ -1,6 +1,6 @@
 import { median } from '../../src';
 
-describe('Number', () => {
+describe('Maths', () => {
   test('median', () => {
     expect(median()).toBe(NaN);
     expect(median([])).toBe(NaN);

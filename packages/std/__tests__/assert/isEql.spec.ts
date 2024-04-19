@@ -43,17 +43,19 @@ describe('Assert => isEql', () => {
     function fn() {}
     expect(isEql({ a: fn }, { a: fn })).toBe(true);
 
-    const o1 = {
-      field: 'status',
-      fieldtype: 'jira',
-      fieldId: 'status',
-      from: '10000',
-      fromString: 'To Do',
-      to: '3',
-      toString: 'In Progress',
-    };
-    const o2 = structuredClone(o1);
-    expect(isEql(o1, o2)).toBe(true);
+    if (globalThis.structuredClone) {
+      const o1 = {
+        field: 'status',
+        fieldtype: 'jira',
+        fieldId: 'status',
+        from: '10000',
+        fromString: 'To Do',
+        to: '3',
+        toString: 'In Progress',
+      };
+      const o2 = structuredClone(o1);
+      expect(isEql(o1, o2)).toBe(true);
+    }
 
     class A {
       constructor() {
@@ -131,29 +133,31 @@ describe('Assert => isEql', () => {
   });
 
   test('Deep objs with all supported types in it', () => {
-    const o1 = {
-      a: undefined,
-      b: null,
-      c: 0,
-      d: -0,
-      e: 1,
-      f: 1n,
-      g: 'a',
-      h: [1, 2, 3],
-      i: {
-        j: true,
-        k: false,
-        l: new Date(),
-        l2: [new Uint8Array(10), new Float32Array(32)],
-      },
-      m: new Map([
-        ['1', 1],
-        ['2', 2],
-      ]),
-      n: new Set([1, 2, 3, 4, 5]),
-    };
-    const o2 = structuredClone(o1);
-    expect(isEql(o1, o2)).toBe(true);
+    if (globalThis.structuredClone) {
+      const o1 = {
+        a: undefined,
+        b: null,
+        c: 0,
+        d: -0,
+        e: 1,
+        f: 1n,
+        g: 'a',
+        h: [1, 2, 3],
+        i: {
+          j: true,
+          k: false,
+          l: new Date(),
+          l2: [new Uint8Array(10), new Float32Array(32)],
+        },
+        m: new Map([
+          ['1', 1],
+          ['2', 2],
+        ]),
+        n: new Set([1, 2, 3, 4, 5]),
+      };
+      const o2 = structuredClone(o1);
+      expect(isEql(o1, o2)).toBe(true);
+    }
   });
 
   test('cyclic refs', () => {

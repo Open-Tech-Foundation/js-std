@@ -1,3 +1,4 @@
+import { Blob } from 'node:buffer';
 import { isBlob } from '../../src';
 
 describe('Types > isBlob', () => {
