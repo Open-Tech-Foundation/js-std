@@ -1,0 +1,39 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> Shuffles the given array values.
+
+<Callout emoji="✅" type="info">
+Immutable: This does not mutate the given array.
+</Callout>
+
+## Syntax
+
+```ts
+import { shuffle } from '@opentf/std';
+
+shuffle<T>(arr: T[]): T[]
+```
+
+## Examples
+
+```ts
+shuffle([]) //=> []
+
+shuffle([1]) //=> [1]
+
+shuffle([1, 2, 3, 4, 5]) //=> [ 2, 4, 5, 1, 3 ]
+
+shuffle('Apple') //=> [ 'p', 'e', 'A', 'l', 'p' ]
+```
+
+## Try
+
+<REPL code={`const { shuffle } = require('@opentf/std');
+
+shuffle([1, 2, 3, 4, 5]);
+`} />
+
+## Learn
+
+- [Fisher–Yates shuffle](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle)

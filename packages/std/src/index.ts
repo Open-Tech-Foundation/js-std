@@ -31,6 +31,8 @@ export { default as take } from './array/take';
 export { default as drop } from './array/drop';
 export { default as intersperse } from './array/intersperse';
 export { default as reverse } from './array/reverse';
+export { default as shuffle } from './array/shuffle';
+export { default as swap } from './array/swap';
 
 // Async
 export { default as aFilter } from './async/aFilter';
