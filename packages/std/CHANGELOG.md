@@ -1,5 +1,11 @@
 # @opentf/std
 
+## 0.10.0
+
+### Minor Changes
+
+- 7a05b94: Added array shuffle & swap functions.
+
 ## 0.9.0
 
 ### Minor Changes
