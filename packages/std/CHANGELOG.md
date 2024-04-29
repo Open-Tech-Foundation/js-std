@@ -1,5 +1,11 @@
 # @opentf/std
 
+## 0.12.0
+
+### Minor Changes
+
+- 66bdf45: Fixed isObj to support class.
+
 ## 0.11.0
 
 ### Minor Changes
