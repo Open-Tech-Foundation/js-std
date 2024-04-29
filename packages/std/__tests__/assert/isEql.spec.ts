@@ -1,5 +1,11 @@
 import { isEql } from '../../src';
 
+class A {
+  constructor() {
+    this.a = 1;
+  }
+}
+
 describe('Assert => isEql', () => {
   test('truthy', () => {
     expect(isEql()).toBe(true);
@@ -56,17 +62,6 @@ describe('Assert => isEql', () => {
       const o2 = structuredClone(o1);
       expect(isEql(o1, o2)).toBe(true);
     }
-
-    class A {
-      constructor() {
-        this.a = 1;
-      }
-    }
-
-    const first = new A();
-    const second = { a: 1 };
-
-    expect(isEql(first, second)).toBe(true);
 
     expect(isEql(new Int16Array([1, 2]), new Int16Array([1, 2]))).toBe(true);
 
@@ -130,6 +125,10 @@ describe('Assert => isEql', () => {
     expect(isEql(re, re2)).toBe(false);
 
     expect(isEql([1, , 2], [1, undefined, 2])).toBe(false);
+
+    const first = new A();
+    const second = { a: 1 };
+    expect(isEql(first, second)).toBe(false);
   });
 
   test('Deep objs with all supported types in it', () => {

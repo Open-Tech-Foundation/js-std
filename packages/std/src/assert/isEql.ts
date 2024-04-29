@@ -38,7 +38,10 @@ function isEqlVal(
   }
 
   // Check both has same type string tag
-  if (typeof val1 !== typeof val2) {
+  if (
+    Object.prototype.toString.call(val1) !==
+    Object.prototype.toString.call(val2)
+  ) {
     return false;
   }
 
