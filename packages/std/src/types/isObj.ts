@@ -12,5 +12,11 @@
  */
 
 export default function isObj(val: unknown): val is object {
-  return Object.prototype.toString.call(val) === '[object Object]';
+  if (Object.prototype.toString.call(val) !== '[object Object]') {
+    return false;
+  }
+
+  const p = Object.getPrototypeOf(val);
+
+  return p === null || p === Object.prototype;
 }

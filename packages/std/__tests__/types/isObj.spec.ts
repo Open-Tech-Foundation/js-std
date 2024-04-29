@@ -31,13 +31,20 @@ describe('Types > isObj', () => {
     expect(isObj(new Set())).toBe(false);
     expect(isObj(/./)).toBe(false);
     // expect(isObj(new Proxy({}, {}))).toBe(false);
+
+    class Person {
+      constructor(name) {
+        this.name = name;
+      }
+    }
+
+    expect(isObj(new Person('x'))).toBe(false);
+    expect(isObj(new (fun as any)(1))).toBe(false);
   });
 
   test('valid cases', () => {
     expect(isObj({})).toBe(true);
     expect(isObj({ a: 1 })).toBe(true);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    expect(isObj(new (fun as any)(1))).toBe(true);
     expect(isObj(new Object())).toBe(true);
     expect(isObj(Object.create(null))).toBe(true);
   });

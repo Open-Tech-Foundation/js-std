@@ -13,66 +13,74 @@ isObj(obj: unknown): boolean;
 ## Examples
 
 ```ts
-isObj(); // false
+isObj(); //=> false
 
-isObj(undefined); // false
+isObj(undefined); //=> false
 
-isObj(null); // false
+isObj(null); //=> false
 
-isObj(true); // false
+isObj(true); //=> false
 
-isObj(false); // false
+isObj(false); //=> false
 
-isObj(0); // false
+isObj(0); //=> false
 
-isObj(1n); // false
+isObj(1n); //=> false
 
-isObj(''); // false
+isObj(''); //=> false
 
-isObj([]); // false
+isObj([]); //=> false
 
-isObj(() => {}); // false
+isObj(() => {}); //=> false
 
-isObj(Symbol); // false
+isObj(Symbol); //=> false
 
-isObj(Symbol('Sym')); // false
+isObj(Symbol('Sym')); //=> false
 
-isObj(Math); // false
+isObj(Math); //=> false
 
-isObj(Math.min); // false
+isObj(Math.min); //=> false
 
-isObj(Error); // false
+isObj(Error); //=> false
 
-isObj(new Error()); // false
+isObj(new Error()); //=> false
 
 function fun(x) {
   return x;
 }
 
-isObj(fun); // false
+isObj(fun); //=> false
 
-isObj(fun()); // false
+isObj(fun()); //=> false
 
-isObj(Map); // false
+isObj(new fun(1)); //=> false
 
-isObj(new Map()); // false
+isObj(Map); //=> false
 
-isObj(Set); // false
+isObj(new Map()); //=> false
 
-isObj(new Set()); // false
+isObj(Set); //=> false
 
-isObj(/./); // false
+isObj(new Set()); //=> false
 
-isObj({}); // true
+isObj(/./); //=> false
 
-isObj({ a: 1 }); // true
+class Person {
+  constructor(name) {
+    this.name = name;
+  }
+}
 
-isObj(new fun(1)); // true
+isObj(new Person('x')) //=> false
 
-isObj(new Object()); // true
 
-isObj(Object.create(null)); // true
+isObj({}); //=> true
 
+isObj({ a: 1 }); //=> true
+
+isObj(new Object()); //=> true
+
+isObj(Object.create(null)); //=> true
 ```
 
 ## Try
