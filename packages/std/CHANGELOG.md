@@ -1,5 +1,11 @@
 # @opentf/std
 
+## 0.11.0
+
+### Minor Changes
+
+- 0d1451e: Added mutable set & unset variant functions.
+
 ## 0.10.0
 
 ### Minor Changes
