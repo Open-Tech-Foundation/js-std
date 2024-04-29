@@ -18,5 +18,5 @@ export default function isObj(val: unknown): val is object {
 
   const p = Object.getPrototypeOf(val);
 
-  return p === null || p === Object.prototype;
+  return p === null || Object.getPrototypeOf(p) === null;
 }

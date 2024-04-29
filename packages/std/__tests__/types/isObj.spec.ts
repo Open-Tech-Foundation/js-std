@@ -37,7 +37,6 @@ describe('Types > isObj', () => {
         this.name = name;
       }
     }
-
     expect(isObj(new Person('x'))).toBe(false);
     expect(isObj(new (fun as any)(1))).toBe(false);
   });
@@ -47,5 +46,14 @@ describe('Types > isObj', () => {
     expect(isObj({ a: 1 })).toBe(true);
     expect(isObj(new Object())).toBe(true);
     expect(isObj(Object.create(null))).toBe(true);
+
+    if (globalThis.structuredClone) {
+      const obj = {
+        a: 1,
+        b: 'Hello world',
+      };
+      const clone = structuredClone(obj);
+      expect(isObj(structuredClone(obj))).toBe(true);
+    }
   });
 });
