@@ -1,0 +1,60 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> Removes the property of the given object at the given path.
+
+<Callout emoji="✅" type="info">
+Immutable: This does not mutate the original object.
+</Callout>
+
+<Callout type="default">
+If an array value is removed, then it will not return a [sparsed](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Indexed_collections#sparse_arrays) array.
+</Callout>
+
+### Related
+
+- [get](/Object/get)
+- [has](/Object/has)
+- [set](/Object/set)
+- [unset](/Object/unset)
+- [toSet](/Object/toSet)
+
+## Syntax
+
+```ts
+import { toUnset } from '@opentf/std';
+
+toUnset<T>(
+  obj: T,
+  path: string | unknown[],
+): T
+```
+
+## Examples
+
+```ts
+const obj = { a: 1, b: 2 };
+toUnset(obj, 'a') //=> { b: 2 }
+
+toUnset(obj, 'b') //=> { a: 1 }
+
+toUnset(obj, 'c') //=> { a: 1, b: 2 }
+
+const arr = [1, 2, 3];
+toUnset(arr, '0') //=> [2, 3]
+
+toUnset(arr, '1') //=> [1, 3]
+
+toUnset(arr, '3') //=> [1, 2, 3]
+
+const nestedObj = { x: { y: { z: ['a', null, 'b'] } } };
+toUnset(nestedObj, 'x.y.z') //=> { x: { y: {} } }
+```
+
+## Try
+
+<REPL code={`const { toUnset } = require('@opentf/std');
+
+const obj = { a: 1, b: 2 };
+toUnset(obj, 'a');
+`} />

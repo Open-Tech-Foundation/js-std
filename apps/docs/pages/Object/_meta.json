@@ -12,5 +12,7 @@
   "shallowMergeAll": "shallowMergeAll",
   "size": "size",
   "toPath": "toPath",
+  "toSet": "toSet",
+  "toUnset": "toUnset",
   "unset": "unset"
 }

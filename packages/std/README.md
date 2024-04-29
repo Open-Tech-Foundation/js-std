@@ -338,7 +338,7 @@ isEql:
 
   - The native util `deepStrictEqual` not available in browsers, does not check `Map` ordering & same invalid dates.
   - The `fast-deep-equal/es6` does not support cyclic refs, Map ordering check, invalid dates, symbols, objects values in Set & TypedArrays.
-  - The lodash `isEqual` does not check `Map` ordering & object values in `Set`.
+  - The lodash `isEqual` having issues with Map &  does not check `Map` ordering & object values in `Set`.
   - The ramda `equals` does not check `Map` ordering & symbols.
   - The dequal does not support cyclic refs, Map ordering, symbols & same invalid dates.
 ```

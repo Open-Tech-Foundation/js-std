@@ -3,13 +3,18 @@ import REPL from "../../components/REPL";
 
 > Removes the property of the given object at the given path.
 
-<Callout emoji="✅" type="info">
-Immutable: This does not mutate the original object.
+<Callout emoji="⚠️" type="info">
+This mutates the original object.
 </Callout>
 
-<Callout type="default">
-If an array value is removed, then it will not return a [sparsed](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Indexed_collections#sparse_arrays) array.
-</Callout>
+### Related
+
+- [get](/Object/get)
+- [has](/Object/has)
+- [set](/Object/set)
+- [toSet](/Object/toSet)
+- [toUnset](/Object/toUnset)
+
 
 ## Syntax
 
@@ -25,19 +30,20 @@ unset<T>(
 ## Examples
 
 ```ts
-const obj = { a: 1, b: 2 };
-unset(obj, 'a') //=> { b: 2 }
+unset({ a: 1, b: 2 }, 'a') //=> { b: 2 }
 
-unset(obj, 'b') //=> { a: 1 }
+unset({ a: 1, b: 2 }, 'b') //=> { a: 1 }
 
-unset(obj, 'c') //=> { a: 1, b: 2 }
+unset({ a: 1, b: 2 }, 'c') //=> { a: 1, b: 2 }
 
-const arr = [1, 2, 3];
-unset(arr, '0') //=> [2, 3]
 
-unset(arr, '1') //=> [1, 3]
+unset([1, 2, 3], '0') //=> [<1 Empty>, 2, 3]
 
-unset(arr, '3') //=> [1, 2, 3]
+unset([1, 2, 3], '1') //=> [1, <1 Empty>, 3]
+
+unset([1, 2, 3], '2') //=> [1, 2, <1 Empty>]
+
+unset([1, 2, 3], '3') //=> [1, 2, 3]
 
 const nestedObj = { x: { y: { z: ['a', null, 'b'] } } };
 unset(nestedObj, 'x.y.z') //=> { x: { y: {} } }

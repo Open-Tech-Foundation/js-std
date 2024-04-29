@@ -3,24 +3,24 @@ import REPL from "../../components/REPL";
 
 > Sets the value to an object at the given path.
 
-<Callout emoji="⚠️" type="info">
-This mutates the original object.
+<Callout emoji="✅" type="info">
+Immutable: This does not mutate the original object.
 </Callout>
 
 ### Related
 
 - [get](/Object/get)
+- [set](/Object/set)
 - [has](/Object/has)
 - [unset](/Object/unset)
-- [toSet](/Object/toSet)
 - [toUnset](/Object/toUnset)
 
 ## Syntax
 
 ```ts
-import { set } from '@opentf/std';
+import { toSet } from '@opentf/std';
 
-set<T>(
+toSet<T>(
   obj: T,
   path: string | unknown[],
   value: unknown | ((val: unknown) => unknown)
@@ -37,34 +37,34 @@ The `callback` fn can be called with the property path value if it exist.
 ## Examples
 
 ```ts
-set({}, 'a', null) //=> { a: null }
+toSet({}, 'a', null) //=> { a: null }
 
-set({}, 'a', 1) //=> { a: 1 }
+toSet({}, 'a', 1) //=> { a: 1 }
 
-set({}, 'a.b', 25) //=> { a: { b: 25 } }
+toSet({}, 'a.b', 25) //=> { a: { b: 25 } }
 
-set({}, 'user.email', 'user@example.com') 
+toSet({}, 'user.email', 'user@example.com') 
 //=> 
 // {
 //    user: { email: 'user@example.com' }
 // }  
 
-set({}, '0', 'Apple') //=>   { '0': 'Apple' }
+toSet({}, '0', 'Apple') //=>   { '0': 'Apple' }
 
-set({}, 'fruits[0]', 'Apple') //=>  { fruits: ['Apple'] }
+toSet({}, 'fruits[0]', 'Apple') //=>  { fruits: ['Apple'] }
 
-set({ a: 1 }, 'a', (val) => val + 1) //=> { a: 2 }
+toSet({ a: 1 }, 'a', (val) => val + 1) //=> { a: 2 }
 
 const fn = () => render('My Component')
-set({ subscribeFns: [] }, 'subscribeFns[0]', () => fn)
+toSet({ subscribeFns: [] }, 'subscribeFns[0]', () => fn)
 //=> { subscribeFns: [fn] }
 ```
 
 ## Try
 
-<REPL code={`const { set } = require('@opentf/std');
+<REPL code={`const { toSet } = require('@opentf/std');
 
-log(set({}, 'a.b', 25));
+log(toSet({}, 'a.b', 25));
 
-set({ a: 1 }, 'a', (val) => val + 1)
+toSet({ a: 1 }, 'a', (val) => val + 1)
 `} />

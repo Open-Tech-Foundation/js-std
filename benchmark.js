@@ -172,6 +172,6 @@ async function isEqlBench() {
   `);
 }
 
-await cloneBench();
+// await cloneBench();
 // await sortByBench();
-// await isEqlBench();
+await isEqlBench();
