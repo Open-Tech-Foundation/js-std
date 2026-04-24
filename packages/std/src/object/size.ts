@@ -1,11 +1,11 @@
-import isArr from '../types/isArr';
-import isArrBuf from '../types/isArrBuf';
+import isArray from '../types/isArray';
+import isArrayBuffer from '../types/isArrayBuffer';
 import isDataView from '../types/isDataView';
 import isMap from '../types/isMap';
-import isObj from '../types/isObj';
+import isPlainObject from '../types/isPlainObject';
 import isSet from '../types/isSet';
-import isStr from '../types/isStr';
-import isTypedArr from '../types/isTypedArr';
+import isString from '../types/isString';
+import isTypedArray from '../types/isTypedArray';
 
 /**
  * Returns the size of the given value.
@@ -19,11 +19,11 @@ import isTypedArr from '../types/isTypedArr';
  * size({a: 1, b: 3}) //=> 2
  */
 export default function size(val: unknown): number {
-  if (isArr(val) || isStr(val) || isTypedArr(val)) {
+  if (isArray(val) || isString(val) || isTypedArray(val)) {
     return val.length;
   }
 
-  if (isObj(val)) {
+  if (isPlainObject(val)) {
     return Object.keys(val).length;
   }
 
@@ -31,7 +31,7 @@ export default function size(val: unknown): number {
     return val.size;
   }
 
-  if (isArrBuf(val) || isDataView(val)) {
+  if (isArrayBuffer(val) || isDataView(val)) {
     return val.byteLength;
   }
 

@@ -1,5 +1,5 @@
-import isNum from '../types/isNum';
-import isStr from '../types/isStr';
+import isNumber from '../types/isNumber';
+import isString from '../types/isString';
 
 /**
  * Try to convert the given value into a finite number.
@@ -13,11 +13,11 @@ import isStr from '../types/isStr';
  */
 
 export default function toNum(val: unknown): number {
-  if (isNum(val)) {
+  if (isNumber(val)) {
     return val as number;
   }
 
-  if (isStr(val) && isNum(val, true)) {
+  if (isString(val) && isNumber(val, true)) {
     return (val as string).includes('_')
       ? +(val as string).replaceAll('_', '')
       : +(val as string);

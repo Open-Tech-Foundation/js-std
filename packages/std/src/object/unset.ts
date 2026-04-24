@@ -1,6 +1,6 @@
 import isEmpty from '../assert/isEmpty';
-import isArr from '../types/isArr';
-import isObj from '../types/isObj';
+import isArray from '../types/isArray';
+import isObject from '../types/isObject';
 import type { IterableObj } from './merge';
 import toPath from './toPath';
 
@@ -15,7 +15,7 @@ export default function unset<T>(obj: T, path: string | unknown[]): T {
   const pathArr = toPath(path);
   let curObj: IterableObj = obj as IterableObj;
 
-  if (isEmpty(pathArr) || !(isObj(obj) || isArr(obj))) {
+  if (isEmpty(pathArr) || !(isObject(obj) || isArray(obj))) {
     return obj;
   }
 
@@ -29,7 +29,7 @@ export default function unset<T>(obj: T, path: string | unknown[]): T {
 
     curObj = curObj[prop] as IterableObj;
 
-    if (!(isObj(curObj) || isArr(curObj))) {
+    if (!(isObject(curObj) || isArray(curObj))) {
       return obj;
     }
   }

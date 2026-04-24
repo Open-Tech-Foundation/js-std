@@ -34,10 +34,6 @@
 Install it using your favourite package manager.
 
 ```sh
-bun add @opentf/std
-```
-
-```sh
 npm install @opentf/std
 ```
 
@@ -47,6 +43,10 @@ yarn add @opentf/std
 
 ```sh
 pnpm add @opentf/std
+```
+
+```sh
+bun add @opentf/std
 ```
 
 ```sh
@@ -60,12 +60,12 @@ Let’s explore some of the library’s capabilities:
 1. Checking if a Value is Numeric:
 
 ```js
-import { isNum } from "@opentf/std";
+import { isNumber } from "@opentf/std";
 
-isNum(NaN); //=> false
-isNum("1"); //=> false
-isNum("1", true); //=> true
-isNum(1); //=> true
+isNumber(NaN); //=> false
+isNumber('1'); //=> false
+isNumber('1', true); //=> true
+isNumber(1); //=> true
 ```
 
 2. Converting Strings to Pascal Case:
@@ -97,7 +97,7 @@ clone(obj); // Returns deeply cloned value
 5. Checking Equality of Objects & Arrays:
 
 ```js
-import { isEql, isEqlArr } from "@opentf/std";
+import { isEql, isUnorderedEqual } from "@opentf/std";
 
 const mapA = new Map([
   ["a", 1],
@@ -110,7 +110,7 @@ const mapB = new Map([
 
 isEql(mapA, mapB); //=> false
 
-isEqlArr([1, 2, 3], [2, 3, 1]); //=> true
+isUnorderedEqual([1, 2, 3], [2, 3, 1]); //=> true
 ```
 
 6. Adding a Delay (1 second) with sleep:
@@ -142,12 +142,12 @@ compose(
 8. Pick & Omit Paths in an Object
 
 ```js
-import { pick, omit } from '@opentf/std';
-
+import { pick omit } from '@opentf/std';
+ 
 const obj = { a: 1, b: 2, c: 3 };
-
+ 
 pick(obj, 'a', 'c'); //=> { a: 1, c: 3 }
-
+ 
 omit(obj, 'a', 'c'); //=> { b: 2 }
 ```
 
@@ -155,9 +155,9 @@ omit(obj, 'a', 'c'); //=> { b: 2 }
 
 ### Array
 
-- [arrIns](https://js-std.pages.dev/Array/arrIns)
-- [arrReplace](https://js-std.pages.dev/Array/arrReplace)
-- [arrRm](https://js-std.pages.dev/Array/arrRm)
+- [arrayInsert](https://js-std.pages.dev/Array/arrayInsert)
+- [arrayReplace](https://js-std.pages.dev/Array/arrayReplace)
+- [arrayRemove](https://js-std.pages.dev/Array/arrayRemove)
 - [bounds](https://js-std.pages.dev/Array/bounds)
 - [chunk](https://js-std.pages.dev/Array/chunk)
 - [compact](https://js-std.pages.dev/Array/compact)
@@ -194,7 +194,6 @@ omit(obj, 'a', 'c'); //=> { b: 2 }
 
 ### Maths
 
-- [avg](https://js-std.pages.dev/Maths/avg)
 - [clamp](https://js-std.pages.dev/Maths/clamp)
 - [divMod](https://js-std.pages.dev/Maths/divMod)
 - [isDisjointFrom](https://js-std.pages.dev/Maths/isDisjointFrom)
@@ -229,14 +228,19 @@ omit(obj, 'a', 'c'); //=> { b: 2 }
 
 - [hexToRGB](https://js-std.pages.dev/Colors/hexToRGB)
 - [rgbToHex](https://js-std.pages.dev/Colors/rgbToHex)
+- [rgbToHsl](https://js-std.pages.dev/Colors/rgbToHsl)
+- [hslToRgb](https://js-std.pages.dev/Colors/hslToRgb)
+- [colorParse](https://js-std.pages.dev/Colors/colorParse)
+- [colorToHex](https://js-std.pages.dev/Colors/colorToHex)
+- [colorToRgb](https://js-std.pages.dev/Colors/colorToRgb)
+- [colorToHsl](https://js-std.pages.dev/Colors/colorToHsl)
 
 ### Assert
 
 - [isEmpty](https://js-std.pages.dev/Assert/isEmpty)
 - [isEql](https://js-std.pages.dev/Assert/isEql)
-- [isEqlArr](https://js-std.pages.dev/Assert/isEqlArr)
+- [isUnorderedEqual](https://js-std.pages.dev/Assert/isUnorderedEqual)
 - [isNil](https://js-std.pages.dev/Assert/isNil)
-- [isShallowEql](https://js-std.pages.dev/Assert/isShallowEql)
 
 ### Object
 
@@ -260,46 +264,53 @@ omit(obj, 'a', 'c'); //=> { b: 2 }
 - [camelCase](https://js-std.pages.dev/String/camelCase)
 - [capitalize](https://js-std.pages.dev/String/capitalize)
 - [insertAt](https://js-std.pages.dev/String/insertAt)
-- [isEmail](https://js-std.pages.dev/String/isEmail)
+- [kebabCase](https://js-std.pages.dev/String/kebabCase)
+- [pad](https://js-std.pages.dev/String/pad)
 - [pascalCase](https://js-std.pages.dev/String/pascalCase)
+- [repeat](https://js-std.pages.dev/String/repeat)
 - [replaceAt](https://js-std.pages.dev/String/replaceAt)
+- [snakeCase](https://js-std.pages.dev/String/snakeCase)
 - [strReplace](https://js-std.pages.dev/String/strReplace)
+- [titleCase](https://js-std.pages.dev/String/titleCase)
+- [trim](https://js-std.pages.dev/String/trim)
+- [truncate](https://js-std.pages.dev/String/truncate)
+- [words](https://js-std.pages.dev/String/words)
 
 ### Types
 
-- [isArr](https://js-std.pages.dev/Types/isArr)
-- [isArrBuf](https://js-std.pages.dev/Types/isArrBuf)
-- [isAsyFn](https://js-std.pages.dev/Types/isAsyFn)
+- [isArray](https://js-std.pages.dev/Types/isArray)
+- [isArrayBuffer](https://js-std.pages.dev/Types/isArrayBuffer)
+- [isAsyncFunction](https://js-std.pages.dev/Types/isAsyncFunction)
 - [isBigInt](https://js-std.pages.dev/Types/isBigInt)
 - [isBlob](https://js-std.pages.dev/Types/isBlob)
-- [isBool](https://js-std.pages.dev/Types/isBool)
+- [isBoolean](https://js-std.pages.dev/Types/isBoolean)
 - [isDataView](https://js-std.pages.dev/Types/isDataView)
 - [isDate](https://js-std.pages.dev/Types/isDate)
-- [isErr](https://js-std.pages.dev/Types/isErr)
-- [isFn](https://js-std.pages.dev/Types/isFn)
-- [isGenFn](https://js-std.pages.dev/Types/isGenFn)
+- [isError](https://js-std.pages.dev/Types/isError)
+- [isFunction](https://js-std.pages.dev/Types/isFunction)
+- [isGeneratorFunction](https://js-std.pages.dev/Types/isGeneratorFunction)
 - [isInfinity](https://js-std.pages.dev/Types/isInfinity)
 - [isJSON](https://js-std.pages.dev/Types/isJSON)
 - [isMap](https://js-std.pages.dev/Types/isMap)
 - [isNull](https://js-std.pages.dev/Types/isNull)
-- [isNum](https://js-std.pages.dev/Types/isNum)
-- [isObj](https://js-std.pages.dev/Types/isObj)
-- [isPureObj](https://js-std.pages.dev/Types/isPureObj)
-- [isRegEx](https://js-std.pages.dev/Types/isRegEx)
+- [isNumber](https://js-std.pages.dev/Types/isNumber)
+- [isObject](https://js-std.pages.dev/Types/isObject)
+- [isPlainObject](https://js-std.pages.dev/Types/isPlainObject)
+- [isRegExp](https://js-std.pages.dev/Types/isRegExp)
 - [isSet](https://js-std.pages.dev/Types/isSet)
-- [isStr](https://js-std.pages.dev/Types/isStr)
-- [isSym](https://js-std.pages.dev/Types/isSym)
-- [isTypedArr](https://js-std.pages.dev/Types/isTypedArr)
-- [isUndef](https://js-std.pages.dev/Types/isUndef)
-- [isWkMap](https://js-std.pages.dev/Types/isWkMap)
-- [isWkRef](https://js-std.pages.dev/Types/isWkRef)
-- [isWkSet](https://js-std.pages.dev/Types/isWkSet)
+- [isString](https://js-std.pages.dev/Types/isString)
+- [isSymbol](https://js-std.pages.dev/Types/isSymbol)
+- [isTypedArray](https://js-std.pages.dev/Types/isTypedArray)
+- [isUndefined](https://js-std.pages.dev/Types/isUndefined)
+- [isWeakMap](https://js-std.pages.dev/Types/isWeakMap)
+- [isWeakRef](https://js-std.pages.dev/Types/isWeakRef)
+- [isWeakSet](https://js-std.pages.dev/Types/isWeakSet)
 
 ## Benchmarks
 
 Some benchmark outputs are shown here for reference.
 
-> [!IMPORTANT]
+> [!IMPORTANT]  
 > Our priorities are reliability and accuracy rather than performance.
 
 ```diff
@@ -354,7 +365,7 @@ isEql:
 
   - The native util `deepStrictEqual` not available in browsers, does not check `Map` ordering & same invalid dates.
   - The `fast-deep-equal/es6` does not support cyclic refs, Map ordering check, invalid dates, symbols, objects values in Set & TypedArrays.
-  - The lodash `isEqual` having issues with Map & does not check `Map` ordering & object values in `Set`.
+  - The lodash `isEqual` having issues with Map &  does not check `Map` ordering & object values in `Set`.
   - The ramda `equals` does not check `Map` ordering & symbols.
   - The dequal does not support cyclic refs, Map ordering, symbols & same invalid dates.
 ```
@@ -376,4 +387,4 @@ Please read our important articles:
 
 ## License
 
-Copyright (c) [Thanga Ganapathy](https://github.com/Thanga-Ganapathy) ([MIT License](./LICENSE)).
+Copyright (c) [Thanga Ganapathy](https://github.com/Thanga-Ganapathy) ([MIT License](../../LICENSE)).

@@ -1,4 +1,4 @@
-import isFn from '../types/isFn';
+import isFunction from '../types/isFunction';
 
 /**
  * Creates an object composed of keys generated from the results of running each element of collection through iteratee.
@@ -12,7 +12,7 @@ export default function countBy<T>(
   by: ((val: T) => string) | string,
 ): Record<string, number> {
   return arr.reduce((acc: Record<string, number>, cur) => {
-    const k = (isFn(by) ? by(cur) : cur[by as keyof T]) as string;
+    const k = (isFunction(by) ? by(cur) : cur[by as keyof T]) as string;
     acc[k] = (acc[k] ?? 0) + 1;
     return acc;
   }, {});

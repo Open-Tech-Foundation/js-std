@@ -1,5 +1,5 @@
-import arrRm from '../array/arrRm';
-import isArr from '../types/isArr';
+import arrayRemove from '../array/arrayRemove';
+import isArray from '../types/isArray';
 import clone from './clone';
 import type { IterableObj } from './merge';
 import toPath from './toPath';
@@ -43,7 +43,7 @@ export default function omit(
 
   for (const path of paths) {
     walk(c, path, (obj, prop) => {
-      if (isArr(obj)) {
+      if (isArray(obj)) {
         arrPathSet.add(path);
       }
 
@@ -58,7 +58,7 @@ export default function omit(
     }
 
     const pathArr = toPath(path);
-    walk(c, arrRm(pathArr), (obj, prop) => {
+    walk(c, arrayRemove(pathArr), (obj, prop) => {
       (obj as IterableObj)[prop] = ((obj as IterableObj)[prop] as []).flat();
     });
   }

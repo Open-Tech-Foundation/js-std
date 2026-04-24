@@ -1,5 +1,5 @@
-import isArr from '../types/isArr';
-import isObj from '../types/isObj';
+import isArray from '../types/isArray';
+import isPlainObject from '../types/isPlainObject';
 
 /**
  * Merges the given two objects or arrays.
@@ -22,12 +22,12 @@ export default function shallowMerge(
   return filteredObjs.reduce(
     (acc, cur, i) => {
       if (i === 0) {
-        return isArr(cur) ? cur.slice() : Object.assign({}, cur);
+        return isArray(cur) ? cur.slice() : Object.assign({}, cur);
       }
       const target =
-        isArr(acc) && isObj(cur)
+        isArray(acc) && isPlainObject(cur)
           ? Object.fromEntries(Object.entries(acc))
-          : isArr(acc)
+          : isArray(acc)
             ? acc.slice()
             : Object.assign({}, acc);
       return Object.assign(target, cur);

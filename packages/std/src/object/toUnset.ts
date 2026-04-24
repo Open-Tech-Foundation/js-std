@@ -1,7 +1,7 @@
 import isEmpty from '../assert/isEmpty';
-import isArr from '../types/isArr';
-import isNum from '../types/isNum';
-import isObj from '../types/isObj';
+import isArray from '../types/isArray';
+import isNumber from '../types/isNumber';
+import isObject from '../types/isObject';
 import clone from './clone';
 import type { IterableObj } from './merge';
 import toPath from './toPath';
@@ -16,7 +16,7 @@ import toPath from './toPath';
 export default function unset<T>(obj: T, path: string | unknown[]): T {
   const pathArr = toPath(path);
 
-  if (isEmpty(pathArr) || !(isObj(obj) || isArr(obj))) {
+  if (isEmpty(pathArr) || !(isObject(obj) || isArray(obj))) {
     return obj;
   }
 
@@ -27,8 +27,8 @@ export default function unset<T>(obj: T, path: string | unknown[]): T {
     const prop = pathArr[i] as PropertyKey;
 
     if (i === pathArr.length - 1) {
-      if (isArr(curObj)) {
-        if (isNum(prop, true)) {
+      if (isArray(curObj)) {
+        if (isNumber(prop, true)) {
           curObj.splice(prop, 1);
         }
       } else {
@@ -39,7 +39,7 @@ export default function unset<T>(obj: T, path: string | unknown[]): T {
 
     curObj = curObj[prop] as IterableObj;
 
-    if (!(isObj(curObj) || isArr(curObj))) {
+    if (!(isObject(curObj) || isArray(curObj))) {
       return cObj;
     }
   }

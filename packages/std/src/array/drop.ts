@@ -1,4 +1,4 @@
-import isFn from '../types/isFn';
+import isFunction from '../types/isFunction';
 import isNull from '../types/isNull';
 
 /**
@@ -24,7 +24,7 @@ export default function drop<T>(
   for (let i = 0; i < arr.length; i++) {
     const val = arr[i];
     if (skipCount < curLimit) {
-      if (isFn(cb)) {
+      if (isFunction(cb)) {
         if (cb(val)) {
           skipCount += 1;
         } else {

@@ -1,4 +1,4 @@
-import isArr from '../types/isArr';
+import isArray from '../types/isArray';
 import has from './has';
 import type { IterableObj } from './merge';
 import toPath from './toPath';
@@ -14,7 +14,7 @@ export default function pick(
   obj: object,
   ...paths: (string | unknown[])[]
 ): object {
-  const outObj = isArr(obj) ? [] : {};
+  const outObj = isArray(obj) ? [] : {};
 
   for (const path of paths) {
     if (has(obj, path)) {
@@ -26,7 +26,7 @@ export default function pick(
         const prop = pathArr[i] as PropertyKey;
 
         if (i === pathArr.length - 1) {
-          if (isArr(curOutObj)) {
+          if (isArray(curOutObj)) {
             curOutObj.push((curObj as IterableObj)[prop]);
           } else {
             (curOutObj as IterableObj)[prop] = (curObj as IterableObj)[prop];
@@ -37,7 +37,7 @@ export default function pick(
         curObj = (curObj as IterableObj)[prop] as object;
 
         if (!Object.hasOwn(curOutObj, prop)) {
-          (curOutObj as IterableObj)[prop] = isArr(curObj) ? [] : {};
+          (curOutObj as IterableObj)[prop] = isArray(curObj) ? [] : {};
         }
 
         curOutObj = (curOutObj as IterableObj)[prop] as object;

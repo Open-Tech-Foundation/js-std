@@ -1,6 +1,6 @@
 import isEmpty from '../assert/isEmpty';
-import isFn from '../types/isFn';
-import isNum from '../types/isNum';
+import isFunction from '../types/isFunction';
+import isNumber from '../types/isNumber';
 import clone from './clone';
 import type { IterableObj } from './merge';
 import toPath from './toPath';
@@ -29,13 +29,13 @@ export default function toSet<T>(
     const prop = pathArr[i] as PropertyKey;
 
     if (i === pathArr.length - 1) {
-      const v = isFn(value) ? value(curObj[prop]) : value;
+      const v = isFunction(value) ? value(curObj[prop]) : value;
       curObj[prop] = v;
       break;
     }
 
     if (!curObj[prop]) {
-      curObj[prop] = isNum(pathArr[i + 1], true) ? [] : {};
+      curObj[prop] = isNumber(pathArr[i + 1], true) ? [] : {};
     }
 
     curObj = curObj[prop] as IterableObj;

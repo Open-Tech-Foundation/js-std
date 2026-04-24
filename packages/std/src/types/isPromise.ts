@@ -1,4 +1,4 @@
-import isFn from './isFn';
+import isFunction from './isFunction';
 
 /**
  * Checks if the given value is a Promise object.
@@ -10,5 +10,5 @@ import isFn from './isFn';
  * isPromise(Promise.resolve()) //=> true
  */
 export default function isPromise(val: unknown): val is Promise<unknown> {
-  return isFn((val as Record<string, unknown>)?.then);
+  return isFunction((val as Record<string, unknown>)?.then);
 }

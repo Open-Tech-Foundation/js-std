@@ -1,5 +1,5 @@
 import isEql from '../assert/isEql';
-import isFn from '../types/isFn';
+import isFunction from '../types/isFunction';
 
 /**
  * Creates a unique array by removing all duplicate values from the given array.
@@ -17,8 +17,8 @@ export default function uniq<T>(
     let flag = false;
 
     for (const item of acc) {
-      const v1 = isFn(by) ? by(item as T) : item;
-      const v2 = isFn(by) ? by(cur) : cur;
+      const v1 = isFunction(by) ? by(item as T) : item;
+      const v2 = isFunction(by) ? by(cur) : cur;
       if (isEql(v1, v2)) {
         flag = true;
         break;

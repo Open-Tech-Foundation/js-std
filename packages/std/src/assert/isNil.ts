@@ -1,5 +1,5 @@
 import isNull from '../types/isNull';
-import isUndef from '../types/isUndef';
+import isUndefined from '../types/isUndefined';
 
 /**
  * Checks if the given value is nil or noting.
@@ -13,7 +13,7 @@ import isUndef from '../types/isUndef';
  * isNil(true) //=> false
  */
 export default function isNil(val: unknown): boolean {
-  if (isNull(val) || isUndef(val)) {
+  if (isNull(val) || isUndefined(val)) {
     return true;
   }
 

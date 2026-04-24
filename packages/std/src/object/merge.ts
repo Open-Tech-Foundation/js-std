@@ -1,5 +1,5 @@
-import isArr from '../types/isArr';
-import isObj from '../types/isObj';
+import isArray from '../types/isArray';
+import isPlainObject from '../types/isPlainObject';
 
 export type IterableObj = {
   [key: number | string | symbol]: unknown;
@@ -14,12 +14,12 @@ export type IterableObj = {
  * merge(a, b); //=> {a: { b: 1, c: 2 } }
  */
 export default function merge(...objs: object[]): object {
-  const filteredObjs = objs.filter((v) => isArr(v) || isObj(v));
-  const initialVal = isArr(filteredObjs[0]) ? [] : {};
+  const filteredObjs = objs.filter((v) => isArray(v) || isPlainObject(v));
+  const initialVal = isArray(filteredObjs[0]) ? [] : {};
 
   return filteredObjs.reduce((acc: IterableObj, cur) => {
     for (const [key, val] of Object.entries(cur)) {
-      if (isArr(val) || isObj(val)) {
+      if (isArray(val) || isPlainObject(val)) {
         acc[key] = merge(acc[key] as object, val);
       } else {
         acc[key] = val;

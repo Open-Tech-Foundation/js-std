@@ -1,5 +1,5 @@
 import isEmpty from '../assert/isEmpty';
-import isPureObj from '../types/isPureObj';
+import isObject from '../types/isObject';
 import type { IterableObj } from './merge';
 import toPath from './toPath';
 
@@ -20,7 +20,7 @@ export default function has(obj: object, path: string | unknown[]): boolean {
 
   let curObj = obj;
   for (const prop of pathArr) {
-    if (!isPureObj(curObj)) {
+    if (!isObject(curObj)) {
       return false;
     }
 

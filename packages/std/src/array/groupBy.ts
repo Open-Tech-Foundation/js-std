@@ -1,4 +1,4 @@
-import isFn from '../types/isFn';
+import isFunction from '../types/isFunction';
 
 /**
  * Creates an object composed of keys generated from the results of running each element of collection through iteratee.

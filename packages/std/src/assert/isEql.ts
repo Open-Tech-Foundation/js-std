@@ -1,15 +1,14 @@
 import type { IterableObj } from '../object/merge';
 import size from '../object/size';
-import isArr from '../types/isArr';
-import isArrBuf from '../types/isArrBuf';
+import isArray from '../types/isArray';
+import isArrayBuffer from '../types/isArrayBuffer';
 import isDataView from '../types/isDataView';
-import isErr from '../types/isErr';
+import isError from '../types/isError';
 import isMap from '../types/isMap';
-import isObj from '../types/isObj';
-import isPureObj from '../types/isPureObj';
-import isRegEx from '../types/isRegEx';
+import isPlainObject from '../types/isPlainObject';
+import isRegExp from '../types/isRegExp';
 import isSet from '../types/isSet';
-import isTypedArr from '../types/isTypedArr';
+import isTypedArray from '../types/isTypedArray';
 
 function getMapKeys(map: Map<unknown, unknown>) {
   const arr = [];
@@ -49,12 +48,12 @@ function isEqlVal(
     return false;
   }
 
-  if (isPureObj(val1) && isPureObj(val2)) {
+  if (isPlainObject(val1) && isPlainObject(val2)) {
     objRefSet1.add(val1 as WeakKey);
     objRefSet2.add(val2 as WeakKey);
   }
 
-  if (isArr(val1)) {
+  if (isArray(val1)) {
     if (val1.length !== (val2 as unknown[]).length) {
       return false;
     }
@@ -64,7 +63,7 @@ function isEqlVal(
     }
   }
 
-  if (isArr(val1) || isObj(val1) || isTypedArr(val1)) {
+  if (isArray(val1) || isPlainObject(val1) || isTypedArray(val1)) {
     for (const key of Object.keys(val1)) {
       if (
         !isEqlVal(
@@ -131,7 +130,7 @@ function isEqlVal(
     return true;
   }
 
-  if (isErr(val1)) {
+  if (isError(val1)) {
     if (
       val1.name === (val2 as Error).name &&
       val1.message === (val2 as Error).message
@@ -140,7 +139,7 @@ function isEqlVal(
     }
   }
 
-  if (isRegEx(val1)) {
+  if (isRegExp(val1)) {
     if (
       val1.source === (val2 as RegExp).source &&
       val1.flags === (val2 as RegExp).flags &&
@@ -150,7 +149,7 @@ function isEqlVal(
     }
   }
 
-  if (isArrBuf(val1)) {
+  if (isArrayBuffer(val1)) {
     const ta1 = new Uint8Array(val1);
     const ta2 = new Uint8Array(val2 as ArrayBuffer);
 
@@ -191,8 +190,54 @@ function isEqlVal(
  * isEql({a: [{b: 1}]}, {a: [{b: 1}]}) //=> true
  *
  * isEql(null, undefined) //=> false
+ *
+ * isEql({a: 1}, {a: 1}, {shallow: true}) //=> true
  */
-export default function isEql(val1: unknown, val2: unknown): boolean {
+export default function isEql(
+  val1: unknown,
+  val2: unknown,
+  options?: { shallow?: boolean },
+): boolean {
+  if (options?.shallow) {
+    if (Object.is(val1, val2)) {
+      return true;
+    }
+
+    if (
+      typeof val1 === 'object' &&
+      typeof val2 === 'object' &&
+      val1 !== null &&
+      val2 !== null
+    ) {
+      if (
+        Object.prototype.toString.call(val1) !==
+        Object.prototype.toString.call(val2)
+      ) {
+        return false;
+      }
+
+      const keys1 = Object.keys(val1 as object);
+      const keys2 = Object.keys(val2 as object);
+
+      if (keys1.length !== keys2.length) {
+        return false;
+      }
+
+      for (let i = 0; i < keys1.length; i++) {
+        if (
+          !Object.is(
+            (val1 as object)[keys1[i] as keyof typeof val1],
+            (val2 as object)[keys2[i] as keyof typeof val2],
+          )
+        ) {
+          return false;
+        }
+      }
+      return true;
+    }
+    return false;
+  }
+
   const objRefSet1 = new WeakSet();
   const objRefSet2 = new WeakSet();
 

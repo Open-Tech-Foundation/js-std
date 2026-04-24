@@ -1,11 +1,18 @@
 // String
-export { default as isEmail } from './string/isEmail';
 export { default as replaceAt } from './string/replaceAt';
 export { default as insertAt } from './string/insertAt';
 export { default as capitalize } from './string/capitalize';
 export { default as camelCase } from './string/camelCase';
 export { default as pascalCase } from './string/pascalCase';
+export { default as snakeCase } from './string/snakeCase';
+export { default as kebabCase } from './string/kebabCase';
+export { default as titleCase } from './string/titleCase';
 export { default as strReplace } from './string/strReplace';
+export { default as truncate } from './string/truncate';
+export { default as trim } from './string/trim';
+export { default as words } from './string/words';
+export { default as pad } from './string/pad';
+export { default as repeat } from './string/repeat';
 
 // Array
 export { default as diff } from './array/diff';
@@ -18,9 +25,9 @@ export { default as sortBy } from './array/sortBy';
 export { default as chunk } from './array/chunk';
 export { default as compact } from './array/compact';
 export { default as intersection } from './array/intersection';
-export { default as arrIns } from './array/arrIns';
-export { default as arrReplace } from './array/arrReplace';
-export { default as arrRm } from './array/arrRm';
+export { default as arrayInsert } from './array/arrayInsert';
+export { default as arrayReplace } from './array/arrayReplace';
+export { default as arrayRemove } from './array/arrayRemove';
 export { default as countBy } from './array/countBy';
 export { default as union } from './array/union';
 export { default as uniq } from './array/uniq';
@@ -56,39 +63,38 @@ export { default as mean } from './maths/mean';
 export { default as median } from './maths/median';
 export { default as mode } from './maths/mode';
 export { default as clamp } from './maths/clamp';
-export { default as avg } from './maths/avg';
 export { default as isSubsetOf } from './maths/isSubsetOf';
 export { default as isSupersetOf } from './maths/isSupersetOf';
 export { default as isDisjointFrom } from './maths/isDisjointFrom';
 
 // Types
-export { default as isNum } from './types/isNum';
-export { default as isObj } from './types/isObj';
+export { default as isNumber } from './types/isNumber';
+export { default as isObject } from './types/isObject';
 export { default as isJSON } from './types/isJSON';
-export { default as isBool } from './types/isBool';
-export { default as isArr } from './types/isArr';
+export { default as isBoolean } from './types/isBoolean';
+export { default as isArray } from './types/isArray';
 export { default as isDate } from './types/isDate';
-export { default as isErr } from './types/isErr';
-export { default as isFn } from './types/isFn';
-export { default as isAsyFn } from './types/isAsyFn';
-export { default as isGenFn } from './types/isGenFn';
+export { default as isError } from './types/isError';
+export { default as isFunction } from './types/isFunction';
+export { default as isAsyncFunction } from './types/isAsyncFunction';
+export { default as isGeneratorFunction } from './types/isGeneratorFunction';
 export { default as isMap } from './types/isMap';
 export { default as isNull } from './types/isNull';
-export { default as isRegEx } from './types/isRegEx';
+export { default as isRegExp } from './types/isRegExp';
 export { default as isSet } from './types/isSet';
-export { default as isStr } from './types/isStr';
-export { default as isSym } from './types/isSym';
-export { default as isTypedArr } from './types/isTypedArr';
-export { default as isArrBuf } from './types/isArrBuf';
-export { default as isUndef } from './types/isUndef';
-export { default as isWkMap } from './types/isWkMap';
-export { default as isWkSet } from './types/isWkSet';
-export { default as isWkRef } from './types/isWkRef';
+export { default as isString } from './types/isString';
+export { default as isSymbol } from './types/isSymbol';
+export { default as isTypedArray } from './types/isTypedArray';
+export { default as isArrayBuffer } from './types/isArrayBuffer';
+export { default as isUndefined } from './types/isUndefined';
+export { default as isWeakMap } from './types/isWeakMap';
+export { default as isWeakSet } from './types/isWeakSet';
+export { default as isWeakRef } from './types/isWeakRef';
 export { default as isBigInt } from './types/isBigInt';
 export { default as isBlob } from './types/isBlob';
 export { default as isPromise } from './types/isPromise';
-export { default as isPureObj } from './types/isPureObj';
-export { default as isDef } from './types/isDef';
+export { default as isPlainObject } from './types/isPlainObject';
+export { default as isDefined } from './types/isDefined';
 export { default as isInfinity } from './types/isInfinity';
 export { default as isDataView } from './types/isDataView';
 
@@ -114,8 +120,7 @@ export { default as pick } from './object/pick';
 export { default as isEmpty } from './assert/isEmpty';
 export { default as isEql } from './assert/isEql';
 export { default as isNil } from './assert/isNil';
-export { default as isShallowEql } from './assert/isShallowEql';
-export { default as isEqlArr } from './assert/isEqlArr';
+export { default as isUnorderedEqual } from './assert/isUnorderedEqual';
 
 // function
 export { default as sleep } from './function/sleep';
@@ -128,6 +133,12 @@ export { default as composeFn } from './function/composeFn';
 // colors
 export { default as hexToRGB } from './colors/hexToRGB';
 export { default as rgbToHex } from './colors/rgbToHex';
+export { default as rgbToHsl } from './colors/rgbToHsl';
+export { default as hslToRgb } from './colors/hslToRgb';
+export { default as colorParse } from './colors/colorParse';
+export { default as colorToHex } from './colors/colorToHex';
+export { default as colorToRgb } from './colors/colorToRgb';
+export { default as colorToHsl } from './colors/colorToHsl';
 
 // Number
 export { default as isZero } from './number/isZero';

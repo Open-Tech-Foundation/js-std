@@ -1,4 +1,4 @@
-import isArr from '../types/isArr';
+import isArray from '../types/isArray';
 
 type Falsy = null | undefined | boolean | number | string;
 
@@ -10,7 +10,7 @@ type Falsy = null | undefined | boolean | number | string;
  * compact([1, null, 2, 0, 3]) //=> [1, 2, 3]
  */
 export default function compact<T>(arr: T[] = []): Partial<T[]> {
-  if (!isArr(arr)) {
+  if (!isArray(arr)) {
     return [];
   }
 

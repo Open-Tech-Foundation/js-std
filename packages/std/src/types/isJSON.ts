@@ -1,4 +1,4 @@
-import isObj from './isObj';
+import isPlainObject from './isPlainObject';
 /**
  * Checks whether the given string is a valid JSON plain object
  *
@@ -14,7 +14,7 @@ import isObj from './isObj';
 export default function isJSON(str: string): boolean {
   try {
     const o = JSON.parse(str);
-    return isObj(o);
+    return isPlainObject(o);
   } catch (error) {
     return false;
   }

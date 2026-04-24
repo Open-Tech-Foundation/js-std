@@ -1,13 +1,13 @@
-import isArr from '../types/isArr';
-import isArrBuf from '../types/isArrBuf';
+import isArray from '../types/isArray';
+import isArrayBuffer from '../types/isArrayBuffer';
 import isDataView from '../types/isDataView';
-import isErr from '../types/isErr';
+import isError from '../types/isError';
 import isMap from '../types/isMap';
-import isObj from '../types/isObj';
-import isPureObj from '../types/isPureObj';
-import isRegEx from '../types/isRegEx';
+import isObject from '../types/isObject';
+import isPlainObject from '../types/isPlainObject';
+import isRegExp from '../types/isRegExp';
 import isSet from '../types/isSet';
-import isTypedArr, { type TypedArray } from '../types/isTypedArr';
+import isTypedArray, { type TypedArray } from '../types/isTypedArray';
 
 interface TypedArrayConstructor {
   new (buf: ArrayBufferLike, offset: number, len: number): TypedArray;
@@ -18,7 +18,7 @@ interface ArrayBufferConstructor {
 }
 
 function cloneObj<T>(obj: T, objRefMap: WeakMap<WeakKey, unknown>): T {
-  if (!isPureObj(obj)) {
+  if (!isObject(obj)) {
     return obj;
   }
 
@@ -26,7 +26,7 @@ function cloneObj<T>(obj: T, objRefMap: WeakMap<WeakKey, unknown>): T {
     return objRefMap.get(obj as WeakKey) as T;
   }
 
-  if (isObj(obj)) {
+  if (isPlainObject(obj)) {
     const cObj: Record<string, unknown> = {};
     objRefMap.set(obj, cObj);
 
@@ -37,7 +37,7 @@ function cloneObj<T>(obj: T, objRefMap: WeakMap<WeakKey, unknown>): T {
     return cObj as T;
   }
 
-  if (isArr(obj)) {
+  if (isArray(obj)) {
     const arr = new Array(obj.length);
     objRefMap.set(obj, arr);
     obj.forEach((v, i) => {
@@ -75,7 +75,7 @@ function cloneObj<T>(obj: T, objRefMap: WeakMap<WeakKey, unknown>): T {
     return set as T;
   }
 
-  if (isErr(obj)) {
+  if (isError(obj)) {
     // biome-ignore lint/suspicious/noExplicitAny: <explanation>
     const c = new (obj.constructor as any)(obj.message);
     if (obj.name !== c.name) {
@@ -87,11 +87,11 @@ function cloneObj<T>(obj: T, objRefMap: WeakMap<WeakKey, unknown>): T {
     return c as T;
   }
 
-  if (isRegEx(obj)) {
+  if (isRegExp(obj)) {
     return new RegExp(obj.source, obj.flags) as T;
   }
 
-  if (isArrBuf(obj)) {
+  if (isArrayBuffer(obj)) {
     const buff = new (ArrayBuffer as ArrayBufferConstructor)(obj.byteLength, {
       // biome-ignore lint/suspicious/noExplicitAny: <explanation>
       maxByteLength: (obj as any).maxByteLength,
@@ -100,7 +100,7 @@ function cloneObj<T>(obj: T, objRefMap: WeakMap<WeakKey, unknown>): T {
     return buff as T;
   }
 
-  if (isTypedArr(obj)) {
+  if (isTypedArray(obj)) {
     const buff = cloneObj(obj.buffer, objRefMap) as ArrayBufferLike;
     return new (obj.constructor as TypedArrayConstructor)(
       buff,

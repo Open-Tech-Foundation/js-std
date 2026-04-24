@@ -1,0 +1,20 @@
+/**
+ *  Replaces items at the given index from the given array.
+ *
+ * @example
+ *
+ * arrayReplace([1, 2, 3], 1, 5); // [1, 5, 3]
+ */
+export default function arrayReplace<T>(
+  arr: T[] = [],
+  index: number | null = null,
+  deleteCount: number | null = null,
+  ...replacements: T[]
+): T[] {
+  const idx = index ?? arr.length - 1;
+  const a = arr.slice();
+
+  a.splice(idx, deleteCount ?? replacements.length, ...replacements);
+
+  return a;
+}

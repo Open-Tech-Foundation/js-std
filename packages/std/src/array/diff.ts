@@ -1,5 +1,5 @@
 import isEql from '../assert/isEql';
-import isFn from '../types/isFn';
+import isFunction from '../types/isFunction';
 
 /**
  *  It creates an array with the values of first, not included in the other arrays.
@@ -12,7 +12,7 @@ export default function diff(
   collections: unknown[][] = [],
   by?: (val: unknown) => unknown,
 ): unknown[] {
-  const byFlag = isFn(by);
+  const byFlag = isFunction(by);
 
   return collections.slice(1).reduce(
     (acc, cur) => {

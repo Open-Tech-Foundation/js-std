@@ -1,5 +1,5 @@
 import isEql from '../assert/isEql';
-import isFun from '../types/isFn';
+import isFun from '../types/isFunction';
 import uniq from './uniq';
 
 /**

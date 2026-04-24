@@ -1,5 +1,5 @@
 import size from '../object/size';
-import isArr from '../types/isArr';
+import isArray from '../types/isArray';
 
 /**
  * Checks if the given collection is empty.
@@ -11,7 +11,7 @@ import isArr from '../types/isArr';
  * isEmpty({a: null}) //=> false
  */
 export default function isEmpty(val: unknown, sparse = false): boolean {
-  if (sparse && isArr(val)) {
+  if (sparse && isArray(val)) {
     return val.every((x) => x === undefined);
   }
 

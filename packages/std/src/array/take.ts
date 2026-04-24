@@ -1,4 +1,4 @@
-import isFn from '../types/isFn';
+import isFunction from '../types/isFunction';
 import isNull from '../types/isNull';
 
 /**
@@ -27,7 +27,7 @@ export default function take<T>(
       break;
     }
 
-    if (isFn(cb)) {
+    if (isFunction(cb)) {
       if (cb(val)) {
         a.push(val);
       }

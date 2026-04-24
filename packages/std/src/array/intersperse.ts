@@ -1,5 +1,5 @@
-import isFn from '../types/isFn';
-import isStr from '../types/isStr';
+import isFunction from '../types/isFunction';
+import isString from '../types/isString';
 import drop from './drop';
 
 /**
@@ -16,7 +16,7 @@ export default function intersperse(
   list: string | unknown[],
   sep: ((index: number) => unknown) | unknown,
 ): string | unknown[] {
-  const a = isStr(list) ? Array.from(list) : list;
+  const a = isString(list) ? Array.from(list) : list;
 
   if (!a) {
     return [];
@@ -24,10 +24,10 @@ export default function intersperse(
 
   const res = drop(
     a.reduce((acc: unknown[], cur, index) => {
-      acc.push(isFn(sep) ? sep(index - 1) : sep, cur);
+      acc.push(isFunction(sep) ? sep(index - 1) : sep, cur);
       return acc;
     }, []),
   );
 
-  return isStr(list) ? (res.join('') as string) : res;
+  return isString(list) ? (res.join('') as string) : res;
 }

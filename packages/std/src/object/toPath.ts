@@ -1,8 +1,8 @@
 import compact from '../array/compact';
-import isArr from '../types/isArr';
-import isNum from '../types/isNum';
-import isStr from '../types/isStr';
-import isSym from '../types/isSym';
+import isArray from '../types/isArray';
+import isNumber from '../types/isNumber';
+import isString from '../types/isString';
+import isSymbol from '../types/isSymbol';
 
 /**
  * Converts the given value into an object property path array.
@@ -11,7 +11,7 @@ import isSym from '../types/isSym';
  * toPath('a.b.c') //=> ['a', 'b', 'c']
  */
 export default function toPath(val: string | unknown | unknown[]): unknown[] {
-  if (isStr(val)) {
+  if (isString(val)) {
     const res = [];
     const regex = /\[(\d+)\]|\[(-?\d+\.?\d+)\]|([^.[\]]+)/g;
     const matches = val.matchAll(regex);
@@ -22,15 +22,15 @@ export default function toPath(val: string | unknown | unknown[]): unknown[] {
     return res;
   }
 
-  if (isArr(val)) {
+  if (isArray(val)) {
     return [...val];
   }
 
-  if (isSym(val)) {
+  if (isSymbol(val)) {
     return [val];
   }
 
-  if (isNum(val)) {
+  if (isNumber(val)) {
     return [String(val)];
   }
 

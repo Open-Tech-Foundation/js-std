@@ -1,5 +1,5 @@
 import isEql from '../assert/isEql';
-import isFn from '../types/isFn';
+import isFunction from '../types/isFunction';
 import uniq from './uniq';
 
 /**
@@ -15,7 +15,7 @@ export default function intersection(
   collections: unknown[][] = [],
   by?: (val: unknown) => unknown,
 ): unknown[] {
-  const byFlag = isFn(by);
+  const byFlag = isFunction(by);
   const out = collections.reduce((acc, cur) => {
     const _intersection = [];
     for (const val of acc) {
