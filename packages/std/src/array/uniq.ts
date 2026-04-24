@@ -11,7 +11,7 @@ import isFn from '../types/isFn';
 
 export default function uniq<T>(
   arr: T[] = [],
-  by?: (val: T) => unknown
+  by?: (val: T) => unknown,
 ): Partial<T[]> {
   return arr.reduce((acc: unknown[], cur) => {
     let flag = false;

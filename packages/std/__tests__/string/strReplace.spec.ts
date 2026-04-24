@@ -19,28 +19,28 @@ describe('String > strReplace', () => {
     const paragraph = "I think Ruth's dog is cuter than your dog!";
     const regex = /dog/;
     expect(strReplace(paragraph, regex, 'ferret')).toBe(
-      "I think Ruth's ferret is cuter than your dog!"
+      "I think Ruth's ferret is cuter than your dog!",
     );
   });
 
   test('regexp replace with ignore case', () => {
     const str = 'Twas the night before Xmas...';
     expect(strReplace(str, /xmas/, 'Christmas', { case: true })).toBe(
-      'Twas the night before Christmas...'
+      'Twas the night before Christmas...',
     );
   });
 
   test('regexp replace with global', () => {
     const str = 'Apples are round, and apples are juicy.';
     expect(strReplace(str, /apple/, 'orange', { all: true })).toBe(
-      'Apples are round, and oranges are juicy.'
+      'Apples are round, and oranges are juicy.',
     );
   });
 
   test('regexp replace with global & ignore case', () => {
     const str = 'Apples are round, and apples are juicy.';
     expect(strReplace(str, /apple/, 'Orange', { all: true, case: true })).toBe(
-      'Oranges are round, and Oranges are juicy.'
+      'Oranges are round, and Oranges are juicy.',
     );
   });
 

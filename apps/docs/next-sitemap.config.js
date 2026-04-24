@@ -4,5 +4,5 @@ module.exports = {
   generateIndexSitemap: false,
   priority: false,
   changefreq: false,
-  outDir: "build"
-}
+  outDir: 'build',
+};

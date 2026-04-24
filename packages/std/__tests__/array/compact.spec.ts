@@ -13,7 +13,7 @@ describe('Array', () => {
       1, 2, 3,
     ]);
     expect(
-      compact([undefined, null, 0, 1, -0, 2, false, 3, true, NaN])
+      compact([undefined, null, 0, 1, -0, 2, false, 3, true, Number.NaN]),
     ).toEqual([1, 2, 3, true]);
     expect(compact(['apple', '', 'Mango'])).toEqual(['apple', 'Mango']);
     expect(compact(['apple', '', 'Mango', ' '])).toEqual([

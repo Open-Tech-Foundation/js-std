@@ -9,7 +9,7 @@ import reverse from '../array/reverse';
 export default function aComposeFn(
   ...fns: ((...args: unknown[]) => unknown)[]
 ): (...args: unknown[]) => unknown {
-  return async function (...args) {
+  return async (...args) => {
     const revFns = reverse(fns);
     const firstFn = revFns.shift();
 

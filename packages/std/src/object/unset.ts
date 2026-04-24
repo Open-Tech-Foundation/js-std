@@ -1,7 +1,7 @@
 import isEmpty from '../assert/isEmpty';
 import isArr from '../types/isArr';
 import isObj from '../types/isObj';
-import { IterableObj } from './merge';
+import type { IterableObj } from './merge';
 import toPath from './toPath';
 
 /**

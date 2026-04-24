@@ -14,7 +14,7 @@ import uniq from './uniq';
  */
 export default function union(
   collections: unknown[][] = [],
-  by?: (val: unknown) => unknown
+  by?: (val: unknown) => unknown,
 ): unknown[] {
   const byFlag = isFun(by);
   const out = collections.reduce((acc, cur) => {

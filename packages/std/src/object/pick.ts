@@ -1,6 +1,6 @@
 import isArr from '../types/isArr';
 import has from './has';
-import { IterableObj } from './merge';
+import type { IterableObj } from './merge';
 import toPath from './toPath';
 
 /**

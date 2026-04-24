@@ -12,7 +12,7 @@ export default function arrReplace<T>(
   ...replacements: T[]
 ): T[] {
   const idx = index ?? arr.length - 1;
-  const a = [...arr];
+  const a = arr.slice();
 
   a.splice(idx, deleteCount ?? replacements.length, ...replacements);
 

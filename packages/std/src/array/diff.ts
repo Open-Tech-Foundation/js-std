@@ -10,7 +10,7 @@ import isFn from '../types/isFn';
  */
 export default function diff(
   collections: unknown[][] = [],
-  by?: (val: unknown) => unknown
+  by?: (val: unknown) => unknown,
 ): unknown[] {
   const byFlag = isFn(by);
 
@@ -32,6 +32,6 @@ export default function diff(
 
       return acc.filter((_item, i) => !removeIdxs.includes(i));
     },
-    [...(collections[0] || [])]
+    [...(collections[0] || [])],
   );
 }

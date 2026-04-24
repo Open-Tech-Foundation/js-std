@@ -10,7 +10,7 @@
 export default function isSupersetOf(
   a: unknown[] | Set<unknown>,
   b: unknown[] | Set<unknown>,
-  proper = false
+  proper = false,
 ): boolean {
   const setA = new Set(a);
   const setB = new Set(b);

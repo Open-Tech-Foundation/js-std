@@ -22,7 +22,7 @@ describe('Object > omit', () => {
 
   test('remove multiple deep props', () => {
     expect(
-      omit({ a: { b: { c: 1, d: 2, e: 5, f: 6 } } }, 'a.b.c', 'a.b.d', 'a.b.e')
+      omit({ a: { b: { c: 1, d: 2, e: 5, f: 6 } } }, 'a.b.c', 'a.b.d', 'a.b.e'),
     ).toEqual({ a: { b: { f: 6 } } });
   });
 
@@ -54,7 +54,7 @@ describe('Object > omit', () => {
       },
     };
     expect(
-      omit(obj, ['a', 'b', 'c', 3], ['a', 'b', 'f', 'g', 0], 'a.b.f.g[2]')
+      omit(obj, ['a', 'b', 'c', 3], ['a', 'b', 'f', 'g', 0], 'a.b.f.g[2]'),
     ).toEqual({
       a: { b: { c: [1, 3, 5], f: { g: [2] } } },
     });

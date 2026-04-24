@@ -3,9 +3,9 @@ import { percentageOf } from '../../src';
 describe('Maths', () => {
   test('percentage', async () => {
     expect(() => percentageOf()).not.toThrow();
-    expect(percentageOf()).toBe(NaN);
-    expect(percentageOf(0)).toBe(NaN);
-    expect(percentageOf(undefined, 0)).toBe(NaN);
+    expect(percentageOf()).toBe(Number.NaN);
+    expect(percentageOf(0)).toBe(Number.NaN);
+    expect(percentageOf(undefined, 0)).toBe(Number.NaN);
     expect(percentageOf(0, 0)).toBe(0);
     expect(percentageOf(1, 0)).toBe(0);
     expect(percentageOf(1, 1)).toBe(0.01);

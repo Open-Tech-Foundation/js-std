@@ -1,17 +1,17 @@
-import { isDeepStrictEqual } from "node:util";
-import { Bench, hrtimeNow } from "tinybench";
-import { clone, sortBy, isEql } from "./packages/std/dist/index";
-import _ from "lodash";
-import * as R from "ramda";
-import * as R2 from "remeda";
-import { sort as mSort } from "moderndash";
-import fastDeepEqual from "fast-deep-equal/es6";
-import { dequal } from "dequal";
-import cloneDeep from "clone-deep";
-import copy from "fast-copy";
+import { isDeepStrictEqual } from 'node:util';
+import cloneDeep from 'clone-deep';
+import { dequal } from 'dequal';
+import copy from 'fast-copy';
+import fastDeepEqual from 'fast-deep-equal/es6';
+import _ from 'lodash';
+import { sort as mSort } from 'moderndash';
+import * as R from 'ramda';
+import * as R2 from 'remeda';
+import { Bench, hrtimeNow } from 'tinybench';
+import { clone, isEql, sortBy } from './packages/std/dist/index';
 
 async function cloneBench() {
-  console.log("clone:");
+  console.log('clone:');
   const bench = new Bench({ time: 100 });
   const obj = {
     a: undefined,
@@ -19,7 +19,6 @@ async function cloneBench() {
     c: false,
     d: true,
     e: 1,
-    f: 10.55,
     g: 1000n,
     f: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
     h: new Map([
@@ -32,25 +31,25 @@ async function cloneBench() {
   };
 
   bench
-    .add("structuredClone (Native)", () => {
+    .add('structuredClone (Native)', () => {
       structuredClone(obj);
     })
-    .add("_.cloneDeep (Lodash)", () => {
+    .add('_.cloneDeep (Lodash)', () => {
       _.cloneDeep(obj);
     })
-    .add("R.clone (ramda)", () => {
+    .add('R.clone (ramda)', () => {
       R.clone(obj);
     })
-    .add("R2.clone (remeda)", () => {
+    .add('R2.clone (remeda)', () => {
       R2.clone(obj);
     })
-    .add("cloneDeep (clone-deep)", () => {
+    .add('cloneDeep (clone-deep)', () => {
       cloneDeep(obj);
     })
-    .add("copy (fast-copy)", () => {
+    .add('copy (fast-copy)', () => {
       copy(obj);
     })
-    .add("clone", () => {
+    .add('clone', () => {
       clone(obj);
     });
 
@@ -70,39 +69,39 @@ async function cloneBench() {
 }
 
 async function sortByBench() {
-  console.log("sortBy:");
+  console.log('sortBy:');
   const bench = new Bench({ time: 100, now: hrtimeNow });
   const users = [
-    { name: "fred", age: 48 },
-    { name: "barney", age: 34 },
-    { name: "fred", age: 40 },
-    { name: "barney", age: 36 },
+    { name: 'fred', age: 48 },
+    { name: 'barney', age: 34 },
+    { name: 'fred', age: 40 },
+    { name: 'barney', age: 36 },
   ];
 
   await bench.warmup();
   bench
-    .add("_.orderBy (Lodash)", () => {
-      _.orderBy(users, ["name", "age"], ["asc", "desc"]);
+    .add('_.orderBy (Lodash)', () => {
+      _.orderBy(users, ['name', 'age'], ['asc', 'desc']);
     })
-    .add("R.sortWith (Ramda)", () => {
+    .add('R.sortWith (Ramda)', () => {
       const ageNameSort = R.sortWith([
-        R.ascend(R.prop("name")),
-        R.descend(R.prop("age")),
+        R.ascend(R.prop('name')),
+        R.descend(R.prop('age')),
       ]);
       ageNameSort(users);
     })
-    .add("R2.sortBy (Remeda)", () => {
-      R2.sortBy(users, [(x) => x.name, "asc"], [(x) => x.age, "desc"]);
+    .add('R2.sortBy (Remeda)', () => {
+      R2.sortBy(users, [(x) => x.name, 'asc'], [(x) => x.age, 'desc']);
     })
-    .add("sort (Moderndash)", () => {
+    .add('sort (Moderndash)', () => {
       mSort(
         users,
-        { order: "asc", by: (item) => item.name },
-        { order: "desc", by: (item) => item.age }
+        { order: 'asc', by: (item) => item.name },
+        { order: 'desc', by: (item) => item.age },
       );
     })
-    .add("sortBy", () => {
-      sortBy(users, ["name", "asc"], ["age", "desc"]);
+    .add('sortBy', () => {
+      sortBy(users, ['name', 'asc'], ['age', 'desc']);
     });
 
   await bench.warmup();
@@ -112,7 +111,7 @@ async function sortByBench() {
 }
 
 async function isEqlBench() {
-  console.log("isEql:");
+  console.log('isEql:');
   const bench = new Bench({ time: 100, now: hrtimeNow });
   const obj = {
     a: undefined,
@@ -121,7 +120,7 @@ async function isEqlBench() {
     d: -0,
     e: 1,
     f: 1n,
-    g: "a",
+    g: 'a',
     h: [1, 2, 3],
     i: {
       j: true,
@@ -130,8 +129,8 @@ async function isEqlBench() {
       l2: [new Uint8Array(10), new Float32Array(32)],
     },
     m: new Map([
-      ["1", 1],
-      ["2", 2],
+      ['1', 1],
+      ['2', 2],
     ]),
     n: new Set([1, 2, 3, 4, 5]),
   };
@@ -139,22 +138,22 @@ async function isEqlBench() {
 
   await bench.warmup();
   bench
-    .add("deepStrictEqual (Native)", () => {
+    .add('deepStrictEqual (Native)', () => {
       isDeepStrictEqual(obj, obj2);
     })
-    .add("fastDeepEqual (fast-deep-equal/es6)", () => {
+    .add('fastDeepEqual (fast-deep-equal/es6)', () => {
       fastDeepEqual(obj, obj2);
     })
-    .add("dequal", () => {
+    .add('dequal', () => {
       dequal(obj, obj2);
     })
-    .add("_.isEqual (Lodash)", () => {
+    .add('_.isEqual (Lodash)', () => {
       _.isEqual(obj, obj2);
     })
-    .add("R.equals (Ramda)", () => {
+    .add('R.equals (Ramda)', () => {
       R.equals(obj, obj2);
     })
-    .add("isEql", () => {
+    .add('isEql', () => {
       isEql(obj, obj2);
     });
 

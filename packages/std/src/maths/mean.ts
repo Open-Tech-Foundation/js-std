@@ -10,7 +10,7 @@ import sum from './sum';
 
 export default function mean(
   arr: number[] = [],
-  cb?: (v: number, index: number) => number
+  cb?: (v: number, index: number) => number,
 ): number {
   const a = cb ? arr.map(cb) : arr;
   return sum(a) / a.length;

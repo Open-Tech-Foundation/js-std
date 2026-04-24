@@ -29,6 +29,6 @@ describe('Array > reverse', () => {
   });
 
   test('sparse array', () => {
-    expect(reverse([1, , 3])).toStrictEqual([3, undefined, 1]);
+    expect(reverse([1, undefined, 3])).toStrictEqual([3, undefined, 1]);
   });
 });

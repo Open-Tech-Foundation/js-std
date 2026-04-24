@@ -8,7 +8,7 @@
 export default function arrRm<T>(
   arr: T[] = [],
   index?: number,
-  count: number = 1
+  count = 1,
 ): T[] {
   const idx = index ?? arr.length - 1;
   const a = [...arr];

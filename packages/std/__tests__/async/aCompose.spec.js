@@ -18,8 +18,8 @@ describe('Function > aCompose', () => {
       aCompose(
         1,
         (x) => Promise.resolve(x + 1),
-        (x) => Promise.resolve(x * 5)
-      )
+        (x) => Promise.resolve(x * 5),
+      ),
     ).resolves.toBe(6);
   });
 });

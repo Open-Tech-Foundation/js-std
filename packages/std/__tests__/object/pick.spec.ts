@@ -37,14 +37,14 @@ describe('Object > pick', () => {
         'a',
         'b',
         'e',
-      ])
+      ]),
     ).toEqual({ a: { b: { d: [3], e: null } } });
     expect(
       pick({ a: { b: { c: 1 }, d: null, e: [10, 20, 30] } }, 'a.b', [
         'a',
         'e',
         '2',
-      ])
+      ]),
     ).toEqual({ a: { b: { c: 1 }, e: [30] } });
   });
 
@@ -67,8 +67,8 @@ describe('Object > pick', () => {
         'a.b.c',
         ['a', 'b', 'd'],
         'a2.a2b2',
-        ['a2', 'a2b1']
-      )
+        ['a2', 'a2b1'],
+      ),
     ).toEqual({
       a: { b: { c: 1, d: 3 } },
       a2: { a2b1: 5, a2b2: 6 },

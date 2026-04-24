@@ -7,10 +7,10 @@ import isObj from '../types/isObj';
 import isPureObj from '../types/isPureObj';
 import isRegEx from '../types/isRegEx';
 import isSet from '../types/isSet';
-import isTypedArr, { TypedArray } from '../types/isTypedArr';
+import isTypedArr, { type TypedArray } from '../types/isTypedArr';
 
 interface TypedArrayConstructor {
-  new (buf: ArrayBuffer, offset: number, len: number): TypedArray;
+  new (buf: ArrayBufferLike, offset: number, len: number): TypedArray;
 }
 
 interface ArrayBufferConstructor {
@@ -76,11 +76,11 @@ function cloneObj<T>(obj: T, objRefMap: WeakMap<WeakKey, unknown>): T {
   }
 
   if (isErr(obj)) {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    const c = new obj.constructor();
-    c.name = obj.name;
-    c.message = obj.message;
+    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+    const c = new (obj.constructor as any)(obj.message);
+    if (obj.name !== c.name) {
+      c.name = obj.name;
+    }
     c.stack = obj.stack;
     c.cause = obj.cause;
 
@@ -93,25 +93,24 @@ function cloneObj<T>(obj: T, objRefMap: WeakMap<WeakKey, unknown>): T {
 
   if (isArrBuf(obj)) {
     const buff = new (ArrayBuffer as ArrayBufferConstructor)(obj.byteLength, {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      maxByteLength: obj.maxByteLength,
+      // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+      maxByteLength: (obj as any).maxByteLength,
     });
-    new Uint8Array(buff).set(new Uint8Array(obj));
+    new Uint8Array(buff).set(new Uint8Array(obj as ArrayBuffer));
     return buff as T;
   }
 
   if (isTypedArr(obj)) {
-    const buff = cloneObj(obj.buffer, objRefMap);
+    const buff = cloneObj(obj.buffer, objRefMap) as ArrayBufferLike;
     return new (obj.constructor as TypedArrayConstructor)(
       buff,
       obj.byteOffset,
-      obj.length
+      obj.length,
     ) as T;
   }
 
   if (isDataView(obj)) {
-    const buf = cloneObj(obj.buffer, objRefMap);
+    const buf = cloneObj(obj.buffer, objRefMap) as ArrayBufferLike;
 
     return new DataView(buf, obj.byteOffset, obj.byteLength) as T;
   }

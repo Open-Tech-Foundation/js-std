@@ -5,8 +5,8 @@ describe('Types > isGenFn', () => {
     expect(isGenFn()).toBe(false);
     expect(isGenFn({})).toBe(false);
     expect(isGenFn(() => {})).toBe(false);
-    expect(isGenFn(function () {})).toBe(false);
-    expect(isGenFn(async function () {})).toBe(false);
+    expect(isGenFn(() => {})).toBe(false);
+    expect(isGenFn(async () => {})).toBe(false);
   });
 
   test('valid cases', () => {

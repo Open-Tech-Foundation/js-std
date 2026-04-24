@@ -10,7 +10,7 @@ import sum from './sum';
  */
 export default function avg(
   arr: number[] = [],
-  cb?: (val: number, index: number) => number
+  cb?: (val: number, index: number) => number,
 ): number {
   const s = sum(arr, cb);
 

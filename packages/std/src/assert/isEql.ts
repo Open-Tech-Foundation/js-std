@@ -1,4 +1,4 @@
-import { IterableObj } from '../object/merge';
+import type { IterableObj } from '../object/merge';
 import size from '../object/size';
 import isArr from '../types/isArr';
 import isArrBuf from '../types/isArrBuf';
@@ -25,7 +25,7 @@ function isEqlVal(
   val1: unknown,
   val2: unknown,
   objRefSet1: WeakSet<WeakKey>,
-  objRefSet2: WeakSet<WeakKey>
+  objRefSet2: WeakSet<WeakKey>,
 ): boolean {
   // Handles primitives
   if (Object.is(val1, val2)) {
@@ -68,7 +68,7 @@ function isEqlVal(
           (val1 as IterableObj)[key],
           (val2 as IterableObj)[key],
           objRefSet1,
-          objRefSet2
+          objRefSet2,
         )
       ) {
         return false;
@@ -81,7 +81,7 @@ function isEqlVal(
           (val1 as IterableObj)[key],
           (val2 as IterableObj)[key],
           objRefSet1,
-          objRefSet2
+          objRefSet2,
         )
       ) {
         return false;
@@ -109,7 +109,7 @@ function isEqlVal(
           value,
           (val2 as Map<unknown, unknown>).get(key),
           objRefSet1,
-          objRefSet2
+          objRefSet2,
         )
       ) {
         return false;
@@ -167,7 +167,7 @@ function isEqlVal(
           val1.getUint8(i),
           (val2 as DataView).getUint8(i),
           objRefSet1,
-          objRefSet2
+          objRefSet2,
         )
       ) {
         return false;

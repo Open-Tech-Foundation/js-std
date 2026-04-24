@@ -23,5 +23,5 @@ export default function toNum(val: unknown): number {
       : +(val as string);
   }
 
-  return NaN;
+  return Number.NaN;
 }

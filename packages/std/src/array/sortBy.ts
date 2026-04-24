@@ -1,5 +1,5 @@
 import isStr from '../types/isStr';
-import { OrderType } from './sort';
+import type { OrderType } from './sort';
 
 export type SortCB<T> = (val: T) => number | string | boolean | Date;
 export type OrderTuples<T> = [keyof T | SortCB<T>, OrderType][];

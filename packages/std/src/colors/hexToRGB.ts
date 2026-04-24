@@ -8,8 +8,8 @@
 
 export default function hexToRGB(hex: string): number[] {
   return [
-    parseInt(hex.substring(1, 3), 16),
-    parseInt(hex.substring(3, 5), 16),
-    parseInt(hex.substring(5, 7), 16),
+    Number.parseInt(hex.substring(1, 3), 16),
+    Number.parseInt(hex.substring(3, 5), 16),
+    Number.parseInt(hex.substring(5, 7), 16),
   ];
 }

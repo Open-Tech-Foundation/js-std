@@ -11,7 +11,7 @@ export default function arrIns<T>(
   ...items: T[]
 ): T[] {
   const idx = index ?? arr.length;
-  const a = [...arr];
+  const a = arr.slice();
   a.splice(idx, 0, ...items);
   return a;
 }

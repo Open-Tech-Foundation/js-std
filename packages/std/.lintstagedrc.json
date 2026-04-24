@@ -1,1 +1,0 @@
-{ "*.{ts,tsx}": ["prettier --write", "pnpm run lint --"] }

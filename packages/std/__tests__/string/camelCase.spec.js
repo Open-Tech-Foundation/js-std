@@ -17,7 +17,7 @@ describe('String', () => {
     expect(camelCase('The Quick BROWNFoxJUMPS')).toBe('theQuickBrownFoxJumps');
     expect(camelCase('TheQuickBrownFox')).toBe('theQuickBrownFox');
     expect(camelCase('The quick.brown_fox-jumps OVER the lazy-dog.')).toBe(
-      'theQuickBrownFoxJumpsOverTheLazyDog'
+      'theQuickBrownFoxJumpsOverTheLazyDog',
     );
     expect(camelCase('--foo.bar')).toBe('fooBar');
     expect(camelCase('Foo Bar')).toBe('fooBar');

@@ -23,25 +23,25 @@ describe('Object => unset', () => {
   test('Nested', () => {
     const obj = { a: [{ b: { c: 7 } }] };
     expect(unset(obj, 'a[0].b.c')).toEqual({ a: [{ b: {} }] });
-    expect(unset(obj, ['a', '0'])).toEqual({ a: [] });
+    expect(unset(obj, ['a', '0'])).toEqual({ a: [undefined] });
 
     const objWithNestedArray = { x: { y: { z: ['a', null, 'b'] } } };
     const objWithNestedArray2 = { x: { y: { z: ['a', null, 'b'] } } };
     const objWithNestedArray3 = { x: { y: { z: ['a', null, 'b'] } } };
     expect(unset(objWithNestedArray, 'x.y.z')).toEqual({ x: { y: {} } });
     expect(unset(objWithNestedArray2, 'x.y.z.0')).toEqual({
-      x: { y: { z: [, null, 'b'] } },
+      x: { y: { z: [undefined, null, 'b'] } },
     });
     expect(unset(objWithNestedArray3, 'x.y.z.1')).toEqual({
-      x: { y: { z: ['a', , 'b'] } },
+      x: { y: { z: ['a', undefined, 'b'] } },
     });
   });
 
   test('Array', () => {
     const obj = [1, 2, 3];
-    expect(unset(obj, '0')).toEqual([, 2, 3]);
-    expect(unset(obj, '1')).toEqual([, , 3]);
-    expect(unset(obj, '2')).toEqual([, , ,]);
+    expect(unset(obj, '0')).toEqual([undefined, 2, 3]);
+    expect(unset(obj, '1')).toEqual([undefined, undefined, 3]);
+    expect(unset(obj, '2')).toEqual([undefined, undefined, undefined]);
     expect(unset([1, 2, 3], '3')).toEqual([1, 2, 3]);
   });
 

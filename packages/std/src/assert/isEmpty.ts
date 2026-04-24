@@ -12,7 +12,7 @@ import isArr from '../types/isArr';
  */
 export default function isEmpty(val: unknown, sparse = false): boolean {
   if (sparse && isArr(val)) {
-    return Object.keys(val).length === 0;
+    return val.filter((x) => x !== undefined).length === 0;
   }
 
   return size(val) === 0;

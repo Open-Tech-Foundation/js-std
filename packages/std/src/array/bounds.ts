@@ -1,7 +1,7 @@
-import max from './max';
-import min from './min';
 import isEmpty from '../assert/isEmpty';
 import compact from './compact';
+import max from './max';
+import min from './min';
 
 /**
  * Returns a tuple of the min & max values of the given array.
@@ -11,7 +11,7 @@ import compact from './compact';
  */
 export default function bounds<T>(
   arr: T[] = [],
-  by: (val: T) => number = (x: T) => x as number
+  by: (val: T) => number = (x: T) => x as number,
 ): [T, T] | null {
   const a = compact(arr);
 

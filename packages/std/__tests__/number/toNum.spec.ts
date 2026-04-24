@@ -2,24 +2,24 @@ import { toNum } from '../../src';
 
 describe('Number', () => {
   test('toNum', () => {
-    expect(toNum()).toBe(NaN);
-    expect(toNum(undefined)).toBe(NaN);
-    expect(toNum(null)).toBe(NaN);
-    expect(toNum('')).toBe(NaN);
-    expect(toNum(' ')).toBe(NaN);
-    expect(toNum('a')).toBe(NaN);
-    expect(toNum(true)).toBe(NaN);
-    expect(toNum(false)).toBe(NaN);
-    expect(toNum([])).toBe(NaN);
-    expect(toNum({})).toBe(NaN);
-    expect(toNum(NaN)).toBe(NaN);
-    expect(toNum(Infinity)).toBe(NaN);
-    expect(toNum(-Infinity)).toBe(NaN);
-    expect(toNum('0_1')).toBe(NaN);
-    expect(toNum('1__000')).toBe(NaN);
-    expect(toNum('Infinity')).toBe(NaN);
-    expect(toNum('-Infinity')).toBe(NaN);
-    expect(toNum(5n)).toBe(NaN);
+    expect(toNum()).toBe(Number.NaN);
+    expect(toNum(undefined)).toBe(Number.NaN);
+    expect(toNum(null)).toBe(Number.NaN);
+    expect(toNum('')).toBe(Number.NaN);
+    expect(toNum(' ')).toBe(Number.NaN);
+    expect(toNum('a')).toBe(Number.NaN);
+    expect(toNum(true)).toBe(Number.NaN);
+    expect(toNum(false)).toBe(Number.NaN);
+    expect(toNum([])).toBe(Number.NaN);
+    expect(toNum({})).toBe(Number.NaN);
+    expect(toNum(Number.NaN)).toBe(Number.NaN);
+    expect(toNum(Number.POSITIVE_INFINITY)).toBe(Number.NaN);
+    expect(toNum(Number.NEGATIVE_INFINITY)).toBe(Number.NaN);
+    expect(toNum('0_1')).toBe(Number.NaN);
+    expect(toNum('1__000')).toBe(Number.NaN);
+    expect(toNum('Infinity')).toBe(Number.NaN);
+    expect(toNum('-Infinity')).toBe(Number.NaN);
+    expect(toNum(5n)).toBe(Number.NaN);
 
     expect(toNum(0)).toBe(0);
     expect(toNum(-0)).toBe(-0);

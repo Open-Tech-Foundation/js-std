@@ -1,0 +1,405 @@
+$ vitest run
+
+ RUN  v4.1.5 /home/G/projects/opentf/js-std/packages/std
+
+ ❯ __tests__/array/arrIns.spec.ts (1 test | 1 failed) 6ms
+     × arrIns 4ms
+ ❯ __tests__/array/arrReplace.spec.ts (1 test | 1 failed) 7ms
+     × arrReplace 5ms
+ ❯ __tests__/array/intersperse.spec.ts (6 tests | 1 failed) 10ms
+     × invalid & empty array 5ms
+     ✓ array with string separator 1ms
+     ✓ array of strings with separator 0ms
+     ✓ string as list 0ms
+     ✓ seperator cb fn 0ms
+     ✓ React like list 0ms
+ ❯ __tests__/assert/isEmpty.spec.ts (2 tests | 1 failed) 12ms
+     × truthy 9ms
+     ✓ falsy 1ms
+ ✓ __tests__/array/range.spec.js (12 tests) 13ms
+ ❯ __tests__/array/swap.spec.ts (5 tests | 2 failed) 15ms
+     × empty array 11ms
+     ✓ immutable 1ms
+     × swap 0 index to 1 2ms
+     ✓ swap index > length 0ms
+     ✓ array of objects 0ms
+ ❯ __tests__/assert/isEql.spec.ts (7 tests | 1 failed) 17ms
+     ✓ truthy 5ms
+     × falsy 9ms
+     ✓ Deep objs with all supported types in it 0ms
+     ✓ cyclic refs 0ms
+     ✓ TypedArray 0ms
+     ✓ ArrayBuffer 0ms
+     ✓ DataView 0ms
+ ❯ __tests__/assert/isEqlArr.spec.ts (7 tests | 2 failed) 14ms
+     ✓ same ordered arrays 2ms
+     × sparse arrays 8ms
+     ✓ diff ordered same arrays 0ms
+     ✓ not equal length 0ms
+     ✓ equal length but diff values 0ms
+     ✓ equal length but diff primitive type of values 0ms
+     × objects 1ms
+ ✓ __tests__/function/sleep.spec.js (1 test) 18ms
+ ❯ __tests__/object/unset.spec.ts (5 tests | 1 failed) 16ms
+     ✓ non object 4ms
+     ✓ Simple 1ms
+     × Nested 9ms
+     ✓ Array 1ms
+     ✓ invalid paths 0ms
+ ❯ __tests__/object/clone.spec.ts (15 tests | 2 failed) 23ms
+     ✓ Primitives 3ms
+     ✓ Arrays 1ms
+     ✓ Objects 0ms
+     ✓ Dates 0ms
+     ✓ Maps 1ms
+     ✓ Sets 1ms
+     × sparse array 8ms
+     ✓ keepRef=true 1ms
+     ✓ Circular Ref 0ms
+     ✓ ArrayBuffer 1ms
+     ✓ TypedArray 1ms
+     ✓ DataView 0ms
+     × Errors 2ms
+     ✓ functions 0ms
+     ✓ regexp 0ms
+ ✓ __tests__/async/aCompose.spec.js (4 tests) 6ms
+ ✓ __tests__/async/aComposeFn.spec.js (5 tests) 6ms
+ ✓ __tests__/object/toPath.spec.ts (11 tests) 8ms
+ ✓ __tests__/object/shallowMergeAll.spec.ts (12 tests) 7ms
+ ✓ __tests__/object/toUnset.spec.ts (5 tests) 9ms
+ ✓ __tests__/object/pick.spec.ts (6 tests) 9ms
+ ✓ __tests__/object/toSet.spec.ts (2 tests) 8ms
+ ✓ __tests__/object/mergeAll.spec.ts (12 tests) 11ms
+ ✓ __tests__/object/omit.spec.ts (7 tests) 8ms
+ ✓ __tests__/async/aFilter.spec.ts (1 test) 5ms
+ ✓ __tests__/array/take.spec.ts (8 tests) 9ms
+ ✓ __tests__/array/sort.spec.ts (9 tests) 7ms
+ ✓ __tests__/object/merge.spec.ts (12 tests) 8ms
+ ✓ __tests__/array/drop.spec.ts (8 tests) 7ms
+ ✓ __tests__/array/uniq.spec.ts (5 tests) 7ms
+ ✓ __tests__/async/aPipeFn.spec.js (5 tests) 7ms
+ ✓ __tests__/array/reverse.spec.ts (5 tests) 7ms
+ ✓ __tests__/string/camelCase.spec.js (1 test) 7ms
+ ✓ __tests__/async/aPipe.spec.js (5 tests) 7ms
+ ✓ __tests__/string/pascalCase.spec.js (1 test) 5ms
+ ✓ __tests__/maths/percentage.spec.js (1 test) 7ms
+ ✓ __tests__/object/shallowMerge.spec.ts (12 tests) 11ms
+ ✓ __tests__/assert/isShallowEql.spec.ts (2 tests) 6ms
+ ✓ __tests__/array/bounds.spec.ts (5 tests) 7ms
+ ✓ __tests__/object/has.spec.ts (2 tests) 6ms
+ ✓ __tests__/array/union.spec.ts (4 tests) 6ms
+ ✓ __tests__/object/get.spec.ts (2 tests) 6ms
+ ✓ __tests__/string/strReplace.spec.ts (8 tests) 6ms
+ ✓ __tests__/async/aResolvers.spec.ts (2 tests) 7ms
+ ✓ __tests__/array/intersection.spec.ts (4 tests) 9ms
+ ✓ __tests__/types/isPureObj.spec.ts (2 tests) 5ms
+ ✓ __tests__/array/min.spec.ts (5 tests) 7ms
+ ✓ __tests__/object/size.spec.ts (3 tests) 5ms
+ ✓ __tests__/array/max.spec.ts (5 tests) 7ms
+ ✓ __tests__/array/sortBy.spec.ts (3 tests) 8ms
+ ✓ __tests__/object/set.spec.ts (2 tests) 7ms
+ ✓ __tests__/types/isNum.spec.ts (2 tests) 6ms
+ ✓ __tests__/string/replaceAt.spec.js (1 test) 7ms
+ ✓ __tests__/function/pipeFn.spec.js (5 tests) 6ms
+ ✓ __tests__/array/move.spec.ts (7 tests) 6ms
+ ✓ __tests__/types/isArr.spec.ts (2 tests) 5ms
+ ✓ __tests__/types/isObj.spec.ts (2 tests) 7ms
+ ✓ __tests__/object/fromPath.spec.ts (2 tests) 3ms
+ ✓ __tests__/maths/isDisjointFrom.spec.ts (2 tests) 4ms
+ ✓ __tests__/maths/isSubsetOf.spec.ts (4 tests) 7ms
+ ✓ __tests__/array/arrRm.spec.ts (1 test) 5ms
+ ✓ __tests__/types/isDef.spec.ts (2 tests) 6ms
+ ✓ __tests__/array/chunk.spec.ts (1 test) 6ms
+ ✓ __tests__/function/composeFn.spec.js (5 tests) 6ms
+ ✓ __tests__/string/insertAt.spec.js (1 test) 5ms
+ ✓ __tests__/maths/mode.spec.ts (1 test) 5ms
+ ✓ __tests__/maths/isSupersetOf.spec.ts (4 tests) 5ms
+ ✓ __tests__/array/symDiff.spec.js (1 test) 7ms
+ ✓ __tests__/array/groupBy.spec.ts (1 test) 5ms
+ ✓ __tests__/function/compose.spec.js (5 tests) 8ms
+ ✓ __tests__/array/shuffle.spec.ts (3 tests) 6ms
+ ✓ __tests__/types/isPromise.spec.ts (2 tests) 5ms
+ ✓ __tests__/maths/avg.spec.ts (1 test) 5ms
+ ✓ __tests__/array/compact.spec.ts (1 test) 6ms
+ ✓ __tests__/number/toNum.spec.ts (1 test) 6ms
+ ✓ __tests__/string/isEmail.spec.js (1 test) 5ms
+ ✓ __tests__/colors/hexToRGB.spec.js (1 test) 5ms
+ ✓ __tests__/maths/percentageOf.spec.js (1 test) 6ms
+ ✓ __tests__/assert/isNil.spec.ts (2 tests) 5ms
+ ✓ __tests__/async/aForEach.spec.ts (2 tests) 5ms
+ ✓ __tests__/string/capitalize.spec.js (1 test) 5ms
+ ✓ __tests__/function/noop.spec.js (1 test) 4ms
+ ✓ __tests__/async/aMap.spec.ts (1 test) 5ms
+ ✓ __tests__/types/isBool.spec.ts (2 tests) 5ms
+ ✓ __tests__/maths/isEven.spec.ts (1 test) 5ms
+ ✓ __tests__/types/isDate.spec.ts (2 tests) 5ms
+ ✓ __tests__/maths/sum.spec.ts (1 test) 4ms
+ ✓ __tests__/colors/rgbToHex.spec.js (1 test) 5ms
+ ✓ __tests__/maths/divMod.spec.ts (1 test) 5ms
+ ✓ __tests__/types/isJSON.spec.ts (2 tests) 7ms
+ ✓ __tests__/function/pipe.spec.js (5 tests) 7ms
+ ✓ __tests__/types/isGenFn.spec.ts (2 tests) 5ms
+ ✓ __tests__/types/isDataView.spec.ts (2 tests) 5ms
+ ✓ __tests__/array/countBy.spec.ts (1 test) 5ms
+ ✓ __tests__/types/isInfinity.spec.ts (2 tests) 5ms
+ ✓ __tests__/types/isBlob.spec.ts (2 tests) 5ms
+ ✓ __tests__/number/isZero.spec.ts (1 test) 5ms
+ ✓ __tests__/types/isMap.spec.ts (2 tests) 4ms
+ ✓ __tests__/types/isErr.spec.ts (2 tests) 5ms
+ ✓ __tests__/maths/mean.spec.ts (1 test) 5ms
+ ✓ __tests__/types/isAsyFn.spec.ts (2 tests) 9ms
+ ✓ __tests__/types/isRegEx.spec.ts (2 tests) 5ms
+ ✓ __tests__/types/isSet.spec.ts (2 tests) 5ms
+ ✓ __tests__/types/isSym.spec.ts (2 tests) 5ms
+ ✓ __tests__/maths/isOdd.spec.ts (1 test) 5ms
+ ✓ __tests__/maths/prod.spec.ts (1 test) 4ms
+ ✓ __tests__/maths/median.spec.ts (1 test) 5ms
+ ✓ __tests__/array/diff.spec.js (1 test) 5ms
+ ✓ __tests__/types/isStr.spec.ts (2 tests) 5ms
+ ✓ __tests__/types/isFn.spec.ts (2 tests) 5ms
+ ✓ __tests__/types/isNull.spec.ts (2 tests) 5ms
+ ✓ __tests__/types/isBigInt.spec.ts (2 tests) 5ms
+ ✓ __tests__/types/isUndef.spec.ts (2 tests) 4ms
+ ✓ __tests__/number/isNegZero.spec.ts (1 test) 5ms
+ ✓ __tests__/maths/clamp.spec.ts (1 test) 4ms
+ ✓ __tests__/types/isTypedArr.spec.ts (2 tests) 4ms
+ ✓ __tests__/types/isArrBuf.spec.ts (2 tests) 3ms
+ ✓ __tests__/types/isWkSet.spec.ts (2 tests) 3ms
+ ✓ __tests__/types/isWkRef.spec.ts (2 tests) 3ms
+ ✓ __tests__/types/isWkMap.spec.ts (2 tests) 3ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 12 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  __tests__/array/arrIns.spec.ts > Array > arrIns
+TypeError: Cannot read properties of undefined (reading 'length')
+ ❯ arrIns src/array/arrIns.ts:13:28
+     11|   ...items: T[]
+     12| ): T[] {
+     13|   const idx = index ?? arr.length;
+       |                            ^
+     14|   const a = [...arr];
+     15|   a.splice(idx, 0, ...items);
+ ❯ __tests__/array/arrIns.spec.ts:5:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/12]⎯
+
+ FAIL  __tests__/array/arrReplace.spec.ts > Array > arrReplace
+TypeError: Cannot read properties of undefined (reading 'length')
+ ❯ arrReplace src/array/arrReplace.ts:14:28
+     12|   ...replacements: T[]
+     13| ): T[] {
+     14|   const idx = index ?? arr.length - 1;
+       |                            ^
+     15|   const a = [...arr];
+     16|
+ ❯ __tests__/array/arrReplace.spec.ts:5:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/12]⎯
+
+ FAIL  __tests__/array/intersperse.spec.ts > Array > intersperse > invalid & empty array
+TypeError: Cannot read properties of undefined (reading 'reduce')
+ ❯ intersperse src/array/intersperse.ts:21:7
+     19|   const a = isStr(list) ? Array.from(list) : list;
+     20|   const res = drop(
+     21|     a.reduce((acc: unknown[], cur, index) => {
+       |       ^
+     22|       acc.push(isFn(sep) ? sep(index - 1) : sep, cur);
+     23|       return acc;
+ ❯ __tests__/array/intersperse.spec.ts:5:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/12]⎯
+
+ FAIL  __tests__/array/swap.spec.ts > Array > swap > empty array
+AssertionError: expected [ undefined ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   undefined,
++ ]
+
+ ❯ __tests__/array/swap.spec.ts:5:28
+      3| describe('Array > swap', () => {
+      4|   test('empty array', () => {
+      5|     expect(swap([], 0, 0)).toEqual([]);
+       |                            ^
+      6|   });
+      7|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/12]⎯
+
+ FAIL  __tests__/array/swap.spec.ts > Array > swap > swap 0 index to 1
+AssertionError: expected [ undefined, undefined ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   undefined,
++   undefined,
++ ]
+
+ ❯ __tests__/array/swap.spec.ts:15:28
+     13|
+     14|   test('swap 0 index to 1', () => {
+     15|     expect(swap([], 0, 1)).toEqual([]);
+       |                            ^
+     16|     expect(swap([0], 0, 1)).toEqual([undefined, 0]);
+     17|     expect(swap([0, 1], 0, 1)).toEqual([1, 0]);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/12]⎯
+
+ FAIL  __tests__/assert/isEmpty.spec.ts > Assert => isEmpty > truthy
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ __tests__/assert/isEmpty.spec.ts:12:32
+     10|     expect(isEmpty(new ArrayBuffer(0))).toBe(true);
+     11|     const arr = [undefined];
+     12|     expect(isEmpty(arr, true)).toBe(true);
+       |                                ^
+     13|   });
+     14|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/12]⎯
+
+ FAIL  __tests__/assert/isEql.spec.ts > Assert => isEql > falsy
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ __tests__/assert/isEql.spec.ts:131:57
+    129|     expect(isEql(re, re2)).toBe(false);
+    130|
+    131|     expect(isEql([1, undefined, 2], [1, undefined, 2])).toBe(false);
+       |                                                         ^
+    132|
+    133|     const first = new A();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/12]⎯
+
+ FAIL  __tests__/assert/isEqlArr.spec.ts > Assert > isEqlArr > sparse arrays
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ __tests__/assert/isEqlArr.spec.ts:12:52
+     10|   test('sparse arrays', () => {
+     11|     expect(isEqlArr([1, undefined, 2], [1, undefined, 2])).toBe(true);
+     12|     expect(isEqlArr([1, undefined, 3], [1, 2, 3])).toBe(false);
+       |                                                    ^
+     13|     expect(
+     14|       isEqlArr(
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/12]⎯
+
+ FAIL  __tests__/assert/isEqlArr.spec.ts > Assert > isEqlArr > objects
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ __tests__/assert/isEqlArr.spec.ts:63:34
+     61|     arr1 = [{ a: [1, undefined, 2] }];
+     62|     arr2 = [{ a: [1, undefined, 2] }];
+     63|     expect(isEqlArr(arr1, arr2)).toBe(false);
+       |                                  ^
+     64|   });
+     65| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/12]⎯
+
+ FAIL  __tests__/object/clone.spec.ts > Object > Clone > sparse array
+AssertionError: expected [ 1, undefined, 3, 4, 5 ] to deeply equal [ 1, 3, 4, 5 ]
+
+- Expected
++ Received
+
+  [
+    1,
++   undefined,
+    3,
+    4,
+    5,
+  ]
+
+ ❯ __tests__/object/clone.spec.ts:83:20
+     81|     expect(output.length).toBe(5);
+     82|     const values = Object.values(output);
+     83|     expect(values).toEqual([1, 3, 4, 5]);
+       |                    ^
+     84|   });
+     85|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/12]⎯
+
+ FAIL  __tests__/object/clone.spec.ts > Object > Clone > Errors
+AssertionError: expected RangeError: Out of bounds! to deeply equal RangeError: Out of bounds!
+
+- Expected
++ Received
+
+  RangeError {
+    "message": "Out of bounds!",
++   "name": "RangeError",
+  }
+
+ ❯ __tests__/object/clone.spec.ts:218:20
+    216|     let output = clone(error);
+    217|     expect(output).not.toBe(error);
+    218|     expect(output).toEqual(error);
+       |                    ^
+    219|     expect(output.name).toBe(error.name);
+    220|     expect(output.message).toBe(error.message);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/12]⎯
+
+ FAIL  __tests__/object/unset.spec.ts > Object => unset > Nested
+AssertionError: expected { a: [ undefined ] } to deeply equal { a: [] }
+
+- Expected
++ Received
+
+  {
+-   "a": [],
++   "a": [
++     undefined,
++   ],
+  }
+
+ ❯ __tests__/object/unset.spec.ts:26:36
+     24|     const obj = { a: [{ b: { c: 7 } }] };
+     25|     expect(unset(obj, 'a[0].b.c')).toEqual({ a: [{ b: {} }] });
+     26|     expect(unset(obj, ['a', '0'])).toEqual({ a: [] });
+       |                                    ^
+     27|
+     28|     const objWithNestedArray = { x: { y: { z: ['a', null, 'b'] } } };
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/12]⎯
+
+
+ Test Files  9 failed | 107 passed (116)
+      Tests  12 failed | 367 passed (379)
+   Start at  16:08:40
+   Duration  3.66s (transform 4.28s, setup 0ms, import 19.07s, tests 760ms, environment 16ms)
+
+error: script "test:node" exited with code 1

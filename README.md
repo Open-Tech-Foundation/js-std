@@ -34,6 +34,10 @@
 Install it using your favourite package manager.
 
 ```sh
+bun add @opentf/std
+```
+
+```sh
 npm install @opentf/std
 ```
 
@@ -43,10 +47,6 @@ yarn add @opentf/std
 
 ```sh
 pnpm add @opentf/std
-```
-
-```sh
-bun add @opentf/std
 ```
 
 ```sh
@@ -142,7 +142,7 @@ compose(
 8. Pick & Omit Paths in an Object
 
 ```js
-import { pick omit } from '@opentf/std';
+import { pick, omit } from '@opentf/std';
 
 const obj = { a: 1, b: 2, c: 3 };
 
@@ -269,7 +269,7 @@ omit(obj, 'a', 'c'); //=> { b: 2 }
 
 - [isArr](https://js-std.pages.dev/Types/isArr)
 - [isArrBuf](https://js-std.pages.dev/Types/isArrBuf)
-- [isAsynFn](https://js-std.pages.dev/Types/isAsynFn)
+- [isAsyFn](https://js-std.pages.dev/Types/isAsyFn)
 - [isBigInt](https://js-std.pages.dev/Types/isBigInt)
 - [isBlob](https://js-std.pages.dev/Types/isBlob)
 - [isBool](https://js-std.pages.dev/Types/isBool)
@@ -299,7 +299,7 @@ omit(obj, 'a', 'c'); //=> { b: 2 }
 
 Some benchmark outputs are shown here for reference.
 
-> [!IMPORTANT]  
+> [!IMPORTANT]
 > Our priorities are reliability and accuracy rather than performance.
 
 ```diff

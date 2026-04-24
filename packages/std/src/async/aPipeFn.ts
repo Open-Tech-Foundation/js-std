@@ -7,7 +7,7 @@
 export default function aPipeFn(
   ...fns: ((...args: unknown[]) => unknown)[]
 ): (...args: unknown[]) => unknown {
-  return async function (...args) {
+  return async (...args) => {
     const firstFn = fns.shift();
 
     if (!firstFn) {

@@ -1,7 +1,7 @@
 import isEmpty from '../assert/isEmpty';
 import isFn from '../types/isFn';
 import isNum from '../types/isNum';
-import { IterableObj } from './merge';
+import type { IterableObj } from './merge';
 import toPath from './toPath';
 
 /**
@@ -14,7 +14,7 @@ import toPath from './toPath';
 export default function set<T>(
   obj: T,
   path: string | unknown[],
-  value: unknown | ((val: unknown) => unknown)
+  value: unknown | ((val: unknown) => unknown),
 ): T {
   const pathArr = toPath(path);
   let curObj: IterableObj = obj as IterableObj;

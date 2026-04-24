@@ -21,7 +21,7 @@ describe('Function > Pipe', () => {
   test('two functions', async () => {
     const fn = aPipeFn(
       (s) => capitalize(s),
-      (x) => new Promise((resolve) => resolve(`Welcome ${x}`))
+      (x) => new Promise((resolve) => resolve(`Welcome ${x}`)),
     );
     expect(typeof fn).toBe('function');
     await expect(fn('guest')).resolves.toBe('Welcome Guest');
@@ -31,7 +31,7 @@ describe('Function > Pipe', () => {
     const fn = aPipeFn(
       (s) => capitalize(s),
       (x) => new Promise((resolve) => resolve(`Welcome ${x}`)),
-      (x) => new Promise((resolve) => resolve(`${x}...`))
+      (x) => new Promise((resolve) => resolve(`${x}...`)),
     );
     expect(typeof fn).toBe('function');
     await expect(fn('guest')).resolves.toBe('Welcome Guest...');

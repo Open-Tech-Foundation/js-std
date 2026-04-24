@@ -7,7 +7,7 @@
 export default function pipeFn(
   ...fns: ((...args: unknown[]) => unknown)[]
 ): (...args: unknown[]) => unknown {
-  return function (...args) {
+  return (...args) => {
     const firstFn = fns.shift();
 
     if (!firstFn) {

@@ -1,38 +1,43 @@
-import { useRouter } from "next/router";
-import { useConfig } from "nextra-theme-docs";
+import { useRouter } from 'next/router';
+import { useConfig } from 'nextra-theme-docs';
 
 export default {
   useNextSeoProps() {
     return {
-      titleTemplate: "%s – JS Standard Library",
+      titleTemplate: '%s – JS Standard Library',
     };
   },
   logo: (
     <>
       <img src="/assets/Logo.svg" width={35} height={35} />
-      <span style={{ marginLeft: ".4em", fontWeight: 800 }}>JS Standard Library</span>
+      <span style={{ marginLeft: '.4em', fontWeight: 800 }}>
+        JS Standard Library
+      </span>
     </>
   ),
   project: {
-    link: "https://github.com/open-tech-foundation/js-std",
+    link: 'https://github.com/open-tech-foundation/js-std',
   },
-  docsRepositoryBase: "https://github.com/open-tech-foundation/js-std",
+  docsRepositoryBase: 'https://github.com/open-tech-foundation/js-std',
   editLink: { component: null },
   head: () => {
     const { asPath } = useRouter();
     const { frontMatter } = useConfig();
-    const url = "https://js-std.pages.dev/" + asPath;
+    const url = `https://js-std.pages.dev/${asPath}`;
 
     return (
       <>
         <link rel="icon" href="/assets/Logo.svg" />
         <meta property="og:url" content={url} />
-        <meta property="og:title" content={frontMatter.title || "JS Standard Library"} />
+        <meta
+          property="og:title"
+          content={frontMatter.title || 'JS Standard Library'}
+        />
         <meta
           property="og:description"
           content={
             frontMatter.description ||
-            "An Extensive JavaScript Standard Library."
+            'An Extensive JavaScript Standard Library.'
           }
         />
         <meta
@@ -45,8 +50,12 @@ export default {
   footer: {
     text: (
       <span>
-        MIT {new Date().getFullYear()} ©{" "}
-        <a href="https://open-tech-foundation.pages.dev/" target="_blank">
+        MIT {new Date().getFullYear()} ©{' '}
+        <a
+          href="https://open-tech-foundation.pages.dev/"
+          target="_blank"
+          rel="noreferrer"
+        >
           Open Tech Foundation
         </a>
         .

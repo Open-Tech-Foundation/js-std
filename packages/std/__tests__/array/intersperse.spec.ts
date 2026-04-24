@@ -29,7 +29,7 @@ describe('Array > intersperse', () => {
 
   test('seperator cb fn', () => {
     expect(
-      intersperse(['a', 'b', 'c'], (i) => `<span key="sep-${i}"> , </span>`)
+      intersperse(['a', 'b', 'c'], (i) => `<span key="sep-${i}"> , </span>`),
     ).toEqual([
       'a',
       '<span key="sep-0"> , </span>',

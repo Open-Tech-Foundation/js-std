@@ -3,7 +3,7 @@ import isArr from '../types/isArr';
 import isNum from '../types/isNum';
 import isObj from '../types/isObj';
 import clone from './clone';
-import { IterableObj } from './merge';
+import type { IterableObj } from './merge';
 import toPath from './toPath';
 
 /**

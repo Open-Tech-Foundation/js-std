@@ -8,7 +8,7 @@ import isNum from '../types/isNum';
  */
 export default function fromPath(arr: (string | number)[] = []): string {
   const out = arr.reduce((acc, cur) => {
-    return isNum(cur, true) ? `${acc}[${cur}]` : acc + '.' + cur;
+    return isNum(cur, true) ? `${acc}[${cur}]` : `${acc}.${cur}`;
   }, '');
 
   return (out as string).slice(1);

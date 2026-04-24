@@ -1,13 +1,13 @@
 import arrRm from '../array/arrRm';
 import isArr from '../types/isArr';
 import clone from './clone';
-import { IterableObj } from './merge';
+import type { IterableObj } from './merge';
 import toPath from './toPath';
 
 function walk(
   obj: object,
   path: string | unknown[],
-  cb: (obj: object, prop: PropertyKey) => void
+  cb: (obj: object, prop: PropertyKey) => void,
 ) {
   let curObj = obj;
   const pathArr = toPath(path);

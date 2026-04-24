@@ -13,7 +13,7 @@ import uniq from './uniq';
  */
 export default function symDiff(
   collections: unknown[][] = [],
-  by?: (val: unknown) => unknown
+  by?: (val: unknown) => unknown,
 ): unknown[] {
   const byFlag = isFn(by);
   const out = collections.slice(1).reduce(
@@ -39,7 +39,7 @@ export default function symDiff(
 
       return acc.filter((_item, i) => !removeIdxs.includes(i));
     },
-    [...(collections[0] || [])]
+    [...(collections[0] || [])],
   );
 
   return uniq(out);

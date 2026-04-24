@@ -22,8 +22,8 @@ describe('Function > Pipe', () => {
       pipe(
         1,
         (x) => x + 1,
-        (x) => x * 5
-      )
+        (x) => x * 5,
+      ),
     ).toBe(10);
   });
 });

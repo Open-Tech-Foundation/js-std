@@ -25,7 +25,7 @@ describe('Object > get', () => {
     expect(get(obj, 'a.b')).toEqual([1, 2, 3]);
 
     expect(get({ user: { email: 'user@example.com' } }, 'user.email')).toBe(
-      'user@example.com'
+      'user@example.com',
     );
 
     expect(get({ fruits: ['Apple'] }, 'fruits[0]')).toBe('Apple');

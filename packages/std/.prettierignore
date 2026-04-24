@@ -1,6 +1,0 @@
-# Ignore artifacts:
-coverage
-build
-built
-dist
-lib

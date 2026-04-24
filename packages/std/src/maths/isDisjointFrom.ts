@@ -9,7 +9,7 @@
  */
 export default function isDisjointFrom(
   a: unknown[] | Set<unknown>,
-  b: unknown[] | Set<unknown>
+  b: unknown[] | Set<unknown>,
 ): boolean {
   const setA = new Set(a);
   const setB = new Set(b);

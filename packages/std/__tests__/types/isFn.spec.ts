@@ -8,8 +8,8 @@ describe('Types > isFn', () => {
 
   test('valid cases', () => {
     expect(isFn(() => {})).toBe(true);
-    expect(isFn(function () {})).toBe(true);
-    expect(isFn(async function () {})).toBe(true);
+    expect(isFn(() => {})).toBe(true);
+    expect(isFn(async () => {})).toBe(true);
     expect(isFn(function* () {})).toBe(true);
   });
 });

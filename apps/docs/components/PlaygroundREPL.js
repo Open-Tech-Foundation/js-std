@@ -1,12 +1,12 @@
-"use client";
-import dynamic from "next/dynamic";
-import { useTheme } from "next-themes";
-import Link from "next/link";
-import "@opentf/react-node-repl/lib/style.css";
+'use client';
+import { useTheme } from 'next-themes';
+import dynamic from 'next/dynamic';
+import Link from 'next/link';
+import '@opentf/react-node-repl/lib/style.css';
 
 const NodeREPL = dynamic(
-  () => import("@opentf/react-node-repl").then((mod) => mod.NodeREPL),
-  { ssr: false }
+  () => import('@opentf/react-node-repl').then((mod) => mod.NodeREPL),
+  { ssr: false },
 );
 
 const code = `const {
@@ -58,19 +58,19 @@ export default function PlaygroundREPL() {
   const { resolvedTheme } = useTheme();
 
   return (
-    <div style={{ padding: "25px" }}>
+    <div style={{ padding: '25px' }}>
       <NodeREPL
         code={code}
         setupCode={setupCode}
-        deps={["@opentf/std", "lodash", "ramda"]}
+        deps={['@opentf/std', 'lodash', 'ramda']}
         layout="SPLIT_PANEL"
         editor={{
-          darkMode: resolvedTheme === "dark",
+          darkMode: resolvedTheme === 'dark',
         }}
-        style={{ height: "50vh" }}
+        style={{ height: '50vh' }}
       />
-      <div style={{ textAlign: "right", fontSize: "14px" }}>
-        ⚡ by{" "}
+      <div style={{ textAlign: 'right', fontSize: '14px' }}>
+        ⚡ by{' '}
         <Link href="https://node-repl.pages.dev/" target="_blank">
           React Node REPL
         </Link>

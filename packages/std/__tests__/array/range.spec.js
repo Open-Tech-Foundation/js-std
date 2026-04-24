@@ -6,10 +6,10 @@ describe('Array > range', () => {
       [],
       [0],
       [0n],
-      [0, 1, function () {}],
-      [0n, 1n, function () {}],
-      [0, function () {}, 2],
-      [function () {}, 2, 2],
+      [0, 1, () => {}],
+      [0n, 1n, () => {}],
+      [0, () => {}, 2],
+      [() => {}, 2, 2],
       [0n, 1],
       [0n, 1, 1],
       [0n, 1, { step: 1 }],
@@ -70,12 +70,12 @@ describe('Array > range', () => {
   });
 
   test('NaN', () => {
-    expect(() => range(NaN, 0)).toThrowError();
-    expect(() => range(0, NaN)).toThrowError();
-    expect(() => range(NaN, NaN)).toThrowError();
+    expect(() => range(Number.NaN, 0)).toThrowError();
+    expect(() => range(0, Number.NaN)).toThrowError();
+    expect(() => range(Number.NaN, Number.NaN)).toThrowError();
 
-    expect(() => range(0, 0, { step: NaN })).toThrowError();
-    expect(() => range(0, 5, NaN)).toThrowError();
+    expect(() => range(0, 0, { step: Number.NaN })).toThrowError();
+    expect(() => range(0, 5, Number.NaN)).toThrowError();
   });
 
   test('Step infer', () => {
@@ -91,10 +91,12 @@ describe('Array > range', () => {
   });
 
   test('Error: Infinity as start / step', () => {
-    expect(() => range(Infinity, 10, 0)).toThrowError();
-    expect(() => range(-Infinity, 10, 0)).toThrowError();
-    expect(() => range(0, 10, Infinity)).toThrowError();
-    expect(() => range(0, 10, { step: Infinity })).toThrowError();
+    expect(() => range(Number.POSITIVE_INFINITY, 10, 0)).toThrowError();
+    expect(() => range(Number.NEGATIVE_INFINITY, 10, 0)).toThrowError();
+    expect(() => range(0, 10, Number.POSITIVE_INFINITY)).toThrowError();
+    expect(() =>
+      range(0, 10, { step: Number.POSITIVE_INFINITY }),
+    ).toThrowError();
   });
 
   test('Inclusive on same start-end', () => {

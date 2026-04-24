@@ -18,7 +18,14 @@ describe('Array > swap', () => {
   });
 
   test('swap index > length', () => {
-    expect(swap([1, 2, 3], 1, 5)).toEqual([1, undefined, 3, , , 2]);
+    expect(swap([1, 2, 3], 1, 5)).toEqual([
+      1,
+      undefined,
+      3,
+      undefined,
+      undefined,
+      2,
+    ]);
   });
 
   test('array of objects', () => {

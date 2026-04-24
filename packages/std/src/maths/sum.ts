@@ -9,7 +9,7 @@
 
 export default function sum(
   arr: number[] = [],
-  cb?: (val: number, index: number) => number
+  cb?: (val: number, index: number) => number,
 ): number {
   const a = cb ? arr.map(cb) : arr;
   return a.reduce((prev, cur) => {

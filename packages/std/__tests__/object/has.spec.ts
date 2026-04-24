@@ -66,7 +66,7 @@ describe('Object > has', () => {
     expect(has({ a: { b: [1, 2, 3, { c: 5 }] } }, 'a.b.[3].c')).toBe(true);
 
     expect(has({ a: { b: [1, 2, 3, { c: 5 }] } }, ['a', 'b', '3', 'c'])).toBe(
-      true
+      true,
     );
 
     expect(has({ a: { 'b.c': 1 } }, ['a', 'b.c'])).toBe(true);
@@ -76,7 +76,7 @@ describe('Object > has', () => {
         'C:\valid',
         'folder',
         'name',
-      ])
+      ]),
     ).toBe(true);
   });
 });

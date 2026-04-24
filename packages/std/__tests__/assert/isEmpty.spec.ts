@@ -8,7 +8,7 @@ describe('Assert => isEmpty', () => {
     expect(isEmpty(new Map())).toBe(true);
     expect(isEmpty(new Set())).toBe(true);
     expect(isEmpty(new ArrayBuffer(0))).toBe(true);
-    const arr = [,];
+    const arr = [undefined];
     expect(isEmpty(arr, true)).toBe(true);
   });
 
@@ -25,7 +25,7 @@ describe('Assert => isEmpty', () => {
     expect(isEmpty('a')).toBe(false);
     expect(isEmpty([1])).toBe(false);
     expect(isEmpty({ length: 0, size: 0, byteLength: 0 })).toBe(false);
-    const arr = [,];
+    const arr = [undefined];
     expect(isEmpty(arr)).toBe(false);
   });
 });

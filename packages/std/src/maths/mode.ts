@@ -8,7 +8,7 @@
 
 export default function mode<T>(
   arr: T[] = [],
-  cb?: (v: T, index: number) => number
+  cb?: (v: T, index: number) => number,
 ): number[] {
   const a = cb ? arr.map(cb) : arr;
   const map = new Map();

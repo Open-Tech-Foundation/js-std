@@ -7,7 +7,7 @@
  */
 export default async function aForEach<T>(
   arr: T[],
-  cb: (value: T, index: number) => Promise<void>
+  cb: (value: T, index: number) => Promise<void>,
 ): Promise<undefined> {
   let i = 0;
 

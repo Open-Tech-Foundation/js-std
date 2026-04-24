@@ -13,6 +13,8 @@ describe('Maths', () => {
     const objects = [{ n: 4 }, { n: 2 }, { n: 8 }, { n: 6 }];
     expect(sum(objects, (v) => v.n)).toBe(20);
     expect(sum(objects, (v, i) => v.n * i)).toBe(36);
-    expect(sum([Infinity, Infinity])).toBe(Infinity);
+    expect(sum([Number.POSITIVE_INFINITY, Number.POSITIVE_INFINITY])).toBe(
+      Number.POSITIVE_INFINITY,
+    );
   });
 });

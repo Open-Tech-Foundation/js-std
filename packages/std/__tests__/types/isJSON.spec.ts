@@ -23,8 +23,8 @@ describe('Types > isJSON', () => {
     expect(isJSON('{"a":1}')).toBeTruthy();
     expect(
       isJSON(
-        '{"a": "abc", "b": true, "c": false, "d": [{"e": 1}, null, 5.0], "f": {}}'
-      )
+        '{"a": "abc", "b": true, "c": false, "d": [{"e": 1}, null, 5.0], "f": {}}',
+      ),
     ).toBeTruthy();
   });
 });

@@ -9,7 +9,7 @@ import compact from './compact';
  */
 export default function min<T>(
   arr: T[] = [],
-  by: (val: T) => number = (x: T) => x as number
+  by: (val: T) => number = (x: T) => x as number,
 ): T | null {
   const a = compact(arr);
 

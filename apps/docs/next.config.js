@@ -1,8 +1,8 @@
-const { PHASE_DEVELOPMENT_SERVER } = require("next/constants");
+const { PHASE_DEVELOPMENT_SERVER } = require('next/constants');
 
-const withNextra = require("nextra")({
-  theme: "nextra-theme-docs",
-  themeConfig: "./theme.config.jsx",
+const withNextra = require('nextra')({
+  theme: 'nextra-theme-docs',
+  themeConfig: './theme.config.jsx',
 });
 
 /**
@@ -12,10 +12,10 @@ const nextConfig = {
   headers: () => {
     return [
       {
-        source: "/:path*{/}?",
+        source: '/:path*{/}?',
         headers: [
-          { key: "Cross-Origin-Embedder-Policy", value: "require-corp" },
-          { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
+          { key: 'Cross-Origin-Embedder-Policy', value: 'require-corp' },
+          { key: 'Cross-Origin-Opener-Policy', value: 'same-origin' },
         ],
       },
     ];
@@ -24,11 +24,11 @@ const nextConfig = {
 
 const prodNextConfig = {
   ...nextConfig,
-  output: "export",
+  output: 'export',
   images: {
     unoptimized: true,
   },
-  distDir: "build",
+  distDir: 'build',
 };
 
 // module.exports = withNextra({ ...nextConfig() });

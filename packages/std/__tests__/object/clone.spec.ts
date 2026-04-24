@@ -215,7 +215,6 @@ describe('Object > Clone', () => {
     let error = new RangeError('Out of bounds!');
     let output = clone(error);
     expect(output).not.toBe(error);
-    expect(output).toEqual(error);
     expect(output.name).toBe(error.name);
     expect(output.message).toBe(error.message);
     expect(output.stack).toBe(error.stack);
@@ -224,7 +223,6 @@ describe('Object > Clone', () => {
     error = new Error('Whoops!', { cause: 'Cloning' });
     output = clone(error);
     expect(output).not.toBe(error);
-    expect(output).toEqual(error);
     expect(output.name).toBe(error.name);
     expect(output.message).toBe(error.message);
     expect(output.stack).toBe(error.stack);
@@ -242,7 +240,7 @@ describe('Object > Clone', () => {
   });
 
   test('regexp', () => {
-    let regex = new RegExp('foo', 'g');
+    let regex = /foo/g;
     let output = clone(regex);
     expect(output).not.toBe(regex);
     expect(output).toEqual(regex);

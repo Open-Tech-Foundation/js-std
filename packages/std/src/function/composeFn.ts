@@ -9,7 +9,7 @@ import reverse from '../array/reverse';
 export default function composeFn(
   ...fns: ((...args: unknown[]) => unknown)[]
 ): (...args: unknown[]) => unknown {
-  return function (...args) {
+  return (...args) => {
     const revFns = reverse(fns);
 
     const firstFn = revFns.shift();

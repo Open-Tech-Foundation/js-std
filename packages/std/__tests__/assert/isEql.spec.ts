@@ -11,17 +11,21 @@ describe('Assert => isEql', () => {
     expect(isEql()).toBe(true);
     expect(isEql(undefined, undefined)).toBe(true);
     expect(isEql(null, null)).toBe(true);
-    expect(isEql(NaN, NaN)).toBe(true);
-    expect(isEql(Infinity, Infinity)).toBe(true);
-    expect(isEql(-Infinity, -Infinity)).toBe(true);
+    expect(isEql(Number.NaN, Number.NaN)).toBe(true);
+    expect(isEql(Number.POSITIVE_INFINITY, Number.POSITIVE_INFINITY)).toBe(
+      true,
+    );
+    expect(isEql(Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY)).toBe(
+      true,
+    );
     expect(isEql(1, 1)).toBe(true);
     expect(isEql(1.5, 1.5)).toBe(true);
     expect(isEql(5n, 5n)).toBe(true);
     expect(isEql('', '')).toBe(true);
     expect(isEql('abc', 'abc')).toBe(true);
     expect(isEql([], [])).toBe(true);
-    expect(isEql([,], [,])).toBe(true);
-    expect(isEql([1, , 2], [1, , 2])).toBe(true);
+    expect(isEql([undefined], [undefined])).toBe(true);
+    expect(isEql([1, undefined, 2], [1, undefined, 2])).toBe(true);
     expect(isEql([1], [1])).toBe(true);
     expect(isEql([1, 2, 3, 4, 5], [1, 2, 3, 4, 5])).toBe(true);
     expect(isEql([1, '2', 3.5, 4n, true], [1, '2', 3.5, 4n, true])).toBe(true);
@@ -66,7 +70,7 @@ describe('Assert => isEql', () => {
     expect(isEql(new Int16Array([1, 2]), new Int16Array([1, 2]))).toBe(true);
 
     expect(
-      isEql(new Set().add({ foo: 'bar' }), new Set().add({ foo: 'bar' }))
+      isEql(new Set().add({ foo: 'bar' }), new Set().add({ foo: 'bar' })),
     ).toBe(true);
 
     const sym = Symbol('foo');
@@ -120,11 +124,11 @@ describe('Assert => isEql', () => {
     const symbol2 = Symbol();
     expect(isEql({ [symbol1]: 1 }, { [symbol2]: 1 })).toBe(false);
 
-    const re = new RegExp('ab+c');
-    const re2 = new RegExp('ab+d');
+    const re = /ab+c/;
+    const re2 = /ab+d/;
     expect(isEql(re, re2)).toBe(false);
 
-    expect(isEql([1, , 2], [1, undefined, 2])).toBe(false);
+    expect(isEql([1, undefined, 2], [1, , 2])).toBe(false);
 
     const first = new A();
     const second = { a: 1 };

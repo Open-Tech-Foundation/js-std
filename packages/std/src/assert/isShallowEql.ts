@@ -39,7 +39,7 @@ export default function isShallowEql(val1: unknown, val2: unknown): boolean {
       if (
         !Object.is(
           (val1 as object)[keys1[i] as keyof typeof val1],
-          (val2 as object)[keys2[i] as keyof typeof val2]
+          (val2 as object)[keys2[i] as keyof typeof val2],
         )
       ) {
         return false;

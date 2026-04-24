@@ -12,7 +12,7 @@ import isEql from './isEql';
  */
 export default function isEqlArr(arr1: unknown[], arr2: unknown[]): boolean {
   const a1: unknown[] = arr1.flat();
-  const a2: unknown[] = arr2.flat();
+  const a2: unknown[] = arr2.flat().slice();
 
   if (size(a1) !== size(a2)) {
     return false;
@@ -25,7 +25,7 @@ export default function isEqlArr(arr1: unknown[], arr2: unknown[]): boolean {
       return false;
     }
 
-    delete a2[index];
+    a2.splice(index, 1);
   }
 
   return true;

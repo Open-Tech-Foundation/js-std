@@ -1,6 +1,6 @@
 import isEmpty from '../assert/isEmpty';
 import isPureObj from '../types/isPureObj';
-import { IterableObj } from './merge';
+import type { IterableObj } from './merge';
 import toPath from './toPath';
 
 /**

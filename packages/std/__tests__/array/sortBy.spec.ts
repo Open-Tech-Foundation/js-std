@@ -40,7 +40,7 @@ describe('Array > sortBy', () => {
     sorted = sortBy(
       hotels,
       [(obj) => obj.city, 'asc'],
-      [(obj) => obj.name, 'asc']
+      [(obj) => obj.name, 'asc'],
     );
     expect(sorted).toEqual([
       { _id: 3, name: 'Empire State Pub', city: 'Brooklyn' },
@@ -53,7 +53,7 @@ describe('Array > sortBy', () => {
     sorted = sortBy(
       hotels,
       [(obj) => obj.city, 'asc'],
-      [(obj) => obj.name, 'desc']
+      [(obj) => obj.name, 'desc'],
     );
     expect(sorted).toEqual([
       { _id: 5, name: "Jane's Deli", city: 'Brooklyn' },

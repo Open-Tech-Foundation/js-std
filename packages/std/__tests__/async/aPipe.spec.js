@@ -18,8 +18,8 @@ describe('Function > Pipe', () => {
       aPipe(
         'guest',
         (s) => capitalize(s),
-        (x) => new Promise((resolve) => resolve(`Welcome ${x}`))
-      )
+        (x) => new Promise((resolve) => resolve(`Welcome ${x}`)),
+      ),
     ).resolves.toBe('Welcome Guest');
   });
 
@@ -29,8 +29,8 @@ describe('Function > Pipe', () => {
         'guest',
         (s) => capitalize(s),
         (x) => new Promise((resolve) => resolve(`Welcome ${x}`)),
-        (x) => new Promise((resolve) => resolve(`${x}...`))
-      )
+        (x) => new Promise((resolve) => resolve(`${x}...`)),
+      ),
     ).resolves.toBe('Welcome Guest...');
   });
 });

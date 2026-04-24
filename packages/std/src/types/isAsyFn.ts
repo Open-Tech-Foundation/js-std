@@ -10,7 +10,7 @@
  */
 
 export default function isAsyFn(
-  val: unknown
+  val: unknown,
 ): val is Function | AsyncGeneratorFunction {
   const a = ['[object AsyncFunction]', '[object AsyncGeneratorFunction]'];
   return a.includes(Object.prototype.toString.call(val));

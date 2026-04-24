@@ -28,7 +28,7 @@ describe('Function > aComposeFn', () => {
   test('single args compose fn with two functions', async () => {
     const fn = aComposeFn(
       (x) => Promise.resolve(Math.ceil(x)),
-      (x) => Promise.resolve(Math.abs(x))
+      (x) => Promise.resolve(Math.abs(x)),
     );
     expect(typeof fn).toBe('function');
     await expect(fn(-1.235)).resolves.toBe(2);

@@ -6,9 +6,9 @@
 
 export default function shuffle<T>(arr: T[]): T[] {
   const a = [...arr];
-  let i = a.length,
-    randIdx,
-    t;
+  let i = a.length;
+  let randIdx;
+  let t;
 
   while (i) {
     randIdx = Math.floor(Math.random() * i--);

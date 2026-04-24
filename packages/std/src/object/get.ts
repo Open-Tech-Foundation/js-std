@@ -1,5 +1,5 @@
 import has from './has';
-import { IterableObj } from './merge';
+import type { IterableObj } from './merge';
 import toPath from './toPath';
 
 /**
@@ -12,7 +12,7 @@ import toPath from './toPath';
 export default function get(
   obj: object,
   path: string | unknown[],
-  defVal?: unknown
+  defVal?: unknown,
 ): unknown {
   if (!has(obj, path)) {
     return defVal;

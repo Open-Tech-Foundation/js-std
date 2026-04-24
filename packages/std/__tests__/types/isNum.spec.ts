@@ -15,9 +15,9 @@ describe('Types > isNum', () => {
     expect(isNum([])).toBe(false);
     expect(isNum({})).toBe(false);
     expect(isNum(Symbol(1))).toBe(false);
-    expect(isNum(NaN)).toBe(false);
-    expect(isNum(Infinity)).toBe(false);
-    expect(isNum(-Infinity)).toBe(false);
+    expect(isNum(Number.NaN)).toBe(false);
+    expect(isNum(Number.POSITIVE_INFINITY)).toBe(false);
+    expect(isNum(Number.NEGATIVE_INFINITY)).toBe(false);
     expect(isNum('1__000', true)).toBe(false);
     expect(isNum('1___000', true)).toBe(false);
     expect(isNum('_100 ', true)).toBe(false);

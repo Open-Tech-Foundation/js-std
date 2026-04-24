@@ -16,8 +16,8 @@ describe('Array > intersection', () => {
           [2.1, 1.2],
           [2.3, 3.4],
         ],
-        Math.floor
-      )
+        Math.floor,
+      ),
     ).toEqual([2.1]);
   });
 

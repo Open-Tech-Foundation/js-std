@@ -6,7 +6,7 @@
  */
 export default async function aMap<T>(
   arr: T[],
-  cb: (value: T, index: number) => Promise<unknown>
+  cb: (value: T, index: number) => Promise<unknown>,
 ): Promise<unknown[]> {
   let i = 0;
   const out: unknown[] = [];

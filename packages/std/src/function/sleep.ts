@@ -5,6 +5,6 @@
  *
  * await sleep(1000) // It sleeps for 1 second
  */
-export default async function sleep(ms: number): Promise<void> {
+export default async function sleep(ms = 0): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }

@@ -18,6 +18,9 @@ describe('Array', () => {
     expect(a).toEqual(['a', 'b', 'c']);
 
     const myFish = ['angel', 'clown', 'mandarin', 'sturgeon'];
-    expect(arrRm(myFish, 2, Infinity)).toEqual(['angel', 'clown']);
+    expect(arrRm(myFish, 2, Number.POSITIVE_INFINITY)).toEqual([
+      'angel',
+      'clown',
+    ]);
   });
 });

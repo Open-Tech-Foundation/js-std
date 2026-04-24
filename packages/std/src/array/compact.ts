@@ -14,7 +14,7 @@ export default function compact<T>(arr: T[] = []): Partial<T[]> {
     return [];
   }
 
-  const falsy: (T | Falsy)[] = [undefined, null, false, NaN, 0, ''];
+  const falsy: (T | Falsy)[] = [undefined, null, false, Number.NaN, 0, ''];
 
   return arr.filter((val) => !falsy.includes(val));
 }

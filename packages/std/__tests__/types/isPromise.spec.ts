@@ -21,6 +21,6 @@ describe('Types > isPromise', () => {
     expect(isPromise(Promise.all([]))).toBe(true);
     expect(isPromise(Promise.race([]))).toBe(true);
     expect(isPromise(Promise.allSettled([]))).toBe(true);
-    expect(isPromise({ then: function () {} })).toBe(true);
+    expect(isPromise({ then: () => {} })).toBe(true);
   });
 });

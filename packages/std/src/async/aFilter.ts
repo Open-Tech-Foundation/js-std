@@ -8,7 +8,7 @@
  */
 export default async function aFilter<T>(
   arr: T[],
-  cb: (value: T, index: number) => Promise<boolean>
+  cb: (value: T, index: number) => Promise<boolean>,
 ): Promise<Partial<T[]>> {
   let i = 0;
   const out = [];

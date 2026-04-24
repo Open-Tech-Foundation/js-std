@@ -14,14 +14,19 @@ import drop from './drop';
  */
 export default function intersperse(
   list: string | unknown[] = [],
-  sep: ((index: number) => unknown) | unknown
+  sep: ((index: number) => unknown) | unknown,
 ): string | unknown[] {
   const a = isStr(list) ? Array.from(list) : list;
+
+  if (!a) {
+    return [];
+  }
+
   const res = drop(
     a.reduce((acc: unknown[], cur, index) => {
       acc.push(isFn(sep) ? sep(index - 1) : sep, cur);
       return acc;
-    }, [])
+    }, []),
   );
 
   return isStr(list) ? (res.join('') as string) : res;

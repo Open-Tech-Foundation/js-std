@@ -44,7 +44,7 @@ describe('Object', () => {
       set({ a: 1, b: [2] }, 'b', (arr) => {
         arr.unshift(1);
         return arr;
-      })
+      }),
     ).toEqual({
       a: 1,
       b: [1, 2],

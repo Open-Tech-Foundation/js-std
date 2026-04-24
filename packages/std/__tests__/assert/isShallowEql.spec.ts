@@ -14,7 +14,7 @@ describe('Assert => isShallowEql', () => {
     expect(isShallowEql([], {})).toBe(false);
     expect(isShallowEql([1, { a: 1 }], [1, { a: 1 }])).toBe(false);
     expect(isShallowEql({ a: 1, b: 2, c: [] }, { a: 1, b: 2, c: [] })).toBe(
-      false
+      false,
     );
   });
 
@@ -26,7 +26,7 @@ describe('Assert => isShallowEql', () => {
     expect(isShallowEql(true, true)).toBe(true);
     expect(isShallowEql(1, 1)).toBe(true);
     expect(isShallowEql(5.5, 5.5)).toBe(true);
-    expect(isShallowEql(NaN, NaN)).toBe(true);
+    expect(isShallowEql(Number.NaN, Number.NaN)).toBe(true);
     expect(isShallowEql('abc', 'abc')).toBe(true);
     expect(isShallowEql([], [])).toBe(true);
     expect(isShallowEql({}, {})).toBe(true);
@@ -44,8 +44,8 @@ describe('Assert => isShallowEql', () => {
     expect(
       isShallowEql(
         { a: 1, b: 'xyz', c: null, d: 8.0, e: obj, f: true },
-        { a: 1, b: 'xyz', c: null, d: 8.0, e: obj, f: true }
-      )
+        { a: 1, b: 'xyz', c: null, d: 8.0, e: obj, f: true },
+      ),
     ).toBe(true);
   });
 });

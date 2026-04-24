@@ -5,8 +5,8 @@ describe('Array', () => {
     expect(countBy([])).toEqual({});
     expect(
       countBy([1, 2, 3, 4, 5, 6, 7, 8, 9], (v) =>
-        v % 2 === 0 ? 'Even' : 'Odd'
-      )
+        v % 2 === 0 ? 'Even' : 'Odd',
+      ),
     ).toEqual({ Even: 4, Odd: 5 });
 
     expect(countBy(['Apple', 'Mango', 'Orange'], 'length')).toEqual({
@@ -22,7 +22,7 @@ describe('Array', () => {
       { name: 'fish', type: 'meat', qty: 22 },
     ];
     expect(
-      countBy(inventory, ({ qty }) => (qty === 0 ? 'OutOfStock' : 'InStock'))
+      countBy(inventory, ({ qty }) => (qty === 0 ? 'OutOfStock' : 'InStock')),
     ).toEqual({ OutOfStock: 1, InStock: 4 });
 
     const letters = ['a', 'b', 'A', 'a', 'B', 'c'];
