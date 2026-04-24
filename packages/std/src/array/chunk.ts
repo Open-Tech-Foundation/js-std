@@ -1,20 +1,19 @@
-import isArr from '../types/isArr';
-
 /**
- *  Splits the given array values into groups of a given size.
+ * Creates an array of elements split into groups the length of size.
  *
  * @example
  *
- * chunk([1, 2, 3, 4, 5], 2) //=> [[1, 2], [3, 4], [5]]
+ * chunk(['a', 'b', 'c', 'd'], 2) //=> [['a', 'b'], ['c', 'd']]
+ *
+ * chunk(['a', 'b', 'c', 'd'], 3) //=> [['a', 'b', 'c'], ['d']]
  */
-export default function chunk<T>(arr: T[] = [], size = 1): unknown[] {
-  if (size < 1 || !isArr(arr)) {
+export default function chunk<T>(arr: T[] = [], size = 1): T[][] {
+  if (size <= 0) {
     return [];
   }
-
-  return arr.reduce((acc: Iterable<T>[], cur: T, i: number) => {
-    return i % size === 0
-      ? [...acc, [cur]]
-      : [...acc.slice(0, -1), [...acc.slice(-1)[0], cur]];
-  }, []);
+  const result: T[][] = [];
+  for (let i = 0; i < arr.length; i += size) {
+    result.push(arr.slice(i, i + size));
+  }
+  return result;
 }

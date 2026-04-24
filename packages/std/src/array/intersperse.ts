@@ -13,7 +13,7 @@ import drop from './drop';
  * intersperse('Hello', '-') //=> H-e-l-l-o
  */
 export default function intersperse(
-  list: string | unknown[] = [],
+  list: string | unknown[],
   sep: ((index: number) => unknown) | unknown,
 ): string | unknown[] {
   const a = isStr(list) ? Array.from(list) : list;

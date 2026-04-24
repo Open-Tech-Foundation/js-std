@@ -1,34 +1,54 @@
 import isArr from '../types/isArr';
 import isObj from '../types/isObj';
-
-type IterableObj = {
-  [key: number | string]: unknown;
-};
+import merge, { type IterableObj } from './merge';
 
 /**
- * It deeply merges objects and concatenates the arrays if any present.
+ * Deeply merges all the given objects or arrays.
  *
  * @example
- * const a = { a: [1, 2], b: 0 };
- * const b = { a: [3, 4], b: 5 };
- * mergeAll(a, b) //=> {a: [1, 2, 3, 4], b: 5}
+ *
+ * mergeAll([{a: 1}, {b: 2}]) //=> {a: 1, b: 2}
+ *
+ * mergeAll([[1], [2]]) //=> [1, 2]
  */
-export default function mergeAll(...objs: object[]): object {
-  const filteredObjs = objs.filter((v) => isArr(v) || isObj(v));
-  const initialVal = isArr(filteredObjs[0]) ? [] : {};
+function deepMerge(acc: IterableObj, cur: IterableObj) {
+  for (const [key, val] of Object.entries(cur)) {
+    if (isArr(val) && isArr(acc[key])) {
+      acc[key] = (acc[key] as unknown[]).concat(val);
+    } else if (isObj(val) && isObj(acc[key])) {
+      acc[key] = deepMerge(acc[key] as IterableObj, val as IterableObj);
+    } else {
+      acc[key] = val;
+    }
+  }
+  return acc;
+}
 
-  return filteredObjs.reduce((acc: IterableObj, cur) => {
-    if (isArr(cur) && isArr(acc)) {
-      return [...acc, ...cur];
+export default function mergeAll(
+  ...objs: (Record<string, unknown> | unknown[])[]
+): Record<string, unknown> | unknown[] {
+  const filteredObjs = objs.filter((o) => isArr(o) || isObj(o));
+
+  if (filteredObjs.length === 0) {
+    return {};
+  }
+
+  return filteredObjs.reduce((acc: IterableObj, cur, i) => {
+    if (i === 0) {
+      return (isArr(cur) ? cur.slice() : Object.assign({}, cur)) as IterableObj;
     }
 
-    for (const [key, val] of Object.entries(cur)) {
-      if (isArr(val) || isObj(val)) {
-        acc[key] = mergeAll(acc[key] as object, val);
-      } else {
-        acc[key] = val;
-      }
+    if (isArr(acc) && isArr(cur)) {
+      return (acc as unknown[]).concat(cur) as unknown as IterableObj;
     }
-    return acc;
-  }, initialVal);
+
+    if (isArr(acc) || isArr(cur)) {
+      const target = isArr(acc)
+        ? Object.fromEntries(Object.entries(acc))
+        : Object.assign({}, acc);
+      return deepMerge(target as IterableObj, cur as IterableObj);
+    }
+
+    return deepMerge(acc, cur as IterableObj);
+  }, {} as IterableObj);
 }

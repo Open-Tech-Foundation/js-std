@@ -1,7 +1,6 @@
 import { isPureObj } from '../../src';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function fun(x?: any) {
+function fun(x?: unknown) {
   return x;
 }
 
@@ -35,7 +34,7 @@ describe('Types > isPureObj', () => {
     expect(isPureObj([])).toBe(true);
     expect(isPureObj({})).toBe(true);
     expect(isPureObj({ a: 1 })).toBe(true);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // biome-ignore lint/suspicious/noExplicitAny: Intentional for testing
     expect(isPureObj(new (fun as any)(1))).toBe(true);
     expect(isPureObj(new Object())).toBe(true);
     expect(isPureObj(Object.create(null))).toBe(true);

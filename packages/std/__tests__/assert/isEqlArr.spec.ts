@@ -9,6 +9,7 @@ describe('Assert > isEqlArr', () => {
 
   test('sparse arrays', () => {
     expect(isEqlArr([1, undefined, 2], [1, undefined, 2])).toBe(true);
+    // biome-ignore lint/suspicious/noSparseArray: Intentional for testing
     expect(isEqlArr([1, undefined, 3], [1, , 3])).toBe(false);
     expect(
       isEqlArr(
@@ -43,20 +44,8 @@ describe('Assert > isEqlArr', () => {
   });
 
   test('objects', () => {
-    let arr1: unknown[] = [
-      { a: 1 },
-      { b: 2 },
-      [1, 'a', null],
-      undefined,
-      null,
-    ];
-    let arr2: unknown[] = [
-      undefined,
-      null,
-      [1, 'a', null],
-      { b: 2 },
-      { a: 1 },
-    ];
+    let arr1: unknown[] = [{ a: 1 }, { b: 2 }, [1, 'a', null], undefined, null];
+    let arr2: unknown[] = [undefined, null, [1, 'a', null], { b: 2 }, { a: 1 }];
     expect(isEqlArr(arr1, arr2)).toBe(true);
 
     arr1 = [[1, 'a', null], { b: 2 }, undefined, { a: 1 }, null];
@@ -64,6 +53,7 @@ describe('Assert > isEqlArr', () => {
     expect(isEqlArr(arr1, arr2)).toBe(true);
 
     arr1 = [{ a: [1, undefined, 2] }];
+    // biome-ignore lint/suspicious/noSparseArray: Intentional for testing
     arr2 = [{ a: [1, , 2] }];
     expect(isEqlArr(arr1, arr2)).toBe(false);
   });

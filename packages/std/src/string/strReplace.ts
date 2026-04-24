@@ -19,7 +19,7 @@ export default function strReplace(
   const defaultOptions: StrReplaceOptions = { all: false, case: false };
   const opts = shallowMerge(
     defaultOptions,
-    options as object,
+    options as Record<string, unknown>,
   ) as StrReplaceOptions;
   let flags = '';
   flags = opts.all ? `${flags}g` : flags;

@@ -1,19 +1,19 @@
 import isFn from '../types/isFn';
 
 /**
- *  Counts the items in the given array and groups them by the name provided.
+ * Creates an object composed of keys generated from the results of running each element of collection through iteratee.
  *
  * @example
  *
- * countBy([1, 2, 3, 4, 5], n => n % 2 === 0 ? 'Even' : 'Odd') //=> { Odd: 3, Even: 2 }
+ * countBy([6.1, 4.2, 6.3], Math.floor) //=> { '4': 1, '6': 2 }
  */
 export default function countBy<T>(
   arr: T[],
   by: ((val: T) => string) | string,
-): { [k: string]: number } {
-  return arr.reduce((acc: Record<string, number>, cur: T) => {
-    const k = isFn(by) ? by(cur) : (cur[by as keyof T] as string);
-    const count = acc[k] ? acc[k] + 1 : 1;
-    return { ...acc, [k]: count };
+): Record<string, number> {
+  return arr.reduce((acc: Record<string, number>, cur) => {
+    const k = (isFn(by) ? by(cur) : cur[by as keyof T]) as string;
+    acc[k] = (acc[k] ?? 0) + 1;
+    return acc;
   }, {});
 }

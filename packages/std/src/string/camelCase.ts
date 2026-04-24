@@ -1,42 +1,33 @@
 import capitalize from './capitalize';
-import replaceAt from './replaceAt';
 
+/**
+ * Converts string to camelCase.
+ *
+ * @example
+ *
+ * camelCase('Foo Bar') //=> 'fooBar'
+ *
+ * camelCase('--foo-bar--') //=> 'fooBar'
+ *
+ * camelCase('__FOO_BAR__') //=> 'fooBar'
+ */
 function camelCase(str: string): string {
-  let out;
-  const res = str.match(/[a-z0-9]+/gi);
+  const res = str
+    .replace(/([a-z])([A-Z])|([A-Z]+)([A-Z][a-z])/g, '$1$3 $2$4')
+    .match(/[a-z0-9]+/gi);
 
-  const wordCase = (word: string) => {
-    const regexp = new RegExp(/[A-Z]+/g);
-    let match;
-
-    while ((match = regexp.exec(word)) !== null) {
-      if (regexp.lastIndex && regexp.lastIndex < word.length) {
-        word =
-          word.substring(0, match.index) +
-          capitalize(word.substring(match.index, regexp.lastIndex - 1)) +
-          word.substring(regexp.lastIndex - 1);
-      } else {
-        return word.substring(0, match.index) + capitalize(match[0]);
-      }
-    }
-
-    return word;
-  };
-
-  if (res) {
-    for (let i = 0; i < res.length; i++) {
-      if (res[i].match(/[A-Z]+/g)) {
-        res[i] = wordCase(res[i]);
-      } else {
-        res[i] = capitalize(res[i]);
-      }
-    }
-    out = res.join('');
-
-    return replaceAt(out, 0, out[0].toLowerCase());
+  if (!res) {
+    return '';
   }
 
-  return str;
+  const out = res.map((word, i) => {
+    if (i === 0) {
+      return word.toLowerCase();
+    }
+    return capitalize(word);
+  });
+
+  return out.join('');
 }
 
 export default camelCase;

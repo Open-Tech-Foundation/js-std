@@ -3,12 +3,14 @@
  *
  * @example
  *
- * isFn(function() {}) //=> true
+ * isFn(() => {}) //=> true
  *
- * isFn({}) //=> false
+ * isFn(1) //=> false
+ *
  */
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-export default function isFn(val: unknown): val is Function {
+export default function isFn(
+  val: unknown,
+): val is (...args: unknown[]) => unknown {
   return typeof val === 'function';
 }

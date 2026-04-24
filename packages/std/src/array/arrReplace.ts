@@ -7,8 +7,8 @@
  */
 export default function arrReplace<T>(
   arr: T[] = [],
-  index: number | null,
-  deleteCount: number | null,
+  index: number | null = null,
+  deleteCount: number | null = null,
   ...replacements: T[]
 ): T[] {
   const idx = index ?? arr.length - 1;

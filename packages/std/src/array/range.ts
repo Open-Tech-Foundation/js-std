@@ -1,99 +1,92 @@
-import isInfinity from '../types/isInfinity';
-import isNum from '../types/isNum';
+type RangeOptions = {
+  start?: number;
+  step?: number;
+  inclusiveEnd?: boolean;
+  inclusive?: boolean;
+};
 
 /**
- * It generates a sequence of numbers starting at the first argument,
- * progressing by the third argument, and stopping at the second argument.
+ * Creates an array of numbers (positive and/or negative) progressing from start up to, but not including, end.
  *
  * @example
  *
- * range(0, 5) // [0, 1, 2, 3, 4]
+ * range(4) //=> [0, 1, 2, 3]
+ *
+ * range(-4) //=> [0, -1, -2, -3]
+ *
+ * range(1, 5) //=> [1, 2, 3, 4]
+ *
+ * range(0, 20, 5) //=> [0, 5, 10, 15]
+ *
+ * range(0, -4, -1) //=> [0, -1, -2, -3]
+ *
+ * range(1, 4, {step: 1, inclusiveEnd: true}) //=> [1, 2, 3, 4]
  */
 export default function range(
-  start: number,
-  end: number,
-  options?: number | { step: number; inclusive: boolean },
+  ...args: [number?, number?, (RangeOptions | number)?]
 ): number[] {
-  if (Number.isNaN(start) || Number.isNaN(end)) {
-    throw new RangeError();
+  const [startOrEnd, end, options] = args;
+  if (
+    args.length === 0 ||
+    (args.length === 1 && startOrEnd === 0) ||
+    typeof startOrEnd !== 'number' ||
+    (end !== undefined && typeof end !== 'number') ||
+    (options !== undefined &&
+      options !== null &&
+      typeof options !== 'number' &&
+      typeof options !== 'object')
+  ) {
+    throw new Error('Invalid arguments');
+  }
+  const start = end === undefined ? 0 : (startOrEnd as number);
+  const stop = end === undefined ? (startOrEnd as number) : (end as number);
+  let step: number;
+
+  if (
+    options &&
+    typeof options === 'object' &&
+    options.step !== undefined &&
+    typeof options.step !== 'number'
+  ) {
+    throw new Error('Step must be a number');
   }
 
-  if (!isNum(start) || !isNum(end)) {
-    throw new TypeError();
-  }
+  const inclusive =
+    options && typeof options === 'object'
+      ? options.inclusive ?? options.inclusiveEnd ?? false
+      : false;
 
-  if (isInfinity(start)) {
-    throw RangeError();
-  }
-
-  const ifIncrease = end > start;
-
-  let inclusiveEnd = false;
-  let step;
-
-  if (options === undefined || options === null) {
-    step = undefined;
-  } else if (typeof options === 'object') {
-    step = options.step;
-    inclusiveEnd = Boolean(options.inclusive);
-  } else if (isNum(options)) {
+  if (typeof options === 'number') {
     step = options;
   } else {
-    throw new TypeError();
+    step = options?.step ?? (start < stop ? 1 : -1);
   }
 
-  if (Number.isNaN(step)) {
-    throw new RangeError();
+  if (Number.isNaN(start) || Number.isNaN(stop) || Number.isNaN(step)) {
+    throw new Error('NaN is not allowed');
   }
 
-  if (step === undefined || step === null) {
-    step = ifIncrease ? 1 : -1;
+  if (step === 0) {
+    throw new Error('Step cannot be zero');
   }
 
-  if (typeof step !== 'number') {
-    throw new TypeError();
+  if (!Number.isFinite(start) || !Number.isFinite(step)) {
+    throw new Error('Infinity is not allowed');
   }
 
-  if (isInfinity(step)) {
-    throw RangeError();
-  }
+  const result: number[] = [];
+  let n = 0;
 
-  if (step === 0 && start !== end) {
-    throw new RangeError();
-  }
-
-  const arr: number[] = [];
-  const ifStepIncrease = step > 0;
-
-  if (ifIncrease !== ifStepIncrease) {
-    return arr;
-  }
-
-  let hitsEnd = false;
-  let curCount = 0;
-
-  while (hitsEnd === false) {
-    const val = start + step * curCount;
-
-    if (val === end) {
-      hitsEnd = true;
-    }
-
-    curCount = curCount + 1;
-    let endCondition = false;
-
-    if (ifIncrease) {
-      endCondition = inclusiveEnd ? val > end : val >= end;
+  while (true) {
+    const i = start + n * step;
+    if (step > 0) {
+      if (inclusive ? i > stop : i >= stop) break;
     } else {
-      endCondition = inclusiveEnd ? end > val : end >= val;
+      if (inclusive ? i < stop : i <= stop) break;
     }
-
-    if (endCondition) {
-      return arr;
-    }
-
-    arr.push(val);
+    result.push(i);
+    n++;
   }
 
-  return arr;
+  return result;
 }

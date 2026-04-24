@@ -1,0 +1,101 @@
+Testing __tests__/array/arrIns.spec.ts
+$ vitest run __tests__/array/arrIns.spec.ts "--reporter=dot"
+
+ RUN  v4.1.5 /home/G/projects/opentf/js-std/packages/std
+
+·
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  20:27:15
+   Duration  406ms (transform 231ms, setup 0ms, import 294ms, tests 4ms, environment 0ms)
+
+Testing __tests__/array/arrReplace.spec.ts
+$ vitest run __tests__/array/arrReplace.spec.ts "--reporter=dot"
+
+ RUN  v4.1.5 /home/G/projects/opentf/js-std/packages/std
+
+·
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  20:27:16
+   Duration  434ms (transform 221ms, setup 0ms, import 280ms, tests 3ms, environment 0ms)
+
+Testing __tests__/array/arrRm.spec.ts
+$ vitest run __tests__/array/arrRm.spec.ts "--reporter=dot"
+
+ RUN  v4.1.5 /home/G/projects/opentf/js-std/packages/std
+
+·
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  20:27:16
+   Duration  393ms (transform 222ms, setup 0ms, import 281ms, tests 4ms, environment 0ms)
+
+Testing __tests__/array/bounds.spec.ts
+$ vitest run __tests__/array/bounds.spec.ts "--reporter=dot"
+
+ RUN  v4.1.5 /home/G/projects/opentf/js-std/packages/std
+
+·····
+
+ Test Files  1 passed (1)
+      Tests  5 passed (5)
+   Start at  20:27:17
+   Duration  406ms (transform 228ms, setup 0ms, import 288ms, tests 4ms, environment 0ms)
+
+Testing __tests__/array/chunk.spec.ts
+$ vitest run __tests__/array/chunk.spec.ts "--reporter=dot"
+
+ RUN  v4.1.5 /home/G/projects/opentf/js-std/packages/std
+
+
+<--- Last few GCs --->
+
+[67251:0x9cdf000]    21834 ms: Scavenge (interleaved) 4070.9 (4080.1) -> 4070.9 (4103.1) MB, pooled: 0 MB, 18.58 / 0.00 ms  (average mu = 0.212, current mu = 0.147) allocation failure; 
+[67251:0x9cdf000]    23396 ms: Mark-Compact (reduce) 4070.9 (4103.1) -> 4070.9 (4073.4) MB, pooled: 0 MB, 1370.15 / 0.00 ms  (+ 1.3 ms in 1 steps since start of marking, biggest step 1.3 ms, walltime since start of marking 1375 ms) (average mu = 0.186, cu
+FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory
+----- Native stack trace -----
+
+ 1: 0x735eec node::OOMErrorHandler(char const*, v8::OOMDetails const&) [/home/G/.nvm/versions/node/v24.14.0/bin/node]
+ 2: 0xbafc40  [/home/G/.nvm/versions/node/v24.14.0/bin/node]
+ 3: 0xbafd2f  [/home/G/.nvm/versions/node/v24.14.0/bin/node]
+ 4: 0xe48825  [/home/G/.nvm/versions/node/v24.14.0/bin/node]
+ 5: 0xe48852  [/home/G/.nvm/versions/node/v24.14.0/bin/node]
+ 6: 0xe48b4a  [/home/G/.nvm/versions/node/v24.14.0/bin/node]
+ 7: 0xe5906a  [/home/G/.nvm/versions/node/v24.14.0/bin/node]
+ 8: 0xe5d410  [/home/G/.nvm/versions/node/v24.14.0/bin/node]
+ 9: 0x18efec1  [/home/G/.nvm/versions/node/v24.14.0/bin/node]
+
+⎯⎯⎯⎯⎯⎯ Unhandled Errors ⎯⎯⎯⎯⎯⎯
+
+Vitest caught 1 unhandled error during the test run.
+This might cause false positive tests. Resolve unhandled errors to make sure your tests are not affected.
+
+⎯⎯⎯⎯⎯⎯ Unhandled Error ⎯⎯⎯⎯⎯⎯⎯
+Error: [vitest-pool]: Worker forks emitted error.
+ ❯ EventEmitter.<anonymous> ../../node_modules/.bun/vitest@4.1.5+f58fd6454f946467/node_modules/vitest/dist/chunks/cli-api.Cjt90eJu.js:3445:22
+ ❯ EventEmitter.emit node:events:508:28
+ ❯ ChildProcess.emitUnexpectedExit ../../node_modules/.bun/vitest@4.1.5+f58fd6454f946467/node_modules/vitest/dist/chunks/cli-api.Cjt90eJu.js:3012:22
+ ❯ ChildProcess.emit node:events:508:28
+ ❯ Process.ChildProcess._handle.onexit node:internal/child_process:294:12
+
+Caused by: Error: Worker exited unexpectedly
+ ❯ ChildProcess.emitUnexpectedExit ../../node_modules/.bun/vitest@4.1.5+f58fd6454f946467/node_modules/vitest/dist/chunks/cli-api.Cjt90eJu.js:3011:33
+ ❯ ChildProcess.emit node:events:508:28
+ ❯ Process.ChildProcess._handle.onexit node:internal/child_process:294:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+
+ Test Files   (1)
+      Tests   (1)
+     Errors  1 error
+   Start at  20:27:18
+   Duration  23.65s (transform 215ms, setup 0ms, import 271ms, tests 0ms, environment 0ms)
+
+[vitest-pool]: Timeout terminating forks worker for test files /home/G/projects/opentf/js-std/packages/std/__tests__/array/chunk.spec.ts.
+error: script "test:node" exited with code 1
+CRASHED: __tests__/array/chunk.spec.ts

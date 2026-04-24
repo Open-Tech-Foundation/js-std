@@ -1,32 +1,35 @@
 /**
- * Calculates the mode value of the given array.
+ * Returns the most frequent element in an array.
  *
  * @example
  *
- * mode([0, 0, 1, 1, 1, 2, 3]) //=> [1]
+ * mode([1, 2, 2, 3, 4]) //=> [2]
+ *
+ * mode(['a', 'b', 'b', 'c', 'c']) //=> ['b', 'c']
  */
-
-export default function mode<T>(
-  arr: T[] = [],
-  cb?: (v: T, index: number) => number,
-): number[] {
-  const a = cb ? arr.map(cb) : arr;
+export default function mode<T>(arr: T[] = [], cb?: (val: T) => unknown): T[] {
+  if (arr.length === 0) {
+    return [];
+  }
+  const a = cb ? (arr as T[]).map(cb) : arr;
   const map = new Map();
-  a.forEach((i) => {
+  for (const i of a) {
     map.set(i, (map.get(i) ?? 0) + 1);
-  });
+  }
 
   const values = [...map.values()];
+  const max = Math.max(...(values as number[]));
 
-  const max = Math.max(...values);
+  if (max === 1) {
+    return [];
+  }
 
-  const out = [];
-
-  for (const [key, val] of map) {
-    if (val === max) {
-      out.push(key);
+  const result: T[] = [];
+  for (const [key, value] of map.entries()) {
+    if (value === max) {
+      result.push(key);
     }
   }
 
-  return out.length === arr.length ? [] : out;
+  return result;
 }

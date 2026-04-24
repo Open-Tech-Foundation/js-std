@@ -12,10 +12,7 @@
     "ci": "bun run build && bun run lint && bun run test",
     "release": "bun run build && changeset publish"
   },
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
+  "workspaces": ["apps/*", "packages/*"],
   "devDependencies": {
     "@biomejs/biome": "1.8.3",
     "@changesets/cli": "^2.27.1",

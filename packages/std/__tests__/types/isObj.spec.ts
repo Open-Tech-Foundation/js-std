@@ -1,7 +1,6 @@
 import { isObj } from '../../src';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function fun(x?: any) {
+function fun(x?: unknown) {
   return x;
 }
 
@@ -38,6 +37,7 @@ describe('Types > isObj', () => {
       }
     }
     expect(isObj(new Person('x'))).toBe(false);
+    // biome-ignore lint/suspicious/noExplicitAny: Intentional for testing
     expect(isObj(new (fun as any)(1))).toBe(false);
   });
 

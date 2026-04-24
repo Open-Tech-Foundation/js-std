@@ -39,7 +39,7 @@ export default function omit(
   ...paths: (string | unknown[])[]
 ): object {
   let c = clone(obj);
-  const arrPathSet = new Set();
+  const arrPathSet = new Set<string | unknown[]>();
 
   for (const path of paths) {
     walk(c, path, (obj, prop) => {
@@ -51,17 +51,17 @@ export default function omit(
     });
   }
 
-  arrPathSet.forEach((path) => {
+  for (const path of arrPathSet) {
     if ((path as unknown[]).length === 1) {
       c = (c as []).flat();
-      return;
+      continue;
     }
 
     const pathArr = toPath(path);
     walk(c, arrRm(pathArr), (obj, prop) => {
       (obj as IterableObj)[prop] = ((obj as IterableObj)[prop] as []).flat();
     });
-  });
+  }
 
   return c;
 }

@@ -9,7 +9,12 @@ export default {
   },
   logo: (
     <>
-      <img src="/assets/Logo.svg" width={35} height={35} />
+      <img
+        src="/assets/Logo.svg"
+        width={35}
+        height={35}
+        alt="JS Standard Library Logo"
+      />
       <span style={{ marginLeft: '.4em', fontWeight: 800 }}>
         JS Standard Library
       </span>

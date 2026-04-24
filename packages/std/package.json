@@ -66,11 +66,11 @@
     "test": "bun test",
     "test:node": "vitest run",
     "dev": "bun scripts/build.ts --watch",
-    "check-types": "tsc --noEmit"
+    "check-types": "tsc --noEmit",
+    "lint": "biome check ./src",
+    "format": "biome format --write ./src"
   },
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "publishConfig": {
     "access": "public",
     "provenance": true

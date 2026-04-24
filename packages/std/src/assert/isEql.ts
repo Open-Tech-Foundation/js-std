@@ -55,6 +55,9 @@ function isEqlVal(
   }
 
   if (isArr(val1)) {
+    if (val1.length !== (val2 as unknown[]).length) {
+      return false;
+    }
     // For sparse arrays
     if (size(Object.keys(val1)) !== size(Object.keys(val2 as IterableObj))) {
       return false;
