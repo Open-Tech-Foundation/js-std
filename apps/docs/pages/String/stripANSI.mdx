@@ -20,10 +20,20 @@ stripANSI('\x1b[4mUnderline\x1b[0m')
 //=> 'Underline'
 ```
 
+## Implementation Details
+
+This utility uses a comprehensive, ECMA-48 compliant regex designed to strip a wide variety of terminal escape sequences:
+
+- **CSI**: Color, style, and cursor control codes.
+- **OSC**: Operating System Commands, including **Hyperlinks** and window title updates.
+- **8-bit Codes**: Support for legacy 8-bit CSI introducers (`\u009B`).
+- **High Performance**: Optimized for speed by correctly handling sequence terminators (BEL, ESC\) without being overly greedy.
+
 ## Try
 
 <REPL code={`const { stripANSI } = require('@opentf/std');
 
 log(stripANSI('\\x1b[31mRed Text\\x1b[0m'));
 log(stripANSI('\\x1b[1mBold\\x1b[0m and \\x1b[4mUnderline\\x1b[0m'));
+log(stripANSI('\\x1b]8;;https://google.com\\x07Google\\x1b]8;;\\x07'));
 `} />

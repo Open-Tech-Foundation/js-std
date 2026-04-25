@@ -8,11 +8,15 @@
  */
 export default function stripANSI(str: string): string {
   if (typeof str !== 'string') {
-    throw new Error('Input must be a string');
+    return str;
   }
 
-  return str.replace(
-    /[\u001b\u009b]\[[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]/g,
-    '',
-  );
+  // A comprehensive regex for ANSI escape codes
+  // CSI: [\u001b\u009b]\[[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]
+  // OSC: [\u001b\u009b]\][0-9;]*[^\u001b\u009b\u0007]*[\u001b\u009b\u0007\\]
+  // Other: [\u001b\u009b][ABCDEFGHJKSTfmhnqrsu] | [\u001b\u009b][\]\^\\_]
+  const ansiRegex =
+    /[\u001b\u009b][\[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]|[\u001b\u009b]\][0-9;]*[^\u001b\u009b\u0007]*[\u001b\u009b\u0007\\]|[\u001b\u009b][ABCDEFGHJKSTfmhnqrsu]|[\u001b\u009b][\]\^\\_]/g;
+
+  return str.replace(ansiRegex, '');
 }
