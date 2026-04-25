@@ -1,7 +1,7 @@
 {
-  "arrIns": "arrIns",
-  "arrReplace": "arrReplace",
-  "arrRm": "arrRm",
+  "arrayInsert": "arrayInsert",
+  "arrayRemove": "arrayRemove",
+  "arrayReplace": "arrayReplace",
   "bounds": "bounds",
   "chunk": "chunk",
   "compact": "compact",

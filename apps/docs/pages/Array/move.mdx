@@ -1,36 +1,38 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> It moves an array element from one index position to another.
+> 🚚 Moves an array element from one index to another.
 
 <Callout emoji="✅" type="info">
-Immutable: This does not mutate the given array.
+  **Immutable**: This function does not mutate the original array.
 </Callout>
 
 ## Syntax
 
-```ts
+```ts copy
 import { move } from '@opentf/std';
 
-move(arr: T[], from: number, to: number): T[];
+move<T>(arr: T[], from: number, to: number): T[]
 ```
 
-## Usage
+## Parameters
 
-```ts
-import { move } from "@opentf/std";
+- `arr`: The source array.
+- `from`: The index of the element to move.
+- `to`: The index to move the element to.
 
-move([], 0, 1);
-```
+## Returns
+
+A new array with the element moved.
 
 ## Examples
 
 ```ts
 move([1, 2, 3], 0, 2); //=> [2, 3, 1]
 
-move([1, 2, 3], 0, 5); //=> [2, 3, 1]
+move([1, 2, 3], 0, 5); //=> [2, 3, 1] (capped at array length)
 
-move([1, 2, 3], 5, 0); //=> [1, 2, 3]
+move([1, 2, 3], 5, 0); //=> [1, 2, 3] (invalid source index returns original)
 ```
 
 ## Try

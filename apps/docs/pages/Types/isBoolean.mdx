@@ -1,0 +1,32 @@
+import REPL from "../../components/REPL";
+
+> Checks if the given value is [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean).
+
+## Syntax
+
+```ts
+import { isBoolean } from '@opentf/std';
+
+isBoolean(val: unknown): boolean;
+```
+
+## Examples
+
+```ts
+isBoolean(true) //=> true
+ 
+isBoolean(false) //=> true
+
+isBoolean(null) //=> false
+
+isBoolean(1) //=> false
+
+isBoolean() //=> false
+```
+
+## Try
+
+<REPL code={`const { isBoolean } = require('@opentf/std');
+
+isBoolean(false);
+`} />

@@ -1,0 +1,26 @@
+import REPL from "../../components/REPL";
+
+> Converts an RGBA object to an hsl/hsla string.
+
+## Syntax
+
+```ts
+import { colorToHsl } from '@opentf/std';
+
+colorToHsl(color: { r: number, g: number, b: number, a: number }): string;
+```
+
+## Examples
+
+```ts
+colorToHsl({ r: 255, g: 0, b: 0, a: 1 }) //=> 'hsl(0, 100%, 50%)'
+
+colorToHsl({ r: 255, g: 0, b: 0, a: 0.5 }) //=> 'hsla(0, 100%, 50%, 0.5)'
+```
+
+## Try
+
+<REPL code={`const { colorToHsl } = require('@opentf/std');
+
+colorToHsl({ r: 255, g: 0, b: 0, a: 1 });
+`} />

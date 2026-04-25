@@ -1,110 +1,71 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Returns the size of the given collection.
+> 📏 Returns the size (length, count, or byte length) of a collection.
 
 <Callout type="info">
-The following type of values are supported:
-
-- [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
-
-- [ArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer)
-
-- [DataView](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView)
-
-- [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
-
-- [Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) objects: but only plain objects (e.g. from object literals).
-
-- [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
-
-- [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
-
-- [TypedArray](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray)
+  The following types are supported:
+  - **String**: Number of characters.
+  - **Array**: Number of elements.
+  - **Plain Object**: Number of enumerable own string-keyed properties.
+  - **Map & Set**: Number of entries.
+  - **ArrayBuffer, TypedArray, & DataView**: Byte length or number of elements.
 </Callout>
 
 <Callout type="warning">
-  It returns `-1` if the value is an unsupported type.
+  Returns `-1` if the value is an unsupported type (e.g., `null`, `undefined`, `number`, `boolean`).
 </Callout>
 
 ## Syntax
 
-```ts
+```ts copy
 import { size } from '@opentf/std';
 
-size(val: unknown): number;
+size(val: unknown): number
 ```
+
+## Parameters
+
+- `val`: The value to measure.
+
+## Returns
+
+The size of the collection, or `-1` if unsupported.
 
 ## Examples
 
 ```ts
-// Invalid objs
-// ************
-
-size() //=> -1
-
-size(undefined) //=> -1
-
-size(null) //=> -1
-
-size(1) //=> -1
-
-size(1.5) //=> -1
-
-size(1n) //=> -1
-
-size(false) //=> -1
-
-size(true) //=> -1
-
-// Eempty objs
-// ***********
-
+// --- Strings ---
 size('') //=> 0
-
-size([]) //=> 0
-
-size({}) //=> 0
-
-size(new Map()) //=> 0
-
-size(new Set()) //=> 0
-
-size(new ArrayBuffer(0)) //=> 0
-
-size(new Uint8Array(0)) //=> 0
-
-// Non empty objs
-// **************
-
-size(' ') //=> 1
-
 size('abc') //=> 3
 
-size([1]) //=> 1
+// --- Arrays ---
+size([]) //=> 0
+size([1, 2, 3]) //=> 3
 
-size({ length: 0, size: 0, byteLength: 0 }) //=> 3
+// --- Objects ---
+size({}) //=> 0
+size({ a: 1, b: 2 }) //=> 2
 
-size(new Map([[1, 1]])) //=> 1
+// --- Maps & Sets ---
+size(new Map([['a', 1]])) //=> 1
+size(new Set([1, 2])) //=> 2
 
-size(new Set(['a', 'b'])) //=> 2
-
+// --- Buffers ---
 size(new ArrayBuffer(8)) //=> 8
-
 size(new Uint8Array(10)) //=> 10
 
-size(new Uint8Array(new ArrayBuffer(10), 1, 5)) //=> 5
-
-const buffer = new ArrayBuffer(16);
-size(new DataView(buffer)) //=> 16
+// --- Unsupported ---
+size(null) //=> -1
+size(123) //=> -1
 ```
 
 ## Try
 
 <REPL code={`const { size } = require('@opentf/std');
 
-log(size(true));
-log(size([]));
-log(size({a: 1, b: 2}));
-size('Hello World');
+console.log('String:', size('Hello'));
+console.log('Array:', size([1, 2, 3]));
+console.log('Object:', size({x: 1, y: 2}));
+console.log('Unsupported:', size(null));
 `} />

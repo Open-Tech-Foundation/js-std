@@ -1,15 +1,11 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Returns the minimum value of the given array.
+> 📉 Returns the minimum value in an array.
 
 <Callout type="info">
-If duplicate values are present in the array, then the first match will be returned.
+  If duplicate minimum values are present, the first occurrence is returned.
 </Callout>
-
-**Related**
-- [max](/Array/max)
-- [bounds](/Array/bounds)
 
 ## Syntax
 
@@ -18,16 +14,25 @@ import { min } from '@opentf/std';
 
 min<T>(
   arr: T[] = [],
-  by: (val: T) => number = (x: T) => x as number
+  by: (val: T) => number = (x: T) => x as unknown as number
 ): T | null
 ```
+
+## Parameters
+
+- `arr`: The source array.
+- `by`: An optional function to extract the numeric value for comparison. Defaults to identity function.
+
+## Returns
+
+The minimum value or `null` if the array is empty (after compacting).
 
 ## Examples
 
 ```ts
-max([]) //=> null
+min([]) //=> null
 
-max([1, undefined, 2, null, 3]) //=> 1
+min([1, undefined, 2, null, 3]) //=> 1
 
 min([1, 2, -3, 4, 5]) //=> -3
 
@@ -57,6 +62,11 @@ min(arr, (f) => f.age)
 //  age: 10,
 // }
 ```
+
+## Related
+
+- [max](/Array/max)
+- [bounds](/Array/bounds)
 
 ## Try
 

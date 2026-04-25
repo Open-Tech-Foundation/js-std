@@ -1,10 +1,10 @@
 {
   "aCompose": "aCompose",
-  "aComposeFn": "aComposeFn",
+  "aComposeFunction": "aComposeFunction",
   "aFilter": "aFilter",
   "aForEach": "aForEach",
   "aMap": "aMap",
   "aPipe": "aPipe",
-  "aPipeFn": "aPipeFn",
-  "aResolvers": "aResolvers"
+  "aPipeFunction": "aPipeFunction",
+  "withResolvers": "withResolvers"
 }

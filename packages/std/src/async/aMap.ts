@@ -4,12 +4,12 @@
  * @example
  * await aMap([1, 2, 3], (n) => await someDelayedFn(n))
  */
-export default async function aMap<T>(
+export default async function aMap<T, R>(
   arr: T[],
-  cb: (value: T, index: number) => Promise<unknown>,
-): Promise<unknown[]> {
+  cb: (value: T, index: number) => Promise<R>,
+): Promise<R[]> {
   let i = 0;
-  const out: unknown[] = [];
+  const out: R[] = [];
 
   for (const e of arr) {
     out.push(await cb(e, i));

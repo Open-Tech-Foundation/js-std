@@ -1,34 +1,43 @@
+import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Suspend the execution for the specified milliseconds.
+> 😴 Suspends execution for a specified number of milliseconds.
 
 ## Syntax
 
-```ts
+```ts copy
 import { sleep } from '@opentf/std';
 
-sleep(ms: number): Promise<void>;
+sleep(ms: number = 0): Promise<void>
 ```
+
+## Parameters
+
+- `ms`: The number of milliseconds to sleep. Defaults to `0`.
+
+## Returns
+
+A `Promise` that resolves after the specified delay.
 
 ## Examples
 
 ```ts
-(async () => {
-  await sleep(); // It does not suspend the exection.
+await sleep(1000); // Suspends execution for 1 second
 
-  await sleep(0); // It also does not suspend the exection.
+await sleep(0); // Resolves in the next event loop iteration
 
-  await sleep(1000); // It suspends the exection for 1 second.
-})();
+await sleep(); // Defaults to 0ms
 ```
 
 ## Try
 
 <REPL code={`const { sleep } = require('@opentf/std');
 
-console.log('First');
-(async () => {
-await sleep(1000);
-console.log('Second');
-})()
+async function main() {
+  console.log('Start');
+  await sleep(1000);
+  console.log('End (after 1s)');
+}
+
+main();
 `} />

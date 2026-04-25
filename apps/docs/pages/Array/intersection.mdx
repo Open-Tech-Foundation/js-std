@@ -1,24 +1,20 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Returns a unique array of values only containing elements from each of the collections.
+> 🤝 Returns an array of unique values that are present in all of the provided collections.
 
 <Callout type="info">
-It uses [isEql](/Assert/isEql) for deep comparison of values.
+  It uses [isEql](/Assert/isEql) for deep comparison of values.
 </Callout>
 
 ### Venn Diagram
+
 <div style={{padding: '15px', backgroundColor: 'white'}}>
   ![Intersection Venn Diagram](/assets/intersection-venn-diagram.svg)
   <div style={{textAlign: 'right', fontSize: '14px'}}>
     [Source: MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
   </div>
 </div>
-
-**Related**
-- [diff](/Array/diff)
-- [symDiff](/Array/symDiff)
-- [union](/Array/union)
 
 ## Syntax
 
@@ -28,8 +24,17 @@ import { intersection } from '@opentf/std';
 intersection(
   collections: unknown[][] = [],
   by?: (val: unknown) => unknown
-)
+): unknown[]
 ```
+
+## Parameters
+
+- `collections`: An array of arrays to find the intersection of.
+- `by`: An optional iteratee invoked for each element to generate the criterion by which intersection is computed.
+
+## Returns
+
+A new array containing the unique intersecting values.
 
 ## Examples
 
@@ -53,6 +58,12 @@ intersection(
   Math.floor
 ) //=> [2.1]
 ```
+
+## Related
+
+- [diff](/Array/diff)
+- [symDiff](/Array/symDiff)
+- [union](/Array/union)
 
 ## Try
 

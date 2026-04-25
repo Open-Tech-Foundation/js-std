@@ -1,0 +1,60 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> 🔄 Replaces items at the specified index in an array.
+
+<Callout emoji="✅" type="info">
+  **Immutable**: This function does not mutate the original array.
+</Callout>
+
+## Syntax
+
+```ts copy
+import { arrayReplace } from '@opentf/std';
+
+arrayReplace<T>(
+  arr: T[] = [],
+  index: number | null = null,
+  deleteCount: number | null = null,
+  ...replacements: T[]
+): T[]
+```
+
+## Parameters
+
+- `arr`: The source array.
+- `index`: The index at which to start replacing items. If `null`, it defaults to the last index.
+- `deleteCount`: The number of items to remove. If `null`, it defaults to the number of replacement items.
+- `...replacements`: The items to be inserted in place of the deleted items.
+
+## Returns
+
+A new array with the items replaced.
+
+## Examples
+
+```ts
+arrayReplace([]) //=> []
+
+arrayReplace([1]) //=> [1]
+
+arrayReplace([1, 2, 3], 0, 1, 'a') //=> ['a', 2, 3]
+
+arrayReplace([1, 2, 3], null, 1, 'a') //=> [1, 2, 'a']
+
+arrayReplace([1, 2, 3], 3, null, 'c') //=> [1, 2, 3, 'c']
+
+const months = ['Jan', 'Feb', 'Apr', 'May'];
+arrayReplace(months, 1, 1, 'Feb', 'Mar') //=> ['Jan', 'Feb', 'Mar', 'Apr', 'May']
+
+arrayReplace(months, 1, null, 'Feb', 'Mar') //=> ['Jan', 'Feb', 'Mar', 'May']
+```
+
+## Try
+
+<REPL code={`const { arrayReplace } = require('@opentf/std');
+
+const months = ['Jan', 'Feb', 'Apr', 'May'];
+
+arrayReplace(months, 1, 1, 'Feb', 'Mar');
+`} />

@@ -14,13 +14,17 @@ export default function median(
   arr: number[] = [],
   cb?: (val: number, index: number) => number,
 ): number {
-  let a = cb ? arr.map(cb) : arr;
-  a = sort(arr);
+  let a = cb ? arr.map(cb) : [...arr];
+  a = sort(a);
+
+  if (a.length === 0) {
+    return NaN;
+  }
 
   if (isEven(a.length)) {
     const i = a.length / 2;
-    return (arr[i] + arr[i - 1]) / 2;
+    return (a[i] + a[i - 1]) / 2;
   }
 
-  return arr[Math.floor(a.length / 2)];
+  return a[Math.floor(a.length / 2)];
 }

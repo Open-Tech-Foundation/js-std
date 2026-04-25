@@ -1,24 +1,20 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Creates an array with the values of first, not included in the other arrays.
+> ⚖️ Creates an array of values from the first array that are not present in the other arrays.
 
 <Callout type="info">
-It uses [isEql](/Assert/isEql) for deep comparison of values.
+  It uses [isEql](/Assert/isEql) for deep comparison of values.
 </Callout>
 
 ### Venn Diagram
+
 <div style={{padding: '15px', backgroundColor: 'white'}}>
   ![Difference Venn Diagram](/assets/diff-venn-diagram.svg)
   <div style={{textAlign: 'right', fontSize: '14px'}}>
     [Source: MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
   </div>
 </div>
-
-**Related**
-- [intersection](/Array/intersection)
-- [symDiff](/Array/symDiff)
-- [union](/Array/union)
 
 ## Syntax
 
@@ -28,8 +24,17 @@ import { diff } from '@opentf/std';
 diff(
   collections: unknown[][] = [],
   by?: (val: unknown) => unknown
-)
+): unknown[]
 ```
+
+## Parameters
+
+- `collections`: An array of arrays to compare. The first array is the source.
+- `by`: An optional iteratee invoked for each element to generate the criterion by which difference is computed.
+
+## Returns
+
+A new array of filtered values.
 
 ## Examples
 
@@ -39,12 +44,18 @@ const squares = [1, 4, 9];
 diff([odds, squares]); //=> [3, 5, 7]
 
 const bucket1 = ["apple", "mango", "orange"]
-const bucket2 =["Mango", "Apple"]
+const bucket2 = ["Mango", "Apple"]
 
-diff([bucket1, bucket2], (f) => f.toLowerCase()); // ['orange']
+diff([bucket1, bucket2], (f) => f.toLowerCase()); //=> ['orange']
 
 diff([[{ a: 1 }, {a: 3}], [{ a: 1 }, { a: 2 }]]); //=> [{a: 3}]
 ```
+
+## Related
+
+- [intersection](/Array/intersection)
+- [symDiff](/Array/symDiff)
+- [union](/Array/union)
 
 ## Try
 

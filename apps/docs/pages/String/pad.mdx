@@ -1,0 +1,28 @@
+import REPL from "../../components/REPL";
+
+> Pads the given string on the left and right sides if it's shorter than the given length.
+
+## Syntax
+
+```ts
+import { pad } from '@opentf/std';
+
+pad(str: string, length = 0, chars = ' '): string;
+```
+
+## Examples
+
+```ts
+pad('abc', 8) //=> '  abc   '
+
+pad('abc', 8, '_-') //=> '_-abc_-_'
+
+pad('abc', 3) //=> 'abc'
+```
+
+## Try
+
+<REPL code={`const { pad } = require('@opentf/std');
+
+pad('abc', 8);
+`} />

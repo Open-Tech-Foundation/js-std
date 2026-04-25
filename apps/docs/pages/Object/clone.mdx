@@ -1,90 +1,68 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> It deeply clones the given value.
+> 👯 Creates a deep clone of a value, supporting circular references and various built-in types.
+
+<Callout type="info">
+  The following types are supported for deep cloning:
+  - **Primitive types** (except Symbols)
+  - **Plain Objects**
+  - **Arrays**
+  - **Maps & Sets**
+  - **Dates**
+  - **RegExps** (lastIndex is not preserved)
+  - **Errors**
+  - **ArrayBuffers & TypedArrays**
+  - **DataViews**
+</Callout>
+
+<Callout emoji="✅" type="info">
+  **Circular References**: Correctly handles circular references by keeping track of cloned objects.
+</Callout>
+
+<Callout type="info">
+  If you need to clone transferable objects or specialized web APIs, consider using the native [structuredClone()](https://developer.mozilla.org/en-US/docs/Web/API/structuredClone).
+</Callout>
 
 ## Syntax
 
-```ts
+```ts copy
 import { clone } from '@opentf/std';
 
-clone<T>(val: T): T;
+clone<T>(val: T): T
 ```
 
-<Callout type="info">
-The following types are supported:
+## Parameters
 
+- `val`: The value to deeply clone.
 
-- [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
+## Returns
 
-- [ArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer)
-
-- [DataView](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView)
-
-- [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)
-
-- [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
-
-- [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
-
-- [Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) objects: but only plain objects (e.g. from object literals).
-
-- [Primitive types,](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#primitive_values) except symbol.
-
-- [RegExp](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp): but note that lastIndex is not preserved.
-
-- [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
-
-- [TypedArray](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray)
-</Callout>
-
-<Callout type="info">
-If you need more types to clone with transferable objects, please use the native [structuredClone](https://developer.mozilla.org/en-US/docs/Web/API/structuredClone) global function.
-</Callout>
+A deep clone of the input value.
 
 ## Examples
 
 ```ts
-clone(); // undefined
-
-clone(undefined); // undefined
-
-clone(null); // null
-
-clone(true); // true
-
-clone(false); // false
-
-clone('abc'); // 'abc'
-
-clone(1); // 1
-
-clone(1n); // 1n
-
-input = new Date();
-output = clone(input);
-input === output; // false
-
-input = [1, 2, 3];
-output = clone(input);
-input === output; // false
-
-input = { x: 0, y: 1 };
-output = clone(input);
-input === output; // false
-input.y === output.y; // true
-
-input = { 
+const input = { 
   arr: [1, 2, 3], 
   obj: { a: 'abc', b: 123 },
   date: new Date(),
   map: new Map([['a', 1], ['b', 2]]) 
 };
-output = clone(input);
+
+const output = clone(input);
+
 input === output; // false
 output.arr === input.arr; // false
 output.obj === input.obj; // false
 output.map === input.map; // false
+output.date.getTime() === input.date.getTime(); // true
+
+// Circular references
+const circular: any = { a: 1 };
+circular.self = circular;
+const clonedCircular = clone(circular);
+clonedCircular.self === clonedCircular; // true
 ```
 
 ## Try
@@ -98,10 +76,8 @@ const input = {
   map: new Map([['a', 1], ['b', 2]]) 
 };
 const output = clone(input);
-log(output)
-log(input === output)
-log(output.arr === input.arr);
-log(output.obj === input.obj);
-log(output.map === input.map);
-input.date.getTime() === output.date.getTime()
+
+console.log('Is Identical?', input === output);
+console.log('Is Map Identical?', output.map === input.map);
+console.log('Output:', output);
 `} />

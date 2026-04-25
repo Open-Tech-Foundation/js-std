@@ -1,14 +1,11 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Slices the given array from the start to the given limit.
+> 🍴 Takes a specified number of elements from the start of an array.
 
 <Callout type="info">
-It is loosely based on the experimental [Iterator.prototype.take()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Iterator/take).
+  It is loosely based on the [Iterator.prototype.take()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Iterator/take) method.
 </Callout>
-
-**Related**
-- [drop](/Array/drop)
 
 ## Syntax
 
@@ -19,31 +16,41 @@ take<T>(
   arr: T[],
   limit: number | null = 1,
   cb?: (val: T) => boolean
-)
+): T[]
 ```
+
+## Parameters
+
+- `arr`: The source array.
+- `limit`: The number of elements to take. If `null`, all elements are taken.
+- `cb`: An optional predicate function. If provided, only elements that return `true` are taken, up to the limit.
+
+## Returns
+
+A new array containing the taken elements.
 
 ## Examples
 
 ```ts
-take([1, 2, 3], -1) // It throws the RangeError for negative limit
+take([1, 2, 3], -1) // Throws RangeError for negative limit
 
-take([1, 2, 3], 0) // => []
+take([1, 2, 3], 0) //=> []
 
-take([1, 2, 3]) // => [1]
+take([1, 2, 3]) //=> [1]
 
-take([1, 2, 3], 1) // => [1]
+take([1, 2, 3], 1) //=> [1]
 
-take([1, 2, 3], 2) // => [1, 2]
+take([1, 2, 3], 2) //=> [1, 2]
 
-take([1, 2, 3, 4, 5], 5) // => [1, 2, 3, 4, 5]
+take([1, 2, 3, 4, 5], 5) //=> [1, 2, 3, 4, 5]
 
-take([1, 2, 3, 4, 5], 6) // => [1, 2, 3, 4, 5]
+take([1, 2, 3, 4, 5], 6) //=> [1, 2, 3, 4, 5]
 
-take([1, 2, 3, 4, 5], null) // => [1, 2, 3, 4, 5]
+take([1, 2, 3, 4, 5], null) //=> [1, 2, 3, 4, 5]
 
-take([1, 2, 3, 4, 5], 2, (val) => val % 2 === 0) // => [2, 4]
+take([1, 2, 3, 4, 5], 2, (val) => val % 2 === 0) //=> [2, 4]
 
-take([1, 2, 3, 4, 5], 3, (val) => val % 2 !== 0) // => [1, 3, 5]
+take([1, 2, 3, 4, 5], 3, (val) => val % 2 !== 0) //=> [1, 3, 5]
 
 const users = [
   { name: 'x', active: false },
@@ -51,10 +58,14 @@ const users = [
   { name: 'z', active: false },
 ];
 take(users, null, (val) => val.active) 
-// => [
+//=> [
 //   { name: 'y', active: true },
 // ]
 ```
+
+## Related
+
+- [drop](/Array/drop)
 
 ## Try
 

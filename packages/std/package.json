@@ -35,11 +35,6 @@
     "neg",
     "intersperse"
   ],
-  "author": {
-    "name": "Thanga Ganapathy",
-    "email": "ganapathy888@gmail.com",
-    "url": "https://thanga-ganapathy.github.io"
-  },
   "license": "MIT",
   "homepage": "https://js-std.pages.dev",
   "repository": {
@@ -52,17 +47,22 @@
   "types": "dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
     }
   },
   "sideEffects": false,
   "engines": {
-    "node": ">=16.20.2"
+    "node": ">=18.0.0"
   },
   "scripts": {
-    "build": "bun scripts/build.ts && tsc --emitDeclarationOnly --outDir dist",
+    "build": "bun scripts/build.ts",
     "test": "bun test",
     "test:node": "vitest run",
     "dev": "bun scripts/build.ts --watch",
@@ -76,9 +76,9 @@
     "provenance": true
   },
   "devDependencies": {
-    "@types/node": "^20.14.10",
-    "esbuild": "^0.21.5",
-    "typescript": "^5.5.3",
+    "@types/node": "^25.6.0",
+    "esbuild": "^0.28.0",
+    "typescript": "^6.0.3",
     "vitest": "^4.1.5"
   }
 }

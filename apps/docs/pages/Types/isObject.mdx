@@ -1,0 +1,59 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> 📦 Checks if a value is an `object` and not `null`.
+
+<Callout type="info">
+  In JavaScript, `typeof null` is `'object'`, but this function correctly returns `false` for `null`.
+</Callout>
+
+<Callout type="info">
+  This function returns `true` for any value where `typeof val === 'object'`, such as Arrays, Dates, Maps, Sets, etc.
+</Callout>
+
+## Syntax
+
+```ts copy
+import { isObject } from '@opentf/std';
+
+isObject(val: unknown): boolean
+```
+
+## Parameters
+
+- `val`: The value to check.
+
+## Returns
+
+`true` if the value is an object and not `null`, `false` otherwise.
+
+## Examples
+
+```ts
+isObject({}) //=> true
+
+isObject([]) //=> true
+
+isObject(new Date()) //=> true
+
+isObject(new Map()) //=> true
+
+isObject(null) //=> false
+
+isObject(123) //=> false
+```
+
+## Related
+
+- [isPlainObject](/Types/isPlainObject)
+- [isEmpty](/Assert/isEmpty)
+
+## Try
+
+<REPL code={`const { isObject } = require('@opentf/std');
+
+console.log('Object:', isObject({}));
+console.log('Array:', isObject([]));
+console.log('Null:', isObject(null));
+console.log('String:', isObject('abc'));
+`} />

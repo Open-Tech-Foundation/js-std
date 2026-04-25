@@ -1,89 +1,66 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Checks if the given collection is empty.
+> 🕳️ Checks if a collection (Array, Object, String, Map, Set, or ArrayBuffer) is empty.
 
 <Callout type="info">
-The following type of values are supported:
-
-- Array
-
-- Plain Object
-
-- String
-
-- Map
-
-- Set
-
-- ArrayBuffer
+  The following types are supported:
+  - **Array**
+  - **Plain Object**
+  - **String**
+  - **Map**
+  - **Set**
+  - **ArrayBuffer**
 </Callout>
 
 ## Syntax
 
-```ts
+```ts copy
 import { isEmpty } from '@opentf/std';
 
-isEmpty(val: unknown, sparse = false): boolean;
+isEmpty(val: unknown, sparse: boolean = false): boolean
 ```
-<Callout type="info">
-If `sparse` is `true`, then it skips counting [Sparsed](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Indexed_collections#sparse_arrays) array empty slots.
-</Callout>
+
+## Parameters
+
+- `val`: The value to check.
+- `sparse`: If `true`, it skips counting [sparse array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Indexed_collections#sparse_arrays) empty slots.
+
+## Returns
+
+`true` if the collection is empty, `false` otherwise.
 
 ## Examples
 
 ```ts
-// Truthy cases
-// *********
+// --- Empty Cases ---
 isEmpty('') //=> true
-
 isEmpty([]) //=> true
-
 isEmpty({}) //=> true
-
 isEmpty(new Map()) //=> true
-
 isEmpty(new Set()) //=> true
-
 isEmpty(new ArrayBuffer(0)) //=> true
-
 isEmpty(new Array(5), true) //=> true
 
-// Falsy cases
-// *********
-
-isEmpty() //=> false
-
-isEmpty(undefined) //=> false
-
-isEmpty(null) //=> false
-
-isEmpty(1) //=> false
-
-isEmpty(1.5) //=> false
-
-isEmpty(1n) //=> false
-
-isEmpty(false) //=> false
-
-isEmpty(true) //=> false
-
+// --- Non-Empty Cases ---
 isEmpty(' ') //=> false
-
 isEmpty('a') //=> false
-
 isEmpty([1]) //=> false
-
 isEmpty({ length: 0, size: 0, byteLength: 0 }) //=> false
-
 isEmpty([,]) //=> false
+
+// --- Other Values ---
+isEmpty(null) //=> false
+isEmpty(undefined) //=> false
+isEmpty(1) //=> false
+isEmpty(false) //=> false
 ```
 
 ## Try
 
 <REPL code={`const { isEmpty } = require('@opentf/std');
 
-log(isEmpty([]));
-log(isEmpty({}));
-isEmpty(null);
+console.log(isEmpty([]));
+console.log(isEmpty({}));
+console.log(isEmpty(null));
 `} />

@@ -1,63 +1,55 @@
+import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Checks whether the given string is a valid [JSON](https://json.org/) object.
+> 📄 Checks if a string is a valid JSON **object**.
+
+<Callout type="info">
+  This function specifically checks if the string parses into a **plain object** `{}`. It returns `false` for arrays `[]`, primitives, or other valid JSON types that are not plain objects.
+</Callout>
 
 ## Syntax
 
-```ts
+```ts copy
 import { isJSON } from '@opentf/std';
 
-isJSON(str: string): boolean;
+isJSON(str: string): boolean
 ```
+
+## Parameters
+
+- `str`: The string to check.
+
+## Returns
+
+`true` if the string is a valid JSON plain object, `false` otherwise.
 
 ## Examples
 
 ```ts
-// Falsy cases
-// ***********
+isJSON("{}") //=> true
 
-isJSON(""); //=> false
+isJSON('{"a": 1}') //=> true
 
-isJSON("undefined"); //=> false
+// Valid JSON but not objects
+isJSON("[]") //=> false
 
-isJSON("null"); //=> false
+isJSON("null") //=> false
 
-isJSON("true"); //=> false
+isJSON("123") //=> false
 
-isJSON("false"); //=> false
+isJSON("true") //=> false
 
-isJSON("1"); //=> false
+// Invalid JSON
+isJSON("{a: 1}") //=> false (Keys must be double-quoted)
 
-isJSON("12345"); //=> false
-
-isJSON("abc"); //=> false
-
-isJSON("{a}"); //=> false
-
-isJSON("{a:}"); //=> false
-
-isJSON("{a:1}"); //=> false
-
-isJSON('{"a": undefined}'); //=> false
-
-isJSON("[]"); //=> false
-
-// Truthy cases
-// ************
-
-isJSON("{}"); //=> true
-
-isJSON('{"a":1}'); //=> true
-
-isJSON(
-  '{"a": "abc", "b": true, "c": false, "d": [{"e": 1}, null, 5.0], "f": {}}'
-); //=> true
+isJSON("") //=> false
 ```
 
 ## Try
 
 <REPL code={`const { isJSON } = require('@opentf/std');
 
-log(isJSON('{a: 1}'));
-isJSON('{"a": 1}');
+console.log('Valid Object:', isJSON('{"a": 1}'));
+console.log('Array (returns false):', isJSON('[1, 2]'));
+console.log('Invalid:', isJSON('{x: 1}'));
 `} />

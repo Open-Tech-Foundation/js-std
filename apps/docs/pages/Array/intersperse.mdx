@@ -1,10 +1,10 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Inserts a separator between the elements of its list argument.
+> 🧵 Inserts a separator between each element of an array or characters of a string.
 
 <Callout type="info">
-The list can be an Array or String.
+  The `list` can be an **Array** or a **String**.
 </Callout>
 
 ## Syntax
@@ -13,20 +13,29 @@ The list can be an Array or String.
 import { intersperse } from '@opentf/std';
 
 intersperse(
-  list: string | unknown[] = [],
+  list: string | unknown[],
   sep: ((index: number) => unknown) | unknown
 ): string | unknown[]
 ```
+
+## Parameters
+
+- `list`: The source array or string.
+- `sep`: The separator to insert. Can be a value or a function that returns a value based on the current index.
+
+## Returns
+
+A new array or string with the separator interspersed.
 
 ## Examples
 
 ```ts
 const arr = [1, 2, 3];
-intersperse(arr, '&') // => [1, '&', 2, '&', 3]
+intersperse(arr, '&') //=> [1, '&', 2, '&', 3]
 
-const arr = ['Home', 'Menu', 'Sub Menu'];
-intersperse(arr, '>') 
-// => [
+const menu = ['Home', 'Menu', 'Sub Menu'];
+intersperse(menu, '>') 
+//=> [
 //  'Home',
 //  '>',
 //  'Menu',
@@ -34,7 +43,7 @@ intersperse(arr, '>')
 //  'Sub Menu',
 // ]
 
-intersperse('Hello', '-') // => 'H-e-l-l-o'
+intersperse('Hello', '-') //=> 'H-e-l-l-o'
 
 const items = [
   { type: 'div', text: 'Apple' },
@@ -42,7 +51,7 @@ const items = [
   { type: 'div', text: 'Mango' },
 ];
 intersperse(items, { type: 'br' }) 
-// => [
+//=> [
 //   {
 //     type: 'div',
 //     text: 'Apple',
@@ -64,7 +73,7 @@ intersperse(items, { type: 'br' })
 // ]
 
 intersperse(['a', 'b', 'c'], (i) => `<span key="sep-${i}"> , </span>`)
-// [
+//=> [
 //   'a',
 //   '<span key="sep-0"> , </span>',
 //   'b',
@@ -78,10 +87,10 @@ intersperse(['a', 'b', 'c'], (i) => `<span key="sep-${i}"> , </span>`)
 <REPL code={`const { intersperse } = require('@opentf/std');
 
 const arr = [1, 2, 3];
-log(intersperse(arr, '&'))
+console.log(intersperse(arr, '&'))
 
 const arr2 = ['Home', 'Menu', 'Sub Menu'];
-log(intersperse(arr2, '>'))
+console.log(intersperse(arr2, '>'))
 
 intersperse('Hello', '-')
 `} />

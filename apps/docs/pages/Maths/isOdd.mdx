@@ -1,14 +1,23 @@
+import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Checks if the given number is a `Odd` number.
+> 🔢 Checks if a number is odd.
 
 ## Syntax
 
-```ts
+```ts copy
 import { isOdd } from '@opentf/std';
 
 isOdd(n: number): boolean
 ```
+
+## Parameters
+
+- `n`: The number to check.
+
+## Returns
+
+`true` if the number is odd, `false` otherwise.
 
 ## Examples
 
@@ -24,9 +33,14 @@ isOdd(-1) //=> true
 isOdd(-2) //=> false
 ```
 
+## Related
+
+- [isEven](/Maths/isEven)
+
 ## Try
 
 <REPL code={`const { isOdd } = require('@opentf/std');
 
-isOdd(9);
+console.log(isOdd(9));
+console.log(isOdd(42));
 `} />

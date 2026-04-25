@@ -46,10 +46,10 @@ export { default as aFilter } from './async/aFilter';
 export { default as aMap } from './async/aMap';
 export { default as aForEach } from './async/aForEach';
 export { default as aPipe } from './async/aPipe';
-export { default as aPipeFn } from './async/aPipeFn';
+export { default as aPipeFunction } from './async/aPipeFunction';
 export { default as aCompose } from './async/aCompose';
-export { default as aComposeFn } from './async/aComposeFn';
-export { default as aResolvers } from './async/aResolvers';
+export { default as aComposeFunction } from './async/aComposeFunction';
+export { default as withResolvers } from './async/withResolvers';
 
 // Maths
 export { default as percentage } from './maths/percentage';
@@ -126,9 +126,9 @@ export { default as isUnorderedEqual } from './assert/isUnorderedEqual';
 export { default as sleep } from './function/sleep';
 export { default as noop } from './function/noop';
 export { default as pipe } from './function/pipe';
-export { default as pipeFn } from './function/pipeFn';
+export { default as pipeFunction } from './function/pipeFunction';
 export { default as compose } from './function/compose';
-export { default as composeFn } from './function/composeFn';
+export { default as composeFunction } from './function/composeFunction';
 
 // colors
 export { default as hexToRGB } from './colors/hexToRGB';

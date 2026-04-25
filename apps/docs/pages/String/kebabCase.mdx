@@ -1,0 +1,46 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> 🍢 Converts a string to [kebab-case](https://en.wikipedia.org/wiki/Letter_case#Kebab_case).
+
+## Syntax
+
+```ts copy
+import { kebabCase } from '@opentf/std';
+
+kebabCase(str: string): string
+```
+
+## Parameters
+
+- `str`: The string to convert.
+
+## Returns
+
+The kebab-cased string.
+
+## Examples
+
+```ts
+kebabCase('Foo Bar') //=> 'foo-bar'
+
+kebabCase('fooBar') //=> 'foo-bar'
+
+kebabCase('__FOO_BAR__') //=> 'foo-bar'
+
+kebabCase('The Quick Brown Fox') //=> 'the-quick-brown-fox'
+```
+
+## Related
+
+- [camelCase](/String/camelCase)
+- [pascalCase](/String/pascalCase)
+- [snakeCase](/String/snakeCase)
+
+## Try
+
+<REPL code={`const { kebabCase } = require('@opentf/std');
+
+console.log(kebabCase('hello world'));
+console.log(kebabCase('camelCaseString'));
+`} />

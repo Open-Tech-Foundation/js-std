@@ -1,4 +1,10 @@
 {
+  "colorParse": "colorParse",
+  "colorToHex": "colorToHex",
+  "colorToHsl": "colorToHsl",
+  "colorToRgb": "colorToRgb",
   "hexToRGB": "hexToRGB",
-  "rgbToHex": "rgbToHex"
+  "hslToRgb": "hslToRgb",
+  "rgbToHex": "rgbToHex",
+  "rgbToHsl": "rgbToHsl"
 }

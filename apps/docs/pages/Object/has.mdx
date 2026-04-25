@@ -1,30 +1,37 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Checks if the given path exists in the given object.
+> 🎯 Checks if a specific path exists in an object.
+
+<Callout type="info">
+  This function uses `Object.hasOwn()` internally, so it correctly detects properties even if their value is `undefined` or `null`.
+</Callout>
 
 ## Syntax
 
-```ts
+```ts copy
 import { has } from '@opentf/std';
 
 has(obj: object, path: string | unknown[]): boolean
 ```
 
+## Parameters
+
+- `obj`: The object to inspect.
+- `path`: The path to check.
+
+## Returns
+
+`true` if the path exists, `false` otherwise.
+
 ## Examples
 
 ```ts
-has() //=> false
-
-has({}, '') //=> false
+has({ a: 1 }, 'a') //=> true
 
 has({ a: undefined }, 'a') //=> true
 
-has({ a: undefined }, ['a']) //=> true
-
 has({ a: null }, 'a') //=> true
-
-has({ a: 1 }, 'a') //=> true
 
 has({ a: { b: [1, 2, 3, { c: 5 }] } }, 'a.b[3].c') //=> true
 
@@ -32,9 +39,18 @@ has({ a: { b: [1, 2, 3, { c: 5 }] } }, 'a.b[5].c') //=> false
 
 has({ a: { 'b.c': 1 } }, ['a', 'b.c']) //=> true
 ```
+
+## Related
+
+- [get](/Object/get)
+- [set](/Object/set)
+- [unset](/Object/unset)
+
 ## Try
 
 <REPL code={`const { has } = require('@opentf/std');
 
-has({ a: 1 }, 'a');
+const obj = { a: { b: 2 } };
+console.log(has(obj, 'a.b'));
+console.log(has(obj, 'a.c'));
 `} />

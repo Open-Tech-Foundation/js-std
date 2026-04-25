@@ -1,59 +1,50 @@
+import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Convert a string to [Camel case](https://en.wikipedia.org/wiki/Camel_case).
+> 🐪 Converts a string to [camelCase](https://en.wikipedia.org/wiki/Camel_case).
 
 ## Syntax
 
-```ts
+```ts copy
 import { camelCase } from '@opentf/std';
 
-camelCase(str: string): string;
+camelCase(str: string): string
 ```
+
+## Parameters
+
+- `str`: The string to convert.
+
+## Returns
+
+The camelCased string.
 
 ## Examples
+
 ```ts
-camelCase() // It throws an error;
+camelCase('Foo Bar') //=> 'fooBar'
 
-camelCase('a') // 'a'
+camelCase('--foo-bar--') //=> 'fooBar'
 
-camelCase('A') // 'a'
+camelCase('__FOO_BAR__') //=> 'fooBar'
 
-camelCase('aB') // 'aB'
+camelCase('i phone') //=> 'iPhone'
 
-camelCase('AB') // 'aB'
+camelCase('The Quick Brown Fox') //=> 'theQuickBrownFox'
 
-camelCase('abc') // 'abc'
-
-camelCase('i phone') // 'iPhone'
-
-camelCase('i-phone') // 'iPhone'
-
-camelCase('i_phone') // 'iPhone'
-
-camelCase('i.phone') // 'iPhone'
-
-camelCase('The Quick Brown Fox') // 'theQuickBrownFox'
-
-camelCase('TheQuickBrownFox') // 'theQuickBrownFox'
-
-camelCase('The quick.brown_fox-jumps over the lazy-dog.') // 'theQuickBrownFoxJumpsOverTheLazyDog'
-
-camelCase('--foo.bar') // 'fooBar'
-
-camelCase('Foo Bar') // 'fooBar'
-
-camelCase('__FOO_BAR__') // 'fooBar'
-
-camelCase('foo,bar') // 'fooBar'
-
-camelCase('1apple') // '1apple'
-
-camelCase('1 apple') // '1Apple'
+camelCase('1 apple') //=> '1Apple'
 ```
+
+## Related
+
+- [pascalCase](/String/pascalCase)
+- [kebabCase](/String/kebabCase)
+- [snakeCase](/String/snakeCase)
 
 ## Try
 
 <REPL code={`const { camelCase } = require('@opentf/std');
 
-camelCase('camel case');
+console.log(camelCase('hello world'));
+console.log(camelCase('--foo-bar--'));
 `} />

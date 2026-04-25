@@ -1,19 +1,27 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Shuffles the given array values.
+> 🔀 Randomizes the order of elements in an array using the [Fisher–Yates shuffle](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle) algorithm.
 
 <Callout emoji="✅" type="info">
-Immutable: This does not mutate the given array.
+  **Immutable**: This function does not mutate the original array.
 </Callout>
 
 ## Syntax
 
-```ts
+```ts copy
 import { shuffle } from '@opentf/std';
 
 shuffle<T>(arr: T[]): T[]
 ```
+
+## Parameters
+
+- `arr`: The source array to shuffle.
+
+## Returns
+
+A new array with the elements in randomized order.
 
 ## Examples
 
@@ -22,9 +30,9 @@ shuffle([]) //=> []
 
 shuffle([1]) //=> [1]
 
-shuffle([1, 2, 3, 4, 5]) //=> [ 2, 4, 5, 1, 3 ]
+shuffle([1, 2, 3, 4, 5]) //=> [2, 4, 5, 1, 3] (random result)
 
-shuffle('Apple') //=> [ 'p', 'e', 'A', 'l', 'p' ]
+shuffle('Apple') //=> ['p', 'e', 'A', 'l', 'p'] (random result)
 ```
 
 ## Try
@@ -33,7 +41,3 @@ shuffle('Apple') //=> [ 'p', 'e', 'A', 'l', 'p' ]
 
 shuffle([1, 2, 3, 4, 5]);
 `} />
-
-## Learn
-
-- [Fisher–Yates shuffle](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle)

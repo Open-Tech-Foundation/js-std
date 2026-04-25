@@ -1,19 +1,29 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Swaps two elements in an array.
+> 🔄 Swaps the positions of two elements in an array.
 
 <Callout emoji="✅" type="info">
-Immutable: This does not mutate the given array.
+  **Immutable**: This function does not mutate the original array.
 </Callout>
 
 ## Syntax
 
-```ts
+```ts copy
 import { swap } from '@opentf/std';
 
 swap<T>(arr: T[], x: number, y: number): T[]
 ```
+
+## Parameters
+
+- `arr`: The source array.
+- `x`: The index of the first element to swap.
+- `y`: The index of the second element to swap.
+
+## Returns
+
+A new array with the elements swapped.
 
 ## Examples
 

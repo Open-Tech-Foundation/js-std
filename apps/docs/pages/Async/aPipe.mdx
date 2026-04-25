@@ -1,36 +1,37 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Performs functions composition from left to right asynchronously.
+> 🧪 Performs asynchronous function composition from left to right.
 
 <Callout type="default">
-  The `pipe` function is equivalent to `c(b(a(val)))`.
+  The `aPipe` function is equivalent to `await c(await b(await a(val)))`.
 </Callout>
-
-**Related**
-
-- [pipe](/Function/pipe)
-- [pipeFn](/Function/pipeFn)
-- [aPipeFn](/Async/aPipeFn)
-- [compose](/Function/compose)
-- [composeFn](/Function/composeFn)
-- [aCompose](/Async/aCompose)
-- [aComposeFn](/Async/aComposeFn)
 
 ## Syntax
 
-```ts
+```ts copy
 import { aPipe } from '@opentf/std';
 
 aPipe(
   val: unknown,
-  ...fns: Function[]
+  ...fns: ((arg: any) => any)[]
 ): Promise<unknown>
 ```
+
+## Parameters
+
+- `val`: The initial value to pass into the first function.
+- `...fns`: A sequence of functions (sync or async) to apply from left to right.
+
+## Returns
+
+A `Promise` that resolves to the final result of the pipeline.
 
 ## Examples
 
 ```ts
+import { capitalize } from '@opentf/std';
+
 await aPipe(
   "guest",
   (s) => capitalize(s),
@@ -38,16 +39,26 @@ await aPipe(
 ); //=> 'Welcome Guest'
 ```
 
+## Related
+
+- [pipe](/Function/pipe)
+- [pipeFunction](/Function/pipeFunction)
+- [aPipeFunction](/Async/aPipeFunction)
+- [compose](/Function/compose)
+- [composeFunction](/Function/composeFunction)
+- [aCompose](/Async/aCompose)
+- [aComposeFunction](/Async/aComposeFunction)
+
 ## Try
 
 <REPL code={`const { aPipe, capitalize } = require('@opentf/std');
 
 async function main() {
-const out = await aPipe('guest',
-(s) => capitalize(s),
-(x) => Promise.resolve(\`Welcome \${x}\`)
-);
-log(out);
+  const out = await aPipe('guest',
+    (s) => capitalize(s),
+    (x) => Promise.resolve(\`Welcome \${x}\`)
+  );
+  console.log(out);
 }
 
 main();
@@ -55,14 +66,13 @@ main();
 
 ## Learn
 
-Why we need function composition?
+Why do we need function composition?
 
-- The deep nesting of functions is hard to read.
-- It eliminates temporary variables.
-- Method chaining is limited, for Eg: await, yeild, etc.
+- **Readability**: Deep nesting of functions like `c(b(a(x)))` is hard to read.
+- **Conciseness**: It eliminates the need for temporary variables.
+- **Flexibility**: Method chaining is limited when dealing with `await`, `yield`, etc.
 
 ### Resources
 
-- [tc39/proposal-pipeline-operator](https://github.com/tc39/proposal-pipeline-operator)
-
+- [TC39 Pipeline Operator Proposal](https://github.com/tc39/proposal-pipeline-operator)
 - [Hack Pipe Operator](https://docs.hhvm.com/hack/expressions-and-operators/pipe)

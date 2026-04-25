@@ -1,0 +1,45 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> 🖋️ Converts a string to [Title Case](https://en.wikipedia.org/wiki/Title_case).
+
+## Syntax
+
+```ts copy
+import { titleCase } from '@opentf/std';
+
+titleCase(str: string): string
+```
+
+## Parameters
+
+- `str`: The string to convert.
+
+## Returns
+
+The title-cased string.
+
+## Examples
+
+```ts
+titleCase('hello world') //=> 'Hello World'
+
+titleCase('foo-bar') //=> 'Foo Bar'
+
+titleCase('the quick brown fox') //=> 'The Quick Brown Fox'
+
+titleCase('__FOO_BAR__') //=> 'Foo Bar'
+```
+
+## Related
+
+- [capitalize](/String/capitalize)
+- [pascalCase](/String/pascalCase)
+
+## Try
+
+<REPL code={`const { titleCase } = require('@opentf/std');
+
+console.log(titleCase('hello world'));
+console.log(titleCase('the-quick-brown-fox'));
+`} />

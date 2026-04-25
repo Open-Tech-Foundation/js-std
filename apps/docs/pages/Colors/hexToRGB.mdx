@@ -1,19 +1,27 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> It converts hexadecimal color values into RGB color values.
+> 🎨 Converts a hexadecimal color string into an array of RGB values.
 
 <Callout type="warning">
-It does not work with shorthand form & alpha param.
+  It currently only supports full 6-character hex strings (e.g., `#FFFFFF`). Shorthand (e.g., `#FFF`) or alpha values are not supported.
 </Callout>
 
 ## Syntax
 
-```ts
+```ts copy
 import { hexToRGB } from '@opentf/std';
 
-hexToRGB(hex: string): number[];
+hexToRGB(hex: string): [r: number, g: number, b: number]
 ```
+
+## Parameters
+
+- `hex`: The hexadecimal color string (starting with `#`).
+
+## Returns
+
+An array containing the red, green, and blue components (0-255).
 
 ## Examples
 
@@ -22,20 +30,18 @@ hexToRGB("#000000"); //=> [0, 0, 0]
 
 hexToRGB("#FFFFFF"); //=> [255, 255, 255]
 
-hexToRGB("#ffffff"); //=> [255, 255, 255]
-
 hexToRGB("#FF0000"); //=> [255, 0, 0]
 
 hexToRGB("#00FF00"); //=> [0, 255, 0]
 
 hexToRGB("#0000FF"); //=> [0, 0, 255]
 
-hexToRGB("#AAAAAA"); //=> [170, 170, 170]
-
-hexToRGB("#DDDDDD"); //=> [221, 221, 221]
-
 hexToRGB("#ff851b"); //=> [255, 133, 27]
 ```
+
+## Related
+
+- [rgbToHex](/Colors/rgbToHex)
 
 ## Try
 

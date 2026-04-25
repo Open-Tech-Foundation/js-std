@@ -1,0 +1,28 @@
+import REPL from "../../components/REPL";
+
+> Checks if the given value is [Symbol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol).
+
+## Syntax
+
+```ts
+import { isSymbol } from '@opentf/std';
+
+isSymbol(value: unknown): boolean;
+```
+
+## Examples
+
+```ts
+isSymbol(Symbol()) //=> true
+
+isSymbol(Symbol('abc')) //=> true
+
+isSymbol('abc') //=> false
+```
+
+## Try
+
+<REPL code={`const { isSymbol } = require('@opentf/std');
+
+isSymbol(Symbol('abc'));
+`} />

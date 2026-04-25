@@ -1,0 +1,29 @@
+import REPL from "../../components/REPL";
+
+> Splits the given string into an array of its words.
+
+## Syntax
+
+```ts
+import { words } from '@opentf/std';
+
+words(
+  str: string,
+  pattern?: RegExp | string
+): string[];
+```
+
+## Examples
+
+```ts
+words('fred, barney, & pebbles') //=> ['fred', 'barney', 'pebbles']
+
+words('fred, barney, & pebbles', /[^, ]+/g) //=> ['fred', 'barney', '&', 'pebbles']
+```
+
+## Try
+
+<REPL code={`const { words } = require('@opentf/std');
+
+words('fred, barney, & pebbles');
+`} />

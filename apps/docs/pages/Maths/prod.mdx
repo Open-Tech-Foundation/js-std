@@ -1,10 +1,11 @@
+import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Calculates the `product` of values in the given array.
+> ✖️ Calculates the product of all numbers in an array.
 
 ## Syntax
 
-```ts
+```ts copy
 import { prod } from '@opentf/std';
 
 prod(
@@ -13,28 +14,38 @@ prod(
 ): number
 ```
 
+## Parameters
+
+- `arr`: An array of numbers.
+- `cb`: An optional iteratee invoked for each element to generate the value to be multiplied.
+
+## Returns
+
+The product of all elements. Returns `1` for empty arrays.
+
 ## Examples
 
 ```ts
-prod() //=> 1
-
 prod([]) //=> 1
 
-prod([1]) //=> 1
+prod([1, 2, 3, 4, 5]) //=> 120
 
 prod([1, -1]) //=> -1
 
 prod([-1, -2]) //=> 2
 
-prod([1, 2, 3, 4, 5]) //=> 120
-
-const objects = [{ n: 4 }, { n: 2 }, { n: 8 }, { n: 6 }];
-prod(objects, (v) => v.n) //=> 384
+const objects = [{ n: 4 }, { n: 2 }, { n: 8 }];
+prod(objects, (v) => v.n) //=> 64
 ```
+
+## Related
+
+- [sum](/Maths/sum)
 
 ## Try
 
 <REPL code={`const { prod } = require('@opentf/std');
 
-prod([1, 2, 3, 4, 5]);
+console.log(prod([1, 2, 3, 4, 5]));
+console.log(prod([{n: 2}, {n: 5}], (o) => o.n));
 `} />

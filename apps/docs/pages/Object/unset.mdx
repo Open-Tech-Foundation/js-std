@@ -1,24 +1,19 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Removes the property of the given object at the given path.
+> 🎯 Removes a property at a specific path of an object.
 
-<Callout emoji="⚠️" type="info">
-This mutates the original object.
+<Callout emoji="⚠️" type="warning">
+  **Mutable**: This function mutates the original object. Use [toUnset](/Object/toUnset) for an immutable version.
 </Callout>
 
-### Related
-
-- [get](/Object/get)
-- [has](/Object/has)
-- [set](/Object/set)
-- [toSet](/Object/toSet)
-- [toUnset](/Object/toUnset)
-
+<Callout type="info">
+  When used on arrays, it creates a [sparse array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Indexed_collections#sparse_arrays) by deleting the element at the index without shifting other elements.
+</Callout>
 
 ## Syntax
 
-```ts
+```ts copy
 import { unset } from '@opentf/std';
 
 unset<T>(
@@ -27,32 +22,47 @@ unset<T>(
 ): T
 ```
 
+## Parameters
+
+- `obj`: The object or array to modify.
+- `path`: The path of the property to remove.
+
+## Returns
+
+The modified object.
+
 ## Examples
 
 ```ts
 unset({ a: 1, b: 2 }, 'a') //=> { b: 2 }
 
-unset({ a: 1, b: 2 }, 'b') //=> { a: 1 }
+unset({ a: 1, b: 2 }, 'c') //=> { a: 1, b: 2 } (Non-existent path)
 
-unset({ a: 1, b: 2 }, 'c') //=> { a: 1, b: 2 }
-
-
-unset([1, 2, 3], '0') //=> [<1 Empty>, 2, 3]
-
-unset([1, 2, 3], '1') //=> [1, <1 Empty>, 3]
-
-unset([1, 2, 3], '2') //=> [1, 2, <1 Empty>]
-
-unset([1, 2, 3], '3') //=> [1, 2, 3]
+// Sparse array behavior
+unset([1, 2, 3], '1') //=> [1, <1 empty item>, 3]
 
 const nestedObj = { x: { y: { z: ['a', null, 'b'] } } };
 unset(nestedObj, 'x.y.z') //=> { x: { y: {} } }
 ```
 
+## Related
+
+- [get](/Object/get)
+- [set](/Object/set)
+- [has](/Object/has)
+- [toUnset](/Object/toUnset)
+
 ## Try
 
 <REPL code={`const { unset } = require('@opentf/std');
 
-const obj = { a: 1, b: 2 };
+const obj = { a: 1, b: 2, c: { d: 4 } };
 unset(obj, 'a');
+unset(obj, 'c.d');
+console.log(obj);
+
+const arr = [1, 2, 3];
+unset(arr, 1);
+console.log(arr);
+console.log(arr.length);
 `} />

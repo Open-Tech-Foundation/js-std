@@ -1,0 +1,30 @@
+import REPL from "../../components/REPL";
+
+> Truncates the given string if it's longer than the given maximum string length.
+
+## Syntax
+
+```ts
+import { truncate } from '@opentf/std';
+
+truncate(
+  str: string,
+  length = 30,
+  omission = '...'
+): string;
+```
+
+## Examples
+
+```ts
+truncate('hi-package', 8) //=> 'hi-pa...'
+
+truncate('hi-package', 5, '---') //=> 'hi---'
+```
+
+## Try
+
+<REPL code={`const { truncate } = require('@opentf/std');
+
+truncate('hi-package', 8);
+`} />

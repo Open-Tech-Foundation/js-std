@@ -1,14 +1,23 @@
+import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Checks if the given number is an `Even` number.
+> 🔢 Checks if a number is even.
 
 ## Syntax
 
-```ts
+```ts copy
 import { isEven } from '@opentf/std';
 
 isEven(n: number): boolean
 ```
+
+## Parameters
+
+- `n`: The number to check.
+
+## Returns
+
+`true` if the number is even, `false` otherwise.
 
 ## Examples
 
@@ -24,9 +33,14 @@ isEven(-1) //=> false
 isEven(-2) //=> true
 ```
 
+## Related
+
+- [isOdd](/Maths/isOdd)
+
 ## Try
 
 <REPL code={`const { isEven } = require('@opentf/std');
 
-isEven(42);
+console.log(isEven(42));
+console.log(isEven(7));
 `} />

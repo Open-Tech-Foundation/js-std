@@ -1,15 +1,11 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Returns a tuple of the min & max values of the given array.
+> 📏 Returns a tuple containing the minimum and maximum values of an array.
 
 <Callout type="info">
-If duplicate values are present in the array, then the first match will be returned.
+  If duplicate values are present in the array, the first match will be returned.
 </Callout>
-
-**Related**
-- [min](/Array/min)
-- [max](/Array/max)
 
 ## Syntax
 
@@ -18,9 +14,18 @@ import { bounds } from '@opentf/std';
 
 bounds<T>(
   arr: T[] = [],
-  by: (val: T) => number = (x: T) => x as number
-)
+  by: (val: T) => number = (x: T) => x as unknown as number
+): [T, T] | null
 ```
+
+## Parameters
+
+- `arr`: The source array.
+- `by`: An optional function to extract the numeric value for comparison. Defaults to identity function.
+
+## Returns
+
+A tuple `[min, max]` or `null` if the array is empty (after compacting).
 
 ## Examples
 
@@ -55,6 +60,11 @@ bounds(arr, (o) => o.age)
 //  },
 // ]
 ```
+
+## Related
+
+- [min](/Array/min)
+- [max](/Array/max)
 
 ## Try
 

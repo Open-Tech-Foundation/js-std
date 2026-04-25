@@ -1,23 +1,27 @@
+import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Array filter with `Async` callback function.
+> ⏳ Filters an array using an asynchronous callback function.
 
 ## Syntax
 
-```ts
-aFilter(
+```ts copy
+import { aFilter } from '@opentf/std';
+
+aFilter<T>(
   arr: T[], 
   cb: (value: T, index: number) => Promise<boolean>
-): Promise<Partial<T[]>>
+): Promise<T[]>
 ```
 
-## Usage
+## Parameters
 
-```ts
-import { aFilter } from "@opentf/std";
+- `arr`: The source array.
+- `cb`: An async function that returns a `Promise<boolean>`.
 
-aFilter([], async (value, index) => {});
-```
+## Returns
+
+A `Promise` that resolves to a new filtered array.
 
 ## Examples
 
@@ -26,12 +30,11 @@ const arr = [1, 2, 3, 4, 5];
 
 function isEven(n) {
   return new Promise((resolve) => {
-    resolve(n % 2 === 0);
+    setTimeout(() => resolve(n % 2 === 0), 10);
   });
 }
 
 const filteredArr = await aFilter(arr, async (n) => await isEven(n));
-
 console.log(filteredArr); //=> [2, 4]
 ```
 
@@ -48,8 +51,23 @@ function isEven(n) {
 async function main() {
   const arr = [1, 2, 3, 4, 5];
   const out = await aFilter(arr, async (n) => await isEven(n));
-  log(out);
+  console.log(out);
 }
 
 main();
 `} />
+
+## Why?
+
+- **Native `filter`**: Fails with async callbacks because an async function always returns a `Promise`, which is truthy. As a result, native `filter` will keep every element in the array regardless of the resolved boolean value.
+
+```js
+// Native approach (Fails):
+const filtered = arr.filter(async (x) => await isEven(x)); 
+// Returns all items because every callback returns a Promise object.
+
+// @opentf/std approach (Works):
+const filtered = await aFilter(arr, isEven);
+```
+
+- **Ease of Use**: `aFilter` correctly awaits the results of each callback before deciding whether to include the element in the final array.

@@ -1,45 +1,40 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Sorts a list of items and returns a new array.
+> 📊 Sorts an array of elements in ascending or descending order.
 
 <Callout emoji="✅" type="info">
-Immutable: This does not mutate the given array.
+  **Immutable**: This function does not mutate the original array.
 </Callout>
 
 <Callout type="info">
-The following types are supported:
-
-- Number
-- String
-- Boolean
-- Date
+  The following types are supported:
+  - Number
+  - String
+  - Boolean
+  - Date
 </Callout>
 
 <Callout type="warning">
-It cannot sort if the values in the array is of mixed types.
+  Mixed-type arrays cannot be sorted correctly.
 </Callout>
-
-**Related:**
-
-- [sortBy](/Array/sortBy)
 
 ## Syntax
 
-```ts
-sort<T>(arr: T[], order = 'asc'): T[]
+```ts copy
+import { sort } from '@opentf/std';
+
+sort<T>(arr: T[] = [], order: 'asc' | 'desc' = 'asc'): T[]
 ```
-<Callout type="info">
-The order param can be either `'asc'` or `'desc'`.
-</Callout>
 
-## Usage
+## Parameters
 
-```ts
-import { sort } from "@opentf/std";
+- `arr`: The source array to sort.
+- `order`: The sort order. Can be `'asc'` (ascending) or `'desc'` (descending). Defaults to `'asc'`.
 
-sort([...]);
-```
+## Returns
+
+A new sorted array.
 
 ## Examples
 
@@ -47,7 +42,14 @@ sort([...]);
 sort([1, 3, 2]) //=> [1, 2, 3]
 
 sort(['x', 'z', 'y'], 'desc') //=> ['z', 'y', 'x']
+
+const dates = [new Date(2023, 0, 1), new Date(2022, 0, 1)];
+sort(dates) //=> [2022-01-01, 2023-01-01]
 ```
+
+## Related
+
+- [sortBy](/Array/sortBy)
 
 ## Try
 
@@ -55,7 +57,7 @@ sort(['x', 'z', 'y'], 'desc') //=> ['z', 'y', 'x']
 
 const months = ["Mar", "Jan", "Feb", "Dec"];
 const sortedMonths = sort(months);
-log(sortedMonths);
+console.log(sortedMonths);
 
 const values = [1, 10, 21, 2];
 const sortedValues = sort(values, 'desc');

@@ -1,39 +1,53 @@
+import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Calculates percentage of a value with total.
+> 💹 Calculates the percentage of a value relative to a total.
 
 ## Syntax
 
-```ts
+```ts copy
 import { percentage } from '@opentf/std';
 
-percentage(value: number, total: number): number;
+percentage(value: number, total: number): number
 ```
+
+## Parameters
+
+- `value`: The part value.
+- `total`: The whole (total) value.
+
+## Returns
+
+The percentage value.
 
 ## Examples
 
 ```ts
-percentage(0, 0); // NaN
+percentage(0, 0); //=> NaN
 
-percentage(1, 0); // Infinity
+percentage(1, 0); //=> Infinity
 
-percentage(1, 1); // 100
+percentage(1, 1); //=> 100
 
-percentage(0.5, 1); // 50
+percentage(0.5, 1); //=> 50
 
-percentage(25, 100); // 25
+percentage(25, 100); //=> 25
 
-percentage(75, 150); // 50
+percentage(75, 150); //=> 50
 
-percentage(8, 800); // 1
+percentage(8, 800); //=> 1
 
-percentage(5, 150); // 3.3333333333333335
-
-percentage(200, 100); // 200
+percentage(200, 100); //=> 200
 ```
+
+## Related
+
+- [percentageOf](/Maths/percentageOf)
 
 ## Try
 
 <REPL code={`const { percentage } = require('@opentf/std');
 
-percentage(75, 150);`} />
+console.log(percentage(75, 150));
+console.log(percentage(5, 150));
+`} />

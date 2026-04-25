@@ -1,25 +1,38 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Calculates the `mode` value of the given array.
+> 📊 Calculates the mode value(s) of a list.
 
 <Callout type="info">
-Mode: The most frequent number—that is, the number that occurs the highest number of times.
-<div style={{textAlign: 'right'}}>
-\- [Khan Academy](https://www.khanacademy.org/math/statistics-probability/summarizing-quantitative-data/mean-median-basics/a/mean-median-and-mode-review)
-</div>
+  **Mode**: The most frequent number—that is, the number that occurs the highest number of times.
+  <div style={{textAlign: 'right'}}>
+  \- [Khan Academy](https://www.khanacademy.org/math/statistics-probability/summarizing-quantitative-data/mean-median-basics/a/mean-median-and-mode-review)
+  </div>
+</Callout>
+
+<Callout type="info">
+  If all elements in the array are unique (occur only once), the function returns an empty array `[]`.
 </Callout>
 
 ## Syntax
 
-```ts
+```ts copy
 import { mode } from '@opentf/std';
 
 mode<T>(
   arr: T[] = [],
-  cb?: (val: T, index: number) => number
-): number[]
+  cb?: (val: T) => unknown
+): T[]
 ```
+
+## Parameters
+
+- `arr`: The source array.
+- `cb`: An optional iteratee invoked for each element to generate the value to be used for mode calculation.
+
+## Returns
+
+An array containing the most frequent element(s). Returns `[]` if all elements are unique or if the input array is empty.
 
 ## Examples
 
@@ -34,13 +47,20 @@ mode([4, 2, 3, 2, 2]) //=> [2]
 
 mode([0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 4]) //=> [1, 2]
 
-mode([{ n: 1 }, { n: 2 }, { n: 3 }, { n: 2 }], ({ n }) => n) //=> [2]
+mode(['a', 'b', 'b', 'c', 'c']) //=> ['b', 'c']
 
+mode([{ n: 1 }, { n: 2 }, { n: 3 }, { n: 2 }], ({ n }) => n) //=> [2]
 ```
+
+## Related
+
+- [mean](/Maths/mean)
+- [median](/Maths/median)
 
 ## Try
 
 <REPL code={`const { mode } = require('@opentf/std');
 
-mode([0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 4]);
+console.log(mode([0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 4]));
+console.log(mode(['a', 'b', 'b', 'c', 'c']));
 `} />

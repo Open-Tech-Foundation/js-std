@@ -1,0 +1,28 @@
+import REPL from "../../components/REPL";
+
+> Checks if the given value is [TypedArray](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray).
+
+## Syntax
+
+```ts
+import { isTypedArray } from '@opentf/std';
+
+isTypedArray(value: unknown): boolean;
+```
+
+## Examples
+
+```ts
+isTypedArray([]) //=> false
+
+isTypedArray(new Int8Array()) //=> true
+
+isTypedArray(new Float64Array()) //=> true
+```
+
+## Try
+
+<REPL code={`const { isTypedArray } = require('@opentf/std');
+
+isTypedArray(new Int8Array());
+`} />

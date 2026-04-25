@@ -1,54 +1,51 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Checks deeply if the given two values are equivalent.
+> 🧬 Performs a deep comparison between two values to determine if they are equivalent.
 
 <Callout type="info">
-The following type of values are supported:
-
-- [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
-
-- [ArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer)
-
-- [DataView](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView)
-
-- [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)
-
-- [Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error) 
-
-- [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
-
-- [Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) objects: but only plain objects (e.g. from object literals).
-
-- [Primitive types](https://developer.mozilla.org/en-US/docs/Glossary/Primitive)
-
-- [RegExp](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp)
-
-- [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
-
-- [TypedArray](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray)
+  The following types are supported for deep comparison:
+  - **Primitive types** (String, Number, Boolean, BigInt, Symbol, null, undefined)
+  - **Plain Objects**
+  - **Arrays**
+  - **Maps & Sets** (Order matters for Maps and Sets)
+  - **Dates**
+  - **RegExps**
+  - **Errors**
+  - **ArrayBuffers & TypedArrays**
+  - **DataViews**
 </Callout>
 
 <Callout emoji="✅" type="info">
-  It handles the circular references.
+  **Circular References**: Correctly handles circular references.
 </Callout>
 
 <Callout type="info">
-  Other types are checked by their references, Eg: Function.
+  **Other Types**: Checked by reference (e.g., Functions).
 </Callout>
 
-**Related**
- - [isEqlArr](/Assert/isEqlArr)
-
- - [isShallowEql](/Assert/isShallowEql)
- 
 ## Syntax
 
-```ts
+```ts copy
 import { isEql } from '@opentf/std';
 
-isEql(val1: unknown, val2: unknown): Boolean;
+isEql(
+  val1: unknown, 
+  val2: unknown, 
+  options?: { shallow?: boolean }
+): boolean
 ```
+
+## Parameters
+
+- `val1`: The first value to compare.
+- `val2`: The second value to compare.
+- `options`: 
+    - `shallow`: If `true`, performs a shallow comparison instead of deep.
+
+## Returns
+
+`true` if the values are equivalent, `false` otherwise.
 
 ## Examples
 
@@ -63,7 +60,7 @@ const mapB = new Map([
   ['b', 2],
   ['a', 1],
 ]);
-isEql(mapA, mapB); //=> false
+isEql(mapA, mapB); //=> false (Order matters in Maps)
 
 const re = new RegExp('ab+c');
 const re2 = new RegExp('ab+d');
@@ -74,7 +71,13 @@ const ta2 = new Uint8Array([42, 43]);
 const ta3 = new Uint8Array([42, 45]);
 isEql(ta1, ta2); //=> true
 isEql(ta2, ta3); //=> false
+
+isEql({a: {b: 1}}, {a: {b: 1}}, {shallow: true}) //=> false
 ```
+
+## Related
+
+- [isUnorderedEqual](/Assert/isUnorderedEqual)
 
 ## Try
 
@@ -82,6 +85,6 @@ isEql(ta2, ta3); //=> false
 
 const obj1 = {a: 1, b: 2}
 const obj2 = {a: 1, b: 2}
-log(obj1 === obj2);
-isEql(obj1, obj2);
+console.log('Strict Equal:', obj1 === obj2);
+console.log('isEql:', isEql(obj1, obj2));
 `} />

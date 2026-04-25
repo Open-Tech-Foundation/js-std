@@ -1,10 +1,10 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Removes all the [falsy](https://developer.mozilla.org/en-US/docs/Glossary/Falsy) values in the given array.
+> 🧹 Removes all [falsy](https://developer.mozilla.org/en-US/docs/Glossary/Falsy) values from an array.
 
 <Callout emoji="✅" type="info">
-Immutable: This does not mutate the given array.
+  **Immutable**: This function does not mutate the original array.
 </Callout>
 
 ## Syntax
@@ -12,31 +12,51 @@ Immutable: This does not mutate the given array.
 ```ts copy
 import { compact } from '@opentf/std';
 
-compact<T>(arr: T[] = []): Partial<T[]>;
+compact<T>(arr: T[] = []): Partial<T[]>
 ```
+
+## Parameters
+
+- `arr`: The source array.
+
+## Returns
+
+A new array with all falsy values removed.
+
+## Falsy Values
+
+A **falsy** value is a value that is considered false when encountered in a Boolean context. In JavaScript, there are only 8 falsy values:
+
+| Value | Description |
+| :--- | :--- |
+| `false` | The keyword `false`. |
+| `0` | The number zero. |
+| `-0` | The number negative zero. |
+| `0n` | The BigInt zero. |
+| `""` | An empty string. |
+| `null` | The absence of any object value. |
+| `undefined` | A primitive value for uninitialized variables. |
+| `NaN` | Not-a-Number. |
+
+Everything else is **truthy**, including empty objects `{}` and empty arrays `[]`.
 
 ## Examples
 
 ```ts
-compact([undefined]) //=>[]
+compact([0, 1, false, 2, '', 3, null, undefined, NaN]) //=> [1, 2, 3]
 
-compact([undefined, null]) //=>[]
+compact(['apple', '', 'Mango']) //=> ['apple', 'Mango']
 
-compact([undefined, null, 0]) //=>[]
-
-compact([undefined, null, 0, 1]) //=>[1]
-
-compact([undefined, null, 0, 1, -0, 2]) //=>[1, 2]
-
-compact([undefined, null, 0, 1, -0, 2, false, 3]) //=> [1, 2, 3];
-
-compact([undefined, null, 0, 1, -0, 2, false, 3, true, NaN]) //=> [1, 2, 3, true]
-
-compact(['apple', '', 'Mango']) //=>['apple', 'Mango']);
+compact([{}, []]) //=> [{}, []] (Empty objects and arrays are truthy)
 ```
+
+## Related
+
+- [uniq](/Array/uniq)
 
 ## Try
 
 <REPL code={`const { compact } = require('@opentf/std');
 
-compact([1, null, 2, 0, 3]);`} />
+console.log(compact([1, null, 2, 0, 3, '', NaN]));
+`} />

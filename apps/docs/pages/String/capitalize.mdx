@@ -1,38 +1,45 @@
+import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> [Capitalize](https://en.wikipedia.org/wiki/Capitalization) a string.
+> 🔝 Converts the first character of a string to upper case and the remaining to lower case.
 
 ## Syntax
 
-```ts
+```ts copy
 import { capitalize } from '@opentf/std';
 
-capitalize(str: string): string;
+capitalize(str: string): string
 ```
+
+## Parameters
+
+- `str`: The string to capitalize.
+
+## Returns
+
+The capitalized string.
 
 ## Examples
 
 ```ts
-capitalize() // It throws an error;
+capitalize('abc') //=> 'Abc'
 
-capitalize('') // ''
+capitalize('FOO') //=> 'Foo'
 
-capitalize('a') // 'A'
+capitalize('the quick brown fox') //=> 'The quick brown fox'
 
-capitalize('ab') // 'Ab'
-
-capitalize('FOO') // 'Foo'
-
-capitalize('the quick brown fox') // 'The quick brown fox'
-
-capitalize('the Quick Brown FOX') // 'The quick brown fox'
-
-capitalize('1apple') // '1apple'
+capitalize('1apple') //=> '1apple'
 ```
+
+## Related
+
+- [titleCase](/String/titleCase)
+- [pascalCase](/String/pascalCase)
 
 ## Try
 
 <REPL code={`const { capitalize } = require('@opentf/std');
 
-capitalize('capitalize');
+console.log(capitalize('hello'));
+console.log(capitalize('WORLD'));
 `} />

@@ -1,0 +1,25 @@
+/** Returns a function that performs functions composition from left to right.
+ *
+ * @example
+ * const transform = pipeFunction(Math.pow, Math.abs)
+ * transform(-2, 3) //=> 8
+ */
+export default function pipeFunction(
+  ...fns: ((...args: unknown[]) => unknown)[]
+): (...args: unknown[]) => unknown {
+  return (...args) => {
+    const firstFn = fns.shift();
+
+    if (!firstFn) {
+      return;
+    }
+
+    let out = firstFn(...args);
+
+    for (const fn of fns) {
+      out = fn(out);
+    }
+
+    return out;
+  };
+}

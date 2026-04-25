@@ -1,14 +1,23 @@
+import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> The No Operation function.
+> 😶 The "No Operation" function. It does nothing and returns `undefined`.
 
 ## Syntax
 
-```ts
+```ts copy
 import { noop } from '@opentf/std';
 
-noop(): undefined;
+noop(): void
 ```
+
+## Parameters
+
+None.
+
+## Returns
+
+`undefined`.
 
 ## Examples
 
@@ -16,11 +25,12 @@ noop(): undefined;
 noop(); //=> undefined
 
 function test(cb) {
+  // Use noop as a default callback to avoid "cb is not a function" errors
   const fn = cb || noop;
   fn();
 }
 
-test(); // It can safely calls the callback fn
+test(); // Safely calls the noop function
 ```
 
 ## Try
@@ -29,8 +39,8 @@ test(); // It can safely calls the callback fn
 
 function test(cb) {
   const fn = cb || noop;
-  fn();
+  return fn('hello');
 }
 
-test();
+console.log(test());
 `} />

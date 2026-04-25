@@ -1,10 +1,11 @@
+import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Calculates the `sum` of values in the given array.
+> ➕ Calculates the sum of all numbers in an array.
 
 ## Syntax
 
-```ts
+```ts copy
 import { sum } from '@opentf/std';
 
 sum(
@@ -13,11 +14,18 @@ sum(
 ): number
 ```
 
+## Parameters
+
+- `arr`: An array of numbers.
+- `cb`: An optional iteratee invoked for each element to generate the value to be summed.
+
+## Returns
+
+The sum of all elements. Returns `0` for empty arrays.
+
 ## Examples
 
 ```ts
-sum() //=> 0
-
 sum([]) //=> 0
 
 sum([1]) //=> 1
@@ -28,22 +36,23 @@ sum([-1, -2]) //=> -3
 
 sum([1, 2, 3, 4, 5]) //=> 15
 
-sum([1.2, Math.PI]) //=> 4.34
-
 sum([1, 2, 3, 4, 5.4], Math.round) //=> 15
 
-const objects = [{ n: 4 }, { n: 2 }, { n: 8 }, { n: 6 }];
-sum(objects, (v) => v.n) //=> 20
+const objects = [{ n: 4 }, { n: 2 }, { n: 8 }];
+sum(objects, (v) => v.n) //=> 14
 
-sum(objects, (v, i) => v.n * i) //=> 36
-
-sum([Infinity, Infinity]) //=> Infinity
-
+sum(objects, (v, i) => v.n * i) //=> 18 ( (4*0) + (2*1) + (8*2) = 18 )
 ```
+
+## Related
+
+- [prod](/Maths/prod)
+- [mean](/Maths/mean)
 
 ## Try
 
 <REPL code={`const { sum } = require('@opentf/std');
 
-sum([1, 2, 3, 4, 5]);
+console.log(sum([1, 2, 3, 4, 5]));
+console.log(sum([{n: 2}, {n: 5}], (o) => o.n));
 `} />

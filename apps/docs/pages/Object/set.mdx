@@ -1,23 +1,15 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Sets the value to an object at the given path.
+> 🎯 Sets the value at a specific path of an object.
 
-<Callout emoji="⚠️" type="info">
-This mutates the original object.
+<Callout emoji="⚠️" type="warning">
+  **Mutable**: This function mutates the original object. Use [toSet](/Object/toSet) for an immutable version.
 </Callout>
-
-### Related
-
-- [get](/Object/get)
-- [has](/Object/has)
-- [unset](/Object/unset)
-- [toSet](/Object/toSet)
-- [toUnset](/Object/toUnset)
 
 ## Syntax
 
-```ts
+```ts copy
 import { set } from '@opentf/std';
 
 set<T>(
@@ -26,45 +18,51 @@ set<T>(
   value: unknown | ((val: unknown) => unknown)
 ): T
 ```
-<Callout type="info">
-The value param can be either any `value` or `callback` function.
-</Callout>
 
-<Callout type="info">
-The `callback` fn can be called with the property path value if it exist.
-</Callout>
+## Parameters
+
+- `obj`: The object to modify.
+- `path`: The path of the property to set.
+- `value`: The value to set, or a callback function that receives the current value and returns the new value.
+
+## Returns
+
+The modified object.
 
 ## Examples
 
 ```ts
-set({}, 'a', null) //=> { a: null }
-
 set({}, 'a', 1) //=> { a: 1 }
 
 set({}, 'a.b', 25) //=> { a: { b: 25 } }
 
 set({}, 'user.email', 'user@example.com') 
-//=> 
-// {
-//    user: { email: 'user@example.com' }
-// }  
+//=> { user: { email: 'user@example.com' } }
 
-set({}, '0', 'Apple') //=>   { '0': 'Apple' }
+set({}, 'fruits[0]', 'Apple') //=> { fruits: ['Apple'] }
 
-set({}, 'fruits[0]', 'Apple') //=>  { fruits: ['Apple'] }
-
+// Using a callback to update based on current value
 set({ a: 1 }, 'a', (val) => val + 1) //=> { a: 2 }
 
-const fn = () => render('My Component')
-set({ subscribeFns: [] }, 'subscribeFns[0]', () => fn)
-//=> { subscribeFns: [fn] }
+// Automatically creates arrays if indices are used in path
+set({}, 'items[2].id', 1) //=> { items: [undefined, undefined, { id: 1 }] }
 ```
+
+## Related
+
+- [get](/Object/get)
+- [has](/Object/has)
+- [unset](/Object/unset)
+- [toSet](/Object/toSet)
 
 ## Try
 
 <REPL code={`const { set } = require('@opentf/std');
 
-log(set({}, 'a.b', 25));
+const obj = {};
+set(obj, 'a.b', 25);
+console.log(obj);
 
-set({ a: 1 }, 'a', (val) => val + 1)
+set(obj, 'a.b', (v) => v * 2);
+console.log(obj);
 `} />

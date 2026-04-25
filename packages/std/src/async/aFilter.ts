@@ -9,9 +9,9 @@
 export default async function aFilter<T>(
   arr: T[],
   cb: (value: T, index: number) => Promise<boolean>,
-): Promise<Partial<T[]>> {
+): Promise<T[]> {
   let i = 0;
-  const out = [];
+  const out: T[] = [];
 
   for (const e of arr) {
     if (await cb(e, i)) {

@@ -2,8 +2,15 @@
   "camelCase": "camelCase",
   "capitalize": "capitalize",
   "insertAt": "insertAt",
-  "isEmail": "isEmail",
+  "kebabCase": "kebabCase",
+  "pad": "pad",
   "pascalCase": "pascalCase",
+  "repeat": "repeat",
   "replaceAt": "replaceAt",
-  "strReplace": "strReplace"
+  "snakeCase": "snakeCase",
+  "strReplace": "strReplace",
+  "titleCase": "titleCase",
+  "trim": "trim",
+  "truncate": "truncate",
+  "words": "words"
 }

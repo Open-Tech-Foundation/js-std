@@ -1,0 +1,26 @@
+import REPL from "../../components/REPL";
+
+> Removes leading and trailing whitespace or specified characters from the given string.
+
+## Syntax
+
+```ts
+import { trim } from '@opentf/std';
+
+trim(str: string, chars?: string): string;
+```
+
+## Examples
+
+```ts
+trim('  abc  ') //=> 'abc'
+
+trim('-_-abc-_-', '_-') //=> 'abc'
+```
+
+## Try
+
+<REPL code={`const { trim } = require('@opentf/std');
+
+trim('  abc  ');
+`} />

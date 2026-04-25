@@ -1,5 +1,6 @@
-import { existsSync, mkdirSync } from 'node:fs';
-import { join } from 'node:path';
+import { existsSync, mkdirSync, copyFileSync } from 'node:fs';
+import { join, resolve } from 'node:path';
+import { execSync } from 'node:child_process';
 import * as esbuild from 'esbuild';
 
 const root = process.cwd();
@@ -37,6 +38,29 @@ async function build() {
       outfile: join(dist, 'index.cjs'),
     });
     console.log('✅ CJS build completed');
+
+    // Generate Types
+    console.log('⏳ Generating type definitions...');
+    execSync('tsc --emitDeclarationOnly --outDir dist --noEmit false', { stdio: 'inherit' });
+    const dts = join(dist, 'index.d.ts');
+    const dcts = join(dist, 'index.d.cts');
+    if (existsSync(dts)) {
+      copyFileSync(dts, dcts);
+      console.log('✅ index.d.cts generated');
+    }
+
+    // Copy README & LICENSE to dist
+    const rootDir = resolve(root, '../../');
+    const rootReadme = join(rootDir, 'README.md');
+    if (existsSync(rootReadme)) {
+      copyFileSync(rootReadme, join(dist, 'README.md'));
+      console.log('✅ README.md copied to dist');
+    }
+    const rootLicense = join(rootDir, 'LICENSE');
+    if (existsSync(rootLicense)) {
+      copyFileSync(rootLicense, join(dist, 'LICENSE'));
+      console.log('✅ LICENSE copied to dist');
+    }
   } catch (error) {
     console.error('❌ Build failed:', error);
     process.exit(1);

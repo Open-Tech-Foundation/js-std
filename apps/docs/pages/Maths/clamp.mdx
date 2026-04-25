@@ -1,14 +1,25 @@
+import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Returns a value clamped to the inclusive range of min and max.
+> 🗜️ Clamps a number between a specified minimum and maximum value.
 
 ## Syntax
 
-```ts
+```ts copy
 import { clamp } from '@opentf/std';
 
-clamp(val: number, min: number, max: number): number;
+clamp(val: number, min: number, max: number): number
 ```
+
+## Parameters
+
+- `val`: The number to clamp.
+- `min`: The lower bound of the range.
+- `max`: The upper bound of the range.
+
+## Returns
+
+The clamped number.
 
 ## Examples
 
@@ -26,5 +37,6 @@ clamp(1500, 1000, 1366) //=> 1366
 
 <REPL code={`const { clamp } = require('@opentf/std');
 
-clamp(0, 1000, 1366);
+console.log(clamp(0, 1000, 1366));
+console.log(clamp(1500, 1000, 1366));
 `} />

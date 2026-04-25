@@ -1,41 +1,47 @@
+import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Calculates percentage of a number.
+> 💹 Calculates the value of a given percentage of a number.
 
 ## Syntax
 
-```ts
+```ts copy
 import { percentageOf } from '@opentf/std';
 
-percentageOf(percentage: number, num: number): number;
+percentageOf(percentage: number, num: number): number
 ```
+
+## Parameters
+
+- `percentage`: The percentage value.
+- `num`: The number to calculate the percentage of.
+
+## Returns
+
+The calculated value.
 
 ## Examples
 
 ```ts
-percentageOf(); // NaN
+percentageOf(0, 0); //=> 0
 
-percentageOf(0); // NaN
+percentageOf(1, 1); //=> 0.01
 
-percentageOf(undefined, 0); // NaN
+percentageOf(10, 80); //=> 8
 
-percentageOf(0, 0); // 0
+percentageOf(50, 900); //=> 450
 
-percentageOf(1, 0); // 0
-
-percentageOf(1, 1); // 0.01
-
-percentageOf(0.5, 10); // 0.05
-
-percentageOf(10, 80); // 8
-
-percentageOf(50, 900); // 450
-
-percentageOf(17.5, 10); // 1.75
+percentageOf(17.5, 10); //=> 1.75
 ```
+
+## Related
+
+- [percentage](/Maths/percentage)
 
 ## Try
 
 <REPL code={`const { percentageOf } = require('@opentf/std');
 
-percentageOf(1, 1);`} />
+console.log(percentageOf(10, 80));
+console.log(percentageOf(50, 900));
+`} />

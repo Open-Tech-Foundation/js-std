@@ -1,10 +1,10 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Creates a unique array by removing all duplicate values from the given array.
+> 💎 Creates a unique version of an array by removing duplicate values.
 
 <Callout type="info">
-It uses [isEql](/Assert/isEql) for deep comparison of values.
+  It uses [isEql](/Assert/isEql) for deep comparison of values.
 </Callout>
 
 ## Syntax
@@ -15,8 +15,17 @@ import { uniq } from '@opentf/std';
 uniq<T>(
   arr: T[] = [],
   by?: (val: T) => unknown
-): Partial<T[]>
+): T[]
 ```
+
+## Parameters
+
+- `arr`: The source array.
+- `by`: An optional iteratee invoked for each element to generate the criterion by which uniqueness is computed.
+
+## Returns
+
+A new array containing only unique values.
 
 ## Examples
 
@@ -24,8 +33,8 @@ uniq<T>(
 const arr = [1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5];
 uniq(arr) //=> [1, 2, 3, 4, 5]
 
-const arr = [2.1, 1.2, 2.3];
-uniq(a, Math.floor) //=> [2.1, 1.2]
+const nums = [2.1, 1.2, 2.3];
+uniq(nums, Math.floor) //=> [2.1, 1.2]
 ```
 
 ## Try

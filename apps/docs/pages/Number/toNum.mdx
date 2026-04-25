@@ -1,15 +1,23 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Try to convert the given value into a finite number.
+> 🔢 Converts a value to a finite number.
 
 ## Syntax
 
-```ts
+```ts copy
 import { toNum } from '@opentf/std';
 
-toNum(val: unknown): number;
+toNum(val: unknown): number
 ```
+
+## Parameters
+
+- `val`: The value to convert.
+
+## Returns
+
+The converted number if the value is a valid numeric representation; otherwise, `NaN`.
 
 ## Examples
 
@@ -18,18 +26,20 @@ toNum(1) //=> 1
 
 toNum('1.3') //=> 1.3
 
-toNum('1_000') //=> 1000
+toNum('1_000') //=> 1000 (Supports numeric separators)
+
+toNum('0xF') //=> 15 (Supports hex strings)
 
 toNum(Infinity) //=> NaN
 
-toNum('a') //=> NaN
-
-toNum('0xF') //=> 15
+toNum('abc') //=> NaN
 ```
 
 ## Try
 
 <REPL code={`const { toNum } = require('@opentf/std');
 
-toNum('1_000');
+console.log(toNum('1_000'));
+console.log(toNum('0xF'));
+console.log(toNum(Infinity));
 `} />

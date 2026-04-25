@@ -1,24 +1,20 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Returns unique values in all the given collections.
+> 🎡 Returns an array of unique values combined from all provided collections.
 
 <Callout type="info">
-It uses [isEql](/Assert/isEql) for deep comparison of values.
+  It uses [isEql](/Assert/isEql) for deep comparison of values.
 </Callout>
 
 ### Venn Diagram
+
 <div style={{padding: '15px', backgroundColor: 'white'}}>
-  ![Difference Venn Diagram](/assets/union-venn-diagram.svg)
+  ![Union Venn Diagram](/assets/union-venn-diagram.svg)
   <div style={{textAlign: 'right', fontSize: '14px'}}>
     [Source: MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
   </div>
 </div>
-
-**Related**
-- [intersection](/Array/intersection)
-- [diff](/Array/diff)
-- [symDiff](/Array/symDiff)
 
 ## Syntax
 
@@ -28,8 +24,17 @@ import { union } from '@opentf/std';
 union(
   collections: unknown[][] = [],
   by?: (val: unknown) => unknown
-)
+): unknown[]
 ```
+
+## Parameters
+
+- `collections`: An array of arrays to combine.
+- `by`: An optional iteratee invoked for each element to generate the criterion by which uniqueness is computed.
+
+## Returns
+
+A new array containing the unique union of the collections.
 
 ## Examples
 
@@ -43,6 +48,12 @@ const setB = [2, 3];
 const setC = [2, 3, 4, 5];
 union([setA, setB, setC]) //=> [1, 2, 3, 4, 5]
 ```
+
+## Related
+
+- [intersection](/Array/intersection)
+- [diff](/Array/diff)
+- [symDiff](/Array/symDiff)
 
 ## Try
 

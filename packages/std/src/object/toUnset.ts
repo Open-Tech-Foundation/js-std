@@ -13,7 +13,7 @@ import toPath from './toPath';
  *
  * unset({a: 1, b: 2}}, 'a') //=> true
  */
-export default function unset<T>(obj: T, path: string | unknown[]): T {
+export default function toUnset<T>(obj: T, path: string | unknown[]): T {
   const pathArr = toPath(path);
 
   if (isEmpty(pathArr) || !(isObject(obj) || isArray(obj))) {

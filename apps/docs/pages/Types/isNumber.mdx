@@ -1,0 +1,58 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> 🔢 Checks if a value is a finite number.
+
+<Callout type="info">
+  By default, it only returns `true` for actual `number` types (excluding `NaN` and `Infinity`).
+</Callout>
+
+<Callout type="warning">
+  When `coerce` is `true`, it only attempts to coerce **strings**. Other types like `null`, `boolean`, etc., will still return `false`.
+</Callout>
+
+## Syntax
+
+```ts copy
+import { isNumber } from '@opentf/std';
+
+isNumber(value: unknown, coerce = false): boolean
+```
+
+## Parameters
+
+- `value`: The value to check.
+- `coerce`: If `true`, it tries to parse numeric strings (supports numeric separators like `_`).
+
+## Returns
+
+`true` if the value is a finite number (or numeric string when coerced), `false` otherwise.
+
+## Examples
+
+```ts
+isNumber(1) //=> true
+isNumber(1.5) //=> true
+isNumber(NaN) //=> false
+isNumber(Infinity) //=> false
+
+// Coercion
+isNumber('1') //=> false
+isNumber('1', true) //=> true
+isNumber('1_000', true) //=> true
+isNumber('abc', true) //=> false
+
+// Other types
+isNumber(null) //=> false
+isNumber(true) //=> false
+isNumber([]) //=> false
+```
+
+## Try
+
+<REPL code={`const { isNumber } = require('@opentf/std');
+
+console.log(isNumber(123));
+console.log(isNumber('1_234', true));
+console.log(isNumber(NaN));
+`} />

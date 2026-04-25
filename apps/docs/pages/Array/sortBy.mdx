@@ -1,35 +1,31 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Sorts a list of objects and returns a new array.
+> 📊 Sorts an array of objects by one or more properties or iteratees.
 
 <Callout emoji="✅" type="info">
-Immutable: This does not mutate the given array.
+  **Immutable**: This function does not mutate the original array.
 </Callout>
-
-**Related:**
-
-- [sort](/Array/sort)
 
 ## Syntax
 
-```ts
+```ts copy
+import { sortBy } from '@opentf/std';
+
 sortBy<T>(
   arr: T[],
-  ...tuples: [key: string | ((obj: T) => unknown), order: "asc" | "desc"][]
+  ...tuples: [key: keyof T | ((obj: T) => unknown), order: "asc" | "desc"][]
 ): T[]
 ```
-<Callout type="info">
-The `key` in the tuple array must one of object first level props.
-</Callout>
 
-## Usage
+## Parameters
 
-```ts
-import { sortBy } from "@opentf/std";
+- `arr`: The source array of objects.
+- `...tuples`: A list of tuples where each tuple contains a key (property name or function) and the sort order (`'asc'` or `'desc'`).
 
-sortBy([{...}], ['key', 'asc'], [o => o.prop, 'desc']);
-```
+## Returns
+
+A new sorted array.
 
 ## Examples
 
@@ -43,6 +39,7 @@ const fruits = [
 ];
 
 sortBy(fruits, ['name', 'asc']);
+// OR
 sortBy(fruits, [(o) => o.name, 'asc']);
 //=> [
 //   { name: 'apple', amount: 4 },
@@ -53,6 +50,7 @@ sortBy(fruits, [(o) => o.name, 'asc']);
 // ]
 
 sortBy(fruits, ['amount', 'desc'], ['name', 'asc']);
+// OR
 sortBy(fruits, [o => o.amount, 'desc'], [o => o.name, 'asc']);
 //=> [
 //  { name: 'orange', amount: 5 },
@@ -62,6 +60,10 @@ sortBy(fruits, [o => o.amount, 'desc'], [o => o.name, 'asc']);
 //  { name: 'mango', amount: 1 }
 // ]
 ```
+
+## Related
+
+- [sort](/Array/sort)
 
 ## Try
 

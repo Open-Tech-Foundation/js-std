@@ -1,0 +1,26 @@
+import REPL from "../../components/REPL";
+
+> Checks if the given value is an [ArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer).
+
+## Syntax
+
+```ts
+import { isArrayBuffer } from '@opentf/std';
+
+isArrayBuffer(val: unknown): boolean;
+```
+
+## Examples
+
+```ts
+isArrayBuffer([]) //=> false
+
+isArrayBuffer(new ArrayBuffer(8)) //=> true
+```
+
+## Try
+
+<REPL code={`const { isArrayBuffer } = require('@opentf/std');
+
+isArrayBuffer(new ArrayBuffer(8));
+`} />

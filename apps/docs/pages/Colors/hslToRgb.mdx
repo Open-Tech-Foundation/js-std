@@ -1,0 +1,28 @@
+import REPL from "../../components/REPL";
+
+> Converts an HSL color value to RGB.
+
+## Syntax
+
+```ts
+import { hslToRgb } from '@opentf/std';
+
+hslToRgb(h: number, s: number, l: number): [number, number, number];
+```
+
+## Examples
+
+```ts
+hslToRgb(0, 100, 50) //=> [255, 0, 0]
+
+hslToRgb(120, 100, 50) //=> [0, 255, 0]
+
+hslToRgb(240, 100, 50) //=> [0, 0, 255]
+```
+
+## Try
+
+<REPL code={`const { hslToRgb } = require('@opentf/std');
+
+hslToRgb(0, 100, 50);
+`} />

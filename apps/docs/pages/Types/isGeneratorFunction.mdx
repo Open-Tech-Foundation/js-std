@@ -1,0 +1,56 @@
+import REPL from "../../components/REPL";
+
+> Checks if the given value is a [Generator Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*).
+
+## Syntax
+
+```ts
+import { isGeneratorFunction } from '@opentf/std';
+
+isGeneratorFunction(
+  val: unknown
+): boolean
+```
+
+## Examples
+
+```ts
+isGeneratorFunction(function() {}) //=> false
+
+isGeneratorFunction({}) //=> false
+
+function* generator(i) {
+  yield i;
+  yield i + 10;
+}
+
+isGeneratorFunction(generator); //=> true
+
+async function* aGen(i) {
+  yield i;
+  yield i + 10;
+}
+
+isGeneratorFunction(aGen); //=> true
+
+const someObj = {
+  *generator() {
+    yield "a";
+    yield "b";
+  },
+};
+
+isGeneratorFunction(someObj.generator); //=> true
+```
+
+## Try
+
+<REPL code={`const { isGeneratorFunction } = require('@opentf/std');
+
+function* generator(i) {
+  yield i;
+  yield i + 10;
+}
+
+isGeneratorFunction(generator);
+`} />

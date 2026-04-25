@@ -1,0 +1,44 @@
+import REPL from "../../components/REPL";
+
+> Checks if the given value is defined.
+
+## Related
+
+- [isUndef](/Types/isUndef)
+
+## Syntax
+
+```ts
+import { isDefined } from '@opentf/std';
+
+isDefined(value: unknown): boolean;
+```
+
+## Examples
+
+```ts
+isDefined() //=> false
+
+isDefined(undefined) //=> false
+
+isDefined(null) //=> true
+
+isDefined('') //=> true
+
+isDefined(0) //=> true
+
+isDefined([]) //=> true
+
+isDefined({}) //=> true
+```
+
+## Try
+
+<REPL code={`const { isDefined } = require('@opentf/std');
+
+let a = 0;
+let b;
+
+log(isDefined(a));
+isDefined(b);
+`} />

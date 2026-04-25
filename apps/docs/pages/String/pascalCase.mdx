@@ -1,38 +1,50 @@
+import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Convert a string to [Pascal case](https://en.wikipedia.org/wiki/Camel_case).
+> 🗼 Converts a string to [PascalCase](https://en.wikipedia.org/wiki/Camel_case#Upper_camel_case).
 
 ## Syntax
 
-```ts
+```ts copy
 import { pascalCase } from '@opentf/std';
 
-pascalCase(str: string): string;
+pascalCase(str: string): string
 ```
+
+## Parameters
+
+- `str`: The string to convert.
+
+## Returns
+
+The PascalCased string.
 
 ## Examples
 
 ```ts
-pascalCase() // It throws an error;
+pascalCase('na cl') //=> 'NaCl'
 
-pascalCase('na cl'); // 'NaCl'
+pascalCase('Foo-Bar') //=> 'FooBar'
 
-pascalCase('Foo-Bar'); // 'FooBar'
+pascalCase('react_component') //=> 'ReactComponent'
 
-pascalCase('fooBAR'); // 'FooBar'
+pascalCase('--foo.bar') //=> 'FooBar'
 
-pascalCase('react_component'); // 'ReactComponent'
+pascalCase('cinema Scope') //=> 'CinemaScope'
 
-pascalCase('--foo.bar'); // 'FooBar'
-
-pascalCase('__foo__--bar'); // 'FooBar'
-
-pascalCase('cinema Scope'); // 'CinemaScope'
+pascalCase('the quick brown fox') //=> 'TheQuickBrownFox'
 ```
+
+## Related
+
+- [camelCase](/String/camelCase)
+- [kebabCase](/String/kebabCase)
+- [snakeCase](/String/snakeCase)
 
 ## Try
 
 <REPL code={`const { pascalCase } = require('@opentf/std');
 
-pascalCase('pascal case');
+console.log(pascalCase('hello world'));
+console.log(pascalCase('kebab-case-string'));
 `} />

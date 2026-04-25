@@ -1,15 +1,24 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Splits the given array values into groups of a given size.
+> 🧩 Splits an array into groups of a specified size.
 
 ## Syntax
 
 ```ts copy
 import { chunk } from '@opentf/std';
 
-chunk(arr: unknown[], size = 1): unknown[];
+chunk<T>(arr: T[] = [], size: number = 1): T[][]
 ```
+
+## Parameters
+
+- `arr`: The source array.
+- `size`: The length of each chunk. Defaults to `1`.
+
+## Returns
+
+A new array containing the chunks.
 
 ## Examples
 

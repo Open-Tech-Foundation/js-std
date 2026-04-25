@@ -1,32 +1,43 @@
+import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Returns a tuple with `Quotient` and `Remainder`.
+> ➗ Returns a tuple containing the quotient and the remainder of two numbers.
 
 ## Syntax
 
-```ts
+```ts copy
 import { divMod } from '@opentf/std';
 
-divMod(a: number, b: number): [number, number]
+divMod(x: number, y: number): [quotient: number, remainder: number]
 ```
+
+## Parameters
+
+- `x`: The dividend.
+- `y`: The divisor.
+
+## Returns
+
+A tuple where the first element is the quotient (`x / y`) and the second is the remainder (`x % y`).
 
 ## Examples
 
 ```ts
-divMod(4, 2) //=> [2, 0]);
+divMod(4, 2) //=> [2, 0]
 
-divMod(11, 4) //=> [2.75, 3]);
+divMod(11, 4) //=> [2.75, 3]
 
-divMod(1, 0) //=> [Infinity, NaN]);
+divMod(1, 0) //=> [Infinity, NaN]
 
-divMod(0, 1) //=> [0, 0]);
+divMod(0, 1) //=> [0, 0]
 
-divMod(-9, -2) //=> [4.5, -1]);
+divMod(-9, -2) //=> [4.5, -1]
 ```
 
 ## Try
 
 <REPL code={`const { divMod } = require('@opentf/std');
 
-divMod(4, 2);
+console.log(divMod(11, 4));
+console.log(divMod(-9, -2));
 `} />

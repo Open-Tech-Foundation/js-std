@@ -1,0 +1,50 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> 🔄 Checks if two arrays are equivalent, regardless of element order.
+
+<Callout type="info">
+  It performs deep comparisons using the [isEql](/Assert/isEql) function.
+</Callout>
+
+<Callout type="info">
+  It also supports comparing [sparse arrays](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Indexed_collections#sparse_arrays).
+</Callout>
+
+## Syntax
+
+```ts copy
+import { isUnorderedEqual } from '@opentf/std';
+
+isUnorderedEqual(arr1: unknown[], arr2: unknown[]): boolean
+```
+
+## Parameters
+
+- `arr1`: The first array to compare.
+- `arr2`: The second array to compare.
+
+## Returns
+
+`true` if the arrays contain the same elements in any order, `false` otherwise.
+
+## Examples
+
+```ts
+isUnorderedEqual([1, 3, 2], [2, 1, 3]) //=> true
+
+isUnorderedEqual([1, 3, 2], [2, 1, 5]) //=> false
+
+isUnorderedEqual([{ a: 1 }, { b: 2 }], [{ b: 2 }, { a: 1 }]) //=> true
+```
+
+## Related
+
+- [isEql](/Assert/isEql)
+
+## Try
+
+<REPL code={`const { isUnorderedEqual } = require('@opentf/std');
+
+console.log(isUnorderedEqual([1, 3, 2], [2, 1, 3]));
+`} />

@@ -1,23 +1,27 @@
+import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Array map with `Async` callback function.
+> 🗺️ Maps an array to a new array using an asynchronous callback function.
 
 ## Syntax
 
-```ts
-aMap(
+```ts copy
+import { aMap } from '@opentf/std';
+
+aMap<T, R>(
   arr: T[], 
-  cb: (value: T, index: number) => Promise<unknown>
-): Promise<unknown[]>
+  cb: (value: T, index: number) => Promise<R>
+): Promise<R[]>
 ```
 
-## Usage
+## Parameters
 
-```ts
-import { aMap } from "@opentf/std";
+- `arr`: The source array.
+- `cb`: An async function that returns a `Promise` of the transformed value.
 
-aMap([], async (value, index) => {});
-```
+## Returns
+
+A `Promise` that resolves to a new array of transformed values.
 
 ## Examples
 
@@ -26,12 +30,12 @@ const arr = [1, 2, 3, 4, 5];
 
 function multiply(n, i) {
   return new Promise((resolve) => {
-    resolve(n * i);
+    setTimeout(() => resolve(n * i), 10);
   });
 }
 
 const result = await aMap(arr, async (n, i) => await multiply(n, i));
-console.log(result); // [0, 2, 6, 12, 20]
+console.log(result); //=> [0, 2, 6, 12, 20]
 ```
 
 ## Try
@@ -44,12 +48,25 @@ function multiply(n, i) {
   });
 }
 
-
 async function main() {
   const arr = [1, 2, 3, 4, 5];
   const result = await aMap(arr, async (n, i) => await multiply(n, i));
-  log(result);
+  console.log(result);
 }
 
 main();
 `} />
+
+## Why?
+
+- **Native `map`**: Returns an array of `Promise` objects (e.g., `[Promise, Promise, ...]`). You would need to manually use `await Promise.all()` to get the actual values. `aMap` handles this resolution internally.
+
+```js
+// Native approach:
+const results = await Promise.all(arr.map(async (x) => await someAsyncFn(x)));
+
+// @opentf/std approach:
+const results = await aMap(arr, someAsyncFn);
+```
+
+- **Sequential Execution**: Native `map` with async callbacks starts all operations simultaneously. `aMap` executes them sequentially, which is safer when dealing with rate-limited APIs or database connections.

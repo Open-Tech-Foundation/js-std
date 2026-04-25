@@ -1,18 +1,27 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Counts the items in the given array and groups them by the name provided.
+> 🔢 Counts the occurrences of items in an array, grouped by a generated key.
 
 ## Syntax
 
-```ts
+```ts copy
 import { countBy } from '@opentf/std';
 
 countBy<T>(
   arr: T[] = [],
   by: ((val: T) => string) | string
-)
+): Record<string, number>
 ```
+
+## Parameters
+
+- `arr`: The source array.
+- `by`: An iteratee (function or property name) to generate the keys.
+
+## Returns
+
+An object with the keys and their respective counts.
 
 ## Examples
 
@@ -22,7 +31,7 @@ countBy([]) //=> {}
 countBy([1, 2, 3, 4, 5, 6, 7, 8, 9], (v) =>
   v % 2 === 0 ? 'Even' : 'Odd'
 )
-//=> { Even: 4, Odd: 5 });
+//=> { Even: 4, Odd: 5 }
 
 countBy(['Apple', 'Mango', 'Orange'], 'length')
 //=>
@@ -39,7 +48,7 @@ const inventory = [
   { name: 'fish', type: 'meat', qty: 22 },
 ];
 countBy(inventory, ({ qty }) => (qty === 0 ? 'Out-Of-Stock' : 'In-Stock'))
-//=> { OutOfStock: 1, InStock: 4 });
+//=> { 'Out-Of-Stock': 1, 'In-Stock': 4 }
 
 const letters = ['a', 'b', 'A', 'a', 'B', 'c'];
 countBy(letters, (l) => l.toLowerCase())

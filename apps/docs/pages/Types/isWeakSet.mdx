@@ -1,0 +1,26 @@
+import REPL from "../../components/REPL";
+
+> Checks if the given value is [WeakSet](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet).
+
+## Syntax
+
+```ts
+import { isWeakSet } from '@opentf/std';
+
+isWeakSet(value: unknown): boolean;
+```
+
+## Examples
+
+```ts
+isWeakSet(new Set()) //=> false
+
+isWeakSet(new WeakSet()) //=> true
+```
+
+## Try
+
+<REPL code={`const { isWeakSet } = require('@opentf/std');
+
+isWeakSet(new WeakSet());
+`} />

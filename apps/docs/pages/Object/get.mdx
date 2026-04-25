@@ -1,15 +1,15 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Gets the value of an object at the given path.
+> 🎯 Gets the value at a specific path of an object.
 
 <Callout type="info">
-You can provide an optional default value to return if the given path does not exist.
+  Supports both string paths (e.g., `'a.b[0].c'`) and array paths (e.g., `['a', 'b', 0, 'c']`).
 </Callout>
 
 ## Syntax
 
-```ts
+```ts copy
 import { get } from '@opentf/std';
 
 get(
@@ -19,30 +19,43 @@ get(
 ): unknown
 ```
 
+## Parameters
+
+- `obj`: The object to query.
+- `path`: The path of the property to get.
+- `defVal`: The value returned if the resolved value is `undefined` or the path doesn't exist.
+
+## Returns
+
+The resolved value or the default value.
+
 ## Examples
 
 ```ts
-get({}, '') //=> undefined
-
-get({}, '', undefined) //=> undefined
-
-get({}, '', null) //=> null
-
-get({}, 'a') //=> undefined
-
-get({ a: null }, 'a') //=> null
-
 get({ a: 1 }, 'a') //=> 1
 
-get({ user: { email: 'user@example.com' } }, 'user.email'); // 'user@example.com'
+get({ user: { email: 'user@example.com' } }, 'user.email') //=> 'user@example.com'
 
-get({ fruits: ['Apple', 'Mango', 'Orange'] }, 'fruits'); // ['Apple', 'Mango', 'Orange']
+get({ a: [{ b: { c: 99 } }] }, 'a[0].b.c') //=> 99
 
-get({ a: [{ b: { c: 99 } }] }, 'a[0].b.c'); // 99
+get({ a: 1 }, 'b', 'default') //=> 'default'
+
+get({ a: null }, 'a') //=> null (null is a valid value)
+
+get({ fruits: ['Apple', 'Mango'] }, ['fruits', 1]) //=> 'Mango'
 ```
+
+## Related
+
+- [set](/Object/set)
+- [has](/Object/has)
+- [unset](/Object/unset)
+
 ## Try
 
 <REPL code={`const { get } = require('@opentf/std');
 
-get({ a: { b: 25 } }, 'a.b');
+const obj = { a: [{ b: { c: 99 } }] };
+console.log(get(obj, 'a[0].b.c'));
+console.log(get(obj, 'x.y.z', 'N/A'));
 `} />

@@ -1,15 +1,11 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Returns the maximum value of the given array.
+> 📈 Returns the maximum value in an array.
 
 <Callout type="info">
-If duplicate values are present in the array, then the first match will be returned.
+  If duplicate maximum values are present, the first occurrence is returned.
 </Callout>
-
-**Related**
-- [min](/Array/min)
-- [bounds](/Array/bounds)
 
 ## Syntax
 
@@ -18,9 +14,18 @@ import { max } from '@opentf/std';
 
 max<T>(
   arr: T[] = [],
-  by: (val: T) => number = (x: T) => x as number
+  by: (val: T) => number = (x: T) => x as unknown as number
 ): T | null
 ```
+
+## Parameters
+
+- `arr`: The source array.
+- `by`: An optional function to extract the numeric value for comparison. Defaults to identity function.
+
+## Returns
+
+The maximum value or `null` if the array is empty (after compacting).
 
 ## Examples
 
@@ -46,13 +51,18 @@ const arr = [
   },
   { name: 'y2', age: 16 },
 ];
-max(arr, (o) => o.age))
+max(arr, (o) => o.age)
 //=> 
 // {
 //  name: 'y',
 //  age: 16,
 // }
 ```
+
+## Related
+
+- [min](/Array/min)
+- [bounds](/Array/bounds)
 
 ## Try
 
