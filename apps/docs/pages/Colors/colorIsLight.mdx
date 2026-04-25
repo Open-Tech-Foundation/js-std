@@ -1,0 +1,30 @@
+import REPL from "../../components/REPL";
+
+> ☀️ Checks if a color is light based on its relative luminance.
+
+## Syntax
+
+```ts copy
+import { colorIsLight } from '@opentf/std';
+
+colorIsLight(input: any): boolean
+```
+
+Returns `true` if the luminance is greater than or equal to `0.5`.
+
+## Examples
+
+```ts
+colorIsLight('white'); //=> true
+colorIsLight('black'); //=> false
+colorIsLight('yellow'); //=> true
+```
+
+## Try
+
+<REPL code={`const { colorIsLight } = require('@opentf/std');
+
+log(colorIsLight('white'));
+log(colorIsLight('black'));
+log(colorIsLight('#eee'));
+`} />

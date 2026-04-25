@@ -1,0 +1,30 @@
+import REPL from "../../components/REPL";
+
+> 🌙 Checks if a color is dark based on its relative luminance.
+
+## Syntax
+
+```ts copy
+import { colorIsDark } from '@opentf/std';
+
+colorIsDark(input: any): boolean
+```
+
+Returns `true` if the luminance is less than `0.5`.
+
+## Examples
+
+```ts
+colorIsDark('black'); //=> true
+colorIsDark('white'); //=> false
+colorIsDark('navy'); //=> true
+```
+
+## Try
+
+<REPL code={`const { colorIsDark } = require('@opentf/std');
+
+log(colorIsDark('black'));
+log(colorIsDark('white'));
+log(colorIsDark('#333'));
+`} />

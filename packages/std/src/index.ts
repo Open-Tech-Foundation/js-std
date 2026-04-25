@@ -141,6 +141,9 @@ export { default as colorMix } from './colors/colorMix';
 export { default as colorGrayscale } from './colors/colorGrayscale';
 export { default as colorRotateHue } from './colors/colorRotateHue';
 export { default as colorLuminance } from './colors/colorLuminance';
+export { default as colorInvert } from './colors/colorInvert';
+export { default as colorIsDark } from './colors/colorIsDark';
+export { default as colorIsLight } from './colors/colorIsLight';
 export { default as colorContrast } from './colors/colorContrast';
 export { default as colorIsReadable } from './colors/colorIsReadable';
 

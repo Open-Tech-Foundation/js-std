@@ -9,6 +9,9 @@ import {
   colorGrayscale,
   colorRotateHue,
   colorLuminance,
+  colorInvert,
+  colorIsDark,
+  colorIsLight,
   colorContrast,
   colorIsReadable,
 } from '../../src';
@@ -63,9 +66,27 @@ describe('Colors Expansion', () => {
       expect(colorRotateHue('red', 120)).toBe('#00ff00');
       expect(colorRotateHue('red', -120)).toBe('#0000ff');
     });
+
+    test('colorInvert', () => {
+      expect(colorInvert('white')).toBe('#000000');
+      expect(colorInvert('black')).toBe('#ffffff');
+      expect(colorInvert('red')).toBe('#00ffff');
+    });
   });
 
   describe('A11y', () => {
+    test('colorIsDark', () => {
+      expect(colorIsDark('black')).toBe(true);
+      expect(colorIsDark('white')).toBe(false);
+      expect(colorIsDark('navy')).toBe(true);
+    });
+
+    test('colorIsLight', () => {
+      expect(colorIsLight('white')).toBe(true);
+      expect(colorIsLight('black')).toBe(false);
+      expect(colorIsLight('yellow')).toBe(true);
+    });
+
     test('colorLuminance', () => {
       expect(colorLuminance('white')).toBe(1);
       expect(colorLuminance('black')).toBe(0);

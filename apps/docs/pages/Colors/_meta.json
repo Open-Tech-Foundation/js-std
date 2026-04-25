@@ -8,6 +8,9 @@
   "colorMix": "colorMix",
   "colorGrayscale": "colorGrayscale",
   "colorRotateHue": "colorRotateHue",
+  "colorInvert": "colorInvert",
+  "colorIsDark": "colorIsDark",
+  "colorIsLight": "colorIsLight",
   "colorLuminance": "colorLuminance",
   "colorContrast": "colorContrast",
   "colorIsReadable": "colorIsReadable"

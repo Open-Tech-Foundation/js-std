@@ -1,0 +1,30 @@
+import REPL from "../../components/REPL";
+
+> 🔄 Inverts the red, green, and blue components of a color.
+
+## Syntax
+
+```ts copy
+import { colorInvert } from '@opentf/std';
+
+colorInvert(input: any, format?: ColorFormat): any
+```
+
+- `format`: The output format (default: `'hex'`).
+
+## Examples
+
+```ts
+colorInvert('white'); //=> '#000000'
+colorInvert('black'); //=> '#ffffff'
+colorInvert('red'); //=> '#00ffff'
+```
+
+## Try
+
+<REPL code={`const { colorInvert } = require('@opentf/std');
+
+log(colorInvert('white'));
+log(colorInvert('red'));
+log(colorInvert('#123456', 'rgb'));
+`} />
