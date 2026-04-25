@@ -27,6 +27,7 @@ export const ColorFormat = {
   HSLA_OBJ: 'hsla-object',
   HSLA_ARR: 'hsla-array',
   OKLCH_OBJ: 'oklch-object',
+  ANSI: 'ansi',
 } as const;
 
 export type ColorFormat = (typeof ColorFormat)[keyof typeof ColorFormat];
@@ -532,6 +533,8 @@ export default function color(input: ColorInput, format: ColorFormat): any {
     }
     case 'oklch-object':
       return rgbaToOklch(rgba.r, rgba.g, rgba.b, rgba.a);
+    case 'ansi':
+      return `\x1b[38;2;${rgba.r};${rgba.g};${rgba.b}m`;
     default:
       throw new Error(`Invalid format: ${format}`);
   }

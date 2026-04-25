@@ -42,6 +42,7 @@ The desired output format. You can use the `ColorFormat` helper constant or the 
 | `ColorFormat.HSLA_OBJ` | `'hsla-object'` | `{ h, s, l, a }` |
 | `ColorFormat.HSLA_ARR` | `'hsla-array'` | `[h, s, l, a]` |
 | `ColorFormat.OKLCH_OBJ` | `'oklch-object'` | `{ l, c, h, a }` |
+| `ColorFormat.ANSI` | `'ansi'` | ANSI TrueColor escape code (24-bit) |
 
 ## Examples
 
@@ -79,7 +80,13 @@ color('red', 'oklch'); //=> 'oklch(0.628 0.2577 29.23)'
 color('oklch(0.628 0.2577 29.23)', 'hex'); //=> '#ff0000'
 ```
 
-### 5. Extracting Data Structures
+### 5. Terminal Output (ANSI)
+```ts
+color('red', 'ansi'); //=> "\x1b[38;2;255;0;0m"
+color('#00ff00', ColorFormat.ANSI); //=> "\x1b[38;2;0;255;0m"
+```
+
+### 6. Extracting Data Structures
 ```ts
 color('#ff0000', ColorFormat.RGBA_OBJ); //=> { r: 255, g: 0, b: 0, a: 1 }
 color('hsl(120, 100%, 50%)', ColorFormat.HSLA_ARR); //=> [120, 100, 50, 1]

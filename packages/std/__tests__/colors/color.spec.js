@@ -112,5 +112,10 @@ describe('Colors > color', () => {
       expect(color({ ...red, a: 0.5 }, 'oklch')).toBe('oklch(0.628 0.2577 29.23 / 0.5)');
       expect(color(red, 'oklch-object')).toEqual({ l: 0.628, c: 0.2577, h: 29.23, a: 1 });
     });
+
+    test('ansi', () => {
+      expect(color('red', 'ansi')).toBe('\x1b[38;2;255;0;0m');
+      expect(color('#00ff00', 'ansi')).toBe('\x1b[38;2;0;255;0m');
+    });
   });
 });
