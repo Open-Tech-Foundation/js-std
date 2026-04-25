@@ -1,0 +1,29 @@
+import REPL from "../../components/REPL";
+
+> ⚖️ Calculates the contrast ratio between two colors.
+
+## Syntax
+
+```ts copy
+import { colorContrast } from '@opentf/std';
+
+colorContrast(color1: any, color2: any): number
+```
+
+Returns a value between `1` and `21`.
+
+## Examples
+
+```ts
+colorContrast('white', 'black'); //=> 21
+colorContrast('white', 'white'); //=> 1
+colorContrast('red', 'white'); //=> 4
+```
+
+## Try
+
+<REPL code={`const { colorContrast } = require('@opentf/std');
+
+log(colorContrast('white', 'black'));
+log(colorContrast('red', 'blue'));
+`} />

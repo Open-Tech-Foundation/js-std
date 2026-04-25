@@ -1,0 +1,30 @@
+import REPL from "../../components/REPL";
+
+> 💡 Calculates the relative luminance of a color.
+
+## Syntax
+
+```ts copy
+import { colorLuminance } from '@opentf/std';
+
+colorLuminance(input: any): number
+```
+
+Returns a value between `0` (darkest black) and `1` (brightest white).
+
+## Examples
+
+```ts
+colorLuminance('white'); //=> 1
+colorLuminance('black'); //=> 0
+colorLuminance('red'); //=> 0.2126
+```
+
+## Try
+
+<REPL code={`const { colorLuminance } = require('@opentf/std');
+
+log(colorLuminance('white'));
+log(colorLuminance('red'));
+log(colorLuminance('blue'));
+`} />

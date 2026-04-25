@@ -34,11 +34,14 @@ The desired output format. You can use the `ColorFormat` helper constant or the 
 | `ColorFormat.RGBA` | `'rgba'` | `rgba()` CSS string |
 | `ColorFormat.HSL` | `'hsl'` | `hsl()` CSS string |
 | `ColorFormat.HSLA` | `'hsla'` | `hsla()` CSS string |
+| `ColorFormat.OKLCH` | `'oklch'` | `oklch()` CSS string |
 | `ColorFormat.CSS` | `'css'` | Smart format: Name (if available), Hex (if opaque), or RGBA (if transparent) |
+| `ColorFormat.NUMBER` | `'number'` | 24-bit integer (e.g., `0xff0000`) |
 | `ColorFormat.RGBA_OBJ` | `'rgba-object'` | `{ r, g, b, a }` |
 | `ColorFormat.RGBA_ARR` | `'rgba-array'` | `[r, g, b, a]` |
 | `ColorFormat.HSLA_OBJ` | `'hsla-object'` | `{ h, s, l, a }` |
 | `ColorFormat.HSLA_ARR` | `'hsla-array'` | `[h, s, l, a]` |
+| `ColorFormat.OKLCH_OBJ` | `'oklch-object'` | `{ l, c, h, a }` |
 
 ## Examples
 
@@ -70,7 +73,13 @@ color("#123456", "css");           //=> "#123456"
 color("rgba(255, 0, 0, 0.5)", "css"); //=> "rgba(255, 0, 0, 0.5)"
 ```
 
-### 4. Extracting Data Structures
+### 4. Advanced Color Spaces (OKLCH)
+```ts
+color('red', 'oklch'); //=> 'oklch(0.628 0.2577 29.23)'
+color('oklch(0.628 0.2577 29.23)', 'hex'); //=> '#ff0000'
+```
+
+### 5. Extracting Data Structures
 ```ts
 color('#ff0000', ColorFormat.RGBA_OBJ); //=> { r: 255, g: 0, b: 0, a: 1 }
 color('hsl(120, 100%, 50%)', ColorFormat.HSLA_ARR); //=> [120, 100, 50, 1]

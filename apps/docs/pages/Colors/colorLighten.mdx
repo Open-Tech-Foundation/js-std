@@ -1,0 +1,30 @@
+import REPL from "../../components/REPL";
+
+> 💡 Increases the lightness of a color.
+
+## Syntax
+
+```ts copy
+import { colorLighten } from '@opentf/std';
+
+colorLighten(input: ColorInput, amount: number, format?: ColorFormat): any
+```
+
+- `amount`: A number between `0` and `1`.
+- `format`: The output format (default: `'hex'`).
+
+## Examples
+
+```ts
+colorLighten('#000', 0.5); //=> '#808080'
+colorLighten('red', 0.2); //=> '#ff6666'
+colorLighten('red', 0.2, 'hsl'); //=> 'hsl(0, 100%, 70%)'
+```
+
+## Try
+
+<REPL code={`const { colorLighten } = require('@opentf/std');
+
+log(colorLighten('#000', 0.5));
+log(colorLighten('blue', 0.3));
+`} />

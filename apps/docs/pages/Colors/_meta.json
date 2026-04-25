@@ -1,3 +1,14 @@
 {
-  "color": "color"
+  "color": "color",
+  "colorLighten": "colorLighten",
+  "colorDarken": "colorDarken",
+  "colorSaturate": "colorSaturate",
+  "colorDesaturate": "colorDesaturate",
+  "colorAlpha": "colorAlpha",
+  "colorMix": "colorMix",
+  "colorGrayscale": "colorGrayscale",
+  "colorRotateHue": "colorRotateHue",
+  "colorLuminance": "colorLuminance",
+  "colorContrast": "colorContrast",
+  "colorIsReadable": "colorIsReadable"
 }

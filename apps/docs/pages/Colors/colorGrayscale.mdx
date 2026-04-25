@@ -1,0 +1,29 @@
+import REPL from "../../components/REPL";
+
+> 🌫️ Converts a color to grayscale.
+
+## Syntax
+
+```ts copy
+import { colorGrayscale } from '@opentf/std';
+
+colorGrayscale(input: any, format?: ColorFormat): any
+```
+
+- `format`: The output format (default: `'hex'`).
+
+## Examples
+
+```ts
+colorGrayscale('red'); //=> '#808080'
+colorGrayscale('#00ff00'); //=> '#808080'
+```
+
+## Try
+
+<REPL code={`const { colorGrayscale } = require('@opentf/std');
+
+log(colorGrayscale('red'));
+log(colorGrayscale('blue'));
+log(colorGrayscale('orange', 'hsl'));
+`} />

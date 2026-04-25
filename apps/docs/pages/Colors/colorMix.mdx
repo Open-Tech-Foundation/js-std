@@ -1,0 +1,30 @@
+import REPL from "../../components/REPL";
+
+> 🧪 Mixes two colors together.
+
+## Syntax
+
+```ts copy
+import { colorMix } from '@opentf/std';
+
+colorMix(color1: any, color2: any, weight?: number, format?: ColorFormat): any
+```
+
+- `weight`: The weight of the first color between `0` and `1` (default: `0.5`).
+- `format`: The output format (default: `'hex'`).
+
+## Examples
+
+```ts
+colorMix('white', 'black'); //=> '#808080'
+colorMix('red', 'blue'); //=> '#800080'
+colorMix('red', 'blue', 0.25); //=> '#4000bf'
+```
+
+## Try
+
+<REPL code={`const { colorMix } = require('@opentf/std');
+
+log(colorMix('red', 'blue'));
+log(colorMix('yellow', 'green', 0.8));
+`} />

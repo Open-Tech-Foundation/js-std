@@ -2,6 +2,7 @@ import clamp from '../maths/clamp';
 
 type RGBA = { r: number; g: number; b: number; a: number };
 type HSLA = { h: number; s: number; l: number; a: number };
+type OKLCH = { l: number; c: number; h: number; a: number };
 
 type ColorInput =
   | string
@@ -9,7 +10,8 @@ type ColorInput =
   | [number, number, number]
   | [number, number, number, number]
   | { r: number; g: number; b: number; a?: number }
-  | { h: number; s: number; l: number; a?: number };
+  | { h: number; s: number; l: number; a?: number }
+  | { l: number; c: number; h: number; a?: number };
 
 export const ColorFormat = {
   HEX: 'hex',
@@ -17,11 +19,14 @@ export const ColorFormat = {
   RGBA: 'rgba',
   HSL: 'hsl',
   HSLA: 'hsla',
+  OKLCH: 'oklch',
   CSS: 'css',
+  NUMBER: 'number',
   RGBA_OBJ: 'rgba-object',
   RGBA_ARR: 'rgba-array',
   HSLA_OBJ: 'hsla-object',
   HSLA_ARR: 'hsla-array',
+  OKLCH_OBJ: 'oklch-object',
 } as const;
 
 export type ColorFormat = (typeof ColorFormat)[keyof typeof ColorFormat];
@@ -287,6 +292,75 @@ function rgbaToHsla(r: number, g: number, b: number, a = 1): HSLA {
   };
 }
 
+// OKLCH / OKLab Math
+function rgbaToOklch(r: number, g: number, b: number, a = 1): OKLCH {
+  // sRGB to Linear RGB
+  const toLinear = (c: number) => {
+    const v = c / 255;
+    return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+  };
+  const lr = toLinear(r);
+  const lg = toLinear(g);
+  const lb = toLinear(b);
+
+  // Linear RGB to OKLab
+  const l = 0.4122214708 * lr + 0.5363325363 * lg + 0.0514459929 * lb;
+  const m = 0.2119034982 * lr + 0.6740817638 * lg + 0.1140147380 * lb;
+  const s = 0.0883024619 * lr + 0.2788669539 * lg + 0.6328305841 * lb;
+
+  const l_ = Math.cbrt(l);
+  const m_ = Math.cbrt(m);
+  const s_ = Math.cbrt(s);
+
+  const L = 0.2104542553 * l_ + 0.793617785 * m_ - 0.0040720468 * s_;
+  const A = 1.9779984951 * l_ - 2.428592205 * m_ + 0.4505937099 * s_;
+  const B = 0.0259040371 * l_ + 0.7827717662 * m_ - 0.808675766 * s_;
+
+  // OKLab to OKLCH
+  const C = Math.sqrt(A * A + B * B);
+  let H = (Math.atan2(B, A) * 180) / Math.PI;
+  if (H < 0) H += 360;
+
+  return {
+    l: Number(L.toFixed(4)),
+    c: Number(C.toFixed(4)),
+    h: Number(H.toFixed(2)),
+    a,
+  };
+}
+
+function oklchToRgba(l: number, c: number, h: number, a = 1): RGBA {
+  const L = l;
+  const hr = (h * Math.PI) / 180;
+  const A = c * Math.cos(hr);
+  const B = c * Math.sin(hr);
+
+  const l_ = L + 0.3963377774 * A + 0.2158037573 * B;
+  const m_ = L - 0.1055613458 * A - 0.0638541728 * B;
+  const s_ = L - 0.0894841775 * A - 1.291485548 * B;
+
+  const l3 = l_ * l_ * l_;
+  const m3 = m_ * m_ * m_;
+  const s3 = s_ * s_ * s_;
+
+  const r = +4.0767416621 * l3 - 3.3077115913 * m3 + 0.2309699292 * s3;
+  const g = -1.2684380046 * l3 + 2.6097574011 * m3 - 0.3413193965 * s3;
+  const b = -0.0041960863 * l3 - 0.7034186147 * m3 + 1.707614701 * s3;
+
+  const toSRGB = (c: number) => {
+    return Math.round(
+      (c <= 0.0031308 ? 12.92 * c : 1.055 * Math.pow(c, 1 / 2.4) - 0.055) * 255,
+    );
+  };
+
+  return {
+    r: clamp(toSRGB(r), 0, 255),
+    g: clamp(toSRGB(g), 0, 255),
+    b: clamp(toSRGB(b), 0, 255),
+    a,
+  };
+}
+
 function normalize(input: ColorInput): RGBA | null {
   if (typeof input === 'string') {
     const s = input.trim().toLowerCase();
@@ -324,6 +398,18 @@ function normalize(input: ColorInput): RGBA | null {
         ),
       );
     }
+
+    const oklchMatch = s.match(
+      /^oklch\(\s*(\d*(?:\.\d+)?)\s+(\d*(?:\.\d+)?)\s+(\d*(?:\.\d+)?)\s*(?:\/\s*(\d*(?:\.\d+)?)\s*)?\)$/,
+    );
+    if (oklchMatch) {
+      return oklchToRgba(
+        Number.parseFloat(oklchMatch[1]),
+        Number.parseFloat(oklchMatch[2]),
+        Number.parseFloat(oklchMatch[3]),
+        oklchMatch[4] === undefined ? 1 : Number.parseFloat(oklchMatch[4]),
+      );
+    }
   }
 
   if (typeof input === 'number') {
@@ -353,12 +439,20 @@ function normalize(input: ColorInput): RGBA | null {
         a: clamp(input.a === undefined ? 1 : input.a, 0, 1),
       };
     }
-    if ('h' in input) {
+    if ('h' in input && 's' in input) {
       return hslToRgba(
         clamp(input.h, 0, 360),
         clamp(input.s, 0, 100),
         clamp(input.l, 0, 100),
         clamp(input.a === undefined ? 1 : input.a, 0, 1),
+      );
+    }
+    if ('l' in input && 'c' in input) {
+      return oklchToRgba(
+        input.l,
+        input.c,
+        input.h,
+        input.a === undefined ? 1 : input.a,
       );
     }
   }
@@ -406,6 +500,11 @@ export default function color(input: ColorInput, format: ColorFormat): any {
       const { h, s, l, a } = rgbaToHsla(rgba.r, rgba.g, rgba.b, rgba.a);
       return `hsla(${h}, ${s}%, ${l}%, ${a})`;
     }
+    case 'oklch': {
+      const { l, c, h, a } = rgbaToOklch(rgba.r, rgba.g, rgba.b, rgba.a);
+      if (a === 1) return `oklch(${l} ${c} ${h})`;
+      return `oklch(${l} ${c} ${h} / ${a})`;
+    }
     case 'css': {
       if (rgba.a === 1) {
         const r = rgba.r.toString(16).padStart(2, '0');
@@ -419,6 +518,8 @@ export default function color(input: ColorInput, format: ColorFormat): any {
       }
       return `rgba(${rgba.r}, ${rgba.g}, ${rgba.b}, ${rgba.a})`;
     }
+    case 'number':
+      return (rgba.r << 16) | (rgba.g << 8) | rgba.b;
     case 'rgba-object':
       return rgba;
     case 'rgba-array':
@@ -429,6 +530,8 @@ export default function color(input: ColorInput, format: ColorFormat): any {
       const { h, s, l, a } = rgbaToHsla(rgba.r, rgba.g, rgba.b, rgba.a);
       return [h, s, l, a];
     }
+    case 'oklch-object':
+      return rgbaToOklch(rgba.r, rgba.g, rgba.b, rgba.a);
     default:
       throw new Error(`Invalid format: ${format}`);
   }

@@ -23,6 +23,11 @@ describe('Colors > color', () => {
       expect(color('hsl(0, 100%, 50%)', 'rgba-object')).toEqual({ r: 255, g: 0, b: 0, a: 1 });
       expect(color('hsla(0, 100%, 50%, 0.5)', 'rgba-object')).toEqual({ r: 255, g: 0, b: 0, a: 0.5 });
     });
+
+    test('OKLCH strings', () => {
+      expect(color('oklch(0.628 0.258 29.23)', 'hex')).toBe('#ff0000');
+      expect(color('oklch(0.628 0.258 29.23 / 0.5)', 'rgba')).toBe('rgba(255, 0, 0, 0.5)');
+    });
   });
 
   describe('Edge Cases & Robustness', () => {
@@ -100,6 +105,12 @@ describe('Colors > color', () => {
       expect(color('#f0f8ff', 'css')).toBe('aliceblue');
       expect(color({ ...red, a: 0.5 }, 'css')).toBe('rgba(255, 0, 0, 0.5)');
       expect(color('#123456', 'css')).toBe('#123456');
+    });
+
+    test('oklch', () => {
+      expect(color(red, 'oklch')).toBe('oklch(0.628 0.2577 29.23)');
+      expect(color({ ...red, a: 0.5 }, 'oklch')).toBe('oklch(0.628 0.2577 29.23 / 0.5)');
+      expect(color(red, 'oklch-object')).toEqual({ l: 0.628, c: 0.2577, h: 29.23, a: 1 });
     });
   });
 });

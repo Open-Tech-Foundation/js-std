@@ -1,0 +1,29 @@
+import REPL from "../../components/REPL";
+
+> 🎡 Rotates the hue of a color.
+
+## Syntax
+
+```ts copy
+import { colorRotateHue } from '@opentf/std';
+
+colorRotateHue(input: any, degrees: number, format?: ColorFormat): any
+```
+
+- `degrees`: The degrees to rotate (can be negative).
+- `format`: The output format (default: `'hex'`).
+
+## Examples
+
+```ts
+colorRotateHue('red', 120); //=> '#00ff00' (lime)
+colorRotateHue('red', -120); //=> '#0000ff' (blue)
+```
+
+## Try
+
+<REPL code={`const { colorRotateHue } = require('@opentf/std');
+
+log(colorRotateHue('red', 60));
+log(colorRotateHue('blue', 180));
+`} />

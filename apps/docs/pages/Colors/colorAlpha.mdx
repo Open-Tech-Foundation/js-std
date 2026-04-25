@@ -1,0 +1,29 @@
+import REPL from "../../components/REPL";
+
+> 👻 Adjusts the alpha channel of a color.
+
+## Syntax
+
+```ts copy
+import { colorAlpha } from '@opentf/std';
+
+colorAlpha(input: ColorInput, amount: number, format?: ColorFormat): any
+```
+
+- `amount`: A number between `0` and `1`.
+- `format`: The output format (default: `'hex'`).
+
+## Examples
+
+```ts
+colorAlpha('red', 0.5); //=> '#ff000080'
+colorAlpha('red', 0.5, 'rgba'); //=> 'rgba(255, 0, 0, 0.5)'
+```
+
+## Try
+
+<REPL code={`const { colorAlpha } = require('@opentf/std');
+
+log(colorAlpha('blue', 0.1));
+log(colorAlpha('#ff0000', 0.8));
+`} />

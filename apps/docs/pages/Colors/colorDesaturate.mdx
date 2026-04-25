@@ -1,0 +1,29 @@
+import REPL from "../../components/REPL";
+
+> 🧊 Decreases the saturation of a color.
+
+## Syntax
+
+```ts copy
+import { colorDesaturate } from '@opentf/std';
+
+colorDesaturate(input: ColorInput, amount: number, format?: ColorFormat): any
+```
+
+- `amount`: A number between `0` and `1`.
+- `format`: The output format (default: `'hex'`).
+
+## Examples
+
+```ts
+colorDesaturate('red', 0.5); //=> '#bf4040'
+colorDesaturate('red', 0.5, 'rgba-object'); //=> { r: 191, g: 64, b: 64, a: 1 }
+```
+
+## Try
+
+<REPL code={`const { colorDesaturate } = require('@opentf/std');
+
+log(colorDesaturate('red', 0.5));
+log(colorDesaturate('blue', 1));
+`} />

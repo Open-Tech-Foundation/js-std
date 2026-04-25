@@ -132,6 +132,17 @@ export { default as composeFunction } from './function/composeFunction';
 
 // colors
 export { default as color, ColorFormat } from './colors/color';
+export { default as colorLighten } from './colors/colorLighten';
+export { default as colorDarken } from './colors/colorDarken';
+export { default as colorSaturate } from './colors/colorSaturate';
+export { default as colorDesaturate } from './colors/colorDesaturate';
+export { default as colorAlpha } from './colors/colorAlpha';
+export { default as colorMix } from './colors/colorMix';
+export { default as colorGrayscale } from './colors/colorGrayscale';
+export { default as colorRotateHue } from './colors/colorRotateHue';
+export { default as colorLuminance } from './colors/colorLuminance';
+export { default as colorContrast } from './colors/colorContrast';
+export { default as colorIsReadable } from './colors/colorIsReadable';
 
 // Number
 export { default as isZero } from './number/isZero';
