@@ -94,5 +94,12 @@ describe('Colors > color', () => {
       expect(color(red, 'hsla-object')).toEqual({ h: 0, s: 100, l: 50, a: 1 });
       expect(color(red, 'hsla-array')).toEqual([0, 100, 50, 1]);
     });
+
+    test('css (smart format)', () => {
+      expect(color(red, 'css')).toBe('red');
+      expect(color('#f0f8ff', 'css')).toBe('aliceblue');
+      expect(color({ ...red, a: 0.5 }, 'css')).toBe('rgba(255, 0, 0, 0.5)');
+      expect(color('#123456', 'css')).toBe('#123456');
+    });
   });
 });

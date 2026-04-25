@@ -17,6 +17,7 @@ export const ColorFormat = {
   RGBA: 'rgba',
   HSL: 'hsl',
   HSLA: 'hsla',
+  CSS: 'css',
   RGBA_OBJ: 'rgba-object',
   RGBA_ARR: 'rgba-array',
   HSLA_OBJ: 'hsla-object',
@@ -135,7 +136,7 @@ const COLOR_NAMES: Record<string, string> = {
   orangered: '#ff4500',
   orchid: '#da70d6',
   palegoldenrod: '#eee8aa',
-  palegreen: '#98fb98',
+  paleggreen: '#98fb98',
   paleturquoise: '#afeeee',
   palevioletred: '#db7093',
   papayawhip: '#ffefd5',
@@ -176,6 +177,9 @@ const COLOR_NAMES: Record<string, string> = {
   yellowgreen: '#9acd32',
 };
 
+const HEX_TO_NAME: Record<string, string> = Object.fromEntries(
+  Object.entries(COLOR_NAMES).map(([name, hex]) => [hex, name]),
+);
 
 function hexToRgba(hex: string): RGBA | null {
   const s = hex.startsWith('#') ? hex.slice(1) : hex;
@@ -401,6 +405,19 @@ export default function color(input: ColorInput, format: ColorFormat): any {
     case 'hsla': {
       const { h, s, l, a } = rgbaToHsla(rgba.r, rgba.g, rgba.b, rgba.a);
       return `hsla(${h}, ${s}%, ${l}%, ${a})`;
+    }
+    case 'css': {
+      if (rgba.a === 1) {
+        const r = rgba.r.toString(16).padStart(2, '0');
+        const g = rgba.g.toString(16).padStart(2, '0');
+        const b = rgba.b.toString(16).padStart(2, '0');
+        const hex = `#${r}${g}${b}`;
+        if (HEX_TO_NAME[hex]) {
+          return HEX_TO_NAME[hex];
+        }
+        return hex;
+      }
+      return `rgba(${rgba.r}, ${rgba.g}, ${rgba.b}, ${rgba.a})`;
     }
     case 'rgba-object':
       return rgba;
