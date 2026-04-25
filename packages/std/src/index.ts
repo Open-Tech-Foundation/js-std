@@ -131,14 +131,7 @@ export { default as compose } from './function/compose';
 export { default as composeFunction } from './function/composeFunction';
 
 // colors
-export { default as hexToRGB } from './colors/hexToRGB';
-export { default as rgbToHex } from './colors/rgbToHex';
-export { default as rgbToHsl } from './colors/rgbToHsl';
-export { default as hslToRgb } from './colors/hslToRgb';
-export { default as colorParse } from './colors/colorParse';
-export { default as colorToHex } from './colors/colorToHex';
-export { default as colorToRgb } from './colors/colorToRgb';
-export { default as colorToHsl } from './colors/colorToHsl';
+export { default as color, ColorFormat } from './colors/color';
 
 // Number
 export { default as isZero } from './number/isZero';
