@@ -1,0 +1,29 @@
+import REPL from "../../components/REPL";
+
+> 📏 Calculates the visual width of a string in a terminal.
+
+## Syntax
+
+```ts copy
+import { stringWidth } from '@opentf/std';
+
+stringWidth(str: string): number
+```
+
+## Examples
+
+```ts
+stringWidth('abc') //=> 3
+stringWidth('\x1b[31mabc\x1b[0m') //=> 3
+stringWidth('🔥') //=> 2
+stringWidth('こんにちは') //=> 10
+```
+
+## Try
+
+<REPL code={`const { stringWidth } = require('@opentf/std');
+
+log(stringWidth('Standard Text'));
+log(stringWidth('🔥 High Intensity 🔥'));
+log(stringWidth('こんにちは (Konnichiwa)'));
+`} />

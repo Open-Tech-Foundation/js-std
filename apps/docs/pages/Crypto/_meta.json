@@ -1,0 +1,8 @@
+{
+  "uuidv4": "uuidv4",
+  "uuidv7": "uuidv7",
+  "randomId": "randomId",
+  "randomBytes": "randomBytes",
+  "randomInt": "randomInt",
+  "randomString": "randomString"
+}

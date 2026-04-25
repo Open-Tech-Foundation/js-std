@@ -1,0 +1,25 @@
+import REPL from "../../components/REPL";
+
+> 🎲 Generates cryptographically strong random values.
+
+## Syntax
+
+```ts copy
+import { randomBytes } from '@opentf/std';
+
+randomBytes(size: number): Uint8Array
+```
+
+## Examples
+
+```ts
+randomBytes(16) //=> Uint8Array(16) [...]
+```
+
+## Try
+
+<REPL code={`const { randomBytes } = require('@opentf/std');
+
+log(randomBytes(8));
+log(randomBytes(16));
+`} />

@@ -1,0 +1,26 @@
+import REPL from "../../components/REPL";
+
+> 🔒 Escapes characters for use in HTML.
+
+## Syntax
+
+```ts copy
+import { escapeHTML } from '@opentf/std';
+
+escapeHTML(str: string): string
+```
+
+## Examples
+
+```ts
+escapeHTML('<script>alert("xss")</script>')
+//=> '&lt;script&gt;alert(&quot;xss&quot;)&lt;/script&gt;'
+```
+
+## Try
+
+<REPL code={`const { escapeHTML } = require('@opentf/std');
+
+log(escapeHTML('<h1>Hello World</h1>'));
+log(escapeHTML('Click <a href="#">here</a>'));
+`} />

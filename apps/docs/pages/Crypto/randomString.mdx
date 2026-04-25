@@ -1,0 +1,28 @@
+import REPL from "../../components/REPL";
+
+> 🔠 Generates a cryptographically strong random string.
+
+## Syntax
+
+```ts copy
+import { randomString } from '@opentf/std';
+
+randomString(length: number, chars?: string): string
+```
+
+- `chars`: Optional character set (default: Alphanumeric).
+
+## Examples
+
+```ts
+randomString(10) //=> 'aB3dE5gH1j'
+randomString(5, '01') //=> '10110'
+```
+
+## Try
+
+<REPL code={`const { randomString } = require('@opentf/std');
+
+log(randomString(12));
+log(randomString(8, 'ABCDEF0123456789')); // Hex
+`} />

@@ -1,0 +1,25 @@
+import REPL from "../../components/REPL";
+
+> 🆔 Generates a random UUID v4 using native crypto.
+
+## Syntax
+
+```ts copy
+import { uuidv4 } from '@opentf/std';
+
+uuidv4(): string
+```
+
+## Examples
+
+```ts
+uuidv4() //=> 'f47ac10b-58cc-4372-a567-0e02b2c3d479'
+```
+
+## Try
+
+<REPL code={`const { uuidv4 } = require('@opentf/std');
+
+log(uuidv4());
+log(uuidv4());
+`} />

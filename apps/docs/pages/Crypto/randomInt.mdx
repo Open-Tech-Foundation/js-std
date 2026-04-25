@@ -1,0 +1,26 @@
+import REPL from "../../components/REPL";
+
+> 🔢 Generates a cryptographically strong random integer within a range.
+
+## Syntax
+
+```ts copy
+import { randomInt } from '@opentf/std';
+
+randomInt(min: number, max: number): number
+```
+
+## Examples
+
+```ts
+randomInt(1, 10) //=> 7
+randomInt(0, 100) //=> 42
+```
+
+## Try
+
+<REPL code={`const { randomInt } = require('@opentf/std');
+
+log(randomInt(1, 6)); // Dice roll
+log(randomInt(10, 20));
+`} />

@@ -1,0 +1,29 @@
+import REPL from "../../components/REPL";
+
+> 🧼 Removes ANSI escape codes from a string.
+
+## Syntax
+
+```ts copy
+import { stripANSI } from '@opentf/std';
+
+stripANSI(str: string): string
+```
+
+## Examples
+
+```ts
+stripANSI('\u001b[31mHello\u001b[0m')
+//=> 'Hello'
+
+stripANSI('\x1b[4mUnderline\x1b[0m')
+//=> 'Underline'
+```
+
+## Try
+
+<REPL code={`const { stripANSI } = require('@opentf/std');
+
+log(stripANSI('\\x1b[31mRed Text\\x1b[0m'));
+log(stripANSI('\\x1b[1mBold\\x1b[0m and \\x1b[4mUnderline\\x1b[0m'));
+`} />

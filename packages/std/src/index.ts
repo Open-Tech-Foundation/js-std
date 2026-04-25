@@ -8,6 +8,9 @@ export { default as snakeCase } from './string/snakeCase';
 export { default as kebabCase } from './string/kebabCase';
 export { default as titleCase } from './string/titleCase';
 export { default as strReplace } from './string/strReplace';
+export { default as escapeHTML } from './string/escapeHTML';
+export { default as stripANSI } from './string/stripANSI';
+export { default as stringWidth } from './string/stringWidth';
 export { default as truncate } from './string/truncate';
 export { default as trim } from './string/trim';
 export { default as words } from './string/words';
@@ -146,6 +149,14 @@ export { default as colorIsDark } from './colors/colorIsDark';
 export { default as colorIsLight } from './colors/colorIsLight';
 export { default as colorContrast } from './colors/colorContrast';
 export { default as colorIsReadable } from './colors/colorIsReadable';
+
+// Crypto
+export { default as uuidv4 } from './crypto/uuidv4';
+export { default as uuidv7 } from './crypto/uuidv7';
+export { default as randomBytes } from './crypto/randomBytes';
+export { default as randomInt } from './crypto/randomInt';
+export { default as randomString } from './crypto/randomString';
+export { default as randomId } from './crypto/randomId';
 
 // Number
 export { default as isZero } from './number/isZero';

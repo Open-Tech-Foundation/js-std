@@ -1,0 +1,25 @@
+import REPL from "../../components/REPL";
+
+> 🆔 Generates a time-sortable UUID v7.
+
+## Syntax
+
+```ts copy
+import { uuidv7 } from '@opentf/std';
+
+uuidv7(): string
+```
+
+## Examples
+
+```ts
+uuidv7() //=> '018f1234-5678-7000-8000-123456789abc'
+```
+
+## Try
+
+<REPL code={`const { uuidv7 } = require('@opentf/std');
+
+log(uuidv7());
+log(uuidv7());
+`} />

@@ -1,0 +1,28 @@
+import REPL from "../../components/REPL";
+
+> 🆔 Generates a URL-friendly, cryptographically strong random ID.
+
+## Syntax
+
+```ts copy
+import { randomId } from '@opentf/std';
+
+randomId(length?: number): string
+```
+
+- `length`: Optional length (default: `21`).
+
+## Examples
+
+```ts
+randomId() //=> 'V1StGXR8_Z5jdHi6B-myT'
+randomId(10) //=> 'h6fG_2jK8L'
+```
+
+## Try
+
+<REPL code={`const { randomId } = require('@opentf/std');
+
+log(randomId());
+log(randomId(12));
+`} />
