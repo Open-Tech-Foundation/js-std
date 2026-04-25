@@ -1,0 +1,30 @@
+import { Callout } from "nextra/components";
+
+# forEachAsync
+
+Asynchronous version of `Array.prototype.forEach`.
+
+<Callout type="info">
+  By default, it runs all iterations in **parallel**. You can limit the
+  concurrency by providing a third argument.
+</Callout>
+
+## Usage
+
+```ts
+import { forEachAsync } from "@opentf/std";
+
+await forEachAsync([1, 2, 3], async (n) => {
+  await doSomething(n);
+});
+```
+
+## Signature
+
+```ts
+function forEachAsync<T>(
+  arr: T[],
+  cb: (value: T, index: number) => Promise<void>,
+  concurrency?: number
+): Promise<void>;
+```

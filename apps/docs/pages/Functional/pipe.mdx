@@ -1,0 +1,65 @@
+import { Callout } from "nextra/components";
+
+# pipe
+
+Performs functions composition from left to right.
+
+<Callout type="info">
+  This is a polymorphic utility that supports both **Synchronous** and **Asynchronous** functions.
+  If any function in the chain returns a Promise, the remaining chain is automatically awaited.
+</Callout>
+
+## Usage
+
+```ts
+import { pipe } from "@opentf/std";
+
+// Synchronous
+const transform = pipe(
+  (x, y) => x + y,
+  (n) => n * 2
+);
+transform(1, 2); //=> 6
+
+// Asynchronous
+const asyncTransform = pipe(
+  async (x, y) => x + y,
+  (n) => n * 2
+);
+await asyncTransform(1, 2); //=> 6
+```
+
+## Signature
+
+```ts
+function pipe(
+  ...fns: ((...args: any[]) => any)[]
+): (...args: any[]) => any;
+```
+
+### Parameters
+
+- `fns`: A series of functions to compose. The first function can accept multiple arguments; subsequent functions must be unary.
+
+## Examples
+
+### Direct Execution style
+
+While `pipe` returns a function, you can call it immediately:
+
+```ts
+const result = pipe(
+  (x) => x + 1,
+  (x) => x * 2
+)(5); //=> 12
+```
+
+### Mixed Sync and Async
+
+```ts
+const result = await pipe(
+  (x) => x + 1,
+  async (x) => x * 2,
+  (x) => x.toString()
+)(5); //=> "12"
+```

@@ -1,0 +1,5 @@
+{
+  "pipe": "pipe",
+  "compose": "compose",
+  "noop": "noop"
+}

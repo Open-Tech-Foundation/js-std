@@ -44,15 +44,13 @@ export { default as reverse } from './array/reverse';
 export { default as shuffle } from './array/shuffle';
 export { default as swap } from './array/swap';
 
-// Async
-export { default as aFilter } from './async/aFilter';
-export { default as aMap } from './async/aMap';
-export { default as aForEach } from './async/aForEach';
-export { default as aPipe } from './async/aPipe';
-export { default as aPipeFunction } from './async/aPipeFunction';
-export { default as aCompose } from './async/aCompose';
-export { default as aComposeFunction } from './async/aComposeFunction';
-export { default as withResolvers } from './async/withResolvers';
+// Concurrency
+export { default as filterAsync } from './concurrency/filterAsync';
+export { default as mapAsync } from './concurrency/mapAsync';
+export { default as forEachAsync } from './concurrency/forEachAsync';
+export { default as flatMapAsync } from './concurrency/flatMapAsync';
+export { default as reduceAsync } from './concurrency/reduceAsync';
+export { default as withResolvers } from './concurrency/withResolvers';
 
 // Maths
 export { default as percentage } from './maths/percentage';
@@ -125,13 +123,13 @@ export { default as isEql } from './assert/isEql';
 export { default as isNil } from './assert/isNil';
 export { default as isUnorderedEqual } from './assert/isUnorderedEqual';
 
-// function
-export { default as sleep } from './function/sleep';
-export { default as noop } from './function/noop';
-export { default as pipe } from './function/pipe';
-export { default as pipeFunction } from './function/pipeFunction';
-export { default as compose } from './function/compose';
-export { default as composeFunction } from './function/composeFunction';
+// Timing
+export { default as sleep } from './timing/sleep';
+
+// Functional
+export { default as noop } from './functional/noop';
+export { default as pipe } from './functional/pipe';
+export { default as compose } from './functional/compose';
 
 // colors
 export { default as color, ColorFormat } from './colors/color';

@@ -1,0 +1,28 @@
+import { Callout } from "nextra/components";
+
+# filterAsync
+
+Asynchronous version of `Array.prototype.filter`.
+
+<Callout type="info">
+  By default, it runs all iterations in **parallel**. You can limit the
+  concurrency by providing a third argument.
+</Callout>
+
+## Usage
+
+```ts
+import { filterAsync } from "@opentf/std";
+
+await filterAsync([1, 2, 3], async (n) => n > 1); //=> [2, 3]
+```
+
+## Signature
+
+```ts
+function filterAsync<T>(
+  arr: T[],
+  cb: (value: T, index: number) => Promise<boolean>,
+  concurrency?: number
+): Promise<T[]>;
+```

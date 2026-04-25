@@ -1,0 +1,69 @@
+import { Callout } from "nextra/components";
+
+# mapAsync
+
+Asynchronous version of `Array.prototype.map`.
+
+<Callout type="info">
+  By default, it runs all iterations in **parallel**. You can limit the
+  concurrency by providing a third argument.
+</Callout>
+
+## Usage
+
+```ts
+import { mapAsync } from "@opentf/std";
+
+await mapAsync([1, 2, 3], async (n) => n * 2); //=> [2, 4, 6]
+
+// With concurrency limit (runs 2 at a time)
+await mapAsync(urls, fetchUrl, 2);
+```
+
+## Signature
+
+```ts
+function mapAsync<T, R>(
+  arr: T[],
+  cb: (value: T, index: number) => Promise<R>,
+  concurrency?: number
+): Promise<R[]>;
+```
+
+### Parameters
+
+- `arr`: The array to iterate over.
+- `cb`: An async callback function for each element.
+- `concurrency` (Optional): The maximum number of concurrent executions. Default: `Infinity`.
+
+## Examples
+
+### Parallel Execution (Default)
+
+```ts
+const items = [1, 2, 3];
+console.time("parallel");
+await mapAsync(items, async (n) => {
+  await sleep(100);
+  return n;
+});
+console.timeEnd("parallel"); // Approx 100ms
+```
+
+### Sequential Execution
+
+Set concurrency to `1` to run tasks one after another.
+
+```ts
+const items = [1, 2, 3];
+console.time("sequential");
+await mapAsync(
+  items,
+  async (n) => {
+    await sleep(100);
+    return n;
+  },
+  1
+);
+console.timeEnd("sequential"); // Approx 300ms
+```

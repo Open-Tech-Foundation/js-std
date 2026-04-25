@@ -1,0 +1,28 @@
+import { Callout } from "nextra/components";
+
+# flatMapAsync
+
+Asynchronous version of `Array.prototype.flatMap`.
+
+<Callout type="info">
+  By default, it runs all iterations in **parallel**. You can limit the
+  concurrency by providing a third argument.
+</Callout>
+
+## Usage
+
+```ts
+import { flatMapAsync } from "@opentf/std";
+
+await flatMapAsync([1, 2, 3], async (n) => [n, n * 2]); //=> [1, 2, 2, 4, 3, 6]
+```
+
+## Signature
+
+```ts
+function flatMapAsync<T, R>(
+  arr: T[],
+  cb: (value: T, index: number) => Promise<R | R[]>,
+  concurrency?: number
+): Promise<R[]>;
+```

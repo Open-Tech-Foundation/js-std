@@ -1,0 +1,23 @@
+# reduceAsync
+
+Asynchronous version of `Array.prototype.reduce`.
+
+Iterations are executed **sequentially** as each step depends on the previous accumulator result.
+
+## Usage
+
+```ts
+import { reduceAsync } from "@opentf/std";
+
+await reduceAsync([1, 2, 3], async (acc, n) => acc + n, 0); //=> 6
+```
+
+## Signature
+
+```ts
+function reduceAsync<T, R>(
+  arr: T[],
+  cb: (accumulator: R, value: T, index: number) => Promise<R>,
+  initialValue?: R
+): Promise<R>;
+```

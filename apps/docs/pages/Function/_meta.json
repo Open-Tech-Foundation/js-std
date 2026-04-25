@@ -1,8 +1,0 @@
-{
-  "compose": "compose",
-  "composeFunction": "composeFunction",
-  "noop": "noop",
-  "pipe": "pipe",
-  "pipeFunction": "pipeFunction",
-  "sleep": "sleep"
-}
