@@ -1,3 +1,5 @@
+import clamp from '../maths/clamp';
+
 type RGBA = { r: number; g: number; b: number; a: number };
 type HSLA = { h: number; s: number; l: number; a: number };
 
@@ -174,7 +176,8 @@ const COLOR_NAMES: Record<string, string> = {
   yellowgreen: '#9acd32',
 };
 
-function hexToRgba(hex: string): RGBA {
+
+function hexToRgba(hex: string): RGBA | null {
   const s = hex.startsWith('#') ? hex.slice(1) : hex;
   let r = 0,
     g = 0,
@@ -199,6 +202,12 @@ function hexToRgba(hex: string): RGBA {
     g = Number.parseInt(s.substring(2, 4), 16);
     b = Number.parseInt(s.substring(4, 6), 16);
     a = Number.parseInt(s.substring(6, 8), 16) / 255;
+  } else {
+    return null;
+  }
+
+  if (Number.isNaN(r) || Number.isNaN(g) || Number.isNaN(b) || Number.isNaN(a)) {
+    return null;
   }
 
   return { r, g, b, a: Number(a.toFixed(2)) };
@@ -285,10 +294,14 @@ function normalize(input: ColorInput): RGBA | null {
     );
     if (rgbMatch) {
       return {
-        r: Number.parseInt(rgbMatch[1], 10),
-        g: Number.parseInt(rgbMatch[2], 10),
-        b: Number.parseInt(rgbMatch[3], 10),
-        a: rgbMatch[4] === undefined ? 1 : Number.parseFloat(rgbMatch[4]),
+        r: clamp(Number.parseInt(rgbMatch[1], 10), 0, 255),
+        g: clamp(Number.parseInt(rgbMatch[2], 10), 0, 255),
+        b: clamp(Number.parseInt(rgbMatch[3], 10), 0, 255),
+        a: clamp(
+          rgbMatch[4] === undefined ? 1 : Number.parseFloat(rgbMatch[4]),
+          0,
+          1,
+        ),
       };
     }
 
@@ -297,10 +310,14 @@ function normalize(input: ColorInput): RGBA | null {
     );
     if (hslMatch) {
       return hslToRgba(
-        Number.parseInt(hslMatch[1], 10),
-        Number.parseInt(hslMatch[2], 10),
-        Number.parseInt(hslMatch[3], 10),
-        hslMatch[4] === undefined ? 1 : Number.parseFloat(hslMatch[4]),
+        clamp(Number.parseInt(hslMatch[1], 10), 0, 360),
+        clamp(Number.parseInt(hslMatch[2], 10), 0, 100),
+        clamp(Number.parseInt(hslMatch[3], 10), 0, 100),
+        clamp(
+          hslMatch[4] === undefined ? 1 : Number.parseFloat(hslMatch[4]),
+          0,
+          1,
+        ),
       );
     }
   }
@@ -316,24 +333,29 @@ function normalize(input: ColorInput): RGBA | null {
 
   if (Array.isArray(input)) {
     return {
-      r: input[0],
-      g: input[1],
-      b: input[2],
-      a: input[3] === undefined ? 1 : input[3],
+      r: clamp(input[0], 0, 255),
+      g: clamp(input[1], 0, 255),
+      b: clamp(input[2], 0, 255),
+      a: clamp(input[3] === undefined ? 1 : input[3], 0, 1),
     };
   }
 
   if (typeof input === 'object') {
     if ('r' in input) {
       return {
-        r: input.r,
-        g: input.g,
-        b: input.b,
-        a: input.a === undefined ? 1 : input.a,
+        r: clamp(input.r, 0, 255),
+        g: clamp(input.g, 0, 255),
+        b: clamp(input.b, 0, 255),
+        a: clamp(input.a === undefined ? 1 : input.a, 0, 1),
       };
     }
     if ('h' in input) {
-      return hslToRgba(input.h, input.s, input.l, input.a);
+      return hslToRgba(
+        clamp(input.h, 0, 360),
+        clamp(input.s, 0, 100),
+        clamp(input.l, 0, 100),
+        clamp(input.a === undefined ? 1 : input.a, 0, 1),
+      );
     }
   }
 
@@ -351,7 +373,9 @@ function normalize(input: ColorInput): RGBA | null {
  */
 export default function color(input: ColorInput, format: ColorFormat): any {
   const rgba = normalize(input);
-  if (!rgba) return null;
+  if (!rgba) {
+    throw new Error('Invalid Color');
+  }
 
   switch (format) {
     case 'hex': {
@@ -389,6 +413,6 @@ export default function color(input: ColorInput, format: ColorFormat): any {
       return [h, s, l, a];
     }
     default:
-      return null;
+      throw new Error(`Invalid format: ${format}`);
   }
 }

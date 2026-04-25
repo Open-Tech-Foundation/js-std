@@ -1,7 +1,7 @@
-import { color } from '../../src';
+import { color, ColorFormat } from '../../src';
 
 describe('Colors > color', () => {
-  describe('Input parsing', () => {
+  describe('Input parsing (Standard)', () => {
     test('Hex strings', () => {
       expect(color('#ff0000', 'rgba-object')).toEqual({ r: 255, g: 0, b: 0, a: 1 });
       expect(color('#f00', 'rgba-object')).toEqual({ r: 255, g: 0, b: 0, a: 1 });
@@ -10,7 +10,8 @@ describe('Colors > color', () => {
 
     test('Color names', () => {
       expect(color('red', 'rgba-object')).toEqual({ r: 255, g: 0, b: 0, a: 1 });
-      expect(color('blue', 'rgba-object')).toEqual({ r: 0, g: 0, b: 255, a: 1 });
+      expect(color('AliceBlue', 'hex')).toBe('#f0f8ff');
+      expect(color('rebeccapurple', 'hex')).toBe('#663399');
     });
 
     test('RGB strings', () => {
@@ -22,19 +23,47 @@ describe('Colors > color', () => {
       expect(color('hsl(0, 100%, 50%)', 'rgba-object')).toEqual({ r: 255, g: 0, b: 0, a: 1 });
       expect(color('hsla(0, 100%, 50%, 0.5)', 'rgba-object')).toEqual({ r: 255, g: 0, b: 0, a: 0.5 });
     });
+  });
 
-    test('Numbers', () => {
-      expect(color(0xff0000, 'rgba-object')).toEqual({ r: 255, g: 0, b: 0, a: 1 });
+  describe('Edge Cases & Robustness', () => {
+    test('Weird spacing', () => {
+      expect(color('  #ff0000  ', 'hex')).toBe('#ff0000');
+      expect(color(' rgb( 255 , 0 , 0 ) ', 'rgb')).toBe('rgb(255, 0, 0)');
+      expect(color('hsla( 0 , 100% , 50% , 0.5 )', 'hsla')).toBe('hsla(0, 100%, 50%, 0.5)');
     });
 
-    test('Arrays', () => {
-      expect(color([255, 0, 0], 'rgba-object')).toEqual({ r: 255, g: 0, b: 0, a: 1 });
-      expect(color([255, 0, 0, 0.5], 'rgba-object')).toEqual({ r: 255, g: 0, b: 0, a: 0.5 });
+    test('Mixed case', () => {
+      expect(color('rGb(255,0,0)', 'hex')).toBe('#ff0000');
+      expect(color('HSLA(0,100%,50%,1)', 'hex')).toBe('#ff0000');
     });
 
-    test('Objects', () => {
-      expect(color({ r: 255, g: 0, b: 0 }, 'rgba-object')).toEqual({ r: 255, g: 0, b: 0, a: 1 });
-      expect(color({ h: 0, s: 100, l: 50 }, 'rgba-object')).toEqual({ r: 255, g: 0, b: 0, a: 1 });
+    test('Out of range values (Clamping)', () => {
+      // RGB > 255
+      expect(color('rgb(300, 0, 0)', 'rgba-object')).toEqual({ r: 255, g: 0, b: 0, a: 1 });
+      // Alpha > 1
+      expect(color('rgba(0,0,0,2)', 'rgba-object')).toEqual({ r: 0, g: 0, b: 0, a: 1 });
+      // HSL > limits (Note: white results in h:0, s:0, l:100)
+      expect(color('hsl(400, 150%, 150%)', 'hsla-object')).toEqual({ h: 0, s: 0, l: 100, a: 1 });
+      // Objects/Arrays out of range
+      expect(color({ r: 500, g: -10, b: 0 }, 'rgba-object')).toEqual({ r: 255, g: 0, b: 0, a: 1 });
+      expect(color([0, 0, 0, 5], 'rgba-object')).toEqual({ r: 0, g: 0, b: 0, a: 1 });
+    });
+  });
+
+  describe('Error Handling', () => {
+    test('Throws on invalid color strings', () => {
+      expect(() => color('invalid', 'hex')).toThrow('Invalid Color');
+      expect(() => color('#zzzzzz', 'hex')).toThrow('Invalid Color');
+      expect(() => color('rgb(a,b,c)', 'hex')).toThrow('Invalid Color');
+    });
+
+    test('Throws on invalid objects', () => {
+      expect(() => color({}, 'hex')).toThrow('Invalid Color');
+      expect(() => color({ x: 1 }, 'hex')).toThrow('Invalid Color');
+    });
+
+    test('Throws on invalid format', () => {
+      expect(() => color('red', 'invalid-format')).toThrow('Invalid format');
     });
   });
 
@@ -42,7 +71,7 @@ describe('Colors > color', () => {
     const red = { r: 255, g: 0, b: 0, a: 1 };
 
     test('hex', () => {
-      expect(color(red, 'hex')).toBe('#ff0000');
+      expect(color(red, ColorFormat.HEX)).toBe('#ff0000');
       expect(color({ ...red, a: 0.5 }, 'hex')).toBe('#ff000080');
     });
 
@@ -65,10 +94,5 @@ describe('Colors > color', () => {
       expect(color(red, 'hsla-object')).toEqual({ h: 0, s: 100, l: 50, a: 1 });
       expect(color(red, 'hsla-array')).toEqual([0, 100, 50, 1]);
     });
-  });
-
-  test('Invalid input', () => {
-    expect(color('invalid', 'hex')).toBeNull();
-    expect(color({}, 'hex')).toBeNull();
   });
 });

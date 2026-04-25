@@ -38,32 +38,25 @@
 ## Async
 
 - [aCompose](./Async/aCompose.md)
-- [aComposeFn](./Async/aComposeFn.md)
+- [aComposeFunction](./Async/aComposeFunction.md)
 - [aFilter](./Async/aFilter.md)
 - [aForEach](./Async/aForEach.md)
 - [aMap](./Async/aMap.md)
 - [aPipe](./Async/aPipe.md)
-- [aPipeFn](./Async/aPipeFn.md)
-- [aResolvers](./Async/aResolvers.md)
+- [aPipeFunction](./Async/aPipeFunction.md)
+- [withResolvers](./Async/withResolvers.md)
 
 ## Colors
 
-- [RGBToHex](./Colors/RGBToHex.md)
-- [colorParse](./Colors/colorParse.md)
-- [colorToHex](./Colors/colorToHex.md)
-- [colorToHsl](./Colors/colorToHsl.md)
-- [colorToRgb](./Colors/colorToRgb.md)
-- [hexToRGB](./Colors/hexToRGB.md)
-- [hslToRgb](./Colors/hslToRgb.md)
-- [rgbToHsl](./Colors/rgbToHsl.md)
+- [color](./Colors/color.md)
 
 ## Function
 
 - [compose](./Function/compose.md)
-- [composeFn](./Function/composeFn.md)
+- [composeFunction](./Function/composeFunction.md)
 - [noop](./Function/noop.md)
 - [pipe](./Function/pipe.md)
-- [pipeFn](./Function/pipeFn.md)
+- [pipeFunction](./Function/pipeFunction.md)
 - [sleep](./Function/sleep.md)
 
 ## Maths
@@ -152,4 +145,3 @@
 - [isWeakMap](./Types/isWeakMap.md)
 - [isWeakRef](./Types/isWeakRef.md)
 - [isWeakSet](./Types/isWeakSet.md)
-

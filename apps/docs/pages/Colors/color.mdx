@@ -67,6 +67,18 @@ color('#ff0000', ColorFormat.RGBA_OBJ); //=> { r: 255, g: 0, b: 0, a: 1 }
 color('hsl(120, 100%, 50%)', ColorFormat.HSLA_ARR); //=> [120, 100, 50, 1]
 ```
 
+## Error Handling
+
+The `color()` function is strict about its inputs. If the input color cannot be parsed or the output format is invalid, it will throw an `Error`.
+
+```ts
+try {
+  color('invalid-color', 'hex');
+} catch (e) {
+  console.error(e.message); //=> "Invalid Color"
+}
+```
+
 ## Try
 
 <REPL code={`const { color, ColorFormat } = require('@opentf/std');

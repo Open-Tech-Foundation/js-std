@@ -102,6 +102,14 @@ isEql(mapA, mapB); //=> false
 isUnorderedEqual([1, 2, 3], [2, 3, 1]); //=> true
 ```
 
+### 6. Unified Color Conversion
+```js
+import { color, ColorFormat } from "@opentf/std";
+
+color("orange", ColorFormat.HEX); //=> "#ffa500"
+color("#00ffff", "rgba"); //=> "rgba(0, 255, 255, 1)"
+```
+
 ## 📖 API
 
 - 📁 [**Local API Docs**](./packages/std/docs/README.md) - View the API reference directly in the repository.
