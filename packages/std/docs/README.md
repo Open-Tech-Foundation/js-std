@@ -56,7 +56,7 @@
 
 - [encoding](./Encoding/encoding.md)
 
-## Flow
+## FlowControl
 
 - [batchRun](./Flow/batchRun.md)
 - [idleRun](./Flow/idleRun.md)

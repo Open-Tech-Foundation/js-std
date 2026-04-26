@@ -1,11 +1,29 @@
 # bounds
 
-Returns the minimum and maximum values of the given array.
+> 📏 Finds both the minimum and maximum values in an array. Supports numbers and strings.
 
-### Example
+## Syntax
 
-```js
-bounds([10, 20, 50, 30]) //=> [10, 50]
+```ts
+import { bounds } from '@opentf/std';
 
-bounds(['a', 'b', 'c', 'z', 'd']) //=> ['a', 'z']
+bounds<T>(
+  arr: T[] = []
+): [T, T] | []
+```
+
+## Parameters
+
+- `arr`: The array to find bounds in.
+
+## Returns
+
+An array `[min, max]`, or `[]` if the array is empty.
+
+## Examples
+
+```ts
+bounds([5, 2, 8, 1]) //=> [1, 8]
+
+bounds(['a', 'z', 'm']) //=> ['a', 'z']
 ```

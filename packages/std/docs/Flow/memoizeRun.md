@@ -1,22 +1,40 @@
 # memoizeRun
 
-Caches asynchronous function results with Single Flight and TTL.
+> 🧠 Caches the results of an asynchronous function. Supports Single Flight (concurrent request de-duplication) and TTL.
 
-## Options
+## Syntax
 
-- `maxAge` (number): TTL in ms.
-- `key` (function): Custom key generator.
+```ts
+import { memoizeRun } from '@opentf/std';
+
+memoizeRun<T, Args extends any[]>(
+  func: (...args: Args) => Promise<T>,
+  options?: {
+    maxAge?: number;
+    key?: (...args: Args) => string;
+  }
+): {
+  (...args: Args): Promise<T>;
+  clear: () => void;
+};
+```
+
+## Parameters
+
+- `func`: The asynchronous function to memoize.
+- `options`:
+    - `maxAge`: The maximum time in milliseconds to keep the cached result.
+    - `key`: An optional function to generate a cache key from the arguments. Defaults to `JSON.stringify(args)`.
+
+## Returns
+
+The memoized asynchronous function with a `.clear()` method.
 
 ## Examples
 
 ```ts
-const fn = memoizeRun(async (id) => getData(id), { maxAge: 1000 });
-await fn(1); // Call
-await fn(1); // Cache
+const memoized = memoizeRun(fetchUser, { maxAge: 5000 });
+
+// Only one API call will be made if these are called concurrently
+const [u1, u2] = await Promise.all([memoized(1), memoized(1)]);
 ```
-
-## Features
-
-- **Single Flight**: Concurrent calls share the same promise.
-- **Auto-Cleanup on Error**: If the function rejects, the cache entry is removed so the next call can retry.
-- **Manual Clear**: `fn.clear()` to empty cache.

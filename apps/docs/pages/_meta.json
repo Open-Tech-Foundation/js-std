@@ -11,7 +11,7 @@
   "Concurrency": "Concurrency",
   "Crypto": "Crypto",
   "Encoding": "Encoding",
-  "Flow": "Flow",
+  "Flow": "FlowControl",
   "Functional": "Functional",
   "Iter": "Iter",
   "Maths": "Maths",

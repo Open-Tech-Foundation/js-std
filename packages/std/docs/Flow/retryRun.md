@@ -1,9 +1,42 @@
 # retryRun
 
-Retries an asynchronous function according to the specified options.
+> 🔁 Retries an asynchronous function until it succeeds or reaches the maximum number of attempts.
 
-### Example
+## Syntax
 
-```js
-const result = await retryRun(() => fetchData(), { retries: 3, delay: 1000 });
+```ts
+import { retryRun } from '@opentf/std';
+
+retryRun<T>(
+  func: () => Promise<T>,
+  options?: {
+    retries?: number;
+    delay?: number;
+    backoff?: 'fixed' | 'exponential';
+    onRetry?: (error: any, attempt: number) => void;
+  }
+): Promise<T>;
+```
+
+## Parameters
+
+- `func`: The asynchronous function to retry.
+- `options`:
+    - `retries`: The number of times to retry the function. Default: `3`.
+    - `delay`: The initial delay in milliseconds between retries. Default: `0`.
+    - `backoff`: The strategy for calculating delay between retries. Can be `'fixed'` or `'exponential'`. Default: `'fixed'`.
+    - `onRetry`: A callback invoked on each retry attempt.
+
+## Returns
+
+A Promise that resolves with the function's result or rejects with the last error.
+
+## Examples
+
+```ts
+const result = await retryRun(() => fetchData(), { 
+  retries: 3, 
+  delay: 1000,
+  backoff: 'exponential' 
+});
 ```

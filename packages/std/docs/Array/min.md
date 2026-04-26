@@ -1,11 +1,29 @@
 # min
 
-Returns the minimum value of the given array.
+> 📉 Finds the minimum value in an array. Supports numbers and strings.
 
-### Example
+## Syntax
 
-```js
-min([10, 20, 50, 30]) //=> 10
+```ts
+import { min } from '@opentf/std';
 
-min(['apple', 'mango', 'grapes']) //=> 'apple'
+min<T>(
+  arr: T[] = []
+): T | undefined
+```
+
+## Parameters
+
+- `arr`: The array to find the minimum value in.
+
+## Returns
+
+The minimum value in the array, or `undefined` if the array is empty.
+
+## Examples
+
+```ts
+min([5, 2, 8, 1]) //=> 1
+
+min(['apple', 'banana', 'cherry']) //=> 'apple'
 ```

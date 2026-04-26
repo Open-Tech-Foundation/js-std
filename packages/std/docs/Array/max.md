@@ -1,11 +1,29 @@
 # max
 
-Returns the maximum value of the given array.
+> 📈 Finds the maximum value in an array. Supports numbers and strings.
 
-### Example
+## Syntax
 
-```js
-max([10, 20, 50, 30]) //=> 50
+```ts
+import { max } from '@opentf/std';
 
-max(['apple', 'mango', 'grapes']) //=> 'mango'
+max<T>(
+  arr: T[] = []
+): T | undefined
+```
+
+## Parameters
+
+- `arr`: The array to find the maximum value in.
+
+## Returns
+
+The maximum value in the array, or `undefined` if the array is empty.
+
+## Examples
+
+```ts
+max([5, 2, 8, 1]) //=> 8
+
+max(['apple', 'banana', 'cherry']) //=> 'cherry'
 ```
