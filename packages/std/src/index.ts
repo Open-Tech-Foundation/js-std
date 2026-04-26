@@ -52,6 +52,12 @@ export { default as flatMapAsync } from './concurrency/flatMapAsync';
 export { default as reduceAsync } from './concurrency/reduceAsync';
 export { default as withResolvers } from './concurrency/withResolvers';
 
+// Flow
+export { default as idleRun } from './flow/idleRun';
+export { default as paceRun } from './flow/paceRun';
+export { default as batchRun } from './flow/batchRun';
+export { default as rateLimitRun } from './flow/rateLimitRun';
+
 // Maths
 export { default as percentage } from './maths/percentage';
 export { default as percentageOf } from './maths/percentageOf';

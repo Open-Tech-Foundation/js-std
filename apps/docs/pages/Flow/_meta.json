@@ -1,0 +1,6 @@
+{
+  "idleRun": "idleRun",
+  "paceRun": "paceRun",
+  "batchRun": "batchRun",
+  "rateLimitRun": "rateLimitRun"
+}

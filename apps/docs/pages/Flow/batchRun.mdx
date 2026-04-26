@@ -1,0 +1,58 @@
+import { Callout } from "nextra/components";
+
+# batchRun
+
+Creates a batched version of a function that collects multiple calls and processes them in a single operation after a limit is reached or a delay has passed.
+
+<Callout type="info">
+  Perfect for optimizing database queries or API requests by combining multiple individual calls into a single batch request.
+</Callout>
+
+## Usage
+
+```ts
+import { batchRun } from "@opentf/std";
+
+const batchFetcher = batchRun(async (batch) => {
+  // batch is [[1], [2], [3]]
+  const ids = batch.map(args => args[0]);
+  return await fetchUsersFromApi(ids);
+}, { limit: 10, delay: 50 });
+
+// These will be grouped into a single API call
+const user1 = batchFetcher(1);
+const user2 = batchFetcher(2);
+const user3 = batchFetcher(3);
+```
+
+## Signature
+
+```ts
+function batchRun<T extends any[], R>(
+  batchProcessor: (argsList: T[]) => Promise<R[]>,
+  options?: {
+    limit?: number;
+    delay?: number;
+  }
+): (...args: T) => Promise<R>;
+```
+
+### Parameters
+
+- `batchProcessor`: An async function that receives an array of argument lists and returns an array of results.
+- `options`:
+    - `limit`: The maximum number of items to collect before processing the batch. Default: `Infinity`.
+    - `delay`: The maximum time (ms) to wait before processing the batch. Default: `0`.
+
+## Example
+
+### Optimizing Database Calls
+
+Instead of making 100 separate database queries, you can batch them:
+
+```ts
+const getUser = batchRun(async (batch) => {
+  const ids = batch.map(a => a[0]);
+  return await db.users.findMany({ where: { id: { in: ids } } });
+}, { limit: 50, delay: 10 });
+```

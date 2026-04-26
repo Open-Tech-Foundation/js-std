@@ -46,6 +46,13 @@
 - [aPipeFunction](./Async/aPipeFunction.md)
 - [withResolvers](./Async/withResolvers.md)
 
+## Flow
+
+- [idleRun](./Flow/idleRun.md)
+- [paceRun](./Flow/paceRun.md)
+- [batchRun](./Flow/batchRun.md)
+- [rateLimitRun](./Flow/rateLimitRun.md)
+
 ## Colors
 
 - [color](./Colors/color.md)

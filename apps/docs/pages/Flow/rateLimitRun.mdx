@@ -1,0 +1,47 @@
+import { Callout } from "nextra/components";
+
+# rateLimitRun
+
+Creates a rate-limited version of a function that ensures it only runs a specific number of times within a rolling time window (Sliding Window algorithm).
+
+<Callout type="info">
+  Essential for staying within API rate limits or preventing resource exhaustion during heavy bursts of activity.
+</Callout>
+
+## Usage
+
+```ts
+import { rateLimitRun } from "@opentf/std";
+
+// Limit to 5 calls per 1 second (1000ms)
+const run = rateLimitRun(async (id) => {
+  return await fetchExternalData(id);
+}, 5, 1000);
+
+// Calls will wait in a queue and execute as slots become available
+for (let i = 0; i < 20; i++) {
+  run(i).then(console.log);
+}
+```
+
+## Signature
+
+```ts
+function rateLimitRun<T extends (...args: any[]) => any>(
+  func: T,
+  limit: number,
+  period: number
+): (...args: Parameters<T>) => Promise<ReturnType<T>>;
+```
+
+### Parameters
+
+- `func`: The async function to rate limit.
+- `limit`: The maximum number of executions allowed within the time window.
+- `period`: The duration of the time window in milliseconds.
+
+## Behavior
+
+1.  **Immediate Execution**: If the number of executions in the last `period` is less than `limit`, the function runs immediately.
+2.  **Queueing**: If the limit is reached, subsequent calls are added to a FIFO queue.
+3.  **Automatic Resumption**: As soon as an execution slot opens up (one of the previous executions falls out of the sliding window), the next item in the queue is processed.

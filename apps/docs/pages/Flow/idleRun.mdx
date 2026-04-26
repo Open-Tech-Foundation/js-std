@@ -1,0 +1,67 @@
+import { Callout } from "nextra/components";
+
+# idleRun
+
+Creates a debounced version of a function that delays execution until after a period of inactivity.
+
+<Callout type="info">
+  Useful for handling events like window resizing, scroll, or search input where you only want to act after the user has stopped the action.
+</Callout>
+
+## Usage
+
+```ts
+import { idleRun } from "@opentf/std";
+
+const run = idleRun((val) => {
+  console.log("Searching for:", val);
+}, 500);
+
+run("a");
+run("ab");
+run("abc"); // Only this one executes after 500ms of silence
+```
+
+## Signature
+
+```ts
+function idleRun<T extends (...args: any[]) => any>(
+  func: T,
+  delay?: number,
+  options?: {
+    leading?: boolean;
+    trailing?: boolean;
+    maxWait?: number;
+  }
+): {
+  (...args: Parameters<T>): void;
+  cancel: () => void;
+  flush: () => void;
+  pending: () => boolean;
+};
+```
+
+### Parameters
+
+- `func`: The function to debounce.
+- `delay`: The number of milliseconds to delay. Default: `0`.
+- `options`:
+    - `leading`: Execute on the leading edge of the timeout. Default: `false`.
+    - `trailing`: Execute on the trailing edge of the timeout. Default: `true`.
+    - `maxWait`: The maximum time `func` is allowed to be delayed before it's invoked.
+
+### Methods on returned function
+
+- `cancel()`: Cancels any pending execution.
+- `flush()`: Immediately invokes the pending execution and cancels the timer.
+- `pending()`: Returns `true` if there is a pending execution.
+
+## Examples
+
+### With Max Wait
+
+Ensure the function runs at least once every 2 seconds even during constant activity.
+
+```ts
+const run = idleRun(saveData, 500, { maxWait: 2000 });
+```
