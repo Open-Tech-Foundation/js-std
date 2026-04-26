@@ -4,5 +4,6 @@
   "batchRun": "batchRun",
   "rateLimitRun": "rateLimitRun",
   "retryRun": "retryRun",
-  "timeoutRun": "timeoutRun"
+  "timeoutRun": "timeoutRun",
+  "memoizeRun": "memoizeRun"
 }

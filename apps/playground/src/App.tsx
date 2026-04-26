@@ -8,7 +8,8 @@ import {
   RotateCcw, 
   Settings2,
   Cpu,
-  RefreshCw
+  RefreshCw,
+  Database
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { clsx, type ClassValue } from 'clsx';
@@ -26,6 +27,7 @@ import batchRun from '../../../packages/std/src/flow/batchRun';
 import rateLimitRun from '../../../packages/std/src/flow/rateLimitRun';
 import retryRun from '../../../packages/std/src/flow/retryRun';
 import timeoutRun from '../../../packages/std/src/flow/timeoutRun';
+import memoizeRun from '../../../packages/std/src/flow/memoizeRun';
 
 type Event = {
   id: string;
@@ -424,7 +426,6 @@ const TimeoutRunTab = () => {
   const runTest = async () => {
     setStatus('running');
     setResult('');
-    const start = Date.now();
     
     try {
       const res = await timeoutRun(async () => {
@@ -488,8 +489,106 @@ const TimeoutRunTab = () => {
   );
 };
 
+const MemoizeRunTab = () => {
+  const [maxAge, setMaxAge] = useState(3000);
+  const [logs, setLogs] = useState<{id: string, time: string, type: 'hit' | 'miss'}[]>([]);
+  const [isFetching, setIsFetching] = useState(false);
+  const memoizedRef = useRef<any>(null);
+
+  useEffect(() => {
+    const fetchFunc = async (id: string) => {
+      setIsFetching(true);
+      await new Promise(r => setTimeout(r, 1000));
+      setIsFetching(false);
+      return `Data for ${id}`;
+    };
+    
+    memoizedRef.current = memoizeRun(fetchFunc, { maxAge });
+  }, [maxAge]);
+
+  const triggerCall = async () => {
+    const id = "User_123";
+    const now = new Date().toLocaleTimeString();
+    
+    const startTime = Date.now();
+    await memoizedRef.current(id);
+    const endTime = Date.now();
+    const isHit = (endTime - startTime) < 100;
+
+    setLogs(prev => [{
+      id: Math.random().toString(36).substr(2, 4),
+      time: now,
+      type: isHit ? 'hit' : 'miss'
+    }, ...prev].slice(0, 8));
+  };
+
+  return (
+    <div className="grid-2">
+      <div className="card">
+        <div className="flex items-center gap-2 text-xl font-bold">
+          <Database className="text-accent-secondary" /> memoizeRun (Caching)
+        </div>
+        <div className="controls">
+          <div className="control-group">
+            <label>TTL / Max Age (ms): {maxAge}</label>
+            <input type="range" min="1000" max="10000" step="1000" value={maxAge} onChange={e => setMaxAge(Number(e.target.value))} />
+          </div>
+          <button className="btn btn-primary" style={{background: 'var(--accent-secondary)'}} onClick={triggerCall}>
+            <Play size={18} /> Request Data
+          </button>
+          <button className="btn" style={{background: 'rgba(255,255,255,0.05)'}} onClick={() => memoizedRef.current?.clear()}>
+            <RotateCcw size={18} /> Clear Cache
+          </button>
+        </div>
+        <div className="code-block">
+          {`const run = memoizeRun(fetchUser, { \n  maxAge: ${maxAge} \n});`}
+        </div>
+      </div>
+      <div className="flex flex-col gap-4">
+        <div className="card flex-1">
+          <div className="flex justify-between items-center mb-4">
+            <div className="stat-label">Request Logs</div>
+            {isFetching && (
+              <motion.div 
+                animate={{ rotate: 360 }}
+                transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+              >
+                <RefreshCw size={14} className="text-accent-secondary" />
+              </motion.div>
+            )}
+          </div>
+          <div className="flex flex-col gap-2">
+            <AnimatePresence>
+              {logs.map(log => (
+                <motion.div 
+                  key={log.id} 
+                  initial={{ opacity: 0, y: 10 }} 
+                  animate={{ opacity: 1, y: 0 }}
+                  className={cn(
+                    "p-3 rounded-lg flex items-center justify-between border",
+                    log.type === 'hit' ? "bg-accent-success/10 border-accent-success/20 text-accent-success" : "bg-white/5 border-white/10 text-text-secondary"
+                  )}
+                >
+                  <div className="flex items-center gap-2">
+                    {log.type === 'hit' ? <Zap size={14} /> : <Activity size={14} />}
+                    <span className="text-xs font-mono">{log.time}</span>
+                  </div>
+                  <div className="text-xs font-bold uppercase tracking-wider">
+                    {log.type === 'hit' ? 'Cache Hit' : 'Network Miss'}
+                  </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+            {logs.length === 0 && <div className="text-text-secondary italic text-sm text-center py-8">Click "Request Data" to start</div>}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export default function App() {
-  const [activeTab, setActiveTab] = useState<'idle' | 'pace' | 'batch' | 'rate' | 'retry' | 'timeout'>('idle');
+  const [activeTab, setActiveTab] = useState<'idle' | 'pace' | 'batch' | 'rate' | 'retry' | 'timeout' | 'memoize'>('idle');
 
   return (
     <div className="app-container">
@@ -515,6 +614,9 @@ export default function App() {
           </div>
           <div className={cn("nav-item", activeTab === 'timeout' && "active")} onClick={() => setActiveTab('timeout')}>
             <Clock size={20} /> timeoutRun
+          </div>
+          <div className={cn("nav-item", activeTab === 'memoize' && "active")} onClick={() => setActiveTab('memoize')}>
+            <Database size={20} /> memoizeRun
           </div>
         </nav>
         <div className="mt-auto p-4 rounded-2xl bg-gradient-to-br from-accent-primary/10 to-accent-secondary/10 border border-white/5">
@@ -549,6 +651,7 @@ export default function App() {
           {activeTab === 'rate' && <RateLimitRunTab />}
           {activeTab === 'retry' && <RetryRunTab />}
           {activeTab === 'timeout' && <TimeoutRunTab />}
+          {activeTab === 'memoize' && <MemoizeRunTab />}
         </section>
       </main>
     </div>
