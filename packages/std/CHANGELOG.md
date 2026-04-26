@@ -1,5 +1,11 @@
 # @opentf/std
 
+## 1.0.0-beta.1
+
+### Patch Changes
+
+- fae9b36: Fixed build to have readme and license copied for publishing.
+
 ## 1.0.0-beta.0
 
 ### Major Changes
