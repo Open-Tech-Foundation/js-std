@@ -18,6 +18,23 @@ export default {
       <span style={{ marginLeft: '.4em', fontWeight: 800 }}>
         JS Standard Library
       </span>
+      <span
+        style={{
+          marginLeft: '.6em',
+          fontSize: '0.7rem',
+          fontWeight: 600,
+          padding: '2px 8px',
+          borderRadius: '12px',
+          backgroundColor: 'rgba(128, 128, 128, 0.1)',
+          border: '1px solid rgba(128, 128, 128, 0.2)',
+          opacity: 0.8,
+          verticalAlign: 'middle',
+          display: 'inline-flex',
+          alignItems: 'center'
+        }}
+      >
+        v1.0.0-beta.1
+      </span>
     </>
   ),
   project: {
