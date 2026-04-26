@@ -70,9 +70,7 @@
     "lint": "biome check ./src",
     "format": "biome format --write ./src"
   },
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "publishConfig": {
     "access": "public",
     "provenance": true
