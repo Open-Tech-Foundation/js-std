@@ -49,17 +49,19 @@ async function build() {
       console.log('✅ index.d.cts generated');
     }
 
-    // Copy README & LICENSE to dist
+    // Copy README & LICENSE to package root and dist
     const rootDir = resolve(root, '../../');
     const rootReadme = join(rootDir, 'README.md');
     if (existsSync(rootReadme)) {
+      copyFileSync(rootReadme, join(root, 'README.md'));
       copyFileSync(rootReadme, join(dist, 'README.md'));
-      console.log('✅ README.md copied to dist');
+      console.log('✅ README.md copied to package root and dist');
     }
     const rootLicense = join(rootDir, 'LICENSE');
     if (existsSync(rootLicense)) {
+      copyFileSync(rootLicense, join(root, 'LICENSE'));
       copyFileSync(rootLicense, join(dist, 'LICENSE'));
-      console.log('✅ LICENSE copied to dist');
+      console.log('✅ LICENSE copied to package root and dist');
     }
   } catch (error) {
     console.error('❌ Build failed:', error);

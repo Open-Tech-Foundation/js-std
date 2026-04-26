@@ -10,7 +10,9 @@
       "scripts",
       "packages/std/scripts",
       "**/coverage/**",
-      ".changeset"
+      ".changeset",
+      "packages/std/README.md",
+      "packages/std/LICENSE"
     ]
   },
   "organizeImports": {
