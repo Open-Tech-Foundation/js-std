@@ -1,0 +1,29 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> Hex encoding and decoding.
+
+## Syntax
+
+```ts
+import { hexEncode, hexDecode } from "@opentf/std";
+
+hexEncode(str: string)
+hexDecode(str: string)
+```
+
+## Examples
+
+```ts
+const encoded = hexEncode("Hello"); //=> "48656c6c6f"
+const decoded = hexDecode(encoded); //=> "Hello"
+```
+
+## Try
+
+<REPL code={`const { hexEncode, hexDecode } = require('@opentf/std');
+
+const encoded = hexEncode("Hello");
+console.log(encoded);
+console.log(hexDecode(encoded));
+`} />

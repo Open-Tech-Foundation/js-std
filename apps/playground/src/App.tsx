@@ -9,7 +9,10 @@ import {
   Settings2,
   Cpu,
   RefreshCw,
-  Database
+  Database,
+  Binary,
+  FastForward,
+  Filter
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { clsx, type ClassValue } from 'clsx';
@@ -28,6 +31,8 @@ import rateLimitRun from '../../../packages/std/src/flow/rateLimitRun';
 import retryRun from '../../../packages/std/src/flow/retryRun';
 import timeoutRun from '../../../packages/std/src/flow/timeoutRun';
 import memoizeRun from '../../../packages/std/src/flow/memoizeRun';
+import { base64Encode, hexEncode } from '../../../packages/std/src/encoding';
+import { takeIter } from '../../../packages/std/src/iter';
 
 type Event = {
   id: string;
@@ -587,8 +592,101 @@ const MemoizeRunTab = () => {
   );
 };
 
+const EncodingTab = () => {
+  const [input, setInput] = useState('Hello World');
+  
+  return (
+    <div className="grid-2">
+      <div className="card">
+        <div className="flex items-center gap-2 text-xl font-bold">
+          <Binary className="text-accent-primary" /> Encoding (v1)
+        </div>
+        <div className="controls">
+          <div className="control-group">
+            <label>Input Text</label>
+            <input 
+              type="text" 
+              value={input} 
+              onChange={e => setInput(e.target.value)}
+              className="p-3 rounded-lg bg-white/5 border border-white/10 text-white outline-none focus:border-accent-primary" 
+            />
+          </div>
+        </div>
+      </div>
+      <div className="flex flex-col gap-4">
+        <div className="card flex-1">
+          <div className="stat-label text-accent-primary">Base64 Encode</div>
+          <div className="mt-2 p-4 rounded-xl bg-white/5 font-mono break-all text-accent-primary">
+            {base64Encode(input)}
+          </div>
+          <div className="stat-label mt-4 text-accent-secondary">Hex Encode</div>
+          <div className="mt-2 p-4 rounded-xl bg-white/5 font-mono break-all text-accent-secondary">
+            {hexEncode(input)}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const IterTab = () => {
+  const [limit, setLimit] = useState(3);
+  const [items, setItems] = useState<number[]>([]);
+  
+  const runTest = () => {
+    function* infinite() {
+      let i = 1;
+      while(true) yield i++;
+    }
+    const taken = Array.from(takeIter(infinite(), limit));
+    setItems(taken);
+  };
+
+  return (
+    <div className="grid-2">
+      <div className="card">
+        <div className="flex items-center gap-2 text-xl font-bold">
+          <FastForward className="text-accent-success" /> Iterators (takeIter)
+        </div>
+        <p className="text-xs text-text-secondary mb-4">
+          Taking items from an infinite generator without hanging the browser.
+        </p>
+        <div className="controls">
+          <div className="control-group">
+            <label>Take Count: {limit}</label>
+            <input type="range" min="1" max="20" value={limit} onChange={e => setLimit(Number(e.target.value))} />
+          </div>
+          <button className="btn btn-primary" style={{background: 'var(--accent-success)'}} onClick={runTest}>
+            <Play size={18} /> Execute Iterator
+          </button>
+        </div>
+      </div>
+      <div className="flex flex-col gap-4">
+        <div className="card flex-1">
+          <div className="stat-label">Generated Collection</div>
+          <div className="flex flex-wrap gap-2 mt-4">
+            <AnimatePresence>
+              {items.map(item => (
+                <motion.div 
+                  key={item}
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  className="w-10 h-10 rounded-lg bg-accent-success/20 border border-accent-success/30 flex items-center justify-center font-bold text-accent-success"
+                >
+                  {item}
+                </motion.div>
+              ))}
+            </AnimatePresence>
+            {items.length === 0 && <div className="text-text-secondary italic">Result will appear here...</div>}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export default function App() {
-  const [activeTab, setActiveTab] = useState<'idle' | 'pace' | 'batch' | 'rate' | 'retry' | 'timeout' | 'memoize'>('idle');
+  const [activeTab, setActiveTab] = useState<'idle' | 'pace' | 'batch' | 'rate' | 'retry' | 'timeout' | 'memoize' | 'encoding' | 'iter'>('idle');
 
   return (
     <div className="app-container">
@@ -618,6 +716,12 @@ export default function App() {
           <div className={cn("nav-item", activeTab === 'memoize' && "active")} onClick={() => setActiveTab('memoize')}>
             <Database size={20} /> memoizeRun
           </div>
+          <div className={cn("nav-item", activeTab === 'encoding' && "active")} onClick={() => setActiveTab('encoding')}>
+            <Binary size={20} /> Encoding
+          </div>
+          <div className={cn("nav-item", activeTab === 'iter' && "active")} onClick={() => setActiveTab('iter')}>
+            <FastForward size={20} /> Iterators
+          </div>
         </nav>
         <div className="mt-auto p-4 rounded-2xl bg-gradient-to-br from-accent-primary/10 to-accent-secondary/10 border border-white/5">
           <p className="text-xs text-text-secondary leading-relaxed">
@@ -629,22 +733,12 @@ export default function App() {
       <main className="main-content">
         <header className="flex justify-between items-center">
           <div>
-            <h1 className="text-3xl font-bold tracking-tight">Execution Control</h1>
-            <p className="text-text-secondary">Testing concurrency patterns in real-time</p>
-          </div>
-          <div className="flex gap-4">
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 rounded-full bg-accent-primary" />
-              <span className="text-xs font-medium text-text-secondary">Request</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 rounded-full bg-accent-success shadow-[0_0_8px_var(--accent-success)]" />
-              <span className="text-xs font-medium text-text-secondary">Execution</span>
-            </div>
+            <h1 className="text-3xl font-bold tracking-tight">Standard v1 Essentials</h1>
+            <p className="text-text-secondary">Testing cross-platform primitives in real-time</p>
           </div>
         </header>
 
-        <section className="flex-1">
+        <section className="flex-1 mt-8">
           {activeTab === 'idle' && <IdleRunTab />}
           {activeTab === 'pace' && <PaceRunTab />}
           {activeTab === 'batch' && <BatchRunTab />}
@@ -652,6 +746,8 @@ export default function App() {
           {activeTab === 'retry' && <RetryRunTab />}
           {activeTab === 'timeout' && <TimeoutRunTab />}
           {activeTab === 'memoize' && <MemoizeRunTab />}
+          {activeTab === 'encoding' && <EncodingTab />}
+          {activeTab === 'iter' && <IterTab />}
         </section>
       </main>
     </div>

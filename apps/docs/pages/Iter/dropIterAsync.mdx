@@ -1,0 +1,26 @@
+import { Callout } from "nextra/components";
+
+> Returns an AsyncGenerator that skips the first n items from an AsyncIterable.
+
+<Callout type="info">
+Useful for skipping headers or metadata in large data streams.
+</Callout>
+
+## Syntax
+
+```ts
+import { dropIterAsync } from "@opentf/std";
+
+dropIterAsync(iterable: AsyncIterable<any>, n: number)
+```
+
+## Examples
+
+```ts
+// Example: Skipping the first 100 entries of a database stream
+const entries = dropIterAsync(dbStream, 100);
+
+for await (const entry of entries) {
+  process(entry);
+}
+```

@@ -1,0 +1,32 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> Escapes the RegExp special characters in string.
+
+<Callout type="info">
+Useful when dynamically creating regex from user input.
+</Callout>
+
+## Syntax
+
+```ts
+import { escapeRegExp } from "@opentf/std";
+
+escapeRegExp(str: string)
+```
+
+## Examples
+
+```ts
+const search = "[opentf]";
+const regex = new RegExp(escapeRegExp(search));
+
+regex.test("[opentf]"); //=> true
+```
+
+## Try
+
+<REPL code={`const { escapeRegExp } = require('@opentf/std');
+
+escapeRegExp("[opentf](https://opentf.org/)");
+`} />

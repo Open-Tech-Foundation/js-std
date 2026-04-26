@@ -1,5 +1,24 @@
 {
   "index": "Introduction",
+  "---": {
+    "type": "separator",
+    "title": "Modules"
+  },
+  "String": "String",
+  "Array": "Array",
+  "Object": "Object",
+  "Maths": "Maths",
+  "Types": "Types",
+  "Flow": "Flow",
+  "Concurrency": "Concurrency",
+  "Iter": "Iter",
+  "Encoding": "Encoding",
+  "Crypto": "Crypto",
+  "Colors": "Colors",
+  "Functional": "Functional",
+  "Assert": "Assert",
+  "Timing": "Timing",
+  "Number": "Number",
   "playground": {
     "title": "Playground",
     "type": "page",

@@ -1,0 +1,36 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> Creates an object composed of the keys that the predicate returns truthy for.
+
+<Callout type="info">
+The source object should be a `Plain Object`.
+</Callout>
+
+## Syntax
+
+```ts
+import { pickBy } from "@opentf/std";
+
+pickBy(obj: object, predicate: (value: any, key: string) => boolean)
+```
+
+## Examples
+
+```ts
+const obj = { a: 1, b: '2', c: 3 };
+
+pickBy(obj, (v) => typeof v === 'number'); 
+//=> { a: 1, c: 3 }
+
+pickBy(obj, (v, k) => k === 'b');
+//=> { b: '2' }
+```
+
+## Try
+
+<REPL code={`const { pickBy } = require('@opentf/std');
+
+const obj = { a: 1, b: '2', c: 3 };
+pickBy(obj, (v) => typeof v === 'number');
+`} />

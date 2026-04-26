@@ -1,0 +1,33 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> Creates an object composed of the keys that the predicate returns falsy for.
+
+<Callout type="info">
+The source object should be a `Plain Object`.
+</Callout>
+
+## Syntax
+
+```ts
+import { omitBy } from "@opentf/std";
+
+omitBy(obj: object, predicate: (value: any, key: string) => boolean)
+```
+
+## Examples
+
+```ts
+const obj = { a: 1, b: '2', c: 3 };
+
+omitBy(obj, (v) => typeof v === 'number'); 
+//=> { b: '2' }
+```
+
+## Try
+
+<REPL code={`const { omitBy } = require('@opentf/std');
+
+const obj = { a: 1, b: '2', c: 3 };
+omitBy(obj, (v) => typeof v === 'number');
+`} />

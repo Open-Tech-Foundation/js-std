@@ -16,6 +16,8 @@ export { default as trim } from './string/trim';
 export { default as words } from './string/words';
 export { default as pad } from './string/pad';
 export { default as repeat } from './string/repeat';
+export { default as escapeRegExp } from './string/escapeRegExp';
+export { default as slugify } from './string/slugify';
 
 // Array
 export { default as diff } from './array/diff';
@@ -125,6 +127,10 @@ export { default as fromPath } from './object/fromPath';
 export { default as toPath } from './object/toPath';
 export { default as omit } from './object/omit';
 export { default as pick } from './object/pick';
+export { default as pickBy } from './object/pickBy';
+export { default as omitBy } from './object/omitBy';
+export { default as mapKeys } from './object/mapKeys';
+export { default as mapValues } from './object/mapValues';
 
 // Assert
 export { default as isEmpty } from './assert/isEmpty';
@@ -169,3 +175,9 @@ export { default as randomId } from './crypto/randomId';
 export { default as isZero } from './number/isZero';
 export { default as isNegZero } from './number/isNegZero';
 export { default as toNum } from './number/toNum';
+
+// Encoding
+export { base64Encode, base64Decode, hexEncode, hexDecode } from './encoding';
+
+// Iter
+export { takeIter, dropIter, takeIterAsync, dropIterAsync } from './iter';

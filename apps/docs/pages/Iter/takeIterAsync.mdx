@@ -1,0 +1,26 @@
+import { Callout } from "nextra/components";
+
+> Returns an AsyncGenerator that yields the first n items from an AsyncIterable.
+
+<Callout type="info">
+Essential for processing large streams or remote data without loading everything into memory.
+</Callout>
+
+## Syntax
+
+```ts
+import { takeIterAsync } from "@opentf/std";
+
+takeIterAsync(iterable: AsyncIterable<any>, n: number)
+```
+
+## Examples
+
+```ts
+// Example: Processing the first 5 lines of a large file stream
+const lines = takeIterAsync(fileStream, 5);
+
+for await (const line of lines) {
+  console.log(line);
+}
+```
