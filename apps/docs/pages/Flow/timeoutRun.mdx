@@ -1,11 +1,7 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> ⏱ Enforces a strict time limit on an asynchronous function.
-
-<Callout type="warning">
-  This does not automatically "cancel" the underlying operation (like a network fetch) unless it supports an \`AbortSignal\`. It only ensures the caller doesn't wait indefinitely.
-</Callout>
+> ⏲️ Enforces a time limit on an asynchronous function.
 
 ## Syntax
 
@@ -24,44 +20,33 @@ timeoutRun<T>(
 
 ## Parameters
 
-- `func`: The asynchronous function to monitor.
-- `ms`: The timeout duration in milliseconds.
+- `func`: The asynchronous function to execute.
+- `ms`: The time limit in milliseconds.
 - `options`:
-    - `message`: A custom error message for the timeout rejection.
-    - `fallback`: A value to return instead of rejecting when a timeout occurs.
+    - `message`: Custom error message if timed out.
+    - `fallback`: A value to return if timed out, instead of rejecting with an error.
 
 ## Returns
 
-A Promise that resolves with the function result or the fallback value.
+A Promise that resolves with the function's result or the fallback value, or rejects if timed out.
 
 ## Examples
 
-### Basic Usage
-
 ```ts
 try {
-  const data = await timeoutRun(async () => {
-    await sleep(3000);
-    return 'Done';
-  }, 2000);
-} catch (error) {
-  console.log(error.message); //=> "Operation timed out after 2000ms"
+  const result = await timeoutRun(() => fetchLargeData(), 1000);
+} catch (err) {
+  // Rejects if it takes longer than 1s
 }
-```
 
-### With Fallback
-
-```ts
-const data = await timeoutRun(async () => {
-  await sleep(3000);
-  return 'Done';
-}, 2000, { fallback: 'Offline' }); //=> "Offline"
+// With fallback
+const data = await timeoutRun(() => fetch(), 500, { fallback: 'DEFAULT' });
 ```
 
 ## Related
 
 - [retryRun](/Flow/retryRun)
-- [withResolvers](/Concurrency/withResolvers)
+- [paceRun](/Flow/paceRun)
 
 ## Try
 
@@ -69,14 +54,13 @@ const data = await timeoutRun(async () => {
 
 async function demo() {
   try {
-    const result = await timeoutRun(async () => {
-      await sleep(1000);
-      return 'Success';
-    }, 500);
-    console.log(result);
+    await timeoutRun(() => sleep(1000), 500);
   } catch (err) {
-    console.log('Error:', err.message);
+    console.log(err.message);
   }
+
+  const result = await timeoutRun(() => sleep(1000), 500, { fallback: 'Timed Out' });
+  console.log('Result:', result);
 }
 
 demo();

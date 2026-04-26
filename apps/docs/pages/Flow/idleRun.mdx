@@ -1,56 +1,64 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> 💤 Executes a function during the browser's idle periods.
-
-<Callout type="info">
-  In Node.js, this falls back to \`setImmediate\`.
-</Callout>
+> ⏱️ Creates a debounced function that delays invoking `func` until after `delay` milliseconds have elapsed since the last time the debounced function was invoked.
 
 ## Syntax
 
 ```ts copy
 import { idleRun } from '@opentf/std';
 
-idleRun<T>(
-  func: () => T | Promise<T>,
+idleRun<T extends (...args: any[]) => any>(
+  func: T,
+  delay: number = 0,
   options?: {
-    timeout?: number;
+    leading?: boolean;
+    trailing?: boolean;
+    maxWait?: number;
   }
-): Promise<T>;
+): {
+  (...args: Parameters<T>): void;
+  cancel: () => void;
+  flush: () => void;
+  pending: () => boolean;
+};
 ```
 
 ## Parameters
 
-- `func`: The function to execute when idle.
+- `func`: The function to debounce.
+- `delay`: The number of milliseconds to delay. Default: `0`.
 - `options`:
-    - `timeout`: If specified, the function is executed even if the browser hasn't become idle after this many milliseconds.
+    - `leading`: Specify invoking on the leading edge of the timeout. Default: `false`.
+    - `trailing`: Specify invoking on the trailing edge of the timeout. Default: `true`.
+    - `maxWait`: The maximum time `func` is allowed to be delayed before it's invoked.
 
 ## Returns
 
-A Promise that resolves with the function result.
+The new debounced function.
 
 ## Examples
 
 ```ts
-await idleRun(() => {
-  // Perform non-essential background task
-  sendAnalytics();
-});
+const run = idleRun((val) => console.log(val), 500);
+
+run('a');
+run('b');
+run('c');
+// => logs 'c' after 500ms
 ```
 
 ## Related
 
 - [paceRun](/Flow/paceRun)
+- [rateLimitRun](/Flow/rateLimitRun)
 
 ## Try
 
 <REPL code={`const { idleRun } = require('@opentf/std');
 
-async function demo() {
-  const result = await idleRun(() => 'Task completed during idle period');
-  console.log(result);
-}
+const log = idleRun((msg) => console.log(msg), 500);
 
-demo();
+log('Hello');
+log('World'); // Only this will be logged after 500ms
 `} />

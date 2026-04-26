@@ -1,11 +1,7 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> 🚦 Limits the number of times a function can be called within a time window.
-
-<Callout type="info">
-  Commonly used for API rate limiting or preventing rapid user actions.
-</Callout>
+> 🚦 Creates a rate-limited function that ensures it only runs a specific number of times within a rolling time window.
 
 ## Syntax
 
@@ -14,49 +10,46 @@ import { rateLimitRun } from '@opentf/std';
 
 rateLimitRun<T extends (...args: any[]) => any>(
   func: T,
-  options?: {
-    limit?: number;
-    window?: number;
-  }
-): T;
+  limit: number,
+  period: number
+): (...args: Parameters<T>) => Promise<ReturnType<T>>;
 ```
 
 ## Parameters
 
 - `func`: The function to rate limit.
-- `options`:
-    - `limit`: The maximum number of calls allowed in the window. Default: `1`.
-    - `window`: The time window in milliseconds. Default: `1000`.
+- `limit`: The maximum number of calls allowed in the period.
+- `period`: The time window in milliseconds.
 
 ## Returns
 
-A rate-limited version of the input function.
+A new rate-limited function that returns a Promise.
 
 ## Examples
 
 ```ts
-const limitedLog = rateLimitRun(console.log, { limit: 2, window: 1000 });
+const run = rateLimitRun(async (val) => val, 2, 1000); // 2 per second
 
-limitedLog(1);
-limitedLog(2);
-limitedLog(3); // This will wait until the next window starts
+run('a'); // runs immediately
+run('b'); // runs immediately
+run('c'); // waits until 1s after 'a' started
 ```
 
 ## Related
 
-- [paceRun](/Flow/paceRun)
 - [batchRun](/Flow/batchRun)
+- [paceRun](/Flow/paceRun)
 
 ## Try
 
 <REPL code={`const { rateLimitRun, sleep } = require('@opentf/std');
 
 async function demo() {
-  const log = rateLimitRun((n) => console.log('Call:', n), { limit: 2, window: 500 });
+  const log = rateLimitRun(async (n) => console.log('Call:', n), 2, 500);
 
   log(1);
   log(2);
-  log(3); // Delayed
+  log(3); // This will wait
   await sleep(600);
 }
 

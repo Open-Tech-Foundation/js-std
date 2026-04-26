@@ -1,10 +1,10 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> 🧠 Memoizes a function, caching its results based on input arguments.
+> 🧠 Caches the results of an asynchronous function. Supports Single Flight (concurrent request de-duplication) and TTL.
 
 <Callout type="info">
-  Supports custom cache keys and Time-To-Live (TTL) expiration.
+  Single Flight means that concurrent calls to the same function with the same arguments will share the same underlying Promise.
 </Callout>
 
 ## Syntax
@@ -12,59 +12,57 @@ import REPL from "../../components/REPL";
 ```ts copy
 import { memoizeRun } from '@opentf/std';
 
-memoizeRun<T extends (...args: any[]) => any>(
-  func: T,
+memoizeRun<T, Args extends any[]>(
+  func: (...args: Args) => Promise<T>,
   options?: {
-    resolver?: (...args: Parameters<T>) => any;
-    ttl?: number;
+    maxAge?: number;
+    key?: (...args: Args) => string;
   }
-): T;
+): {
+  (...args: Args): Promise<T>;
+  clear: () => void;
+};
 ```
 
 ## Parameters
 
-- `func`: The function to memoize.
+- `func`: The asynchronous function to memoize.
 - `options`:
-    - `resolver`: A function to generate a unique cache key from the arguments.
-    - `ttl`: Time-to-live in milliseconds. After this time, the cached result is invalidated.
+    - `maxAge`: The maximum time in milliseconds to keep the cached result.
+    - `key`: An optional function to generate a cache key from the arguments. Defaults to `JSON.stringify(args)`.
 
 ## Returns
 
-A memoized version of the input function.
+The memoized asynchronous function with a `.clear()` method.
 
 ## Examples
 
 ```ts
-const heavyTask = (n) => {
-  console.log('Computing...');
-  return n * 2;
-};
+const memoized = memoizeRun(fetchUser, { maxAge: 5000 });
 
-const memoized = memoizeRun(heavyTask, { ttl: 1000 });
-
-memoized(5); // Computing... 10
-memoized(5); // 10 (from cache)
+// Only one API call will be made if these are called concurrently
+const [u1, u2] = await Promise.all([memoized(1), memoized(1)]);
 ```
 
 ## Related
 
-- [paceRun](/Flow/paceRun)
+- [retryRun](/Flow/retryRun)
 
 ## Try
 
 <REPL code={`const { memoizeRun, sleep } = require('@opentf/std');
 
 async function demo() {
-  const task = (n) => {
-    console.log('Calculating...');
+  const task = async (n) => {
+    console.log('Fetching...');
+    await sleep(50);
     return n + 10;
   };
-  const memoized = memoizeRun(task, { ttl: 200 });
+  const memoized = memoizeRun(task, { maxAge: 200 });
 
-  console.log(memoized(1)); // Calculates
-  console.log(memoized(1)); // Cached
+  await Promise.all([memoized(1), memoized(1)]); // Only one "Fetching..."
   await sleep(300);
-  console.log(memoized(1)); // Calculates again (TTL expired)
+  await memoized(1); // "Fetching..." again due to maxAge
 }
 
 demo();

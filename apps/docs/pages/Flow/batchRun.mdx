@@ -1,71 +1,60 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> 📦 Batches multiple calls to an asynchronous function into a single execution.
-
-<Callout type="info">
-  This is useful for bundling frequent updates (like database writes or API calls) into batches.
-</Callout>
+> 📦 Creates a batched function that collects calls and processes them in groups.
 
 ## Syntax
 
 ```ts copy
 import { batchRun } from '@opentf/std';
 
-batchRun<T, R>(
-  func: (batch: T[]) => Promise<R[]>,
+batchRun<T extends any[], R>(
+  batchProcessor: (argsList: T[]) => Promise<R[]>,
   options?: {
-    maxBatchSize?: number;
+    limit?: number;
     delay?: number;
   }
-): (item: T) => Promise<R>;
+): (...args: T) => Promise<R>;
 ```
 
 ## Parameters
 
-- `func`: The batch processor function. It receives an array of items and should return an array of results.
+- `batchProcessor`: The function that processes the collected arguments in a batch.
 - `options`:
-    - `maxBatchSize`: The maximum number of items in a single batch.
-    - `delay`: The time to wait for more items before processing a batch (ms).
+    - `limit`: The maximum number of calls to collect before processing the batch. Default: `Infinity`.
+    - `delay`: The time in milliseconds to wait before processing the batch. Default: `0`.
 
 ## Returns
 
-A function that takes an item and returns a Promise for its specific result.
+A function that returns a Promise for the result of the specific call.
 
 ## Examples
 
 ```ts
-const saveUser = batchRun(async (users) => {
-  return await db.bulkSave(users);
-}, { maxBatchSize: 10, delay: 50 });
+const batchFetch = batchRun(async (batch) => {
+  // batch is an array of arguments: [[1], [2], [3]]
+  const ids = batch.map(args => args[0]);
+  return await fetchUsers(ids);
+}, { limit: 10, delay: 50 });
 
-// These will be batched together
-saveUser({ name: 'Alice' });
-saveUser({ name: 'Bob' });
+const user1 = batchFetch(1);
+const user2 = batchFetch(2);
 ```
 
 ## Related
 
-- [paceRun](/Flow/paceRun)
 - [rateLimitRun](/Flow/rateLimitRun)
 
 ## Try
 
 <REPL code={`const { batchRun } = require('@opentf/std');
 
-async function demo() {
-  const processor = batchRun(async (batch) => {
-    console.log('Processing batch of size:', batch.length);
-    return batch.map(n => n * 2);
-  }, { delay: 100 });
+const processor = batchRun(async (batch) => {
+  console.log('Processing batch:', batch);
+  return batch.map(([n]) => n * 2);
+}, { limit: 3, delay: 100 });
 
-  const results = await Promise.all([
-    processor(1),
-    processor(2),
-    processor(3)
-  ]);
-  console.log('Results:', results);
-}
-
-demo();
+processor(1);
+processor(2);
+processor(3); // Triggers immediate processing due to limit: 3
 `} />

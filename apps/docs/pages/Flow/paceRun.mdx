@@ -1,53 +1,61 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> 🐢 Controls the minimum execution time for a function.
-
-<Callout type="info">
-  Useful for preventing UI "flickering" when an async operation is too fast.
-</Callout>
+> ⏱️ Creates a throttled function that only invokes `func` at most once per every `interval` milliseconds.
 
 ## Syntax
 
 ```ts copy
 import { paceRun } from '@opentf/std';
 
-paceRun<T>(
-  func: () => Promise<T>,
-  ms: number
-): Promise<T>;
+paceRun<T extends (...args: any[]) => any>(
+  func: T,
+  interval: number = 0,
+  options?: {
+    leading?: boolean;
+    trailing?: boolean;
+  }
+): {
+  (...args: Parameters<T>): void;
+  cancel: () => void;
+  flush: () => void;
+  pending: () => boolean;
+};
 ```
 
 ## Parameters
 
-- `func`: The asynchronous function to execute.
-- `ms`: The minimum duration in milliseconds.
+- `func`: The function to throttle.
+- `interval`: The number of milliseconds to throttle invocations to. Default: `0`.
+- `options`:
+    - `leading`: Specify invoking on the leading edge of the timeout. Default: `true`.
+    - `trailing`: Specify invoking on the trailing edge of the timeout. Default: `true`.
 
 ## Returns
 
-A Promise that resolves with the function result, but only after at least `ms` have elapsed.
+The new throttled function.
 
 ## Examples
 
 ```ts
-// Even if fetchData takes 10ms, paceRun ensures it takes at least 500ms
-const data = await paceRun(fetchData, 500);
+const run = paceRun((val) => console.log(val), 500);
+
+run('a'); // Logs 'a' immediately
+run('b'); // Ignored (if trailing is false) or queued
 ```
 
 ## Related
 
 - [idleRun](/Flow/idleRun)
-- [batchRun](/Flow/batchRun)
+- [rateLimitRun](/Flow/rateLimitRun)
 
 ## Try
 
 <REPL code={`const { paceRun } = require('@opentf/std');
 
-async function demo() {
-  console.time('Pace');
-  await paceRun(async () => 'Done', 1000);
-  console.timeEnd('Pace');
-}
+const log = paceRun((msg) => console.log(msg), 1000);
 
-demo();
+log('A'); // Immediate
+log('B'); // Queued
+log('C'); // Queued (overwrites B)
 `} />
