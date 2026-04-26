@@ -2,9 +2,10 @@
 
 # @opentf/std
 
-**An Extensive JavaScript Standard Library.**
+**The Modern JavaScript Standard Library.**
+*A lightweight, high-accuracy, and cross-runtime collection of essential utilities.*
 
-[![Build Status](https://github.com/open-tech-foundation/js-std/actions/workflows/build.yml/badge.svg)](https://github.com/open-tech-foundation/js-std/actions/workflows/build.yml)
+[![Build Status](https://github.com/open-tech-foundation/js-std/actions/workflows/build.yml/badge.svg)](https://github.com/open-tech-foundation/js-std/actions/workflows/ci.yml)
 [![JSR Score](https://jsr.io/badges/@opentf/std/score)](https://jsr.io/@opentf/std)
 
 *Part of the <img src="https://open-tech-foundation.pages.dev/img/Logo.svg" width="18" height="18" style="vertical-align: middle;" /> [Open Tech Foundation](https://github.com/Open-Tech-Foundation) ecosystem.*

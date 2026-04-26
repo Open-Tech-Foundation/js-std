@@ -12,7 +12,8 @@
       "**/coverage/**",
       ".changeset",
       "packages/std/README.md",
-      "packages/std/LICENSE"
+      "packages/std/LICENSE",
+      "**/package.json"
     ]
   },
   "organizeImports": {
