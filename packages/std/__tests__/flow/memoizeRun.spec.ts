@@ -25,16 +25,16 @@ describe('memoizeRun', () => {
     let calls = 0;
     const func = async (n: number) => {
       calls++;
-      await new Promise(resolve => setTimeout(resolve, 100));
+      await new Promise((resolve) => setTimeout(resolve, 100));
       return n * 2;
     };
     const memoized = memoizeRun(func);
 
     const p1 = memoized(5);
     const p2 = memoized(5);
-    
+
     vi.advanceTimersByTime(100);
-    
+
     const [r1, r2] = await Promise.all([p1, p2]);
 
     expect(r1).toBe(10);
@@ -47,7 +47,7 @@ describe('memoizeRun', () => {
     const memoized = memoizeRun(func, { maxAge: 1000 });
 
     await memoized(5);
-    
+
     vi.advanceTimersByTime(500);
     await memoized(5);
     expect(func).toHaveBeenCalledTimes(1);
@@ -66,7 +66,7 @@ describe('memoizeRun', () => {
     const memoized = memoizeRun(func);
 
     await expect(memoized()).rejects.toThrow('fail');
-    
+
     shouldFail = false;
     const result = await memoized();
     expect(result).toBe('ok');
@@ -79,7 +79,7 @@ describe('memoizeRun', () => {
 
     await memoized({ id: 1 });
     await memoized({ id: 1 });
-    
+
     expect(func).toHaveBeenCalledTimes(1);
   });
 

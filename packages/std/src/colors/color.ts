@@ -189,10 +189,10 @@ const HEX_TO_NAME: Record<string, string> = Object.fromEntries(
 
 function hexToRgba(hex: string): RGBA | null {
   const s = hex.startsWith('#') ? hex.slice(1) : hex;
-  let r = 0,
-    g = 0,
-    b = 0,
-    a = 1;
+  let r = 0;
+  let g = 0;
+  let b = 0;
+  let a = 1;
 
   if (s.length === 3) {
     r = Number.parseInt(s[0] + s[0], 16);
@@ -216,7 +216,12 @@ function hexToRgba(hex: string): RGBA | null {
     return null;
   }
 
-  if (Number.isNaN(r) || Number.isNaN(g) || Number.isNaN(b) || Number.isNaN(a)) {
+  if (
+    Number.isNaN(r) ||
+    Number.isNaN(g) ||
+    Number.isNaN(b) ||
+    Number.isNaN(a)
+  ) {
     return null;
   }
 
@@ -228,7 +233,9 @@ function hslToRgba(h: number, s: number, l: number, a = 1): RGBA {
   const sat = s / 100;
   const light = l / 100;
 
-  let r: number, g: number, b: number;
+  let r: number;
+  let g: number;
+  let b: number;
 
   if (sat === 0) {
     r = g = b = light;
@@ -264,8 +271,8 @@ function rgbaToHsla(r: number, g: number, b: number, a = 1): HSLA {
 
   const max = Math.max(red, green, blue);
   const min = Math.min(red, green, blue);
-  let h = 0,
-    s = 0;
+  let h = 0;
+  let s = 0;
   const l = (max + min) / 2;
 
   if (max !== min) {
@@ -298,7 +305,7 @@ function rgbaToOklch(r: number, g: number, b: number, a = 1): OKLCH {
   // sRGB to Linear RGB
   const toLinear = (c: number) => {
     const v = c / 255;
-    return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+    return v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4;
   };
   const lr = toLinear(r);
   const lg = toLinear(g);
@@ -306,7 +313,7 @@ function rgbaToOklch(r: number, g: number, b: number, a = 1): OKLCH {
 
   // Linear RGB to OKLab
   const l = 0.4122214708 * lr + 0.5363325363 * lg + 0.0514459929 * lb;
-  const m = 0.2119034982 * lr + 0.6740817638 * lg + 0.1140147380 * lb;
+  const m = 0.2119034982 * lr + 0.6740817638 * lg + 0.114014738 * lb;
   const s = 0.0883024619 * lr + 0.2788669539 * lg + 0.6328305841 * lb;
 
   const l_ = Math.cbrt(l);
@@ -350,7 +357,7 @@ function oklchToRgba(l: number, c: number, h: number, a = 1): RGBA {
 
   const toSRGB = (c: number) => {
     return Math.round(
-      (c <= 0.0031308 ? 12.92 * c : 1.055 * Math.pow(c, 1 / 2.4) - 0.055) * 255,
+      (c <= 0.0031308 ? 12.92 * c : 1.055 * c ** (1 / 2.4) - 0.055) * 255,
     );
   };
 

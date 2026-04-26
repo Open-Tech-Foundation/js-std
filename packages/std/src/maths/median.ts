@@ -13,7 +13,7 @@ export default function median<T>(
   cb?: (val: T, index: number) => number,
 ): number {
   if (arr.length === 0) {
-    return NaN;
+    return Number.NaN;
   }
   const sorted = (arr as unknown[])
     .map((v, i) => (cb ? cb(v as T, i) : (v as number)))

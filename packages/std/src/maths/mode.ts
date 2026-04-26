@@ -17,7 +17,9 @@ export default function mode<T>(
   const frequency = new Map<string | number, number>();
   let maxFreq = 0;
   for (let i = 0; i < arr.length; i++) {
-    const val = cb ? cb(arr[i] as T, i) : (arr[i] as unknown as string | number);
+    const val = cb
+      ? cb(arr[i] as T, i)
+      : (arr[i] as unknown as string | number);
     const count = (frequency.get(val) || 0) + 1;
     frequency.set(val, count);
     if (count > maxFreq) {

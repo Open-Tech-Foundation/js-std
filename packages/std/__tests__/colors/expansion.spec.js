@@ -1,19 +1,19 @@
 import {
   color,
-  colorLighten,
-  colorDarken,
-  colorSaturate,
-  colorDesaturate,
   colorAlpha,
-  colorMix,
+  colorContrast,
+  colorDarken,
+  colorDesaturate,
   colorGrayscale,
-  colorRotateHue,
-  colorLuminance,
   colorInvert,
   colorIsDark,
   colorIsLight,
-  colorContrast,
   colorIsReadable,
+  colorLighten,
+  colorLuminance,
+  colorMix,
+  colorRotateHue,
+  colorSaturate,
 } from '../../src';
 
 describe('Colors Expansion', () => {
@@ -43,7 +43,12 @@ describe('Colors Expansion', () => {
 
     test('colorDesaturate', () => {
       expect(colorDesaturate('red', 0.5)).toBe('#bf4040');
-      expect(colorDesaturate('red', 0.5, 'rgba-object')).toEqual({ r: 191, g: 64, b: 64, a: 1 });
+      expect(colorDesaturate('red', 0.5, 'rgba-object')).toEqual({
+        r: 191,
+        g: 64,
+        b: 64,
+        a: 1,
+      });
     });
 
     test('colorAlpha', () => {

@@ -23,7 +23,7 @@ describe('retryRun', () => {
 
     const result = retryRun(func, { retries: 5, delay: 100 });
     result.catch(() => {});
-    
+
     await vi.advanceTimersByTimeAsync(0);
     await vi.advanceTimersByTimeAsync(100);
     await vi.advanceTimersByTimeAsync(100);
@@ -41,7 +41,7 @@ describe('retryRun', () => {
 
     const result = retryRun(func, { retries: 2, delay: 10 });
     result.catch(() => {});
-    
+
     for (let i = 0; i <= 2; i++) {
       await vi.advanceTimersByTimeAsync(10);
     }
@@ -58,11 +58,11 @@ describe('retryRun', () => {
     });
 
     const onRetry = vi.fn();
-    const result = retryRun(func, { 
-      retries: 3, 
-      delay: 100, 
+    const result = retryRun(func, {
+      retries: 3,
+      delay: 100,
       backoff: 'exponential',
-      onRetry 
+      onRetry,
     });
     result.catch(() => {});
 

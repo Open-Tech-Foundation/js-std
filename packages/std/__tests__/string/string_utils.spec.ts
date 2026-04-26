@@ -12,21 +12,21 @@ describe('String Utilities', () => {
     test('strip color from string', () => {
       expect(
         stripANSI(
-          '\u001B[0m\u001B[4m\u001B[42m\u001B[31mfoo\u001B[39m\u001B[49m\u001B[24mfoo\u001B[0m'
-        )
+          '\u001B[0m\u001B[4m\u001B[42m\u001B[31mfoo\u001B[39m\u001B[49m\u001B[24mfoo\u001B[0m',
+        ),
       ).toBe('foofoo');
     });
 
     test('strip color from ls command', () => {
       expect(
-        stripANSI('\u001B[00;38;5;244m\u001B[m\u001B[00;38;5;33mfoo\u001B[0m')
+        stripANSI('\u001B[00;38;5;244m\u001B[m\u001B[00;38;5;33mfoo\u001B[0m'),
       ).toBe('foo');
     });
 
     test('strip link from terminal link', () => {
-      expect(stripANSI('\u001B]8;;https://github.com\u0007click\u001B]8;;\u0007')).toBe(
-        'click'
-      );
+      expect(
+        stripANSI('\u001B]8;;https://github.com\u0007click\u001B]8;;\u0007'),
+      ).toBe('click');
     });
 
     test('strip OSC sequence with BEL terminator', () => {
@@ -62,7 +62,7 @@ describe('String Utilities', () => {
     test('ANSI escape sequences', () => {
       expect(stringWidth('\u001B[31mred\u001B[0m')).toBe(3);
       expect(
-        stringWidth('\u001B]8;;https://example.com\u0007link\u001B]8;;\u0007')
+        stringWidth('\u001B]8;;https://example.com\u0007link\u001B]8;;\u0007'),
       ).toBe(4);
     });
 

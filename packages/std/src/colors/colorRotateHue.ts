@@ -1,4 +1,4 @@
-import color, { ColorFormat } from './color';
+import color, { type ColorFormat } from './color';
 
 /**
  * Rotates the hue of a color.

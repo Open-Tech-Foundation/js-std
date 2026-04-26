@@ -10,7 +10,7 @@ import mapAsync from './mapAsync';
 export default async function flatMapAsync<T, R>(
   arr: T[],
   cb: (value: T, index: number) => Promise<R | readonly R[]>,
-  concurrency: number = Infinity,
+  concurrency: number = Number.POSITIVE_INFINITY,
 ): Promise<R[]> {
   const results = await mapAsync(arr, cb, concurrency);
   return results.flat() as R[];

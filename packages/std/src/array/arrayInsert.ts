@@ -6,7 +6,6 @@
  * arrayInsert([1, 2, 3], 1, 5); // [1, 5, 2, 3]
  */
 export default function arrayInsert<T>(
-  // biome-ignore lint/style/useDefaultParameterLast: <explanation>
   arr: T[] = [],
   index: number | null | undefined,
   ...items: T[]

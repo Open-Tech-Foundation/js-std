@@ -11,7 +11,7 @@ export default function mean<T>(
   cb?: (val: T, index: number) => number,
 ): number {
   if (arr.length === 0) {
-    return NaN;
+    return Number.NaN;
   }
   const sum = (arr as unknown[]).reduce((prev: number, cur, i) => {
     return prev + (cb ? cb(cur as T, i) : (cur as number));

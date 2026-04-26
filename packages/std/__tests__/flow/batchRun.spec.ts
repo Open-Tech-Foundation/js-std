@@ -11,7 +11,7 @@ describe('batchRun', () => {
 
   test('batches calls by limit', async () => {
     const processor = vi.fn(async (batch: number[][]) => {
-      return batch.map(args => args[0] * 2);
+      return batch.map((args) => args[0] * 2);
     });
     const batched = batchRun(processor, { limit: 2 });
 
@@ -22,7 +22,7 @@ describe('batchRun', () => {
     expect(processor).toHaveBeenCalledTimes(1);
     expect(await p1).toBe(2);
     expect(await p2).toBe(4);
-    
+
     vi.advanceTimersByTime(0);
     expect(processor).toHaveBeenCalledTimes(2);
     expect(await p3).toBe(6);
@@ -30,7 +30,7 @@ describe('batchRun', () => {
 
   test('batches calls by delay', async () => {
     const processor = vi.fn(async (batch: number[][]) => {
-      return batch.map(args => args[0] * 2);
+      return batch.map((args) => args[0] * 2);
     });
     const batched = batchRun(processor, { delay: 100 });
 

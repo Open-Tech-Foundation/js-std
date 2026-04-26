@@ -1,4 +1,4 @@
-import { base64Encode, base64Decode, hexEncode, hexDecode } from '../../src';
+import { base64Decode, base64Encode, hexDecode, hexEncode } from '../../src';
 
 describe('Encoding Utilities', () => {
   test('Base64', () => {

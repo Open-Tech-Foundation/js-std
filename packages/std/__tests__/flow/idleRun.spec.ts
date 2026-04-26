@@ -51,7 +51,7 @@ describe('idleRun', () => {
     debounced('c');
     vi.advanceTimersByTime(50);
     debounced('d');
-    
+
     // maxWait is 200ms from the first call
     vi.advanceTimersByTime(50);
     expect(func).toBeCalledWith('d');

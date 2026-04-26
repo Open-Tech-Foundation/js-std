@@ -19,7 +19,7 @@ export default function uniq<T>(arr: T[] = [], by?: (val: T) => unknown): T[] {
   // Optimization for primitives without iteratee
   if (!byFlag) {
     const primitivesOnly = arr.every(
-      (x) => typeof x !== 'object' || x === null
+      (x) => typeof x !== 'object' || x === null,
     );
     if (primitivesOnly) {
       return [...new Set(arr)];

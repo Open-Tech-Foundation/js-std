@@ -1,4 +1,4 @@
-import color, { ColorFormat } from './color';
+import color, { type ColorFormat } from './color';
 
 /**
  * Converts a color to grayscale.

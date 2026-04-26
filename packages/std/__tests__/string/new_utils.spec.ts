@@ -1,12 +1,12 @@
 import {
-  snakeCase,
   kebabCase,
-  titleCase,
-  truncate,
-  trim,
-  words,
   pad,
   repeat,
+  snakeCase,
+  titleCase,
+  trim,
+  truncate,
+  words,
 } from '../../src';
 
 describe('String Utils', () => {
@@ -41,7 +41,11 @@ describe('String Utils', () => {
   });
 
   test('words', () => {
-    expect(words('fred, barney, & pebbles')).toEqual(['fred', 'barney', 'pebbles']);
+    expect(words('fred, barney, & pebbles')).toEqual([
+      'fred',
+      'barney',
+      'pebbles',
+    ]);
     expect(words('fred, barney, & pebbles', /[^, ]+/g)).toEqual([
       'fred',
       'barney',

@@ -11,7 +11,6 @@ describe('Types > isPromise', () => {
     expect(isPromise(0)).toBe(false);
     expect(isPromise(1)).toBe(false);
     expect(isPromise({})).toBe(false);
-    // biome-ignore lint/suspicious/noThenProperty: Intentional for testing
     expect(isPromise({ then: true })).toBe(false);
     expect(isPromise([])).toBe(false);
     expect(isPromise(['then'])).toBe(false);
@@ -22,7 +21,6 @@ describe('Types > isPromise', () => {
     expect(isPromise(Promise.all([]))).toBe(true);
     expect(isPromise(Promise.race([]))).toBe(true);
     expect(isPromise(Promise.allSettled([]))).toBe(true);
-    // biome-ignore lint/suspicious/noThenProperty: Intentional for testing
     expect(isPromise({ then: () => {} })).toBe(true);
   });
 });

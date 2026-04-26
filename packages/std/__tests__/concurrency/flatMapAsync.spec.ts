@@ -18,7 +18,7 @@ describe('flatMapAsync', () => {
         running--;
         return [n];
       },
-      1
+      1,
     );
     expect(res).toEqual([1, 2, 3]);
     expect(maxRunning).toBe(1);

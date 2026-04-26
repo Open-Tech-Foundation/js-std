@@ -47,7 +47,7 @@ describe('paceRun', () => {
 
     vi.advanceTimersByTime(100);
     expect(func).toHaveBeenCalledTimes(1);
-    
+
     throttled('c');
     expect(func).toHaveBeenCalledTimes(2);
     expect(func).toBeCalledWith('c');

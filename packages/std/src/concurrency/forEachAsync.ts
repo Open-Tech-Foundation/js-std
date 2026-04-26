@@ -8,7 +8,7 @@
 export default async function forEachAsync<T>(
   arr: T[],
   cb: (value: T, index: number) => Promise<void>,
-  concurrency: number = Infinity,
+  concurrency: number = Number.POSITIVE_INFINITY,
 ): Promise<void> {
   let index = 0;
 

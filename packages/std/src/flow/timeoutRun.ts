@@ -14,7 +14,7 @@ export default async function timeoutRun<T>(
   options: {
     message?: string;
     fallback?: T;
-  } = {}
+  } = {},
 ): Promise<T> {
   let timeoutId: ReturnType<typeof setTimeout> | undefined;
 
@@ -23,7 +23,9 @@ export default async function timeoutRun<T>(
       if (options.fallback !== undefined) {
         resolve(options.fallback);
       } else {
-        reject(new Error(options.message || `Operation timed out after ${ms}ms`));
+        reject(
+          new Error(options.message || `Operation timed out after ${ms}ms`),
+        );
       }
     }, ms);
   });

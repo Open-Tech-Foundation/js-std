@@ -11,14 +11,9 @@ export default async function retryRun<T>(
     delay?: number;
     backoff?: 'fixed' | 'exponential';
     onRetry?: (error: any, attempt: number) => void;
-  } = {}
+  } = {},
 ): Promise<T> {
-  const { 
-    retries = 3, 
-    delay = 0, 
-    backoff = 'fixed', 
-    onRetry 
-  } = options;
+  const { retries = 3, delay = 0, backoff = 'fixed', onRetry } = options;
 
   let lastError: any;
 
@@ -26,8 +21,8 @@ export default async function retryRun<T>(
     // We use a wrapper to catch the error immediately and prevent unhandled rejection warnings
     // while still allowing us to handle the error in our logic.
     const result = await func().then(
-      val => ({ ok: true as const, val }),
-      err => ({ ok: false as const, err })
+      (val) => ({ ok: true as const, val }),
+      (err) => ({ ok: false as const, err }),
     );
 
     if (result.ok) {
@@ -37,14 +32,14 @@ export default async function retryRun<T>(
     lastError = result.err;
     if (attempt < retries) {
       onRetry?.(lastError, attempt + 1);
-      
+
       let waitTime = delay;
       if (backoff === 'exponential' && delay > 0) {
-        waitTime = delay * Math.pow(2, attempt);
+        waitTime = delay * 2 ** attempt;
       }
-      
+
       if (waitTime > 0) {
-        await new Promise(resolve => setTimeout(resolve, waitTime));
+        await new Promise((resolve) => setTimeout(resolve, waitTime));
       }
     }
   }

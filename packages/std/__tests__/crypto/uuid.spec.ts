@@ -1,17 +1,17 @@
 import {
-  uuidv4,
-  uuidv7,
   randomBytes,
+  randomId,
   randomInt,
   randomString,
-  randomId,
+  uuidv4,
+  uuidv7,
 } from '../../src';
 
 describe('Crypto Utilities', () => {
   test('uuidv4', () => {
     const id = uuidv4();
     expect(id).toMatch(
-      /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/
+      /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/,
     );
   });
 
@@ -19,7 +19,7 @@ describe('Crypto Utilities', () => {
     const id1 = uuidv7();
     const id2 = uuidv7();
     expect(id1).toMatch(
-      /^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/
+      /^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/,
     );
     expect(id1).not.toBe(id2);
 
@@ -28,7 +28,7 @@ describe('Crypto Utilities', () => {
     const id3 = uuidv7();
     // The first 48 bits are timestamp
     const tsHex = id3.split('-')[0] + id3.split('-')[1];
-    const ts = parseInt(tsHex, 16);
+    const ts = Number.parseInt(tsHex, 16);
     expect(ts).toBeGreaterThanOrEqual(t1);
   });
 

@@ -15,7 +15,7 @@ export default function idleRun<T extends (...args: any[]) => any>(
     leading?: boolean;
     trailing?: boolean;
     maxWait?: number;
-  } = {}
+  } = {},
 ): {
   (...args: Parameters<T>): void;
   cancel: () => void;

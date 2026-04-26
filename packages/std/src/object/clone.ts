@@ -76,7 +76,6 @@ function cloneObj<T>(obj: T, objRefMap: WeakMap<WeakKey, unknown>): T {
   }
 
   if (isError(obj)) {
-    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
     const c = new (obj.constructor as any)(obj.message);
     if (obj.name !== c.name) {
       c.name = obj.name;
@@ -93,7 +92,6 @@ function cloneObj<T>(obj: T, objRefMap: WeakMap<WeakKey, unknown>): T {
 
   if (isArrayBuffer(obj)) {
     const buff = new (ArrayBuffer as ArrayBufferConstructor)(obj.byteLength, {
-      // biome-ignore lint/suspicious/noExplicitAny: <explanation>
       maxByteLength: (obj as any).maxByteLength,
     });
     new Uint8Array(buff).set(new Uint8Array(obj as ArrayBuffer));

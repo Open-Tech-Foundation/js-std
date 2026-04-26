@@ -128,7 +128,6 @@ describe('Assert => isEql', () => {
     const re2 = /ab+d/;
     expect(isEql(re, re2)).toBe(false);
 
-    // biome-ignore lint/suspicious/noSparseArray: Intentional for testing
     expect(isEql([1, undefined, 2], [1, , 2])).toBe(false);
 
     const first = new A();

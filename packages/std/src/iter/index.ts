@@ -29,7 +29,7 @@ export function* dropIter<T>(iterable: Iterable<T>, n: number): Generator<T> {
  */
 export async function* takeIterAsync<T>(
   iterable: AsyncIterable<T>,
-  n: number
+  n: number,
 ): AsyncGenerator<T> {
   let count = 0;
   for await (const item of iterable) {
@@ -44,7 +44,7 @@ export async function* takeIterAsync<T>(
  */
 export async function* dropIterAsync<T>(
   iterable: AsyncIterable<T>,
-  n: number
+  n: number,
 ): AsyncGenerator<T> {
   let count = 0;
   for await (const item of iterable) {

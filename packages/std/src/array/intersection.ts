@@ -11,7 +11,7 @@ import uniq from './uniq';
  */
 export default function intersection<T>(
   arr: T[][],
-  by?: (val: T) => unknown
+  by?: (val: T) => unknown,
 ): T[] {
   if (!Array.isArray(arr) || arr.length === 0) {
     return [];
@@ -24,7 +24,7 @@ export default function intersection<T>(
 
   const byFlag = typeof by === 'function';
   const [first, ...rest] = collections;
-  
+
   const result = first.filter((val) => {
     const v1 = byFlag ? by(val) : val;
     return rest.every((c) => {

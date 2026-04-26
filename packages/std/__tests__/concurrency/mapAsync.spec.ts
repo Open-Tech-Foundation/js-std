@@ -18,7 +18,7 @@ describe('mapAsync', () => {
         running--;
         return n * 2;
       },
-      2
+      2,
     );
     expect(res).toEqual([2, 4, 6, 8, 10]);
     expect(maxRunning).toBe(2);

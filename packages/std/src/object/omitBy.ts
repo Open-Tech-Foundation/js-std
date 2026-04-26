@@ -6,7 +6,7 @@
  */
 export default function omitBy<T extends object>(
   obj: T,
-  predicate: (value: T[keyof T], key: string) => boolean
+  predicate: (value: T[keyof T], key: string) => boolean,
 ): Partial<T> {
   const result: any = {};
 

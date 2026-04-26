@@ -11,7 +11,7 @@
 export default async function mapAsync<T, R>(
   arr: T[],
   cb: (value: T, index: number) => Promise<R>,
-  concurrency: number = Infinity,
+  concurrency: number = Number.POSITIVE_INFINITY,
 ): Promise<R[]> {
   const results: R[] = new Array(arr.length);
   let index = 0;

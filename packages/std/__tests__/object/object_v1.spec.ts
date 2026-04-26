@@ -1,4 +1,4 @@
-import { pickBy, omitBy, mapKeys, mapValues } from '../../src';
+import { mapKeys, mapValues, omitBy, pickBy } from '../../src';
 
 describe('Object Utilities', () => {
   test('pickBy', () => {

@@ -21,7 +21,7 @@ export default function stringWidth(str: string): number {
 
   if (!globalThis.Intl || !globalThis.Intl.Segmenter) {
     throw new Error(
-      'Intl.Segmenter is not supported in this environment. Use a polyfill or a modern runtime.'
+      'Intl.Segmenter is not supported in this environment. Use a polyfill or a modern runtime.',
     );
   }
 

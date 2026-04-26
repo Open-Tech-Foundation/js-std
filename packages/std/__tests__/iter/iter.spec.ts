@@ -1,4 +1,4 @@
-import { takeIter, dropIter, takeIterAsync, dropIterAsync } from '../../src';
+import { dropIter, dropIterAsync, takeIter, takeIterAsync } from '../../src';
 
 describe('Iter Utilities', () => {
   function* gen() {

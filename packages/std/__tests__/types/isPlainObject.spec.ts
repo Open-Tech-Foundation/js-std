@@ -34,7 +34,6 @@ describe('Types > isPlainObject', () => {
     expect(isPlainObject([])).toBe(false);
     expect(isPlainObject({})).toBe(true);
     expect(isPlainObject({ a: 1 })).toBe(true);
-    // biome-ignore lint/suspicious/noExplicitAny: Intentional for testing
     expect(isPlainObject(new (fun as any)(1))).toBe(false);
     expect(isPlainObject(new Object())).toBe(true);
     expect(isPlainObject(Object.create(null))).toBe(true);

@@ -1,4 +1,4 @@
-import withResolvers from "../concurrency/withResolvers";
+import withResolvers from '../concurrency/withResolvers';
 
 /**
  * Creates a rate-limited function that ensures it only runs a specific number of times
@@ -13,7 +13,7 @@ import withResolvers from "../concurrency/withResolvers";
 export default function rateLimitRun<T extends (...args: any[]) => any>(
   func: T,
   limit: number,
-  period: number
+  period: number,
 ): (...args: Parameters<T>) => Promise<ReturnType<T>> {
   const timestamps: number[] = [];
   const queue: {
@@ -38,14 +38,14 @@ export default function rateLimitRun<T extends (...args: any[]) => any>(
       const item = queue.shift()!;
       const now = Date.now();
       timestamps.push(now);
-      
+
       try {
         const result = await func(...item.args);
         item.resolve(result);
       } catch (error) {
         item.reject(error);
       }
-      
+
       cleanup();
     }
 
@@ -56,7 +56,7 @@ export default function rateLimitRun<T extends (...args: any[]) => any>(
     }
   }
 
-  return function (...args: Parameters<T>): Promise<ReturnType<T>> {
+  return (...args: Parameters<T>): Promise<ReturnType<T>> => {
     const { promise, resolve, reject } = withResolvers<ReturnType<T>>();
     queue.push({ args, resolve, reject });
     processQueue();

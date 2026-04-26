@@ -1,7 +1,16 @@
 {
   "$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
   "files": {
-    "ignore": ["dist", "node_modules", "packages/std/dist"]
+    "ignore": [
+      "node_modules",
+      "dist",
+      ".next",
+      "apps",
+      "packages/std/dist",
+      "scripts",
+      "packages/std/scripts",
+      "**/coverage/**"
+    ]
   },
   "organizeImports": {
     "enabled": true
@@ -9,7 +18,25 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true
+      "recommended": true,
+      "suspicious": {
+        "noExplicitAny": "off",
+        "noSparseArray": "off",
+        "noThenProperty": "off",
+        "noControlCharactersInRegex": "off",
+        "noMisleadingCharacterClass": "off"
+      },
+      "style": {
+        "noNonNullAssertion": "off",
+        "useDefaultParameterLast": "off"
+      },
+      "complexity": {
+        "noForEach": "off"
+      },
+      "performance": {
+        "noAccumulatingSpread": "off",
+        "noDelete": "off"
+      }
     }
   },
   "formatter": {

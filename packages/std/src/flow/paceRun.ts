@@ -14,7 +14,7 @@ export default function paceRun<T extends (...args: any[]) => any>(
   options: {
     leading?: boolean;
     trailing?: boolean;
-  } = {}
+  } = {},
 ): {
   (...args: Parameters<T>): void;
   cancel: () => void;

@@ -75,10 +75,8 @@ describe('Object > Clone', () => {
 
   test('sparse array', () => {
     const array1 = [1, 2, 3, 4, 5];
-    // biome-ignore lint/performance/noDelete: Intentional for testing
     delete array1[1];
     const output = clone(array1);
-    // biome-ignore lint/suspicious/noSparseArray: Intentional for testing
     expect(output).toEqual([1, , 3, 4, 5]);
     expect(output.length).toBe(5);
     const values = Object.values(output);

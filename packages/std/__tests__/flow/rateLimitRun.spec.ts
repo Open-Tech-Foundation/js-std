@@ -24,7 +24,7 @@ describe('rateLimitRun', () => {
     vi.advanceTimersByTime(500);
 
     vi.advanceTimersByTime(500);
-    
+
     expect(func).toHaveBeenCalledTimes(3);
     expect(await p3).toBe('c');
   });

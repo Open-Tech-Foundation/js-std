@@ -1,4 +1,4 @@
-import color, { ColorFormat } from './color';
+import color, { type ColorFormat } from './color';
 
 /**
  * Increases the saturation of a color.

@@ -10,7 +10,10 @@ import isEql from './isEql';
  *
  * isUnorderedEqual([1, 3, 2], [2, 1, 5]) //=> false
  */
-export default function isUnorderedEqual(arr1: unknown[], arr2: unknown[]): boolean {
+export default function isUnorderedEqual(
+  arr1: unknown[],
+  arr2: unknown[],
+): boolean {
   const a1 = arr1;
   const a2 = arr2.slice();
 

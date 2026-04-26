@@ -35,7 +35,9 @@ export default function mergeAll(
 
   return filteredObjs.reduce((acc: IterableObj, cur, i) => {
     if (i === 0) {
-      return (isArray(cur) ? cur.slice() : Object.assign({}, cur)) as IterableObj;
+      return (
+        isArray(cur) ? cur.slice() : Object.assign({}, cur)
+      ) as IterableObj;
     }
 
     if (isArray(acc) && isArray(cur)) {

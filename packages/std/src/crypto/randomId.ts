@@ -12,6 +12,6 @@ const ALPHABET =
  * randomId() //=> 'V1StGXR8_Z5jdHi6B-myT'
  * randomId(10) //=> 'h6fG_2jK8L'
  */
-export default function randomId(length: number = 21): string {
+export default function randomId(length = 21): string {
   return randomString(length, ALPHABET);
 }

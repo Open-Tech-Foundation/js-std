@@ -13,7 +13,7 @@ describe('reduceAsync', () => {
 
   test('reduceAsync empty array error', async () => {
     await expect(reduceAsync([], async (acc, n) => acc + n)).rejects.toThrow(
-      'Reduce of empty array with no initial value'
+      'Reduce of empty array with no initial value',
     );
   });
 });

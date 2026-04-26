@@ -12,7 +12,7 @@ import color from './color';
 export default function colorMix(
   color1: any,
   color2: any,
-  weight: number = 0.5,
+  weight = 0.5,
   format: any = 'hex',
 ): any {
   const rgba1 = color(color1, 'rgba-object');

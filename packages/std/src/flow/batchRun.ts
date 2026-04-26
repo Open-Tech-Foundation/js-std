@@ -15,12 +15,16 @@ export default function batchRun<T extends any[], R>(
   options: {
     limit?: number;
     delay?: number;
-  } = {}
+  } = {},
 ): (...args: T) => Promise<R> {
-  const limit = options.limit ?? Infinity;
+  const limit = options.limit ?? Number.POSITIVE_INFINITY;
   const delay = options.delay ?? 0;
 
-  let queue: { args: T; resolve: (val: R) => void; reject: (err: any) => void }[] = [];
+  let queue: {
+    args: T;
+    resolve: (val: R) => void;
+    reject: (err: any) => void;
+  }[] = [];
   let timeoutId: ReturnType<typeof setTimeout> | undefined;
 
   async function processQueue() {
@@ -30,7 +34,9 @@ export default function batchRun<T extends any[], R>(
     timeoutId = undefined;
 
     try {
-      const results = await batchProcessor(currentQueue.map((item) => item.args));
+      const results = await batchProcessor(
+        currentQueue.map((item) => item.args),
+      );
       currentQueue.forEach((item, index) => {
         item.resolve(results[index]);
       });
@@ -39,8 +45,8 @@ export default function batchRun<T extends any[], R>(
     }
   }
 
-  return function (...args: T): Promise<R> {
-    return new Promise((resolve, reject) => {
+  return (...args: T): Promise<R> =>
+    new Promise((resolve, reject) => {
       queue.push({ args, resolve, reject });
 
       if (queue.length >= limit) {
@@ -49,5 +55,4 @@ export default function batchRun<T extends any[], R>(
         timeoutId = setTimeout(processQueue, delay);
       }
     });
-  };
 }

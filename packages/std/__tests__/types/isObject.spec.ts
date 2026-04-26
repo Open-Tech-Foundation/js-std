@@ -35,7 +35,6 @@ describe('Types > isObject', () => {
       }
     }
     expect(isObject(new Person('x'))).toBe(true);
-    // biome-ignore lint/suspicious/noExplicitAny: Intentional for testing
     expect(isObject(new (fun as any)(1))).toBe(true);
 
     expect(isObject({})).toBe(true);

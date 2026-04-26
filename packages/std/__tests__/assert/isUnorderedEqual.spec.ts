@@ -9,7 +9,6 @@ describe('Assert > isUnorderedEqual', () => {
 
   test('sparse arrays', () => {
     expect(isUnorderedEqual([1, undefined, 2], [1, undefined, 2])).toBe(true);
-    // biome-ignore lint/suspicious/noSparseArray: Intentional for testing
     expect(isUnorderedEqual([1, undefined, 3], [1, , 3])).toBe(false);
     expect(
       isUnorderedEqual(
@@ -53,7 +52,6 @@ describe('Assert > isUnorderedEqual', () => {
     expect(isUnorderedEqual(arr1, arr2)).toBe(true);
 
     arr1 = [{ a: [1, undefined, 2] }];
-    // biome-ignore lint/suspicious/noSparseArray: Intentional for testing
     arr2 = [{ a: [1, , 2] }];
     expect(isUnorderedEqual(arr1, arr2)).toBe(false);
   });

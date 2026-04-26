@@ -1,4 +1,4 @@
-import color, { ColorFormat } from './color';
+import color, { type ColorFormat } from './color';
 
 /**
  * Increases the lightness of a color.

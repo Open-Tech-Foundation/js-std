@@ -1,5 +1,5 @@
-import color, { ColorFormat } from './color';
 import clamp from '../maths/clamp';
+import color, { type ColorFormat } from './color';
 
 /**
  * Adjusts the alpha channel of a color.

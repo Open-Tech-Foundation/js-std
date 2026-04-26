@@ -10,7 +10,7 @@ export default function memoizeRun<T, Args extends any[]>(
   options: {
     maxAge?: number;
     key?: (...args: Args) => string;
-  } = {}
+  } = {},
 ) {
   const { maxAge, key: keyFn } = options;
   const cache = new Map<string, { result: Promise<T>; timestamp: number }>();

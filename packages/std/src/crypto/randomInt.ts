@@ -7,7 +7,9 @@
  */
 export default function randomInt(min: number, max: number): number {
   if (min > max) {
-    throw new Error('The min value must be less than or equal to the max value.');
+    throw new Error(
+      'The min value must be less than or equal to the max value.',
+    );
   }
   const range = max - min + 1;
   const maxUint32 = 4294967295;
