@@ -59,7 +59,7 @@ describe('memoizeRun', () => {
 
   test('removes failed promises from cache', async () => {
     let shouldFail = true;
-    const func = vi.fn(async () => {
+    const func = vi.fn(() => {
       if (shouldFail) throw new Error('fail');
       return 'ok';
     });

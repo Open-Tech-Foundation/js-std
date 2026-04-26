@@ -1,0 +1,2 @@
+[test]
+preload = ["./vitest.setup.ts"]

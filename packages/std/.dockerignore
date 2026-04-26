@@ -1,0 +1,6 @@
+node_modules
+dist
+test-reports
+.git
+.vscode
+.DS_Store

@@ -1,0 +1,28 @@
+ARG BASE_IMAGE=node:20-slim
+FROM ${BASE_IMAGE}
+ARG BASE_IMAGE
+
+WORKDIR /app
+
+# Copy the library files
+COPY package.json ./
+
+# Install dependencies based on the runtime
+RUN if [ -f /usr/local/bin/bun ]; then \
+      bun install; \
+    elif [ -x "$(command -v deno)" ]; then \
+      deno install; \
+    else \
+      npm install; \
+      # Downgrade vitest specifically for Node 18 environments to fix timer regressions
+      if echo "$BASE_IMAGE" | grep -q "node:18"; then \
+        echo "Downgrading Vitest for Node 18 stability..."; \
+        npm install vitest@1.6.0 --save-dev; \
+      fi \
+    fi
+
+# Copy the source and tests
+COPY . .
+
+# Run tests
+CMD ["npm", "test"]

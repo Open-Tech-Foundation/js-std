@@ -22,11 +22,8 @@ describe('rateLimitRun', () => {
     expect(await p2).toBe('b');
 
     vi.advanceTimersByTime(500);
-    await Promise.resolve();
 
     vi.advanceTimersByTime(500);
-    await Promise.resolve();
-    await Promise.resolve();
     
     expect(func).toHaveBeenCalledTimes(3);
     expect(await p3).toBe('c');
@@ -44,13 +41,9 @@ describe('rateLimitRun', () => {
     expect(func).toHaveBeenCalledTimes(1);
 
     vi.advanceTimersByTime(100);
-    await Promise.resolve();
-    await Promise.resolve();
     expect(func).toHaveBeenCalledTimes(2);
 
     vi.advanceTimersByTime(100);
-    await Promise.resolve();
-    await Promise.resolve();
     expect(func).toHaveBeenCalledTimes(3);
 
     expect(await Promise.all(results)).toEqual([1, 2, 3]);

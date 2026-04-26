@@ -1,0 +1,90 @@
+services:
+  # Node.js 18
+  node18:
+    build:
+      context: ./packages/std
+      dockerfile: Dockerfile.test
+      args:
+        BASE_IMAGE: node:18-slim
+    environment:
+      - CI=true
+      - GITHUB_ACTIONS=true
+      - NO_COLOR=1
+    volumes:
+      - ./test-reports:/app/reports
+    command: sh -c "npm run test:node 2>&1 | tee reports/node18.log"
+
+  # Node.js 20
+  node20:
+    build:
+      context: ./packages/std
+      dockerfile: Dockerfile.test
+      args:
+        BASE_IMAGE: node:20-slim
+    environment:
+      - CI=true
+      - GITHUB_ACTIONS=true
+      - NO_COLOR=1
+    volumes:
+      - ./test-reports:/app/reports
+    command: sh -c "npm run test:node 2>&1 | tee reports/node20.log"
+
+  # Node.js 22
+  node22:
+    build:
+      context: ./packages/std
+      dockerfile: Dockerfile.test
+      args:
+        BASE_IMAGE: node:22-slim
+    environment:
+      - CI=true
+      - GITHUB_ACTIONS=true
+      - NO_COLOR=1
+    volumes:
+      - ./test-reports:/app/reports
+    command: sh -c "npm run test:node 2>&1 | tee reports/node22.log"
+
+  # Node.js 24
+  node24:
+    build:
+      context: ./packages/std
+      dockerfile: Dockerfile.test
+      args:
+        BASE_IMAGE: node:24-slim
+    environment:
+      - CI=true
+      - GITHUB_ACTIONS=true
+      - NO_COLOR=1
+    volumes:
+      - ./test-reports:/app/reports
+    command: sh -c "npm run test:node 2>&1 | tee reports/node24.log"
+
+  # Bun
+  bun:
+    build:
+      context: ./packages/std
+      dockerfile: Dockerfile.test
+      args:
+        BASE_IMAGE: oven/bun:latest
+    environment:
+      - CI=true
+      - GITHUB_ACTIONS=true
+      - NO_COLOR=1
+    volumes:
+      - ./test-reports:/app/reports
+    command: sh -c "bun test 2>&1 | tee reports/bun.log"
+
+  # Deno
+  deno:
+    build:
+      context: ./packages/std
+      dockerfile: Dockerfile.test
+      args:
+        BASE_IMAGE: denoland/deno:latest
+    environment:
+      - CI=true
+      - GITHUB_ACTIONS=true
+      - NO_COLOR=1
+    volumes:
+      - ./test-reports:/app/reports
+    command: sh -c "deno run -A npm:vitest run 2>&1 | tee reports/deno.log"

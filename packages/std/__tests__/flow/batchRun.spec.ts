@@ -41,8 +41,6 @@ describe('batchRun', () => {
 
     vi.advanceTimersByTime(100);
     // Use a small delay to allow promises to settle
-    await Promise.resolve();
-    await Promise.resolve();
 
     expect(processor).toHaveBeenCalledTimes(1);
     expect(await p1).toBe(2);
@@ -50,7 +48,7 @@ describe('batchRun', () => {
   });
 
   test('handles errors', async () => {
-    const processor = vi.fn(async () => {
+    const processor = vi.fn(() => {
       throw new Error('fail');
     });
     const batched = batchRun(processor, { limit: 1 });

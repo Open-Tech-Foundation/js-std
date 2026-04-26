@@ -23,16 +23,32 @@
 - ⏳ **Modern Async**: Advanced tools for managing complex asynchronous flows.
 - 🛡️ **Full Type Safety**: Built with TypeScript for deep, native type inference.
 - 📦 **Zero Dependencies**: Lightweight, tree-shakeable, and ESM/CJS ready.
-- 🌲 **Broad Compatibility**: Future-proof code with extensive legacy support.
+- 🌲 **Broad Compatibility**: Future-proof code with broad environment support.
 
 ## 🌍 Environment Support
 
-| Environment | Supported Versions |
-| :--- | :--- |
-| **Node.js** | **>= 18.0.0** |
-| **Browsers** | All modern browsers |
-| **Bun** | >= 1.0.0 |
-| **Deno** | >= 1.0.0 |
+| Environment | Supported Versions | Note |
+| :--- | :--- | :--- |
+| **Node.js** | **>= 18.0.0** | **Polyfill required for Node 18** |
+| **Browsers** | All modern browsers | Native |
+| **Bun** | >= 1.0.0 | Native |
+| **Deno** | >= 1.0.0 | Native |
+
+### 🛠️ Node.js 18 Support
+
+To use features like `uuid` or `randomBytes` in Node.js 18, you must manually polyfill the `webcrypto` API:
+
+```js
+import crypto from 'node:crypto';
+
+if (typeof globalThis.crypto === 'undefined') {
+  Object.defineProperty(globalThis, 'crypto', {
+    value: crypto.webcrypto,
+    writable: true,
+    configurable: true,
+  });
+}
+```
 
 ## 📦 Installation
 
