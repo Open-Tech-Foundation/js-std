@@ -4,7 +4,7 @@
 
 ### Major Changes
 
-- 46ad161: ### v1.0.0-beta.1 Release Audit & Stabilization
+- 46ad161: ### v1.0.0-beta.0 Release Audit & Stabilization
 
   - **Project Modernization**: Migrated the entire codebase to **Bun**, **Vitest**, and **Biome**. Overhauled the build system and CI pipeline for high-performance execution and cross-runtime verification.
   - **FlowControl Module**: Introduced a comprehensive suite of execution control utilities:
