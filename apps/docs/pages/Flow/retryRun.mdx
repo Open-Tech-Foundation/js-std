@@ -1,0 +1,57 @@
+import { Callout } from "nextra/components";
+
+# retryRun
+
+Automatically retries an asynchronous function according to the specified options.
+
+<Callout type="info">
+  Essential for handling flaky network requests or services that might fail temporarily.
+</Callout>
+
+## Usage
+
+```ts
+import { retryRun } from "@opentf/std";
+
+const result = await retryRun(
+  async () => {
+    return await fetchData();
+  },
+  { 
+    retries: 3, 
+    delay: 1000, 
+    backoff: 'exponential' 
+  }
+);
+```
+
+## Signature
+
+```ts
+async function retryRun<T>(
+  func: () => Promise<T>,
+  options?: {
+    retries?: number;
+    delay?: number;
+    backoff?: 'fixed' | 'exponential';
+    onRetry?: (error: any, attempt: number) => void;
+  }
+): Promise<T>;
+```
+
+### Parameters
+
+- `func`: The asynchronous function to retry.
+- `options`:
+    - `retries`: The maximum number of retry attempts. Default: `3`.
+    - `delay`: The base delay (ms) between retries. Default: `0`.
+    - `backoff`: The strategy to calculate delay between retries. Can be `'fixed'` or `'exponential'`. Default: `'fixed'`.
+    - `onRetry`: A callback function executed on each retry attempt.
+
+## Exponential Backoff
+
+When `backoff` is set to `'exponential'`, the delay increases by a factor of 2 for each attempt:
+- Attempt 1: `delay`
+- Attempt 2: `delay * 2`
+- Attempt 3: `delay * 4`
+- ... and so on.

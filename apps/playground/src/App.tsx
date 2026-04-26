@@ -24,6 +24,8 @@ import idleRun from '../../../packages/std/src/flow/idleRun';
 import paceRun from '../../../packages/std/src/flow/paceRun';
 import batchRun from '../../../packages/std/src/flow/batchRun';
 import rateLimitRun from '../../../packages/std/src/flow/rateLimitRun';
+import retryRun from '../../../packages/std/src/flow/retryRun';
+import timeoutRun from '../../../packages/std/src/flow/timeoutRun';
 
 type Event = {
   id: string;
@@ -328,8 +330,166 @@ const RateLimitRunTab = () => {
   );
 };
 
+const RetryRunTab = () => {
+  const [retries, setRetries] = useState(3);
+  const [delay, setDelay] = useState(500);
+  const [backoff, setBackoff] = useState<'fixed' | 'exponential'>('fixed');
+  const [logs, setLogs] = useState<string[]>([]);
+  const [status, setStatus] = useState<'idle' | 'running' | 'success' | 'failed'>('idle');
+
+  const runTest = async () => {
+    let attempts = 0;
+    setLogs([]);
+    setStatus('running');
+    
+    try {
+      await retryRun(async () => {
+        attempts++;
+        const isLastAttempt = attempts > retries;
+        setLogs(prev => [`Attempt ${attempts}: ${isLastAttempt ? 'Success!' : 'Failed, retrying...' }`, ...prev]);
+        if (!isLastAttempt) throw new Error('fail');
+        return 'ok';
+      }, { 
+        retries, 
+        delay, 
+        backoff,
+        onRetry: (err, next) => {
+          // Log is already handled in the function for visual clarity
+        }
+      });
+      setStatus('success');
+    } catch (err) {
+      setStatus('failed');
+    }
+  };
+
+  return (
+    <div className="grid-2">
+      <div className="card">
+        <div className="flex items-center gap-2 text-xl font-bold">
+          <RefreshCw className="text-accent-primary" /> retryRun (Reliability)
+        </div>
+        <div className="controls">
+          <div className="control-group">
+            <label>Max Retries: {retries}</label>
+            <input type="range" min="1" max="10" value={retries} onChange={e => setRetries(Number(e.target.value))} />
+          </div>
+          <div className="control-group">
+            <label>Delay (ms): {delay}</label>
+            <input type="range" min="0" max="2000" step="100" value={delay} onChange={e => setDelay(Number(e.target.value))} />
+          </div>
+          <div className="control-group">
+            <label>Strategy</label>
+            <select 
+              className="p-2 rounded-lg bg-white/5 border border-white/10 text-white outline-none"
+              value={backoff} 
+              onChange={e => setBackoff(e.target.value as any)}
+            >
+              <option value="fixed">Fixed Delay</option>
+              <option value="exponential">Exponential Backoff</option>
+            </select>
+          </div>
+          <button className="btn btn-primary" onClick={runTest} disabled={status === 'running'}>
+            <Play size={18} /> Run Retry Test
+          </button>
+        </div>
+      </div>
+      <div className="flex flex-col gap-4">
+        <div className="card flex-1">
+          <div className="stat-label">Execution Status: {status}</div>
+          <div className="mt-4 flex flex-col gap-2">
+            {logs.map((log, i) => (
+              <div key={i} className={cn(
+                "p-2 rounded text-sm font-mono",
+                log.includes('Success') ? "text-accent-success bg-accent-success/10" : "text-accent-danger bg-accent-danger/10"
+              )}>
+                {log}
+              </div>
+            ))}
+            {logs.length === 0 && <div className="text-text-secondary italic text-sm">No attempts yet...</div>}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const TimeoutRunTab = () => {
+  const [ms, setMs] = useState(2000);
+  const [actualDuration, setActualDuration] = useState(3000);
+  const [useFallback, setUseFallback] = useState(false);
+  const [result, setResult] = useState<string>('');
+  const [status, setStatus] = useState<'idle' | 'running' | 'done'>('idle');
+
+  const runTest = async () => {
+    setStatus('running');
+    setResult('');
+    const start = Date.now();
+    
+    try {
+      const res = await timeoutRun(async () => {
+        await new Promise(resolve => setTimeout(resolve, actualDuration));
+        return 'Operation Success';
+      }, ms, { fallback: useFallback ? 'Fallback Value' : undefined });
+      setResult(res);
+    } catch (err: any) {
+      setResult(`Error: ${err.message}`);
+    } finally {
+      setStatus('done');
+    }
+  };
+
+  return (
+    <div className="grid-2">
+      <div className="card">
+        <div className="flex items-center gap-2 text-xl font-bold">
+          <Clock className="text-accent-danger" /> timeoutRun (Safety)
+        </div>
+        <div className="controls">
+          <div className="control-group">
+            <label>Timeout (ms): {ms}</label>
+            <input type="range" min="500" max="5000" step="500" value={ms} onChange={e => setMs(Number(e.target.value))} />
+          </div>
+          <div className="control-group">
+            <label>Operation Duration (ms): {actualDuration}</label>
+            <input type="range" min="500" max="5000" step="500" value={actualDuration} onChange={e => setActualDuration(Number(e.target.value))} />
+          </div>
+          <label className="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" checked={useFallback} onChange={e => setUseFallback(e.target.checked)} /> Use Fallback Value
+          </label>
+          <button className="btn btn-primary" style={{background: 'var(--accent-danger)'}} onClick={runTest} disabled={status === 'running'}>
+            <Play size={18} /> Test Timeout
+          </button>
+        </div>
+      </div>
+      <div className="flex flex-col gap-4">
+        <div className="card flex-1 justify-center items-center">
+          <div className="stat-label">Result</div>
+          <div className={cn(
+            "mt-4 text-2xl font-bold p-6 rounded-2xl border text-center transition-all",
+            result.includes('Error') ? "border-accent-danger text-accent-danger bg-accent-danger/5" : 
+            result ? "border-accent-success text-accent-success bg-accent-success/5" : "border-white/10"
+          )}>
+            {status === 'running' ? 'Wait for it...' : result || '---'}
+          </div>
+          {status === 'running' && (
+            <div className="mt-4 w-full h-1 bg-white/10 rounded-full overflow-hidden">
+              <motion.div 
+                initial={{x: '-100%'}} 
+                animate={{x: '0%'}} 
+                transition={{duration: ms / 1000, ease: 'linear'}}
+                className="h-full bg-accent-danger"
+              />
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export default function App() {
-  const [activeTab, setActiveTab] = useState<'idle' | 'pace' | 'batch' | 'rate'>('idle');
+  const [activeTab, setActiveTab] = useState<'idle' | 'pace' | 'batch' | 'rate' | 'retry' | 'timeout'>('idle');
 
   return (
     <div className="app-container">
@@ -349,6 +509,12 @@ export default function App() {
           </div>
           <div className={cn("nav-item", activeTab === 'rate' && "active")} onClick={() => setActiveTab('rate')}>
             <Cpu size={20} /> rateLimitRun
+          </div>
+          <div className={cn("nav-item", activeTab === 'retry' && "active")} onClick={() => setActiveTab('retry')}>
+            <RefreshCw size={20} /> retryRun
+          </div>
+          <div className={cn("nav-item", activeTab === 'timeout' && "active")} onClick={() => setActiveTab('timeout')}>
+            <Clock size={20} /> timeoutRun
           </div>
         </nav>
         <div className="mt-auto p-4 rounded-2xl bg-gradient-to-br from-accent-primary/10 to-accent-secondary/10 border border-white/5">
@@ -381,6 +547,8 @@ export default function App() {
           {activeTab === 'pace' && <PaceRunTab />}
           {activeTab === 'batch' && <BatchRunTab />}
           {activeTab === 'rate' && <RateLimitRunTab />}
+          {activeTab === 'retry' && <RetryRunTab />}
+          {activeTab === 'timeout' && <TimeoutRunTab />}
         </section>
       </main>
     </div>

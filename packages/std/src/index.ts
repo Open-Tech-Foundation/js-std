@@ -57,6 +57,8 @@ export { default as idleRun } from './flow/idleRun';
 export { default as paceRun } from './flow/paceRun';
 export { default as batchRun } from './flow/batchRun';
 export { default as rateLimitRun } from './flow/rateLimitRun';
+export { default as retryRun } from './flow/retryRun';
+export { default as timeoutRun } from './flow/timeoutRun';
 
 // Maths
 export { default as percentage } from './maths/percentage';

@@ -1,5 +1,4 @@
 import { rateLimitRun } from '../../src';
-import { vi } from 'vitest';
 
 describe('rateLimitRun', () => {
   beforeEach(() => {

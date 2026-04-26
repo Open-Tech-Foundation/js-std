@@ -1,0 +1,51 @@
+import { Callout } from "nextra/components";
+
+# timeoutRun
+
+Enforces a strict time limit on an asynchronous function, rejecting if the limit is exceeded.
+
+<Callout type="warning">
+  This does not automatically "cancel" the underlying operation (like a network fetch) unless it supports an `AbortSignal`. It only ensures the caller doesn't wait indefinitely.
+</Callout>
+
+## Usage
+
+```ts
+import { timeoutRun } from "@opentf/std";
+
+try {
+  const data = await timeoutRun(async () => {
+    return await heavyOperation();
+  }, 2000);
+} catch (error) {
+  // error.message: "Operation timed out after 2000ms"
+}
+
+// With a fallback value instead of rejecting
+const data = await timeoutRun(fetchData, 2000, { fallback: [] });
+```
+
+## Signature
+
+```ts
+async function timeoutRun<T>(
+  func: () => Promise<T>,
+  ms: number,
+  options?: {
+    message?: string;
+    fallback?: T;
+  }
+): Promise<T>;
+```
+
+### Parameters
+
+- `func`: The asynchronous function to monitor.
+- `ms`: The timeout duration in milliseconds.
+- `options`:
+    - `message`: A custom error message for the timeout rejection.
+    - `fallback`: A value to return instead of rejecting when a timeout occurs.
+
+## Handling Timeouts
+
+If the timeout is reached and no `fallback` is provided, a standard `Error` is thrown. You should handle this in a `try/catch` block.

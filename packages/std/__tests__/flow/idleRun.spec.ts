@@ -1,5 +1,4 @@
 import { idleRun } from '../../src';
-import { vi } from 'vitest';
 
 describe('idleRun', () => {
   beforeEach(() => {

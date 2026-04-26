@@ -52,6 +52,8 @@
 - [paceRun](./Flow/paceRun.md)
 - [batchRun](./Flow/batchRun.md)
 - [rateLimitRun](./Flow/rateLimitRun.md)
+- [retryRun](./Flow/retryRun.md)
+- [timeoutRun](./Flow/timeoutRun.md)
 
 ## Colors
 

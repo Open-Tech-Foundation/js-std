@@ -1,5 +1,4 @@
 import { batchRun } from '../../src';
-import { vi } from 'vitest';
 
 describe('batchRun', () => {
   beforeEach(() => {

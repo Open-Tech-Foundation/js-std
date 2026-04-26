@@ -1,5 +1,4 @@
 import { paceRun } from '../../src';
-import { vi } from 'vitest';
 
 describe('paceRun', () => {
   beforeEach(() => {
