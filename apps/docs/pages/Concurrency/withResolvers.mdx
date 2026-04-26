@@ -1,10 +1,10 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> 🔑 Creates a Promise along with its `resolve` and `reject` functions.
+> 🔓 A polyfill/implementation of \`Promise.withResolvers()\`.
 
 <Callout type="info">
-  **Legacy Support**: While the native `Promise.withResolvers()` is only available in modern environments (e.g., Node.js 22+), this utility brings that same power to legacy environments like **Node.js 18+** without requiring global polyfills.
+  This is useful for creating a promise and resolving/rejecting it from outside.
 </Callout>
 
 ## Syntax
@@ -12,44 +12,38 @@ import REPL from "../../components/REPL";
 ```ts copy
 import { withResolvers } from '@opentf/std';
 
-const { promise, resolve, reject } = withResolvers<T>();
+withResolvers<T>(): {
+  promise: Promise<T>;
+  resolve: (value: T | PromiseLike<T>) => void;
+  reject: (reason?: any) => void;
+}
 ```
-
-## Parameters
-
-None.
 
 ## Returns
 
-An object containing:
-- `promise`: A new `Promise` object.
-- `resolve`: A function to resolve the promise.
-- `reject`: A function to reject the promise.
+An object containing a new `promise` and its `resolve`/`reject` functions.
 
 ## Examples
 
 ```ts
-const { promise, resolve, reject } = withResolvers();
+const { promise, resolve, reject } = withResolvers<number>();
 
-promise.then((val) => console.log(val));
+setTimeout(() => {
+  resolve(42);
+}, 100);
 
-Math.random() > 0.5 ? resolve("Success") : reject("Error");
+const result = await promise; //=> 42
 ```
+
+## Related
+
+- [timeoutRun](/Flow/timeoutRun)
 
 ## Try
 
 <REPL code={`const { withResolvers } = require('@opentf/std');
 
-const { promise, resolve, reject } = withResolvers();
-
-promise
-  .then((val) => console.log('Resolved:', val))
-  .catch((err) => console.log('Rejected:', err));
-
-Math.random() > 0.5 ? resolve("ok") : reject("not ok");
+const { promise, resolve } = withResolvers();
+setTimeout(() => resolve('Done!'), 500);
+promise.then(console.log);
 `} />
-
-## Resources
-
-- [TC39 Promise.withResolvers Proposal](https://github.com/tc39/proposal-promise-with-resolvers)
-- [MDN: Promise.withResolvers()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/withResolvers)

@@ -15,9 +15,9 @@ import REPL from "../../components/REPL";
 ```ts copy
 import { median } from '@opentf/std';
 
-median(
-  arr: number[] = [],
-  cb?: (val: number, index: number) => number
+median<T>(
+  arr: T[] = [],
+  cb?: (val: T, index: number) => number
 ): number
 ```
 

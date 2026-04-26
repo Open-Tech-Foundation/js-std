@@ -1,26 +1,62 @@
 import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
 
-> Returns an AsyncGenerator that skips the first n items from an AsyncIterable.
-
-<Callout type="info">
-Useful for skipping headers or metadata in large data streams.
-</Callout>
+> ⚡ Skips the first N elements of an asynchronous iterable.
 
 ## Syntax
 
-```ts
-import { dropIterAsync } from "@opentf/std";
+```ts copy
+import { dropIterAsync } from '@opentf/std';
 
-dropIterAsync(iterable: AsyncIterable<any>, n: number)
+dropIterAsync<T>(
+  iterable: AsyncIterable<T>,
+  n: number = 1
+): AsyncGenerator<T>;
 ```
+
+## Parameters
+
+- `iterable`: The source async iterable.
+- `n`: The number of elements to skip. Default: `1`.
+
+## Returns
+
+An AsyncGenerator that yields the remaining elements.
 
 ## Examples
 
 ```ts
-// Example: Skipping the first 100 entries of a database stream
-const entries = dropIterAsync(dbStream, 100);
+async function* gen() {
+  yield 1;
+  yield 2;
+  yield 3;
+}
 
-for await (const entry of entries) {
-  process(entry);
+const iter = dropIterAsync(gen(), 2);
+for await (const val of iter) {
+  console.log(val); //=> 3
 }
 ```
+
+## Related
+
+- [takeIterAsync](/Iter/takeIterAsync)
+- [dropIter](/Iter/dropIter)
+
+## Try
+
+<REPL code={`const { dropIterAsync } = require('@opentf/std');
+
+async function* gen() {
+  yield 1; yield 2; yield 3;
+}
+
+async function demo() {
+  const iter = dropIterAsync(gen(), 1);
+  for await (const val of iter) {
+    console.log(val);
+  }
+}
+
+demo();
+`} />

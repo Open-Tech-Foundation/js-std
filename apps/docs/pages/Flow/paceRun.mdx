@@ -1,55 +1,53 @@
 import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
 
-# paceRun
-
-Creates a throttled version of a function that only invokes the original function at most once per every `interval` milliseconds.
+> 🐢 Controls the minimum execution time for a function.
 
 <Callout type="info">
-  Useful for limiting the rate of execution for high-frequency events like `scroll` or `mousemove`.
+  Useful for preventing UI "flickering" when an async operation is too fast.
 </Callout>
 
-## Usage
+## Syntax
 
-```ts
-import { paceRun } from "@opentf/std";
+```ts copy
+import { paceRun } from '@opentf/std';
 
-const run = paceRun((val) => {
-  console.log("Processing:", val);
-}, 1000);
-
-run(1); // Executes immediately
-run(2); // Queued
-run(3); // Replaces 2, will execute after 1000ms
+paceRun<T>(
+  func: () => Promise<T>,
+  ms: number
+): Promise<T>;
 ```
 
-## Signature
+## Parameters
+
+- `func`: The asynchronous function to execute.
+- `ms`: The minimum duration in milliseconds.
+
+## Returns
+
+A Promise that resolves with the function result, but only after at least `ms` have elapsed.
+
+## Examples
 
 ```ts
-function paceRun<T extends (...args: any[]) => any>(
-  func: T,
-  interval?: number,
-  options?: {
-    leading?: boolean;
-    trailing?: boolean;
-  }
-): {
-  (...args: Parameters<T>): void;
-  cancel: () => void;
-  flush: () => void;
-  pending: () => boolean;
-};
+// Even if fetchData takes 10ms, paceRun ensures it takes at least 500ms
+const data = await paceRun(fetchData, 500);
 ```
 
-### Parameters
+## Related
 
-- `func`: The function to throttle.
-- `interval`: The number of milliseconds to throttle invocations to. Default: `0`.
-- `options`:
-    - `leading`: Execute on the leading edge of the interval. Default: `true`.
-    - `trailing`: Execute on the trailing edge of the interval. Default: `true`.
+- [idleRun](/Flow/idleRun)
+- [batchRun](/Flow/batchRun)
 
-### Methods on returned function
+## Try
 
-- `cancel()`: Cancels any pending execution.
-- `flush()`: Immediately invokes the pending execution and cancels the timer.
-- `pending()`: Returns `true` if there is a pending execution.
+<REPL code={`const { paceRun } = require('@opentf/std');
+
+async function demo() {
+  console.time('Pace');
+  await paceRun(async () => 'Done', 1000);
+  console.timeEnd('Pace');
+}
+
+demo();
+`} />

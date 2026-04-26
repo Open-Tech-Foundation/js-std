@@ -1,9 +1,9 @@
 {
-  "idleRun": "idleRun",
-  "paceRun": "paceRun",
   "batchRun": "batchRun",
+  "idleRun": "idleRun",
+  "memoizeRun": "memoizeRun",
+  "paceRun": "paceRun",
   "rateLimitRun": "rateLimitRun",
   "retryRun": "retryRun",
-  "timeoutRun": "timeoutRun",
-  "memoizeRun": "memoizeRun"
+  "timeoutRun": "timeoutRun"
 }

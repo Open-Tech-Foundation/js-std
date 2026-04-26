@@ -21,8 +21,8 @@ import { mode } from '@opentf/std';
 
 mode<T>(
   arr: T[] = [],
-  cb?: (val: T) => unknown
-): T[]
+  cb?: (val: T, index: number) => string | number
+): (string | number)[]
 ```
 
 ## Parameters

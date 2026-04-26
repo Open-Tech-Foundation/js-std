@@ -35,38 +35,46 @@
 - [isNil](./Assert/isNil.md)
 - [isUnorderedEqual](./Assert/isUnorderedEqual.md)
 
-## Async
-
-- [aCompose](./Async/aCompose.md)
-- [aComposeFunction](./Async/aComposeFunction.md)
-- [aFilter](./Async/aFilter.md)
-- [aForEach](./Async/aForEach.md)
-- [aMap](./Async/aMap.md)
-- [aPipe](./Async/aPipe.md)
-- [aPipeFunction](./Async/aPipeFunction.md)
-- [withResolvers](./Async/withResolvers.md)
-
-## Flow
-
-- [idleRun](./Flow/idleRun.md)
-- [paceRun](./Flow/paceRun.md)
-- [batchRun](./Flow/batchRun.md)
-- [rateLimitRun](./Flow/rateLimitRun.md)
-- [retryRun](./Flow/retryRun.md)
-- [timeoutRun](./Flow/timeoutRun.md)
-
 ## Colors
 
 - [color](./Colors/color.md)
 
-## Function
+## Concurrency
 
-- [compose](./Function/compose.md)
-- [composeFunction](./Function/composeFunction.md)
-- [noop](./Function/noop.md)
-- [pipe](./Function/pipe.md)
-- [pipeFunction](./Function/pipeFunction.md)
-- [sleep](./Function/sleep.md)
+- [flatMapAsync](./Concurrency/flatMapAsync.md)
+- [forEachAsync](./Concurrency/forEachAsync.md)
+- [mapAsync](./Concurrency/mapAsync.md)
+- [filterAsync](./Concurrency/filterAsync.md)
+- [reduceAsync](./Concurrency/reduceAsync.md)
+- [withResolvers](./Concurrency/withResolvers.md)
+
+## Crypto
+
+- [uuid](./Crypto/uuid.md)
+
+## Encoding
+
+- [encoding](./Encoding/encoding.md)
+
+## Flow
+
+- [batchRun](./Flow/batchRun.md)
+- [idleRun](./Flow/idleRun.md)
+- [memoizeRun](./Flow/memoizeRun.md)
+- [paceRun](./Flow/paceRun.md)
+- [rateLimitRun](./Flow/rateLimitRun.md)
+- [retryRun](./Flow/retryRun.md)
+- [timeoutRun](./Flow/timeoutRun.md)
+
+## Functional
+
+- [compose](./Functional/compose.md)
+- [noop](./Functional/noop.md)
+- [pipe](./Functional/pipe.md)
+
+## Iter
+
+- [iter](./Iter/iter.md)
 
 ## Maths
 
@@ -113,15 +121,28 @@
 ## String
 
 - [camelCase](./String/camelCase.md)
+- [capitalize](./String/capitalize.md)
+- [escapeHTML](./String/escapeHTML.md)
+- [escapeRegExp](./String/escapeRegExp.md)
+- [insertAt](./String/insertAt.md)
 - [kebabCase](./String/kebabCase.md)
 - [pad](./String/pad.md)
+- [pascalCase](./String/pascalCase.md)
 - [repeat](./String/repeat.md)
+- [replaceAt](./String/replaceAt.md)
+- [slugify](./String/slugify.md)
 - [snakeCase](./String/snakeCase.md)
 - [strReplace](./String/strReplace.md)
+- [stringWidth](./String/stringWidth.md)
+- [stripANSI](./String/stripANSI.md)
 - [titleCase](./String/titleCase.md)
 - [trim](./String/trim.md)
 - [truncate](./String/truncate.md)
 - [words](./String/words.md)
+
+## Timing
+
+- [sleep](./Timing/sleep.md)
 
 ## Types
 

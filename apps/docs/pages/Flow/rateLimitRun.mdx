@@ -1,47 +1,64 @@
 import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
 
-# rateLimitRun
-
-Creates a rate-limited version of a function that ensures it only runs a specific number of times within a rolling time window (Sliding Window algorithm).
+> 🚦 Limits the number of times a function can be called within a time window.
 
 <Callout type="info">
-  Essential for staying within API rate limits or preventing resource exhaustion during heavy bursts of activity.
+  Commonly used for API rate limiting or preventing rapid user actions.
 </Callout>
 
-## Usage
+## Syntax
 
-```ts
-import { rateLimitRun } from "@opentf/std";
+```ts copy
+import { rateLimitRun } from '@opentf/std';
 
-// Limit to 5 calls per 1 second (1000ms)
-const run = rateLimitRun(async (id) => {
-  return await fetchExternalData(id);
-}, 5, 1000);
-
-// Calls will wait in a queue and execute as slots become available
-for (let i = 0; i < 20; i++) {
-  run(i).then(console.log);
-}
-```
-
-## Signature
-
-```ts
-function rateLimitRun<T extends (...args: any[]) => any>(
+rateLimitRun<T extends (...args: any[]) => any>(
   func: T,
-  limit: number,
-  period: number
-): (...args: Parameters<T>) => Promise<ReturnType<T>>;
+  options?: {
+    limit?: number;
+    window?: number;
+  }
+): T;
 ```
 
-### Parameters
+## Parameters
 
-- `func`: The async function to rate limit.
-- `limit`: The maximum number of executions allowed within the time window.
-- `period`: The duration of the time window in milliseconds.
+- `func`: The function to rate limit.
+- `options`:
+    - `limit`: The maximum number of calls allowed in the window. Default: `1`.
+    - `window`: The time window in milliseconds. Default: `1000`.
 
-## Behavior
+## Returns
 
-1.  **Immediate Execution**: If the number of executions in the last `period` is less than `limit`, the function runs immediately.
-2.  **Queueing**: If the limit is reached, subsequent calls are added to a FIFO queue.
-3.  **Automatic Resumption**: As soon as an execution slot opens up (one of the previous executions falls out of the sliding window), the next item in the queue is processed.
+A rate-limited version of the input function.
+
+## Examples
+
+```ts
+const limitedLog = rateLimitRun(console.log, { limit: 2, window: 1000 });
+
+limitedLog(1);
+limitedLog(2);
+limitedLog(3); // This will wait until the next window starts
+```
+
+## Related
+
+- [paceRun](/Flow/paceRun)
+- [batchRun](/Flow/batchRun)
+
+## Try
+
+<REPL code={`const { rateLimitRun, sleep } = require('@opentf/std');
+
+async function demo() {
+  const log = rateLimitRun((n) => console.log('Call:', n), { limit: 2, window: 500 });
+
+  log(1);
+  log(2);
+  log(3); // Delayed
+  await sleep(600);
+}
+
+demo();
+`} />

@@ -1,14 +1,24 @@
+import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Removes leading and trailing whitespace or specified characters from the given string.
+> ✂️ Removes leading and trailing whitespace or specified characters from a string.
 
 ## Syntax
 
-```ts
+```ts copy
 import { trim } from '@opentf/std';
 
 trim(str: string, chars?: string): string;
 ```
+
+## Parameters
+
+- `str`: The string to trim.
+- `chars` (Optional): The characters to trim. Defaults to whitespace.
+
+## Returns
+
+The trimmed string.
 
 ## Examples
 
@@ -18,9 +28,15 @@ trim('  abc  ') //=> 'abc'
 trim('-_-abc-_-', '_-') //=> 'abc'
 ```
 
+## Related
+
+- [truncate](/String/truncate)
+- [words](/String/words)
+
 ## Try
 
 <REPL code={`const { trim } = require('@opentf/std');
 
-trim('  abc  ');
+console.log(trim('  Open Tech Foundation  '));
+console.log(trim('!!!Hello!!!', '!'));
 `} />

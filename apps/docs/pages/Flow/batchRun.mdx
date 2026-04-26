@@ -1,58 +1,71 @@
 import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
 
-# batchRun
-
-Creates a batched version of a function that collects multiple calls and processes them in a single operation after a limit is reached or a delay has passed.
+> 📦 Batches multiple calls to an asynchronous function into a single execution.
 
 <Callout type="info">
-  Perfect for optimizing database queries or API requests by combining multiple individual calls into a single batch request.
+  This is useful for bundling frequent updates (like database writes or API calls) into batches.
 </Callout>
 
-## Usage
+## Syntax
 
-```ts
-import { batchRun } from "@opentf/std";
+```ts copy
+import { batchRun } from '@opentf/std';
 
-const batchFetcher = batchRun(async (batch) => {
-  // batch is [[1], [2], [3]]
-  const ids = batch.map(args => args[0]);
-  return await fetchUsersFromApi(ids);
-}, { limit: 10, delay: 50 });
-
-// These will be grouped into a single API call
-const user1 = batchFetcher(1);
-const user2 = batchFetcher(2);
-const user3 = batchFetcher(3);
-```
-
-## Signature
-
-```ts
-function batchRun<T extends any[], R>(
-  batchProcessor: (argsList: T[]) => Promise<R[]>,
+batchRun<T, R>(
+  func: (batch: T[]) => Promise<R[]>,
   options?: {
-    limit?: number;
+    maxBatchSize?: number;
     delay?: number;
   }
-): (...args: T) => Promise<R>;
+): (item: T) => Promise<R>;
 ```
 
-### Parameters
+## Parameters
 
-- `batchProcessor`: An async function that receives an array of argument lists and returns an array of results.
+- `func`: The batch processor function. It receives an array of items and should return an array of results.
 - `options`:
-    - `limit`: The maximum number of items to collect before processing the batch. Default: `Infinity`.
-    - `delay`: The maximum time (ms) to wait before processing the batch. Default: `0`.
+    - `maxBatchSize`: The maximum number of items in a single batch.
+    - `delay`: The time to wait for more items before processing a batch (ms).
 
-## Example
+## Returns
 
-### Optimizing Database Calls
+A function that takes an item and returns a Promise for its specific result.
 
-Instead of making 100 separate database queries, you can batch them:
+## Examples
 
 ```ts
-const getUser = batchRun(async (batch) => {
-  const ids = batch.map(a => a[0]);
-  return await db.users.findMany({ where: { id: { in: ids } } });
-}, { limit: 50, delay: 10 });
+const saveUser = batchRun(async (users) => {
+  return await db.bulkSave(users);
+}, { maxBatchSize: 10, delay: 50 });
+
+// These will be batched together
+saveUser({ name: 'Alice' });
+saveUser({ name: 'Bob' });
 ```
+
+## Related
+
+- [paceRun](/Flow/paceRun)
+- [rateLimitRun](/Flow/rateLimitRun)
+
+## Try
+
+<REPL code={`const { batchRun } = require('@opentf/std');
+
+async function demo() {
+  const processor = batchRun(async (batch) => {
+    console.log('Processing batch of size:', batch.length);
+    return batch.map(n => n * 2);
+  }, { delay: 100 });
+
+  const results = await Promise.all([
+    processor(1),
+    processor(2),
+    processor(3)
+  ]);
+  console.log('Results:', results);
+}
+
+demo();
+`} />

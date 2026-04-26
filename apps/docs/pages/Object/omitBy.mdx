@@ -1,33 +1,46 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Creates an object composed of the keys that the predicate returns falsy for.
-
-<Callout type="info">
-The source object should be a `Plain Object`.
-</Callout>
+> 🎯 Creates an object composed of the object properties that do not satisfy the predicate.
 
 ## Syntax
 
-```ts
-import { omitBy } from "@opentf/std";
+```ts copy
+import { omitBy } from '@opentf/std';
 
-omitBy(obj: object, predicate: (value: any, key: string) => boolean)
+omitBy<T extends object>(
+  obj: T,
+  predicate: (value: any, key: string) => boolean
+): Partial<T>;
 ```
+
+## Parameters
+
+- `obj`: The source object.
+- `predicate`: The function invoked per iteration.
+
+## Returns
+
+A new object with omitted properties.
 
 ## Examples
 
 ```ts
-const obj = { a: 1, b: '2', c: 3 };
+const object = { a: 1, b: 'abc', c: 3 };
 
-omitBy(obj, (v) => typeof v === 'number'); 
-//=> { b: '2' }
+omitBy(object, (v) => typeof v === 'number')
+//=> { b: 'abc' }
 ```
+
+## Related
+
+- [omit](/Object/omit)
+- [pickBy](/Object/pickBy)
 
 ## Try
 
 <REPL code={`const { omitBy } = require('@opentf/std');
 
 const obj = { a: 1, b: '2', c: 3 };
-omitBy(obj, (v) => typeof v === 'number');
+console.log(omitBy(obj, (v) => typeof v === 'number'));
 `} />

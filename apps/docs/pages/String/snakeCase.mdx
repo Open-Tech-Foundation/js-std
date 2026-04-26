@@ -1,14 +1,14 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> 🐍 Converts a string to [snake_case](https://en.wikipedia.org/wiki/Snake_case).
+> 🐍 Converts string to snake case.
 
 ## Syntax
 
 ```ts copy
 import { snakeCase } from '@opentf/std';
 
-snakeCase(str: string): string
+snakeCase(str: string): string;
 ```
 
 ## Parameters
@@ -17,7 +17,7 @@ snakeCase(str: string): string
 
 ## Returns
 
-The snake_cased string.
+The snake-cased string.
 
 ## Examples
 
@@ -26,9 +26,7 @@ snakeCase('Foo Bar') //=> 'foo_bar'
 
 snakeCase('fooBar') //=> 'foo_bar'
 
-snakeCase('--FOO-BAR--') //=> 'foo_bar'
-
-snakeCase('The Quick Brown Fox') //=> 'the_quick_brown_fox'
+snakeCase('--foo-bar--') //=> 'foo_bar'
 ```
 
 ## Related
@@ -42,5 +40,5 @@ snakeCase('The Quick Brown Fox') //=> 'the_quick_brown_fox'
 <REPL code={`const { snakeCase } = require('@opentf/std');
 
 console.log(snakeCase('hello world'));
-console.log(snakeCase('camelCaseString'));
+console.log(snakeCase('fooBar'));
 `} />

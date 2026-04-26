@@ -8,9 +8,9 @@ import REPL from "../../components/REPL";
 ```ts copy
 import { prod } from '@opentf/std';
 
-prod(
-  arr: number[] = [],
-  cb?: (val: number, index: number) => number
+prod<T>(
+  arr: T[] = [],
+  cb?: (val: T, index: number) => number
 ): number
 ```
 

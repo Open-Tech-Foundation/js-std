@@ -1,34 +1,18 @@
 import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
 
-# timeoutRun
-
-Enforces a strict time limit on an asynchronous function, rejecting if the limit is exceeded.
+> ⏱ Enforces a strict time limit on an asynchronous function.
 
 <Callout type="warning">
-  This does not automatically "cancel" the underlying operation (like a network fetch) unless it supports an `AbortSignal`. It only ensures the caller doesn't wait indefinitely.
+  This does not automatically "cancel" the underlying operation (like a network fetch) unless it supports an \`AbortSignal\`. It only ensures the caller doesn't wait indefinitely.
 </Callout>
 
-## Usage
+## Syntax
 
-```ts
-import { timeoutRun } from "@opentf/std";
+```ts copy
+import { timeoutRun } from '@opentf/std';
 
-try {
-  const data = await timeoutRun(async () => {
-    return await heavyOperation();
-  }, 2000);
-} catch (error) {
-  // error.message: "Operation timed out after 2000ms"
-}
-
-// With a fallback value instead of rejecting
-const data = await timeoutRun(fetchData, 2000, { fallback: [] });
-```
-
-## Signature
-
-```ts
-async function timeoutRun<T>(
+timeoutRun<T>(
   func: () => Promise<T>,
   ms: number,
   options?: {
@@ -38,7 +22,7 @@ async function timeoutRun<T>(
 ): Promise<T>;
 ```
 
-### Parameters
+## Parameters
 
 - `func`: The asynchronous function to monitor.
 - `ms`: The timeout duration in milliseconds.
@@ -46,6 +30,54 @@ async function timeoutRun<T>(
     - `message`: A custom error message for the timeout rejection.
     - `fallback`: A value to return instead of rejecting when a timeout occurs.
 
-## Handling Timeouts
+## Returns
 
-If the timeout is reached and no `fallback` is provided, a standard `Error` is thrown. You should handle this in a `try/catch` block.
+A Promise that resolves with the function result or the fallback value.
+
+## Examples
+
+### Basic Usage
+
+```ts
+try {
+  const data = await timeoutRun(async () => {
+    await sleep(3000);
+    return 'Done';
+  }, 2000);
+} catch (error) {
+  console.log(error.message); //=> "Operation timed out after 2000ms"
+}
+```
+
+### With Fallback
+
+```ts
+const data = await timeoutRun(async () => {
+  await sleep(3000);
+  return 'Done';
+}, 2000, { fallback: 'Offline' }); //=> "Offline"
+```
+
+## Related
+
+- [retryRun](/Flow/retryRun)
+- [withResolvers](/Concurrency/withResolvers)
+
+## Try
+
+<REPL code={`const { timeoutRun, sleep } = require('@opentf/std');
+
+async function demo() {
+  try {
+    const result = await timeoutRun(async () => {
+      await sleep(1000);
+      return 'Success';
+    }, 500);
+    console.log(result);
+  } catch (err) {
+    console.log('Error:', err.message);
+  }
+}
+
+demo();
+`} />

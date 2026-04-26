@@ -1,53 +1,45 @@
 import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
 
-# compose
+> 🧩 Performs right-to-left function composition.
 
-Performs functions composition from right to left.
+## Syntax
 
-<Callout type="info">
-  This is a polymorphic utility that supports both **Synchronous** and **Asynchronous** functions.
-  If any function in the chain returns a Promise, the remaining chain is automatically awaited.
-</Callout>
+```ts copy
+import { compose } from '@opentf/std';
 
-## Usage
-
-```ts
-import { compose } from "@opentf/std";
-
-// Synchronous
-const transform = compose(
-  (n) => n * 2,
-  (x, y) => x + y
-);
-transform(1, 2); //=> 6
-
-// Asynchronous
-const asyncTransform = compose(
-  (n) => n * 2,
-  async (x, y) => x + y
-);
-await asyncTransform(1, 2); //=> 6
+compose(...funcs: Function[]): (val: any) => any;
 ```
 
-## Signature
+## Parameters
 
-```ts
-function compose(
-  ...fns: ((...args: any[]) => any)[]
-): (...args: any[]) => any;
-```
+- `...funcs`: The functions to compose.
 
-### Parameters
+## Returns
 
-- `fns`: A series of functions to compose. The right-most (first executed) function can accept multiple arguments; subsequent functions must be unary.
+A new function that represents the composition of the input functions.
 
 ## Examples
 
-### Execution order
-
 ```ts
-const result = compose(
-  (x) => x + 1, // (10) + 1 = 11
-  (x) => x * 2  // (5) * 2 = 10
-)(5); //=> 11
+const add2 = (n) => n + 2;
+const times3 = (n) => n * 3;
+
+const add2ThenTimes3 = compose(times3, add2);
+add2ThenTimes3(5); //=> 21 ( (5 + 2) * 3 )
 ```
+
+## Related
+
+- [pipe](/Functional/pipe)
+- [composeFunction](/Functional/composeFunction)
+
+## Try
+
+<REPL code={`const { compose } = require('@opentf/std');
+
+const add = (n) => n + 1;
+const double = (n) => n * 2;
+const result = compose(double, add)(5);
+console.log(result); // (5 + 1) * 2 = 12
+`} />

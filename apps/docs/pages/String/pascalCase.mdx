@@ -1,14 +1,14 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> 🗼 Converts a string to [PascalCase](https://en.wikipedia.org/wiki/Camel_case#Upper_camel_case).
+> 🐫 Converts string to pascal case.
 
 ## Syntax
 
 ```ts copy
 import { pascalCase } from '@opentf/std';
 
-pascalCase(str: string): string
+pascalCase(str: string): string;
 ```
 
 ## Parameters
@@ -17,22 +17,16 @@ pascalCase(str: string): string
 
 ## Returns
 
-The PascalCased string.
+The pascal-cased string.
 
 ## Examples
 
 ```ts
-pascalCase('na cl') //=> 'NaCl'
+pascalCase('Foo Bar') //=> 'FooBar'
 
-pascalCase('Foo-Bar') //=> 'FooBar'
+pascalCase('--foo-bar--') //=> 'FooBar'
 
-pascalCase('react_component') //=> 'ReactComponent'
-
-pascalCase('--foo.bar') //=> 'FooBar'
-
-pascalCase('cinema Scope') //=> 'CinemaScope'
-
-pascalCase('the quick brown fox') //=> 'TheQuickBrownFox'
+pascalCase('__FOO_BAR__') //=> 'FooBar'
 ```
 
 ## Related
@@ -46,5 +40,5 @@ pascalCase('the quick brown fox') //=> 'TheQuickBrownFox'
 <REPL code={`const { pascalCase } = require('@opentf/std');
 
 console.log(pascalCase('hello world'));
-console.log(pascalCase('kebab-case-string'));
+console.log(pascalCase('__FOO_BAR__'));
 `} />

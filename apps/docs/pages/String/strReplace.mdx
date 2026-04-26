@@ -1,28 +1,36 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Returns a new string with one, some, or all matches of a pattern replaced by a replacement.
+> 🔄 Returns a new string with matches of a pattern replaced by a replacement.
 
 ## Syntax
 
-```ts
+```ts copy
 import { strReplace } from '@opentf/std';
 
-strReplace(str: string,
-           pattern: string | RegExp,
-           replacement: string | Function,
-           options?: {all: boolean, case: boolean}
+strReplace(
+  str: string,
+  pattern: string | RegExp,
+  replacement: string | ((...args: any[]) => string),
+  options?: {
+    all?: boolean;
+    case?: boolean;
+  }
 ): string;
 ```
 
-<Callout type="info">
-The replacement function can be in the form of [specifying_a_function_as_the_replacement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace#specifying_a_function_as_the_replacement)
-</Callout>
+## Parameters
 
-<Callout type="info">
- - The option `all` refers to RegExp `g` global flag.
- - The option `case` refers to RegExp `i` ignore case / case insensitive flag.
-</Callout>
+- `str`: The source string.
+- `pattern`: The string or regular expression to match.
+- `replacement`: The replacement string or a function to be called for each match.
+- `options`:
+    - `all`: If `true`, replaces all occurrences (like `g` flag). Default: `false`.
+    - `case`: If `true`, performs case-insensitive matching (like `i` flag). Default: `false`.
+
+## Returns
+
+A new string with the replacements made.
 
 ## Examples
 
@@ -34,26 +42,23 @@ strReplace('abbc', 'b', '', { all: true }) //=> 'ac'
 strReplace('aBbBc', 'B', '', { all: true, case: true }) //=> 'ac'
 
 const paragraph = "I think Ruth's dog is cuter than your dog!";
-const regex = /dog/;
-strReplace(paragraph, regex, 'ferret') //=> "I think Ruth's ferret is cuter than your dog!"
+strReplace(paragraph, /dog/, 'ferret') //=> "I think Ruth's ferret is cuter than your dog!"
 
-const str = 'Twas the night before Xmas...';
-strReplace(str, /xmas/, 'Christmas', { case: true }) //=> 'Twas the night before Christmas...'
-
-const str = 'Apples are round, and apples are juicy.';
-strReplace(str, /apple/, 'Orange', { all: true, case: true }) //=> 'Oranges are round, and Oranges are juicy.'
-
-function convert(str, p1) {
+// Using a function as replacement
+function fahrenheitToCelsius(match, p1) {
   return `${((p1 - 32) * 5) / 9}C`;
 }
-const test = /(-?\d+(?:\.\d*)?)F\b/;
-strReplace('212F', test, convert) //=> '100C'
+strReplace('212F', /(-?\d+(?:\.\d*)?)F\b/, fahrenheitToCelsius) //=> '100C'
 ```
+
+## Related
+
+- [replaceAt](/String/replaceAt)
 
 ## Try
 
 <REPL code={`const { strReplace } = require('@opentf/std');
 
 const str = 'Apples are round, and apples are juicy.';
-strReplace(str, 'apple', 'orange');
+console.log(strReplace(str, 'apple', 'orange', { all: true, case: true }));
 `} />

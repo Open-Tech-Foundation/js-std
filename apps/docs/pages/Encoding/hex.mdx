@@ -1,29 +1,34 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Hex encoding and decoding.
+> 🔢 Hexadecimal encoding and decoding.
 
 ## Syntax
 
-```ts
-import { hexEncode, hexDecode } from "@opentf/std";
+```ts copy
+import { hex } from '@opentf/std';
 
-hexEncode(str: string)
-hexDecode(str: string)
+hex: {
+  encode: (input: string | Uint8Array) => string;
+  decode: (input: string) => string;
+}
 ```
 
 ## Examples
 
 ```ts
-const encoded = hexEncode("Hello"); //=> "48656c6c6f"
-const decoded = hexDecode(encoded); //=> "Hello"
+hex.encode('hello') //=> '68656c6c6f'
+hex.decode('68656c6c6f') //=> 'hello'
 ```
+
+## Related
+
+- [base64](/Encoding/base64)
 
 ## Try
 
-<REPL code={`const { hexEncode, hexDecode } = require('@opentf/std');
+<REPL code={`const { hex } = require('@opentf/std');
 
-const encoded = hexEncode("Hello");
-console.log(encoded);
-console.log(hexDecode(encoded));
+console.log(hex.encode('ABC'));
+console.log(hex.decode('414243'));
 `} />

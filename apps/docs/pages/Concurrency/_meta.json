@@ -1,8 +1,8 @@
 {
-  "mapAsync": "mapAsync",
   "filterAsync": "filterAsync",
-  "forEachAsync": "forEachAsync",
   "flatMapAsync": "flatMapAsync",
+  "forEachAsync": "forEachAsync",
+  "mapAsync": "mapAsync",
   "reduceAsync": "reduceAsync",
   "withResolvers": "withResolvers"
 }

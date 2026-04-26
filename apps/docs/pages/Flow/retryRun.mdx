@@ -1,57 +1,65 @@
 import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
 
-# retryRun
+> 🔁 Retries an asynchronous function based on a specified retry policy.
 
-Automatically retries an asynchronous function according to the specified options.
+## Syntax
 
-<Callout type="info">
-  Essential for handling flaky network requests or services that might fail temporarily.
-</Callout>
+```ts copy
+import { retryRun } from '@opentf/std';
 
-## Usage
-
-```ts
-import { retryRun } from "@opentf/std";
-
-const result = await retryRun(
-  async () => {
-    return await fetchData();
-  },
-  { 
-    retries: 3, 
-    delay: 1000, 
-    backoff: 'exponential' 
-  }
-);
-```
-
-## Signature
-
-```ts
-async function retryRun<T>(
+retryRun<T>(
   func: () => Promise<T>,
   options?: {
     retries?: number;
     delay?: number;
-    backoff?: 'fixed' | 'exponential';
-    onRetry?: (error: any, attempt: number) => void;
+    onRetry?: (error: unknown, attempt: number) => void;
   }
 ): Promise<T>;
 ```
 
-### Parameters
+## Parameters
 
 - `func`: The asynchronous function to retry.
 - `options`:
     - `retries`: The maximum number of retry attempts. Default: `3`.
-    - `delay`: The base delay (ms) between retries. Default: `0`.
-    - `backoff`: The strategy to calculate delay between retries. Can be `'fixed'` or `'exponential'`. Default: `'fixed'`.
-    - `onRetry`: A callback function executed on each retry attempt.
+    - `delay`: The delay between retries in milliseconds. Default: `1000`.
+    - `onRetry`: A callback invoked on each retry attempt.
 
-## Exponential Backoff
+## Returns
 
-When `backoff` is set to `'exponential'`, the delay increases by a factor of 2 for each attempt:
-- Attempt 1: `delay`
-- Attempt 2: `delay * 2`
-- Attempt 3: `delay * 4`
-- ... and so on.
+A Promise that resolves with the function result if successful.
+
+## Examples
+
+```ts
+const data = await retryRun(fetchData, {
+  retries: 5,
+  delay: 2000,
+  onRetry: (error, attempt) => {
+    console.log(\`Retry attempt \${attempt} failed: \${error.message}\`);
+  }
+});
+```
+
+## Related
+
+- [timeoutRun](/Flow/timeoutRun)
+- [paceRun](/Flow/paceRun)
+
+## Try
+
+<REPL code={`const { retryRun } = require('@opentf/std');
+
+async function demo() {
+  let count = 0;
+  const result = await retryRun(async () => {
+    count++;
+    if (count < 3) throw new Error('Fail');
+    return 'Success';
+  }, { retries: 5, delay: 100 });
+  console.log(result);
+}
+
+demo();
+`} />

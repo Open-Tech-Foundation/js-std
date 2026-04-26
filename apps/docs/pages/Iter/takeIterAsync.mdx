@@ -1,26 +1,62 @@
 import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
 
-> Returns an AsyncGenerator that yields the first n items from an AsyncIterable.
-
-<Callout type="info">
-Essential for processing large streams or remote data without loading everything into memory.
-</Callout>
+> ⚡ Takes the first N elements of an asynchronous iterable.
 
 ## Syntax
 
-```ts
-import { takeIterAsync } from "@opentf/std";
+```ts copy
+import { takeIterAsync } from '@opentf/std';
 
-takeIterAsync(iterable: AsyncIterable<any>, n: number)
+takeIterAsync<T>(
+  iterable: AsyncIterable<T>,
+  n: number = 1
+): AsyncGenerator<T>;
 ```
+
+## Parameters
+
+- `iterable`: The source async iterable.
+- `n`: The number of elements to take. Default: `1`.
+
+## Returns
+
+An AsyncGenerator that yields the specified number of elements.
 
 ## Examples
 
 ```ts
-// Example: Processing the first 5 lines of a large file stream
-const lines = takeIterAsync(fileStream, 5);
+async function* gen() {
+  yield 1;
+  yield 2;
+  yield 3;
+}
 
-for await (const line of lines) {
-  console.log(line);
+const iter = takeIterAsync(gen(), 2);
+for await (const val of iter) {
+  console.log(val); //=> 1, 2
 }
 ```
+
+## Related
+
+- [dropIterAsync](/Iter/dropIterAsync)
+- [takeIter](/Iter/takeIter)
+
+## Try
+
+<REPL code={`const { takeIterAsync } = require('@opentf/std');
+
+async function* gen() {
+  yield 1; yield 2; yield 3;
+}
+
+async function demo() {
+  const iter = takeIterAsync(gen(), 2);
+  for await (const val of iter) {
+    console.log(val);
+  }
+}
+
+demo();
+`} />

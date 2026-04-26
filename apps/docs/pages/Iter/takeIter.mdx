@@ -1,43 +1,45 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Returns a Generator that yields the first n items from an Iterable.
-
-<Callout type="info">
-Works on any object that follows the iterator protocol (Arrays, Sets, Maps, and custom Generators).
-</Callout>
+> 🏃‍♂️ Takes the first N elements of an iterable.
 
 ## Syntax
 
-```ts
-import { takeIter } from "@opentf/std";
+```ts copy
+import { takeIter } from '@opentf/std';
 
-takeIter(iterable: Iterable<any>, n: number)
+takeIter<T>(
+  iterable: Iterable<T>,
+  n: number = 1
+): Generator<T>;
 ```
+
+## Parameters
+
+- `iterable`: The source iterable.
+- `n`: The number of elements to take. Default: `1`.
+
+## Returns
+
+A Generator that yields the specified number of elements.
 
 ## Examples
 
 ```ts
-function* gen() {
-  yield 1;
-  yield 2;
-  yield 3;
-}
-
-const limited = takeIter(gen(), 2);
-Array.from(limited); //=> [1, 2]
+const arr = [1, 2, 3, 4];
+const iter = takeIter(arr, 2);
+[...iter]; //=> [1, 2]
 ```
+
+## Related
+
+- [dropIter](/Iter/dropIter)
+- [takeIterAsync](/Iter/takeIterAsync)
 
 ## Try
 
 <REPL code={`const { takeIter } = require('@opentf/std');
 
-function* gen() {
-  yield 'A';
-  yield 'B';
-  yield 'C';
-}
-
-const limited = takeIter(gen(), 2);
-console.log(Array.from(limited));
+const iter = takeIter([1, 2, 3, 4, 5], 3);
+console.log([...iter]);
 `} />

@@ -1,36 +1,46 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Creates an object composed of the keys that the predicate returns truthy for.
-
-<Callout type="info">
-The source object should be a `Plain Object`.
-</Callout>
+> 🎯 Creates an object composed of the object properties that satisfy the predicate.
 
 ## Syntax
 
-```ts
-import { pickBy } from "@opentf/std";
+```ts copy
+import { pickBy } from '@opentf/std';
 
-pickBy(obj: object, predicate: (value: any, key: string) => boolean)
+pickBy<T extends object>(
+  obj: T,
+  predicate: (value: any, key: string) => boolean
+): Partial<T>;
 ```
+
+## Parameters
+
+- `obj`: The source object.
+- `predicate`: The function invoked per iteration.
+
+## Returns
+
+A new object with picked properties.
 
 ## Examples
 
 ```ts
-const obj = { a: 1, b: '2', c: 3 };
+const object = { a: 1, b: 'abc', c: 3 };
 
-pickBy(obj, (v) => typeof v === 'number'); 
+pickBy(object, (v) => typeof v === 'number')
 //=> { a: 1, c: 3 }
-
-pickBy(obj, (v, k) => k === 'b');
-//=> { b: '2' }
 ```
+
+## Related
+
+- [pick](/Object/pick)
+- [omitBy](/Object/omitBy)
 
 ## Try
 
 <REPL code={`const { pickBy } = require('@opentf/std');
 
 const obj = { a: 1, b: '2', c: 3 };
-pickBy(obj, (v) => typeof v === 'number');
+console.log(pickBy(obj, (v) => typeof v === 'number'));
 `} />

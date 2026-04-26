@@ -1,28 +1,57 @@
 import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
 
-# filterAsync
-
-Asynchronous version of `Array.prototype.filter`.
+> ⚡ Asynchronous version of \`Array.prototype.filter\`.
 
 <Callout type="info">
   By default, it runs all iterations in **parallel**. You can limit the
   concurrency by providing a third argument.
 </Callout>
 
-## Usage
+## Syntax
 
-```ts
-import { filterAsync } from "@opentf/std";
+```ts copy
+import { filterAsync } from '@opentf/std';
 
-await filterAsync([1, 2, 3], async (n) => n > 1); //=> [2, 3]
-```
-
-## Signature
-
-```ts
-function filterAsync<T>(
+filterAsync<T>(
   arr: T[],
   cb: (value: T, index: number) => Promise<boolean>,
   concurrency?: number
 ): Promise<T[]>;
 ```
+
+## Parameters
+
+- `arr`: The array to iterate over.
+- `cb`: An async callback function that returns a boolean.
+- `concurrency` (Optional): The maximum number of concurrent executions. Default: `Infinity`.
+
+## Returns
+
+A Promise that resolves to the filtered array.
+
+## Examples
+
+```ts
+const items = [1, 2, 3, 4];
+const result = await filterAsync(items, async (n) => {
+  return n % 2 === 0;
+}); //=> [2, 4]
+```
+
+## Related
+
+- [mapAsync](/Concurrency/mapAsync)
+- [reduceAsync](/Concurrency/reduceAsync)
+
+## Try
+
+<REPL code={`const { filterAsync } = require('@opentf/std');
+
+async function demo() {
+  const result = await filterAsync([1, 2, 3, 4], async (n) => n % 2 === 0);
+  console.log(result);
+}
+
+demo();
+`} />

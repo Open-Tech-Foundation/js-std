@@ -1,43 +1,53 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Removes all the property paths from the given object for the given list of paths.
+> 🎯 The opposite of [pick](/Object/pick); this method creates an object composed of the own and inherited enumerable property paths of object that are not omitted.
 
 <Callout type="info">
-The source object can `Plain Object` or `Array`.
+  The source object can be a \`Plain Object\` or an \`Array\`.
 </Callout>
 
 ## Syntax
 
-```ts
+```ts copy
 import { omit } from '@opentf/std';
 
-omit(obj: object, ...paths: (string | unknown[])[])
+omit<T extends object>(
+  obj: T,
+  ...paths: (string | unknown[])[]
+): Partial<T>;
 ```
+
+## Parameters
+
+- `obj`: The source object or array.
+- `...paths`: The property paths to omit.
+
+## Returns
+
+A new object or array without the omitted properties.
 
 ## Examples
 
 ```ts
-omit({ a: 1, b: 2 }, 'a') //=> { b: 2 }
-
-omit({ a: 1, b: 2 }, ['a']) //=> { b: 2 }
+omit({ a: 1, b: 2, c: 3 }, 'a', 'c') //=> { b: 2 }
 
 omit([1, 2, 3], '1') //=> [1, 3]
-
-omit([1, 2, 3], 2) //=> [1, 2]
-
-omit({ a: 1, b: 2, c: 3, d: 4 }, 'b', 'd') 
-//=> {
-//   a: 1,
-//   c: 3,
-// }
-
-obj = { a: { b: [1, 3, 5] } };
-omit(obj, 'a.b[2]') //=> { a: { b: [1, 3] } });
 ```
+
+## Related
+
+- [omitBy](/Object/omitBy)
+- [pick](/Object/pick)
+- [unset](/Object/unset)
+
 ## Try
 
 <REPL code={`const { omit } = require('@opentf/std');
 
-omit({ a: 1, b: 2 }, 'a');
+const obj = { a: 1, b: 2, c: 3 };
+console.log(omit(obj, 'a', 'c'));
+
+const arr = [1, 2, 3];
+console.log(omit(arr, '1'));
 `} />

@@ -8,12 +8,12 @@ import REPL from "../../components/REPL";
 ```ts copy
 import { sleep } from '@opentf/std';
 
-sleep(ms: number = 0): Promise<void>
+sleep(ms: number = 0): Promise<void>;
 ```
 
 ## Parameters
 
-- `ms`: The number of milliseconds to sleep. Defaults to `0`.
+- `ms`: The number of milliseconds to sleep. Default: `0`.
 
 ## Returns
 
@@ -25,19 +25,21 @@ A `Promise` that resolves after the specified delay.
 await sleep(1000); // Suspends execution for 1 second
 
 await sleep(0); // Resolves in the next event loop iteration
-
-await sleep(); // Defaults to 0ms
 ```
+
+## Related
+
+- [timeoutRun](/Flow/timeoutRun)
 
 ## Try
 
 <REPL code={`const { sleep } = require('@opentf/std');
 
-async function main() {
-  console.log('Start');
+async function demo() {
+  console.log('Waiting...');
   await sleep(1000);
-  console.log('End (after 1s)');
+  console.log('Done!');
 }
 
-main();
+demo();
 `} />

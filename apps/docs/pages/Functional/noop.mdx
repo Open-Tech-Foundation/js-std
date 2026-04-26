@@ -1,19 +1,15 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> 😶 The "No Operation" function. It does nothing and returns `undefined`.
+> 😶 A function that does nothing and returns undefined.
 
 ## Syntax
 
 ```ts copy
 import { noop } from '@opentf/std';
 
-noop(): void
+noop(): undefined;
 ```
-
-## Parameters
-
-None.
 
 ## Returns
 
@@ -24,23 +20,17 @@ None.
 ```ts
 noop(); //=> undefined
 
-function test(cb) {
-  // Use noop as a default callback to avoid "cb is not a function" errors
-  const fn = cb || noop;
-  fn();
-}
-
-test(); // Safely calls the noop function
+// Useful as a default callback
+const { onComplete = noop } = options;
 ```
+
+## Related
+
+- [sleep](/Timing/sleep)
 
 ## Try
 
 <REPL code={`const { noop } = require('@opentf/std');
 
-function test(cb) {
-  const fn = cb || noop;
-  return fn('hello');
-}
-
-console.log(test());
+console.log(noop());
 `} />

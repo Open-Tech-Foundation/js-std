@@ -1,28 +1,40 @@
+import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> 🆔 Generates a URL-friendly, cryptographically strong random ID.
+> 🆔 Generates a random alphanumeric ID.
 
 ## Syntax
 
 ```ts copy
 import { randomId } from '@opentf/std';
 
-randomId(length?: number): string
+randomId(size: number = 21): string;
 ```
 
-- `length`: Optional length (default: `21`).
+## Parameters
+
+- `size`: The length of the ID. Default: `21`.
+
+## Returns
+
+A random alphanumeric string.
 
 ## Examples
 
 ```ts
-randomId() //=> 'V1StGXR8_Z5jdHi6B-myT'
-randomId(10) //=> 'h6fG_2jK8L'
+randomId() //=> 'Kj7L2n9P1m3Q5r7S9t1U3'
+randomId(10) //=> 'A1B2C3D4E5'
 ```
+
+## Related
+
+- [uuidv4](/Crypto/uuidv4)
+- [randomString](/Crypto/randomString)
 
 ## Try
 
 <REPL code={`const { randomId } = require('@opentf/std');
 
-log(randomId());
-log(randomId(12));
+console.log(randomId());
+console.log(randomId(10));
 `} />

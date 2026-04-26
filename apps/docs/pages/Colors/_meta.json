@@ -1,17 +1,17 @@
 {
   "color": "color",
-  "colorLighten": "colorLighten",
-  "colorDarken": "colorDarken",
-  "colorSaturate": "colorSaturate",
-  "colorDesaturate": "colorDesaturate",
   "colorAlpha": "colorAlpha",
-  "colorMix": "colorMix",
+  "colorContrast": "colorContrast",
+  "colorDarken": "colorDarken",
+  "colorDesaturate": "colorDesaturate",
   "colorGrayscale": "colorGrayscale",
-  "colorRotateHue": "colorRotateHue",
   "colorInvert": "colorInvert",
   "colorIsDark": "colorIsDark",
   "colorIsLight": "colorIsLight",
+  "colorIsReadable": "colorIsReadable",
+  "colorLighten": "colorLighten",
   "colorLuminance": "colorLuminance",
-  "colorContrast": "colorContrast",
-  "colorIsReadable": "colorIsReadable"
+  "colorMix": "colorMix",
+  "colorRotateHue": "colorRotateHue",
+  "colorSaturate": "colorSaturate"
 }

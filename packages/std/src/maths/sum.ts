@@ -7,11 +7,11 @@
  * sum([-1, -2]) //=> -3
  */
 
-export default function sum(
-  arr: number[] = [],
-  cb?: (val: number, index: number) => number,
+export default function sum<T>(
+  arr: T[] = [],
+  cb?: (val: T, index: number) => number,
 ): number {
-  return arr.reduce((prev, cur, i) => {
-    return prev + (cb ? cb(cur, i) : cur);
+  return (arr as unknown[]).reduce((prev: number, cur, i) => {
+    return prev + (cb ? cb(cur as T, i) : (cur as number));
   }, 0);
 }

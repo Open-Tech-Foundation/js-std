@@ -1,28 +1,43 @@
+import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> 🔠 Generates a cryptographically strong random string.
+> 🔡 Generates a random string of a specified length using a given character set.
 
 ## Syntax
 
 ```ts copy
 import { randomString } from '@opentf/std';
 
-randomString(length: number, chars?: string): string
+randomString(
+  size: number = 10,
+  chars: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+): string;
 ```
 
-- `chars`: Optional character set (default: Alphanumeric).
+## Parameters
+
+- `size`: The length of the string.
+- `chars`: The character set to use.
+
+## Returns
+
+A random string.
 
 ## Examples
 
 ```ts
-randomString(10) //=> 'aB3dE5gH1j'
-randomString(5, '01') //=> '10110'
+randomString() //=> 'kL8mP2nQ1r'
+randomString(5, '0123456789') //=> '48291'
 ```
+
+## Related
+
+- [randomId](/Crypto/randomId)
 
 ## Try
 
 <REPL code={`const { randomString } = require('@opentf/std');
 
-log(randomString(12));
-log(randomString(8, 'ABCDEF0123456789')); // Hex
+console.log(randomString(5));
+console.log(randomString(8, 'ABCDEF'));
 `} />

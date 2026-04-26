@@ -1,23 +1,56 @@
-# reduceAsync
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
 
-Asynchronous version of `Array.prototype.reduce`.
+> ⚡ Asynchronous version of \`Array.prototype.reduce\`.
 
-Iterations are executed **sequentially** as each step depends on the previous accumulator result.
+<Callout type="warning">
+  Unlike other async array methods, this runs **sequentially** because each step depends on the previous result.
+</Callout>
 
-## Usage
+## Syntax
 
-```ts
-import { reduceAsync } from "@opentf/std";
+```ts copy
+import { reduceAsync } from '@opentf/std';
 
-await reduceAsync([1, 2, 3], async (acc, n) => acc + n, 0); //=> 6
-```
-
-## Signature
-
-```ts
-function reduceAsync<T, R>(
+reduceAsync<T, R>(
   arr: T[],
-  cb: (accumulator: R, value: T, index: number) => Promise<R>,
-  initialValue?: R
+  cb: (acc: R, value: T, index: number) => Promise<R>,
+  initialValue: R
 ): Promise<R>;
 ```
+
+## Parameters
+
+- `arr`: The array to iterate over.
+- `cb`: An async callback function (accumulator, value, index).
+- `initialValue`: The initial value of the accumulator.
+
+## Returns
+
+A Promise that resolves to the final accumulated value.
+
+## Examples
+
+```ts
+const items = [1, 2, 3];
+const sum = await reduceAsync(items, async (acc, n) => {
+  return acc + n;
+}, 0); //=> 6
+```
+
+## Related
+
+- [mapAsync](/Concurrency/mapAsync)
+- [filterAsync](/Concurrency/filterAsync)
+
+## Try
+
+<REPL code={`const { reduceAsync } = require('@opentf/std');
+
+async function demo() {
+  const result = await reduceAsync([1, 2, 3], async (acc, n) => acc + n, 0);
+  console.log('Sum:', result);
+}
+
+demo();
+`} />

@@ -1,29 +1,34 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Base64 encoding and decoding.
+> 🔠 Base64 encoding and decoding.
 
 ## Syntax
 
-```ts
-import { base64Encode, base64Decode } from "@opentf/std";
+```ts copy
+import { base64 } from '@opentf/std';
 
-base64Encode(str: string)
-base64Decode(str: string)
+base64: {
+  encode: (input: string | Uint8Array) => string;
+  decode: (input: string) => string;
+}
 ```
 
 ## Examples
 
 ```ts
-const encoded = base64Encode("Hello"); //=> "SGVsbG8="
-const decoded = base64Decode(encoded); //=> "Hello"
+base64.encode('hello') //=> 'aGVsbG8='
+base64.decode('aGVsbG8=') //=> 'hello'
 ```
+
+## Related
+
+- [hex](/Encoding/hex)
 
 ## Try
 
-<REPL code={`const { base64Encode, base64Decode } = require('@opentf/std');
+<REPL code={`const { base64 } = require('@opentf/std');
 
-const encoded = base64Encode("Open Tech Foundation");
-console.log(encoded);
-console.log(base64Decode(encoded));
+console.log(base64.encode('Open Tech'));
+console.log(base64.decode('T3BlbiBUZWNo'));
 `} />

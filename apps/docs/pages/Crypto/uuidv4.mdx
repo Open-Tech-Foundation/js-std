@@ -1,14 +1,23 @@
+import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
 > 🆔 Generates a random UUID v4 using native crypto.
+
+<Callout type="info">
+  In Node.js 18, you need to polyfill \`globalThis.crypto\` to use this function.
+</Callout>
 
 ## Syntax
 
 ```ts copy
 import { uuidv4 } from '@opentf/std';
 
-uuidv4(): string
+uuidv4(): string;
 ```
+
+## Returns
+
+A random UUID v4 string.
 
 ## Examples
 
@@ -16,10 +25,15 @@ uuidv4(): string
 uuidv4() //=> 'f47ac10b-58cc-4372-a567-0e02b2c3d479'
 ```
 
+## Related
+
+- [uuidv7](/Crypto/uuidv7)
+- [randomId](/Crypto/randomId)
+
 ## Try
 
 <REPL code={`const { uuidv4 } = require('@opentf/std');
 
-log(uuidv4());
-log(uuidv4());
+console.log(uuidv4());
+console.log(uuidv4());
 `} />

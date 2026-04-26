@@ -14,14 +14,14 @@ import { max } from '@opentf/std';
 
 max<T>(
   arr: T[] = [],
-  by: (val: T) => number = (x: T) => x as unknown as number
+  by: (val: T) => number | string = (x: T) => x as unknown as number | string
 ): T | null
 ```
 
 ## Parameters
 
 - `arr`: The source array.
-- `by`: An optional function to extract the numeric value for comparison. Defaults to identity function.
+- `by`: An optional function to extract the numeric or string value for comparison. Defaults to identity function.
 
 ## Returns
 
@@ -34,7 +34,11 @@ max([]) //=> null
 
 max([1, undefined, 2, null, 3]) //=> 3
 
-max([1, 2, 3, 4, 5]) //=> 5
+max([1, 2, -3, 4, 5]) //=> 5
+
+max(['a', 'b', 'c']) //=> 'c'
+
+max(['apple', 'mango', 'grapes']) //=> 'mango'
 
 const arr = [
   {
@@ -51,7 +55,7 @@ const arr = [
   },
   { name: 'y2', age: 16 },
 ];
-max(arr, (o) => o.age)
+max(arr, (f) => f.age)
 //=> 
 // {
 //  name: 'y',
@@ -68,5 +72,6 @@ max(arr, (o) => o.age)
 
 <REPL code={`const { max } = require('@opentf/std');
 
-max([1, 2, 3, 4, 5]);
+max([1, 2, -3, 4, 5]);
+max(['apple', 'mango', 'grapes']);
 `} />

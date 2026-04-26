@@ -14,14 +14,14 @@ import { min } from '@opentf/std';
 
 min<T>(
   arr: T[] = [],
-  by: (val: T) => number = (x: T) => x as unknown as number
+  by: (val: T) => number | string = (x: T) => x as unknown as number | string
 ): T | null
 ```
 
 ## Parameters
 
 - `arr`: The source array.
-- `by`: An optional function to extract the numeric value for comparison. Defaults to identity function.
+- `by`: An optional function to extract the numeric or string value for comparison. Defaults to identity function.
 
 ## Returns
 
@@ -35,6 +35,10 @@ min([]) //=> null
 min([1, undefined, 2, null, 3]) //=> 1
 
 min([1, 2, -3, 4, 5]) //=> -3
+
+min(['a', 'b', 'c']) //=> 'a'
+
+min(['apple', 'mango', 'grapes']) //=> 'apple'
 
 const arr = [
   {
@@ -73,4 +77,5 @@ min(arr, (f) => f.age)
 <REPL code={`const { min } = require('@opentf/std');
 
 min([1, 2, -3, 4, 5]);
+min(['apple', 'mango', 'grapes']);
 `} />

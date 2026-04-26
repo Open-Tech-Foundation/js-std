@@ -1,45 +1,45 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Returns a Generator that skips the first n items from an Iterable.
-
-<Callout type="info">
-Allows you to "jump" into a stream after a certain number of elements.
-</Callout>
+> 🏃‍♂️ Skips the first N elements of an iterable.
 
 ## Syntax
 
-```ts
-import { dropIter } from "@opentf/std";
+```ts copy
+import { dropIter } from '@opentf/std';
 
-dropIter(iterable: Iterable<any>, n: number)
+dropIter<T>(
+  iterable: Iterable<T>,
+  n: number = 1
+): Generator<T>;
 ```
+
+## Parameters
+
+- `iterable`: The source iterable (Array, Set, Map, etc.).
+- `n`: The number of elements to skip. Default: `1`.
+
+## Returns
+
+A Generator that yields the remaining elements.
 
 ## Examples
 
 ```ts
-function* gen() {
-  yield 1;
-  yield 2;
-  yield 3;
-  yield 4;
-}
-
-const remaining = dropIter(gen(), 2);
-Array.from(remaining); //=> [3, 4]
+const arr = [1, 2, 3, 4];
+const iter = dropIter(arr, 2);
+[...iter]; //=> [3, 4]
 ```
+
+## Related
+
+- [takeIter](/Iter/takeIter)
+- [dropIterAsync](/Iter/dropIterAsync)
 
 ## Try
 
 <REPL code={`const { dropIter } = require('@opentf/std');
 
-function* gen() {
-  yield 'A';
-  yield 'B';
-  yield 'C';
-  yield 'D';
-}
-
-const remaining = dropIter(gen(), 2);
-console.log(Array.from(remaining));
+const iter = dropIter([1, 2, 3, 4, 5], 3);
+console.log([...iter]);
 `} />

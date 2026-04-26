@@ -1,4 +1,3 @@
-import sort from '../array/sort';
 import isEven from './isEven';
 
 /**
@@ -6,25 +5,22 @@ import isEven from './isEven';
  *
  * @example
  *
- * median([1, 4, 2, 5, 0]) //=> 2
- *
- * median([10, 20, 40, 50]) //=> 30;
+ * median([4, 2, 8]) //=> 4
  */
-export default function median(
-  arr: number[] = [],
-  cb?: (val: number, index: number) => number,
-): number {
-  let a = cb ? arr.map(cb) : [...arr];
-  a = sort(a);
 
-  if (a.length === 0) {
+export default function median<T>(
+  arr: T[] = [],
+  cb?: (val: T, index: number) => number,
+): number {
+  if (arr.length === 0) {
     return NaN;
   }
-
-  if (isEven(a.length)) {
-    const i = a.length / 2;
-    return (a[i] + a[i - 1]) / 2;
+  const sorted = (arr as unknown[])
+    .map((v, i) => (cb ? cb(v as T, i) : (v as number)))
+    .sort((a, b) => a - b);
+  const mid = Math.floor(sorted.length / 2);
+  if (isEven(sorted.length)) {
+    return (sorted[mid - 1]! + sorted[mid]!) / 2;
   }
-
-  return a[Math.floor(a.length / 2)];
+  return sorted[mid]!;
 }

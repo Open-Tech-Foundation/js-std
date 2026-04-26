@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "next",
-    "build": "next build && pnpm run build:sitemap",
+    "build": "next build && bun run build:sitemap",
     "build:sitemap": "next-sitemap",
     "start": "next start",
     "test": "echo \"Error: no test specified\" && exit 1"

@@ -8,9 +8,9 @@ import REPL from "../../components/REPL";
 ```ts copy
 import { sum } from '@opentf/std';
 
-sum(
-  arr: number[] = [],
-  cb?: (val: number, index: number) => number
+sum<T>(
+  arr: T[] = [],
+  cb?: (val: T, index: number) => number
 ): number
 ```
 

@@ -15,9 +15,9 @@ import REPL from "../../components/REPL";
 ```ts copy
 import { mean } from '@opentf/std';
 
-mean(
-  arr: number[] = [],
-  cb?: (v: number, index: number) => number
+mean<T>(
+  arr: T[] = [],
+  cb?: (val: T, index: number) => number
 ): number
 ```
 

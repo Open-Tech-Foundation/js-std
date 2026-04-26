@@ -1,14 +1,14 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> 🐪 Converts a string to [camelCase](https://en.wikipedia.org/wiki/Camel_case).
+> 🐫 Converts string to camel case.
 
 ## Syntax
 
 ```ts copy
 import { camelCase } from '@opentf/std';
 
-camelCase(str: string): string
+camelCase(str: string): string;
 ```
 
 ## Parameters
@@ -17,7 +17,7 @@ camelCase(str: string): string
 
 ## Returns
 
-The camelCased string.
+The camel-cased string.
 
 ## Examples
 
@@ -27,12 +27,6 @@ camelCase('Foo Bar') //=> 'fooBar'
 camelCase('--foo-bar--') //=> 'fooBar'
 
 camelCase('__FOO_BAR__') //=> 'fooBar'
-
-camelCase('i phone') //=> 'iPhone'
-
-camelCase('The Quick Brown Fox') //=> 'theQuickBrownFox'
-
-camelCase('1 apple') //=> '1Apple'
 ```
 
 ## Related
@@ -46,5 +40,5 @@ camelCase('1 apple') //=> '1Apple'
 <REPL code={`const { camelCase } = require('@opentf/std');
 
 console.log(camelCase('hello world'));
-console.log(camelCase('--foo-bar--'));
+console.log(camelCase('__FOO_BAR__'));
 `} />

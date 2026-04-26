@@ -1,19 +1,31 @@
 import { Callout } from "nextra/components";
 import REPL from "../../components/REPL";
 
-> Includes all the property paths from the given object for the given list of paths.
+> 🎯 Creates an object composed of the picked object properties.
 
 <Callout type="info">
-The source object can `Plain Object` or `Array`.
+  The source object can be a \`Plain Object\` or an \`Array\`.
 </Callout>
 
 ## Syntax
 
-```ts
+```ts copy
 import { pick } from '@opentf/std';
 
-pick(obj: object, ...paths: (string | unknown[])[])
+pick<T extends object, K extends keyof T>(
+  obj: T,
+  ...paths: (string | unknown[])[]
+): Partial<T>;
 ```
+
+## Parameters
+
+- `obj`: The source object or array.
+- `...paths`: The property paths to pick.
+
+## Returns
+
+A new object or array with only the picked properties.
 
 ## Examples
 
@@ -28,9 +40,20 @@ pick({ a: { b: { c: 1 }, d: null, e: [10, 20, 30] } }, 'a.b', ['a', 'e', '2'])
 //   e: [30] 
 // }
 ```
+
+## Related
+
+- [pickBy](/Object/pickBy)
+- [omit](/Object/omit)
+- [get](/Object/get)
+
 ## Try
 
 <REPL code={`const { pick } = require('@opentf/std');
 
-pick({ a: 1, b: 2 }, 'a');
+const obj = { a: 1, b: 2, c: 3 };
+console.log(pick(obj, 'a', 'c'));
+
+const arr = [1, 2, 3];
+console.log(pick(arr, '0', '2'));
 `} />

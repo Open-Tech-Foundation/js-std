@@ -1,17 +1,21 @@
+import isEmpty from '../assert/isEmpty';
+
 /**
  * Calculates the product of values in the given array.
  *
  * @example
  *
  * prod([1, 2, 3, 4, 5]) //=> 120
- * prod([-1, -2]) //=> 2
  */
 
-export default function prod(
-  arr: number[] = [],
-  cb?: (val: number, index: number) => number,
+export default function prod<T>(
+  arr: T[] = [],
+  cb?: (val: T, index: number) => number,
 ): number {
-  return arr.reduce((prev, cur, i) => {
-    return prev * (cb ? cb(cur, i) : cur);
+  if (isEmpty(arr)) {
+    return 1;
+  }
+  return (arr as unknown[]).reduce((prev: number, cur, i) => {
+    return prev * (cb ? cb(cur as T, i) : (cur as number));
   }, 1);
 }

@@ -1,28 +1,57 @@
 import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
 
-# flatMapAsync
-
-Asynchronous version of `Array.prototype.flatMap`.
+> ⚡ Asynchronous version of \`Array.prototype.flatMap\`.
 
 <Callout type="info">
   By default, it runs all iterations in **parallel**. You can limit the
   concurrency by providing a third argument.
 </Callout>
 
-## Usage
+## Syntax
 
-```ts
-import { flatMapAsync } from "@opentf/std";
+```ts copy
+import { flatMapAsync } from '@opentf/std';
 
-await flatMapAsync([1, 2, 3], async (n) => [n, n * 2]); //=> [1, 2, 2, 4, 3, 6]
-```
-
-## Signature
-
-```ts
-function flatMapAsync<T, R>(
+flatMapAsync<T, R>(
   arr: T[],
   cb: (value: T, index: number) => Promise<R | R[]>,
   concurrency?: number
 ): Promise<R[]>;
 ```
+
+## Parameters
+
+- `arr`: The array to iterate over.
+- `cb`: An async callback function for each element.
+- `concurrency` (Optional): The maximum number of concurrent executions. Default: `Infinity`.
+
+## Returns
+
+A Promise that resolves to the flattened mapped array.
+
+## Examples
+
+```ts
+const items = [1, 2, 3];
+const result = await flatMapAsync(items, async (n) => {
+  return [n, n * 2];
+}); //=> [1, 2, 2, 4, 3, 6]
+```
+
+## Related
+
+- [mapAsync](/Concurrency/mapAsync)
+- [filterAsync](/Concurrency/filterAsync)
+
+## Try
+
+<REPL code={`const { flatMapAsync } = require('@opentf/std');
+
+async function demo() {
+  const result = await flatMapAsync([1, 2, 3], async (n) => [n, n * 2]);
+  console.log(result);
+}
+
+demo();
+`} />

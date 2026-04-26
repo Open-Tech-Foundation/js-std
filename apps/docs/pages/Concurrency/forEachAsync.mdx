@@ -1,30 +1,58 @@
 import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
 
-# forEachAsync
-
-Asynchronous version of `Array.prototype.forEach`.
+> ⚡ Asynchronous version of \`Array.prototype.forEach\`.
 
 <Callout type="info">
   By default, it runs all iterations in **parallel**. You can limit the
   concurrency by providing a third argument.
 </Callout>
 
-## Usage
+## Syntax
 
-```ts
-import { forEachAsync } from "@opentf/std";
+```ts copy
+import { forEachAsync } from '@opentf/std';
 
-await forEachAsync([1, 2, 3], async (n) => {
-  await doSomething(n);
-});
-```
-
-## Signature
-
-```ts
-function forEachAsync<T>(
+forEachAsync<T>(
   arr: T[],
   cb: (value: T, index: number) => Promise<void>,
   concurrency?: number
 ): Promise<void>;
 ```
+
+## Parameters
+
+- `arr`: The array to iterate over.
+- `cb`: An async callback function for each element.
+- `concurrency` (Optional): The maximum number of concurrent executions. Default: `Infinity`.
+
+## Returns
+
+A Promise that resolves when all iterations are complete.
+
+## Examples
+
+```ts
+const items = [1, 2, 3];
+await forEachAsync(items, async (n) => {
+  console.log(n);
+});
+```
+
+## Related
+
+- [mapAsync](/Concurrency/mapAsync)
+- [filterAsync](/Concurrency/filterAsync)
+
+## Try
+
+<REPL code={`const { forEachAsync } = require('@opentf/std');
+
+async function demo() {
+  await forEachAsync([1, 2, 3], async (n) => {
+    console.log('Item:', n);
+  });
+}
+
+demo();
+`} />
