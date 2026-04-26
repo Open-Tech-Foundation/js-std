@@ -2,7 +2,11 @@
   "mode": "pre",
   "tag": "beta",
   "initialVersions": {
-    "@opentf/std": "0.13.0"
+    "@opentf/std": "0.13.0",
+    "docs": "1.0.0",
+    "playground": "0.0.0"
   },
-  "changesets": []
+  "changesets": [
+    "v1-release-audit-stabilization"
+  ]
 }

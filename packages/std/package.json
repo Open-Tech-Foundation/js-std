@@ -1,6 +1,6 @@
 {
   "name": "@opentf/std",
-  "version": "0.13.0",
+  "version": "1.0.0-beta.0",
   "description": "An Extensive JavaScript Standard Library.",
   "keywords": [
     "collection",
@@ -70,7 +70,9 @@
     "lint": "biome check ./src",
     "format": "biome format --write ./src"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "publishConfig": {
     "access": "public",
     "provenance": true
