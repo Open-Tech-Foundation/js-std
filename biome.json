@@ -9,7 +9,8 @@
       "packages/std/dist",
       "scripts",
       "packages/std/scripts",
-      "**/coverage/**"
+      "**/coverage/**",
+      ".changeset"
     ]
   },
   "organizeImports": {
