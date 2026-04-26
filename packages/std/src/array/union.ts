@@ -1,5 +1,3 @@
-import isEql from '../assert/isEql';
-import isFun from '../types/isFunction';
 import uniq from './uniq';
 
 /**
@@ -7,33 +5,20 @@ import uniq from './uniq';
  *
  * @example
  *
- * const setA = new Set([1, 2, 3, 4]);
- * const setB = new Set([2, 3, 5]);
- * const setC = new Set([2, 5, 3]);
- * union(setA, setB, setC) //=> [1, 2, 3, 4, 5]
+ * const setA = [1, 2, 3, 4];
+ * const setB = [2, 3, 5];
+ * const setC = [2, 5, 3];
+ * union([setA, setB, setC]) //=> [1, 2, 3, 4, 5]
  */
 export default function union(
   collections: unknown[][] = [],
   by?: (val: unknown) => unknown,
 ): unknown[] {
-  const byFlag = isFun(by);
-  const out = collections.reduce((acc, cur) => {
-    for (const val of cur) {
-      let flag = false;
-      for (const val2 of acc) {
-        const v1 = byFlag ? by(val) : val;
-        const v2 = byFlag ? by(val2) : val2;
-        if (isEql(v1, v2)) {
-          flag = true;
-        }
-      }
-      if (!flag) {
-        acc.push(val);
-      }
-    }
+  if (collections.length === 0) {
+    return [];
+  }
 
-    return acc;
-  }, []);
+  const flattened = collections.reduce((acc, cur) => acc.concat(cur), []);
 
-  return uniq(out);
+  return uniq(flattened, by);
 }

@@ -16,27 +16,23 @@ export default async function timeoutRun<T>(
     fallback?: T;
   } = {}
 ): Promise<T> {
-  let timeoutId: ReturnType<typeof setTimeout>;
+  let timeoutId: ReturnType<typeof setTimeout> | undefined;
 
-  const timeoutPromise = new Promise<never>((_, reject) => {
+  const timeoutPromise = new Promise<T>((resolve, reject) => {
     timeoutId = setTimeout(() => {
-      reject(new Error(options.message || `Operation timed out after ${ms}ms`));
+      if (options.fallback !== undefined) {
+        resolve(options.fallback);
+      } else {
+        reject(new Error(options.message || `Operation timed out after ${ms}ms`));
+      }
     }, ms);
   });
-  timeoutPromise.catch(() => {});
 
   try {
-    if (options.fallback !== undefined) {
-      return await Promise.race([
-        func(),
-        new Promise<T>((resolve) => {
-          timeoutId = setTimeout(() => resolve(options.fallback!), ms);
-        })
-      ]);
-    }
-    
     return await Promise.race([func(), timeoutPromise]);
   } finally {
-    clearTimeout(timeoutId!);
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
   }
 }

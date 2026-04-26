@@ -11,10 +11,11 @@ export default function mode<T>(arr: T[] = [], cb?: (val: T) => unknown): T[] {
   if (arr.length === 0) {
     return [];
   }
-  const a = cb ? (arr as T[]).map(cb) : arr;
+
   const map = new Map();
-  for (const i of a) {
-    map.set(i, (map.get(i) ?? 0) + 1);
+  for (let i = 0; i < arr.length; i++) {
+    const item = cb ? cb(arr[i] as T) : arr[i];
+    map.set(item, (map.get(item) ?? 0) + 1);
   }
 
   const values = [...map.values()];

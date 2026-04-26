@@ -1,34 +1,39 @@
 import isEql from '../assert/isEql';
-import isFunction from '../types/isFunction';
 import uniq from './uniq';
 
 /**
- * Returns a unique array of values only containing elements from each of the collections.
+ * Creates an array of unique values that are included in all given arrays.
  *
  * @example
  *
- * const setA = [1, 2, 3, 4];
- * const setB = [3, 5];
- * intersection(setA, setB) //=> [3]
+ * intersection([[1, 2, 3], [2, 3, 4]]) //=> [2, 3]
+ * intersection([[2.1, 1.2], [2.3, 3.4]], Math.floor) //=> [2.1]
  */
-export default function intersection(
-  collections: unknown[][] = [],
-  by?: (val: unknown) => unknown,
-): unknown[] {
-  const byFlag = isFunction(by);
-  const out = collections.reduce((acc, cur) => {
-    const _intersection = [];
-    for (const val of acc) {
-      for (const val2 of cur) {
-        const v1 = byFlag ? by(val) : val;
-        const v2 = byFlag ? by(val2) : val2;
-        if (isEql(v1, v2)) {
-          _intersection.push(val);
-        }
-      }
-    }
-    return _intersection;
+export default function intersection<T>(
+  arr: T[][],
+  by?: (val: T) => unknown
+): T[] {
+  if (!Array.isArray(arr) || arr.length === 0) {
+    return [];
+  }
+
+  const collections = arr.filter((a) => Array.isArray(a));
+  if (collections.length === 0) {
+    return [];
+  }
+
+  const byFlag = typeof by === 'function';
+  const [first, ...rest] = collections;
+  
+  const result = first.filter((val) => {
+    const v1 = byFlag ? by(val) : val;
+    return rest.every((c) => {
+      return c.some((item) => {
+        const v2 = byFlag ? by(item) : item;
+        return isEql(v1, v2);
+      });
+    });
   });
 
-  return uniq(out);
+  return uniq(result);
 }

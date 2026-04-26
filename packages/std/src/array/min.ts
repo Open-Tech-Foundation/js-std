@@ -1,28 +1,33 @@
 import isEmpty from '../assert/isEmpty';
-import compact from './compact';
 
 /**
  * Returns the minimum value of the given array.
  *
  * @example
- * min([10, 20, 50, 30]) //=> 50
+ *
+ * min([10, 20, 50, 30]) //=> 10
  */
 export default function min<T>(
   arr: T[] = [],
-  by: (val: T) => number = (x: T) => x as number,
+  by: (val: T) => number | string = (x: T) => x as unknown as number | string,
 ): T | null {
-  const a = compact(arr);
-
-  if (isEmpty(a)) {
+  if (isEmpty(arr)) {
     return null;
   }
 
-  return (a as T[]).reduce((acc, cur) => {
-    const a = by(acc);
-    const b = by(cur);
-    if (a === b) {
-      return acc;
+  let result: T | null = null;
+  let minVal: number | string | null = null;
+
+  for (const item of arr) {
+    if (item === null || item === undefined) {
+      continue;
     }
-    return a > b ? cur : acc;
-  }) as T | null;
+    const currentVal = by(item);
+    if (minVal === null || currentVal < minVal) {
+      minVal = currentVal;
+      result = item;
+    }
+  }
+
+  return result;
 }

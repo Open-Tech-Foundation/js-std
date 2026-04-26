@@ -1,4 +1,5 @@
-import has from './has';
+import isEmpty from '../assert/isEmpty';
+import isObject from '../types/isObject';
 import type { IterableObj } from './merge';
 import toPath from './toPath';
 
@@ -14,13 +15,17 @@ export default function get(
   path: string | unknown[],
   defVal?: unknown,
 ): unknown {
-  if (!has(obj, path)) {
+  let curObj = obj;
+  const pathArr = toPath(path);
+
+  if (isEmpty(pathArr)) {
     return defVal;
   }
 
-  let curObj = obj;
-  const pathArr = toPath(path);
   for (const prop of pathArr) {
+    if (!isObject(curObj) || !Object.hasOwn(curObj, prop as PropertyKey)) {
+      return defVal;
+    }
     curObj = (curObj as IterableObj)[prop as PropertyKey] as object;
   }
 

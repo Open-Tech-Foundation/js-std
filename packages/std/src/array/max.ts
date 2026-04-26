@@ -1,28 +1,33 @@
 import isEmpty from '../assert/isEmpty';
-import compact from './compact';
 
 /**
  * Returns the maximum value of the given array.
  *
  * @example
+ *
  * max([10, 20, 50, 30]) //=> 50
  */
 export default function max<T>(
   arr: T[] = [],
-  by: (val: T) => number = (x: T) => x as number,
+  by: (val: T) => number | string = (x: T) => x as unknown as number | string,
 ): T | null {
-  const a = compact(arr);
-
-  if (isEmpty(a)) {
+  if (isEmpty(arr)) {
     return null;
   }
 
-  return (a as T[]).reduce((acc, cur) => {
-    const a = by(acc);
-    const b = by(cur);
-    if (a === b) {
-      return acc;
+  let result: T | null = null;
+  let maxVal: number | string | null = null;
+
+  for (const item of arr) {
+    if (item === null || item === undefined) {
+      continue;
     }
-    return a > b ? acc : cur;
-  }) as T | null;
+    const currentVal = by(item);
+    if (maxVal === null || currentVal > maxVal) {
+      maxVal = currentVal;
+      result = item;
+    }
+  }
+
+  return result;
 }

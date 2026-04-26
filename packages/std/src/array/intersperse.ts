@@ -1,6 +1,5 @@
 import isFunction from '../types/isFunction';
 import isString from '../types/isString';
-import drop from './drop';
 
 /**
  * Inserts a separator between the elements of its list argument.
@@ -18,16 +17,18 @@ export default function intersperse(
 ): string | unknown[] {
   const a = isString(list) ? Array.from(list) : list;
 
-  if (!a) {
-    return [];
+  if (!a || a.length === 0) {
+    return isString(list) ? '' : [];
   }
 
-  const res = drop(
-    a.reduce((acc: unknown[], cur, index) => {
-      acc.push(isFunction(sep) ? sep(index - 1) : sep, cur);
-      return acc;
-    }, []),
-  );
+  const res: unknown[] = [];
 
-  return isString(list) ? (res.join('') as string) : res;
+  for (let i = 0; i < a.length; i++) {
+    res.push(a[i]);
+    if (i < a.length - 1) {
+      res.push(isFunction(sep) ? sep(i) : sep);
+    }
+  }
+
+  return isString(list) ? res.join('') : res;
 }

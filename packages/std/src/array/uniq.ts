@@ -9,26 +9,40 @@ import isFunction from '../types/isFunction';
  * uniq([1, 2, 2, 3]) //=> [1, 2, 3]
  */
 
-export default function uniq<T>(
-  arr: T[] = [],
-  by?: (val: T) => unknown,
-): Partial<T[]> {
-  return arr.reduce((acc: unknown[], cur) => {
-    let flag = false;
+export default function uniq<T>(arr: T[] = [], by?: (val: T) => unknown): T[] {
+  if (arr.length === 0) {
+    return [];
+  }
 
-    for (const item of acc) {
-      const v1 = isFunction(by) ? by(item as T) : item;
-      const v2 = isFunction(by) ? by(cur) : cur;
+  const byFlag = isFunction(by);
+
+  // Optimization for primitives without iteratee
+  if (!byFlag) {
+    const primitivesOnly = arr.every(
+      (x) => typeof x !== 'object' || x === null
+    );
+    if (primitivesOnly) {
+      return [...new Set(arr)];
+    }
+  }
+
+  const result: T[] = [];
+  for (const item of arr) {
+    const v1 = byFlag ? by(item) : item;
+    let isDuplicate = false;
+
+    for (const resItem of result) {
+      const v2 = byFlag ? by(resItem) : resItem;
       if (isEql(v1, v2)) {
-        flag = true;
+        isDuplicate = true;
         break;
       }
     }
 
-    if (!flag) {
-      acc.push(cur);
+    if (!isDuplicate) {
+      result.push(item);
     }
+  }
 
-    return acc;
-  }, []) as Partial<T[]>;
+  return result;
 }

@@ -11,7 +11,7 @@ import toPath from './toPath';
  *
  * @example
  *
- * unset({a: 1, b: 2}}, 'a') //=> true
+ * toUnset({a: 1, b: 2}, 'a') //=> {b: 2}
  */
 export default function toUnset<T>(obj: T, path: string | unknown[]): T {
   const pathArr = toPath(path);
@@ -29,7 +29,7 @@ export default function toUnset<T>(obj: T, path: string | unknown[]): T {
     if (i === pathArr.length - 1) {
       if (isArray(curObj)) {
         if (isNumber(prop, true)) {
-          curObj.splice(prop, 1);
+          curObj.splice(prop as unknown as number, 1);
         }
       } else {
         delete curObj[prop];

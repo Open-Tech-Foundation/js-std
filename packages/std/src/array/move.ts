@@ -1,7 +1,7 @@
 /**
  * It moves an array element from one index position to another.
  *
- * Note: It mutates the array.
+ * Note: It does not mutate the original array.
  *
  * @example
  *

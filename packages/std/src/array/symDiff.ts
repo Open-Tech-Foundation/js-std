@@ -15,32 +15,35 @@ export default function symDiff(
   collections: unknown[][] = [],
   by?: (val: unknown) => unknown,
 ): unknown[] {
+  if (collections.length === 0) {
+    return [];
+  }
+
+  if (collections.length === 1) {
+    return uniq(collections[0], by);
+  }
+
   const byFlag = isFunction(by);
-  const out = collections.slice(1).reduce(
-    (acc, cur) => {
-      const removeIdxs: number[] = [];
-      for (const curVal of cur) {
-        let flag = true;
-        let idx = 0;
-        for (const accVal of acc) {
-          const v1 = byFlag ? by(curVal) : curVal;
-          const v2 = byFlag ? by(accVal) : accVal;
-          if (isEql(v1, v2)) {
-            removeIdxs.push(idx);
-            flag = false;
-          }
-          idx += 1;
-        }
 
-        if (flag) {
-          acc.push(curVal);
-        }
-      }
+  const out = collections.reduce((acc, cur) => {
+    const result = [...acc, ...cur];
 
-      return acc.filter((_item, i) => !removeIdxs.includes(i));
-    },
-    [...(collections[0] || [])],
-  );
+    return result.filter((val) => {
+      const v1 = byFlag ? by(val) : val;
 
-  return uniq(out);
+      const inAcc = acc.some((a) => {
+        const v2 = byFlag ? by(a) : a;
+        return isEql(v1, v2);
+      });
+
+      const inCur = cur.some((c) => {
+        const v2 = byFlag ? by(c) : c;
+        return isEql(v1, v2);
+      });
+
+      return !(inAcc && inCur);
+    });
+  });
+
+  return uniq(out, by);
 }

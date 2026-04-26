@@ -11,13 +11,7 @@ import isSet from '../types/isSet';
 import isTypedArray from '../types/isTypedArray';
 
 function getMapKeys(map: Map<unknown, unknown>) {
-  const arr = [];
-
-  for (const key of map.keys()) {
-    arr.push(key);
-  }
-
-  return arr;
+  return Array.from(map.keys());
 }
 
 function isEqlVal(

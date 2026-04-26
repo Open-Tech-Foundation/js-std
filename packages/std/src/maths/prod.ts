@@ -11,8 +11,7 @@ export default function prod(
   arr: number[] = [],
   cb?: (val: number, index: number) => number,
 ): number {
-  const a = cb ? arr.map(cb) : arr;
-  return a.reduce((prev, cur) => {
-    return prev * cur;
+  return arr.reduce((prev, cur, i) => {
+    return prev * (cb ? cb(cur, i) : cur);
   }, 1);
 }

@@ -10,7 +10,7 @@ import toPath from './toPath';
  *
  * @example
  *
- * set({}}, 'a.b', 1) //=> {a: {b: 1} }
+ * toSet({}, 'a.b', 1) //=> {a: {b: 1} }
  */
 export default function toSet<T>(
   obj: T,

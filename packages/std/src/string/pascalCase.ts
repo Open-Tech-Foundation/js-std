@@ -4,7 +4,11 @@ import replaceAt from './replaceAt';
 function pascalCase(str: string): string {
   const result = camelCase(str);
 
-  return replaceAt(result, 0, result[0].toUpperCase());
+  if (!result) {
+    return '';
+  }
+
+  return result[0].toUpperCase() + result.slice(1);
 }
 
 export default pascalCase;

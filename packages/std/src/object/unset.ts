@@ -9,7 +9,7 @@ import toPath from './toPath';
  *
  * @example
  *
- * unset({a: 1, b: 2}}, 'a') //=> true
+ * unset({a: 1, b: 2}, 'a') //=> {b: 2}
  */
 export default function unset<T>(obj: T, path: string | unknown[]): T {
   const pathArr = toPath(path);

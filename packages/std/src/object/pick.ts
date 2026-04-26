@@ -1,5 +1,5 @@
 import isArray from '../types/isArray';
-import has from './has';
+import isObject from '../types/isObject';
 import type { IterableObj } from './merge';
 import toPath from './toPath';
 
@@ -17,31 +17,33 @@ export default function pick(
   const outObj = isArray(obj) ? [] : {};
 
   for (const path of paths) {
-    if (has(obj, path)) {
-      let curObj = obj;
-      let curOutObj = outObj;
-      const pathArr = toPath(path);
+    let curObj = obj;
+    let curOutObj = outObj;
+    const pathArr = toPath(path);
 
-      for (let i = 0; i < pathArr.length; i++) {
-        const prop = pathArr[i] as PropertyKey;
+    for (let i = 0; i < pathArr.length; i++) {
+      const prop = pathArr[i] as PropertyKey;
 
-        if (i === pathArr.length - 1) {
-          if (isArray(curOutObj)) {
-            curOutObj.push((curObj as IterableObj)[prop]);
-          } else {
-            (curOutObj as IterableObj)[prop] = (curObj as IterableObj)[prop];
-          }
-          break;
-        }
-
-        curObj = (curObj as IterableObj)[prop] as object;
-
-        if (!Object.hasOwn(curOutObj, prop)) {
-          (curOutObj as IterableObj)[prop] = isArray(curObj) ? [] : {};
-        }
-
-        curOutObj = (curOutObj as IterableObj)[prop] as object;
+      if (!isObject(curObj) || !Object.hasOwn(curObj, prop)) {
+        break;
       }
+
+      if (i === pathArr.length - 1) {
+        if (isArray(curOutObj)) {
+          curOutObj.push((curObj as IterableObj)[prop]);
+        } else {
+          (curOutObj as IterableObj)[prop] = (curObj as IterableObj)[prop];
+        }
+        break;
+      }
+
+      curObj = (curObj as IterableObj)[prop] as object;
+
+      if (!Object.hasOwn(curOutObj, prop)) {
+        (curOutObj as IterableObj)[prop] = isArray(curObj) ? [] : {};
+      }
+
+      curOutObj = (curOutObj as IterableObj)[prop] as object;
     }
   }
 

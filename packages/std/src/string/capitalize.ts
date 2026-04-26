@@ -5,10 +5,7 @@ function capitalize(str: string): string {
     return '';
   }
 
-  let result = str.toLowerCase();
-  result = replaceAt(result, 0, result[0].toUpperCase());
-
-  return result;
+  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 }
 
 export default capitalize;

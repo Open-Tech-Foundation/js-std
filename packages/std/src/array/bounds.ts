@@ -1,23 +1,43 @@
 import isEmpty from '../assert/isEmpty';
-import compact from './compact';
-import max from './max';
-import min from './min';
 
 /**
- * Returns a tuple of the min & max values of the given array.
+ * Returns the minimum and maximum values of the given array.
  *
  * @example
+ *
  * bounds([10, 20, 50, 30]) //=> [10, 50]
  */
 export default function bounds<T>(
   arr: T[] = [],
-  by: (val: T) => number = (x: T) => x as number,
+  by: (val: T) => number | string = (x: T) => x as unknown as number | string,
 ): [T, T] | null {
-  const a = compact(arr);
-
-  if (isEmpty(a)) {
+  if (isEmpty(arr)) {
     return null;
   }
 
-  return [min(arr, by), max(arr, by)] as [T, T];
+  let minRes: T | null = null;
+  let maxRes: T | null = null;
+  let minVal: number | string | null = null;
+  let maxVal: number | string | null = null;
+
+  for (const item of arr) {
+    if (item === null || item === undefined) {
+      continue;
+    }
+    const currentVal = by(item);
+    if (minVal === null || currentVal < minVal) {
+      minVal = currentVal;
+      minRes = item;
+    }
+    if (maxVal === null || currentVal > maxVal) {
+      maxVal = currentVal;
+      maxRes = item;
+    }
+  }
+
+  if (minRes === null || maxRes === null) {
+    return null;
+  }
+
+  return [minRes, maxRes];
 }

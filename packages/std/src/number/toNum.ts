@@ -14,13 +14,13 @@ import isString from '../types/isString';
 
 export default function toNum(val: unknown): number {
   if (isNumber(val)) {
-    return val as number;
+    return Number.isFinite(val) ? (val as number) : Number.NaN;
   }
 
   if (isString(val) && isNumber(val, true)) {
-    return (val as string).includes('_')
-      ? +(val as string).replaceAll('_', '')
-      : +(val as string);
+    const s = val as string;
+    const n = s.includes('_') ? +s.replaceAll('_', '') : +s;
+    return Number.isFinite(n) ? n : Number.NaN;
   }
 
   return Number.NaN;
