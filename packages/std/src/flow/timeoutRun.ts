@@ -1,12 +1,13 @@
 /**
  * Enforces a time limit on an asynchronous function.
  *
+ * @param {Function} func The async function to run.
+ * @param {number} ms The timeout in milliseconds.
+ * @param {Object} [options] The timeout options.
+ * @returns {Promise<T>} A promise that resolves to the function result.
+ *
  * @example
- * try {
- *   const result = await timeoutRun(() => fetchLargeData(), 1000);
- * } catch (err) {
- *   // Rejects if it takes longer than 1s
- * }
+ * const result = await timeoutRun(() => fetchLargeData(), 1000);
  */
 export default async function timeoutRun<T>(
   func: () => Promise<T>,

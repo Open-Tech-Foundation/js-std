@@ -3,13 +3,11 @@ import capitalize from './capitalize';
 /**
  * Converts string to camelCase.
  *
+ * @param {string} str The string to convert.
+ * @returns {string} The camelCased string.
+ *
  * @example
- *
  * camelCase('Foo Bar') //=> 'fooBar'
- *
- * camelCase('--foo-bar--') //=> 'fooBar'
- *
- * camelCase('__FOO_BAR__') //=> 'fooBar'
  */
 function camelCase(str: string): string {
   const res = str

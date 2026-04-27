@@ -2,10 +2,17 @@
 
 Checks if the given value is a valid date object.
 
-### Example
+## Syntax
+
+```ts
+import { isDate } from '@opentf/std';
+
+isDate(val: unknown): val is Date
+```
+
+## Example
 
 ```js
-
 isDate(new Date()) //=> true
 
 isDate(new Date('')) //=> false

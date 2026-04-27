@@ -2,9 +2,16 @@
 
 Removes the property of the given object at the given path & returns new object.
 
-### Example
+## Syntax
+
+```ts
+import { toUnset } from '@opentf/std';
+
+toUnset<T>(obj: T, path: string | unknown[]): T
+```
+
+## Example
 
 ```js
-
-unset({a: 1, b: 2}}, 'a') //=> true
+toUnset({a: 1, b: 2}, 'a') //=> {b: 2}
 ```

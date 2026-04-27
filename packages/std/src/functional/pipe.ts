@@ -1,10 +1,12 @@
-/** Returns a function that performs functions composition from left to right.
- * Supports both synchronous and asynchronous functions.
- * If any function in the chain returns a Promise, the remaining chain is awaited.
+/**
+ * Performs left-to-right function composition.
+ *
+ * @param {Function[]} fns The functions to pipe.
+ * @returns {Function} A new function that pipes its arguments.
  *
  * @example
- * const transform = pipe((x, y) => x + y, Math.abs)
- * transform(-2, -3) //=> 5
+ * const addAbs = pipe((a, b) => a + b, Math.abs);
+ * addAbs(-2, -3) //=> 5
  */
 export default function pipe(
   ...fns: ((...args: any[]) => any)[]

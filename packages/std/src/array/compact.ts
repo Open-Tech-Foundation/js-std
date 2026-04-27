@@ -3,8 +3,10 @@ import isArray from '../types/isArray';
 /**
  * Removes all the falsy values in the given array.
  *
- * @example
+ * @param {T[]} arr The source array.
+ * @returns {T[]} A new array without falsy values.
  *
+ * @example
  * compact([1, null, 2, 0, 3]) //=> [1, 2, 3]
  */
 export default function compact<T>(arr: T[] = []): T[] {

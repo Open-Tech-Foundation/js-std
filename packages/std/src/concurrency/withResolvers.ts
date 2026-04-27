@@ -1,9 +1,10 @@
 /**
- * Creates a promise with custom resolvers for `resolve` and `reject`.
+ * Creates a promise along with its resolve and reject functions.
+ *
+ * @returns {Object} An object containing the promise and its resolvers.
  *
  * @example
  * const { promise, resolve, reject } = withResolvers();
- * Math.random() > 0.5 ? resolve("ok") : reject("not ok");
  */
 
 export default function withResolvers<T>(): {

@@ -1,29 +1,28 @@
 # max
 
-> 📈 Finds the maximum value in an array. Supports numbers and strings.
+Returns the maximum value of the given array.
 
 ## Syntax
 
 ```ts
 import { max } from '@opentf/std';
 
-max<T>(
-  arr: T[] = []
-): T | undefined
+max<T>( arr: T[] = [], by: (val: T) => number | string = (x: T) => x as unknown as number | string, ): T | null
 ```
 
 ## Parameters
 
-- `arr`: The array to find the maximum value in.
+| Name | Type | Description |
+| --- | --- | --- |
+| arr | `T[]` | The source array. |
+| by | `Function` | The iteratee to pick the value. |
 
 ## Returns
 
-The maximum value in the array, or `undefined` if the array is empty.
+`T|null`: The maximum value.
 
-## Examples
+## Example
 
-```ts
-max([5, 2, 8, 1]) //=> 8
-
-max(['apple', 'banana', 'cherry']) //=> 'cherry'
+```js
+max([10, 20, 50, 30]) //=> 50
 ```

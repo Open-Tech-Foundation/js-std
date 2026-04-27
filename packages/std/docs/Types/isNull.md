@@ -2,10 +2,17 @@
 
 Checks if the given value is null.
 
-### Example
+## Syntax
+
+```ts
+import { isNull } from '@opentf/std';
+
+isNull(val: unknown): val is null
+```
+
+## Example
 
 ```js
-
 isNull(null) //=> true
 
 isNull(undefined) //=> false

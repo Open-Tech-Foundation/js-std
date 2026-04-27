@@ -3,8 +3,11 @@ import isEmpty from '../assert/isEmpty';
 /**
  * Returns the minimum value of the given array.
  *
- * @example
+ * @param {T[]} arr The source array.
+ * @param {Function} by The iteratee to pick the value.
+ * @returns {T|null} The minimum value.
  *
+ * @example
  * min([10, 20, 50, 30]) //=> 10
  */
 export default function min<T>(

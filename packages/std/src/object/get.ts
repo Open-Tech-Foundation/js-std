@@ -6,8 +6,12 @@ import toPath from './toPath';
 /**
  * Gets the value of an object at the given path.
  *
- * @example
+ * @param {Object} obj The object to query.
+ * @param {string|Array} path The path of the property to get.
+ * @param {unknown} [defVal] The value returned for undefined resolved values.
+ * @returns {unknown} The resolved value.
  *
+ * @example
  * get({a: {b: {c: 1}}}, 'a.b.c') //=> 1
  */
 export default function get(

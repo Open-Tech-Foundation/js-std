@@ -3,13 +3,16 @@ import isFunction from '../types/isFunction';
 import uniq from './uniq';
 
 /**
- *  Returns a new array containing elements which are in either this or other, but not in both.
+ * Returns a new array containing elements which are in either this or other, but not in both.
+ *
+ * @param {unknown[][]} collections The arrays to compare.
+ * @param {Function} by The iteratee invoked per element.
+ * @returns {unknown[]} A new array of symmetrical difference values.
  *
  * @example
- *
  * const evens = [2, 4, 6, 8];
  * const squares = [1, 4, 9];
- * symDiff([evens, squares]); // [2, 6, 8, 1, 9]
+ * symDiff([evens, squares]); //=> [2, 6, 8, 1, 9]
  */
 export default function symDiff(
   collections: unknown[][] = [],

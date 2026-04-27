@@ -2,7 +2,15 @@
 
 It deeply clones the given value
 
-### Example
+## Syntax
+
+```ts
+import { clone } from '@opentf/std';
+
+clone<T>(val: T): T
+```
+
+## Example
 
 ```js
 const obj1 = {a: 1, b: ['x']}

@@ -38,25 +38,47 @@
 ## Colors
 
 - [color](./Colors/color.md)
+- [colorAlpha](./Colors/colorAlpha.md)
+- [colorContrast](./Colors/colorContrast.md)
+- [colorDarken](./Colors/colorDarken.md)
+- [colorDesaturate](./Colors/colorDesaturate.md)
+- [colorGrayscale](./Colors/colorGrayscale.md)
+- [colorInvert](./Colors/colorInvert.md)
+- [colorIsDark](./Colors/colorIsDark.md)
+- [colorIsLight](./Colors/colorIsLight.md)
+- [colorIsReadable](./Colors/colorIsReadable.md)
+- [colorLighten](./Colors/colorLighten.md)
+- [colorLuminance](./Colors/colorLuminance.md)
+- [colorMix](./Colors/colorMix.md)
+- [colorRotateHue](./Colors/colorRotateHue.md)
+- [colorSaturate](./Colors/colorSaturate.md)
 
 ## Concurrency
 
+- [filterAsync](./Concurrency/filterAsync.md)
 - [flatMapAsync](./Concurrency/flatMapAsync.md)
 - [forEachAsync](./Concurrency/forEachAsync.md)
 - [mapAsync](./Concurrency/mapAsync.md)
-- [filterAsync](./Concurrency/filterAsync.md)
 - [reduceAsync](./Concurrency/reduceAsync.md)
 - [withResolvers](./Concurrency/withResolvers.md)
 
 ## Crypto
 
-- [uuid](./Crypto/uuid.md)
+- [randomBytes](./Crypto/randomBytes.md)
+- [randomId](./Crypto/randomId.md)
+- [randomInt](./Crypto/randomInt.md)
+- [randomString](./Crypto/randomString.md)
+- [uuidv4](./Crypto/uuidv4.md)
+- [uuidv7](./Crypto/uuidv7.md)
 
 ## Encoding
 
-- [encoding](./Encoding/encoding.md)
+- [base64Decode](./Encoding/base64Decode.md)
+- [base64Encode](./Encoding/base64Encode.md)
+- [hexDecode](./Encoding/hexDecode.md)
+- [hexEncode](./Encoding/hexEncode.md)
 
-## FlowControl
+## Flow
 
 - [batchRun](./Flow/batchRun.md)
 - [idleRun](./Flow/idleRun.md)
@@ -74,7 +96,10 @@
 
 ## Iter
 
-- [iter](./Iter/iter.md)
+- [dropIter](./Iter/dropIter.md)
+- [dropIterAsync](./Iter/dropIterAsync.md)
+- [takeIter](./Iter/takeIter.md)
+- [takeIterAsync](./Iter/takeIterAsync.md)
 
 ## Maths
 
@@ -105,10 +130,14 @@
 - [fromPath](./Object/fromPath.md)
 - [get](./Object/get.md)
 - [has](./Object/has.md)
+- [mapKeys](./Object/mapKeys.md)
+- [mapValues](./Object/mapValues.md)
 - [merge](./Object/merge.md)
 - [mergeAll](./Object/mergeAll.md)
 - [omit](./Object/omit.md)
+- [omitBy](./Object/omitBy.md)
 - [pick](./Object/pick.md)
+- [pickBy](./Object/pickBy.md)
 - [set](./Object/set.md)
 - [shallowMerge](./Object/shallowMerge.md)
 - [shallowMergeAll](./Object/shallowMergeAll.md)
@@ -175,3 +204,4 @@
 - [isWeakMap](./Types/isWeakMap.md)
 - [isWeakRef](./Types/isWeakRef.md)
 - [isWeakSet](./Types/isWeakSet.md)
+

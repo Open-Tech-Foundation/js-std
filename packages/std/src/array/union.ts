@@ -3,12 +3,12 @@ import uniq from './uniq';
 /**
  * Returns unique values in all the given collections.
  *
- * @example
+ * @param {unknown[][]} collections The arrays to union.
+ * @param {Function} by The iteratee invoked per element.
+ * @returns {unknown[]} A new array of combined unique values.
  *
- * const setA = [1, 2, 3, 4];
- * const setB = [2, 3, 5];
- * const setC = [2, 5, 3];
- * union([setA, setB, setC]) //=> [1, 2, 3, 4, 5]
+ * @example
+ * union([[1, 2], [2, 3]]) //=> [1, 2, 3]
  */
 export default function union(
   collections: unknown[][] = [],

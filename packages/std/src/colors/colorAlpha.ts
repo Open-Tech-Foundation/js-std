@@ -4,10 +4,13 @@ import color, { type ColorFormat } from './color';
 /**
  * Adjusts the alpha channel of a color.
  *
- * @param {any} input - The input color.
- * @param {number} amount - The alpha value (0 to 1).
- * @param {ColorFormat} [format='hex'] - The output format.
- * @returns {any} - The color with adjusted alpha.
+ * @param {any} input The input color.
+ * @param {number} amount The alpha value (0 to 1).
+ * @param {string} [format='hex'] The output format.
+ * @returns {any} The color with adjusted alpha.
+ *
+ * @example
+ * colorAlpha('red', 0.5, 'rgba') //=> 'rgba(255, 0, 0, 0.5)'
  */
 export default function colorAlpha(
   input: any,

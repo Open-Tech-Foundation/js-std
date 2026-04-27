@@ -3,9 +3,12 @@ import colorLuminance from './colorLuminance';
 /**
  * Calculates the contrast ratio between two colors.
  *
- * @param {any} color1 - The first color.
- * @param {any} color2 - The second color.
- * @returns {number} - The contrast ratio (1 to 21).
+ * @param {any} color1 The first color.
+ * @param {any} color2 The second color.
+ * @returns {number} The contrast ratio (1 to 21).
+ *
+ * @example
+ * colorContrast('#fff', '#000') //=> 21
  */
 export default function colorContrast(color1: any, color2: any): number {
   const l1 = colorLuminance(color1);

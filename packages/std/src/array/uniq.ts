@@ -2,10 +2,13 @@ import isEql from '../assert/isEql';
 import isFunction from '../types/isFunction';
 
 /**
- * Creates a unique array by removing all duplicate values from the given array.
+ * Creates a duplicate-free version of an array.
+ *
+ * @param {T[]} arr The source array.
+ * @param {Function} by The iteratee invoked per element.
+ * @returns {T[]} A new duplicate-free array.
  *
  * @example
- *
  * uniq([1, 2, 2, 3]) //=> [1, 2, 3]
  */
 

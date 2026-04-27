@@ -1,11 +1,14 @@
 export type OrderType = 'asc' | 'desc';
 /**
- * Sorts a list of items and returns a new array.
+ * Sorts an array of items.
+ *
+ * @param {T[]} arr The source array.
+ * @param {string} [order='asc'] The sort order ('asc' or 'desc').
+ * @returns {T[]} A new sorted array.
  *
  * @example
- *
- * sort([1, 3, 2]) // [1, 2, 3]
- * sort(['x', 'z', 'y'], 'desc') // ['z', 'y', 'x']
+ * sort([1, 3, 2]) //=> [1, 2, 3]
+ * sort(['x', 'z', 'y'], 'desc') //=> ['z', 'y', 'x']
  */
 export default function sort<T>(arr: T[] = [], order: OrderType = 'asc'): T[] {
   return [...arr].sort((a: T, b: T) => {

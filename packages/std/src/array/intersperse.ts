@@ -4,12 +4,13 @@ import isString from '../types/isString';
 /**
  * Inserts a separator between the elements of its list argument.
  *
+ * @param {string|unknown[]} list The source list.
+ * @param {Function|unknown} sep The separator to insert.
+ * @returns {string|unknown[]} A new list with the separator inserted.
+ *
  * @example
- *
- * const arr = [1, 2, 3];
- * intersperse(arr, '*') //=> [1, '*', 2, '*', 3]
- *
- * intersperse('Hello', '-') //=> H-e-l-l-o
+ * intersperse([1, 2, 3], '*') //=> [1, '*', 2, '*', 3]
+ * intersperse('Hello', '-') //=> "H-e-l-l-o"
  */
 export default function intersperse(
   list: string | unknown[],

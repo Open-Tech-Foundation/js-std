@@ -179,13 +179,14 @@ function isEqlVal(
 /**
  * Checks deeply if the given two values are equivalent.
  *
+ * @param {unknown} val1 The first value to compare.
+ * @param {unknown} val2 The second value to compare.
+ * @param {Object} [options] The options object.
+ * @returns {boolean} True if values are equivalent, false otherwise.
+ *
  * @example
- *
  * isEql({a: [{b: 1}]}, {a: [{b: 1}]}) //=> true
- *
  * isEql(null, undefined) //=> false
- *
- * isEql({a: 1}, {a: 1}, {shallow: true}) //=> true
  */
 export default function isEql(
   val1: unknown,

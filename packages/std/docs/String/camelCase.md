@@ -2,13 +2,26 @@
 
 Converts string to camelCase.
 
-### Example
+## Syntax
+
+```ts
+import { camelCase } from '@opentf/std';
+
+camelCase
+```
+
+## Parameters
+
+| Name | Type | Description |
+| --- | --- | --- |
+| str | `string` | The string to convert. |
+
+## Returns
+
+`string`: The camelCased string.
+
+## Example
 
 ```js
-
 camelCase('Foo Bar') //=> 'fooBar'
-
-camelCase('--foo-bar--') //=> 'fooBar'
-
-camelCase('__FOO_BAR__') //=> 'fooBar'
 ```

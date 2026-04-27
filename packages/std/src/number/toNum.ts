@@ -2,14 +2,14 @@ import isNumber from '../types/isNumber';
 import isString from '../types/isString';
 
 /**
- * Try to convert the given value into a finite number.
+ * Converts the given value into a finite number.
+ *
+ * @param {unknown} val The value to convert.
+ * @returns {number} The converted number or NaN.
  *
  * @example
- *
- * toNum(1) //=> 1
- * toNum('1.3') //=> 1.3
+ * toNum('1.5') //=> 1.5
  * toNum('1_000') //=> 1000
- * toNum(Infinity) //=> NaN
  */
 
 export default function toNum(val: unknown): number {

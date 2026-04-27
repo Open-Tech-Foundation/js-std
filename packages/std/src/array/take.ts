@@ -2,7 +2,12 @@ import isFunction from '../types/isFunction';
 import isNull from '../types/isNull';
 
 /**
- * Slices the given array from the start to the given limit.
+ * Creates a slice of array with n elements taken from the beginning.
+ *
+ * @param {T[]} arr The source array.
+ * @param {number} limit The number of elements to take.
+ * @param {Function} cb The callback to test elements.
+ * @returns {T[]} A new array with taken elements.
  *
  * @example
  * take([1, 2, 3, 4, 5], 3) //=> [1, 2, 3]

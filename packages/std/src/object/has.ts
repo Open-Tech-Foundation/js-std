@@ -6,10 +6,13 @@ import toPath from './toPath';
 /**
  * Checks if the given path exists in the given object.
  *
+ * @param {Object} obj The object to query.
+ * @param {string|Array} path The path of the property to check.
+ * @returns {boolean} True if the path exists, false otherwise.
+ *
  * @example
  * has({a: 1}, 'a') //=> true
  * has({a: {b: 2}}, ['a', 'b']) //=> true
- * has({a: {b: 2}}, ['a', 'b', 'c']) //=> false
  */
 export default function has(obj: object, path: string | unknown[]): boolean {
   const pathArr = toPath(path);

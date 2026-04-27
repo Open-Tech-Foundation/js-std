@@ -3,10 +3,69 @@ import path from 'node:path';
 
 const srcDir = 'src';
 const docsDir = 'docs';
-const readmePath = 'README.md';
+const readmePath = '../../README.md';
 
-if (!fs.existsSync(docsDir)) {
-  fs.mkdirSync(docsDir, { recursive: true });
+if (fs.existsSync(docsDir)) {
+  fs.rmSync(docsDir, { recursive: true, force: true });
+}
+fs.mkdirSync(docsDir, { recursive: true });
+
+function parseJSDoc(content) {
+  const jsDocMatch = content.match(/\/\*\*([\s\S]*?)\*\//);
+  if (!jsDocMatch) return null;
+
+  const lines = jsDocMatch[1].split('\n').map(line => line.replace(/^\s*\*\s?/, '').trim());
+  
+  const result = {
+    description: '',
+    params: [],
+    returns: null,
+    examples: []
+  };
+
+  let currentTag = 'description';
+  let exampleLines = [];
+
+  for (const line of lines) {
+    if (line.startsWith('@param')) {
+      const match = line.match(/@param\s+\{(.+)\}\s+(\w+)\s+(.+)/);
+      if (match) {
+        result.params.push({ type: match[1], name: match[2], description: match[3] });
+      }
+      currentTag = 'param';
+    } else if (line.startsWith('@returns')) {
+      const match = line.match(/@returns\s+\{(.+)\}\s+(.+)/);
+      if (match) {
+        result.returns = { type: match[1], description: match[2] };
+      }
+      currentTag = 'returns';
+    } else if (line.startsWith('@example')) {
+      currentTag = 'example';
+    } else if (currentTag === 'example') {
+      exampleLines.push(line);
+    } else if (currentTag === 'description') {
+      if (line) result.description += (result.description ? '\n' : '') + line;
+    }
+  }
+
+  if (exampleLines.length > 0) {
+    result.examples = exampleLines.join('\n').trim();
+  }
+
+  return result;
+}
+
+function extractSignature(content, name) {
+  const lines = content.split('\n');
+  const funcIndex = lines.findIndex(l => l.includes(`export default function ${name}`));
+  if (funcIndex === -1) return name;
+  
+  let signature = '';
+  for (let i = funcIndex; i < lines.length; i++) {
+    signature += lines[i].trim() + ' ';
+    if (lines[i].includes('{')) break;
+  }
+  return signature.replace(/export default function /, '').replace(/ \{.*$/, '').trim();
 }
 
 const categories = fs.readdirSync(srcDir).filter(f => fs.statSync(path.join(srcDir, f)).isDirectory());
@@ -23,27 +82,40 @@ categories.forEach(cat => {
     const filePath = path.join(catDir, file);
     const content = fs.readFileSync(filePath, 'utf8');
 
-    // Extract JSDoc
-    const jsDocMatch = content.match(/\/\*\*([\s\S]*?)\*\//);
-    if (!jsDocMatch) return;
-
-    let jsDoc = jsDocMatch[1]
-      .split('\n')
-      .map(line => line.replace(/^\s*\*\s?/, '').trim())
-      .join('\n')
-      .trim();
-
-    // Format @example
-    jsDoc = jsDoc.replace(/@example\n?/g, '### Example\n\n```js\n');
-    if (jsDoc.includes('### Example')) {
-      jsDoc += '\n```';
-    }
-
     // Extract function name
     const funcMatch = content.match(/export default function\s+(\w+)/);
     const name = funcMatch ? funcMatch[1] : path.basename(file, '.ts');
 
-    const mdContent = `# ${name}\n\n${jsDoc}\n`;
+    const jsDoc = parseJSDoc(content);
+    if (!jsDoc) return;
+
+    const signature = extractSignature(content, name);
+
+    let mdContent = `# ${name}\n\n`;
+    mdContent += `${jsDoc.description}\n\n`;
+    
+    mdContent += `## Syntax\n\n`;
+    mdContent += `\`\`\`ts\nimport { ${name} } from '@opentf/std';\n\n${signature}\n\`\`\`\n\n`;
+
+    if (jsDoc.params.length > 0) {
+      mdContent += `## Parameters\n\n`;
+      mdContent += `| Name | Type | Description |\n`;
+      mdContent += `| --- | --- | --- |\n`;
+      jsDoc.params.forEach(p => {
+        mdContent += `| ${p.name} | \`${p.type}\` | ${p.description} |\n`;
+      });
+      mdContent += `\n`;
+    }
+
+    if (jsDoc.returns) {
+      mdContent += `## Returns\n\n`;
+      mdContent += `\`${jsDoc.returns.type}\`: ${jsDoc.returns.description}\n\n`;
+    }
+
+    if (jsDoc.examples) {
+      mdContent += `## Example\n\n`;
+      mdContent += `\`\`\`js\n${jsDoc.examples}\n\`\`\`\n`;
+    }
 
     const outDir = path.join(docsDir, catName);
     if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });

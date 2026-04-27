@@ -2,10 +2,17 @@
 
 Checks if the given value is a plain object (i.e., created via `{}` or `Object.create(null)`).
 
-### Example
+## Syntax
+
+```ts
+import { isPlainObject } from '@opentf/std';
+
+isPlainObject( val: unknown, ): val is Record<string, unknown>
+```
+
+## Example
 
 ```js
-
 isPlainObject({}) //=> true
 
 isPlainObject([]) //=> false

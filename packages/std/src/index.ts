@@ -177,7 +177,13 @@ export { default as isNegZero } from './number/isNegZero';
 export { default as toNum } from './number/toNum';
 
 // Encoding
-export { base64Encode, base64Decode, hexEncode, hexDecode } from './encoding';
+export { default as base64Encode } from './encoding/base64Encode';
+export { default as base64Decode } from './encoding/base64Decode';
+export { default as hexEncode } from './encoding/hexEncode';
+export { default as hexDecode } from './encoding/hexDecode';
 
 // Iter
-export { takeIter, dropIter, takeIterAsync, dropIterAsync } from './iter';
+export { default as takeIter } from './iter/takeIter';
+export { default as dropIter } from './iter/dropIter';
+export { default as takeIterAsync } from './iter/takeIterAsync';
+export { default as dropIterAsync } from './iter/dropIterAsync';

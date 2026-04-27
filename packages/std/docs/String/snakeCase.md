@@ -2,10 +2,17 @@
 
 Converts string to snake_case.
 
-### Example
+## Syntax
+
+```ts
+import { snakeCase } from '@opentf/std';
+
+snakeCase(str: string): string
+```
+
+## Example
 
 ```js
-
 snakeCase('Foo Bar') //=> 'foo_bar'
 
 snakeCase('fooBar') //=> 'foo_bar'

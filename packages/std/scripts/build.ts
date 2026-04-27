@@ -63,6 +63,14 @@ async function build() {
       copyFileSync(rootLicense, join(dist, 'LICENSE'));
       console.log('✅ LICENSE copied to package root and dist');
     }
+
+    // Copy docs to dist
+    const docsSrc = join(root, 'docs');
+    const docsDist = join(dist, 'docs');
+    if (existsSync(docsSrc)) {
+      execSync(`cp -r ${docsSrc} ${docsDist}`);
+      console.log('✅ docs/ copied to dist/docs');
+    }
   } catch (error) {
     console.error('❌ Build failed:', error);
     process.exit(1);

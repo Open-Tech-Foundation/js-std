@@ -1,10 +1,12 @@
 /**
  * Checks if the given number is negative zero (-0).
  *
- * @example
+ * @param {number} n The number to check.
+ * @returns {boolean} True if -0, false otherwise.
  *
- * isNegZero(0) //=> false
+ * @example
  * isNegZero(-0) //=> true
+ * isNegZero(0) //=> false
  */
 
 export default function isNegZero(n: number): boolean {
