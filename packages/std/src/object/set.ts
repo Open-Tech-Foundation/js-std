@@ -28,7 +28,10 @@ export default function set<T>(
   }
 
   for (let i = 0; i < pathArr.length; i++) {
-    const prop = pathArr[i] as PropertyKey;
+    const prop = pathArr[i] as string;
+    if (prop === '__proto__' || prop === 'constructor' || prop === 'prototype') {
+      return obj;
+    }
 
     if (i === pathArr.length - 1) {
       const v = isFunction(value) ? value(curObj[prop]) : value;

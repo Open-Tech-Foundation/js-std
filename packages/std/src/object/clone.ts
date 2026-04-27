@@ -31,6 +31,9 @@ function cloneObj<T>(obj: T, objRefMap: WeakMap<WeakKey, unknown>): T {
     objRefMap.set(obj, cObj);
 
     for (const [k, v] of Object.entries(obj)) {
+      if (k === '__proto__' || k === 'constructor' || k === 'prototype') {
+        continue;
+      }
       cObj[k] = cloneObj(v, objRefMap);
     }
 

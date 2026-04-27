@@ -13,6 +13,9 @@ import merge, { type IterableObj } from './merge';
  */
 function deepMerge(acc: IterableObj, cur: IterableObj) {
   for (const [key, val] of Object.entries(cur)) {
+    if (key === '__proto__' || key === 'constructor' || key === 'prototype') {
+      continue;
+    }
     if (isArray(val) && isArray(acc[key])) {
       acc[key] = (acc[key] as unknown[]).concat(val);
     } else if (isPlainObject(val) && isPlainObject(acc[key])) {

@@ -181,6 +181,16 @@ We prioritize **reliability and accuracy** over extreme performance, while maint
 
 ---
 
+## 🛡️ Security
+
+Security is a top priority for `@opentf/std`. We implement proactive measures to protect your applications:
+
+- **Prototype Pollution Protection**: All object manipulation utilities (like `set`, `merge`, `clone`, etc.) include built-in guards against prototype pollution attacks (CWE-1321).
+- **Safe Path Traversal**: Path-based utilities strictly filter sensitive keys like `__proto__`, `constructor`, and `prototype`.
+- **Zero Dependencies**: By maintaining a zero-dependency footprint, we eliminate the risk of supply-chain vulnerabilities from third-party packages.
+
+---
+
 ## 📖 Articles
 
 - [Introducing Our New JavaScript Standard Library](https://ganapathy.hashnode.dev/introducing-our-new-javascript-standard-library)

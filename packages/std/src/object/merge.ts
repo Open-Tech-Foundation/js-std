@@ -19,6 +19,9 @@ export default function merge(...objs: object[]): object {
 
   return filteredObjs.reduce((acc: IterableObj, cur) => {
     for (const [key, val] of Object.entries(cur)) {
+      if (key === '__proto__' || key === 'constructor' || key === 'prototype') {
+        continue;
+      }
       if (isArray(val) || isPlainObject(val)) {
         acc[key] = merge(acc[key] as object, val);
       } else {
