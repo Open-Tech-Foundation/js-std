@@ -9,45 +9,73 @@ const NodeREPL = dynamic(
   { ssr: false },
 );
 
-const code = `const {
-  isNum,
-  pascalCase,
-  sort,
-  clone,
-  isEql,
-  isEqlArr,
-  diff,
+const code = `/**
+ * @opentf/std Playground
+ * 
+ * Explore the library's high-fidelity utilities.
+ */
+const { 
+  clone, 
+  isEql, 
+  withResolvers, 
+  mapAsync, 
+  pascalCase, 
+  color,
+  isNumber
 } = require("@opentf/std");
 
-log(isNum(NaN));
-
-log(pascalCase("pascal case"));
-
-log(sort([1, 10, 21, 2], "desc"));
-
-const obj = {
-  a: 1,
-  b: "abc",
-  c: new Map([["key", "val"]]),
+// --- 1. Deep Everything ---
+// Unlike native structuredClone, we support circular refs and modern types seamlessly.
+const original = {
+  name: "JS Std",
+  meta: new Map([["version", "beta.1"]]),
+  tags: new Set(["modern", "fast"]),
+  created: new Date()
 };
-log(clone(obj));
+original.self = original; // Circular reference
 
-const mapA = new Map([
-  ["a", 1],
-  ["b", 2],
-]);
-const mapB = new Map([
-  ["b", 2],
-  ["a", 1],
-]);
-log(isEql(mapA, mapB));
+const cloned = clone(original);
+log("Cloned successfully:", cloned !== original && isEql(cloned, original));
 
-log(isEqlArr([1, 2, 3], [2, 3, 1]));
 
-diff([
-  ['apple', 'mango', 'orange'], 
-  ['mango', 'apple']
-])
+// --- 2. Smart Equality ---
+// Order matters in Maps/Sets, and we handle it with precision.
+const mapA = new Map([["a", 1], ["b", 2]]);
+const mapB = new Map([["b", 2], ["a", 1]]);
+log("Map Eql (Strict Order):", isEql(mapA, mapB)); // false
+
+
+// --- 3. Modern Async ---
+// Clean up your async/await patterns.
+async function demoAsync() {
+  const { promise, resolve } = withResolvers();
+  
+  setTimeout(() => resolve("Async data fetched!"), 500);
+  
+  const data = await promise;
+  log(data);
+
+  // Run tasks with controlled concurrency (2 at a time)
+  const results = await mapAsync([1, 2, 3], async (n) => {
+    return n * 2;
+  }, 2);
+  log("Processed async:", results);
+}
+
+demoAsync();
+
+
+// --- 4. Colors ---
+// Powerful color manipulation in any environment.
+const brandHex = color("royalblue", "hex");
+const brandRGB = color("royalblue", "rgb");
+log("RoyalBlue Hex:", brandHex);
+log("RoyalBlue RGB:", brandRGB);
+
+
+// --- 5. Robust Types ---
+log("isNumber(NaN):", isNumber(NaN)); // false
+log("isNumber('123', true):", isNumber('123', true)); // true
 `;
 
 const setupCode = `const _ = require('lodash');
