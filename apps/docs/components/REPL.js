@@ -29,7 +29,7 @@ export default function REPL({ code = '', layout = 'DEFAULT' }) {
           <NodeREPL
             code={code}
             setupCode={setupCode}
-            deps={['@opentf/std', 'lodash', 'ramda']}
+            deps={['@opentf/std@1.0.0-beta.1', 'lodash', 'ramda']}
             editor={{
               darkMode: resolvedTheme === 'dark',
               header: false,

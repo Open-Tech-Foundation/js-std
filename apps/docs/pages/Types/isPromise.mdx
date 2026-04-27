@@ -1,0 +1,40 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> 🔎 Checks if the given value is a Promise object.
+
+## Syntax
+
+```ts copy
+import { isPromise } from '@opentf/std';
+
+isPromise(val: unknown): val is Promise<unknown>
+```
+
+## Parameters
+
+- `val`: The value to check.
+
+## Returns
+
+`true` if the value is a Promise, `false` otherwise.
+
+## Examples
+
+```ts
+isPromise(Promise.resolve()) //=> true
+
+isPromise({}) //=> false
+```
+
+## Related
+
+- [isAsyncFunction](/Types/isAsyncFunction)
+
+## Try
+
+<REPL code={`const { isPromise } = require('@opentf/std');
+
+console.log(isPromise(Promise.resolve()));
+console.log(isPromise({}));
+`} />

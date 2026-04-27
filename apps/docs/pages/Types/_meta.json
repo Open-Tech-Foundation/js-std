@@ -18,6 +18,7 @@
   "isNumber": "isNumber",
   "isObject": "isObject",
   "isPlainObject": "isPlainObject",
+  "isPromise": "isPromise",
   "isRegExp": "isRegExp",
   "isSet": "isSet",
   "isString": "isString",

@@ -1,0 +1,37 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> 🔠 Decodes a Base64 string.
+
+## Syntax
+
+```ts copy
+import { base64Decode } from '@opentf/std';
+
+base64Decode(str: string): string
+```
+
+## Parameters
+
+- `str`: The Base64 string to decode.
+
+## Returns
+
+The decoded string.
+
+## Examples
+
+```ts
+base64Decode('SGVsbG8=') //=> 'Hello'
+```
+
+## Related
+
+- [base64Encode](/Encoding/base64Encode)
+
+## Try
+
+<REPL code={`const { base64Decode } = require('@opentf/std');
+
+console.log(base64Decode('T3BlbiBUZWNo'));
+`} />

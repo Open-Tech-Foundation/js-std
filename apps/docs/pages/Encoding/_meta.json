@@ -1,4 +1,6 @@
 {
-  "base64": "Base64",
-  "hex": "Hex"
+  "base64Encode": "base64Encode",
+  "base64Decode": "base64Decode",
+  "hexEncode": "hexEncode",
+  "hexDecode": "hexDecode"
 }

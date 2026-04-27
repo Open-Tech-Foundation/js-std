@@ -1,0 +1,37 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> 🔢 Encodes a string to Hex format.
+
+## Syntax
+
+```ts copy
+import { hexEncode } from '@opentf/std';
+
+hexEncode(str: string): string
+```
+
+## Parameters
+
+- `str`: The string to encode.
+
+## Returns
+
+The Hex encoded string.
+
+## Examples
+
+```ts
+hexEncode('Hello') //=> '48656c6c6f'
+```
+
+## Related
+
+- [hexDecode](/Encoding/hexDecode)
+
+## Try
+
+<REPL code={`const { hexEncode } = require('@opentf/std');
+
+console.log(hexEncode('Open Tech'));
+`} />

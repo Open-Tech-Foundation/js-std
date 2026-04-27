@@ -62,7 +62,7 @@ export default function PlaygroundREPL() {
       <NodeREPL
         code={code}
         setupCode={setupCode}
-        deps={['@opentf/std', 'lodash', 'ramda']}
+        deps={['@opentf/std@1.0.0-beta.1', 'lodash', 'ramda']}
         layout="SPLIT_PANEL"
         editor={{
           darkMode: resolvedTheme === 'dark',
