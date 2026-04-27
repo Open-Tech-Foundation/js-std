@@ -3,7 +3,6 @@
 # @opentf/std
 
 **The Modern JavaScript Standard Library.**
-*A lightweight, high-accuracy, and cross-runtime collection of essential utilities.*
 
 [![CI](https://github.com/Open-Tech-Foundation/js-std/actions/workflows/ci.yml/badge.svg)](https://github.com/Open-Tech-Foundation/js-std/actions/workflows/ci.yml)
 [![JSR Score](https://jsr.io/badges/@opentf/std/score)](https://jsr.io/@opentf/std)
@@ -16,6 +15,7 @@
 
 ---
 
+> *A lightweight, high-accuracy, and cross-runtime collection of essential utilities.*
 ## ✨ Features
 
 - 🎨 **Intuitive API**: Designed for clarity, simplicity, and ease of use.
