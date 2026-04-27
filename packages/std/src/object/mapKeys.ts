@@ -14,7 +14,11 @@ export default function mapKeys<T extends object>(
   for (const key of Object.keys(obj)) {
     const val = obj[key as keyof T];
     const newKey = fn(val, key);
-    if (newKey === '__proto__' || newKey === 'constructor' || newKey === 'prototype') {
+    if (
+      newKey === '__proto__' ||
+      newKey === 'constructor' ||
+      newKey === 'prototype'
+    ) {
       continue;
     }
     result[newKey] = val;

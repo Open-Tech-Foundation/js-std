@@ -21,7 +21,11 @@ export default function unset<T>(obj: T, path: string | unknown[]): T {
 
   for (let i = 0; i < pathArr.length; i++) {
     const prop = pathArr[i] as string;
-    if (prop === '__proto__' || prop === 'constructor' || prop === 'prototype') {
+    if (
+      prop === '__proto__' ||
+      prop === 'constructor' ||
+      prop === 'prototype'
+    ) {
       return obj;
     }
 
