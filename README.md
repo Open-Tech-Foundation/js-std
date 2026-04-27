@@ -127,10 +127,21 @@ color("orange", ColorFormat.HEX); //=> "#ffa500"
 color("#00ffff", "rgba"); //=> "rgba(0, 255, 255, 1)"
 ```
 
+### 7. Advanced Flow Control
+```js
+import { retryRun, rateLimitRun } from "@opentf/std";
+
+// Automatically retry failed operations
+await retryRun(fetchData, { retries: 3, delay: 1000 });
+
+// Ensure a function is called no more than 5 times per second
+const limitedFetch = rateLimitRun(fetchData, 5, 1000);
+```
+
 ## 📖 API
 
 - 📁 [**Local API Docs**](./packages/std/docs/README.md) - View the API reference directly in the repository.
-- 🌐 [**Documentation Website**](https://js-std.pages.dev) - Searchable online version with examples and a live playground.
+- 🌐 [**Documentation Website**](https://js-std.pages.dev) - Searchable online version with examples, a live playground, and **Visual Flow Control Tools**.
 
 ---
 

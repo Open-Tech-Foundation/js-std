@@ -15,7 +15,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@opentf/std": "workspace:*",
     "@opentf/react-node-repl": "^0.14.0",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.38.0",
+    "lucide-react": "^1.11.0",
     "next": "^14.1.1",
     "next-sitemap": "^4.2.3",
     "next-themes": "^0.4.6",
@@ -23,6 +27,7 @@
     "nextra-theme-docs": "^2.13.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-intersection-observer": "^9.8.1"
+    "react-intersection-observer": "^9.8.1",
+    "tailwind-merge": "^3.5.0"
   }
 }

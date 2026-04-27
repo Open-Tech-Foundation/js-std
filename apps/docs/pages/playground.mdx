@@ -1,11 +1,21 @@
-import { Callout } from "nextra/components";
+import { Callout, Tabs } from "nextra/components";
 import PlaygroundREPL from "../components/PlaygroundREPL";
+import VisualTools from "../components/VisualTools";
 
 <div style={{ textAlign: "center" }}>
 ### Playground
 </div>
 
-<PlaygroundREPL />
+<Tabs items={["Live REPL", "Visual Flow Tools"]}>
+  <Tabs.Tab>
+    <PlaygroundREPL />
+  </Tabs.Tab>
+  <Tabs.Tab>
+    <div style={{ marginTop: '2rem' }}>
+      <VisualTools />
+    </div>
+  </Tabs.Tab>
+</Tabs>
 
 <Callout type="default">
   Press `CTRL + Enter` in the editor to run the code.
