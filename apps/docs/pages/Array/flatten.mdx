@@ -1,0 +1,46 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> 🧩 Flattens an array up to the specified depth.
+
+## Syntax
+
+```ts copy
+import { flatten } from '@opentf/std';
+
+flatten<T>(arr: T[] = [], depth: number = 1): any[]
+```
+
+## Parameters
+
+- `arr`: The source array.
+- `depth`: The maximum recursion depth. Defaults to `1`.
+
+## Returns
+
+A new flattened array.
+
+## Examples
+
+```ts
+flatten([1, [2, 3]]) //=> [1, 2, 3]
+
+flatten([1, [2, [3, [4]]]]) //=> [1, 2, [3, [4]]]
+
+flatten([1, [2, [3, [4]]]], 2) //=> [1, 2, 3, [4]]
+
+flatten([1, [2, [3, [4]]]], Infinity) //=> [1, 2, 3, 4]
+
+flatten([1, [2, [3, [4]]]], 0) //=> [1, [2, [3, [4]]]]
+```
+
+## Related
+
+- [chunk](/Array/chunk)
+- [compact](/Array/compact)
+
+## Try
+
+<REPL code={`const { flatten } = require('@opentf/std');
+
+flatten([1, [2, [3, [4]]]], Infinity);`} />

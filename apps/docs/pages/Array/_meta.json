@@ -8,6 +8,7 @@
   "countBy": "countBy",
   "diff": "diff",
   "drop": "drop",
+  "flatten": "flatten",
   "groupBy": "groupBy",
   "intersection": "intersection",
   "intersperse": "intersperse",
