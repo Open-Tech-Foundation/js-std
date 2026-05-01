@@ -28,7 +28,7 @@ const {
 // Unlike native structuredClone, we support circular refs and modern types seamlessly.
 const original = {
   name: "JS Std",
-  meta: new Map([["version", "beta.1"]]),
+  meta: new Map([["version", "beta.3"]]),
   tags: new Set(["modern", "fast"]),
   created: new Date()
 };
@@ -90,7 +90,7 @@ export default function PlaygroundREPL() {
       <NodeREPL
         code={code}
         setupCode={setupCode}
-        deps={['@opentf/std@1.0.0-beta.1', 'lodash', 'ramda']}
+        deps={['@opentf/std@1.0.0-beta.3', 'lodash', 'ramda']}
         layout="SPLIT_PANEL"
         editor={{
           darkMode: resolvedTheme === 'dark',
