@@ -1,0 +1,36 @@
+import REPL from "../../components/REPL";
+
+## Syntax
+
+```ts copy
+import { inRange } from '@opentf/std';
+
+inRange(n: number, start: number, end: number): boolean;
+```
+
+## Parameters
+
+| Name  | Type     | Description              |
+| ----- | -------- | ------------------------ |
+| n     | `number` | The number to check.     |
+| start | `number` | The start of the range.  |
+| end   | `number` | The end of the range.    |
+
+## Returns
+
+True if n is between start and end.
+
+## Examples
+
+```ts
+inRange(3, 0, 5) //=> true
+inRange(-1, 0, 5) //=> false
+```
+
+## Try
+
+<REPL code={`const { inRange } = require('@opentf/std');
+
+console.log(inRange(3, 0, 5));
+console.log(inRange(-1, 0, 5));
+`} />

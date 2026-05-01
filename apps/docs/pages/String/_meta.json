@@ -2,6 +2,7 @@
   "camelCase": "camelCase",
   "capitalize": "capitalize",
   "escapeHTML": "escapeHTML",
+  "unescapeHTML": "unescapeHTML",
   "escapeRegExp": "escapeRegExp",
   "insertAt": "insertAt",
   "kebabCase": "kebabCase",

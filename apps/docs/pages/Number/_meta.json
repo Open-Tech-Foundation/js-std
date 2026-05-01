@@ -1,5 +1,7 @@
 {
+  "inRange": "inRange",
   "isNegZero": "isNegZero",
   "isZero": "isZero",
+  "round": "round",
   "toNum": "toNum"
 }

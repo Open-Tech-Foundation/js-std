@@ -1,0 +1,39 @@
+import REPL from "../../components/REPL";
+
+## Syntax
+
+```ts copy
+import { gcd } from '@opentf/std';
+
+gcd(a: number, b: number): number;
+```
+
+## Parameters
+
+| Name | Type     | Description          |
+| ---- | -------- | -------------------- |
+| a    | `number` | The first integer.   |
+| b    | `number` | The second integer.  |
+
+## Returns
+
+The greatest common divisor.
+
+## Examples
+
+```ts
+gcd(12, 8) //=> 4
+gcd(54, 24) //=> 6
+```
+
+## Related
+
+- [lcm](/Maths/lcm)
+
+## Try
+
+<REPL code={`const { gcd, lcm } = require('@opentf/std');
+
+console.log(gcd(12, 8));
+console.log(lcm(4, 6));
+`} />

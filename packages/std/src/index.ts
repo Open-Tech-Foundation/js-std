@@ -9,6 +9,7 @@ export { default as kebabCase } from './string/kebabCase';
 export { default as titleCase } from './string/titleCase';
 export { default as strReplace } from './string/strReplace';
 export { default as escapeHTML } from './string/escapeHTML';
+export { default as unescapeHTML } from './string/unescapeHTML';
 export { default as stripANSI } from './string/stripANSI';
 export { default as stringWidth } from './string/stringWidth';
 export { default as truncate } from './string/truncate';
@@ -83,6 +84,11 @@ export { default as prod } from './maths/prod';
 export { default as mean } from './maths/mean';
 export { default as median } from './maths/median';
 export { default as mode } from './maths/mode';
+export { default as variance } from './maths/variance';
+export { default as stddev } from './maths/stddev';
+export { default as lerp } from './maths/lerp';
+export { default as gcd } from './maths/gcd';
+export { default as lcm } from './maths/lcm';
 export { default as clamp } from './maths/clamp';
 export { default as isSubsetOf } from './maths/isSubsetOf';
 export { default as isSupersetOf } from './maths/isSupersetOf';
@@ -197,6 +203,8 @@ export { default as hmacSHA512 } from './crypto/hmacSHA512';
 export { default as isZero } from './number/isZero';
 export { default as isNegZero } from './number/isNegZero';
 export { default as toNum } from './number/toNum';
+export { default as inRange } from './number/inRange';
+export { default as round } from './number/round';
 
 // Encoding
 export { default as base64Encode } from './encoding/base64Encode';

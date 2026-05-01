@@ -1,0 +1,31 @@
+import REPL from "../../components/REPL";
+
+## Syntax
+
+```ts copy
+import { stddev } from '@opentf/std';
+
+stddev<T>(arr: T[], cb?: (val: T, index: number) => number): number;
+```
+
+## Returns
+
+The population standard deviation.
+
+## Examples
+
+```ts
+stddev([2, 4, 4, 4, 5, 5, 7, 9]) //=> 2
+```
+
+## Related
+
+- [variance](/Maths/variance)
+- [mean](/Maths/mean)
+
+## Try
+
+<REPL code={`const { stddev } = require('@opentf/std');
+
+console.log(stddev([2, 4, 4, 4, 5, 5, 7, 9]));
+`} />

@@ -1,16 +1,21 @@
 {
   "clamp": "clamp",
   "divMod": "divMod",
+  "gcd": "gcd",
   "isDisjointFrom": "isDisjointFrom",
   "isEven": "isEven",
   "isOdd": "isOdd",
   "isSubsetOf": "isSubsetOf",
   "isSupersetOf": "isSupersetOf",
+  "lcm": "lcm",
+  "lerp": "lerp",
   "mean": "mean",
   "median": "median",
   "mode": "mode",
   "percentage": "percentage",
   "percentageOf": "percentageOf",
   "prod": "prod",
-  "sum": "sum"
+  "stddev": "stddev",
+  "sum": "sum",
+  "variance": "variance"
 }

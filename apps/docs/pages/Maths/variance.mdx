@@ -1,0 +1,31 @@
+import REPL from "../../components/REPL";
+
+## Syntax
+
+```ts copy
+import { variance } from '@opentf/std';
+
+variance<T>(arr: T[], cb?: (val: T, index: number) => number): number;
+```
+
+## Returns
+
+The population variance.
+
+## Examples
+
+```ts
+variance([2, 4, 4, 4, 5, 5, 7, 9]) //=> 4
+```
+
+## Related
+
+- [stddev](/Maths/stddev)
+- [mean](/Maths/mean)
+
+## Try
+
+<REPL code={`const { variance } = require('@opentf/std');
+
+console.log(variance([2, 4, 4, 4, 5, 5, 7, 9]));
+`} />

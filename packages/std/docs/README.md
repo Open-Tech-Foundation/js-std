@@ -167,12 +167,19 @@
 - [percentage](./Maths/percentage.md)
 - [percentageOf](./Maths/percentageOf.md)
 - [prod](./Maths/prod.md)
+- [stddev](./Maths/stddev.md)
 - [sum](./Maths/sum.md)
+- [variance](./Maths/variance.md)
+- [lerp](./Maths/lerp.md)
+- [gcd](./Maths/gcd.md)
+- [lcm](./Maths/lcm.md)
 
 ## Number
 
+- [inRange](./Number/inRange.md)
 - [isNegZero](./Number/isNegZero.md)
 - [isZero](./Number/isZero.md)
+- [round](./Number/round.md)
 - [toNum](./Number/toNum.md)
 
 ## Object
@@ -210,6 +217,7 @@
 - [camelCase](./String/camelCase.md)
 - [capitalize](./String/capitalize.md)
 - [escapeHTML](./String/escapeHTML.md)
+- [unescapeHTML](./String/unescapeHTML.md)
 - [escapeRegExp](./String/escapeRegExp.md)
 - [insertAt](./String/insertAt.md)
 - [kebabCase](./String/kebabCase.md)
