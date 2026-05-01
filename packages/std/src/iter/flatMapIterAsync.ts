@@ -29,7 +29,7 @@ export default async function* flatMapIterAsync<T, U>(
         yield subItem;
       }
     } else if (isArray(result)) {
-      for (const subItem of result) {
+      for (const subItem of result as U[]) {
         yield subItem;
       }
     }

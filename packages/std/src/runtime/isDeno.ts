@@ -9,8 +9,8 @@
  */
 export default function isDeno(): boolean {
   return (
-    typeof Deno !== 'undefined' &&
-    typeof Deno.version !== 'undefined' &&
-    typeof Deno.version.deno !== 'undefined'
+    typeof (globalThis as any).Deno !== 'undefined' &&
+    typeof (globalThis as any).Deno.version !== 'undefined' &&
+    typeof (globalThis as any).Deno.version.deno !== 'undefined'
   );
 }
