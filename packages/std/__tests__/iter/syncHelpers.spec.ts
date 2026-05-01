@@ -1,22 +1,22 @@
 import {
-  mapIter,
-  filterIter,
-  flatMapIter,
-  reduceIter,
-  toArrayIter,
-  eachIter,
-  someIter,
-  everyIter,
-  findIter,
-  findLastIter,
-  findIndexIter,
-  findLastIndexIter,
-  firstIter,
-  lastIter,
-  nthIter,
   countIter,
-  takeWhileIter,
   dropWhileIter,
+  eachIter,
+  everyIter,
+  filterIter,
+  findIndexIter,
+  findIter,
+  findLastIndexIter,
+  findLastIter,
+  firstIter,
+  flatMapIter,
+  lastIter,
+  mapIter,
+  nthIter,
+  reduceIter,
+  someIter,
+  takeWhileIter,
+  toArrayIter,
 } from '../../src';
 
 function* syncGen(arr: any[]) {
@@ -110,15 +110,27 @@ describe('Iter Sync Helpers', () => {
   });
 
   test('takeWhileIter', () => {
-    expect(toArrayIter(takeWhileIter(syncGen([1, 2, 3, 4]), (x) => x < 3))).toEqual([1, 2]);
-    expect(toArrayIter(takeWhileIter(syncGen([1, 2, 3]), (x) => x < 0))).toEqual([]);
-    expect(toArrayIter(takeWhileIter(syncGen([1, 2, 3]), (x) => x < 5))).toEqual([1, 2, 3]);
+    expect(
+      toArrayIter(takeWhileIter(syncGen([1, 2, 3, 4]), (x) => x < 3)),
+    ).toEqual([1, 2]);
+    expect(
+      toArrayIter(takeWhileIter(syncGen([1, 2, 3]), (x) => x < 0)),
+    ).toEqual([]);
+    expect(
+      toArrayIter(takeWhileIter(syncGen([1, 2, 3]), (x) => x < 5)),
+    ).toEqual([1, 2, 3]);
   });
 
   test('dropWhileIter', () => {
-    expect(toArrayIter(dropWhileIter(syncGen([1, 2, 3, 4]), (x) => x < 3))).toEqual([3, 4]);
-    expect(toArrayIter(dropWhileIter(syncGen([1, 2, 3]), (x) => x > 5))).toEqual([1, 2, 3]);
-    expect(toArrayIter(dropWhileIter(syncGen([1, 2, 3]), (x) => x < 5))).toEqual([]);
+    expect(
+      toArrayIter(dropWhileIter(syncGen([1, 2, 3, 4]), (x) => x < 3)),
+    ).toEqual([3, 4]);
+    expect(
+      toArrayIter(dropWhileIter(syncGen([1, 2, 3]), (x) => x > 5)),
+    ).toEqual([1, 2, 3]);
+    expect(
+      toArrayIter(dropWhileIter(syncGen([1, 2, 3]), (x) => x < 5)),
+    ).toEqual([]);
   });
 
   test('empty iterators', () => {

@@ -1,4 +1,4 @@
-import { isNode, isBrowser, isDeno, isBun } from '../../src';
+import { isBrowser, isBun, isDeno, isNode } from '../../src';
 
 describe('Types', () => {
   test('isNode', () => {

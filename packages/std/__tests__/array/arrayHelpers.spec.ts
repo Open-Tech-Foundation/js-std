@@ -1,4 +1,4 @@
-import { flatMap, zip, unzip, sample } from '../../src';
+import { flatMap, sample, unzip, zip } from '../../src';
 
 describe('Array', () => {
   test('flatMap', () => {
@@ -8,7 +8,9 @@ describe('Array', () => {
     expect(flatMap([1, 2, 3], (x) => [x])).toEqual([1, 2, 3]);
     expect(flatMap([1], () => [])).toEqual([]);
     expect(flatMap(['a', 'b'], (x, i) => [x + i])).toEqual(['a0', 'b1']);
-    expect(flatMap([1, 2], (x, _i, arr) => [x, arr.length])).toEqual([1, 2, 2, 2]);
+    expect(flatMap([1, 2], (x, _i, arr) => [x, arr.length])).toEqual([
+      1, 2, 2, 2,
+    ]);
   });
 
   test('zip', () => {
@@ -37,12 +39,22 @@ describe('Array', () => {
   test('unzip', () => {
     expect(unzip()).toEqual([]);
     expect(unzip([])).toEqual([]);
-    expect(unzip([[1, 'a'], [2, 'b']])).toEqual([
+    expect(
+      unzip([
+        [1, 'a'],
+        [2, 'b'],
+      ]),
+    ).toEqual([
       [1, 2],
       ['a', 'b'],
     ]);
     expect(unzip([[1], [2]])).toEqual([[1, 2]]);
-    expect(unzip([[1, 'a', true], [2, 'b', false]])).toEqual([
+    expect(
+      unzip([
+        [1, 'a', true],
+        [2, 'b', false],
+      ]),
+    ).toEqual([
       [1, 2],
       ['a', 'b'],
       [true, false],

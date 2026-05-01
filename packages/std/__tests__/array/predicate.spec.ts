@@ -1,4 +1,4 @@
-import { takeWhile, dropWhile, chunkWhile, partition } from '../../src';
+import { chunkWhile, dropWhile, partition, takeWhile } from '../../src';
 
 describe('Array', () => {
   test('takeWhile', () => {
@@ -7,15 +7,9 @@ describe('Array', () => {
     expect(takeWhile([1, 2, 3, 4, 5], (n) => n < 4)).toEqual([1, 2, 3]);
     expect(takeWhile([1, 2, 3], (n) => n > 3)).toEqual([]);
     expect(takeWhile([1, 2, 3], (n) => n < 10)).toEqual([1, 2, 3]);
-    expect(takeWhile([true, true, false, true], Boolean)).toEqual([
-      true,
-      true,
-    ]);
+    expect(takeWhile([true, true, false, true], Boolean)).toEqual([true, true]);
     expect(
-      takeWhile(
-        [{ a: 1 }, { a: 2 }, { a: 3 }],
-        (item) => item.a < 3,
-      ),
+      takeWhile([{ a: 1 }, { a: 2 }, { a: 3 }], (item) => item.a < 3),
     ).toEqual([{ a: 1 }, { a: 2 }]);
     expect(takeWhile([1, 2, 3, 4, 5], (_, i) => i < 3)).toEqual([1, 2, 3]);
   });
@@ -31,10 +25,7 @@ describe('Array', () => {
       false,
     ]);
     expect(
-      dropWhile(
-        [{ a: 1 }, { a: 2 }, { a: 3 }],
-        (item) => item.a < 2,
-      ),
+      dropWhile([{ a: 1 }, { a: 2 }, { a: 3 }], (item) => item.a < 2),
     ).toEqual([{ a: 2 }, { a: 3 }]);
     expect(dropWhile([1, 2, 3, 4, 5], (_, i) => i < 2)).toEqual([3, 4, 5]);
   });
@@ -80,10 +71,7 @@ describe('Array', () => {
     expect(partition([1, 2, 3], () => true)).toEqual([[1, 2, 3], []]);
     expect(partition([1, 2, 3], () => false)).toEqual([[], [1, 2, 3]]);
     expect(
-      partition(
-        [{ a: 1 }, { a: 2 }, { a: 3 }],
-        (item) => item.a > 1,
-      ),
+      partition([{ a: 1 }, { a: 2 }, { a: 3 }], (item) => item.a > 1),
     ).toEqual([[{ a: 2 }, { a: 3 }], [{ a: 1 }]]);
     expect(partition([1, 2, 3, 4], (_, i) => i % 2 === 0)).toEqual([
       [1, 3],
