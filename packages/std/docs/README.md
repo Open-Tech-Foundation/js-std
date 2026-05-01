@@ -2,9 +2,9 @@
 
 ## Array
 
-- [arrayInsert](./Array/arrayInsert.md)
-- [arrayRemove](./Array/arrayRemove.md)
-- [arrayReplace](./Array/arrayReplace.md)
+- [insert](./Array/insert.md)
+- [remove](./Array/remove.md)
+- [replace](./Array/replace.md)
 - [bounds](./Array/bounds.md)
 - [chunk](./Array/chunk.md)
 - [compact](./Array/compact.md)

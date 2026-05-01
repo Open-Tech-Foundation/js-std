@@ -7,9 +7,9 @@
  * @returns {T[]} A new array with the inserted items.
  *
  * @example
- * arrayInsert([1, 2, 3], 1, 5); //=> [1, 5, 2, 3]
+ * insert([1, 2, 3], 1, 5); //=> [1, 5, 2, 3]
  */
-export default function arrayInsert<T>(
+export default function insert<T>(
   arr: T[] = [],
   index: number | null | undefined,
   ...items: T[]

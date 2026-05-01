@@ -1,4 +1,4 @@
-import arrayRemove from '../array/arrayRemove';
+import remove from '../array/remove';
 import isArray from '../types/isArray';
 import clone from './clone';
 import type { IterableObj } from './merge';
@@ -58,7 +58,7 @@ export default function omit(
     }
 
     const pathArr = toPath(path);
-    walk(c, arrayRemove(pathArr), (obj, prop) => {
+    walk(c, remove(pathArr), (obj, prop) => {
       (obj as IterableObj)[prop] = ((obj as IterableObj)[prop] as []).flat();
     });
   }

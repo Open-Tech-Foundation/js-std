@@ -1,13 +1,13 @@
-# arrayInsert
+# insert
 
 Inserts items at the given index into the given array.
 
 ## Syntax
 
 ```ts
-import { arrayInsert } from '@opentf/std';
+import { insert } from '@opentf/std';
 
-arrayInsert<T>( arr: T[] = [], index: number | null | undefined, ...items: T[] ): T[]
+insert<T>(arr: T[] = [], index: number | null | undefined, ...items: T[]): T[]
 ```
 
 ## Parameters
@@ -25,5 +25,5 @@ arrayInsert<T>( arr: T[] = [], index: number | null | undefined, ...items: T[] )
 ## Example
 
 ```js
-arrayInsert([1, 2, 3], 1, 5); //=> [1, 5, 2, 3]
+insert([1, 2, 3], 1, 5); //=> [1, 5, 2, 3]
 ```

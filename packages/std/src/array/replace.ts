@@ -8,9 +8,9 @@
  * @returns {T[]} A new array with the replaced items.
  *
  * @example
- * arrayReplace([1, 2, 3], 1, 1, 5); //=> [1, 5, 3]
+ * replace([1, 2, 3], 1, 1, 5); //=> [1, 5, 3]
  */
-export default function arrayReplace<T>(
+export default function replace<T>(
   arr: T[] = [],
   index: number | null = null,
   deleteCount: number | null = null,

@@ -7,9 +7,9 @@
  * @returns {T[]} A new array with the removed items.
  *
  * @example
- * arrayRemove([1, 2, 3], 1, 2); //=> [1]
+ * remove([1, 2, 3], 1, 2); //=> [1]
  */
-export default function arrayRemove<T>(
+export default function remove<T>(
   arr: T[] = [],
   index?: number,
   count = 1,

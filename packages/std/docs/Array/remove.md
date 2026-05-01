@@ -1,13 +1,13 @@
-# arrayRemove
+# remove
 
 Removes items at the given index from the given array.
 
 ## Syntax
 
 ```ts
-import { arrayRemove } from '@opentf/std';
+import { remove } from '@opentf/std';
 
-arrayRemove<T>( arr: T[] = [], index?: number, count = 1, ): T[]
+remove<T>(arr: T[] = [], index?: number, count = 1): T[]
 ```
 
 ## Parameters
@@ -25,5 +25,5 @@ arrayRemove<T>( arr: T[] = [], index?: number, count = 1, ): T[]
 ## Example
 
 ```js
-arrayRemove([1, 2, 3], 1, 2); //=> [1]
+remove([1, 2, 3], 1, 2); //=> [1]
 ```

@@ -1,13 +1,13 @@
-# arrayReplace
+# replace
 
 Replaces items at the given index from the given array.
 
 ## Syntax
 
 ```ts
-import { arrayReplace } from '@opentf/std';
+import { replace } from '@opentf/std';
 
-arrayReplace<T>( arr: T[] = [], index: number | null = null, deleteCount: number | null = null, ...replacements: T[] ): T[]
+replace<T>(arr: T[] = [], index: number | null = null, deleteCount: number | null = null, ...replacements: T[]): T[]
 ```
 
 ## Parameters
@@ -26,5 +26,5 @@ arrayReplace<T>( arr: T[] = [], index: number | null = null, deleteCount: number
 ## Example
 
 ```js
-arrayReplace([1, 2, 3], 1, 1, 5); //=> [1, 5, 3]
+replace([1, 2, 3], 1, 1, 5); //=> [1, 5, 3]
 ```

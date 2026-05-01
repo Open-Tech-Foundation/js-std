@@ -1,7 +1,7 @@
-import { arrayInsert as arrIns } from '../../src';
+import { insert as arrIns } from '../../src';
 
 describe('Array', () => {
-  test('arrIns', () => {
+  test('insert', () => {
     expect(arrIns()).toEqual([]);
     expect(arrIns([])).toEqual([]);
     expect(arrIns([1])).toEqual([1]);

@@ -1,7 +1,7 @@
-import { arrayReplace as arrReplace } from '../../src';
+import { replace as arrReplace } from '../../src';
 
 describe('Array', () => {
-  test('arrReplace', () => {
+  test('replace', () => {
     expect(arrReplace()).toEqual([]);
     expect(arrReplace([])).toEqual([]);
     expect(arrReplace([1])).toEqual([1]);

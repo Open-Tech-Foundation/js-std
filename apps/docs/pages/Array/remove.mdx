@@ -10,9 +10,9 @@ import REPL from "../../components/REPL";
 ## Syntax
 
 ```ts copy
-import { arrayRemove } from '@opentf/std';
+import { remove } from '@opentf/std';
 
-arrayRemove<T>(
+remove<T>(
   arr: T[] = [],
   index?: number,
   count: number = 1
@@ -32,36 +32,36 @@ A new array with the items removed.
 ## Examples
 
 ```ts
-arrayRemove([]) //=> []
+remove([]) //=> []
 
-arrayRemove([1]) //=> []
+remove([1]) //=> []
 
-arrayRemove([1, 2]) //=> [1]
+remove([1, 2]) //=> [1]
 
-arrayRemove([1, 2], 1) //=> [1]
+remove([1, 2], 1) //=> [1]
 
-arrayRemove([1, 2], 1, 1) //=> [1]
+remove([1, 2], 1, 1) //=> [1]
 
-arrayRemove([1, 2, 3, 4, 5], -1) //=> [1, 2, 3, 4]
+remove([1, 2, 3, 4, 5], -1) //=> [1, 2, 3, 4]
 
-arrayRemove([1, 2, 3, 4, 5], -1, 1) //=> [1, 2, 3, 4]
+remove([1, 2, 3, 4, 5], -1, 1) //=> [1, 2, 3, 4]
 
-arrayRemove([1, 2, 3, 4, 5], -1, 3) //=> [1, 2, 3, 4]
+remove([1, 2, 3, 4, 5], -1, 3) //=> [1, 2, 3, 4]
 
-arrayRemove([1, 2, 3, 4, 5], -2, 2) //=> [1, 2, 3]
+remove([1, 2, 3, 4, 5], -2, 2) //=> [1, 2, 3]
 
 const myFish = ['angel', 'clown', 'mandarin', 'sturgeon'];
-arrayRemove(myFish, 2, Infinity) //=> ['angel', 'clown']
+remove(myFish, 2, Infinity) //=> ['angel', 'clown']
 ```
 
 ## Related
 
-- [arrayInsert](/Array/arrayInsert)
-- [arrayReplace](/Array/arrayReplace)
+- [insert](/Array/insert)
+- [replace](/Array/replace)
 
 ## Try
 
-<REPL code={`const { arrayRemove } = require('@opentf/std');
+<REPL code={`const { remove } = require('@opentf/std');
 
-arrayRemove([1, 2, 3, 4, 5], 2);
+remove([1, 2, 3, 4, 5], 2);
 `} />

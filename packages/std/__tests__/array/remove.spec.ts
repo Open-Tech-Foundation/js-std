@@ -1,7 +1,7 @@
-import { arrayRemove as arrRm } from '../../src';
+import { remove as arrRm } from '../../src';
 
 describe('Array', () => {
-  test('arrRm', () => {
+  test('remove', () => {
     expect(arrRm()).toEqual([]);
     expect(arrRm([])).toEqual([]);
     expect(arrRm([1])).toEqual([]);

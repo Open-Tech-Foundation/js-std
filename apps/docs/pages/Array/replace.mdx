@@ -10,9 +10,9 @@ import REPL from "../../components/REPL";
 ## Syntax
 
 ```ts copy
-import { arrayReplace } from '@opentf/std';
+import { replace } from '@opentf/std';
 
-arrayReplace<T>(
+replace<T>(
   arr: T[] = [],
   index: number | null = null,
   deleteCount: number | null = null,
@@ -34,32 +34,32 @@ A new array with the items replaced.
 ## Examples
 
 ```ts
-arrayReplace([]) //=> []
+replace([]) //=> []
 
-arrayReplace([1]) //=> [1]
+replace([1]) //=> [1]
 
-arrayReplace([1, 2, 3], 0, 1, 'a') //=> ['a', 2, 3]
+replace([1, 2, 3], 0, 1, 'a') //=> ['a', 2, 3]
 
-arrayReplace([1, 2, 3], null, 1, 'a') //=> [1, 2, 'a']
+replace([1, 2, 3], null, 1, 'a') //=> [1, 2, 'a']
 
-arrayReplace([1, 2, 3], 3, null, 'c') //=> [1, 2, 3, 'c']
+replace([1, 2, 3], 3, null, 'c') //=> [1, 2, 3, 'c']
 
 const months = ['Jan', 'Feb', 'Apr', 'May'];
-arrayReplace(months, 1, 1, 'Feb', 'Mar') //=> ['Jan', 'Feb', 'Mar', 'Apr', 'May']
+replace(months, 1, 1, 'Feb', 'Mar') //=> ['Jan', 'Feb', 'Mar', 'Apr', 'May']
 
-arrayReplace(months, 1, null, 'Feb', 'Mar') //=> ['Jan', 'Feb', 'Mar', 'May']
+replace(months, 1, null, 'Feb', 'Mar') //=> ['Jan', 'Feb', 'Mar', 'May']
 ```
 
 ## Related
 
-- [arrayInsert](/Array/arrayInsert)
-- [arrayRemove](/Array/arrayRemove)
+- [insert](/Array/insert)
+- [remove](/Array/remove)
 
 ## Try
 
-<REPL code={`const { arrayReplace } = require('@opentf/std');
+<REPL code={`const { replace } = require('@opentf/std');
 
 const months = ['Jan', 'Feb', 'Apr', 'May'];
 
-arrayReplace(months, 1, 1, 'Feb', 'Mar');
+replace(months, 1, 1, 'Feb', 'Mar');
 `} />
