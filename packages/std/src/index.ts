@@ -45,6 +45,10 @@ export { default as flatten } from './array/flatten';
 export { default as intersperse } from './array/intersperse';
 export { default as reverse } from './array/reverse';
 export { default as shuffle } from './array/shuffle';
+export { default as dropWhile } from './array/dropWhile';
+export { default as takeWhile } from './array/takeWhile';
+export { default as chunkWhile } from './array/chunkWhile';
+export { default as partition } from './array/partition';
 export { default as swap } from './array/swap';
 
 // Concurrency

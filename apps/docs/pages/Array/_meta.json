@@ -5,9 +5,11 @@
   "bounds": "bounds",
   "chunk": "chunk",
   "compact": "compact",
+  "chunkWhile": "chunkWhile",
   "countBy": "countBy",
   "diff": "diff",
   "drop": "drop",
+  "dropWhile": "dropWhile",
   "flatten": "flatten",
   "groupBy": "groupBy",
   "intersection": "intersection",
@@ -15,6 +17,7 @@
   "max": "max",
   "min": "min",
   "move": "move",
+  "partition": "partition",
   "range": "range",
   "reverse": "reverse",
   "shuffle": "shuffle",
@@ -23,6 +26,7 @@
   "swap": "swap",
   "symDiff": "symDiff",
   "take": "take",
+  "takeWhile": "takeWhile",
   "union": "union",
   "uniq": "uniq"
 }

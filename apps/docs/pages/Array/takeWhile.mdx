@@ -1,0 +1,44 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> 🧩 Creates a slice of array with elements taken from the beginning while the predicate returns true.
+
+## Syntax
+
+```ts copy
+import { takeWhile } from '@opentf/std';
+
+takeWhile<T>(arr: T[] = [], predicate: (val: T, index: number, arr: T[]) => boolean): T[]
+```
+
+## Parameters
+
+- `arr`: The source array.
+- `predicate`: The function invoked per element. Receives `(value, index, array)`.
+
+## Returns
+
+A new array with taken elements until the predicate returns false.
+
+## Examples
+
+```ts
+takeWhile([1, 2, 3, 4, 5], (n) => n < 4) //=> [1, 2, 3]
+
+takeWhile([1, 2, 3], (n) => n > 3) //=> []
+
+takeWhile([1, 2, 3], (n) => n < 10) //=> [1, 2, 3]
+
+takeWhile([true, true, false, true], Boolean) //=> [true, true]
+```
+
+## Related
+
+- [dropWhile](/Array/dropWhile)
+- [take](/Array/take)
+
+## Try
+
+<REPL code={`const { takeWhile } = require('@opentf/std');
+
+takeWhile([1, 2, 3, 4, 5], (n) => n < 4);`} />

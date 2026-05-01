@@ -1,0 +1,44 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> 🧩 Creates a slice of array with elements dropped from the beginning while the predicate returns true.
+
+## Syntax
+
+```ts copy
+import { dropWhile } from '@opentf/std';
+
+dropWhile<T>(arr: T[] = [], predicate: (val: T, index: number, arr: T[]) => boolean): T[]
+```
+
+## Parameters
+
+- `arr`: The source array.
+- `predicate`: The function invoked per element. Receives `(value, index, array)`.
+
+## Returns
+
+A new array with dropped elements removed.
+
+## Examples
+
+```ts
+dropWhile([1, 2, 3, 4, 5], (n) => n < 3) //=> [3, 4, 5]
+
+dropWhile([1, 2, 3], (n) => n > 3) //=> [1, 2, 3]
+
+dropWhile([1, 2, 3], (n) => n < 10) //=> []
+
+dropWhile([false, false, true, false], (v) => !v) //=> [true, false]
+```
+
+## Related
+
+- [takeWhile](/Array/takeWhile)
+- [drop](/Array/drop)
+
+## Try
+
+<REPL code={`const { dropWhile } = require('@opentf/std');
+
+dropWhile([1, 2, 3, 4, 5], (n) => n < 3);`} />
