@@ -75,7 +75,12 @@
 - [randomBytes](./Crypto/randomBytes.md)
 - [randomId](./Crypto/randomId.md)
 - [randomInt](./Crypto/randomInt.md)
+- [randomFloat](./Crypto/randomFloat.md)
 - [randomString](./Crypto/randomString.md)
+- [sha256](./Crypto/sha256.md)
+- [sha512](./Crypto/sha512.md)
+- [hmacSHA256](./Crypto/hmacSHA256.md)
+- [hmacSHA512](./Crypto/hmacSHA512.md)
 - [uuidv4](./Crypto/uuidv4.md)
 - [uuidv7](./Crypto/uuidv7.md)
 

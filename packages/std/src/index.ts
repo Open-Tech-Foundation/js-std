@@ -185,8 +185,13 @@ export { default as uuidv4 } from './crypto/uuidv4';
 export { default as uuidv7 } from './crypto/uuidv7';
 export { default as randomBytes } from './crypto/randomBytes';
 export { default as randomInt } from './crypto/randomInt';
+export { default as randomFloat } from './crypto/randomFloat';
 export { default as randomString } from './crypto/randomString';
 export { default as randomId } from './crypto/randomId';
+export { default as sha256 } from './crypto/sha256';
+export { default as sha512 } from './crypto/sha512';
+export { default as hmacSHA256 } from './crypto/hmacSHA256';
+export { default as hmacSHA512 } from './crypto/hmacSHA512';
 
 // Number
 export { default as isZero } from './number/isZero';

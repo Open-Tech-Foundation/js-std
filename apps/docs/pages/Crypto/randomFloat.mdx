@@ -1,0 +1,43 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> 🎲 Generates a cryptographically strong random float within a range.
+
+## Syntax
+
+```ts copy
+import { randomFloat } from '@opentf/std';
+
+randomFloat(min: number, max: number): number;
+```
+
+## Parameters
+
+| Name | Type     | Description                    |
+| ---- | -------- | ------------------------------ |
+| min  | `number` | The minimum value (inclusive). |
+| max  | `number` | The maximum value (exclusive). |
+
+## Returns
+
+A random float between min (inclusive) and max (exclusive).
+
+## Examples
+
+```ts
+randomFloat(0, 1) //=> 0.7234891234567891
+randomFloat(1, 5) //=> 3.456789123456789
+```
+
+## Related
+
+- [randomInt](/Crypto/randomInt)
+- [randomString](/Crypto/randomString)
+
+## Try
+
+<REPL code={`const { randomFloat } = require('@opentf/std');
+
+console.log(randomFloat(0, 1));
+console.log(randomFloat(1, 5));
+`} />

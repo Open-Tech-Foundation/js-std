@@ -1,0 +1,48 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> 🔐 Computes an HMAC-SHA-256 digest of a message with a secret key.
+
+<Callout type="info">
+  Uses Node.js \`crypto\` for synchronous HMAC and Web Crypto API (\`SubtleCrypto\`) in browsers (async).
+</Callout>
+
+## Syntax
+
+```ts copy
+import { hmacSHA256 } from '@opentf/std';
+
+hmacSHA256(key: string, message: string): Promise<string>;
+```
+
+## Parameters
+
+| Name    | Type     | Description                |
+| ------- | -------- | -------------------------- |
+| key     | `string` | The secret key.            |
+| message | `string` | The message to authenticate. |
+
+## Returns
+
+A hex-encoded HMAC-SHA-256 digest string (64 characters).
+
+## Examples
+
+```ts
+await hmacSHA256('secret', 'hello')
+//=> '88aab3ede8d3adf94d26ab90d3bafd4a2083070c3bcce9c014ee04a443847c0b'
+```
+
+## Related
+
+- [hmacSHA512](/Crypto/hmacSHA512)
+- [sha256](/Crypto/sha256)
+
+## Try
+
+<REPL code={`const { hmacSHA256 } = require('@opentf/std');
+
+(async () => {
+  console.log(await hmacSHA256('secret', 'hello'));
+})();
+`} />

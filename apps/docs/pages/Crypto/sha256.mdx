@@ -1,0 +1,47 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> 🔐 Computes the SHA-256 hash of a string, returning a hex string.
+
+<Callout type="info">
+  Uses Node.js \`crypto\` for synchronous hashing and Web Crypto API (\`SubtleCrypto\`) in browsers (async).
+</Callout>
+
+## Syntax
+
+```ts copy
+import { sha256 } from '@opentf/std';
+
+sha256(input: string): Promise<string>;
+```
+
+## Parameters
+
+| Name  | Type     | Description         |
+| ----- | -------- | ------------------- |
+| input | `string` | The string to hash. |
+
+## Returns
+
+A hex-encoded SHA-256 hash string (64 characters).
+
+## Examples
+
+```ts
+await sha256('hello')
+//=> '2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824'
+```
+
+## Related
+
+- [sha512](/Crypto/sha512)
+- [randomBytes](/Crypto/randomBytes)
+
+## Try
+
+<REPL code={`const { sha256 } = require('@opentf/std');
+
+(async () => {
+  console.log(await sha256('hello'));
+})();
+`} />
