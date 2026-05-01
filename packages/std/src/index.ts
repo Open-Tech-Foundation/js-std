@@ -84,6 +84,12 @@ export { default as isSubsetOf } from './maths/isSubsetOf';
 export { default as isSupersetOf } from './maths/isSupersetOf';
 export { default as isDisjointFrom } from './maths/isDisjointFrom';
 
+// Runtime
+export { default as isNode } from './runtime/isNode';
+export { default as isBrowser } from './runtime/isBrowser';
+export { default as isDeno } from './runtime/isDeno';
+export { default as isBun } from './runtime/isBun';
+
 // Types
 export { default as isNumber } from './types/isNumber';
 export { default as isObject } from './types/isObject';

@@ -1,0 +1,32 @@
+import REPL from "../../components/REPL";
+
+> Checks if the current runtime is Deno.
+
+## Syntax
+
+```ts
+import { isDeno } from '@opentf/std';
+
+isDeno(): boolean
+```
+
+## Examples
+
+```ts
+isDeno() //=> true (in Deno)
+
+isDeno() //=> false (in Node.js, Bun, browser)
+```
+
+## Related
+
+- [isNode](/Types/isNode)
+- [isBrowser](/Types/isBrowser)
+- [isBun](/Types/isBun)
+
+## Try
+
+<REPL code={`const { isDeno } = require('@opentf/std');
+
+console.log(isDeno());
+`} />

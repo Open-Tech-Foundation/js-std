@@ -147,6 +147,13 @@
 - [toUnset](./Object/toUnset.md)
 - [unset](./Object/unset.md)
 
+## Runtime
+
+- [isBrowser](./Runtime/isBrowser.md)
+- [isBun](./Runtime/isBun.md)
+- [isDeno](./Runtime/isDeno.md)
+- [isNode](./Runtime/isNode.md)
+
 ## String
 
 - [camelCase](./String/camelCase.md)

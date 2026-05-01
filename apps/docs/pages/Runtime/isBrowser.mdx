@@ -1,0 +1,32 @@
+import REPL from "../../components/REPL";
+
+> Checks if the current runtime is a web browser.
+
+## Syntax
+
+```ts
+import { isBrowser } from '@opentf/std';
+
+isBrowser(): boolean
+```
+
+## Examples
+
+```ts
+isBrowser() //=> true (in browser)
+
+isBrowser() //=> false (in Node.js, Bun, Deno)
+```
+
+## Related
+
+- [isNode](/Types/isNode)
+- [isDeno](/Types/isDeno)
+- [isBun](/Types/isBun)
+
+## Try
+
+<REPL code={`const { isBrowser } = require('@opentf/std');
+
+console.log(isBrowser());
+`} />
