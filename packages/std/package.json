@@ -1,6 +1,6 @@
 {
   "name": "@opentf/std",
-  "version": "1.0.0-beta.2",
+  "version": "1.0.0-beta.3",
   "description": "The Modern JavaScript Standard Library. A lightweight, high-accuracy, and cross-runtime collection of essential utilities.",
   "keywords": [
     "collection",
