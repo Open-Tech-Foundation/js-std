@@ -1,0 +1,38 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> 🧩 Accumulates values using a reducer function.
+
+## Syntax
+
+```ts copy
+import { reduceIter } from '@opentf/std';
+
+reduceIter<T, U>(iter: Iterable<T>, fn: (acc: U, val: T) => U, initialValue: U): U
+```
+
+## Parameters
+
+- `iter`: The source iterable.
+- `fn`: The reducer function.
+- `initialValue`: The initial value for the accumulator.
+
+## Returns
+
+The final accumulator value.
+
+## Examples
+
+```ts
+reduceIter([1, 2, 3], (acc, x) => acc + x, 0) //=> 6
+```
+
+## Related
+
+- [reduceIterAsync](/Iter/reduceIterAsync)
+
+## Try
+
+<REPL code={`const { reduceIter } = require('@opentf/std');
+
+reduceIter([1, 2, 3], (acc, x) => acc + x, 0);`} />

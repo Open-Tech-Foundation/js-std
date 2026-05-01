@@ -1,0 +1,36 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> 🧩 Returns the first item from an iterable.
+
+## Syntax
+
+```ts copy
+import { firstIter } from '@opentf/std';
+
+firstIter<T>(iter: Iterable<T>): T | undefined
+```
+
+## Parameters
+
+- `iter`: The source iterable.
+
+## Returns
+
+The first item, or undefined.
+
+## Examples
+
+```ts
+firstIter([1, 2, 3]) //=> 1
+```
+
+## Related
+
+- [firstIterAsync](/Iter/firstIterAsync)
+
+## Try
+
+<REPL code={`const { firstIter } = require('@opentf/std');
+
+firstIter([1, 2, 3]);`} />

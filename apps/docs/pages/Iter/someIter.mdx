@@ -1,0 +1,37 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> 🧩 Checks if any item matches a predicate.
+
+## Syntax
+
+```ts copy
+import { someIter } from '@opentf/std';
+
+someIter<T>(iter: Iterable<T>, fn: (val: T) => boolean): boolean
+```
+
+## Parameters
+
+- `iter`: The source iterable.
+- `fn`: The predicate function.
+
+## Returns
+
+True if any item matches, else false.
+
+## Examples
+
+```ts
+someIter([1, 2, 3], (x) => x > 1) //=> true
+```
+
+## Related
+
+- [someIterAsync](/Iter/someIterAsync)
+
+## Try
+
+<REPL code={`const { someIter } = require('@opentf/std');
+
+someIter([1, 2, 3], (x) => x > 1);`} />

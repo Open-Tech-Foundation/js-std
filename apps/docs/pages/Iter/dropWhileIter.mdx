@@ -1,0 +1,37 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> 🧩 Skips items while a predicate is true, then yields the rest.
+
+## Syntax
+
+```ts copy
+import { dropWhileIter } from '@opentf/std';
+
+dropWhileIter<T>(iter: Iterable<T>, fn: (val: T) => boolean): IterableIterator<T>
+```
+
+## Parameters
+
+- `iter`: The source iterable.
+- `fn`: The predicate function.
+
+## Returns
+
+A new iterable iterator.
+
+## Examples
+
+```ts
+[...dropWhileIter([1, 2, 3, 4], (x) => x < 3)] //=> [3, 4]
+```
+
+## Related
+
+- [dropWhileIterAsync](/Iter/dropWhileIterAsync)
+
+## Try
+
+<REPL code={`const { dropWhileIter } = require('@opentf/std');
+
+[...dropWhileIter([1, 2, 3, 4], (x) => x < 3)];`} />

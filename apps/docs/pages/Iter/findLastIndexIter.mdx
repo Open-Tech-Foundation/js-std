@@ -1,0 +1,37 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> 🧩 Finds the index of the last item that matches a predicate.
+
+## Syntax
+
+```ts copy
+import { findLastIndexIter } from '@opentf/std';
+
+findLastIndexIter<T>(iter: Iterable<T>, fn: (val: T) => boolean): number
+```
+
+## Parameters
+
+- `iter`: The source iterable.
+- `fn`: The predicate function.
+
+## Returns
+
+The index of the last matching item, or -1.
+
+## Examples
+
+```ts
+findLastIndexIter([1, 2, 3, 2], (x) => x === 2) //=> 3
+```
+
+## Related
+
+- [findLastIndexIterAsync](/Iter/findLastIndexIterAsync)
+
+## Try
+
+<REPL code={`const { findLastIndexIter } = require('@opentf/std');
+
+findLastIndexIter([1, 2, 3, 2], (x) => x === 2);`} />

@@ -1,0 +1,36 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> 🧩 Returns the total count of items in an iterable.
+
+## Syntax
+
+```ts copy
+import { countIter } from '@opentf/std';
+
+countIter(iter: Iterable<unknown>): number
+```
+
+## Parameters
+
+- `iter`: The source iterable.
+
+## Returns
+
+The total count of items.
+
+## Examples
+
+```ts
+countIter((function*() { yield 1; yield 2; })()) //=> 2
+```
+
+## Related
+
+- [countIterAsync](/Iter/countIterAsync)
+
+## Try
+
+<REPL code={`const { countIter } = require('@opentf/std');
+
+countIter((function*() { yield 1; yield 2; })());`} />

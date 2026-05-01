@@ -11,6 +11,7 @@
   "drop": "drop",
   "dropWhile": "dropWhile",
   "flatten": "flatten",
+  "flatMap": "flatMap",
   "groupBy": "groupBy",
   "intersection": "intersection",
   "intersperse": "intersperse",
@@ -23,10 +24,13 @@
   "shuffle": "shuffle",
   "sort": "sort",
   "sortBy": "sortBy",
+  "sample": "sample",
   "swap": "swap",
   "symDiff": "symDiff",
   "take": "take",
   "takeWhile": "takeWhile",
   "union": "union",
-  "uniq": "uniq"
+  "unique": "unique",
+  "unzip": "unzip",
+  "zip": "zip"
 }

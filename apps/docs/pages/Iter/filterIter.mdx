@@ -1,0 +1,37 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> 🧩 Filters items based on a predicate function.
+
+## Syntax
+
+```ts copy
+import { filterIter } from '@opentf/std';
+
+filterIter<T>(iter: Iterable<T>, fn: (val: T) => boolean): IterableIterator<T>
+```
+
+## Parameters
+
+- `iter`: The source iterable.
+- `fn`: The predicate function.
+
+## Returns
+
+A new iterable iterator.
+
+## Examples
+
+```ts
+[...filterIter([1, 2, 3, 4], (x) => x % 2 === 0)] //=> [2, 4]
+```
+
+## Related
+
+- [filterIterAsync](/Iter/filterIterAsync)
+
+## Try
+
+<REPL code={`const { filterIter } = require('@opentf/std');
+
+[...filterIter([1, 2, 3, 4], (x) => x % 2 === 0)];`} />

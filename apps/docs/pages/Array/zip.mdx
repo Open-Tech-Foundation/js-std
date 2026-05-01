@@ -1,0 +1,40 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> 🧩 Creates an array of grouped elements from multiple arrays.
+
+## Syntax
+
+```ts copy
+import { zip } from '@opentf/std';
+
+zip<T>(...arrays: T[][]): T[][]
+```
+
+## Parameters
+
+- `arrays`: The arrays to zip together.
+
+## Returns
+
+A new zipped array.
+
+## Examples
+
+```ts
+zip([1, 2], ['a', 'b']) //=> [[1, 'a'], [2, 'b']]
+
+zip([1, 2, 3], ['a', 'b']) //=> [[1, 'a'], [2, 'b'], [3, undefined]]
+
+zip([1, 2], ['a', 'b'], [true, false]) //=> [[1, 'a', true], [2, 'b', false]]
+```
+
+## Related
+
+- [unzip](/Array/unzip)
+
+## Try
+
+<REPL code={`const { zip } = require('@opentf/std');
+
+zip([1, 2], ['a', 'b']);`} />

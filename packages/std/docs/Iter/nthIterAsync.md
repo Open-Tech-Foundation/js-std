@@ -1,0 +1,18 @@
+# nthIterAsync
+
+Returns the nth item from an async iterable.
+
+## Usage
+
+```js
+import { nthIterAsync } from '@opentf/std';
+
+async function* asyncGen(arr) {
+  for (const item of arr) {
+    yield item;
+  }
+}
+
+const result = await nthIterAsync(asyncGen([1, 2, 3]), 1);
+// ...
+```

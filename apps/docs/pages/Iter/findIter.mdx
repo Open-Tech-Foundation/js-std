@@ -1,0 +1,37 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> 🧩 Finds the first item that matches a predicate.
+
+## Syntax
+
+```ts copy
+import { findIter } from '@opentf/std';
+
+findIter<T>(iter: Iterable<T>, fn: (val: T) => boolean): T | undefined
+```
+
+## Parameters
+
+- `iter`: The source iterable.
+- `fn`: The predicate function.
+
+## Returns
+
+The first matching item, or undefined.
+
+## Examples
+
+```ts
+findIter([1, 2, 3], (x) => x > 1) //=> 2
+```
+
+## Related
+
+- [findIterAsync](/Iter/findIterAsync)
+
+## Try
+
+<REPL code={`const { findIter } = require('@opentf/std');
+
+findIter([1, 2, 3], (x) => x > 1);`} />

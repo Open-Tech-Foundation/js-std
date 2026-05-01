@@ -1,0 +1,42 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> 🧩 Maps each item and flattens the result into a single array.
+
+## Syntax
+
+```ts copy
+import { flatMap } from '@opentf/std';
+
+flatMap<T, U>(arr: T[] = [], fn: (val: T, index: number, arr: T[]) => U[] | Iterable<U>): U[]
+```
+
+## Parameters
+
+- `arr`: The source array.
+- `fn`: The mapper function returning arrays. Receives `(value, index, array)`.
+
+## Returns
+
+A new flattened array.
+
+## Examples
+
+```ts
+flatMap([1, 2], (x) => [x, x * 10]) //=> [1, 10, 2, 20]
+
+flatMap([1, 2, 3], (x) => [x]) //=> [1, 2, 3]
+
+flatMap(['a', 'b'], (x, i) => [x + i]) //=> ['a0', 'b1']
+```
+
+## Related
+
+- [flatten](/Array/flatten)
+- [map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
+
+## Try
+
+<REPL code={`const { flatMap } = require('@opentf/std');
+
+flatMap([1, 2], (x) => [x, x * 10]);`} />

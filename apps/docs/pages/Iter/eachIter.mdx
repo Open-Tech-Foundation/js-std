@@ -1,0 +1,37 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> 🧩 Executes a function for each item in an iterator.
+
+## Syntax
+
+```ts copy
+import { eachIter } from '@opentf/std';
+
+eachIter<T>(iter: Iterable<T>, fn: (val: T) => void): void
+```
+
+## Parameters
+
+- `iter`: The iterable to iterate over.
+- `fn`: The function to execute for each item.
+
+## Returns
+
+None. Iteration happens immediately.
+
+## Examples
+
+```ts
+eachIter([1, 2, 3], x => console.log(x)) //=> Logs 1, 2, 3
+```
+
+## Related
+
+- [eachIterAsync](/Iter/eachIterAsync)
+
+## Try
+
+<REPL code={`const { eachIter } = require('@opentf/std');
+
+eachIter([1, 2, 3], x => console.log(x));`} />

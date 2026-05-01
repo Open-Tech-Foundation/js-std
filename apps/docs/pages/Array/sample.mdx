@@ -1,0 +1,39 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> 🧩 Returns a random element from the given array using cryptographically strong randomness.
+
+## Syntax
+
+```ts copy
+import { sample } from '@opentf/std';
+
+sample<T>(arr: T[] = []): T | undefined
+```
+
+## Parameters
+
+- `arr`: The source array.
+
+## Returns
+
+A random element, or undefined if the array is empty.
+
+## Examples
+
+```ts
+sample([1, 2, 3]) //=> 1, 2, or 3 (random)
+
+sample([]) //=> undefined
+```
+
+## Related
+
+- [shuffle](/Array/shuffle)
+- [randomInt](/Crypto/randomInt)
+
+## Try
+
+<REPL code={`const { sample } = require('@opentf/std');
+
+sample([1, 2, 3, 4, 5]);`} />

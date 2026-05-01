@@ -1,0 +1,40 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> 🧩 Creates an array of ungrouped elements from a zipped array.
+
+## Syntax
+
+```ts copy
+import { unzip } from '@opentf/std';
+
+unzip<T>(zipped: T[][] = []): T[][]
+```
+
+## Parameters
+
+- `zipped`: The zipped array to unzip.
+
+## Returns
+
+A new array of arrays.
+
+## Examples
+
+```ts
+unzip([[1, 'a'], [2, 'b']]) //=> [[1, 2], ['a', 'b']]
+
+unzip([[1], [2]]) //=> [[1, 2]]
+
+unzip([]) //=> []
+```
+
+## Related
+
+- [zip](/Array/zip)
+
+## Try
+
+<REPL code={`const { unzip } = require('@opentf/std');
+
+unzip([[1, 'a'], [2, 'b']]);`} />

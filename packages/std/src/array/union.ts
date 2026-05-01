@@ -1,4 +1,4 @@
-import uniq from './uniq';
+import unique from './unique';
 
 /**
  * Returns unique values in all the given collections.
@@ -20,5 +20,5 @@ export default function union(
 
   const flattened = collections.reduce((acc, cur) => acc.concat(cur), []);
 
-  return uniq(flattened, by);
+  return unique(flattened, by);
 }

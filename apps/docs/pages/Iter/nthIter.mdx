@@ -1,0 +1,37 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> 🧩 Returns the nth item (0-indexed) from an iterable.
+
+## Syntax
+
+```ts copy
+import { nthIter } from '@opentf/std';
+
+nthIter<T>(iter: Iterable<T>, n: number): T | undefined
+```
+
+## Parameters
+
+- `iter`: The source iterable.
+- `n`: The index of the item to return.
+
+## Returns
+
+The nth item, or undefined.
+
+## Examples
+
+```ts
+nthIter([1, 2, 3], 1) //=> 2
+```
+
+## Related
+
+- [nthIterAsync](/Iter/nthIterAsync)
+
+## Try
+
+<REPL code={`const { nthIter } = require('@opentf/std');
+
+nthIter([1, 2, 3], 1);`} />

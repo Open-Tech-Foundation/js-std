@@ -1,0 +1,36 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> 🧩 Returns the last item from an iterable.
+
+## Syntax
+
+```ts copy
+import { lastIter } from '@opentf/std';
+
+lastIter<T>(iter: Iterable<T>): T | undefined
+```
+
+## Parameters
+
+- `iter`: The source iterable.
+
+## Returns
+
+The last item, or undefined.
+
+## Examples
+
+```ts
+lastIter([1, 2, 3]) //=> 3
+```
+
+## Related
+
+- [lastIterAsync](/Iter/lastIterAsync)
+
+## Try
+
+<REPL code={`const { lastIter } = require('@opentf/std');
+
+lastIter([1, 2, 3]);`} />

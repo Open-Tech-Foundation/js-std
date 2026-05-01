@@ -1,0 +1,37 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> 🧩 Finds the last item that matches a predicate.
+
+## Syntax
+
+```ts copy
+import { findLastIter } from '@opentf/std';
+
+findLastIter<T>(iter: Iterable<T>, fn: (val: T) => boolean): T | undefined
+```
+
+## Parameters
+
+- `iter`: The source iterable.
+- `fn`: The predicate function.
+
+## Returns
+
+The last matching item, or undefined.
+
+## Examples
+
+```ts
+findLastIter([1, 2, 3, 2], (x) => x === 2) //=> 2
+```
+
+## Related
+
+- [findLastIterAsync](/Iter/findLastIterAsync)
+
+## Try
+
+<REPL code={`const { findLastIter } = require('@opentf/std');
+
+findLastIter([1, 2, 3, 2], (x) => x === 2);`} />

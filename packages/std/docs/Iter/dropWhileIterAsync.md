@@ -1,0 +1,18 @@
+# dropWhileIterAsync
+
+Skips items as long as the predicate is true.
+
+## Usage
+
+```js
+import { dropWhileIterAsync } from '@opentf/std';
+
+async function* asyncGen(arr) {
+  for (const item of arr) {
+    yield item;
+  }
+}
+
+const result = await dropWhileIterAsync(asyncGen([1, 2, 3]), x => x < 2);
+// ...
+```

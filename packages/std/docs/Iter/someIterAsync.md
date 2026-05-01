@@ -1,0 +1,18 @@
+# someIterAsync
+
+Returns true if any item matches the predicate.
+
+## Usage
+
+```js
+import { someIterAsync } from '@opentf/std';
+
+async function* asyncGen(arr) {
+  for (const item of arr) {
+    yield item;
+  }
+}
+
+const result = await someIterAsync(asyncGen([1, 2, 3]), x => x > 2);
+// ...
+```

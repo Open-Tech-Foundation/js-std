@@ -1,0 +1,20 @@
+import { Callout } from 'nextra/components'
+
+# eachIterAsync
+
+Executes a function for each item in the async iterator.
+
+## Usage
+
+```js
+import { eachIterAsync } from '@opentf/std';
+
+async function* asyncGen(arr) {
+  for (const item of arr) {
+    yield item;
+  }
+}
+
+await eachIterAsync(asyncGen([1, 2]), x => console.log(x));
+// ...
+```

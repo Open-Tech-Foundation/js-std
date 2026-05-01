@@ -1,5 +1,5 @@
 import isEql from '../assert/isEql';
-import uniq from './uniq';
+import unique from './unique';
 
 /**
  * Creates an array of unique values that are included in all given arrays.
@@ -38,5 +38,5 @@ export default function intersection<T>(
     });
   });
 
-  return uniq(result);
+  return unique(result);
 }

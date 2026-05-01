@@ -1,0 +1,18 @@
+# fromIterAsync
+
+Creates an async iterator from various sources.
+
+## Usage
+
+```js
+import { fromIterAsync } from '@opentf/std';
+
+async function* asyncGen(arr) {
+  for (const item of arr) {
+    yield item;
+  }
+}
+
+const result = await fromIterAsync([1, 2, 3]);
+// ...
+```

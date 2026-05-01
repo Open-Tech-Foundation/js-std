@@ -1,6 +1,6 @@
 import isEql from '../assert/isEql';
 import isFunction from '../types/isFunction';
-import uniq from './uniq';
+import unique from './unique';
 
 /**
  * Returns a new array containing elements which are in either this or other, but not in both.
@@ -23,7 +23,7 @@ export default function symDiff(
   }
 
   if (collections.length === 1) {
-    return uniq(collections[0], by);
+    return unique(collections[0], by);
   }
 
   const byFlag = isFunction(by);
@@ -48,5 +48,5 @@ export default function symDiff(
     });
   });
 
-  return uniq(out, by);
+  return unique(out, by);
 }

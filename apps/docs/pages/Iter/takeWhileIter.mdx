@@ -1,0 +1,37 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> 🧩 Yields items as long as a predicate is true.
+
+## Syntax
+
+```ts copy
+import { takeWhileIter } from '@opentf/std';
+
+takeWhileIter<T>(iter: Iterable<T>, fn: (val: T) => boolean): IterableIterator<T>
+```
+
+## Parameters
+
+- `iter`: The source iterable.
+- `fn`: The predicate function.
+
+## Returns
+
+A new iterable iterator.
+
+## Examples
+
+```ts
+[...takeWhileIter([1, 2, 3, 4], (x) => x < 3)] //=> [1, 2]
+```
+
+## Related
+
+- [takeWhileIterAsync](/Iter/takeWhileIterAsync)
+
+## Try
+
+<REPL code={`const { takeWhileIter } = require('@opentf/std');
+
+[...takeWhileIter([1, 2, 3, 4], (x) => x < 3)];`} />

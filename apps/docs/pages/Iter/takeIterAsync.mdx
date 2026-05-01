@@ -1,62 +1,20 @@
-import { Callout } from "nextra/components";
-import REPL from "../../components/REPL";
+import { Callout } from 'nextra/components'
 
-> ⚡ Takes the first N elements of an asynchronous iterable.
+# takeIterAsync
 
-## Syntax
+Yields the first n items from an async iterable.
 
-```ts copy
+## Usage
+
+```js
 import { takeIterAsync } from '@opentf/std';
 
-takeIterAsync<T>(
-  iterable: AsyncIterable<T>,
-  n: number = 1
-): AsyncGenerator<T>;
-```
-
-## Parameters
-
-- `iterable`: The source async iterable.
-- `n`: The number of elements to take. Default: `1`.
-
-## Returns
-
-An AsyncGenerator that yields the specified number of elements.
-
-## Examples
-
-```ts
-async function* gen() {
-  yield 1;
-  yield 2;
-  yield 3;
-}
-
-const iter = takeIterAsync(gen(), 2);
-for await (const val of iter) {
-  console.log(val); //=> 1, 2
-}
-```
-
-## Related
-
-- [dropIterAsync](/Iter/dropIterAsync)
-- [takeIter](/Iter/takeIter)
-
-## Try
-
-<REPL code={`const { takeIterAsync } = require('@opentf/std');
-
-async function* gen() {
-  yield 1; yield 2; yield 3;
-}
-
-async function demo() {
-  const iter = takeIterAsync(gen(), 2);
-  for await (const val of iter) {
-    console.log(val);
+async function* asyncGen(arr) {
+  for (const item of arr) {
+    yield item;
   }
 }
 
-demo();
-`} />
+const result = await takeIterAsync(asyncGen([1, 2, 3]), 2);
+// ...
+```
