@@ -14,7 +14,7 @@ import { remove } from '@opentf/std';
 
 remove<T>(
   arr: T[] = [],
-  index?: number,
+  indexOrFn: number | ((item: T, index: number, array: T[]) => boolean),
   count: number = 1
 ): T[]
 ```
@@ -22,8 +22,8 @@ remove<T>(
 ## Parameters
 
 - `arr`: The source array.
-- `index`: The index from which to start removing items. If not provided, it removes the last item.
-- `count`: The number of items to remove. Defaults to `1`.
+- `indexOrFn`: The index from which to start removing items, or a predicate function to remove all matching items. If not provided, it removes the last item.
+- `count`: The number of items to remove (ignored when using a predicate). Defaults to `1`.
 
 ## Returns
 
@@ -52,6 +52,9 @@ remove([1, 2, 3, 4, 5], -2, 2) //=> [1, 2, 3]
 
 const myFish = ['angel', 'clown', 'mandarin', 'sturgeon'];
 remove(myFish, 2, Infinity) //=> ['angel', 'clown']
+
+// Predicate-based remove
+remove([1, 2, 3, 4, 5], (x) => x % 2 === 0) //=> [1, 3, 5]
 ```
 
 ## Related

@@ -14,18 +14,16 @@ import { replace } from '@opentf/std';
 
 replace<T>(
   arr: T[] = [],
-  index: number | null = null,
-  deleteCount: number | null = null,
-  ...replacements: T[]
+  indexOrFn: number | null | ((item: T, index: number, array: T[]) => boolean),
+  ...items: T[]
 ): T[]
 ```
 
 ## Parameters
 
 - `arr`: The source array.
-- `index`: The index at which to start replacing items. If `null`, it defaults to the last index.
-- `deleteCount`: The number of items to remove. If `null`, it defaults to the number of replacement items.
-- `...replacements`: The items to be inserted in place of the deleted items.
+- `indexOrFn`: The index at which to start replacing items, or a predicate function to replace all matching items. If `null`, it defaults to the last index.
+- `...items`: The items to replace with. When using a predicate, all matching items are replaced with the first item.
 
 ## Returns
 
@@ -48,6 +46,9 @@ const months = ['Jan', 'Feb', 'Apr', 'May'];
 replace(months, 1, 1, 'Feb', 'Mar') //=> ['Jan', 'Feb', 'Mar', 'Apr', 'May']
 
 replace(months, 1, null, 'Feb', 'Mar') //=> ['Jan', 'Feb', 'Mar', 'May']
+
+// Predicate-based replace
+replace([1, 2, 3, 4, 5], (x) => x % 2 === 0, 0) //=> [1, 0, 3, 0, 5]
 ```
 
 ## Related

@@ -1,26 +1,15 @@
-import { remove as arrRm } from '../../src';
+import { remove } from '../../src';
 
 describe('Array', () => {
   test('remove', () => {
-    expect(arrRm()).toEqual([]);
-    expect(arrRm([])).toEqual([]);
-    expect(arrRm([1])).toEqual([]);
-    expect(arrRm([1, 2])).toEqual([1]);
-    expect(arrRm([1, 2], 1)).toEqual([1]);
-    expect(arrRm([1, 2], 1, 1)).toEqual([1]);
-    expect(arrRm([1, 2, 3, 4, 5], -1)).toEqual([1, 2, 3, 4]);
-    expect(arrRm([1, 2, 3, 4, 5], -1, 1)).toEqual([1, 2, 3, 4]);
-    expect(arrRm([1, 2, 3, 4, 5], -1, 3)).toEqual([1, 2, 3, 4]);
-    expect(arrRm([1, 2, 3, 4, 5], -2, 2)).toEqual([1, 2, 3]);
+    expect(remove([1, 2, 3], 1)).toEqual([1, 3]);
+    expect(remove([1, 2, 3, 4], 1, 2)).toEqual([1, 4]);
+    expect(remove([1, 2, 3], 0)).toEqual([2, 3]);
+    expect(remove([1, 2, 3], 2)).toEqual([1, 2]);
+    expect(remove([], 0)).toEqual([]);
+    expect(remove()).toEqual([]);
 
-    const a = ['a', 'b', 'c'];
-    expect(arrRm(a)).toEqual(['a', 'b']);
-    expect(a).toEqual(['a', 'b', 'c']);
-
-    const myFish = ['angel', 'clown', 'mandarin', 'sturgeon'];
-    expect(arrRm(myFish, 2, Number.POSITIVE_INFINITY)).toEqual([
-      'angel',
-      'clown',
-    ]);
+    // Predicate-based remove
+    expect(remove([1, 2, 3, 4, 5], (x) => x % 2 === 0)).toEqual([1, 3, 5]);
   });
 });

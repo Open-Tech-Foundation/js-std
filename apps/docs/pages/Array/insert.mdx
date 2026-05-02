@@ -14,7 +14,7 @@ import { insert } from '@opentf/std';
 
 insert<T>(
   arr: T[] = [],
-  index: number | null | undefined,
+  indexOrFn: number | null | undefined | ((item: T, index: number, array: T[]) => boolean),
   ...items: T[]
 ): T[]
 ```
@@ -22,8 +22,9 @@ insert<T>(
 ## Parameters
 
 - `arr`: The source array.
-- `index`: The index where the new items should be inserted. If `null` or `undefined`, items are appended to the end.
-- `...items`: The items to be inserted.
+- `indexOrFn`: The index where the new items should be inserted, or a predicate function to find the insertion point. If `null` or `undefined`, items are appended to the end.
+- `...items`: The items to be inserted. When using a predicate, the last item can be `'before'` or `'after'` to specify position (default: `'before'`).
+- `position`: Only with predicate - insert before (default) or after the match.
 
 ## Returns
 
@@ -57,6 +58,11 @@ insert([1, 2, 3], null, 5, 6) //=> [1, 2, 3, 5, 6]
 insert([1, 2, 3], 0, [5, 6]) //=> [[5, 6], 1, 2, 3]
 
 insert([1, 2, 3], 0, ...[5, 6]) //=> [5, 6, 1, 2, 3]
+
+// Predicate-based insert
+insert([1, 2, 3], (x) => x === 2, 5) //=> [1, 5, 2, 3]
+
+insert([1, 2, 3], (x) => x === 2, 5, 'after') //=> [1, 2, 5, 3]
 ```
 
 ## Related

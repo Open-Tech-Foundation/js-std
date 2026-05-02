@@ -1,25 +1,29 @@
 /**
- * Replaces items at the given index from the given array.
+ * Replaces items at the given index or all elements matching the predicate.
  *
  * @param {T[]} arr The source array.
- * @param {number} index The index to replace items at.
- * @param {number} deleteCount The number of items to delete.
- * @param {T[]} replacements The items to replace with.
+ * @param {number|Function} indexOrFn The index or predicate function.
+ * @param {T[]} items The items to replace with.
  * @returns {T[]} A new array with the replaced items.
  *
  * @example
- * replace([1, 2, 3], 1, 1, 5); //=> [1, 5, 3]
+ * replace([1, 2, 3], 1, 5); //=> [1, 5, 3]
+ * replace([1, 2, 3, 4, 5], (x) => x % 2 === 0, 0); //=> [1, 0, 3, 0, 5]
  */
 export default function replace<T>(
   arr: T[] = [],
-  index: number | null = null,
-  deleteCount: number | null = null,
-  ...replacements: T[]
+  indexOrFn: number | null | ((item: T, index: number, array: T[]) => boolean),
+  ...items: T[]
 ): T[] {
-  const idx = index ?? arr.length - 1;
   const a = arr.slice();
 
-  a.splice(idx, deleteCount ?? replacements.length, ...replacements);
+  if (typeof indexOrFn === 'function') {
+    return a.map((item, index, array) =>
+      (indexOrFn as Function)(item, index, array) ? (items.length > 0 ? items[0] : item) : item
+    );
+  }
 
+  const idx = indexOrFn ?? arr.length - 1;
+  a.splice(idx, 1, ...items);
   return a;
 }
