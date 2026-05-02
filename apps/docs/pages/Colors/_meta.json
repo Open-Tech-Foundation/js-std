@@ -13,5 +13,6 @@
   "colorLuminance": "colorLuminance",
   "colorMix": "colorMix",
   "colorRotateHue": "colorRotateHue",
-  "colorSaturate": "colorSaturate"
+  "colorSaturate": "colorSaturate",
+  "colorWCAGLevel": "colorWCAGLevel"
 }

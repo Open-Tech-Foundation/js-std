@@ -44,7 +44,9 @@ export default function formatCurrency(
   const intlOptions: Intl.NumberFormatOptions = {
     style: 'currency',
     currency,
-    currencyDisplay: DISPLAY_MAP[display] as Intl.NumberFormatOptions['currencyDisplay'],
+    currencyDisplay: DISPLAY_MAP[
+      display
+    ] as Intl.NumberFormatOptions['currencyDisplay'],
   };
 
   if (minFraction !== undefined) {

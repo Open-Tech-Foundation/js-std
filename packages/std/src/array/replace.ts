@@ -19,7 +19,15 @@ export default function replace<T>(
 
   if (typeof indexOrFn === 'function') {
     return a.map((item, index, array) =>
-      (indexOrFn as Function)(item, index, array) ? (items.length > 0 ? items[0] : item) : item
+      (indexOrFn as (item: T, index: number, array: T[]) => boolean)(
+        item,
+        index,
+        array,
+      )
+        ? items.length > 0
+          ? items[0]
+          : item
+        : item,
     );
   }
 

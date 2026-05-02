@@ -16,7 +16,14 @@ export default function remove<T>(
   count = 1,
 ): T[] {
   if (typeof indexOrFn === 'function') {
-    return arr.filter((item, index, array) => !(indexOrFn as Function)(item, index, array));
+    return arr.filter(
+      (item, index, array) =>
+        !(indexOrFn as (item: T, index: number, array: T[]) => boolean)(
+          item,
+          index,
+          array,
+        ),
+    );
   }
 
   const idx = indexOrFn ?? arr.length - 1;

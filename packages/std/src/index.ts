@@ -189,6 +189,7 @@ export { default as colorInvert } from './colors/colorInvert';
 export { default as colorIsDark } from './colors/colorIsDark';
 export { default as colorIsLight } from './colors/colorIsLight';
 export { default as colorContrast } from './colors/colorContrast';
+export { default as colorWCAGLevel } from './colors/colorWCAGLevel';
 export { default as colorIsReadable } from './colors/colorIsReadable';
 
 // Crypto

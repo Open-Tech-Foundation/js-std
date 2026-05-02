@@ -16,7 +16,17 @@
  * formatBytes(1000, { binary: false }) //=> '1 KB'
  */
 
-const BINARY_UNITS = ['B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'];
+const BINARY_UNITS = [
+  'B',
+  'KiB',
+  'MiB',
+  'GiB',
+  'TiB',
+  'PiB',
+  'EiB',
+  'ZiB',
+  'YiB',
+];
 const DECIMAL_UNITS = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
 
 interface FormatBytesOptions {
@@ -26,7 +36,7 @@ interface FormatBytesOptions {
 
 export default function formatBytes(
   bytes: number,
-  options: FormatBytesOptions = {}
+  options: FormatBytesOptions = {},
 ): string {
   const { decimals = 2, binary = true } = options;
 
@@ -42,7 +52,7 @@ export default function formatBytes(
   const k = binary ? 1024 : 1000;
   const i = Math.floor(Math.log(Math.abs(bytes)) / Math.log(k));
   const unitIndex = Math.min(i, units.length - 1);
-  const value = bytes / Math.pow(k, unitIndex);
+  const value = bytes / k ** unitIndex;
 
-  return `${parseFloat(value.toFixed(decimals))} ${units[unitIndex]}`;
+  return `${Number.parseFloat(value.toFixed(decimals))} ${units[unitIndex]}`;
 }

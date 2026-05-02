@@ -14,14 +14,22 @@
  */
 export default function insert<T>(
   arr: T[] = [],
-  indexOrFn: number | null | undefined | ((item: T, index: number, array: T[]) => boolean),
+  indexOrFn:
+    | number
+    | null
+    | undefined
+    | ((item: T, index: number, array: T[]) => boolean),
   ...items: T[]
 ): T[] {
   const a = arr.slice();
   let idx: number;
 
   if (typeof indexOrFn === 'function') {
-    const position = items[items.length - 1] === 'before' || items[items.length - 1] === 'after' ? items.pop() : 'before';
+    const position =
+      items[items.length - 1] === 'before' ||
+      items[items.length - 1] === 'after'
+        ? items.pop()
+        : 'before';
     const fn = indexOrFn as (item: T, index: number, array: T[]) => boolean;
     const index = a.findIndex(fn);
     if (index === -1) return a;
