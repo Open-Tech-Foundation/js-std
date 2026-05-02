@@ -9,7 +9,8 @@
     "build": "next build && bun run build:sitemap",
     "build:sitemap": "next-sitemap",
     "start": "next start",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "wrangler pages deploy build"
   },
   "keywords": [],
   "author": "",
@@ -29,5 +30,8 @@
     "react-dom": "^18.2.0",
     "react-intersection-observer": "^9.8.1",
     "tailwind-merge": "^3.5.0"
+  },
+  "devDependencies": {
+    "wrangler": "^4.87.0"
   }
 }
