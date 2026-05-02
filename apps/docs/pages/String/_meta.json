@@ -13,6 +13,7 @@
   "slugify": "slugify",
   "snakeCase": "snakeCase",
   "stringReplace": "stringReplace",
+  "stringReverse": "stringReverse",
   "stringWidth": "stringWidth",
   "stripANSI": "stripANSI",
   "titleCase": "titleCase",

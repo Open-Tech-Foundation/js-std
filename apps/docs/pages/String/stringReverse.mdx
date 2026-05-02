@@ -1,0 +1,44 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> 🔙 Reverses a string with full grapheme cluster awareness.
+
+## Syntax
+
+```ts copy
+import { stringReverse } from '@opentf/std';
+
+stringReverse(str: string): string
+```
+
+## Parameters
+
+- `str`: The string to reverse.
+
+## Returns
+
+The reversed string with emoji sequences and combining marks preserved.
+
+## Examples
+
+```ts
+stringReverse('hello') //=> 'olleh'
+
+stringReverse('café') //=> 'éfac'
+
+stringReverse('👨‍👩‍👧‍👦') //=> '👨‍👩‍👧‍👦'
+
+stringReverse('ab🔥cd') //=> 'dc🔥ba'
+```
+
+## Related
+
+- [stringWidth](/String/stringWidth)
+
+## Try
+
+<REPL code={`const { stringReverse } = require('@opentf/std');
+
+console.log(stringReverse('café'));
+console.log(stringReverse('hello 🌍'));
+`} />

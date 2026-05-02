@@ -11,6 +11,7 @@ export { default as stringReplace } from './string/stringReplace';
 export { default as escapeHTML } from './string/escapeHTML';
 export { default as unescapeHTML } from './string/unescapeHTML';
 export { default as stripANSI } from './string/stripANSI';
+export { default as stringReverse } from './string/stringReverse';
 export { default as stringWidth } from './string/stringWidth';
 export { default as truncate } from './string/truncate';
 export { default as trim } from './string/trim';

@@ -228,6 +228,7 @@
 - [slugify](./String/slugify.md)
 - [snakeCase](./String/snakeCase.md)
 - [stringReplace](./String/stringReplace.md)
+- [stringReverse](./String/stringReverse.md)
 - [stringWidth](./String/stringWidth.md)
 - [stripANSI](./String/stripANSI.md)
 - [titleCase](./String/titleCase.md)
