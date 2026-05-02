@@ -8,7 +8,7 @@
     "lint": "biome check .",
     "format": "biome format --write .",
     "build": "bun run --cwd packages/std build",
-    "build:docs": "bun run --cwd apps/docs build",
+    "build:docs": "bun run build && bun run --cwd apps/docs build",
     "ci": "bun run build && bun run lint && bun run test",
     "release": "bun run build && changeset publish"
   },

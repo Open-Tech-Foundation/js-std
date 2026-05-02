@@ -20,7 +20,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@opentf/std": "file:../../packages/std",
+    "@opentf/std": "workspace:*",
     "@opentf/react-node-repl": "^0.14.0",
     "clsx": "^2.1.1",
     "framer-motion": "^12.38.0",
