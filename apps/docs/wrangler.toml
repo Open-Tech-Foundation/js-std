@@ -1,7 +1,10 @@
+#:schema ./node_modules/wrangler/config-schema.json
 name = "opentf-std-docs"
 pages_build_output_dir = "build"
 compatibility_date = "2026-05-02"
 
-[build]
-command = "bun run build"
-path = "build"
+# Note: Environment variables for Pages are primarily managed in the Cloudflare Dashboard.
+# However, you can define local/preview variables here.
+[vars]
+# NODE_VERSION = "22"
+# BUN_VERSION = "1.3.12"
