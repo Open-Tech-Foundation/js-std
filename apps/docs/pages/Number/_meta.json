@@ -1,5 +1,6 @@
 {
   "formatBytes": "formatBytes",
+  "formatCompact": "formatCompact",
   "formatCurrency": "formatCurrency",
   "formatOrdinal": "formatOrdinal",
   "inRange": "inRange",

@@ -1,0 +1,60 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> 🔢 Formats a number in compact form using Intl.NumberFormat.
+
+## Syntax
+
+```ts copy
+import { formatCompact } from '@opentf/std';
+
+formatCompact(value: number, options?: {
+  display?: 'short' | 'long';
+  locale?: string;
+  fractionDigits?: number;
+}): string
+```
+
+## Parameters
+
+| Name           | Type                          | Description                                      |
+| -------------- | ----------------------------- | ------------------------------------------------ |
+| value          | `number`                      | The number to format.                              |
+| options        | `object`                      | The options object.                                |
+| options.display      | `'short' \| 'long'`       | The display format (default 'short').              |
+| options.locale       | `string`                  | The locale (default runtime locale).               |
+| options.fractionDigits | `number`                | The maximum fraction digits.                        |
+
+## Returns
+
+The formatted compact number string.
+
+## Examples
+
+```ts
+formatCompact(1200) //=> '1.2K'
+
+formatCompact(1200000) //=> '1.2M'
+
+formatCompact(1200000000) //=> '1.2B'
+
+formatCompact(1200, { display: 'long' }) //=> '1.2 thousand'
+
+formatCompact(1200000, { display: 'long' }) //=> '1.2 million'
+
+formatCompact(1234, { fractionDigits: 2 }) //=> '1.23K'
+
+formatCompact(1200, { locale: 'de-DE' }) //=> '1,2 Tsd.'
+
+formatCompact(1200, { locale: 'ja-JP' }) //=> '1.2千'
+```
+
+## Try
+
+<REPL code={`const { formatCompact } = require('@opentf/std');
+
+console.log(formatCompact(1200));
+console.log(formatCompact(1200000));
+console.log(formatCompact(1200, { display: 'long' }));
+console.log(formatCompact(1234, { fractionDigits: 2 }));
+`} />
