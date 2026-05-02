@@ -1,4 +1,5 @@
 {
+  "formatOrdinal": "formatOrdinal",
   "inRange": "inRange",
   "isNegZero": "isNegZero",
   "isZero": "isZero",

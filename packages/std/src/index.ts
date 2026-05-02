@@ -205,6 +205,7 @@ export { default as isNegZero } from './number/isNegZero';
 export { default as toNum } from './number/toNum';
 export { default as inRange } from './number/inRange';
 export { default as round } from './number/round';
+export { default as formatOrdinal } from './number/formatOrdinal';
 
 // Encoding
 export { default as base64Encode } from './encoding/base64Encode';

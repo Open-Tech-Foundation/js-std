@@ -1,0 +1,54 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> 🔢 Formats a number to its ordinal form (1st, 2nd, 3rd, etc.).
+
+## Syntax
+
+```ts copy
+import { formatOrdinal } from '@opentf/std';
+
+formatOrdinal(n: number): string
+```
+
+## Parameters
+
+- `n`: The number to format.
+
+## Returns
+
+The ordinal formatted string. Returns the string representation as-is for non-finite numbers or non-integers.
+
+## Examples
+
+```ts
+formatOrdinal(1) //=> '1st'
+
+formatOrdinal(2) //=> '2nd'
+
+formatOrdinal(3) //=> '3rd'
+
+formatOrdinal(11) //=> '11th'
+
+formatOrdinal(21) //=> '21st'
+
+formatOrdinal(0) //=> '0th'
+
+formatOrdinal(-1) //=> '-1st'
+
+formatOrdinal(1.5) //=> '1.5'
+
+formatOrdinal(Number.NaN) //=> 'NaN'
+```
+
+## Try
+
+<REPL code={`const { formatOrdinal } = require('@opentf/std');
+
+console.log(formatOrdinal(1));
+console.log(formatOrdinal(2));
+console.log(formatOrdinal(3));
+console.log(formatOrdinal(11));
+console.log(formatOrdinal(21));
+console.log(formatOrdinal(0));
+`} />
