@@ -212,6 +212,7 @@ export { default as inRange } from './number/inRange';
 export { default as round } from './number/round';
 export { default as formatOrdinal } from './number/formatOrdinal';
 export { default as formatBytes } from './number/formatBytes';
+export { default as formatCurrency } from './number/formatCurrency';
 
 // Encoding
 export { default as base64Encode } from './encoding/base64Encode';

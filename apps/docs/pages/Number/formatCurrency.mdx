@@ -1,0 +1,64 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> 💰 Formats a number as a currency string using Intl.NumberFormat.
+
+## Syntax
+
+```ts copy
+import { formatCurrency } from '@opentf/std';
+
+formatCurrency(value: number, currency: string, options?: {
+  display?: 'symbol' | 'code' | 'name';
+  minFraction?: number;
+  maxFraction?: number;
+  locale?: string;
+}): string
+```
+
+## Parameters
+
+| Name         | Type                    | Description                                          |
+| ------------ | ----------------------- | ---------------------------------------------------- |
+| value        | `number`                | The number to format.                                |
+| currency     | `string`                | The ISO 4217 currency code (e.g., 'USD', 'EUR').    |
+| options      | `object`                | The options object.                                  |
+| options.display    | `'symbol' \| 'code' \| 'name'` | The display format (default 'symbol').    |
+| options.minFraction | `number`          | The minimum fraction digits.                          |
+| options.maxFraction | `number`          | The maximum fraction digits.                          |
+| options.locale     | `string`          | The locale (default runtime locale).                 |
+
+## Returns
+
+The formatted currency string.
+
+## Examples
+
+```ts
+formatCurrency(1200, 'USD') //=> '$1,200.00'
+
+formatCurrency(1200, 'EUR') //=> '€1,200.00'
+
+formatCurrency(1200, 'JPY') //=> '¥1,200' (no decimals, Intl knows)
+
+formatCurrency(1200, 'INR') //=> '₹1,200.00'
+
+formatCurrency(1200, 'EUR', { locale: 'de-DE' }) //=> '1.200,00 €'
+
+formatCurrency(1200, 'USD', { display: 'code' }) //=> 'USD 1,200.00'
+
+formatCurrency(1200, 'USD', { display: 'name' }) //=> '1,200.00 US dollars'
+
+formatCurrency(1200, 'USD', { maxFraction: 0 }) //=> '$1,200'
+```
+
+## Try
+
+<REPL code={`const { formatCurrency } = require('@opentf/std');
+
+console.log(formatCurrency(1200, 'USD'));
+console.log(formatCurrency(1200, 'EUR'));
+console.log(formatCurrency(1200, 'JPY'));
+console.log(formatCurrency(1200, 'USD', { display: 'code' }));
+console.log(formatCurrency(1200, 'USD', { maxFraction: 0 }));
+`} />
