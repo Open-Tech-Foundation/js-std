@@ -11,11 +11,18 @@ export default async function eachAsync<T>(
   concurrency: number = Number.POSITIVE_INFINITY,
 ): Promise<void> {
   let index = 0;
+  let aborted = false;
 
   const worker = async () => {
-    while (index < arr.length) {
-      const i = index++;
-      await cb(arr[i], i);
+    try {
+      while (index < arr.length && !aborted) {
+        const i = index++;
+        if (i >= arr.length) break;
+        await cb(arr[i], i);
+      }
+    } catch (err) {
+      aborted = true;
+      throw err;
     }
   };
 
