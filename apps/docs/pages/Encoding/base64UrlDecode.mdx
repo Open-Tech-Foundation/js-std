@@ -1,0 +1,41 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> 🔠 Decodes a Base64 URL-safe string.
+
+## Syntax
+
+```ts copy
+import { base64UrlDecode } from '@opentf/std';
+
+base64UrlDecode(str: string): string
+```
+
+## Parameters
+
+- `str`: The Base64 URL-encoded string to decode.
+
+## Returns
+
+The decoded string.
+
+## Examples
+
+```ts
+base64UrlDecode('aGVsbG8_d29ybGQ=') //=> 'hello?world'
+
+base64UrlDecode('aGVsbG8_d29ybGQ') //=> 'hello?world'
+```
+
+## Related
+
+- [base64UrlEncode](/Encoding/base64UrlEncode)
+- [base64Decode](/Encoding/base64Decode)
+
+## Try
+
+<REPL code={`const { base64UrlDecode } = require('@opentf/std');
+
+console.log(base64UrlDecode('aGVsbG8_d29ybGQ='));
+console.log(base64UrlDecode('aGVsbG8_d29ybGQ'));
+`} />

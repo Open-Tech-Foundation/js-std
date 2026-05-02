@@ -1,13 +1,13 @@
 // String
-export { default as strInsertAt } from './string/insertAt';
-export { default as strReplaceAt } from './string/replaceAt';
+export { default as stringInsertAt } from './string/stringInsertAt';
+export { default as stringReplaceAt } from './string/stringReplaceAt';
 export { default as capitalize } from './string/capitalize';
 export { default as camelCase } from './string/camelCase';
 export { default as pascalCase } from './string/pascalCase';
 export { default as snakeCase } from './string/snakeCase';
 export { default as kebabCase } from './string/kebabCase';
 export { default as titleCase } from './string/titleCase';
-export { default as strReplace } from './string/strReplace';
+export { default as stringReplace } from './string/stringReplace';
 export { default as escapeHTML } from './string/escapeHTML';
 export { default as unescapeHTML } from './string/unescapeHTML';
 export { default as stripANSI } from './string/stripANSI';
@@ -219,8 +219,12 @@ export { default as formatCompact } from './number/formatCompact';
 // Encoding
 export { default as base64Encode } from './encoding/base64Encode';
 export { default as base64Decode } from './encoding/base64Decode';
+export { default as base64UrlEncode } from './encoding/base64UrlEncode';
+export { default as base64UrlDecode } from './encoding/base64UrlDecode';
 export { default as hexEncode } from './encoding/hexEncode';
 export { default as hexDecode } from './encoding/hexDecode';
+export { default as stringToBytes } from './encoding/stringToBytes';
+export { default as bytesToString } from './encoding/bytesToString';
 
 // Iter
 export { default as takeIter } from './iter/takeIter';

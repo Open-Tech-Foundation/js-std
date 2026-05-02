@@ -1,13 +1,13 @@
-# insertAt
+# stringInsertAt
 
 Inserts a string at a specific index.
 
 ## Syntax
 
 ```ts
-import { insertAt } from '@opentf/std';
+import { stringInsertAt } from '@opentf/std';
 
-insertAt(str: string, index = 0, insertStr = ''): string
+stringInsertAt(str: string, index = 0, insertStr = ''): string
 ```
 
 ## Parameters
@@ -23,5 +23,5 @@ insertAt(str: string, index = 0, insertStr = ''): string
 ## Example
 
 ```js
-insertAt('ac', 1, 'b') //=> 'abc'
+stringInsertAt('ac', 1, 'b') //=> 'abc'
 ```

@@ -1,13 +1,13 @@
-# replaceAt
+# stringReplaceAt
 
 Replaces characters in a string at a specific index.
 
 ## Syntax
 
 ```ts
-import { replaceAt } from '@opentf/std';
+import { stringReplaceAt } from '@opentf/std';
 
-replaceAt(str: string, index = 0, replaceStr = ''): string
+stringReplaceAt(str: string, index = 0, replaceStr = ''): string
 ```
 
 ## Parameters
@@ -23,5 +23,5 @@ replaceAt(str: string, index = 0, replaceStr = ''): string
 ## Example
 
 ```js
-replaceAt('abc', 1, 'z') //=> 'azc'
+stringReplaceAt('abc', 1, 'z') //=> 'azc'
 ```

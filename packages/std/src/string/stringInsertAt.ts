@@ -7,9 +7,9 @@
  * @returns {string} The modified string.
  *
  * @example
- * insertAt('ac', 1, 'b') //=> 'abc'
+ * stringInsertAt('ac', 1, 'b') //=> 'abc'
  */
-export default function insertAt(
+export default function stringInsertAt(
   str: string,
   index = 0,
   insertStr = '',

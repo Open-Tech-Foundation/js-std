@@ -1,0 +1,42 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> 🔠 Encodes a string to Base64 URL-safe format.
+
+## Syntax
+
+```ts copy
+import { base64UrlEncode } from '@opentf/std';
+
+base64UrlEncode(str: string, options?: { pad?: boolean }): string
+```
+
+## Parameters
+
+- `str`: The string to encode.
+- `options.pad`: Whether to add padding (default true).
+
+## Returns
+
+The Base64 URL-encoded string.
+
+## Examples
+
+```ts
+base64UrlEncode('hello?world') //=> 'aGVsbG8_d29ybGQ='
+
+base64UrlEncode('hello?world', { pad: false }) //=> 'aGVsbG8_d29ybGQ'
+```
+
+## Related
+
+- [base64UrlDecode](/Encoding/base64UrlDecode)
+- [base64Encode](/Encoding/base64Encode)
+
+## Try
+
+<REPL code={`const { base64UrlEncode } = require('@opentf/std');
+
+console.log(base64UrlEncode('hello?world'));
+console.log(base64UrlEncode('hello?world', { pad: false }));
+`} />

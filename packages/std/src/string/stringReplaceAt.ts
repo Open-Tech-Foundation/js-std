@@ -7,9 +7,9 @@
  * @returns {string} The modified string.
  *
  * @example
- * replaceAt('abc', 1, 'z') //=> 'azc'
+ * stringReplaceAt('abc', 1, 'z') //=> 'azc'
  */
-export default function replaceAt(
+export default function stringReplaceAt(
   str: string,
   index = 0,
   replaceStr = '',

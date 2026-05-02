@@ -1,27 +1,27 @@
 import shallowMerge from '../object/shallowMerge';
 
-export type StrReplaceOptions = { all?: boolean; case?: boolean };
+export type StringReplaceOptions = { all?: boolean; case?: boolean };
 
 /**
  * Returns a new string with one, some, or all matches of a pattern replaced by a replacement.
  *
  * @example
  *
- * strReplace('abc', 'a', 'x') //=> 'xbc'
+ * stringReplace('abc', 'a', 'x') //=> 'xbc'
  *
- * strReplace('abc abc', 'a', 'x', { all: true }) //=> 'xbc xbc'
+ * stringReplace('abc abc', 'a', 'x', { all: true }) //=> 'xbc xbc'
  */
-export default function strReplace(
+export default function stringReplace(
   str: string,
   pattern: string | RegExp,
   replacement: string,
-  options?: StrReplaceOptions,
+  options?: StringReplaceOptions,
 ): string {
-  const defaultOptions: StrReplaceOptions = { all: false, case: false };
+  const defaultOptions: StringReplaceOptions = { all: false, case: false };
   const opts = shallowMerge(
     defaultOptions,
     options as Record<string, unknown>,
-  ) as StrReplaceOptions;
+  ) as StringReplaceOptions;
   let flags = '';
   flags = opts.all ? `${flags}g` : flags;
   flags = opts.case ? `${flags}i` : flags;

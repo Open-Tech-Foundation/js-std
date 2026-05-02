@@ -1,0 +1,37 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> 🔠 Converts a Uint8Array of bytes to a string.
+
+## Syntax
+
+```ts copy
+import { bytesToString } from '@opentf/std';
+
+bytesToString(bytes: Uint8Array): string
+```
+
+## Parameters
+
+- `bytes`: The byte array to convert.
+
+## Returns
+
+The decoded string.
+
+## Examples
+
+```ts
+bytesToString(new Uint8Array([72, 101, 108, 108, 111])) //=> 'Hello'
+```
+
+## Related
+
+- [stringToBytes](/Encoding/stringToBytes)
+
+## Try
+
+<REPL code={`const { bytesToString } = require('@opentf/std');
+
+console.log(bytesToString(new Uint8Array([72, 101, 108, 108, 111])));
+`} />

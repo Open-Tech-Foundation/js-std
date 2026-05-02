@@ -6,9 +6,9 @@ import REPL from "../../components/REPL";
 ## Syntax
 
 ```ts copy
-import { strReplace } from '@opentf/std';
+import { stringReplace } from '@opentf/std';
 
-strReplace(
+stringReplace(
   str: string,
   pattern: string | RegExp,
   replacement: string | ((...args: any[]) => string),
@@ -35,30 +35,30 @@ A new string with the replacements made.
 ## Examples
 
 ```ts
-strReplace('abc', 'a', 'x') //=> 'xbc'
+stringReplace('abc', 'a', 'x') //=> 'xbc'
 
-strReplace('abbc', 'b', '', { all: true }) //=> 'ac'
+stringReplace('abbc', 'b', '', { all: true }) //=> 'ac'
 
-strReplace('aBbBc', 'B', '', { all: true, case: true }) //=> 'ac'
+stringReplace('aBbBc', 'B', '', { all: true, case: true }) //=> 'ac'
 
 const paragraph = "I think Ruth's dog is cuter than your dog!";
-strReplace(paragraph, /dog/, 'ferret') //=> "I think Ruth's ferret is cuter than your dog!"
+stringReplace(paragraph, /dog/, 'ferret') //=> "I think Ruth's ferret is cuter than your dog!"
 
 // Using a function as replacement
 function fahrenheitToCelsius(match, p1) {
   return `${((p1 - 32) * 5) / 9}C`;
 }
-strReplace('212F', /(-?\d+(?:\.\d*)?)F\b/, fahrenheitToCelsius) //=> '100C'
+stringReplace('212F', /(-?\d+(?:\.\d*)?)F\b/, fahrenheitToCelsius) //=> '100C'
 ```
 
 ## Related
 
-- [replaceAt](/String/replaceAt)
+- [stringReplaceAt](/String/stringReplaceAt)
 
 ## Try
 
-<REPL code={`const { strReplace } = require('@opentf/std');
+<REPL code={`const { stringReplace } = require('@opentf/std');
 
 const str = 'Apples are round, and apples are juicy.';
-console.log(strReplace(str, 'apple', 'orange', { all: true, case: true }));
+console.log(stringReplace(str, 'apple', 'orange', { all: true, case: true }));
 `} />
