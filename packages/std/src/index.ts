@@ -1,6 +1,6 @@
 // String
-export { default as replaceAt } from './string/replaceAt';
-export { default as insertAt } from './string/insertAt';
+export { default as strInsertAt } from './string/insertAt';
+export { default as strReplaceAt } from './string/replaceAt';
 export { default as capitalize } from './string/capitalize';
 export { default as camelCase } from './string/camelCase';
 export { default as pascalCase } from './string/pascalCase';
@@ -23,6 +23,9 @@ export { default as slugify } from './string/slugify';
 // Array
 export { default as first } from './array/first';
 export { default as last } from './array/last';
+export { default as insertAt } from './array/insertAt';
+export { default as removeAt } from './array/removeAt';
+export { default as replaceAt } from './array/replaceAt';
 export { default as diff } from './array/diff';
 export { default as symDiff } from './array/symDiff';
 export { default as range } from './array/range';

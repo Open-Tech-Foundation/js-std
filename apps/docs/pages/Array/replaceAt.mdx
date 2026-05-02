@@ -1,0 +1,47 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> 🎯 Replaces items at the given index in the array.
+
+## Syntax
+
+```ts copy
+import { replaceAt } from '@opentf/std';
+
+replaceAt<T>(arr: T[], index: number, ...items: T[]): T[]
+```
+
+## Parameters
+
+| Name   | Type       | Description                     |
+| ------- | ---------- | ------------------------------- |
+| arr     | `T[]`      | The source array.                |
+| index   | `number`    | The index to replace items at.   |
+| items   | `T[]`      | The items to replace with.       |
+
+## Returns
+
+A new array with the replaced items.
+
+## Examples
+
+```ts
+replaceAt([1, 2, 3], 1, 5) //=> [1, 5, 3]
+
+replaceAt([1, 2, 3], 1, 5, 6) //=> [1, 5, 6, 3]
+
+replaceAt([1, 2, 3], 0, 0) //=> [0, 2, 3]
+```
+
+## Related
+
+- [insertAt](/Array/insertAt)
+- [removeAt](/Array/removeAt)
+
+## Try
+
+<REPL code={`const { replaceAt } = require('@opentf/std');
+
+console.log(replaceAt([1, 2, 3], 1, 5));
+console.log(replaceAt([1, 2, 3], 1, 5, 6));
+`} />

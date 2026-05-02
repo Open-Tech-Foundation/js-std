@@ -1,0 +1,47 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> 🎯 Inserts items at the given index into the array.
+
+## Syntax
+
+```ts copy
+import { insertAt } from '@opentf/std';
+
+insertAt<T>(arr: T[], index: number, ...items: T[]): T[]
+```
+
+## Parameters
+
+| Name   | Type       | Description                     |
+| ------- | ---------- | ------------------------------- |
+| arr     | `T[]`      | The source array.                |
+| index   | `number`    | The index to insert items at.    |
+| items   | `T[]`      | The items to insert.             |
+
+## Returns
+
+A new array with the inserted items.
+
+## Examples
+
+```ts
+insertAt([1, 2, 3], 1, 5) //=> [1, 5, 2, 3]
+
+insertAt([1, 2, 3], 0, 5, 6) //=> [5, 6, 1, 2, 3]
+
+insertAt([1, 2, 3], 3, 4) //=> [1, 2, 3, 4]
+```
+
+## Related
+
+- [removeAt](/Array/removeAt)
+- [replaceAt](/Array/replaceAt)
+
+## Try
+
+<REPL code={`const { insertAt } = require('@opentf/std');
+
+console.log(insertAt([1, 2, 3], 1, 5));
+console.log(insertAt([1, 2, 3], 0, 5, 6));
+`} />

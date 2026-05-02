@@ -1,20 +1,20 @@
-import { replaceAt } from '../../src';
+import { strReplaceAt } from '../../src';
 
 describe('String', () => {
-  test('replaceAt', () => {
-    expect(() => replaceAt()).toThrow();
-    expect(replaceAt('')).toBe('');
-    expect(replaceAt('', 0)).toBe('');
-    expect(replaceAt('', 0, 'a')).toBe('a');
-    expect(replaceAt('', 1, 'abc')).toBe('abc');
-    expect(replaceAt('a')).toBe('');
-    expect(replaceAt('abc')).toBe('bc');
-    expect(replaceAt('abc', 1)).toBe('ac');
-    expect(replaceAt('abc', 5)).toBe('abc');
-    expect(replaceAt('abc', 1, '')).toBe('ac');
-    expect(replaceAt('abc', 0, 'z')).toBe('zbc');
-    expect(replaceAt('iphone', 1, 'P')).toBe('iPhone');
-    expect(replaceAt('I__JS', 1, '❤️')).toBe('I❤️JS');
-    expect(replaceAt('I HATE U', 2, 'LOVE')).toBe('I LOVE U');
+  test('strReplaceAt', () => {
+    expect(() => strReplaceAt()).toThrow();
+    expect(strReplaceAt('')).toBe('');
+    expect(strReplaceAt('', 0)).toBe('');
+    expect(strReplaceAt('', 0, 'a')).toBe('a');
+    expect(strReplaceAt('', 1, 'abc')).toBe('abc');
+    expect(strReplaceAt('a')).toBe('');
+    expect(strReplaceAt('abc')).toBe('bc');
+    expect(strReplaceAt('abc', 1)).toBe('ac');
+    expect(strReplaceAt('abc', 5)).toBe('abc');
+    expect(strReplaceAt('abc', 1, '')).toBe('ac');
+    expect(strReplaceAt('abc', 0, 'z')).toBe('zbc');
+    expect(strReplaceAt('iphone', 1, 'P')).toBe('iPhone');
+    expect(strReplaceAt('I__JS', 1, '❤️')).toBe('I❤️JS');
+    expect(strReplaceAt('I HATE U', 2, 'LOVE')).toBe('I LOVE U');
   });
 });
