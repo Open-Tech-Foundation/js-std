@@ -32,6 +32,7 @@ describe('String Utils', () => {
     expect(truncate('hi-package', 8)).toBe('hi-pa...');
     expect(truncate('hi-package', 5, '---')).toBe('hi---');
     expect(truncate('hi', 5)).toBe('hi');
+    expect(truncate('😀😃😄😁', 4)).toBe('😀...');
   });
 
   test('trim', () => {

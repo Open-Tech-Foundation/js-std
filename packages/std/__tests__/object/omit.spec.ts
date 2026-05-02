@@ -59,4 +59,10 @@ describe('Object > omit', () => {
       a: { b: { c: [1, 3, 5], f: { g: [2] } } },
     });
   });
+
+  test('Symbol support', () => {
+    const sym = Symbol('foo');
+    const obj = { [sym]: 1, a: 2 };
+    expect(omit(obj, sym)).toEqual({ a: 2 });
+  });
 });

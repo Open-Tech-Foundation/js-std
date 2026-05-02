@@ -19,5 +19,5 @@ export default function truncate(
   }
 
   const maxLen = Math.max(length - omission.length, 0);
-  return str.slice(0, maxLen) + omission;
+  return Array.from(str).slice(0, maxLen).join('') + omission;
 }

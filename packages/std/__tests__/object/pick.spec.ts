@@ -79,4 +79,10 @@ describe('Object > pick', () => {
     const obj = { a: { b: { c: 3, d: 4, e: 5 } } };
     expect(pick(obj, 'a', 'a.b.c', ['a', 'b', 'e'])).toEqual(obj);
   });
+
+  test('Symbol support', () => {
+    const sym = Symbol('foo');
+    const obj = { [sym]: 1, a: 2 };
+    expect(pick(obj, sym)).toEqual({ [sym]: 1 });
+  });
 });

@@ -35,4 +35,30 @@ describe('mapAsync', () => {
     });
     expect(maxRunning).toBe(5);
   });
+
+  test('mapAsync error handling', async () => {
+    let callCount = 0;
+    try {
+      await mapAsync(
+        [1, 2, 3, 4, 5],
+        async (n) => {
+          callCount++;
+          if (n === 2) {
+            throw new Error('failed');
+          }
+          await new Promise((resolve) => setTimeout(resolve, 20));
+          return n;
+        },
+        2,
+      );
+    } catch (err) {
+      expect((err as Error).message).toBe('failed');
+    }
+    // With concurrency 2, when n=2 fails, workers should stop.
+    // However, some items might have already been picked up.
+    // 1 and 2 are picked up by worker 1 and 2.
+    // 2 fails. Worker 1 might still be processing 1.
+    // Total calls should be less than 5.
+    expect(callCount).toBeLessThan(5);
+  });
 });

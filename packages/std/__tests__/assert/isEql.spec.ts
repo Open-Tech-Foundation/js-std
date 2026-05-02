@@ -220,4 +220,21 @@ describe('Assert => isEql', () => {
     v2.setInt8(1, 5);
     expect(isEql(v1, v2)).toBe(true);
   });
+
+  test('Error advanced', () => {
+    const e1 = new Error('msg', { cause: 'foo' });
+    const e2 = new Error('msg', { cause: 'foo' });
+    const e3 = new Error('msg', { cause: 'bar' });
+    expect(isEql(e1, e2)).toBe(true);
+    expect(isEql(e1, e3)).toBe(false);
+
+    const custom1 = new Error('msg') as any;
+    custom1.code = 404;
+    const custom2 = new Error('msg') as any;
+    custom2.code = 404;
+    const custom3 = new Error('msg') as any;
+    custom3.code = 500;
+    expect(isEql(custom1, custom2)).toBe(true);
+    expect(isEql(custom1, custom3)).toBe(false);
+  });
 });

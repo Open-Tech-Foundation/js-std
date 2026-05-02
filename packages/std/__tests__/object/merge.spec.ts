@@ -138,4 +138,12 @@ describe('Object => merge', () => {
       },
     ]);
   });
+
+  test('Symbols', () => {
+    const sym = Symbol('foo');
+    const a = { [sym]: { b: 1 } };
+    const b = { [sym]: { c: 2 } };
+    const result = merge(a, b) as any;
+    expect(result[sym]).toEqual({ b: 1, c: 2 });
+  });
 });

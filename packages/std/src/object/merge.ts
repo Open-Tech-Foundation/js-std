@@ -28,6 +28,15 @@ export default function merge(...objs: object[]): object {
         acc[key] = val;
       }
     }
+
+    for (const sym of Object.getOwnPropertySymbols(cur)) {
+      const val = (cur as IterableObj)[sym];
+      if (isArray(val) || isPlainObject(val)) {
+        acc[sym] = merge(acc[sym] as object, val as object);
+      } else {
+        acc[sym] = val;
+      }
+    }
     return acc;
   }, initialVal);
 }

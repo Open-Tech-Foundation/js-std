@@ -254,4 +254,14 @@ describe('Object > Clone', () => {
     expect(output.global).toBe(true);
     expect(output.ignoreCase).toBe(true);
   });
+
+  test('Symbols', () => {
+    const sym = Symbol('foo');
+    const obj = { [sym]: 'bar', a: 1 };
+    const output = clone(obj);
+    expect(output).not.toBe(obj);
+    expect(output[sym]).toBe('bar');
+    expect(output.a).toBe(1);
+    expect(Object.getOwnPropertySymbols(output)).toContain(sym);
+  });
 });

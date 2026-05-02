@@ -125,12 +125,36 @@ function isEqlVal(
   }
 
   if (isError(val1)) {
-    if (
-      val1.name === (val2 as Error).name &&
-      val1.message === (val2 as Error).message
-    ) {
-      return true;
+    const err2 = val2 as Error;
+    if (val1.name !== err2.name || val1.message !== err2.message) {
+      return false;
     }
+
+    if (!isEqlVal(val1.cause, err2.cause, objRefSet1, objRefSet2)) {
+      return false;
+    }
+
+    const keys1 = Object.keys(val1);
+    const keys2 = Object.keys(err2);
+
+    if (keys1.length !== keys2.length) {
+      return false;
+    }
+
+    for (const key of keys1) {
+      if (
+        !isEqlVal(
+          (val1 as any)[key],
+          (val2 as any)[key],
+          objRefSet1,
+          objRefSet2,
+        )
+      ) {
+        return false;
+      }
+    }
+
+    return true;
   }
 
   if (isRegExp(val1)) {

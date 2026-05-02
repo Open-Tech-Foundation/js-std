@@ -17,10 +17,18 @@ export default async function mapAsync<T, R>(
   const results: R[] = new Array(arr.length);
   let index = 0;
 
+  let hasError = false;
+  let error: unknown;
+
   const worker = async () => {
-    while (index < arr.length) {
+    while (index < arr.length && !hasError) {
       const i = index++;
-      results[i] = await cb(arr[i], i);
+      try {
+        results[i] = await cb(arr[i], i);
+      } catch (err) {
+        hasError = true;
+        error = err;
+      }
     }
   };
 
@@ -31,5 +39,10 @@ export default async function mapAsync<T, R>(
   }
 
   await Promise.all(workers);
+
+  if (hasError) {
+    throw error;
+  }
+
   return results;
 }
