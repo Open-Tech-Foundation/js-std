@@ -1,0 +1,44 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> 🎯 Returns the last element of the array.
+
+## Syntax
+
+```ts copy
+import { last } from '@opentf/std';
+
+last<T>(arr: T[] = []): T | undefined
+```
+
+## Parameters
+
+- `arr`: The source array.
+
+## Returns
+
+The last element, or `undefined` if the array is empty.
+
+## Examples
+
+```ts
+last([1, 2, 3]) //=> 3
+
+last(['a', 'b', 'c']) //=> 'c'
+
+last([]) //=> undefined
+
+last() //=> undefined
+```
+
+## Related
+
+- [first](/Array/first)
+
+## Try
+
+<REPL code={`const { last } = require('@opentf/std');
+
+console.log(last([1, 2, 3]));
+console.log(last([]));
+`} />

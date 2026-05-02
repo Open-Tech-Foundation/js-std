@@ -1,0 +1,44 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> 🎯 Returns the first element of the array.
+
+## Syntax
+
+```ts copy
+import { first } from '@opentf/std';
+
+first<T>(arr: T[] = []): T | undefined
+```
+
+## Parameters
+
+- `arr`: The source array.
+
+## Returns
+
+The first element, or `undefined` if the array is empty.
+
+## Examples
+
+```ts
+first([1, 2, 3]) //=> 1
+
+first(['a', 'b', 'c']) //=> 'a'
+
+first([]) //=> undefined
+
+first() //=> undefined
+```
+
+## Related
+
+- [last](/Array/last)
+
+## Try
+
+<REPL code={`const { first } = require('@opentf/std');
+
+console.log(first([1, 2, 3]));
+console.log(first([]));
+`} />

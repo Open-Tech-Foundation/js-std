@@ -21,6 +21,8 @@ export { default as escapeRegExp } from './string/escapeRegExp';
 export { default as slugify } from './string/slugify';
 
 // Array
+export { default as first } from './array/first';
+export { default as last } from './array/last';
 export { default as diff } from './array/diff';
 export { default as symDiff } from './array/symDiff';
 export { default as range } from './array/range';

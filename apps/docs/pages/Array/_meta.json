@@ -1,4 +1,6 @@
 {
+  "first": "first",
+  "last": "last",
   "insert": "insert",
   "remove": "remove",
   "replace": "replace",
