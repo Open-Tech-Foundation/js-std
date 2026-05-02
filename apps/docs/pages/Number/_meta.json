@@ -1,4 +1,5 @@
 {
+  "formatBytes": "formatBytes",
   "formatOrdinal": "formatOrdinal",
   "inRange": "inRange",
   "isNegZero": "isNegZero",

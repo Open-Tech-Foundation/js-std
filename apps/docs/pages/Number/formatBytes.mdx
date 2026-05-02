@@ -1,0 +1,57 @@
+import { Callout } from "nextra/components";
+import REPL from "../../components/REPL";
+
+> 💾 Formats a number of bytes into a human-readable string.
+
+## Syntax
+
+```ts copy
+import { formatBytes } from '@opentf/std';
+
+formatBytes(bytes: number, options?: { decimals?: number; binary?: boolean }): string
+```
+
+## Parameters
+
+| Name     | Type        | Description                                                        |
+| -------- | ----------- | ------------------------------------------------------------------ |
+| bytes    | `number`    | The number of bytes.                                               |
+| options  | `object`    | The options object.                                                |
+| options.decimals | `number` | The number of decimal places (default 2).                   |
+| options.binary  | `boolean`| If true, use 1024 as base (KiB); otherwise 1000 (KB) (default true). |
+
+## Returns
+
+The formatted string with appropriate unit (B, KiB/MiB/GiB for binary, KB/MB/GB for decimal).
+
+## Examples
+
+```ts
+formatBytes(0) //=> '0 B'
+
+formatBytes(1023) //=> '1023 B'
+
+formatBytes(1024) //=> '1 KiB'
+
+formatBytes(1536) //=> '1.5 KiB'
+
+formatBytes(1234567) //=> '1.18 MiB'
+
+formatBytes(1234567, { decimals: 0 }) //=> '1 MiB'
+
+formatBytes(-1024) //=> '-1 KiB'
+
+formatBytes(1000, { binary: false }) //=> '1 KB' (using 1000 as base)
+```
+
+## Try
+
+<REPL code={`const { formatBytes } = require('@opentf/std');
+
+console.log(formatBytes(0));
+console.log(formatBytes(1024));
+console.log(formatBytes(1536));
+console.log(formatBytes(1234567));
+console.log(formatBytes(1234567, { decimals: 0 }));
+console.log(formatBytes(1000, { binary: false }));
+`} />
