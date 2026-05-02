@@ -1,10 +1,11 @@
+import type { ColorInput } from './color';
 import colorContrast from './colorContrast';
 
 /**
  * Returns the WCAG conformance level for the contrast ratio between two colors.
  *
- * @param {any} color1 The first color.
- * @param {any} color2 The second color.
+ * @param {ColorInput} color1 The first color.
+ * @param {ColorInput} color2 The second color.
  * @returns {'A' | 'AA' | 'AAA' | 'FAIL'} The WCAG level.
  *
  * @example
@@ -15,8 +16,8 @@ import colorContrast from './colorContrast';
  */
 
 export default function colorWCAGLevel(
-  color1: any,
-  color2: any,
+  color1: ColorInput,
+  color2: ColorInput,
 ): 'A' | 'AA' | 'AAA' | 'FAIL' {
   const ratio = colorContrast(color1, color2);
 

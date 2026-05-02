@@ -1,18 +1,18 @@
-import color, { type ColorFormat } from './color';
+import color, { type ColorFormat, type ColorInput } from './color';
 
 /**
  * Rotates the hue of a color.
  *
- * @param {any} input - The input color.
+ * @param {ColorInput} input - The input color.
  * @param {number} degrees - The degrees to rotate (can be negative).
  * @param {ColorFormat} [format='hex'] - The output format.
- * @returns {any} - The hue-rotated color.
+ * @returns {string | number | object} - The hue-rotated color.
  */
 export default function colorRotateHue(
-  input: any,
+  input: ColorInput,
   degrees: number,
   format: ColorFormat = 'hex',
-): any {
+): string | number | object {
   const hsla = color(input, 'hsla-object');
   hsla.h = (hsla.h + degrees) % 360;
   if (hsla.h < 0) hsla.h += 360;

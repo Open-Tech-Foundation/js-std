@@ -4,7 +4,7 @@ type RGBA = { r: number; g: number; b: number; a: number };
 type HSLA = { h: number; s: number; l: number; a: number };
 type OKLCH = { l: number; c: number; h: number; a: number };
 
-type ColorInput =
+export type ColorInput =
   | string
   | number
   | [number, number, number]

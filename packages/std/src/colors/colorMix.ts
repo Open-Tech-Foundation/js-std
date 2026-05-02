@@ -1,20 +1,20 @@
-import color from './color';
+import color, { type ColorFormat, type ColorInput } from './color';
 
 /**
  * Mixes two colors together.
  *
- * @param {any} color1 - The first color.
- * @param {any} color2 - The second color.
+ * @param {ColorInput} color1 - The first color.
+ * @param {ColorInput} color2 - The second color.
  * @param {number} [weight=0.5] - The weight of the first color (0 to 1).
- * @param {string} [format='hex'] - The output format.
- * @returns {any} - The mixed color.
+ * @param {ColorFormat} [format='hex'] - The output format.
+ * @returns {string | number | object} - The mixed color.
  */
 export default function colorMix(
-  color1: any,
-  color2: any,
+  color1: ColorInput,
+  color2: ColorInput,
   weight = 0.5,
-  format: any = 'hex',
-): any {
+  format: ColorFormat = 'hex',
+): string | number | object {
   const rgba1 = color(color1, 'rgba-object');
   const rgba2 = color(color2, 'rgba-object');
 
