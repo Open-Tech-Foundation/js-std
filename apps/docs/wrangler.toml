@@ -1,3 +1,7 @@
 name = "opentf-std-docs"
 pages_build_output_dir = "build"
 compatibility_date = "2026-05-02"
+
+[build]
+command = "bun run build"
+path = "build"
