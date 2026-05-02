@@ -2,17 +2,14 @@
 
 Converts a sync iterable to an async iterable.
 
-## Usage
+Equivalent to `Iterator.prototype.toAsync()` proposal.
+
+@param {Iterable<T>} iter The sync iterable to convert.
+@returns {AsyncIterableIterator<T>} A new async iterable iterator.
+
+### Example
 
 ```js
-import { toAsyncIter } from '@opentf/std';
-
-async function* asyncGen(arr) {
-  for (const item of arr) {
-    yield item;
-  }
-}
-
-const result = await toAsyncIter([1, 2, 3]);
-// ...
+const asyncIter = toAsyncIter([1, 2, 3]);
+for await (const x of asyncIter) { console.log(x); } //=> 1, 2, 3
 ```

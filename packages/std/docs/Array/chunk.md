@@ -2,26 +2,11 @@
 
 Splits an array into groups of a specified size.
 
-## Syntax
+@param {T[]} arr The source array.
+@param {number} size The length of each chunk.
+@returns {T[][]} A new array containing the chunks.
 
-```ts
-import { chunk } from '@opentf/std';
-
-chunk<T>(arr: T[] = [], size = 1): T[][]
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| arr | `T[]` | The source array. |
-| size | `number` | The length of each chunk. |
-
-## Returns
-
-`T[][]`: A new array containing the chunks.
-
-## Example
+### Example
 
 ```js
 chunk(['a', 'b', 'c', 'd'], 2) //=> [['a', 'b'], ['c', 'd']]

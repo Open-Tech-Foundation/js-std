@@ -1,18 +1,13 @@
 # toArrayIterAsync
 
-Collects all items into an array.
+Collects all items from an async iterator into an array.
 
-## Usage
+@param {AsyncIterable<T>} iter The async iterable to collect.
+@returns {Promise<T[]>} A promise that resolves to an array of all items.
+
+### Example
 
 ```js
-import { toArrayIterAsync } from '@opentf/std';
-
-async function* asyncGen(arr) {
-  for (const item of arr) {
-    yield item;
-  }
-}
-
-const result = await toArrayIterAsync(asyncGen([1, 2, 3]));
-// ...
+async function* gen() { yield 1; yield 2; }
+await toArrayIterAsync(gen()) //=> [1, 2]
 ```

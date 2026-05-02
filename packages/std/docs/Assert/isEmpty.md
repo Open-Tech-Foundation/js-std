@@ -2,25 +2,11 @@
 
 Checks if the given collection is empty.
 
-## Syntax
+@param {unknown} val The value to check.
+@param {boolean} [sparse=false] Whether to check for sparse arrays.
+@returns {boolean} True if empty, false otherwise.
 
-```ts
-import { isEmpty } from '@opentf/std';
-
-isEmpty(val: unknown, sparse = false): boolean
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| val | `unknown` | The value to check. |
-
-## Returns
-
-`boolean`: True if empty, false otherwise.
-
-## Example
+### Example
 
 ```js
 isEmpty([]) //=> true

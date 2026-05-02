@@ -2,26 +2,11 @@
 
 Finds the index of the last item in an iterator that matches a predicate.
 
-## Syntax
+@param {Iterable<T>} iter The iterable to search.
+@param {(val: T) => boolean} fn The predicate function.
+@returns {number} The index of the last matching item, or -1.
 
-```ts
-import { findLastIndexIter } from '@opentf/std';
-
-findLastIndexIter<T>(iter: Iterable<T>, fn: (val: T) => boolean): number
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| iter | `Iterable<T>` | The iterable to search. |
-| fn | `(val: T) => boolean` | The predicate function. |
-
-## Returns
-
-`number`: The index of the last matching item, or -1.
-
-## Example
+### Example
 
 ```js
 findLastIndexIter([1, 2, 3, 2], x => x === 2) //=> 3

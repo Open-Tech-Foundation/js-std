@@ -2,26 +2,11 @@
 
 Returns a random element from the given array.
 
-## Syntax
+@param {T[]} arr The source array.
+@returns {T | undefined} A random element, or undefined if empty.
 
-```ts
-import { sample } from '@opentf/std';
-
-sample<T>(arr: T[] = []): T | undefined
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| arr | `T[]` | The source array. |
-
-## Returns
-
-`T | undefined`: A random element, or undefined if empty.
-
-## Example
+### Example
 
 ```js
-sample([1, 2, 3]) //=> 1, 2, or 3 (random)
+sample([1, 2, 3]) //=> 1, 2, or 3
 ```

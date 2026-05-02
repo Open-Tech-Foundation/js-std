@@ -2,26 +2,11 @@
 
 Parses and converts colors between various formats.
 
-## Syntax
+@param {string|number|Array|Object} input The color input.
+@param {string} format The output format.
+@returns {string|number|Array|Object} The converted color.
 
-```ts
-import { color } from '@opentf/std';
-
-color(input: ColorInput, format: ColorFormat): any
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| input | `string|number|Array|Object` | The color input. |
-| format | `string` | The output format. |
-
-## Returns
-
-`string|number|Array|Object`: The converted color.
-
-## Example
+### Example
 
 ```js
 color('#ff0000', 'rgb') //=> 'rgb(255, 0, 0)'

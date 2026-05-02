@@ -1,29 +1,15 @@
 # remove
 
-Removes items at the given index from the given array.
+Removes items at the given index or all elements matching the predicate.
 
-## Syntax
+@param {T[]} arr The source array.
+@param {number|Function} indexOrFn The index or predicate function.
+@param {number} count The number of items to remove (ignored when using predicate).
+@returns {T[]} A new array with the removed items.
 
-```ts
-import { remove } from '@opentf/std';
-
-remove<T>(arr: T[] = [], index?: number, count = 1): T[]
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| arr | `T[]` | The source array. |
-| index | `number` | The index to remove items from. |
-| count | `number` | The number of items to remove. |
-
-## Returns
-
-`T[]`: A new array with the removed items.
-
-## Example
+### Example
 
 ```js
 remove([1, 2, 3], 1, 2); //=> [1]
+remove([1, 2, 3, 4, 5], (x) => x % 2 === 0); //=> [1, 3, 5]
 ```

@@ -1,18 +1,15 @@
 # fromIterAsync
 
-Creates an async iterator from various sources.
+Creates an AsyncIterableIterator from an iterable, async iterable, or iterator-like object.
 
-## Usage
+Equivalent to `AsyncIterator.from(O)` proposal.
+
+@param {AsyncIterable<T> | Iterable<T> | { next: () => Promise<IteratorResult<T>> | IteratorResult<T> }} iter The source object.
+@returns {AsyncIterableIterator<T>} A new async iterable iterator.
+
+### Example
 
 ```js
-import { fromIterAsync } from '@opentf/std';
-
-async function* asyncGen(arr) {
-  for (const item of arr) {
-    yield item;
-  }
-}
-
-const result = await fromIterAsync([1, 2, 3]);
-// ...
+const it = fromIterAsync([1, 2, 3]);
+for await (const x of it) { console.log(x); } //=> 1, 2, 3
 ```

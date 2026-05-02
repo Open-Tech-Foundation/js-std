@@ -2,26 +2,6 @@
 
 Inverts a color.
 
-## Syntax
-
-```ts
-import { colorInvert } from '@opentf/std';
-
-colorInvert( input: any, format: ColorFormat = 'hex', ): any
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| input | `any` | - The input color. |
-
-## Returns
-
-`any`: - The inverted color.
-
-## Example
-
-```js
-
-```
+@param {ColorInput} input - The input color.
+@param {ColorFormat} [format='hex'] - The output format.
+@returns {string | number | object} - The inverted color.

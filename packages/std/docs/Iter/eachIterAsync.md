@@ -2,22 +2,11 @@
 
 Executes a function for each item in an async iterator.
 
-## Syntax
+@param {AsyncIterable<T>} iter The async iterable to iterate over.
+@param {(val: T) => void | Promise<void>} fn The function to execute.
+@returns {Promise<void>} A promise that resolves when iteration is complete.
 
-```ts
-import { eachIterAsync } from '@opentf/std';
-
-eachIterAsync<T>(iter: AsyncIterable<T>, fn: (val: T) => void | Promise<void>): Promise<void>
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| iter | `AsyncIterable<T>` | The async iterable to iterate over. |
-| fn | `Function` | The function to execute. |
-
-## Example
+### Example
 
 ```js
 async function* gen() { yield 1; yield 2; }

@@ -1,29 +1,17 @@
 # insert
 
-Inserts items at the given index into the given array.
+Inserts items at the given index or before/after the first element matching the predicate.
 
-## Syntax
+@param {T[]} arr The source array.
+@param {number|Function} indexOrFn The index or predicate function.
+@param {T[]} items The items to insert.
+@param {string} position Insert before or after the match (default 'before').
+@returns {T[]} A new array with the inserted items.
 
-```ts
-import { insert } from '@opentf/std';
-
-insert<T>(arr: T[] = [], index: number | null | undefined, ...items: T[]): T[]
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| arr | `T[]` | The source array. |
-| index | `number` | The index to insert items at. |
-| items | `T[]` | The items to insert. |
-
-## Returns
-
-`T[]`: A new array with the inserted items.
-
-## Example
+### Example
 
 ```js
 insert([1, 2, 3], 1, 5); //=> [1, 5, 2, 3]
+insert([1, 2, 3], (x) => x === 2, 5); //=> [1, 5, 2, 3]
+insert([1, 2, 3], (x) => x === 2, 5, 'after'); //=> [1, 2, 5, 3]
 ```

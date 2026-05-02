@@ -3,15 +3,7 @@
 Creates a throttled function that only invokes `func` at most once per
 every `interval` milliseconds.
 
-## Syntax
-
-```ts
-import { paceRun } from '@opentf/std';
-
-paceRun<T extends (...args: any[]) => any>( func: T, interval = 0, options:
-```
-
-## Example
+### Example
 
 ```js
 const run = paceRun((val) => console.log(val), 500);

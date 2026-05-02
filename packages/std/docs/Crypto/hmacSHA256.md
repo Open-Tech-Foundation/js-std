@@ -2,28 +2,16 @@
 
 Computes an HMAC-SHA-256 digest of a message with the given key.
 
-## Syntax
+Uses Node.js `crypto` module when available, otherwise falls back to
+the Web Crypto API (`SubtleCrypto`).
 
-```ts
-import { hmacSHA256 } from '@opentf/std';
+@param key - The secret key.
+@param message - The message to authenticate.
+@returns The hex-encoded HMAC-SHA-256 digest.
 
-hmacSHA256(key: string, message: string): Promise<string>
-```
-
-## Parameters
-
-| Name    | Type     | Description                |
-| ------- | -------- | -------------------------- |
-| key     | `string` | The secret key.            |
-| message | `string` | The message to authenticate. |
-
-## Returns
-
-`Promise<string>`: The hex-encoded HMAC-SHA-256 digest.
-
-## Example
+### Example
 
 ```js
+
 await hmacSHA256('secret', 'hello')
-//=> '88aab3ede8d3adf94d26ab90d3bafd4a2083070c3bcce9c014ee04a443847c0b'
 ```

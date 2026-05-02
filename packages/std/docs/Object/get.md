@@ -2,26 +2,12 @@
 
 Gets the value of an object at the given path.
 
-## Syntax
+@param {Object} obj The object to query.
+@param {string|Array} path The path of the property to get.
+@param {unknown} [defVal] The value returned for undefined resolved values.
+@returns {unknown} The resolved value.
 
-```ts
-import { get } from '@opentf/std';
-
-get( obj: object, path: string | unknown[], defVal?: unknown, ): unknown
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| obj | `Object` | The object to query. |
-| path | `string|Array` | The path of the property to get. |
-
-## Returns
-
-`unknown`: The resolved value.
-
-## Example
+### Example
 
 ```js
 get({a: {b: {c: 1}}}, 'a.b.c') //=> 1

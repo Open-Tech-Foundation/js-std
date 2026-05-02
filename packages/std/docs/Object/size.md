@@ -2,17 +2,10 @@
 
 Returns the size of the given value.
 
-## Syntax
-
-```ts
-import { size } from '@opentf/std';
-
-size(val: unknown): number
-```
-
-## Example
+### Example
 
 ```js
+
 size([]) //=> 0
 
 size('a') //=> 1

@@ -2,27 +2,12 @@
 
 Skips the given number of elements at the start of the given array.
 
-## Syntax
+@param {T[]} arr The source array.
+@param {number} limit The number of elements to drop.
+@param {Function} cb The callback to test elements.
+@returns {T[]} A new array with dropped elements.
 
-```ts
-import { drop } from '@opentf/std';
-
-drop<T>( arr: T[], limit: number | null = 1, cb?: (val: T) => boolean, ): T[]
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| arr | `T[]` | The source array. |
-| limit | `number` | The number of elements to drop. |
-| cb | `Function` | The callback to test elements. |
-
-## Returns
-
-`T[]`: A new array with dropped elements.
-
-## Example
+### Example
 
 ```js
 drop([1, 2, 3, 4, 5], 3) //=> [4, 5]

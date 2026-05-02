@@ -2,40 +2,11 @@
 
 Executes a function for each item in an iterator.
 
-## Syntax
+@param {Iterable<T>} iter The iterable to iterate over.
+@param {(val: T) => void} fn The function to execute.
 
-```ts
-import { eachIter } from '@opentf/std';
-
-eachIter<T>(iter: Iterable<T>, fn: (val: T) => void): void
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| iter | `Iterable<T>` | The iterable to iterate over. |
-| fn | `Function` | The function to execute. |
-
-## Example
+### Example
 
 ```js
 eachIter([1, 2, 3], x => console.log(x)) //=> Logs 1, 2, 3
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| iter | `Iterable<T>` | The iterable to iterate over. |
-| fn | `(val: T) => void` | The function to execute. |
-
-## Returns
-
-`void`
-
-## Example
-
-```js
-forEachIter([1, 2, 3], x => console.log(x)) //=> Logs 1, 2, 3
 ```

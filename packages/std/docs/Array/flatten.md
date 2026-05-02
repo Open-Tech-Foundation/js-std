@@ -2,26 +2,11 @@
 
 Flattens an array up to the specified depth.
 
-## Syntax
+@param {T[]} arr The source array.
+@param {number} depth The maximum recursion depth. Defaults to 1.
+@returns {any[]} A new flattened array.
 
-```ts
-import { flatten } from '@opentf/std';
-
-flatten<T>(arr: T[] = [], depth = 1): any[]
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| arr | `T[]` | The source array. |
-| depth | `number` | The maximum recursion depth. Defaults to `1`. |
-
-## Returns
-
-`any[]`: A new flattened array.
-
-## Example
+### Example
 
 ```js
 flatten([1, [2, [3, [4]]]]) //=> [1, 2, [3, [4]]]

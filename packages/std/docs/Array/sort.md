@@ -2,25 +2,11 @@
 
 Sorts an array of items.
 
-## Syntax
+@param {T[]} arr The source array.
+@param {string} [order='asc'] The sort order ('asc' or 'desc').
+@returns {T[]} A new sorted array.
 
-```ts
-import { sort } from '@opentf/std';
-
-sort<T>(arr: T[] = [], order: OrderType = 'asc'): T[]
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| arr | `T[]` | The source array. |
-
-## Returns
-
-`T[]`: A new sorted array.
-
-## Example
+### Example
 
 ```js
 sort([1, 3, 2]) //=> [1, 2, 3]

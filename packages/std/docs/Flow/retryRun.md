@@ -2,25 +2,11 @@
 
 Retries an asynchronous function according to the specified options.
 
-## Syntax
+@param {Function} func The async function to retry.
+@param {Object} [options] The retry options.
+@returns {Promise<T>} A promise that resolves to the function result.
 
-```ts
-import { retryRun } from '@opentf/std';
-
-retryRun
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| func | `Function` | The async function to retry. |
-
-## Returns
-
-`Promise<T>`: A promise that resolves to the function result.
-
-## Example
+### Example
 
 ```js
 const result = await retryRun(() => fetchData(), { retries: 3, delay: 1000 });

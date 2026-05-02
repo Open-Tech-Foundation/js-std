@@ -2,17 +2,12 @@
 
 Returns the first item from an async iterable.
 
-## Usage
+@param {AsyncIterable<T>} iter The async iterable to search.
+@returns {Promise<T | undefined>} A promise that resolves to the first item, or undefined.
+
+### Example
 
 ```js
-import { firstIterAsync } from '@opentf/std';
-
-async function* asyncGen(arr) {
-  for (const item of arr) {
-    yield item;
-  }
-}
-
-const result = await firstIterAsync(asyncGen([1, 2, 3]));
-// ...
+async function* gen() { yield 1; yield 2; }
+await firstIterAsync(gen()) //=> 1
 ```

@@ -3,15 +3,10 @@
 Reverses a string using grapheme cluster awareness via Intl.Segmenter.
 Correctly handles surrogate pairs, combining marks, and emoji sequences.
 
-## Syntax
+@param {string} str The string to reverse.
+@returns {string} The reversed string.
 
-```ts
-import { stringReverse } from '@opentf/std';
-
-stringReverse(str: string): string
-```
-
-## Example
+### Example
 
 ```js
 stringReverse('hello') //=> 'olleh'

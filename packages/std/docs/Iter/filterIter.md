@@ -2,26 +2,11 @@
 
 Filters items in an iterator based on a predicate.
 
-## Syntax
+@param {Iterable<T>} iter The iterable to filter.
+@param {(val: T) => boolean} fn The predicate function.
+@returns {IterableIterator<T>} A new iterable iterator.
 
-```ts
-import { filterIter } from '@opentf/std';
-
-filterIter<T>(iter: Iterable<T>, fn: (val: T) => boolean): IterableIterator<T>
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| iter | `Iterable<T>` | The iterable to filter. |
-| fn | `(val: T) => boolean` | The predicate function. |
-
-## Returns
-
-`IterableIterator<T>`: A new iterable iterator.
-
-## Example
+### Example
 
 ```js
 const evens = filterIter([1, 2, 3, 4], x => x % 2 === 0);

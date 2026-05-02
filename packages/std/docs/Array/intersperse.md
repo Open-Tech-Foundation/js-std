@@ -2,26 +2,11 @@
 
 Inserts a separator between the elements of its list argument.
 
-## Syntax
+@param {string|unknown[]} list The source list.
+@param {Function|unknown} sep The separator to insert.
+@returns {string|unknown[]} A new list with the separator inserted.
 
-```ts
-import { intersperse } from '@opentf/std';
-
-intersperse( list: string | unknown[], sep: ((index: number) => unknown) | unknown, ): string | unknown[]
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| list | `string|unknown[]` | The source list. |
-| sep | `Function|unknown` | The separator to insert. |
-
-## Returns
-
-`string|unknown[]`: A new list with the separator inserted.
-
-## Example
+### Example
 
 ```js
 intersperse([1, 2, 3], '*') //=> [1, '*', 2, '*', 3]

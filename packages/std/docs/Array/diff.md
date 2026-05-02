@@ -2,26 +2,11 @@
 
 Creates an array with the values of the first array not included in the other arrays.
 
-## Syntax
+@param {unknown[][]} collections The arrays to compare.
+@param {Function} by The iteratee invoked per element.
+@returns {unknown[]} A new array of filtered values.
 
-```ts
-import { diff } from '@opentf/std';
-
-diff( collections: unknown[][] = [], by?: (val: unknown) => unknown, ): unknown[]
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| collections | `unknown[][]` | The arrays to compare. |
-| by | `Function` | The iteratee invoked per element. |
-
-## Returns
-
-`unknown[]`: A new array of filtered values.
-
-## Example
+### Example
 
 ```js
 diff([[1, 2], [2, 3]]) //=> [1]

@@ -2,25 +2,10 @@
 
 Converts string to PascalCase.
 
-## Syntax
+@param {string} str The string to convert.
+@returns {string} The PascalCased string.
 
-```ts
-import { pascalCase } from '@opentf/std';
-
-pascalCase(str: string): string
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| str | `string` | The string to convert. |
-
-## Returns
-
-`string`: The PascalCased string.
-
-## Example
+### Example
 
 ```js
 pascalCase('foo bar') //=> 'FooBar'

@@ -2,26 +2,11 @@
 
 Maps each item in an iterator and flattens the result.
 
-## Syntax
+@param {Iterable<T>} iter The iterable to transform.
+@param {(val: T) => Iterable<U>} fn The mapper function returning iterables.
+@returns {IterableIterator<U>} A new iterable iterator.
 
-```ts
-import { flatMapIter } from '@opentf/std';
-
-flatMapIter<T, U>(iter: Iterable<T>, fn: (val: T) => Iterable<U>): IterableIterator<U>
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| iter | `Iterable<T>` | The iterable to transform. |
-| fn | `(val: T) => Iterable<U>` | The mapper function returning iterables. |
-
-## Returns
-
-`IterableIterator<U>`: A new iterable iterator.
-
-## Example
+### Example
 
 ```js
 const flattened = flatMapIter([1, 2], x => [x, x * 10]);

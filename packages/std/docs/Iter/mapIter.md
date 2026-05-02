@@ -2,26 +2,11 @@
 
 Transforms each item in an iterator using a mapper function.
 
-## Syntax
+@param {Iterable<T>} iter The iterable to transform.
+@param {(val: T) => U} fn The mapper function.
+@returns {IterableIterator<U>} A new iterable iterator.
 
-```ts
-import { mapIter } from '@opentf/std';
-
-mapIter<T, U>(iter: Iterable<T>, fn: (val: T) => U): IterableIterator<U>
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| iter | `Iterable<T>` | The iterable to transform. |
-| fn | `(val: T) => U` | The mapper function. |
-
-## Returns
-
-`IterableIterator<U>`: A new iterable iterator.
-
-## Example
+### Example
 
 ```js
 const doubled = mapIter([1, 2, 3], x => x * 2);

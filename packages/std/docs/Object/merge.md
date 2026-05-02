@@ -2,15 +2,7 @@
 
 It deeply merges objects or arrays.
 
-## Syntax
-
-```ts
-import { merge } from '@opentf/std';
-
-merge(...objs: object[]): object
-```
-
-## Example
+### Example
 
 ```js
 const a = { a: { b: 1 } };

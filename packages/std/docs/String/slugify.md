@@ -2,15 +2,7 @@
 
 Converts a string into a URL-friendly slug.
 
-## Syntax
-
-```ts
-import { slugify } from '@opentf/std';
-
-slugify(str: string): string
-```
-
-## Example
+### Example
 
 ```js
 slugify('Hello World!') //=> 'hello-world'

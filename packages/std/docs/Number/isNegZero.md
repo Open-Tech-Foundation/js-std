@@ -2,25 +2,10 @@
 
 Checks if the given number is negative zero (-0).
 
-## Syntax
+@param {number} n The number to check.
+@returns {boolean} True if -0, false otherwise.
 
-```ts
-import { isNegZero } from '@opentf/std';
-
-isNegZero(n: number): boolean
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| n | `number` | The number to check. |
-
-## Returns
-
-`boolean`: True if -0, false otherwise.
-
-## Example
+### Example
 
 ```js
 isNegZero(-0) //=> true

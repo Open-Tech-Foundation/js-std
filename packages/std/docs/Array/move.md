@@ -2,27 +2,12 @@
 
 Moves an array element from one index position to another.
 
-## Syntax
+@param {T[]} arr The source array.
+@param {number} from The index of the element to move.
+@param {number} to The index to move the element to.
+@returns {T[]} A new array with the moved element.
 
-```ts
-import { move } from '@opentf/std';
-
-move<T>(arr: T[], from: number, to: number): T[]
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| arr | `T[]` | The source array. |
-| from | `number` | The index of the element to move. |
-| to | `number` | The index to move the element to. |
-
-## Returns
-
-`T[]`: A new array with the moved element.
-
-## Example
+### Example
 
 ```js
 move([1, 2, 3], 0, 2) //=> [2, 3, 1]

@@ -2,25 +2,10 @@
 
 Randomizes the order of the elements in a given array.
 
-## Syntax
+@param {T[]} arr The source array.
+@returns {T[]} A new shuffled array.
 
-```ts
-import { shuffle } from '@opentf/std';
-
-shuffle<T>(arr: T[]): T[]
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| arr | `T[]` | The source array. |
-
-## Returns
-
-`T[]`: A new shuffled array.
-
-## Example
+### Example
 
 ```js
 shuffle([1, 2, 3]) //=> [2, 3, 1]

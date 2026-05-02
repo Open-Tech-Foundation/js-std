@@ -2,26 +2,11 @@
 
 Creates a slice of array with elements taken from the beginning while the predicate returns true.
 
-## Syntax
+@param {T[]} arr The source array.
+@param {Function} predicate The function invoked per element.
+@returns {T[]} A new array with taken elements.
 
-```ts
-import { takeWhile } from '@opentf/std';
-
-takeWhile<T>(arr: T[] = [], predicate: (val: T, index: number, arr: T[]) => boolean): T[]
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| arr | `T[]` | The source array. |
-| predicate | `Function` | The function invoked per element. |
-
-## Returns
-
-`T[]`: A new array with taken elements.
-
-## Example
+### Example
 
 ```js
 takeWhile([1, 2, 3, 4, 5], (n) => n < 4) //=> [1, 2, 3]

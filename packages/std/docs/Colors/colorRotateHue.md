@@ -2,27 +2,7 @@
 
 Rotates the hue of a color.
 
-## Syntax
-
-```ts
-import { colorRotateHue } from '@opentf/std';
-
-colorRotateHue( input: any, degrees: number, format: ColorFormat = 'hex', ): any
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| input | `any` | - The input color. |
-| degrees | `number` | - The degrees to rotate (can be negative). |
-
-## Returns
-
-`any`: - The hue-rotated color.
-
-## Example
-
-```js
-
-```
+@param {ColorInput} input - The input color.
+@param {number} degrees - The degrees to rotate (can be negative).
+@param {ColorFormat} [format='hex'] - The output format.
+@returns {string | number | object} - The hue-rotated color.

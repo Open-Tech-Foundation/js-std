@@ -1,18 +1,14 @@
 # findIndexIterAsync
 
-Returns the index of the first item that matches the predicate.
+Finds the index of the first item in an async iterator that matches a predicate.
 
-## Usage
+@param {AsyncIterable<T>} iter The async iterable to search.
+@param {(val: T) => boolean | Promise<boolean>} fn The predicate function.
+@returns {Promise<number>} A promise that resolves to the index of the first matching item, or -1.
+
+### Example
 
 ```js
-import { findIndexIterAsync } from '@opentf/std';
-
-async function* asyncGen(arr) {
-  for (const item of arr) {
-    yield item;
-  }
-}
-
-const result = await findIndexIterAsync(asyncGen([1, 2, 3]), x => x === 2);
-// ...
+async function* gen() { yield 1; yield 2; }
+await findIndexIterAsync(gen(), x => x === 2) //=> 1
 ```

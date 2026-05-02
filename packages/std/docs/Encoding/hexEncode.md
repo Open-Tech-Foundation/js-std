@@ -2,25 +2,10 @@
 
 Encodes a string to Hex format.
 
-## Syntax
+@param {string} str The string to encode.
+@returns {string} The Hex encoded string.
 
-```ts
-import { hexEncode } from '@opentf/std';
-
-hexEncode(str: string): string
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| str | `string` | The string to encode. |
-
-## Returns
-
-`string`: The Hex encoded string.
-
-## Example
+### Example
 
 ```js
 hexEncode('Hello') //=> '48656c6c6f'

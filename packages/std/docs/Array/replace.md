@@ -1,30 +1,15 @@
 # replace
 
-Replaces items at the given index from the given array.
+Replaces items at the given index or all elements matching the predicate.
 
-## Syntax
+@param {T[]} arr The source array.
+@param {number|Function} indexOrFn The index or predicate function.
+@param {T[]} items The items to replace with.
+@returns {T[]} A new array with the replaced items.
 
-```ts
-import { replace } from '@opentf/std';
-
-replace<T>(arr: T[] = [], index: number | null = null, deleteCount: number | null = null, ...replacements: T[]): T[]
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| arr | `T[]` | The source array. |
-| index | `number` | The index to replace items at. |
-| deleteCount | `number` | The number of items to delete. |
-| replacements | `T[]` | The items to replace with. |
-
-## Returns
-
-`T[]`: A new array with the replaced items.
-
-## Example
+### Example
 
 ```js
-replace([1, 2, 3], 1, 1, 5); //=> [1, 5, 3]
+replace([1, 2, 3], 1, 5); //=> [1, 5, 3]
+replace([1, 2, 3, 4, 5], (x) => x % 2 === 0, 0); //=> [1, 0, 3, 0, 5]
 ```

@@ -2,15 +2,7 @@
 
 Creates a batched function that collects calls and processes them in groups.
 
-## Syntax
-
-```ts
-import { batchRun } from '@opentf/std';
-
-batchRun<T extends any[], R>( batchProcessor: (argsList: T[]) => Promise<R[]>, options:
-```
-
-## Example
+### Example
 
 ```js
 const batchFetch = batchRun(async (batch) => {

@@ -1,18 +1,14 @@
 # findLastIndexIterAsync
 
-Returns the index of the last item that matches the predicate.
+Finds the index of the last item in an async iterator that matches a predicate.
 
-## Usage
+@param {AsyncIterable<T>} iter The async iterable to search.
+@param {(val: T) => boolean | Promise<boolean>} fn The predicate function.
+@returns {Promise<number>} A promise that resolves to the index of the last matching item, or -1.
+
+### Example
 
 ```js
-import { findLastIndexIterAsync } from '@opentf/std';
-
-async function* asyncGen(arr) {
-  for (const item of arr) {
-    yield item;
-  }
-}
-
-const result = await findLastIndexIterAsync(asyncGen([1, 2, 3, 2]), x => x === 2);
-// ...
+async function* gen() { yield 1; yield 2; yield 3; }
+await findLastIndexIterAsync(gen(), x => x < 3) //=> 1
 ```

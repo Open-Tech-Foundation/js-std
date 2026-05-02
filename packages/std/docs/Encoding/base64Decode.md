@@ -2,25 +2,10 @@
 
 Decodes a Base64 string.
 
-## Syntax
+@param {string} str The Base64 string to decode.
+@returns {string} The decoded string.
 
-```ts
-import { base64Decode } from '@opentf/std';
-
-base64Decode(str: string): string
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| str | `string` | The Base64 string to decode. |
-
-## Returns
-
-`string`: The decoded string.
-
-## Example
+### Example
 
 ```js
 base64Decode('SGVsbG8=') //=> 'Hello'

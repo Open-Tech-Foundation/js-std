@@ -2,17 +2,10 @@
 
 Checks if the given value is a BigInt.
 
-## Syntax
-
-```ts
-import { isBigInt } from '@opentf/std';
-
-isBigInt(val: unknown): val is bigint
-```
-
-## Example
+### Example
 
 ```js
+
 isBigInt(1) //=> false
 
 isBigInt(1n) //=> true

@@ -1,18 +1,15 @@
 # takeWhileIterAsync
 
-Yields items as long as the predicate is true.
+Returns an AsyncGenerator that yields items from an AsyncIterable as long as a predicate is true.
 
-## Usage
+@param {AsyncIterable<T>} iter The source async iterable.
+@param {(val: T) => boolean | Promise<boolean>} fn The predicate function.
+@returns {AsyncIterableIterator<T>} A new async iterable iterator.
+
+### Example
 
 ```js
-import { takeWhileIterAsync } from '@opentf/std';
-
-async function* asyncGen(arr) {
-  for (const item of arr) {
-    yield item;
-  }
-}
-
-const result = await takeWhileIterAsync(asyncGen([1, 2, 3]), x => x < 3);
-// ...
+async function* gen() { yield 1; yield 2; yield 3; }
+const it = takeWhileIterAsync(gen(), x => x < 3);
+for await (const x of it) { console.log(x); } //=> 1, 2
 ```

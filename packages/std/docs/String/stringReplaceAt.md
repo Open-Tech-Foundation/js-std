@@ -2,25 +2,12 @@
 
 Replaces characters in a string at a specific index.
 
-## Syntax
+@param {string} str The source string.
+@param {number} [index=0] The index to start replacement.
+@param {string} [replaceStr=''] The replacement string.
+@returns {string} The modified string.
 
-```ts
-import { stringReplaceAt } from '@opentf/std';
-
-stringReplaceAt(str: string, index = 0, replaceStr = ''): string
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| str | `string` | The source string. |
-
-## Returns
-
-`string`: The modified string.
-
-## Example
+### Example
 
 ```js
 stringReplaceAt('abc', 1, 'z') //=> 'azc'

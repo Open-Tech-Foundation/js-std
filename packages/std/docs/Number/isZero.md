@@ -2,25 +2,10 @@
 
 Checks if the given number is positive zero (0).
 
-## Syntax
+@param {number} n The number to check.
+@returns {boolean} True if 0, false otherwise.
 
-```ts
-import { isZero } from '@opentf/std';
-
-isZero(n: number): boolean
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| n | `number` | The number to check. |
-
-## Returns
-
-`boolean`: True if 0, false otherwise.
-
-## Example
+### Example
 
 ```js
 isZero(0) //=> true

@@ -2,25 +2,12 @@
 
 Truncates string if it's longer than the given maximum string length.
 
-## Syntax
+@param {string} str The string to truncate.
+@param {number} [length=30] The maximum string length.
+@param {string} [omission='...'] The string to indicate truncation.
+@returns {string} The truncated string.
 
-```ts
-import { truncate } from '@opentf/std';
-
-truncate( str: string, length = 30, omission = '...', ): string
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| str | `string` | The string to truncate. |
-
-## Returns
-
-`string`: The truncated string.
-
-## Example
+### Example
 
 ```js
 truncate('hi-package', 8) //=> 'hi-pa...'

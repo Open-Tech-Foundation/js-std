@@ -1,27 +1,12 @@
 # takeWhileIter
 
-Returns an iterator that yields items from an iterable as long as a predicate is true.
+Returns a generator that yields items from an iterable as long as a predicate is true.
 
-## Syntax
+@param {Iterable<T>} iter The iterable to take from.
+@param {(val: T) => boolean} fn The predicate function.
+@returns {IterableIterator<T>} A new iterable iterator.
 
-```ts
-import { takeWhileIter } from '@opentf/std';
-
-takeWhileIter<T>(iter: Iterable<T>, fn: (val: T) => boolean): IterableIterator<T>
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| iter | `Iterable<T>` | The iterable to take from. |
-| fn | `(val: T) => boolean` | The predicate function. |
-
-## Returns
-
-`IterableIterator<T>`: A new iterable iterator.
-
-## Example
+### Example
 
 ```js
 const it = takeWhileIter([1, 2, 3, 4], x => x < 3);

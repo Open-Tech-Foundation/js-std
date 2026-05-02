@@ -2,27 +2,8 @@
 
 Mixes two colors together.
 
-## Syntax
-
-```ts
-import { colorMix } from '@opentf/std';
-
-colorMix( color1: any, color2: any, weight = 0.5, format: any = 'hex', ): any
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| color1 | `any` | - The first color. |
-| color2 | `any` | - The second color. |
-
-## Returns
-
-`any`: - The mixed color.
-
-## Example
-
-```js
-
-```
+@param {ColorInput} color1 - The first color.
+@param {ColorInput} color2 - The second color.
+@param {number} [weight=0.5] - The weight of the first color (0 to 1).
+@param {ColorFormat} [format='hex'] - The output format.
+@returns {string | number | object} - The mixed color.

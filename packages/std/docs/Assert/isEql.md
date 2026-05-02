@@ -2,26 +2,12 @@
 
 Checks deeply if the given two values are equivalent.
 
-## Syntax
+@param {unknown} val1 The first value to compare.
+@param {unknown} val2 The second value to compare.
+@param {Object} [options] The options object.
+@returns {boolean} True if values are equivalent, false otherwise.
 
-```ts
-import { isEql } from '@opentf/std';
-
-isEql( val1: unknown, val2: unknown, options?:
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| val1 | `unknown` | The first value to compare. |
-| val2 | `unknown` | The second value to compare. |
-
-## Returns
-
-`boolean`: True if values are equivalent, false otherwise.
-
-## Example
+### Example
 
 ```js
 isEql({a: [{b: 1}]}, {a: [{b: 1}]}) //=> true

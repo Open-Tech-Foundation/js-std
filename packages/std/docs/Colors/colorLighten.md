@@ -2,27 +2,7 @@
 
 Increases the lightness of a color.
 
-## Syntax
-
-```ts
-import { colorLighten } from '@opentf/std';
-
-colorLighten( input: any, amount: number, format: ColorFormat = 'hex', ): any
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| input | `any` | - The input color. |
-| amount | `number` | - The amount to lighten (0 to 1). |
-
-## Returns
-
-`any`: - The lightened color.
-
-## Example
-
-```js
-
-```
+@param {ColorInput} input - The input color.
+@param {number} amount - The amount to lighten (0 to 1).
+@param {ColorFormat} [format='hex'] - The output format.
+@returns {string | number | object} - The lightened color.

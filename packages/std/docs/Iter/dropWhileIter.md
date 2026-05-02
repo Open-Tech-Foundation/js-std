@@ -1,27 +1,12 @@
 # dropWhileIter
 
-Returns an iterator that skips items from an iterable as long as a predicate is true, then yields the rest.
+Returns a generator that skips items from an iterable as long as a predicate is true, then yields the rest.
 
-## Syntax
+@param {Iterable<T>} iter The iterable to drop from.
+@param {(val: T) => boolean} fn The predicate function.
+@returns {IterableIterator<T>} A new iterable iterator.
 
-```ts
-import { dropWhileIter } from '@opentf/std';
-
-dropWhileIter<T>(iter: Iterable<T>, fn: (val: T) => boolean): IterableIterator<T>
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| iter | `Iterable<T>` | The iterable to drop from. |
-| fn | `(val: T) => boolean` | The predicate function. |
-
-## Returns
-
-`IterableIterator<T>`: A new iterable iterator.
-
-## Example
+### Example
 
 ```js
 const it = dropWhileIter([1, 2, 3, 4], x => x < 3);

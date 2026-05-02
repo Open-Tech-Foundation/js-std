@@ -2,26 +2,11 @@
 
 Returns a new array containing elements which are in either this or other, but not in both.
 
-## Syntax
+@param {unknown[][]} collections The arrays to compare.
+@param {Function} by The iteratee invoked per element.
+@returns {unknown[]} A new array of symmetrical difference values.
 
-```ts
-import { symDiff } from '@opentf/std';
-
-symDiff( collections: unknown[][] = [], by?: (val: unknown) => unknown, ): unknown[]
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| collections | `unknown[][]` | The arrays to compare. |
-| by | `Function` | The iteratee invoked per element. |
-
-## Returns
-
-`unknown[]`: A new array of symmetrical difference values.
-
-## Example
+### Example
 
 ```js
 const evens = [2, 4, 6, 8];

@@ -2,28 +2,14 @@
 
 Calculates the least common multiple of two integers.
 
-## Syntax
+@param a - The first integer.
+@param b - The second integer.
+@returns The least common multiple.
 
-```ts
-import { lcm } from '@opentf/std';
-
-lcm(a: number, b: number): number
-```
-
-## Parameters
-
-| Name | Type     | Description          |
-| ---- | -------- | -------------------- |
-| a    | `number` | The first integer.   |
-| b    | `number` | The second integer.  |
-
-## Returns
-
-`number`: The least common multiple.
-
-## Example
+### Example
 
 ```js
+
 lcm(4, 6) //=> 12
 lcm(21, 6) //=> 42
 ```

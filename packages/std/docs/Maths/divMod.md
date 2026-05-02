@@ -2,26 +2,11 @@
 
 Returns a tuple containing the quotient and the remainder.
 
-## Syntax
+@param {number} a The dividend.
+@param {number} b The divisor.
+@returns {[number, number]} A tuple containing [quotient, remainder].
 
-```ts
-import { divMod } from '@opentf/std';
-
-divMod(a: number, b: number): [number, number]
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| a | `number` | The dividend. |
-| b | `number` | The divisor. |
-
-## Returns
-
-`[number, number]`: A tuple containing [quotient, remainder].
-
-## Example
+### Example
 
 ```js
 divMod(4, 2) //=> [2, 0]

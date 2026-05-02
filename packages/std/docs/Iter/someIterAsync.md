@@ -1,18 +1,14 @@
 # someIterAsync
 
-Returns true if any item matches the predicate.
+Checks if any item in an async iterator matches a predicate.
 
-## Usage
+@param {AsyncIterable<T>} iter The async iterable to check.
+@param {(val: T) => boolean | Promise<boolean>} fn The predicate function.
+@returns {Promise<boolean>} A promise that resolves to true if any item matches, else false.
+
+### Example
 
 ```js
-import { someIterAsync } from '@opentf/std';
-
-async function* asyncGen(arr) {
-  for (const item of arr) {
-    yield item;
-  }
-}
-
-const result = await someIterAsync(asyncGen([1, 2, 3]), x => x > 2);
-// ...
+async function* gen() { yield 1; yield 2; }
+await someIterAsync(gen(), x => x > 1) //=> true
 ```

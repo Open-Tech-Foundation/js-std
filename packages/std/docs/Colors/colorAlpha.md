@@ -2,26 +2,12 @@
 
 Adjusts the alpha channel of a color.
 
-## Syntax
+@param {ColorInput} input The input color.
+@param {number} amount The alpha value (0 to 1).
+@param {ColorFormat} [format='hex'] The output format.
+@returns {string | number | object} The color with adjusted alpha.
 
-```ts
-import { colorAlpha } from '@opentf/std';
-
-colorAlpha( input: any, amount: number, format: ColorFormat = 'hex', ): any
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| input | `any` | The input color. |
-| amount | `number` | The alpha value (0 to 1). |
-
-## Returns
-
-`any`: The color with adjusted alpha.
-
-## Example
+### Example
 
 ```js
 colorAlpha('red', 0.5, 'rgba') //=> 'rgba(255, 0, 0, 0.5)'

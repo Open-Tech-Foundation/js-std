@@ -2,29 +2,15 @@
 
 Checks if a number is within the specified range (inclusive).
 
-## Syntax
+@param n - The number to check.
+@param start - The start of the range.
+@param end - The end of the range.
+@returns True if n is between start and end.
 
-```ts
-import { inRange } from '@opentf/std';
-
-inRange(n: number, start: number, end: number): boolean
-```
-
-## Parameters
-
-| Name  | Type     | Description              |
-| ----- | -------- | ------------------------ |
-| n     | `number` | The number to check.     |
-| start | `number` | The start of the range.  |
-| end   | `number` | The end of the range.    |
-
-## Returns
-
-`boolean`: True if n is between start and end.
-
-## Example
+### Example
 
 ```js
+
 inRange(3, 0, 5) //=> true
 inRange(-1, 0, 5) //=> false
 ```

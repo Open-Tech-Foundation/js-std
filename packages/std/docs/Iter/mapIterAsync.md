@@ -1,18 +1,15 @@
 # mapIterAsync
 
-Transforms each item using an async/sync mapper function.
+Transforms each item in an async iterator using a mapper function.
 
-## Usage
+@param {AsyncIterable<T>} iter The async iterable to transform.
+@param {(val: T) => U | Promise<U>} fn The mapper function.
+@returns {AsyncIterableIterator<U>} A new async iterable iterator.
+
+### Example
 
 ```js
-import { mapIterAsync } from '@opentf/std';
-
-async function* asyncGen(arr) {
-  for (const item of arr) {
-    yield item;
-  }
-}
-
-const result = await mapIterAsync(asyncGen([1, 2]), x => x * 2);
-// ...
+async function* gen() { yield 1; yield 2; }
+const doubled = mapIterAsync(gen(), x => x * 2);
+for await (const x of doubled) { console.log(x); } //=> 2, 4
 ```

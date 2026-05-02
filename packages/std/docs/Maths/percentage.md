@@ -1,24 +1,6 @@
 # percentage
 
 It returns percentage of value & total.
-
-## Syntax
-
-```ts
-import { percentage } from '@opentf/std';
-
-percentage(value: number, total: number): number
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| value | `number` | - The current value |
-| total | `number` | - The total value |
-
-## Example
-
-```js
-
-```
+@param {number} value - The current value
+@param {number} total - The total value
+@returns {number}

@@ -1,18 +1,14 @@
 # dropIterAsync
 
-Skips the first n items from an async iterable.
+Returns an AsyncGenerator that skips the first n items from an AsyncIterable.
 
-## Usage
+@param {AsyncIterable} iterable The source async iterable.
+@param {number} n The number of items to skip.
+@returns {AsyncGenerator} A new async generator with the remaining items.
+
+### Example
 
 ```js
-import { dropIterAsync } from '@opentf/std';
-
-async function* asyncGen(arr) {
-  for (const item of arr) {
-    yield item;
-  }
-}
-
-const result = await dropIterAsync(asyncGen([1, 2, 3]), 1);
-// ...
+const it = dropIterAsync(asyncIterable, 1);
+for await (const item of it) { ... }
 ```

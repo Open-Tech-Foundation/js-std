@@ -2,25 +2,11 @@
 
 Checks if the given value is a finite number.
 
-## Syntax
+@param {unknown} val The value to check.
+@param {boolean} [coerce=false] Whether to coerce strings to numbers.
+@returns {boolean} True if the value is a number, false otherwise.
 
-```ts
-import { isNumber } from '@opentf/std';
-
-isNumber(val: unknown, coerce = false): val is number
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| val | `unknown` | The value to check. |
-
-## Returns
-
-`boolean`: True if the value is a number, false otherwise.
-
-## Example
+### Example
 
 ```js
 isNumber(1) //=> true

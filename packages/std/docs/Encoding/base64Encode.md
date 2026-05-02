@@ -2,25 +2,10 @@
 
 Encodes a string to Base64 format.
 
-## Syntax
+@param {string} str The string to encode.
+@returns {string} The Base64 encoded string.
 
-```ts
-import { base64Encode } from '@opentf/std';
-
-base64Encode(str: string): string
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| str | `string` | The string to encode. |
-
-## Returns
-
-`string`: The Base64 encoded string.
-
-## Example
+### Example
 
 ```js
 base64Encode('Hello') //=> 'SGVsbG8='

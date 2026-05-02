@@ -2,26 +2,12 @@
 
 Asynchronous version of `Array.prototype.map`.
 
-## Syntax
+@param {T[]} arr The source array.
+@param {Function} cb The async callback to run for each element.
+@param {number} [concurrency=Infinity] The maximum number of concurrent executions.
+@returns {Promise<R[]>} A promise that resolves to the new array.
 
-```ts
-import { mapAsync } from '@opentf/std';
-
-mapAsync
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| arr | `T[]` | The source array. |
-| cb | `Function` | The async callback to run for each element. |
-
-## Returns
-
-`Promise<R[]>`: A promise that resolves to the new array.
-
-## Example
+### Example
 
 ```js
 await mapAsync([1, 2, 3], async (n) => n * 2) //=> [2, 4, 6]

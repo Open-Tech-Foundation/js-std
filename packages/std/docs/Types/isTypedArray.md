@@ -2,17 +2,10 @@
 
 Checks if the given value is a TypedArray.
 
-## Syntax
-
-```ts
-import { isTypedArray } from '@opentf/std';
-
-isTypedArray(val: unknown): val is TypedArray
-```
-
-## Example
+### Example
 
 ```js
+
 isTypedArray([]) //=> false
 
 isTypedArray(new Int8Array()) //=> true

@@ -2,25 +2,12 @@
 
 Inserts a string at a specific index.
 
-## Syntax
+@param {string} str The source string.
+@param {number} [index=0] The index to insert at.
+@param {string} [insertStr=''] The string to insert.
+@returns {string} The modified string.
 
-```ts
-import { stringInsertAt } from '@opentf/std';
-
-stringInsertAt(str: string, index = 0, insertStr = ''): string
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| str | `string` | The source string. |
-
-## Returns
-
-`string`: The modified string.
-
-## Example
+### Example
 
 ```js
 stringInsertAt('ac', 1, 'b') //=> 'abc'

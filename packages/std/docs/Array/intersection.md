@@ -2,26 +2,11 @@
 
 Creates an array of unique values that are included in all given arrays.
 
-## Syntax
+@param {T[][]} arr The arrays to intersect.
+@param {Function} by The iteratee invoked per element.
+@returns {T[]} A new array of intersecting values.
 
-```ts
-import { intersection } from '@opentf/std';
-
-intersection<T>( arr: T[][], by?: (val: T) => unknown, ): T[]
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| arr | `T[][]` | The arrays to intersect. |
-| by | `Function` | The iteratee invoked per element. |
-
-## Returns
-
-`T[]`: A new array of intersecting values.
-
-## Example
+### Example
 
 ```js
 intersection([[1, 2, 3], [2, 3, 4]]) //=> [2, 3]

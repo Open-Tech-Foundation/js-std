@@ -2,25 +2,10 @@
 
 Converts string to camelCase.
 
-## Syntax
+@param {string} str The string to convert.
+@returns {string} The camelCased string.
 
-```ts
-import { camelCase } from '@opentf/std';
-
-camelCase
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| str | `string` | The string to convert. |
-
-## Returns
-
-`string`: The camelCased string.
-
-## Example
+### Example
 
 ```js
 camelCase('Foo Bar') //=> 'fooBar'

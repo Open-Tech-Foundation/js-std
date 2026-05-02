@@ -2,26 +2,6 @@
 
 Converts a color to grayscale.
 
-## Syntax
-
-```ts
-import { colorGrayscale } from '@opentf/std';
-
-colorGrayscale( input: any, format: ColorFormat = 'hex', ): any
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| input | `any` | - The input color. |
-
-## Returns
-
-`any`: - The grayscale color.
-
-## Example
-
-```js
-
-```
+@param {ColorInput} input - The input color.
+@param {ColorFormat} [format='hex'] - The output format.
+@returns {string | number | object} - The grayscale color.

@@ -2,25 +2,10 @@
 
 Capitalizes the first letter of a string and lowers the rest.
 
-## Syntax
+@param {string} str The string to capitalize.
+@returns {string} The capitalized string.
 
-```ts
-import { capitalize } from '@opentf/std';
-
-capitalize(str: string): string
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| str | `string` | The string to capitalize. |
-
-## Returns
-
-`string`: The capitalized string.
-
-## Example
+### Example
 
 ```js
 capitalize('HELLO') //=> 'Hello'

@@ -2,19 +2,9 @@
 
 A no-operation function that does nothing.
 
-## Syntax
+@returns {undefined} Always returns undefined.
 
-```ts
-import { noop } from '@opentf/std';
-
-noop()
-```
-
-## Returns
-
-`undefined`: Always returns undefined.
-
-## Example
+### Example
 
 ```js
 noop() //=> undefined

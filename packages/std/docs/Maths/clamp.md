@@ -2,27 +2,12 @@
 
 Returns a value clamped to the inclusive range of min and max.
 
-## Syntax
+@param {number} val The value to clamp.
+@param {number} min The lower bound.
+@param {number} max The upper bound.
+@returns {number} The clamped value.
 
-```ts
-import { clamp } from '@opentf/std';
-
-clamp(val: number, min: number, max: number): number
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| val | `number` | The value to clamp. |
-| min | `number` | The lower bound. |
-| max | `number` | The upper bound. |
-
-## Returns
-
-`number`: The clamped value.
-
-## Example
+### Example
 
 ```js
 clamp(10, -5, 5) //=> 5

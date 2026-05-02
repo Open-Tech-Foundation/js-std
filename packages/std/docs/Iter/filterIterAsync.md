@@ -1,18 +1,15 @@
 # filterIterAsync
 
-Filters items based on an async/sync predicate.
+Filters items in an async iterator based on a predicate.
 
-## Usage
+@param {AsyncIterable<T>} iter The async iterable to filter.
+@param {(val: T) => boolean | Promise<boolean>} fn The predicate function.
+@returns {AsyncIterableIterator<T>} A new async iterable iterator.
+
+### Example
 
 ```js
-import { filterIterAsync } from '@opentf/std';
-
-async function* asyncGen(arr) {
-  for (const item of arr) {
-    yield item;
-  }
-}
-
-const result = await filterIterAsync(asyncGen([1, 2, 3]), x => x % 2 === 0);
-// ...
+async function* gen() { yield 1; yield 2; yield 3; }
+const evens = filterIterAsync(gen(), x => x % 2 === 0);
+for await (const x of evens) { console.log(x); } //=> 2
 ```

@@ -2,21 +2,11 @@
 
 Checks if the current runtime is Node.js.
 
-## Syntax
+@returns {boolean} True if running in Node.js, false otherwise.
 
-```ts
-import { isNode } from '@opentf/std';
-
-isNode(): boolean
-```
-
-## Returns
-
-`boolean`: True if running in Node.js, false otherwise.
-
-## Example
+### Example
 
 ```js
 isNode() //=> true (in Node.js)
-isNode() //=> false (in browser, Bun, Deno)
+isNode() //=> false (in browser)
 ```

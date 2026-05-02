@@ -1,18 +1,14 @@
 # findLastIterAsync
 
-Returns the last item that matches the predicate.
+Finds the last item in an async iterator that matches a predicate.
 
-## Usage
+@param {AsyncIterable<T>} iter The async iterable to search.
+@param {(val: T) => boolean | Promise<boolean>} fn The predicate function.
+@returns {Promise<T | undefined>} A promise that resolves to the last matching item, or undefined.
+
+### Example
 
 ```js
-import { findLastIterAsync } from '@opentf/std';
-
-async function* asyncGen(arr) {
-  for (const item of arr) {
-    yield item;
-  }
-}
-
-const result = await findLastIterAsync(asyncGen([1, 2, 3, 2]), x => x === 2);
-// ...
+async function* gen() { yield 1; yield 2; yield 3; }
+await findLastIterAsync(gen(), x => x < 3) //=> 2
 ```

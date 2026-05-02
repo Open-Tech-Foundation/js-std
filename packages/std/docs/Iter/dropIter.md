@@ -2,26 +2,11 @@
 
 Returns a Generator that skips the first n items from an Iterable.
 
-## Syntax
+@param {Iterable} iterable The source iterable.
+@param {number} n The number of items to skip.
+@returns {Generator} A new generator with the remaining items.
 
-```ts
-import { dropIter } from '@opentf/std';
-
-dropIter
-```
-
-## Parameters
-
-| Name | Type | Description |
-| --- | --- | --- |
-| iterable | `Iterable` | The source iterable. |
-| n | `number` | The number of items to skip. |
-
-## Returns
-
-`Generator`: A new generator with the remaining items.
-
-## Example
+### Example
 
 ```js
 const it = dropIter([1, 2, 3], 1);
