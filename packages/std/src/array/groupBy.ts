@@ -12,11 +12,11 @@ import isFunction from '../types/isFunction';
  */
 export default function groupBy<T>(
   arr: T[],
-  key: ((val: T) => string) | keyof T,
+  key: ((val: T, index: number, arr: T[]) => string) | string,
 ): Record<string, T[]> {
-  return arr.reduce((acc: Record<string, T[]>, obj) => {
+  return arr.reduce((acc: Record<string, T[]>, obj, index, array) => {
     const k =
-      typeof key === 'function' ? key(obj) : (obj[key as keyof T] as string);
+      isFunction(key) ? key(obj, index, array) : (obj[key as keyof T] as string);
     if (!acc[k]) {
       acc[k] = [];
     }
