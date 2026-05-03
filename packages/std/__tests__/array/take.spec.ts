@@ -27,7 +27,7 @@ describe('Array > take', () => {
     expect(take([1, 2, 3, 4, 5], 6)).toEqual([1, 2, 3, 4, 5]);
   });
 
-  test('null limit retuns all items', () => {
+  test('null limit returns all items', () => {
     expect(take([1, 2, 3, 4, 5], null)).toEqual([1, 2, 3, 4, 5]);
   });
 
@@ -43,5 +43,14 @@ describe('Array > take', () => {
     expect(take(users, null, (val) => val.active)).toEqual([
       { name: 'y', active: true },
     ]);
+  });
+
+  test('takes from right', () => {
+    expect(take([1, 2, 3, 4, 5], 3, undefined, true)).toEqual([3, 4, 5]);
+    expect(take([1, 2, 3], 1, undefined, true)).toEqual([3]);
+  });
+
+  test('takes from right with cb', () => {
+    expect(take([1, 2, 3, 4, 5], 2, (val) => val % 2 === 0, true)).toEqual([2, 4]);
   });
 });

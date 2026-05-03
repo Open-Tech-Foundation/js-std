@@ -1,26 +1,35 @@
 /**
- * Creates a slice of array with elements dropped from the beginning while the predicate returns true.
+ * Creates a slice of array with elements dropped from the beginning or end while the predicate returns true.
  *
  * @param {T[]} arr The source array.
  * @param {Function} predicate The function invoked per element.
+ * @param {boolean} right If true, drops from the end.
  * @returns {T[]} A new array with dropped elements removed.
  *
  * @example
  * dropWhile([1, 2, 3, 4, 5], (n) => n < 3) //=> [3, 4, 5]
- * dropWhile([1, 2, 3], (n) => n > 3) //=> [1, 2, 3]
+ * dropWhile([1, 2, 3, 4, 5], (n) => n > 3, true) //=> [1, 2, 3]
  */
 export default function dropWhile<T>(
   arr: T[] = [],
   predicate: (val: T, index: number, arr: T[]) => boolean,
+  right = false,
 ): T[] {
-  let dropped = false;
-
-  for (let i = 0; i < arr.length; i++) {
-    if (!predicate(arr[i], i, arr)) {
-      dropped = true;
-      return arr.slice(i);
+  if (!right) {
+    for (let i = 0; i < arr.length; i++) {
+      if (!predicate(arr[i], i, arr)) {
+        return arr.slice(i);
+      }
     }
+    return [];
   }
 
-  return dropped ? [] : [];
+  const reversed = [...arr].reverse();
+  for (let i = 0; i < reversed.length; i++) {
+    if (!predicate(reversed[i], i, reversed)) {
+      const result = reversed.slice(i);
+      return result.reverse();
+    }
+  }
+  return [];
 }

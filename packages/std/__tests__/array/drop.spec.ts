@@ -45,4 +45,13 @@ describe('Array > drop', () => {
       { name: 'z', active: false },
     ]);
   });
+
+  test('drops from right', () => {
+    expect(drop([1, 2, 3, 4, 5], 3, undefined, true)).toEqual([1, 2]);
+    expect(drop([1, 2, 3], 1, undefined, true)).toEqual([1, 2]);
+  });
+
+  test('drops from right with cb', () => {
+    expect(drop([1, 2, 3, 4, 5], 2, (val) => val % 2 === 0, true)).toEqual([1, 3, 5]);
+  });
 });
