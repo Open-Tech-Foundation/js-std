@@ -27,7 +27,7 @@ export { default as last } from './array/last';
 export { default as insertAt } from './array/insertAt';
 export { default as removeAt } from './array/removeAt';
 export { default as replaceAt } from './array/replaceAt';
-export { default as diff } from './array/diff';
+export { default as difference } from './array/difference';
 export { default as symDiff } from './array/symDiff';
 export { default as range } from './array/range';
 export { default as groupBy } from './array/groupBy';
