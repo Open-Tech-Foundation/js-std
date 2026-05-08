@@ -1,5 +1,6 @@
 {
   "clamp": "clamp",
+  "Decimal": "Decimal",
   "divMod": "divMod",
   "gcd": "gcd",
   "isDisjointFrom": "isDisjointFrom",

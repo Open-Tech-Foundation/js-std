@@ -166,6 +166,7 @@
 ## Maths
 
 - [clamp](./Maths/clamp.md)
+- [Decimal](./Maths/Decimal.md)
 - [divMod](./Maths/divMod.md)
 - [gcd](./Maths/gcd.md)
 - [isDisjointFrom](./Maths/isDisjointFrom.md)
