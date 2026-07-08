@@ -3,7 +3,7 @@ import { Callout } from "@opentf/web-docs";
 🔐 Computes the SHA-512 hash of a string, returning a hex string.
 
 <Callout type="info">
-  Uses Node.js \`crypto\` for synchronous hashing and Web Crypto API (\`SubtleCrypto\`) in browsers (async).
+  Always returns a \`Promise\`. Uses Web Crypto API (\`SubtleCrypto\`) in browsers and dynamically imports Node.js \`crypto\` elsewhere.
 </Callout>
 
 ## Syntax

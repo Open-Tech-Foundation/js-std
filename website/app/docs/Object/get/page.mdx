@@ -22,7 +22,7 @@ get(
 
 - `obj`: The object to query.
 - `path`: The path of the property to get.
-- `defVal`: The value returned if the resolved value is `undefined` or the path doesn't exist.
+- `defVal`: The value returned when the path doesn't exist. Does not replace an explicitly `undefined` value at the resolved path.
 
 ## Returns
 
@@ -38,6 +38,8 @@ get({ user: { email: 'user@example.com' } }, 'user.email') //=> 'user@example.co
 get({ a: [{ b: { c: 99 } }] }, 'a[0].b.c') //=> 99
 
 get({ a: 1 }, 'b', 'default') //=> 'default'
+
+get({ a: undefined }, 'a', 'default') //=> undefined
 
 get({ a: null }, 'a') //=> null (null is a valid value)
 

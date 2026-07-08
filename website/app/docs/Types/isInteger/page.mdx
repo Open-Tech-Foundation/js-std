@@ -1,0 +1,38 @@
+import { Callout } from "@opentf/web-docs";
+
+🔢 Checks if a value is an integer.
+
+<Callout type="warning">
+  When `coerce` is `true`, it only attempts to coerce **strings**. Other types will still return `false`.
+</Callout>
+
+## Syntax
+
+```ts
+import { isInteger } from '@opentf/std';
+
+isInteger(val: unknown, coerce = false): val is number
+```
+
+## Parameters
+
+- `val`: The value to check.
+- `coerce`: If `true`, it tries to parse numeric strings (supports numeric separators like `_`).
+
+## Returns
+
+`true` if the value is an integer (or an integer string when coerced), `false` otherwise.
+
+## Examples
+
+```ts
+isInteger(1) //=> true
+isInteger(1.5) //=> false
+isInteger('1') //=> false
+isInteger('1', true) //=> true
+isInteger('1.5', true) //=> false
+```
+
+## Related
+
+- [isNumber](/docs/Types/isNumber)

@@ -1,19 +1,28 @@
+🧩 Returns the total count of items in an async iterable.
 
-# countIterAsync
+## Syntax
 
-Returns the total count of items in an async iterable.
-
-## Usage
-
-```js
+```ts
 import { countIterAsync } from '@opentf/std';
 
-async function* asyncGen(arr) {
-  for (const item of arr) {
-    yield item;
-  }
-}
-
-const result = await countIterAsync(asyncGen([1, 2, 3]));
-// ...
+countIterAsync(iter: AsyncIterable<unknown>): Promise<number>
 ```
+
+## Parameters
+
+- `iter`: The async iterable to count.
+
+## Returns
+
+A promise that resolves to the total count of items.
+
+## Examples
+
+```ts
+async function* gen() { yield 1; yield 2; }
+await countIterAsync(gen()) //=> 2
+```
+
+## Related
+
+- [countIter](/docs/Iter/countIter)

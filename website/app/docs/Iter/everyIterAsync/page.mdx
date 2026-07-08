@@ -1,19 +1,29 @@
+🧩 Checks if all items in an async iterator match a predicate.
 
-# everyIterAsync
+## Syntax
 
-Returns true if all items match the predicate.
-
-## Usage
-
-```js
+```ts
 import { everyIterAsync } from '@opentf/std';
 
-async function* asyncGen(arr) {
-  for (const item of arr) {
-    yield item;
-  }
-}
-
-const result = await everyIterAsync(asyncGen([1, 2, 3]), x => x > 0);
-// ...
+everyIterAsync<T>(iter: AsyncIterable<T>, fn: (val: T) => boolean | Promise<boolean>): Promise<boolean>
 ```
+
+## Parameters
+
+- `iter`: The async iterable to check.
+- `fn`: The predicate function.
+
+## Returns
+
+A promise that resolves to `true` if all items match, else `false`.
+
+## Examples
+
+```ts
+async function* gen() { yield 1; yield 2; }
+await everyIterAsync(gen(), x => x > 0) //=> true
+```
+
+## Related
+
+- [everyIter](/docs/Iter/everyIter)

@@ -1,19 +1,29 @@
+🧩 Skips items while a predicate is true, then yields the rest.
 
-# dropWhileIterAsync
+## Syntax
 
-Skips items as long as the predicate is true.
-
-## Usage
-
-```js
+```ts
 import { dropWhileIterAsync } from '@opentf/std';
 
-async function* asyncGen(arr) {
-  for (const item of arr) {
-    yield item;
-  }
-}
-
-const result = await dropWhileIterAsync(asyncGen([1, 2, 3]), x => x < 2);
-// ...
+dropWhileIterAsync<T>(iter: AsyncIterable<T>, fn: (val: T) => boolean | Promise<boolean>): AsyncIterableIterator<T>
 ```
+
+## Parameters
+
+- `iter`: The source async iterable.
+- `fn`: The predicate function.
+
+## Returns
+
+A new async iterable iterator.
+
+## Examples
+
+```ts
+async function* gen() { yield 1; yield 2; yield 3; }
+await toArrayIterAsync(dropWhileIterAsync(gen(), x => x < 2)) //=> [2, 3]
+```
+
+## Related
+
+- [dropWhileIter](/docs/Iter/dropWhileIter)

@@ -1,19 +1,28 @@
+🧩 Returns the last item from an async iterable.
 
-# lastIterAsync
+## Syntax
 
-Returns the last item from an async iterable.
-
-## Usage
-
-```js
+```ts
 import { lastIterAsync } from '@opentf/std';
 
-async function* asyncGen(arr) {
-  for (const item of arr) {
-    yield item;
-  }
-}
-
-const result = await lastIterAsync(asyncGen([1, 2, 3]));
-// ...
+lastIterAsync<T>(iter: AsyncIterable<T>): Promise<T | undefined>
 ```
+
+## Parameters
+
+- `iter`: The async iterable to search.
+
+## Returns
+
+A promise that resolves to the last item, or `undefined`.
+
+## Examples
+
+```ts
+async function* gen() { yield 1; yield 2; }
+await lastIterAsync(gen()) //=> 2
+```
+
+## Related
+
+- [lastIter](/docs/Iter/lastIter)

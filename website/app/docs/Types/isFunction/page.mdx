@@ -5,7 +5,7 @@ Checks if the given value is a [Function](https://developer.mozilla.org/en-US/do
 ```ts
 import { isFunction } from '@opentf/std';
 
-isFunction(val: unknown): boolean
+isFunction(val: unknown): val is (...args: unknown[]) => unknown
 ```
 
 ## Examples

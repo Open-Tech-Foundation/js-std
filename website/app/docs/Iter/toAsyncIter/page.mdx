@@ -1,19 +1,28 @@
+🔄 Converts a sync iterable to an async iterable.
 
-# toAsyncIter
+## Syntax
 
-Converts a sync iterable to an async iterable.
-
-## Usage
-
-```js
+```ts
 import { toAsyncIter } from '@opentf/std';
 
-async function* asyncGen(arr) {
-  for (const item of arr) {
-    yield item;
-  }
-}
-
-const result = await toAsyncIter([1, 2, 3]);
-// ...
+toAsyncIter<T>(iter: Iterable<T>): AsyncIterableIterator<T>
 ```
+
+## Parameters
+
+- `iter`: The sync iterable to convert.
+
+## Returns
+
+A new async iterable iterator.
+
+## Examples
+
+```ts
+await toArrayIterAsync(toAsyncIter([1, 2, 3])) //=> [1, 2, 3]
+```
+
+## Related
+
+- [fromIterAsync](/docs/Iter/fromIterAsync)
+- [mapIterAsync](/docs/Iter/mapIterAsync)

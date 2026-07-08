@@ -1,19 +1,30 @@
+🧩 Accumulates values from an async iterator using a reducer function.
 
-# reduceIterAsync
+## Syntax
 
-Accumulates values from the async iterator.
-
-## Usage
-
-```js
+```ts
 import { reduceIterAsync } from '@opentf/std';
 
-async function* asyncGen(arr) {
-  for (const item of arr) {
-    yield item;
-  }
-}
-
-const result = await reduceIterAsync(asyncGen([1, 2, 3]), (acc, x) => acc + x, 0);
-// ...
+reduceIterAsync<T, U>(iter: AsyncIterable<T>, fn: (acc: U, val: T) => U | Promise<U>, initialValue: U): Promise<U>
 ```
+
+## Parameters
+
+- `iter`: The async iterable to reduce.
+- `fn`: The reducer function.
+- `initialValue`: The initial value for the accumulator.
+
+## Returns
+
+A promise that resolves to the final accumulator value.
+
+## Examples
+
+```ts
+async function* gen() { yield 1; yield 2; yield 3; }
+await reduceIterAsync(gen(), (acc, x) => acc + x, 0) //=> 6
+```
+
+## Related
+
+- [reduceIter](/docs/Iter/reduceIter)

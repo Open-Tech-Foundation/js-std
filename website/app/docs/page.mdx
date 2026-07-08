@@ -119,11 +119,10 @@ await sleep(1000); // Suspends execution for 1 second
 ```js
 import { pipe } from "@opentf/std";
 
-const result = pipe(
-  1,
+pipe(
   (x) => x + 1,
   (x) => x * 5
-); //=> 10
+)(1); //=> 10
 ```
 
 ### 8. Object Transformation

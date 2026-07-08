@@ -1,0 +1,30 @@
+Checks if the given value is an iterable.
+
+## Syntax
+
+```ts
+import { isIterable } from '@opentf/std';
+
+isIterable(val: unknown): val is Iterable<unknown>
+```
+
+## Parameters
+
+- `val`: The value to check.
+
+## Returns
+
+`true` if the value is iterable, `false` otherwise.
+
+## Examples
+
+```ts
+isIterable([1, 2, 3]) //=> true
+isIterable('abc') //=> true
+isIterable({}) //=> false
+```
+
+## Related
+
+- [isAsyncIterable](/docs/Types/isAsyncIterable)
+- [toAsyncIter](/docs/Iter/toAsyncIter)

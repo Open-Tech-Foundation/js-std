@@ -37,8 +37,8 @@ The new throttled function.
 ```ts
 const run = paceRun((val) => console.log(val), 500);
 
-run('a'); // Logs 'a' immediately
-run('b'); // Ignored (if trailing is false) or queued
+run('a'); // Logs 'a' immediately (leading edge)
+run('b'); // Queued for trailing edge (default trailing: true)
 ```
 
 ## Related

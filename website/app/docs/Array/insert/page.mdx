@@ -22,8 +22,7 @@ insert<T>(
 
 - `arr`: The source array.
 - `indexOrFn`: The index where the new items should be inserted, or a predicate function to find the insertion point. If `null` or `undefined`, items are appended to the end.
-- `...items`: The items to be inserted. When using a predicate, the last item can be `'before'` or `'after'` to specify position (default: `'before'`).
-- `position`: Only with predicate - insert before (default) or after the match.
+- `...items`: The items to be inserted. When using a predicate, the last argument can be `'before'` or `'after'` to control insertion position (default: `'before'`).
 
 ## Returns
 

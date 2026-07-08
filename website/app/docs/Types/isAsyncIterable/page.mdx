@@ -1,0 +1,29 @@
+Checks if the given value is an async iterable.
+
+## Syntax
+
+```ts
+import { isAsyncIterable } from '@opentf/std';
+
+isAsyncIterable(val: unknown): val is AsyncIterable<unknown>
+```
+
+## Parameters
+
+- `val`: The value to check.
+
+## Returns
+
+`true` if the value is async iterable, `false` otherwise.
+
+## Examples
+
+```ts
+isAsyncIterable((async function* () {})()) //=> true
+isAsyncIterable([]) //=> false
+```
+
+## Related
+
+- [isIterable](/docs/Types/isIterable)
+- [fromIterAsync](/docs/Iter/fromIterAsync)

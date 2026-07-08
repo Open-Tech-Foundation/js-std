@@ -7,7 +7,7 @@ import { isAsyncFunction } from '@opentf/std';
 
 isAsyncFunction(
   val: unknown
-): boolean
+): val is ((...args: unknown[]) => Promise<unknown>) | AsyncGeneratorFunction
 ```
 
 ## Examples

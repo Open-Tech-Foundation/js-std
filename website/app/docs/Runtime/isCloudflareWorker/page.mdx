@@ -1,0 +1,24 @@
+Checks if the current runtime is Cloudflare Workers.
+
+## Syntax
+
+```ts
+import { isCloudflareWorker } from '@opentf/std';
+
+isCloudflareWorker(): boolean
+```
+
+## Examples
+
+```ts
+isCloudflareWorker() //=> true (in Cloudflare Workers)
+
+isCloudflareWorker() //=> false (in Node.js, Bun, Deno, browser)
+```
+
+## Related
+
+- [isNode](/docs/Runtime/isNode)
+- [isBrowser](/docs/Runtime/isBrowser)
+- [isDeno](/docs/Runtime/isDeno)
+- [isBun](/docs/Runtime/isBun)

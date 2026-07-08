@@ -1,19 +1,28 @@
+🧩 Collects all items from an async iterator into an array.
 
-# toArrayIterAsync
+## Syntax
 
-Collects all items into an array.
-
-## Usage
-
-```js
+```ts
 import { toArrayIterAsync } from '@opentf/std';
 
-async function* asyncGen(arr) {
-  for (const item of arr) {
-    yield item;
-  }
-}
-
-const result = await toArrayIterAsync(asyncGen([1, 2, 3]));
-// ...
+toArrayIterAsync<T>(iter: AsyncIterable<T>): Promise<T[]>
 ```
+
+## Parameters
+
+- `iter`: The async iterable to collect.
+
+## Returns
+
+A promise that resolves to an array of all items.
+
+## Examples
+
+```ts
+async function* gen() { yield 1; yield 2; }
+await toArrayIterAsync(gen()) //=> [1, 2]
+```
+
+## Related
+
+- [toArrayIter](/docs/Iter/toArrayIter)

@@ -12,7 +12,7 @@ export default {
   "compact": "compact",
   "chunkWhile": "chunkWhile",
   "countBy": "countBy",
-  "diff": "diff",
+  "difference": "difference",
   "drop": "drop",
   "dropWhile": "dropWhile",
   "flatten": "flatten",

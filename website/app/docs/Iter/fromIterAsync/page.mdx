@@ -1,19 +1,28 @@
+🔗 Creates an AsyncIterableIterator from an iterable, async iterable, or iterator-like object.
 
-# fromIterAsync
+## Syntax
 
-Creates an async iterator from various sources.
-
-## Usage
-
-```js
+```ts
 import { fromIterAsync } from '@opentf/std';
 
-async function* asyncGen(arr) {
-  for (const item of arr) {
-    yield item;
-  }
-}
-
-const result = await fromIterAsync([1, 2, 3]);
-// ...
+fromIterAsync<T>(iter: AsyncIterable<T> | Iterable<T> | { next: () => Promise<IteratorResult<T>> | IteratorResult<T> }): AsyncIterableIterator<T>
 ```
+
+## Parameters
+
+- `iter`: The source object.
+
+## Returns
+
+A new async iterable iterator.
+
+## Examples
+
+```ts
+await toArrayIterAsync(fromIterAsync([1, 2, 3])) //=> [1, 2, 3]
+```
+
+## Related
+
+- [toAsyncIter](/docs/Iter/toAsyncIter)
+- [mapIterAsync](/docs/Iter/mapIterAsync)

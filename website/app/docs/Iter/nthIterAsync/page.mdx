@@ -1,19 +1,29 @@
+🧩 Returns the nth item (0-indexed) from an async iterable.
 
-# nthIterAsync
+## Syntax
 
-Returns the nth item from an async iterable.
-
-## Usage
-
-```js
+```ts
 import { nthIterAsync } from '@opentf/std';
 
-async function* asyncGen(arr) {
-  for (const item of arr) {
-    yield item;
-  }
-}
-
-const result = await nthIterAsync(asyncGen([1, 2, 3]), 1);
-// ...
+nthIterAsync<T>(iter: AsyncIterable<T>, n: number): Promise<T | undefined>
 ```
+
+## Parameters
+
+- `iter`: The async iterable to search.
+- `n`: The index of the item to return.
+
+## Returns
+
+A promise that resolves to the nth item, or `undefined`.
+
+## Examples
+
+```ts
+async function* gen() { yield 1; yield 2; }
+await nthIterAsync(gen(), 1) //=> 2
+```
+
+## Related
+
+- [nthIter](/docs/Iter/nthIter)

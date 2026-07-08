@@ -1,19 +1,29 @@
+🧩 Executes a function for each item in an async iterator.
 
-# eachIterAsync
+## Syntax
 
-Executes a function for each item in the async iterator.
-
-## Usage
-
-```js
+```ts
 import { eachIterAsync } from '@opentf/std';
 
-async function* asyncGen(arr) {
-  for (const item of arr) {
-    yield item;
-  }
-}
-
-await eachIterAsync(asyncGen([1, 2]), x => console.log(x));
-// ...
+eachIterAsync<T>(iter: AsyncIterable<T>, fn: (val: T) => void | Promise<void>): Promise<void>
 ```
+
+## Parameters
+
+- `iter`: The async iterable to iterate over.
+- `fn`: The function to execute.
+
+## Returns
+
+A promise that resolves when iteration is complete.
+
+## Examples
+
+```ts
+async function* gen() { yield 1; yield 2; }
+await eachIterAsync(gen(), x => console.log(x)) //=> Logs 1, 2
+```
+
+## Related
+
+- [eachIter](/docs/Iter/eachIter)

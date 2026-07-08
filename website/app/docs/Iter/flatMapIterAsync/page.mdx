@@ -1,19 +1,29 @@
+🧩 Maps each item in an async iterator and flattens the result.
 
-# flatMapIterAsync
+## Syntax
 
-Maps each item and flattens the resulting async/sync iterators.
-
-## Usage
-
-```js
+```ts
 import { flatMapIterAsync } from '@opentf/std';
 
-async function* asyncGen(arr) {
-  for (const item of arr) {
-    yield item;
-  }
-}
-
-const result = await flatMapIterAsync(asyncGen([1, 2]), x => [x, x * 10]);
-// ...
+flatMapIterAsync<T, U>(iter: AsyncIterable<T>, fn: (val: T) => AsyncIterable<U> | Iterable<U> | Promise<AsyncIterable<U> | Iterable<U>>): AsyncIterableIterator<U>
 ```
+
+## Parameters
+
+- `iter`: The async iterable to transform.
+- `fn`: The mapper function.
+
+## Returns
+
+A new async iterable iterator.
+
+## Examples
+
+```ts
+async function* gen() { yield 1; yield 2; }
+await toArrayIterAsync(flatMapIterAsync(gen(), x => [x, x * 10])) //=> [1, 10, 2, 20]
+```
+
+## Related
+
+- [flatMapIter](/docs/Iter/flatMapIter)
