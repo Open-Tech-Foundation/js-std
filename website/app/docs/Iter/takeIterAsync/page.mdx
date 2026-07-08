@@ -1,0 +1,19 @@
+
+# takeIterAsync
+
+Yields the first n items from an async iterable.
+
+## Usage
+
+```js
+import { takeIterAsync } from '@opentf/std';
+
+async function* asyncGen(arr) {
+  for (const item of arr) {
+    yield item;
+  }
+}
+
+const result = await takeIterAsync(asyncGen([1, 2, 3]), 2);
+// ...
+```

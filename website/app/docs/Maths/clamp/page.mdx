@@ -1,0 +1,32 @@
+🗜️ Clamps a number between a specified minimum and maximum value.
+
+## Syntax
+
+```ts
+import { clamp } from '@opentf/std';
+
+clamp(val: number, min: number, max: number): number
+```
+
+## Parameters
+
+- `val`: The number to clamp.
+- `min`: The lower bound of the range.
+- `max`: The upper bound of the range.
+
+## Returns
+
+The clamped number.
+
+## Examples
+
+```ts
+clamp(10, -5, 5) //=> 5
+
+clamp(0, 1000, 1366) //=> 1000
+
+clamp(1001, 1000, 1366) //=> 1001
+
+clamp(1500, 1000, 1366) //=> 1366
+```
+

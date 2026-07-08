@@ -1,0 +1,40 @@
+import { Callout } from "@opentf/web-docs";
+
+➖ Checks if a number is negative zero (`-0`).
+
+<Callout type="info">
+  In JavaScript, standard equality `0 === -0` returns `true`. Use this function or `Object.is()` to distinguish them.
+</Callout>
+
+## Syntax
+
+```ts
+import { isNegZero } from '@opentf/std';
+
+isNegZero(n: number): boolean
+```
+
+## Parameters
+
+- `n`: The number to check.
+
+## Returns
+
+`true` if the number is `-0`, `false` otherwise.
+
+## Examples
+
+```ts
+isNegZero(0) //=> false
+
+isNegZero(-0) //=> true
+
+isNegZero(-0.0) //=> true
+
+isNegZero(-0x0) //=> true
+```
+
+## Related
+
+- [isZero](/docs/Number/isZero)
+

@@ -1,0 +1,20 @@
+🌈 Increases the saturation of a color.
+
+## Syntax
+
+```ts
+import { colorSaturate } from '@opentf/std';
+
+colorSaturate(input: ColorInput, amount: number, format?: ColorFormat): any
+```
+
+- `amount`: A number between `0` and `1`.
+- `format`: The output format (default: `'hex'`).
+
+## Examples
+
+```ts
+colorSaturate('gray', 0.5); //=> '#bf4040'
+colorSaturate('gray', 0.5, 'hsl'); //=> 'hsl(0, 50%, 50%)'
+```
+

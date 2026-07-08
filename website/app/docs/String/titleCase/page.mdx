@@ -1,0 +1,35 @@
+🖋️ Converts a string to [Title Case](https://en.wikipedia.org/wiki/Title_case).
+
+## Syntax
+
+```ts
+import { titleCase } from '@opentf/std';
+
+titleCase(str: string): string
+```
+
+## Parameters
+
+- `str`: The string to convert.
+
+## Returns
+
+The title-cased string.
+
+## Examples
+
+```ts
+titleCase('hello world') //=> 'Hello World'
+
+titleCase('foo-bar') //=> 'Foo Bar'
+
+titleCase('the quick brown fox') //=> 'The Quick Brown Fox'
+
+titleCase('__FOO_BAR__') //=> 'Foo Bar'
+```
+
+## Related
+
+- [capitalize](/docs/String/capitalize)
+- [pascalCase](/docs/String/pascalCase)
+

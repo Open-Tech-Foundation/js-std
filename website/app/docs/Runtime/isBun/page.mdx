@@ -1,0 +1,24 @@
+Checks if the current runtime is Bun.
+
+## Syntax
+
+```ts
+import { isBun } from '@opentf/std';
+
+isBun(): boolean
+```
+
+## Examples
+
+```ts
+isBun() //=> true (in Bun)
+
+isBun() //=> false (in Node.js, Deno, browser)
+```
+
+## Related
+
+- [isNode](/docs/Types/isNode)
+- [isBrowser](/docs/Types/isBrowser)
+- [isDeno](/docs/Types/isDeno)
+

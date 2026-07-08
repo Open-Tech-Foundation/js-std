@@ -1,0 +1,23 @@
+Checks if the given value is a [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) object.
+
+## Syntax
+
+```ts
+import { isMap } from '@opentf/std';
+
+isMap(val: unknown): boolean;
+```
+
+## Examples
+
+```ts
+isMap(new Map()) //=> true
+
+isMap({}) //=> false
+```
+
+## Related
+
+- [isObject](/docs/Types/isObject)
+- [isPlainObject](/docs/Types/isPlainObject)
+

@@ -1,0 +1,24 @@
+Checks if the current runtime is Node.js.
+
+## Syntax
+
+```ts
+import { isNode } from '@opentf/std';
+
+isNode(): boolean
+```
+
+## Examples
+
+```ts
+isNode() //=> true (in Node.js)
+
+isNode() //=> false (in browser, Bun, Deno)
+```
+
+## Related
+
+- [isBrowser](/docs/Types/isBrowser)
+- [isDeno](/docs/Types/isDeno)
+- [isBun](/docs/Types/isBun)
+

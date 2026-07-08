@@ -1,0 +1,225 @@
+import { Tabs, CodeBlock, Callout } from "@opentf/web-docs";
+
+export const installTabs = [
+  { label: "bun", content: <CodeBlock code="bun add @opentf/std" /> },
+  { label: "pnpm", content: <CodeBlock code="pnpm add @opentf/std" /> },
+  { label: "npm", content: <CodeBlock code="npm install @opentf/std" /> },
+  { label: "yarn", content: <CodeBlock code="yarn add @opentf/std" /> },
+  { label: "deno", content: <CodeBlock code="deno add @opentf/std" /> },
+];
+
+<div align="center" style="margin-top: 2rem; margin-bottom: 2rem">
+
+# @opentf/std
+
+**The Modern JavaScript Standard Library.**
+
+*A lightweight, high-accuracy, and cross-runtime collection of essential utilities.*
+
+<p style="margin-top: 1.5rem; display: flex; align-items: center; justify-content: center; gap: 8px">
+  <span>Part of the</span>
+  <img src="/assets/Logo.svg" width="20" height="20" style="display: inline-block" />
+  <a href="https://github.com/Open-Tech-Foundation" style="font-weight: bold; text-decoration: none; color: inherit">Open Tech Foundation</a>
+  <span>ecosystem.</span>
+</p>
+
+</div>
+
+---
+
+## ✨ Features
+
+- 🎨 **Intuitive API**: Designed for clarity, simplicity, and ease of use.
+- 🌍 **Runtime Agnostic**: Seamless execution across all JavaScript environments.
+- ⚡ **High Performance**: Optimized for speed without sacrificing accuracy.
+- ⏳ **Modern Async**: Advanced tools for managing complex asynchronous flows.
+- 🛡️ **Full Type Safety**: Built with TypeScript for deep, native type inference.
+- 📦 **Zero Dependencies**: Lightweight, tree-shakeable, and ESM/CJS ready.
+- 🌲 **Broad Compatibility**: Future-proof code with broad environment support.
+
+## 🤔 Why @opentf/std?
+
+While JavaScript has come a long way, many native methods still have quirks or lack deep comparison/cloning capabilities. `@opentf/std` aims to fill those gaps with a focus on:
+
+1.  **Accuracy First** 🎯: We prioritize correct results over extreme micro-optimizations.
+2.  **Deep Everything** 🧬: Built-in support for complex types like `Map`, `Set`, `Date`, and `RegExp` in equality and cloning.
+3.  **Consistent API** 🤝: The same behavior across all runtimes, so you can write once and run anywhere.
+4.  **Zero Bloat** 🧊: Only the code you use ends up in your bundle.
+5.  **Modern Anywhere** 🚀: Get modern language features in any environment without polluting the global namespace.
+
+## 📦 Installation
+
+Install `@opentf/std` using your preferred package manager:
+
+<Tabs tabs={installTabs} />
+
+## 🛠 Usage
+
+Explore the library's capabilities with these common patterns:
+
+### 1. Robust Type Checking
+```js
+import { isNumber } from "@opentf/std";
+
+isNumber(NaN); //=> false
+isNumber('1'); //=> false
+isNumber('1', true); //=> true (strict numeric string check)
+isNumber(1); //=> true
+```
+
+### 2. String Manipulation
+```js
+import { pascalCase } from "@opentf/std";
+
+pascalCase("hello world"); //=> "HelloWorld"
+```
+
+### 3. Advanced Sorting
+```js
+import { sort } from "@opentf/std";
+
+sort([1, 10, 21, 2], "desc"); //=> [21, 10, 2, 1]
+```
+
+### 4. Deep Cloning
+```js
+import { clone } from "@opentf/std";
+
+const obj = { a: 1, b: "abc", c: new Map([["key", "val"]]) };
+const newObj = clone(obj); // Deeply cloned with Map support
+```
+
+### 5. Smart Equality
+```js
+import { isEql, isUnorderedEqual } from "@opentf/std";
+
+isEql({a: 1}, {a: 1}); //=> true
+
+const mapA = new Map([["a", 1], ["b", 2]]);
+const mapB = new Map([["b", 2], ["a", 1]]);
+isEql(mapA, mapB); //=> false (Map order matters for equality)
+
+// Compare Arrays ignoring order
+isUnorderedEqual([1, 2, 3], [2, 3, 1]); //=> true
+```
+
+### 6. Modern Async
+```js
+import { sleep, withResolvers } from "@opentf/std";
+
+// Externalized Promise resolution
+const { promise, resolve } = withResolvers();
+setTimeout(() => resolve("Done!"), 1000);
+await promise;
+
+await sleep(1000); // Suspends execution for 1 second
+```
+
+### 7. Functional Patterns
+```js
+import { pipe } from "@opentf/std";
+
+const result = pipe(
+  1,
+  (x) => x + 1,
+  (x) => x * 5
+); //=> 10
+```
+
+### 8. Object Transformation
+```js
+import { pick, omit } from '@opentf/std';
+
+const obj = { a: 1, b: 2, c: 3 };
+
+pick(obj, 'a', 'c'); //=> { a: 1, c: 3 }
+omit(obj, 'a', 'c'); //=> { b: 2 }
+```
+
+<Callout type="info">
+You can try out these examples and more on the [Interactive Playground](/docs/playground), featuring **Visual Flow Control Tools** for real-time utility testing.
+</Callout>
+
+## 🎮 Visual Flow Control Playground
+
+Understand and test our advanced flow control utilities with real-time visualizers.
+
+- **Timeline Visualizers**: Watch `idleRun` (Debounce) and `paceRun` (Throttle) execute in real-time.
+- **Batch Monitor**: Observe how `batchRun` collects and processes items.
+- **Sliding Window**: Visualize the execution slots of `rateLimitRun`.
+- **Reliability Tester**: Run and monitor `retryRun` attempts and backoff strategies.
+
+---
+
+## 📊 Benchmarks
+
+We prioritize **reliability and accuracy** while maintaining highly competitive speeds.
+
+### `clone`
+| Library | ops/sec | Average Time | Notes |
+| :--- | :--- | :--- | :--- |
+| **@opentf/std (clone)** | **466,736** | **~2.1μs** | **Full accuracy, supports all modern types.** |
+| copy (fast-copy) | 434,805 | ~2.3μs | Missing some modern features. |
+| cloneDeep (clone-deep) | 397,935 | ~2.5μs | No circular ref support. |
+| structuredClone (Native) | 228,477 | ~4.4μs | Built-in native support. |
+| _.cloneDeep (Lodash) | 161,017 | ~6.2μs | Lacks some modern features. |
+
+### `sortBy`
+| Library | ops/sec | Average Time |
+| :--- | :--- | :--- |
+| **@opentf/std (sortBy)** | **2,656,536** | **~376ns** |
+| sort (Moderndash) | 2,799,559 | ~357ns |
+| R2.sortBy (Remeda) | 1,604,434 | ~623ns |
+| _.orderBy (Lodash) | 1,263,727 | ~791ns |
+| R.sortWith (Ramda) | 1,066,487 | ~937ns |
+
+### `isEql`
+| Library | ops/sec | Average Time | Notes |
+| :--- | :--- | :--- | :--- |
+| **@opentf/std (isEql)** | **75,675** | **~13.2μs** | **Full accuracy, Map/Set ordering, Symbols.** |
+| deepStrictEqual (Native) | 717,658 | ~1.4μs | Limited features, no browser support. |
+| fastDeepEqual | 586,098 | ~1.7μs | Missing many modern features. |
+| dequal | 375,797 | ~2.6μs | No cyclic refs or Map ordering. |
+| _.isEqual (Lodash) | 137,667 | ~7.2μs | Missing Map/Set accuracy. |
+
+<Callout type="tip">
+Run your own benchmarks: `bun run build && bun benchmark.js`
+</Callout>
+
+---
+
+## ❓ FAQ
+
+### 1. Why another standard library?
+Native methods are great, but they often lack depth (e.g., `Object.assign` is shallow) or have inconsistent behavior across environments. `@opentf/std` provides a unified, high-fidelity API.
+
+### 2. Is it production-ready?
+Yes. The library is 100% tested, strictly typed, and used in production across the Open Tech Foundation ecosystem.
+
+### 3. Does it support tree-shaking?
+Yes. Every utility is exported individually, ensuring your final bundle only contains what you actually use.
+
+---
+
+## 🛡️ Security
+
+Security is a top priority for `@opentf/std`. We implement proactive measures to protect your applications:
+
+- **Prototype Pollution Protection**: All object manipulation utilities (like `set`, `merge`, `clone`, etc.) include built-in guards against prototype pollution attacks (CWE-1321).
+- **Safe Path Traversal**: Path-based utilities strictly filter sensitive keys like `__proto__`, `constructor`, and `prototype`.
+- **Zero Dependencies**: By maintaining a zero-dependency footprint, we eliminate the risk of supply-chain vulnerabilities from third-party packages.
+
+---
+
+## 📖 Articles
+
+Dive deeper into our philosophy:
+
+- [Introducing Our New JavaScript Standard Library](https://ganapathy.hashnode.dev/introducing-our-new-javascript-standard-library)
+- [You Don't Need JavaScript Native Methods](https://ganapathy.hashnode.dev/you-dont-need-javascript-native-methods)
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](https://github.com/open-tech-foundation/js-std/blob/main/LICENSE).

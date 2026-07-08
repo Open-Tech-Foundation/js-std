@@ -1,0 +1,51 @@
+import { Callout } from "@opentf/web-docs";
+
+📊 Calculates the average (arithmetic mean) of a list of numbers.
+
+<Callout type="info">
+  **Mean**: The "average" number; found by adding all data points and dividing by the number of data points.
+  <div style="text-align: right">
+  \- [Khan Academy](https://www.khanacademy.org/math/statistics-probability/summarizing-quantitative-data/mean-median-basics/a/mean-median-and-mode-review)
+  </div>
+</Callout>
+
+## Syntax
+
+```ts
+import { mean } from '@opentf/std';
+
+mean<T>(
+  arr: T[] = [],
+  cb?: (val: T, index: number) => number
+): number
+```
+
+## Parameters
+
+- `arr`: An array of numbers.
+- `cb`: An optional iteratee invoked for each element to generate the value to be averaged.
+
+## Returns
+
+The calculated mean. Returns `NaN` for empty arrays.
+
+## Examples
+
+```ts
+mean([]) //=> NaN
+
+mean([1]) //=> 1
+
+mean([4, 1, 7]) //=> 4
+
+mean([4, 2, 8]) //=> 4.666666666666667
+
+const objects = [{ a: 4 }, { a: 2 }, { a: 8 }];
+mean(objects, (o) => o.a) //=> 4.666666666666667
+```
+
+## Related
+
+- [median](/docs/Maths/median)
+- [mode](/docs/Maths/mode)
+

@@ -1,0 +1,34 @@
+🐫 Converts string to pascal case.
+
+## Syntax
+
+```ts
+import { pascalCase } from '@opentf/std';
+
+pascalCase(str: string): string;
+```
+
+## Parameters
+
+- `str`: The string to convert.
+
+## Returns
+
+The pascal-cased string.
+
+## Examples
+
+```ts
+pascalCase('Foo Bar') //=> 'FooBar'
+
+pascalCase('--foo-bar--') //=> 'FooBar'
+
+pascalCase('__FOO_BAR__') //=> 'FooBar'
+```
+
+## Related
+
+- [camelCase](/docs/String/camelCase)
+- [kebabCase](/docs/String/kebabCase)
+- [snakeCase](/docs/String/snakeCase)
+

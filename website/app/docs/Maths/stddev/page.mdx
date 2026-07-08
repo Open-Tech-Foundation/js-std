@@ -1,0 +1,23 @@
+## Syntax
+
+```ts
+import { stddev } from '@opentf/std';
+
+stddev<T>(arr: T[], cb?: (val: T, index: number) => number): number;
+```
+
+## Returns
+
+The population standard deviation.
+
+## Examples
+
+```ts
+stddev([2, 4, 4, 4, 5, 5, 7, 9]) //=> 2
+```
+
+## Related
+
+- [variance](/docs/Maths/variance)
+- [mean](/docs/Maths/mean)
+

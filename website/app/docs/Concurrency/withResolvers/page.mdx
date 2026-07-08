@@ -1,0 +1,40 @@
+import { Callout } from "@opentf/web-docs";
+
+🔓 A polyfill/implementation of \`Promise.withResolvers()\`.
+
+<Callout type="info">
+  This is useful for creating a promise and resolving/rejecting it from outside.
+</Callout>
+
+## Syntax
+
+```ts
+import { withResolvers } from '@opentf/std';
+
+withResolvers<T>(): {
+  promise: Promise<T>;
+  resolve: (value: T | PromiseLike<T>) => void;
+  reject: (reason?: any) => void;
+}
+```
+
+## Returns
+
+An object containing a new `promise` and its `resolve`/`reject` functions.
+
+## Examples
+
+```ts
+const { promise, resolve, reject } = withResolvers<number>();
+
+setTimeout(() => {
+  resolve(42);
+}, 100);
+
+const result = await promise; //=> 42
+```
+
+## Related
+
+- [timeoutRun](/docs/Flow/timeoutRun)
+

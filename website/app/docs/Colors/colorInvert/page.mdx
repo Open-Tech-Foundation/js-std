@@ -1,0 +1,20 @@
+🔄 Inverts the red, green, and blue components of a color.
+
+## Syntax
+
+```ts
+import { colorInvert } from '@opentf/std';
+
+colorInvert(input: any, format?: ColorFormat): any
+```
+
+- `format`: The output format (default: `'hex'`).
+
+## Examples
+
+```ts
+colorInvert('white'); //=> '#000000'
+colorInvert('black'); //=> '#ffffff'
+colorInvert('red'); //=> '#00ffff'
+```
+

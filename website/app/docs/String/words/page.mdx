@@ -1,0 +1,35 @@
+🔡 Splits a string into an array of its words.
+
+## Syntax
+
+```ts
+import { words } from '@opentf/std';
+
+words(
+  str: string,
+  pattern?: RegExp | string
+): string[];
+```
+
+## Parameters
+
+- `str`: The string to split.
+- `pattern` (Optional): The pattern to use for splitting.
+
+## Returns
+
+An array of words.
+
+## Examples
+
+```ts
+words('fred, barney, & pebbles') //=> ['fred', 'barney', 'pebbles']
+
+words('fred, barney, & pebbles', /[^, ]+/g) //=> ['fred', 'barney', '&', 'pebbles']
+```
+
+## Related
+
+- [trim](/docs/String/trim)
+- [truncate](/docs/String/truncate)
+

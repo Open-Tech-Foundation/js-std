@@ -1,0 +1,49 @@
+import { Callout } from "@opentf/web-docs";
+
+📦 Checks if a value is an `object` and not `null`.
+
+<Callout type="info">
+  In JavaScript, `typeof null` is `'object'`, but this function correctly returns `false` for `null`.
+</Callout>
+
+<Callout type="info">
+  This function returns `true` for any value where `typeof val === 'object'`, such as Arrays, Dates, Maps, Sets, etc.
+</Callout>
+
+## Syntax
+
+```ts
+import { isObject } from '@opentf/std';
+
+isObject(val: unknown): boolean
+```
+
+## Parameters
+
+- `val`: The value to check.
+
+## Returns
+
+`true` if the value is an object and not `null`, `false` otherwise.
+
+## Examples
+
+```ts
+isObject({}) //=> true
+
+isObject([]) //=> true
+
+isObject(new Date()) //=> true
+
+isObject(new Map()) //=> true
+
+isObject(null) //=> false
+
+isObject(123) //=> false
+```
+
+## Related
+
+- [isPlainObject](/docs/Types/isPlainObject)
+- [isEmpty](/docs/Assert/isEmpty)
+

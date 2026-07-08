@@ -1,0 +1,18 @@
+Converts the given array values into an object property path string.
+
+## Syntax
+
+```ts
+import { fromPath } from '@opentf/std';
+
+fromPath(arr: (string | number)[] = []): string
+```
+
+## Examples
+
+```ts
+fromPath(['a', '0', 'b', 'c']) //=> 'a[0].b.c'
+
+fromPath(['a', 1, 'b', 'c']) //=> 'a[1].b.c'
+```
+

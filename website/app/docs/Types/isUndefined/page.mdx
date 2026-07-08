@@ -1,0 +1,25 @@
+Checks if the given value is [undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined).
+
+## Syntax
+
+```ts
+import { isUndefined } from '@opentf/std';
+
+isUndefined(value: unknown): boolean;
+```
+
+## Examples
+
+```ts
+isUndefined() //=> true
+
+isUndefined(undefined) //=> true
+
+isUndefined(null) //=> false
+```
+
+## Related
+
+- [isObject](/docs/Types/isObject)
+- [isPlainObject](/docs/Types/isPlainObject)
+

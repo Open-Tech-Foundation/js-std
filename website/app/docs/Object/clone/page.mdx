@@ -1,0 +1,66 @@
+import { Callout } from "@opentf/web-docs";
+
+👯 Creates a deep clone of a value, supporting circular references and various built-in types.
+
+<Callout type="info">
+  The following types are supported for deep cloning:
+  - **Primitive types** (except Symbols)
+  - **Plain Objects**
+  - **Arrays**
+  - **Maps & Sets**
+  - **Dates**
+  - **RegExps** (lastIndex is not preserved)
+  - **Errors**
+  - **ArrayBuffers & TypedArrays**
+  - **DataViews**
+</Callout>
+
+<Callout emoji="✅" type="info">
+  **Circular References**: Correctly handles circular references by keeping track of cloned objects.
+</Callout>
+
+<Callout type="info">
+  If you need to clone transferable objects or specialized web APIs, consider using the native [structuredClone()](https://developer.mozilla.org/en-US/docs/Web/API/structuredClone).
+</Callout>
+
+## Syntax
+
+```ts
+import { clone } from '@opentf/std';
+
+clone<T>(val: T): T
+```
+
+## Parameters
+
+- `val`: The value to deeply clone.
+
+## Returns
+
+A deep clone of the input value.
+
+## Examples
+
+```ts
+const input = { 
+  arr: [1, 2, 3], 
+  obj: { a: 'abc', b: 123 },
+  date: new Date(),
+  map: new Map([['a', 1], ['b', 2]]) 
+};
+
+const output = clone(input);
+
+input === output; // false
+output.arr === input.arr; // false
+output.obj === input.obj; // false
+output.map === input.map; // false
+output.date.getTime() === input.date.getTime(); // true
+
+// Circular references
+const circular: any = { a: 1 };
+circular.self = circular;
+const clonedCircular = clone(circular);
+clonedCircular.self === clonedCircular; // true
+```
+

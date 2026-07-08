@@ -1,0 +1,34 @@
+🐫 Converts string to camel case.
+
+## Syntax
+
+```ts
+import { camelCase } from '@opentf/std';
+
+camelCase(str: string): string;
+```
+
+## Parameters
+
+- `str`: The string to convert.
+
+## Returns
+
+The camel-cased string.
+
+## Examples
+
+```ts
+camelCase('Foo Bar') //=> 'fooBar'
+
+camelCase('--foo-bar--') //=> 'fooBar'
+
+camelCase('__FOO_BAR__') //=> 'fooBar'
+```
+
+## Related
+
+- [pascalCase](/docs/String/pascalCase)
+- [kebabCase](/docs/String/kebabCase)
+- [snakeCase](/docs/String/snakeCase)
+

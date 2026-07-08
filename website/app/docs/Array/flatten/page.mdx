@@ -1,0 +1,38 @@
+🧩 Flattens an array up to the specified depth.
+
+## Syntax
+
+```ts
+import { flatten } from '@opentf/std';
+
+flatten<T>(arr: T[] = [], depth: number = 1): any[]
+```
+
+## Parameters
+
+- `arr`: The source array.
+- `depth`: The maximum recursion depth. Defaults to `1`.
+
+## Returns
+
+A new flattened array.
+
+## Examples
+
+```ts
+flatten([1, [2, 3]]) //=> [1, 2, 3]
+
+flatten([1, [2, [3, [4]]]]) //=> [1, 2, [3, [4]]]
+
+flatten([1, [2, [3, [4]]]], 2) //=> [1, 2, 3, [4]]
+
+flatten([1, [2, [3, [4]]]], Infinity) //=> [1, 2, 3, 4]
+
+flatten([1, [2, [3, [4]]]], 0) //=> [1, [2, [3, [4]]]]
+```
+
+## Related
+
+- [chunk](/docs/Array/chunk)
+- [compact](/docs/Array/compact)
+

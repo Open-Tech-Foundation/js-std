@@ -1,0 +1,52 @@
+import { Callout } from "@opentf/web-docs";
+
+📊 Calculates the median value of a list of numbers.
+
+<Callout type="info">
+  **Median**: The middle number; found by ordering all data points and picking out the one in the middle (or if there are two middle numbers, taking the mean of those two numbers).
+  <div style="text-align: right">
+  \- [Khan Academy](https://www.khanacademy.org/math/statistics-probability/summarizing-quantitative-data/mean-median-basics/a/mean-median-and-mode-review)
+  </div>
+</Callout>
+
+## Syntax
+
+```ts
+import { median } from '@opentf/std';
+
+median<T>(
+  arr: T[] = [],
+  cb?: (val: T, index: number) => number
+): number
+```
+
+## Parameters
+
+- `arr`: An array of numbers.
+- `cb`: An optional iteratee invoked for each element to generate the value to be used for median calculation.
+
+## Returns
+
+The calculated median. Returns `NaN` for empty arrays.
+
+## Examples
+
+```ts
+median([]) //=> NaN
+
+median([1]) //=> 1
+
+median([4, 1, 7]) //=> 4 (Sorted: [1, 4, 7])
+
+median([4, 2, 8]) //=> 4 (Sorted: [2, 4, 8])
+
+median([1, 4, 2, 5, 0]) //=> 2 (Sorted: [0, 1, 2, 4, 5])
+
+median([10, 20, 40, 50]) //=> 30 (Average of 20 and 40)
+```
+
+## Related
+
+- [mean](/docs/Maths/mean)
+- [mode](/docs/Maths/mode)
+

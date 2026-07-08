@@ -1,0 +1,66 @@
+import { Callout } from "@opentf/web-docs";
+
+📊 Sorts an array of objects by one or more properties or iteratees.
+
+<Callout emoji="✅" type="info">
+  **Immutable**: This function does not mutate the original array.
+</Callout>
+
+## Syntax
+
+```ts
+import { sortBy } from '@opentf/std';
+
+sortBy<T>(
+  arr: T[],
+  ...tuples: [key: keyof T | ((obj: T) => unknown), order: "asc" | "desc"][]
+): T[]
+```
+
+## Parameters
+
+- `arr`: The source array of objects.
+- `...tuples`: A list of tuples where each tuple contains a key (property name or function) and the sort order (`'asc'` or `'desc'`).
+
+## Returns
+
+A new sorted array.
+
+## Examples
+
+```ts
+const fruits = [
+  { name: 'banana', amount: 2 },
+  { name: 'apple', amount: 4 },
+  { name: 'pineapple', amount: 2 },
+  { name: 'mango', amount: 1 },
+  { name: 'orange', amount: 5 },
+];
+
+sortBy(fruits, ['name', 'asc']);
+// OR
+sortBy(fruits, [(o) => o.name, 'asc']);
+//=> [
+//   { name: 'apple', amount: 4 },
+//   { name: 'banana', amount: 2 },
+//   { name: 'mango', amount: 1 },
+//   { name: 'orange', amount: 5 },
+//   { name: 'pineapple', amount: 2 },
+// ]
+
+sortBy(fruits, ['amount', 'desc'], ['name', 'asc']);
+// OR
+sortBy(fruits, [o => o.amount, 'desc'], [o => o.name, 'asc']);
+//=> [
+//  { name: 'orange', amount: 5 },
+//  { name: 'apple', amount: 4 },
+//  { name: 'banana', amount: 2 },
+//  { name: 'pineapple', amount: 2 },
+//  { name: 'mango', amount: 1 }
+// ]
+```
+
+## Related
+
+- [sort](/docs/Array/sort)
+

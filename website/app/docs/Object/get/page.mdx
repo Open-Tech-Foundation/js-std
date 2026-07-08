@@ -1,0 +1,52 @@
+import { Callout } from "@opentf/web-docs";
+
+🎯 Gets the value at a specific path of an object.
+
+<Callout type="info">
+  Supports both string paths (e.g., `'a.b[0].c'`) and array paths (e.g., `['a', 'b', 0, 'c']`).
+</Callout>
+
+## Syntax
+
+```ts
+import { get } from '@opentf/std';
+
+get(
+  obj: object,
+  path: string | unknown[],
+  defVal?: unknown
+): unknown
+```
+
+## Parameters
+
+- `obj`: The object to query.
+- `path`: The path of the property to get.
+- `defVal`: The value returned if the resolved value is `undefined` or the path doesn't exist.
+
+## Returns
+
+The resolved value or the default value.
+
+## Examples
+
+```ts
+get({ a: 1 }, 'a') //=> 1
+
+get({ user: { email: 'user@example.com' } }, 'user.email') //=> 'user@example.com'
+
+get({ a: [{ b: { c: 99 } }] }, 'a[0].b.c') //=> 99
+
+get({ a: 1 }, 'b', 'default') //=> 'default'
+
+get({ a: null }, 'a') //=> null (null is a valid value)
+
+get({ fruits: ['Apple', 'Mango'] }, ['fruits', 1]) //=> 'Mango'
+```
+
+## Related
+
+- [set](/docs/Object/set)
+- [has](/docs/Object/has)
+- [unset](/docs/Object/unset)
+

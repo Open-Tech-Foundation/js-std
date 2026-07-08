@@ -1,0 +1,19 @@
+🌫️ Converts a color to grayscale.
+
+## Syntax
+
+```ts
+import { colorGrayscale } from '@opentf/std';
+
+colorGrayscale(input: any, format?: ColorFormat): any
+```
+
+- `format`: The output format (default: `'hex'`).
+
+## Examples
+
+```ts
+colorGrayscale('red'); //=> '#808080'
+colorGrayscale('#00ff00'); //=> '#808080'
+```
+

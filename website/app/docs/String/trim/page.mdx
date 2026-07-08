@@ -1,0 +1,32 @@
+✂️ Removes leading and trailing whitespace or specified characters from a string.
+
+## Syntax
+
+```ts
+import { trim } from '@opentf/std';
+
+trim(str: string, chars?: string): string;
+```
+
+## Parameters
+
+- `str`: The string to trim.
+- `chars` (Optional): The characters to trim. Defaults to whitespace.
+
+## Returns
+
+The trimmed string.
+
+## Examples
+
+```ts
+trim('  abc  ') //=> 'abc'
+
+trim('-_-abc-_-', '_-') //=> 'abc'
+```
+
+## Related
+
+- [truncate](/docs/String/truncate)
+- [words](/docs/String/words)
+

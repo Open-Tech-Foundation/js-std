@@ -1,0 +1,8 @@
+export default {
+  "filterAsync": "filterAsync",
+  "flatMapAsync": "flatMapAsync",
+  "eachAsync": "eachAsync",
+  "mapAsync": "mapAsync",
+  "reduceAsync": "reduceAsync",
+  "withResolvers": "withResolvers",
+};

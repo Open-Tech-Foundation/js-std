@@ -1,0 +1,21 @@
+🌑 Decreases the lightness of a color.
+
+## Syntax
+
+```ts
+import { colorDarken } from '@opentf/std';
+
+colorDarken(input: ColorInput, amount: number, format?: ColorFormat): any
+```
+
+- `amount`: A number between `0` and `1`.
+- `format`: The output format (default: `'hex'`).
+
+## Examples
+
+```ts
+colorDarken('#fff', 0.5); //=> '#808080'
+colorDarken('red', 0.2); //=> '#990000'
+colorDarken('red', 0.2, 'rgba'); //=> 'rgba(153, 0, 0, 1)'
+```
+

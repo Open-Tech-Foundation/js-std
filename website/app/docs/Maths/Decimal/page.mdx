@@ -1,0 +1,286 @@
+import { Callout } from "@opentf/web-docs";
+
+🎯 Exact decimal arithmetic without floating-point errors.
+
+<Callout type="info">
+Internally uses BigInt for exact integer arithmetic — no floating-point precision loss.
+All arithmetic methods return new `Decimal` instances (immutable).
+</Callout>
+
+## Syntax
+
+```ts
+import { Decimal } from '@opentf/std';
+
+class Decimal {
+  constructor(value: number | string | Decimal);
+
+  // Representation
+  toString(): string;
+  toNumber(): number;
+  toFixed(dp: number): string;
+  toJSON(): string;
+
+  // Arithmetic
+  add(other: Decimal | number | string): Decimal;
+  subtract(other: Decimal | number | string): Decimal;
+  multiply(other: Decimal | number | string): Decimal;
+  divide(other: Decimal | number | string, decimalPlaces?: number): Decimal;
+  modulo(other: Decimal | number | string): Decimal;
+  negate(): Decimal;
+  abs(): Decimal;
+
+  // Comparison
+  equals(other: Decimal | number | string): boolean;
+  greaterThan(other: Decimal | number | string): boolean;
+  lessThan(other: Decimal | number | string): boolean;
+  greaterThanOrEqual(other: Decimal | number | string): boolean;
+  lessThanOrEqual(other: Decimal | number | string): boolean;
+  compareTo(other: Decimal | number | string): -1 | 0 | 1;
+
+  // Rounding
+  round(dp?: number): Decimal;
+  floor(): Decimal;
+  ceil(): Decimal;
+  truncate(): Decimal;
+
+  // Introspection
+  isZero(): boolean;
+  isNegative(): boolean;
+  isPositive(): boolean;
+  isInteger(): boolean;
+  decimalPlaces(): number;
+
+  // Coercion
+  valueOf(): number;
+  [Symbol.toPrimitive](hint: string): number | string;
+}
+```
+
+## Constructor
+
+```ts
+new Decimal(value: number | string | Decimal)
+```
+
+Creates a new Decimal from a number, string, or another Decimal.
+
+| Input | Example | Notes |
+| ----- | ------- | ----- |
+| `string` | `new Decimal('0.1')` | Preferred for exact precision. Accepts `" 1.5 "`, `"+1.5"`, `".5"`, `"-.5"`, `"1e20"` |
+| `number` | `new Decimal(0.1)` | Converts via `String()`. Already-imprecise numbers stay imprecise (e.g. `0.1 + 0.2` becomes `0.30000000000000004`) |
+| `Decimal` | `new Decimal(other)` | Copies the value |
+
+**Throws** for invalid or non-finite inputs:
+
+```ts
+new Decimal(NaN)        // throws
+new Decimal(Infinity)   // throws
+new Decimal('')         // throws
+new Decimal('abc')      // throws
+new Decimal('1.2.3')    // throws
+new Decimal('3.')       // throws
+new Decimal('1,000.50') // throws
+```
+
+## Methods
+
+### Representation
+
+| Method | Returns | Description |
+| ------ | ------- | ----------- |
+| `toString()` | `string` | Exact string representation |
+| `toNumber()` | `number` | Converts to JS native number ⚠️ may lose precision beyond `Number.MAX_SAFE_INTEGER` |
+| `toFixed(dp)` | `string` | String with `dp` decimal places (rounds half-up) |
+| `toJSON()` | `string` | Returns string — `JSON.stringify` produces `{"price":"1.99"}` not `{"price":1.99}` |
+
+### Arithmetic
+
+All methods accept `Decimal | number | string` and return a new `Decimal`.
+
+| Method | Description |
+| ------ | ----------- |
+| `add(other)` | Exact addition |
+| `subtract(other)` | Exact subtraction |
+| `multiply(other)` | Exact multiplication |
+| `divide(other, dp?)` | Division with configurable precision (default 20), rounds half-up. Throws on division by zero |
+| `modulo(other)` | Truncated remainder (matches JS `%` behavior). Throws on modulo by zero |
+| `negate()` | Flips sign. `negate('0')` → `'0'`, not `'-0'` |
+| `abs()` | Absolute value |
+
+### Comparison
+
+| Method | Description |
+| ------ | ----------- |
+| `equals(other)` | Exact equality. `'0'.equals('-0')` → `true` |
+| `greaterThan(other)` | `a > b` |
+| `lessThan(other)` | `a < b` |
+| `greaterThanOrEqual(other)` | `a >= b` |
+| `lessThanOrEqual(other)` | `a <= b` |
+| `compareTo(other)` | Returns `-1`, `0`, or `1` — typed for `Array.sort()` |
+
+### Rounding & Scaling
+
+| Method | Description |
+| ------ | ----------- |
+| `round(dp?)` | Rounds to `dp` decimal places (default 0), half-up. Throws on negative `dp` |
+| `floor()` | Rounds toward negative infinity (`-1.1` → `-2`) |
+| `ceil()` | Rounds toward positive infinity (`-1.1` → `-1`) |
+| `truncate()` | Truncates toward zero (`-1.9` → `-1`) |
+
+### Introspection
+
+| Method | Description |
+| ------ | ----------- |
+| `isZero()` | `true` if value is `0`. Returns `true` for `'-0'` |
+| `isNegative()` | `true` if value is `< 0`. Returns `false` for `0` and `-0` |
+| `isPositive()` | `true` if value is `> 0`. Returns `false` for `0` |
+| `isInteger()` | `true` if no fractional part. `'3.0'` → `true`, `'3'` → `true` |
+| `decimalPlaces()` | Number of digits after decimal point. `'3'` → `0`, `'3.0'` → `1`, `'3.14'` → `2` |
+
+## Examples
+
+### Classic floating-point precision fixes
+
+```ts
+import { Decimal } from '@opentf/std';
+
+new Decimal('0.1').add('0.2').toString()
+//=> '0.3'
+
+new Decimal('0.3').subtract('0.1').toString()
+//=> '0.2'
+
+new Decimal('0.1').multiply('0.1').toString()
+//=> '0.01'
+
+new Decimal('0.3').divide('0.1', 10).toString()
+//=> '3'
+
+new Decimal('0').divide('5').toString()
+//=> '0'
+```
+
+### Chaining operations
+
+```ts
+const result = new Decimal('0.1')
+  .add('0.2')
+  .multiply('3')
+  .subtract('0.5')
+  .divide('2', 10);
+
+result.toString() //=> '0.2'
+```
+
+### Rounding
+
+```ts
+new Decimal('3.14159').round(2).toString() //=> '3.14'
+new Decimal('3.5').round().toString()       //=> '4'
+new Decimal('2.5').round().toString()       //=> '3'  (half-up)
+new Decimal('-2.5').round().toString()      //=> '-3' (half-up)
+new Decimal('-3.14').floor().toString()     //=> '-4'
+new Decimal('-1.1').floor().toString()      //=> '-2'
+new Decimal('-1.1').ceil().toString()       //=> '-1'
+new Decimal('3.14').truncate().toString()   //=> '3'
+new Decimal('-1.9').truncate().toString()   //=> '-1'
+```
+
+### Comparison
+
+```ts
+new Decimal('0.1').add('0.2').equals('0.3')   //=> true
+new Decimal('0').equals('-0')                  //=> true
+new Decimal('5').greaterThan('3')              //=> true
+new Decimal('3').lessThan('5')                 //=> true
+new Decimal('3').compareTo('5')                //=> -1
+
+// Use compareTo with Array.sort()
+const sorted = [new Decimal('3'), new Decimal('1'), new Decimal('2')]
+  .sort((a, b) => a.compareTo(b))
+  .map(d => d.toString())  //=> ['1', '2', '3']
+```
+
+### Introspection
+
+```ts
+new Decimal('0').isZero()          //=> true
+new Decimal('-0').isZero()         //=> true
+new Decimal('0').isNegative()      //=> false
+new Decimal('0').isPositive()      //=> false
+new Decimal('-5').isNegative()     //=> true
+new Decimal('3').isPositive()      //=> true
+new Decimal('3.14').isInteger()    //=> false
+new Decimal('3').isInteger()       //=> true
+new Decimal('3.0').isInteger()     //=> true
+new Decimal('3.14').decimalPlaces() //=> 2
+new Decimal('3').decimalPlaces()    //=> 0
+```
+
+### Modulo
+
+```ts
+new Decimal('7').modulo('3')   //=> 1
+new Decimal('-7').modulo('3')  //=> -1  (JS convention)
+new Decimal('7').modulo('-3')  //=> 1   (JS convention)
+new Decimal('-7').modulo('-3') //=> -1  (JS convention)
+new Decimal('7').modulo('0')   // throws
+```
+
+### Divide
+
+```ts
+new Decimal('1').divide('3', 10).toString()   //=> '0.3333333333'
+new Decimal('1').divide('0')                  // throws
+new Decimal('0').divide('5').toString()       //=> '0'
+```
+
+## ⚠️ Gotchas
+
+### `toNumber()` precision loss
+
+Values beyond `Number.MAX_SAFE_INTEGER` (9,007,199,254,740,991) lose precision when converted:
+
+```ts
+new Decimal('9007199254740993').toNumber()
+//=> 9007199254740992  ← silently wrong
+```
+
+Always use `toString()` for exact serialization.
+
+### `toJSON()` returns a string
+
+```ts
+JSON.stringify({ price: new Decimal('1.99') })
+//=> '{"price":"1.99"}'  ← string, not number
+
+// Workaround — use toNumber() when you need a number in JSON:
+JSON.stringify({ price: new Decimal('1.99').toNumber() })
+//=> '{"price":1.99}'
+```
+
+### Implicit coercion via `valueOf` / `Symbol.toPrimitive`
+
+`valueOf` returns a JS number, which enables arithmetic operators but can silently lose precision:
+
+```ts
+const d = new Decimal('1.5');
+
+d * 2            // 3    (via valueOf)
++d               // 1.5  (via Symbol.toPrimitive)
+d > 1            // true (via valueOf)
+`${d}`           // '1.5' (via Symbol.toPrimitive, hint: string)
+
+// But beware:
+new Decimal('9007199254740993') + 1  // 9007199254740992 ← precision lost!
+```
+
+Prefer method chaining (`d.add(...)`, `d.compareTo(...)`) over operators for precision-sensitive code.
+
+## Related
+
+- [sum](/docs/Maths/sum)
+- [prod](/docs/Maths/prod)
+- [mean](/docs/Maths/mean)
+

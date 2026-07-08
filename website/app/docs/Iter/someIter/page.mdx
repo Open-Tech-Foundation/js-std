@@ -1,0 +1,29 @@
+🧩 Checks if any item matches a predicate.
+
+## Syntax
+
+```ts
+import { someIter } from '@opentf/std';
+
+someIter<T>(iter: Iterable<T>, fn: (val: T) => boolean): boolean
+```
+
+## Parameters
+
+- `iter`: The source iterable.
+- `fn`: The predicate function.
+
+## Returns
+
+True if any item matches, else false.
+
+## Examples
+
+```ts
+someIter([1, 2, 3], (x) => x > 1) //=> true
+```
+
+## Related
+
+- [someIterAsync](/docs/Iter/someIterAsync)
+

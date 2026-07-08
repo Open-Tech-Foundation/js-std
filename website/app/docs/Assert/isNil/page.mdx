@@ -1,0 +1,42 @@
+🚫 Checks if a value is [nullish](https://developer.mozilla.org/en-US/docs/Glossary/Nullish) (`null` or `undefined`).
+
+## Syntax
+
+```ts
+import { isNil } from '@opentf/std';
+
+isNil(val: unknown): boolean
+```
+
+## Parameters
+
+- `val`: The value to check.
+
+## Returns
+
+`true` if the value is `null` or `undefined`, `false` otherwise.
+
+## Examples
+
+```ts
+isNil() //=> true
+
+isNil(undefined) //=> true
+
+isNil(null) //=> true
+
+isNil('') //=> false
+
+isNil(0) //=> false
+
+isNil(false) //=> false
+
+isNil([]) //=> false
+
+isNil({}) //=> false
+```
+
+## Related
+
+- [isEmpty](/docs/Assert/isEmpty)
+

@@ -1,0 +1,24 @@
+Checks if the current runtime is Deno.
+
+## Syntax
+
+```ts
+import { isDeno } from '@opentf/std';
+
+isDeno(): boolean
+```
+
+## Examples
+
+```ts
+isDeno() //=> true (in Deno)
+
+isDeno() //=> false (in Node.js, Bun, browser)
+```
+
+## Related
+
+- [isNode](/docs/Types/isNode)
+- [isBrowser](/docs/Types/isBrowser)
+- [isBun](/docs/Types/isBun)
+

@@ -1,0 +1,61 @@
+import { Callout } from "@opentf/web-docs";
+
+⚖️ Returns a new array containing elements that are in either collection, but not in both (symmetric difference).
+
+<Callout type="info">
+  It uses [isEql](/docs/Assert/isEql) for deep comparison of values.
+</Callout>
+
+### Venn Diagram
+
+<div style="padding: 15px; background-color: white">
+  ![Symmetric Difference Venn Diagram](/assets/sym-diff-venn-diagram.svg)
+  <div style="text-align: right; font-size: 14px">
+    [Source: MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
+  </div>
+</div>
+
+## Syntax
+
+```ts
+import { symDiff } from '@opentf/std';
+
+symDiff(
+  collections: unknown[][] = [],
+  by?: (val: unknown) => unknown
+): unknown[]
+```
+
+## Parameters
+
+- `collections`: An array of arrays to compare.
+- `by`: An optional iteratee invoked for each element to generate the criterion by which symmetric difference is computed.
+
+## Returns
+
+A new array containing the unique symmetric difference of the collections.
+
+## Examples
+
+```ts
+const evens = [2, 4, 6, 8];
+const squares = [1, 4, 9];
+symDiff([evens, squares]) //=> [2, 6, 8, 1, 9]
+
+const bucket1 = ['Fruits', 'Vegs', 'Eggs', 'Cookies', 'Nuts'];
+const bucket2 = ['fruits', 'Snacks', 'cookies'];
+symDiff([bucket1, bucket2], (v) => v.toLowerCase()) 
+//=> [
+//  'Vegs',
+//  'Eggs',
+//  'Nuts',
+//  'Snacks',
+// ]
+```
+
+## Related
+
+- [intersection](/docs/Array/intersection)
+- [difference](/docs/Array/difference)
+- [union](/docs/Array/union)
+

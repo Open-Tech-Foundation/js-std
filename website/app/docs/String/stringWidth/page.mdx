@@ -1,0 +1,28 @@
+📏 Calculates the visual width of a string in a terminal.
+
+## Syntax
+
+```ts
+import { stringWidth } from '@opentf/std';
+
+stringWidth(str: string): number
+```
+
+## Examples
+
+```ts
+stringWidth('abc') //=> 3
+stringWidth('\x1b[31mabc\x1b[0m') //=> 3
+stringWidth('🔥') //=> 2
+stringWidth('こんにちは') //=> 10
+```
+
+## Implementation Strategy
+
+Unlike many other libraries that ship large internal Unicode lookup tables, this implementation uses a **Platform-First** approach:
+
+1.  **Native Engine**: Uses the native [Intl.Segmenter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Segmenter) (Baseline 2024) to accurately identify grapheme clusters.
+2.  **Zero Bundle Bloat**: Leverages the browser/runtime's built-in Unicode data, keeping the library size extremely small.
+3.  **High Precision**: Accurately handles complex sequences like **ZWJ Emojis**, **Skin Tone Modifiers**, and **Regional Indicators (Flags)** that simple regex-based approaches miss.
+4.  **ANSI Awareness**: Automatically strips ANSI escape codes (using a comprehensive ECMA-48 compliant regex) before calculating width.
+

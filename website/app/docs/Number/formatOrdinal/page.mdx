@@ -1,0 +1,40 @@
+🔢 Formats a number to its ordinal form (1st, 2nd, 3rd, etc.).
+
+## Syntax
+
+```ts
+import { formatOrdinal } from '@opentf/std';
+
+formatOrdinal(n: number): string
+```
+
+## Parameters
+
+- `n`: The number to format.
+
+## Returns
+
+The ordinal formatted string. Returns the string representation as-is for non-finite numbers or non-integers.
+
+## Examples
+
+```ts
+formatOrdinal(1) //=> '1st'
+
+formatOrdinal(2) //=> '2nd'
+
+formatOrdinal(3) //=> '3rd'
+
+formatOrdinal(11) //=> '11th'
+
+formatOrdinal(21) //=> '21st'
+
+formatOrdinal(0) //=> '0th'
+
+formatOrdinal(-1) //=> '-1st'
+
+formatOrdinal(1.5) //=> '1.5'
+
+formatOrdinal(Number.NaN) //=> 'NaN'
+```
+

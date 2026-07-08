@@ -1,0 +1,21 @@
+Converts a string into a URL-friendly slug. Handles accents and special characters.
+
+
+## Syntax
+
+```ts
+import { slugify } from "@opentf/std";
+
+slugify(str: string)
+```
+
+## Examples
+
+```ts
+slugify('Hello World!'); //=> 'hello-world'
+
+slugify('Café au Lait'); //=> 'cafe-au-lait'
+
+slugify('Special characters like @#$%'); //=> 'special-characters-like'
+```
+

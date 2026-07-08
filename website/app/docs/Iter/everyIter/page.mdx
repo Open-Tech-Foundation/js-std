@@ -1,0 +1,29 @@
+🧩 Checks if all items match a predicate.
+
+## Syntax
+
+```ts
+import { everyIter } from '@opentf/std';
+
+everyIter<T>(iter: Iterable<T>, fn: (val: T) => boolean): boolean
+```
+
+## Parameters
+
+- `iter`: The source iterable.
+- `fn`: The predicate function.
+
+## Returns
+
+True if all items match, else false.
+
+## Examples
+
+```ts
+everyIter([1, 2, 3], (x) => x > 0) //=> true
+```
+
+## Related
+
+- [everyIterAsync](/docs/Iter/everyIterAsync)
+

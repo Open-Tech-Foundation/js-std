@@ -1,0 +1,37 @@
+💹 Calculates the value of a given percentage of a number.
+
+## Syntax
+
+```ts
+import { percentageOf } from '@opentf/std';
+
+percentageOf(percentage: number, num: number): number
+```
+
+## Parameters
+
+- `percentage`: The percentage value.
+- `num`: The number to calculate the percentage of.
+
+## Returns
+
+The calculated value.
+
+## Examples
+
+```ts
+percentageOf(0, 0); //=> 0
+
+percentageOf(1, 1); //=> 0.01
+
+percentageOf(10, 80); //=> 8
+
+percentageOf(50, 900); //=> 450
+
+percentageOf(17.5, 10); //=> 1.75
+```
+
+## Related
+
+- [percentage](/docs/Maths/percentage)
+

@@ -1,0 +1,20 @@
+💡 Calculates the relative luminance of a color.
+
+## Syntax
+
+```ts
+import { colorLuminance } from '@opentf/std';
+
+colorLuminance(input: any): number
+```
+
+Returns a value between `0` (darkest black) and `1` (brightest white).
+
+## Examples
+
+```ts
+colorLuminance('white'); //=> 1
+colorLuminance('black'); //=> 0
+colorLuminance('red'); //=> 0.2126
+```
+

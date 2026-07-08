@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS Standard Library</title>
+    <meta
+      name="description"
+      content="An extensive JavaScript standard library — lightweight, high-accuracy, and cross-runtime."
+    />
+    <meta
+      name="google-site-verification"
+      content="1GsNBEYX2lcJpmj3OyKi6bszF9n3-Uv6bG_diPCpDhc"
+    />
+    <link rel="icon" href="/assets/Logo.svg" />
+    <script>
+      (function () {
+        try {
+          var t =
+            localStorage.getItem("theme") ||
+            (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+          document.documentElement.setAttribute("data-theme", t);
+        } catch (e) {}
+      })();
+    </script>
+    <link rel="stylesheet" href="/app/global.css" />
+    <link rel="stylesheet" href="/repl.css" />
+  </head>
+  <body>
+    <div id="app"></div>
+  </body>
+</html>

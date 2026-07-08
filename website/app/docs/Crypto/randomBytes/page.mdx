@@ -1,0 +1,28 @@
+🔢 Generates an array of cryptographically secure random bytes.
+
+## Syntax
+
+```ts
+import { randomBytes } from '@opentf/std';
+
+randomBytes(size: number = 32): Uint8Array;
+```
+
+## Parameters
+
+- `size`: The number of bytes to generate. Default: `32`.
+
+## Returns
+
+A `Uint8Array` containing the random bytes.
+
+## Examples
+
+```ts
+randomBytes(16) //=> Uint8Array(16) [ ... ]
+```
+
+## Related
+
+- [randomInt](/docs/Crypto/randomInt)
+

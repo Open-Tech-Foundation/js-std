@@ -1,0 +1,50 @@
+import { Callout } from "@opentf/web-docs";
+
+📦 Checks if a value is a **plain object**.
+
+<Callout type="info">
+  A plain object is an object created by the `{}` object literal or one created with `Object.create(null)`.
+</Callout>
+
+## Syntax
+
+```ts
+import { isPlainObject } from '@opentf/std';
+
+isPlainObject(val: unknown): boolean
+```
+
+## Parameters
+
+- `val`: The value to check.
+
+## Returns
+
+`true` if the value is a plain object, `false` otherwise.
+
+## Examples
+
+```ts
+isPlainObject({}) //=> true
+
+isPlainObject({ a: 1 }) //=> true
+
+isPlainObject(Object.create(null)) //=> true
+
+isPlainObject(new Object()) //=> true
+
+// Non-plain objects
+isPlainObject([]) //=> false
+
+isPlainObject(new Map()) //=> false
+
+isPlainObject(new Error()) //=> false
+
+isPlainObject(null) //=> false
+```
+
+## Related
+
+- [isObject](/docs/Types/isObject)
+- [isEmpty](/docs/Assert/isEmpty)
+

@@ -1,0 +1,24 @@
+Checks if the given value is [WeakRef](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakRef).
+
+## Syntax
+
+```ts
+import { isWeakRef } from '@opentf/std';
+
+isWeakRef(value: unknown): boolean;
+```
+
+## Examples
+
+```ts
+isWeakRef({}) //=> false
+
+let user = { name: "John" };
+isWeakRef(new WeakRef(user)) //=> true
+```
+
+## Related
+
+- [isObject](/docs/Types/isObject)
+- [isPlainObject](/docs/Types/isPlainObject)
+

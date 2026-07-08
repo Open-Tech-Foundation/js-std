@@ -1,0 +1,29 @@
+🧩 Filters items based on a predicate function.
+
+## Syntax
+
+```ts
+import { filterIter } from '@opentf/std';
+
+filterIter<T>(iter: Iterable<T>, fn: (val: T) => boolean): IterableIterator<T>
+```
+
+## Parameters
+
+- `iter`: The source iterable.
+- `fn`: The predicate function.
+
+## Returns
+
+A new iterable iterator.
+
+## Examples
+
+```ts
+[...filterIter([1, 2, 3, 4], (x) => x % 2 === 0)] //=> [2, 4]
+```
+
+## Related
+
+- [filterIterAsync](/docs/Iter/filterIterAsync)
+

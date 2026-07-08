@@ -1,0 +1,24 @@
+Checks if the current runtime is a web browser.
+
+## Syntax
+
+```ts
+import { isBrowser } from '@opentf/std';
+
+isBrowser(): boolean
+```
+
+## Examples
+
+```ts
+isBrowser() //=> true (in browser)
+
+isBrowser() //=> false (in Node.js, Bun, Deno)
+```
+
+## Related
+
+- [isNode](/docs/Types/isNode)
+- [isDeno](/docs/Types/isDeno)
+- [isBun](/docs/Types/isBun)
+

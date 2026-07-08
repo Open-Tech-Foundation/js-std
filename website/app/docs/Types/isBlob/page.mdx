@@ -1,0 +1,23 @@
+Checks if the given value is a [Blob](https://developer.mozilla.org/en-US/docs/Web/API/Blob).
+
+## Syntax
+
+```ts
+import { isBlob } from '@opentf/std';
+
+isBlob(val: unknown): boolean;
+```
+
+## Examples
+
+```ts
+isBlob(new Blob()) //=> true
+ 
+isBlob({}) //=> false
+```
+
+## Related
+
+- [isObject](/docs/Types/isObject)
+- [isPlainObject](/docs/Types/isPlainObject)
+

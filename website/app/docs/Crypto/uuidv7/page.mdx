@@ -1,0 +1,31 @@
+import { Callout } from "@opentf/web-docs";
+
+🆔 Generates a time-sortable UUID v7 using native crypto.
+
+<Callout type="info">
+  UUID v7 is time-ordered, making it better for database primary keys than v4.
+</Callout>
+
+## Syntax
+
+```ts
+import { uuidv7 } from '@opentf/std';
+
+uuidv7(): string;
+```
+
+## Returns
+
+A random UUID v7 string.
+
+## Examples
+
+```ts
+uuidv7() //=> '018f1e6b-7b3b-7b3b-7b3b-7b3b7b3b7b3b'
+```
+
+## Related
+
+- [uuidv4](/docs/Crypto/uuidv4)
+- [randomId](/docs/Crypto/randomId)
+

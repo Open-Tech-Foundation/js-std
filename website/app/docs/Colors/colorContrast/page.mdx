@@ -1,0 +1,20 @@
+⚖️ Calculates the contrast ratio between two colors.
+
+## Syntax
+
+```ts
+import { colorContrast } from '@opentf/std';
+
+colorContrast(color1: any, color2: any): number
+```
+
+Returns a value between `1` and `21`.
+
+## Examples
+
+```ts
+colorContrast('white', 'black'); //=> 21
+colorContrast('white', 'white'); //=> 1
+colorContrast('red', 'white'); //=> 4
+```
+

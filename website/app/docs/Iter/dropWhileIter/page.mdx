@@ -1,0 +1,29 @@
+🧩 Skips items while a predicate is true, then yields the rest.
+
+## Syntax
+
+```ts
+import { dropWhileIter } from '@opentf/std';
+
+dropWhileIter<T>(iter: Iterable<T>, fn: (val: T) => boolean): IterableIterator<T>
+```
+
+## Parameters
+
+- `iter`: The source iterable.
+- `fn`: The predicate function.
+
+## Returns
+
+A new iterable iterator.
+
+## Examples
+
+```ts
+[...dropWhileIter([1, 2, 3, 4], (x) => x < 3)] //=> [3, 4]
+```
+
+## Related
+
+- [dropWhileIterAsync](/docs/Iter/dropWhileIterAsync)
+

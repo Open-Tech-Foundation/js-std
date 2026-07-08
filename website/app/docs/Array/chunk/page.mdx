@@ -1,0 +1,37 @@
+🧩 Splits an array into groups of a specified size.
+
+## Syntax
+
+```ts
+import { chunk } from '@opentf/std';
+
+chunk<T>(arr: T[] = [], size: number = 1): T[][]
+```
+
+## Parameters
+
+- `arr`: The source array.
+- `size`: The length of each chunk. Defaults to `1`.
+
+## Returns
+
+A new array containing the chunks.
+
+## Examples
+
+```ts
+chunk([1, 2, 3]) //=> [[1], [2], [3]]
+
+chunk([1, 2, 3], 1) //=> [[1], [2], [3]]
+
+chunk([1, 2, 3], 2) //=> [[1, 2], [3]]
+
+chunk([1, 2, 3], 3) //=> [[1, 2, 3]]
+
+chunk([1, 2, 3], 4) //=> [[1, 2, 3]]
+```
+
+## Related
+
+- [groupBy](/docs/Array/groupBy)
+

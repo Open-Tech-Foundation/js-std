@@ -1,0 +1,11 @@
+@import "tailwindcss";
+@import "@opentf/web-docs/theme";
+@import "./components/VisualTools.css";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}

@@ -1,0 +1,43 @@
+💹 Calculates the percentage of a value relative to a total.
+
+## Syntax
+
+```ts
+import { percentage } from '@opentf/std';
+
+percentage(value: number, total: number): number
+```
+
+## Parameters
+
+- `value`: The part value.
+- `total`: The whole (total) value.
+
+## Returns
+
+The percentage value.
+
+## Examples
+
+```ts
+percentage(0, 0); //=> NaN
+
+percentage(1, 0); //=> Infinity
+
+percentage(1, 1); //=> 100
+
+percentage(0.5, 1); //=> 50
+
+percentage(25, 100); //=> 25
+
+percentage(75, 150); //=> 50
+
+percentage(8, 800); //=> 1
+
+percentage(200, 100); //=> 200
+```
+
+## Related
+
+- [percentageOf](/docs/Maths/percentageOf)
+

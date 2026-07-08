@@ -1,0 +1,31 @@
+import { Callout } from "@opentf/web-docs";
+
+🆔 Generates a random UUID v4 using native crypto.
+
+<Callout type="info">
+  In Node.js 18, you need to polyfill \`globalThis.crypto\` to use this function.
+</Callout>
+
+## Syntax
+
+```ts
+import { uuidv4 } from '@opentf/std';
+
+uuidv4(): string;
+```
+
+## Returns
+
+A random UUID v4 string.
+
+## Examples
+
+```ts
+uuidv4() //=> 'f47ac10b-58cc-4372-a567-0e02b2c3d479'
+```
+
+## Related
+
+- [uuidv7](/docs/Crypto/uuidv7)
+- [randomId](/docs/Crypto/randomId)
+

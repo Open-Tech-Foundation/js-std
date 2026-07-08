@@ -1,0 +1,20 @@
+☀️ Checks if a color is light based on its relative luminance.
+
+## Syntax
+
+```ts
+import { colorIsLight } from '@opentf/std';
+
+colorIsLight(input: any): boolean
+```
+
+Returns `true` if the luminance is greater than or equal to `0.5`.
+
+## Examples
+
+```ts
+colorIsLight('white'); //=> true
+colorIsLight('black'); //=> false
+colorIsLight('yellow'); //=> true
+```
+

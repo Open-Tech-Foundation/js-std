@@ -1,0 +1,63 @@
+import { Callout } from "@opentf/web-docs";
+
+📤 Removes items at the specified index from an array.
+
+<Callout emoji="✅" type="info">
+  **Immutable**: This function does not mutate the original array.
+</Callout>
+
+## Syntax
+
+```ts
+import { remove } from '@opentf/std';
+
+remove<T>(
+  arr: T[] = [],
+  indexOrFn: number | ((item: T, index: number, array: T[]) => boolean),
+  count: number = 1
+): T[]
+```
+
+## Parameters
+
+- `arr`: The source array.
+- `indexOrFn`: The index from which to start removing items, or a predicate function to remove all matching items. If not provided, it removes the last item.
+- `count`: The number of items to remove (ignored when using a predicate). Defaults to `1`.
+
+## Returns
+
+A new array with the items removed.
+
+## Examples
+
+```ts
+remove([]) //=> []
+
+remove([1]) //=> []
+
+remove([1, 2]) //=> [1]
+
+remove([1, 2], 1) //=> [1]
+
+remove([1, 2], 1, 1) //=> [1]
+
+remove([1, 2, 3, 4, 5], -1) //=> [1, 2, 3, 4]
+
+remove([1, 2, 3, 4, 5], -1, 1) //=> [1, 2, 3, 4]
+
+remove([1, 2, 3, 4, 5], -1, 3) //=> [1, 2, 3, 4]
+
+remove([1, 2, 3, 4, 5], -2, 2) //=> [1, 2, 3]
+
+const myFish = ['angel', 'clown', 'mandarin', 'sturgeon'];
+remove(myFish, 2, Infinity) //=> ['angel', 'clown']
+
+// Predicate-based remove
+remove([1, 2, 3, 4, 5], (x) => x % 2 === 0) //=> [1, 3, 5]
+```
+
+## Related
+
+- [insert](/docs/Array/insert)
+- [replace](/docs/Array/replace)
+

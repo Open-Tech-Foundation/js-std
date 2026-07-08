@@ -1,0 +1,53 @@
+import { Callout } from "@opentf/web-docs";
+
+🎯 Removes a property at a specific path of an object.
+
+<Callout emoji="⚠️" type="warning">
+  **Mutable**: This function mutates the original object. Use [toUnset](/docs/Object/toUnset) for an immutable version.
+</Callout>
+
+<Callout type="info">
+  When used on arrays, it creates a [sparse array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Indexed_collections#sparse_arrays) by deleting the element at the index without shifting other elements.
+</Callout>
+
+## Syntax
+
+```ts
+import { unset } from '@opentf/std';
+
+unset<T>(
+  obj: T,
+  path: string | unknown[],
+): T
+```
+
+## Parameters
+
+- `obj`: The object or array to modify.
+- `path`: The path of the property to remove.
+
+## Returns
+
+The modified object.
+
+## Examples
+
+```ts
+unset({ a: 1, b: 2 }, 'a') //=> { b: 2 }
+
+unset({ a: 1, b: 2 }, 'c') //=> { a: 1, b: 2 } (Non-existent path)
+
+// Sparse array behavior
+unset([1, 2, 3], '1') //=> [1, <1 empty item>, 3]
+
+const nestedObj = { x: { y: { z: ['a', null, 'b'] } } };
+unset(nestedObj, 'x.y.z') //=> { x: { y: {} } }
+```
+
+## Related
+
+- [get](/docs/Object/get)
+- [set](/docs/Object/set)
+- [has](/docs/Object/has)
+- [toUnset](/docs/Object/toUnset)
+

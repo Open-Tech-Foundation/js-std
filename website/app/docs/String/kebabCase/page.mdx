@@ -1,0 +1,34 @@
+🍢 Converts string to kebab case.
+
+## Syntax
+
+```ts
+import { kebabCase } from '@opentf/std';
+
+kebabCase(str: string): string;
+```
+
+## Parameters
+
+- `str`: The string to convert.
+
+## Returns
+
+The kebab-cased string.
+
+## Examples
+
+```ts
+kebabCase('Foo Bar') //=> 'foo-bar'
+
+kebabCase('fooBar') //=> 'foo-bar'
+
+kebabCase('__FOO_BAR__') //=> 'foo-bar'
+```
+
+## Related
+
+- [camelCase](/docs/String/camelCase)
+- [pascalCase](/docs/String/pascalCase)
+- [snakeCase](/docs/String/snakeCase)
+

@@ -114,7 +114,7 @@ const methods = [
   },
 ];
 
-const mdxDir = 'apps/docs/pages/Iter';
+const mdxDir = 'website/app/docs/Iter';
 const mdDir = 'packages/std/docs/Iter';
 
 methods.forEach((m) => {

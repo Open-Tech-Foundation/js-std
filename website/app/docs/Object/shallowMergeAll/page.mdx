@@ -1,0 +1,25 @@
+import { Callout } from "@opentf/web-docs";
+
+Shallow merges objects and concatenates the array.
+
+## Syntax
+
+```ts
+import { shallowMergeAll } from '@opentf/std';
+
+shallowMergeAll(obj1, ...objN);
+```
+
+<Callout type="info" emoji="✅">
+Immutable: This does not mutate the given arrays or objects.
+</Callout>
+
+## Examples
+
+```ts
+const a = [1];
+const b = [2];
+const c = [3];
+shallowMergeAll(a, b, c); //=> [1, 2, 3]
+```
+

@@ -1,0 +1,33 @@
+🔡 Generates a random string of a specified length using a given character set.
+
+## Syntax
+
+```ts
+import { randomString } from '@opentf/std';
+
+randomString(
+  size: number = 10,
+  chars: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+): string;
+```
+
+## Parameters
+
+- `size`: The length of the string.
+- `chars`: The character set to use.
+
+## Returns
+
+A random string.
+
+## Examples
+
+```ts
+randomString() //=> 'kL8mP2nQ1r'
+randomString(5, '0123456789') //=> '48291'
+```
+
+## Related
+
+- [randomId](/docs/Crypto/randomId)
+

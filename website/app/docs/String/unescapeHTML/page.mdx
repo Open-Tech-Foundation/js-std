@@ -1,0 +1,23 @@
+## Syntax
+
+```ts
+import { unescapeHTML } from '@opentf/std';
+
+unescapeHTML(str: string): string;
+```
+
+## Returns
+
+The unescaped string.
+
+## Examples
+
+```ts
+unescapeHTML('&lt;script&gt;alert(&quot;xss&quot;)&lt;/script&gt;')
+//=> '<script>alert("xss")</script>'
+```
+
+## Related
+
+- [escapeHTML](/docs/String/escapeHTML)
+

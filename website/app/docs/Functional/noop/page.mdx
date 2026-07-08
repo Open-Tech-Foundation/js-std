@@ -1,0 +1,27 @@
+😶 A function that does nothing and returns undefined.
+
+## Syntax
+
+```ts
+import { noop } from '@opentf/std';
+
+noop(): undefined;
+```
+
+## Returns
+
+`undefined`.
+
+## Examples
+
+```ts
+noop(); //=> undefined
+
+// Useful as a default callback
+const { onComplete = noop } = options;
+```
+
+## Related
+
+- [sleep](/docs/Timing/sleep)
+

@@ -1,0 +1,34 @@
+🔙 Reverses a string with full grapheme cluster awareness.
+
+## Syntax
+
+```ts
+import { stringReverse } from '@opentf/std';
+
+stringReverse(str: string): string
+```
+
+## Parameters
+
+- `str`: The string to reverse.
+
+## Returns
+
+The reversed string with emoji sequences and combining marks preserved.
+
+## Examples
+
+```ts
+stringReverse('hello') //=> 'olleh'
+
+stringReverse('café') //=> 'éfac'
+
+stringReverse('👨‍👩‍👧‍👦') //=> '👨‍👩‍👧‍👦'
+
+stringReverse('ab🔥cd') //=> 'dc🔥ba'
+```
+
+## Related
+
+- [stringWidth](/docs/String/stringWidth)
+

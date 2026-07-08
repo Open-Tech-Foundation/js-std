@@ -1,0 +1,44 @@
+import { Callout } from "@opentf/web-docs";
+
+⚡ Asynchronous version of \`Array.prototype.reduce\`.
+
+<Callout type="warning">
+  Unlike other async array methods, this runs **sequentially** because each step depends on the previous result.
+</Callout>
+
+## Syntax
+
+```ts
+import { reduceAsync } from '@opentf/std';
+
+reduceAsync<T, R>(
+  arr: T[],
+  cb: (acc: R, value: T, index: number) => Promise<R>,
+  initialValue: R
+): Promise<R>;
+```
+
+## Parameters
+
+- `arr`: The array to iterate over.
+- `cb`: An async callback function (accumulator, value, index).
+- `initialValue`: The initial value of the accumulator.
+
+## Returns
+
+A Promise that resolves to the final accumulated value.
+
+## Examples
+
+```ts
+const items = [1, 2, 3];
+const sum = await reduceAsync(items, async (acc, n) => {
+  return acc + n;
+}, 0); //=> 6
+```
+
+## Related
+
+- [mapAsync](/docs/Concurrency/mapAsync)
+- [filterAsync](/docs/Concurrency/filterAsync)
+

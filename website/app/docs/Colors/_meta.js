@@ -1,0 +1,18 @@
+export default {
+  "color": "color",
+  "colorAlpha": "colorAlpha",
+  "colorContrast": "colorContrast",
+  "colorDarken": "colorDarken",
+  "colorDesaturate": "colorDesaturate",
+  "colorGrayscale": "colorGrayscale",
+  "colorInvert": "colorInvert",
+  "colorIsDark": "colorIsDark",
+  "colorIsLight": "colorIsLight",
+  "colorIsReadable": "colorIsReadable",
+  "colorLighten": "colorLighten",
+  "colorLuminance": "colorLuminance",
+  "colorMix": "colorMix",
+  "colorRotateHue": "colorRotateHue",
+  "colorSaturate": "colorSaturate",
+  "colorWCAGLevel": "colorWCAGLevel",
+};

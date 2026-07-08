@@ -1,0 +1,25 @@
+Checks if the given value is a valid [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) object.
+
+## Syntax
+
+```ts
+import { isDate } from '@opentf/std';
+
+isDate(val: unknown): boolean;
+```
+
+## Examples
+
+```ts
+isDate(new Date()) //=> true
+
+isDate(new Date('')) //=> false
+
+isDate('2000-01-01') //=> false
+```
+
+## Related
+
+- [isObject](/docs/Types/isObject)
+- [isPlainObject](/docs/Types/isPlainObject)
+

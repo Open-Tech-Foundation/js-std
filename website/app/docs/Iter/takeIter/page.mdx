@@ -1,0 +1,35 @@
+🏃‍♂️ Takes the first N elements of an iterable.
+
+## Syntax
+
+```ts
+import { takeIter } from '@opentf/std';
+
+takeIter<T>(
+  iterable: Iterable<T>,
+  n: number = 1
+): Generator<T>;
+```
+
+## Parameters
+
+- `iterable`: The source iterable.
+- `n`: The number of elements to take. Default: `1`.
+
+## Returns
+
+A Generator that yields the specified number of elements.
+
+## Examples
+
+```ts
+const arr = [1, 2, 3, 4];
+const iter = takeIter(arr, 2);
+[...iter]; //=> [1, 2]
+```
+
+## Related
+
+- [dropIter](/docs/Iter/dropIter)
+- [takeIterAsync](/docs/Iter/takeIterAsync)
+

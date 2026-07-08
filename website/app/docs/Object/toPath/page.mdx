@@ -1,0 +1,16 @@
+Converts the given string into an object property path array.
+
+## Syntax
+
+```ts
+import { toPath } from '@opentf/std';
+
+toPath(str: string): (string | number)[]
+```
+
+## Examples
+
+```ts
+toPath('a[0].b.c') //=> ['a', 0, 'b', 'c']
+```
+

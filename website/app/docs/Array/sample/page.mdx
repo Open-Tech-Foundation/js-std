@@ -1,0 +1,31 @@
+🧩 Returns a random element from the given array using cryptographically strong randomness.
+
+## Syntax
+
+```ts
+import { sample } from '@opentf/std';
+
+sample<T>(arr: T[] = []): T | undefined
+```
+
+## Parameters
+
+- `arr`: The source array.
+
+## Returns
+
+A random element, or undefined if the array is empty.
+
+## Examples
+
+```ts
+sample([1, 2, 3]) //=> 1, 2, or 3 (random)
+
+sample([]) //=> undefined
+```
+
+## Related
+
+- [shuffle](/docs/Array/shuffle)
+- [randomInt](/docs/Crypto/randomInt)
+

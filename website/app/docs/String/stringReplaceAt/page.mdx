@@ -1,0 +1,44 @@
+import { Callout } from "@opentf/web-docs";
+
+Replace a character or string at the index position.
+
+## Syntax
+
+```ts
+import { stringReplaceAt } from '@opentf/std';
+
+stringReplaceAt(str: string, index?: number, replaceStr?: string): string;
+```
+
+<Callout type="info">
+Default index = 0
+</Callout>
+
+## Examples
+
+```ts
+stringReplaceAt(); // Throws error
+
+stringReplaceAt(""); //=> ''
+
+stringReplaceAt("", 0); //=> ''
+
+stringReplaceAt("", 0, "a"); //=> 'a'
+
+stringReplaceAt("", 1, "abc"); //=> 'abc'
+
+stringReplaceAt("a"); //=> ''
+
+stringReplaceAt("abc"); //=> 'bc'
+
+stringReplaceAt("abc", 1); //=> 'ac'
+
+stringReplaceAt("abc", 5); //=> 'abc'
+
+stringReplaceAt("abc", 1, ""); //=> 'ac'
+
+stringReplaceAt("abc", 0, "z"); //=> 'zbc'
+
+stringReplaceAt("iphone", 1, "P"); //=> 'iPhone'
+```
+

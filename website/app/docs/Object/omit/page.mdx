@@ -1,0 +1,42 @@
+import { Callout } from "@opentf/web-docs";
+
+🎯 The opposite of [pick](/docs/Object/pick); this method creates an object composed of the own and inherited enumerable property paths of object that are not omitted.
+
+<Callout type="info">
+  The source object can be a \`Plain Object\` or an \`Array\`.
+</Callout>
+
+## Syntax
+
+```ts
+import { omit } from '@opentf/std';
+
+omit<T extends object>(
+  obj: T,
+  ...paths: (string | unknown[])[]
+): Partial<T>;
+```
+
+## Parameters
+
+- `obj`: The source object or array.
+- `...paths`: The property paths to omit.
+
+## Returns
+
+A new object or array without the omitted properties.
+
+## Examples
+
+```ts
+omit({ a: 1, b: 2, c: 3 }, 'a', 'c') //=> { b: 2 }
+
+omit([1, 2, 3], '1') //=> [1, 3]
+```
+
+## Related
+
+- [omitBy](/docs/Object/omitBy)
+- [pick](/docs/Object/pick)
+- [unset](/docs/Object/unset)
+

@@ -1,0 +1,71 @@
+import { Callout } from "@opentf/web-docs";
+
+📥 Inserts items at the specified index into an array.
+
+<Callout emoji="✅" type="info">
+  **Immutable**: This function does not mutate the original array.
+</Callout>
+
+## Syntax
+
+```ts
+import { insert } from '@opentf/std';
+
+insert<T>(
+  arr: T[] = [],
+  indexOrFn: number | null | undefined | ((item: T, index: number, array: T[]) => boolean),
+  ...items: T[]
+): T[]
+```
+
+## Parameters
+
+- `arr`: The source array.
+- `indexOrFn`: The index where the new items should be inserted, or a predicate function to find the insertion point. If `null` or `undefined`, items are appended to the end.
+- `...items`: The items to be inserted. When using a predicate, the last item can be `'before'` or `'after'` to specify position (default: `'before'`).
+- `position`: Only with predicate - insert before (default) or after the match.
+
+## Returns
+
+A new array with the inserted items.
+
+## Examples
+
+```ts
+insert([]) //=> []
+
+insert([1]) //=> [1]
+
+insert([1], 0) //=> [1]
+
+insert([1], 0, 0) //=> [0, 1]
+
+insert([1], 1, 0) //=> [1, 0]
+
+insert([1, 2, 3], 1, 5) //=> [1, 5, 2, 3]
+
+insert([1, 2, 3], -1, 5) //=> [1, 2, 5, 3]
+
+insert([1, 2, 3], -3, 5) //=> [5, 1, 2, 3]
+
+insert([1, 2, 3], 3, 5) //=> [1, 2, 3, 5]
+
+insert([1, 2, 3], 3, 5, 6) //=> [1, 2, 3, 5, 6]
+
+insert([1, 2, 3], null, 5, 6) //=> [1, 2, 3, 5, 6]
+
+insert([1, 2, 3], 0, [5, 6]) //=> [[5, 6], 1, 2, 3]
+
+insert([1, 2, 3], 0, ...[5, 6]) //=> [5, 6, 1, 2, 3]
+
+// Predicate-based insert
+insert([1, 2, 3], (x) => x === 2, 5) //=> [1, 5, 2, 3]
+
+insert([1, 2, 3], (x) => x === 2, 5, 'after') //=> [1, 2, 5, 3]
+```
+
+## Related
+
+- [remove](/docs/Array/remove)
+- [replace](/docs/Array/replace)
+

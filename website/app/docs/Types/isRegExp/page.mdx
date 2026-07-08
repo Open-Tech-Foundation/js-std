@@ -1,0 +1,25 @@
+Checks if the given value is a [RegExp](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp) object.
+
+## Syntax
+
+```ts
+import { isRegExp } from '@opentf/std';
+
+isRegExp(value: unknown): boolean;
+```
+
+## Examples
+
+```ts
+isRegExp(new RegExp()) //=> true
+
+isRegExp(/\d+/) //=> true
+
+isRegExp({}) //=> false
+```
+
+## Related
+
+- [isObject](/docs/Types/isObject)
+- [isPlainObject](/docs/Types/isPlainObject)
+

@@ -1,0 +1,32 @@
+Checks if the given value is defined.
+
+## Related
+
+- [isUndef](/docs/Types/isUndef)
+
+## Syntax
+
+```ts
+import { isDefined } from '@opentf/std';
+
+isDefined(value: unknown): boolean;
+```
+
+## Examples
+
+```ts
+isDefined() //=> false
+
+isDefined(undefined) //=> false
+
+isDefined(null) //=> true
+
+isDefined('') //=> true
+
+isDefined(0) //=> true
+
+isDefined([]) //=> true
+
+isDefined({}) //=> true
+```
+

@@ -1,0 +1,28 @@
+🧩 Returns the first item from an iterable.
+
+## Syntax
+
+```ts
+import { firstIter } from '@opentf/std';
+
+firstIter<T>(iter: Iterable<T>): T | undefined
+```
+
+## Parameters
+
+- `iter`: The source iterable.
+
+## Returns
+
+The first item, or undefined.
+
+## Examples
+
+```ts
+firstIter([1, 2, 3]) //=> 1
+```
+
+## Related
+
+- [firstIterAsync](/docs/Iter/firstIterAsync)
+

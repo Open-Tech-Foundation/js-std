@@ -1,0 +1,27 @@
+Checks if the given value is a [DataView](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView) object.
+
+## Syntax
+
+```ts
+import { isDataView } from '@opentf/std';
+
+isDataView(val: unknown): boolean;
+```
+
+## Examples
+
+```ts
+const buffer = new ArrayBuffer(8);
+
+isDataView(buffer) //=> false
+
+isDataView(new Uint8Array(buffer)) //=> false
+
+isDataView(new DataView(buffer)) //=> true
+```
+
+## Related
+
+- [isObject](/docs/Types/isObject)
+- [isPlainObject](/docs/Types/isPlainObject)
+

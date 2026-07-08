@@ -1,0 +1,35 @@
+🏃‍♂️ Skips the first N elements of an iterable.
+
+## Syntax
+
+```ts
+import { dropIter } from '@opentf/std';
+
+dropIter<T>(
+  iterable: Iterable<T>,
+  n: number = 1
+): Generator<T>;
+```
+
+## Parameters
+
+- `iterable`: The source iterable (Array, Set, Map, etc.).
+- `n`: The number of elements to skip. Default: `1`.
+
+## Returns
+
+A Generator that yields the remaining elements.
+
+## Examples
+
+```ts
+const arr = [1, 2, 3, 4];
+const iter = dropIter(arr, 2);
+[...iter]; //=> [3, 4]
+```
+
+## Related
+
+- [takeIter](/docs/Iter/takeIter)
+- [dropIterAsync](/docs/Iter/dropIterAsync)
+

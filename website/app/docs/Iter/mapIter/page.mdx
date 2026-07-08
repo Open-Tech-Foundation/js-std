@@ -1,0 +1,29 @@
+🧩 Transforms each item using a mapper function.
+
+## Syntax
+
+```ts
+import { mapIter } from '@opentf/std';
+
+mapIter<T, U>(iter: Iterable<T>, fn: (val: T) => U): IterableIterator<U>
+```
+
+## Parameters
+
+- `iter`: The source iterable.
+- `fn`: The mapper function.
+
+## Returns
+
+A new iterable iterator.
+
+## Examples
+
+```ts
+[...mapIter([1, 2, 3], (x) => x * 2)] //=> [2, 4, 6]
+```
+
+## Related
+
+- [mapIterAsync](/docs/Iter/mapIterAsync)
+

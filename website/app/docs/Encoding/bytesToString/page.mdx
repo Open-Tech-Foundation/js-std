@@ -1,0 +1,28 @@
+🔠 Converts a Uint8Array of bytes to a string.
+
+## Syntax
+
+```ts
+import { bytesToString } from '@opentf/std';
+
+bytesToString(bytes: Uint8Array): string
+```
+
+## Parameters
+
+- `bytes`: The byte array to convert.
+
+## Returns
+
+The decoded string.
+
+## Examples
+
+```ts
+bytesToString(new Uint8Array([72, 101, 108, 108, 111])) //=> 'Hello'
+```
+
+## Related
+
+- [stringToBytes](/docs/Encoding/stringToBytes)
+
