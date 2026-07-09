@@ -1,0 +1,30 @@
+🔗 Encodes bytes to a URL-safe Base64 string.
+
+## Syntax
+
+```ts
+import { encodeBase64Url } from '@opentf/std';
+
+encodeBase64Url(bytes: Uint8Array | ArrayBuffer, options?: { pad?: boolean }): string
+```
+
+## Parameters
+
+- `bytes`: The bytes to encode.
+- `options.pad`: Whether to keep `=` padding. Defaults to `true`.
+
+## Returns
+
+The URL-safe Base64 encoded string.
+
+## Examples
+
+```ts
+encodeBase64Url(new Uint8Array([104, 101, 108, 108, 111])) //=> 'aGVsbG8='
+encodeBase64Url(new Uint8Array([104, 101, 108, 108, 111]), { pad: false }) //=> 'aGVsbG8'
+```
+
+## Related
+
+- [decodeBase64Url](/docs/Encoding/decodeBase64Url)
+- [encodeBase64](/docs/Encoding/encodeBase64)

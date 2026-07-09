@@ -1,10 +1,10 @@
 export default {
-  base64Encode: 'base64Encode',
-  base64Decode: 'base64Decode',
-  base64UrlEncode: 'base64UrlEncode',
-  base64UrlDecode: 'base64UrlDecode',
-  hexEncode: 'hexEncode',
-  hexDecode: 'hexDecode',
+  encodeBase64: 'encodeBase64',
+  decodeBase64: 'decodeBase64',
+  encodeBase64Url: 'encodeBase64Url',
+  decodeBase64Url: 'decodeBase64Url',
+  encodeHex: 'encodeHex',
+  decodeHex: 'decodeHex',
   stringToBytes: 'stringToBytes',
   bytesToString: 'bytesToString',
 };

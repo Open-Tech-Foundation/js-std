@@ -1,0 +1,28 @@
+🔢 Decodes a hexadecimal string to bytes.
+
+## Syntax
+
+```ts
+import { bytesToString, decodeHex } from '@opentf/std';
+
+decodeHex(str: string): Uint8Array
+```
+
+## Parameters
+
+- `str`: The hexadecimal string to decode.
+
+## Returns
+
+The decoded bytes.
+
+## Examples
+
+```ts
+decodeHex('48656c6c6f') //=> Uint8Array [72, 101, 108, 108, 111]
+```
+
+## Related
+
+- [encodeHex](/docs/Encoding/encodeHex)
+- [bytesToString](/docs/Encoding/bytesToString)

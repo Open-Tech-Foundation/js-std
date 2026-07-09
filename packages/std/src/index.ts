@@ -214,12 +214,12 @@ export { default as formatCurrency } from './number/formatCurrency';
 export { default as formatCompact } from './number/formatCompact';
 
 // Encoding
-export { default as base64Encode } from './encoding/base64Encode';
-export { default as base64Decode } from './encoding/base64Decode';
-export { default as base64UrlEncode } from './encoding/base64UrlEncode';
-export { default as base64UrlDecode } from './encoding/base64UrlDecode';
-export { default as hexEncode } from './encoding/hexEncode';
-export { default as hexDecode } from './encoding/hexDecode';
+export { default as encodeBase64 } from './encoding/encodeBase64';
+export { default as decodeBase64 } from './encoding/decodeBase64';
+export { default as encodeBase64Url } from './encoding/encodeBase64Url';
+export { default as decodeBase64Url } from './encoding/decodeBase64Url';
+export { default as encodeHex } from './encoding/encodeHex';
+export { default as decodeHex } from './encoding/decodeHex';
 export { default as stringToBytes } from './encoding/stringToBytes';
 export { default as bytesToString } from './encoding/bytesToString';
 

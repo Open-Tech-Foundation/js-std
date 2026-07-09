@@ -1,0 +1,28 @@
+🔓 Decodes a URL-safe Base64 string to bytes.
+
+## Syntax
+
+```ts
+import { decodeBase64Url } from '@opentf/std';
+
+decodeBase64Url(str: string): Uint8Array
+```
+
+## Parameters
+
+- `str`: The URL-safe Base64 string to decode.
+
+## Returns
+
+The decoded bytes.
+
+## Examples
+
+```ts
+decodeBase64Url('aGVsbG8') //=> Uint8Array [104, 101, 108, 108, 111]
+```
+
+## Related
+
+- [encodeBase64Url](/docs/Encoding/encodeBase64Url)
+- [decodeBase64](/docs/Encoding/decodeBase64)

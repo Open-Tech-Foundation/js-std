@@ -31,7 +31,11 @@ import rateLimitRun from '../../../packages/std/src/flow/rateLimitRun';
 import retryRun from '../../../packages/std/src/flow/retryRun';
 import timeoutRun from '../../../packages/std/src/flow/timeoutRun';
 import memoizeRun from '../../../packages/std/src/flow/memoizeRun';
-import { base64Encode, hexEncode } from '../../../packages/std/src/encoding';
+import {
+  encodeBase64,
+  encodeHex,
+  stringToBytes,
+} from '../../../packages/std/src';
 import { takeIter } from '../../../packages/std/src/iter';
 
 type Event = {
@@ -617,11 +621,11 @@ const EncodingTab = () => {
         <div className="card flex-1">
           <div className="stat-label text-accent-primary">Base64 Encode</div>
           <div className="mt-2 p-4 rounded-xl bg-white/5 font-mono break-all text-accent-primary">
-            {base64Encode(input)}
+            {encodeBase64(stringToBytes(input))}
           </div>
           <div className="stat-label mt-4 text-accent-secondary">Hex Encode</div>
           <div className="mt-2 p-4 rounded-xl bg-white/5 font-mono break-all text-accent-secondary">
-            {hexEncode(input)}
+            {encodeHex(stringToBytes(input))}
           </div>
         </div>
       </div>

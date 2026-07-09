@@ -1,0 +1,34 @@
+🔐 Encodes bytes to a Base64 string.
+
+## Syntax
+
+```ts
+import { encodeBase64, stringToBytes } from '@opentf/std';
+
+encodeBase64(bytes: Uint8Array | ArrayBuffer): string
+```
+
+## Parameters
+
+- `bytes`: The bytes to encode.
+
+## Returns
+
+The Base64 encoded string.
+
+## Examples
+
+```ts
+encodeBase64(new Uint8Array([72, 101, 108, 108, 111])) //=> 'SGVsbG8='
+```
+
+For text, compose with `stringToBytes`:
+
+```ts
+encodeBase64(stringToBytes('Hello')) //=> 'SGVsbG8='
+```
+
+## Related
+
+- [decodeBase64](/docs/Encoding/decodeBase64)
+- [stringToBytes](/docs/Encoding/stringToBytes)

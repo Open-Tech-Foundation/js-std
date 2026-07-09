@@ -1,0 +1,28 @@
+🔢 Encodes bytes to a hexadecimal string.
+
+## Syntax
+
+```ts
+import { encodeHex, stringToBytes } from '@opentf/std';
+
+encodeHex(bytes: Uint8Array | ArrayBuffer): string
+```
+
+## Parameters
+
+- `bytes`: The bytes to encode.
+
+## Returns
+
+The hexadecimal encoded string.
+
+## Examples
+
+```ts
+encodeHex(new Uint8Array([72, 101, 108, 108, 111])) //=> '48656c6c6f'
+```
+
+## Related
+
+- [decodeHex](/docs/Encoding/decodeHex)
+- [stringToBytes](/docs/Encoding/stringToBytes)

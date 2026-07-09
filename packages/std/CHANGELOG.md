@@ -6,6 +6,8 @@
 
 - Removed public runtime detection helpers: `isNode`, `isBrowser`, `isDeno`, `isBun`, and `isCloudflareWorker`.
 - Removed the Runtime documentation category and runtime-specific test matrix.
+- Renamed encoding helpers to verb-first binary codecs: `encodeBase64`, `decodeBase64`, `encodeBase64Url`, `decodeBase64Url`, `encodeHex`, and `decodeHex`.
+- Base64 and hex decoders now return `Uint8Array`; use `bytesToString` for UTF-8 text decoding.
 
 ### Changed
 

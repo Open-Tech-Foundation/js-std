@@ -93,13 +93,13 @@
 
 ## Encoding
 
-- [base64Decode](./Encoding/base64Decode.md)
-- [base64Encode](./Encoding/base64Encode.md)
-- [base64UrlDecode](./Encoding/base64UrlDecode.md)
-- [base64UrlEncode](./Encoding/base64UrlEncode.md)
 - [bytesToString](./Encoding/bytesToString.md)
-- [hexDecode](./Encoding/hexDecode.md)
-- [hexEncode](./Encoding/hexEncode.md)
+- [decodeBase64](./Encoding/decodeBase64.md)
+- [decodeBase64Url](./Encoding/decodeBase64Url.md)
+- [decodeHex](./Encoding/decodeHex.md)
+- [encodeBase64](./Encoding/encodeBase64.md)
+- [encodeBase64Url](./Encoding/encodeBase64Url.md)
+- [encodeHex](./Encoding/encodeHex.md)
 - [stringToBytes](./Encoding/stringToBytes.md)
 
 ## Flow
