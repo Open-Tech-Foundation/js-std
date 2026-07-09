@@ -2,6 +2,7 @@ import isEmpty from '../assert/isEmpty';
 import isFunction from '../types/isFunction';
 import isNumber from '../types/isNumber';
 import clone from './clone';
+import isUnsafePathKey from './isUnsafePathKey';
 import type { IterableObj } from './merge';
 import toPath from './toPath';
 
@@ -27,6 +28,9 @@ export default function toSet<T>(
 
   for (let i = 0; i < pathArr.length; i++) {
     const prop = pathArr[i] as PropertyKey;
+    if (isUnsafePathKey(prop)) {
+      return obj;
+    }
 
     if (i === pathArr.length - 1) {
       const v = isFunction(value) ? value(curObj[prop]) : value;

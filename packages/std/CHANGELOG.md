@@ -14,6 +14,10 @@
 - Removed Cloudflare Worker/Vitest-pool test configuration from the package.
 - Removed the remaining Vitest dependency; tests now run on Bun's native test runner only.
 
+### Fixed
+
+- Hardened object path mutators against unsafe prototype keys in `set`, `unset`, `toSet`, and `toUnset`.
+
 ## 1.0.0-beta.3
 
 ### Minor Changes

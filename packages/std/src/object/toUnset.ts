@@ -3,6 +3,7 @@ import isArray from '../types/isArray';
 import isNumber from '../types/isNumber';
 import isObject from '../types/isObject';
 import clone from './clone';
+import isUnsafePathKey from './isUnsafePathKey';
 import type { IterableObj } from './merge';
 import toPath from './toPath';
 
@@ -25,6 +26,9 @@ export default function toUnset<T>(obj: T, path: string | unknown[]): T {
 
   for (let i = 0; i < pathArr.length; i++) {
     const prop = pathArr[i] as PropertyKey;
+    if (isUnsafePathKey(prop)) {
+      return obj;
+    }
 
     if (i === pathArr.length - 1) {
       if (isArray(curObj)) {

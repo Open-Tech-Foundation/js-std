@@ -52,4 +52,16 @@ describe('Object', () => {
     const fn = (a, b) => a ** b;
     expect(toSet({ a: 1 }, 'b', (val) => fn)).toEqual({ a: 1, b: fn });
   });
+
+  test('blocks unsafe prototype paths', () => {
+    delete Object.prototype.polluted;
+
+    const obj = { a: 1 };
+    expect(toSet(obj, '__proto__.polluted', true)).toBe(obj);
+    expect(toSet(obj, 'constructor.prototype.polluted', true)).toBe(obj);
+    expect(toSet(obj, 'prototype.polluted', true)).toBe(obj);
+    expect(Object.prototype.polluted).toBeUndefined();
+
+    delete Object.prototype.polluted;
+  });
 });

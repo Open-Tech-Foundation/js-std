@@ -55,4 +55,12 @@ describe('Object => toUnset', () => {
       a: { b: [1, 2, 3] },
     });
   });
+
+  test('blocks unsafe prototype paths', () => {
+    const obj = { a: 1 };
+
+    expect(toUnset(obj, '__proto__.polluted')).toBe(obj);
+    expect(toUnset(obj, 'constructor.prototype.polluted')).toBe(obj);
+    expect(toUnset(obj, 'prototype.polluted')).toBe(obj);
+  });
 });

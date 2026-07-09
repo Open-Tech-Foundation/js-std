@@ -1,6 +1,7 @@
 import isEmpty from '../assert/isEmpty';
 import isFunction from '../types/isFunction';
 import isNumber from '../types/isNumber';
+import isUnsafePathKey from './isUnsafePathKey';
 import type { IterableObj } from './merge';
 import toPath from './toPath';
 
@@ -29,11 +30,7 @@ export default function set<T>(
 
   for (let i = 0; i < pathArr.length; i++) {
     const prop = pathArr[i] as string;
-    if (
-      prop === '__proto__' ||
-      prop === 'constructor' ||
-      prop === 'prototype'
-    ) {
+    if (isUnsafePathKey(prop)) {
       return obj;
     }
 
