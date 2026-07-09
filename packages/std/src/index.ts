@@ -103,7 +103,6 @@ export { default as Decimal } from './maths/Decimal';
 
 // Types
 export { default as isNumber } from './types/isNumber';
-export { default as isInteger } from './types/isInteger';
 export { default as isObject } from './types/isObject';
 export { default as isJSON } from './types/isJSON';
 export { default as isBoolean } from './types/isBoolean';

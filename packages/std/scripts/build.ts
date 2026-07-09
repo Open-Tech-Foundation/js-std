@@ -1,13 +1,12 @@
-import { copyFileSync, cpSync, existsSync, mkdirSync } from 'node:fs';
+import { copyFileSync, cpSync, existsSync, mkdirSync, rmSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { execFileSync } from 'node:child_process';
 
 const root = process.cwd();
 const dist = join(root, 'dist');
 
-if (!existsSync(dist)) {
-  mkdirSync(dist);
-}
+rmSync(dist, { recursive: true, force: true });
+mkdirSync(dist);
 
 function runBunX(args: string[]) {
   execFileSync(process.execPath, ['x', ...args], { stdio: 'inherit' });

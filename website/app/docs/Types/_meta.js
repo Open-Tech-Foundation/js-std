@@ -12,7 +12,6 @@ export default {
   isFunction: 'isFunction',
   isGeneratorFunction: 'isGeneratorFunction',
   isInfinity: 'isInfinity',
-  isInteger: 'isInteger',
   isIterable: 'isIterable',
   isAsyncIterable: 'isAsyncIterable',
   isJSON: 'isJSON',
