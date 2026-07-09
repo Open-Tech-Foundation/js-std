@@ -6,7 +6,9 @@ Checks if the given value is a generator function.
 
 ```js
 
-isFunction(function() {}) //=> false
+isGeneratorFunction(function() {}) //=> false
 
-isFunction(function*() {}) //=> true
+isGeneratorFunction(function*() {}) //=> true
+
+isGeneratorFunction(async function*() {}) //=> false
 ```

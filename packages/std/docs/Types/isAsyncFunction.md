@@ -9,4 +9,6 @@ Checks if the given value is an async function.
 isAsyncFunction(async () => {}) //=> true
 
 isAsyncFunction(() => {}) //=> false
+
+isAsyncFunction(async function* () {}) //=> false
 ```

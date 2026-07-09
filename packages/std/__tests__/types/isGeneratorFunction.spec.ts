@@ -7,10 +7,10 @@ describe('Types > isGeneratorFunction', () => {
     expect(isGeneratorFunction(() => {})).toBe(false);
     expect(isGeneratorFunction(() => {})).toBe(false);
     expect(isGeneratorFunction(async () => {})).toBe(false);
+    expect(isGeneratorFunction(async function* () {})).toBe(false);
   });
 
   test('valid cases', () => {
     expect(isGeneratorFunction(function* () {})).toBe(true);
-    expect(isGeneratorFunction(async function* () {})).toBe(true);
   });
 });

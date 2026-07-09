@@ -29,7 +29,7 @@ async function* aGen(i) {
   yield i + 10;
 }
 
-isGeneratorFunction(aGen); //=> true
+isGeneratorFunction(aGen); //=> false
 
 const someObj = {
   *generator() {
@@ -45,4 +45,3 @@ isGeneratorFunction(someObj.generator); //=> true
 
 - [isObject](/docs/Types/isObject)
 - [isPlainObject](/docs/Types/isPlainObject)
-

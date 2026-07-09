@@ -7,7 +7,7 @@ import { isAsyncFunction } from '@opentf/std';
 
 isAsyncFunction(
   val: unknown
-): val is ((...args: unknown[]) => Promise<unknown>) | AsyncGeneratorFunction
+): val is (...args: unknown[]) => Promise<unknown>
 ```
 
 ## Examples
@@ -35,11 +35,10 @@ async function* aGen(i) {
   yield i + 10;
 }
 
-isAsyncFunction(aGen); //=> true
+isAsyncFunction(aGen); //=> false
 ```
 
 ## Related
 
 - [isObject](/docs/Types/isObject)
 - [isPlainObject](/docs/Types/isPlainObject)
-
