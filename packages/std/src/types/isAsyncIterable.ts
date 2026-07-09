@@ -10,9 +10,11 @@
 export default function isAsyncIterable(
   val: unknown,
 ): val is AsyncIterable<unknown> {
+  const maybeAsyncIterable = val as { [Symbol.asyncIterator]?: unknown };
+
   return (
     val !== null &&
     val !== undefined &&
-    typeof (val as any)[Symbol.asyncIterator] === 'function'
+    typeof maybeAsyncIterable[Symbol.asyncIterator] === 'function'
   );
 }

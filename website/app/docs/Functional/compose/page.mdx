@@ -5,7 +5,7 @@
 ```ts
 import { compose } from '@opentf/std';
 
-compose(...funcs: Function[]): (val: any) => any;
+compose(...funcs): (...args) => result;
 ```
 
 ## Parameters
@@ -29,4 +29,3 @@ add2ThenTimes3(5); //=> 21 ( (5 + 2) * 3 )
 ## Related
 
 - [pipe](/docs/Functional/pipe)
-

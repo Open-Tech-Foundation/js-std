@@ -5,7 +5,7 @@
 ```ts
 import { pipe } from '@opentf/std';
 
-pipe(...funcs: Function[]): (val: any) => any;
+pipe(...funcs): (...args) => result;
 ```
 
 ## Parameters
@@ -29,4 +29,3 @@ times3ThenAdd2(5); //=> 17 ( (5 * 3) + 2 )
 ## Related
 
 - [compose](/docs/Functional/compose)
-

@@ -10,9 +10,11 @@
  * isIterable({}) //=> false
  */
 export default function isIterable(val: unknown): val is Iterable<unknown> {
+  const maybeIterable = val as { [Symbol.iterator]?: unknown };
+
   return (
     val !== null &&
     val !== undefined &&
-    typeof (val as any)[Symbol.iterator] === 'function'
+    typeof maybeIterable[Symbol.iterator] === 'function'
   );
 }
