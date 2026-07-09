@@ -13,7 +13,8 @@ const {
   mapAsync, 
   pascalCase, 
   color,
-  isNumber
+  isNumber,
+  toNum
 } = require("@opentf/std");
 
 // --- 1. Deep Everything ---
@@ -54,7 +55,8 @@ log("RoyalBlue RGB:", brandRGB);
 
 // --- 5. Robust Types ---
 log("isNumber(NaN):", isNumber(NaN));
-log("isNumber('123', true):", isNumber('123', true));
+log("isNumber('123'):", isNumber('123'));
+log("toNum('123'):", toNum('123'));
 `;
 
 const setupCode = `const _ = require('lodash');

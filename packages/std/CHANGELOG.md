@@ -7,6 +7,7 @@
 - Removed public runtime detection helpers: `isNode`, `isBrowser`, `isDeno`, `isBun`, and `isCloudflareWorker`.
 - Removed the Runtime documentation category and runtime-specific test matrix.
 - Removed `isInteger`; use the standard `Number.isInteger` built-in instead.
+- Removed the `coerce` option from `isNumber`; use `toNum` when parsing numeric strings.
 - Renamed encoding helpers to verb-first binary codecs: `encodeBase64`, `decodeBase64`, `encodeBase64Url`, `decodeBase64Url`, `encodeHex`, and `decodeHex`.
 - Base64 and hex decoders now return `Uint8Array`; use `bytesToString` for UTF-8 text decoding.
 

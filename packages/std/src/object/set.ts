@@ -1,6 +1,6 @@
 import isEmpty from '../assert/isEmpty';
+import parseFiniteNumberString from '../number/parseFiniteNumberString';
 import isFunction from '../types/isFunction';
-import isNumber from '../types/isNumber';
 import isUnsafePathKey from './isUnsafePathKey';
 import type { IterableObj } from './merge';
 import toPath from './toPath';
@@ -41,7 +41,11 @@ export default function set<T>(
     }
 
     if (!curObj[prop]) {
-      curObj[prop] = isNumber(pathArr[i + 1], true) ? [] : {};
+      curObj[prop] = !Number.isNaN(
+        parseFiniteNumberString(String(pathArr[i + 1])),
+      )
+        ? []
+        : {};
     }
 
     curObj = curObj[prop] as IterableObj;

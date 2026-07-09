@@ -1,5 +1,6 @@
 import isNumber from '../types/isNumber';
 import isString from '../types/isString';
+import parseFiniteNumberString from './parseFiniteNumberString';
 
 /**
  * Converts the given value into a finite number.
@@ -17,10 +18,8 @@ export default function toNum(val: unknown): number {
     return Number.isFinite(val) ? (val as number) : Number.NaN;
   }
 
-  if (isString(val) && isNumber(val, true)) {
-    const s = val as string;
-    const n = s.includes('_') ? +s.replaceAll('_', '') : +s;
-    return Number.isFinite(n) ? n : Number.NaN;
+  if (isString(val)) {
+    return parseFiniteNumberString(val);
   }
 
   return Number.NaN;

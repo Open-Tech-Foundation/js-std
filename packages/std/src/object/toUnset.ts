@@ -1,6 +1,6 @@
 import isEmpty from '../assert/isEmpty';
+import parseFiniteNumberString from '../number/parseFiniteNumberString';
 import isArray from '../types/isArray';
-import isNumber from '../types/isNumber';
 import isObject from '../types/isObject';
 import clone from './clone';
 import isUnsafePathKey from './isUnsafePathKey';
@@ -32,7 +32,7 @@ export default function toUnset<T>(obj: T, path: string | unknown[]): T {
 
     if (i === pathArr.length - 1) {
       if (isArray(curObj)) {
-        if (isNumber(prop, true)) {
+        if (!Number.isNaN(parseFiniteNumberString(String(prop)))) {
           curObj.splice(prop as unknown as number, 1);
         }
       } else {

@@ -83,12 +83,12 @@ Explore the library's capabilities with these examples:
 
 ### 1. Checking if a Value is Numeric
 ```js
-import { isNumber } from "@opentf/std";
+import { isNumber, toNum } from "@opentf/std";
 
 isNumber(NaN); //=> false
 isNumber('1'); //=> false
-isNumber('1', true); //=> true
 isNumber(1); //=> true
+toNum('1_000'); //=> 1000
 ```
 
 ### 2. Converting Strings to Pascal Case
