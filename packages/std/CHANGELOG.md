@@ -19,6 +19,7 @@
 ### Fixed
 
 - Hardened object path mutators against unsafe prototype keys in `set`, `unset`, `toSet`, and `toUnset`.
+- Added validation for invalid async concurrency and rate-limit options.
 
 ## 1.0.0-beta.3
 

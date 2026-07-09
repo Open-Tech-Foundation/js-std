@@ -15,6 +15,14 @@ export default function rateLimitRun<T extends (...args: any[]) => any>(
   limit: number,
   period: number,
 ): (...args: Parameters<T>) => Promise<ReturnType<T>> {
+  if (!Number.isInteger(limit) || limit <= 0) {
+    throw new RangeError('Limit must be a positive integer.');
+  }
+
+  if (!Number.isFinite(period) || period <= 0) {
+    throw new RangeError('Period must be a positive finite number.');
+  }
+
   const timestamps: number[] = [];
   const queue: {
     args: Parameters<T>;

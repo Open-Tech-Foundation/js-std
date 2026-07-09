@@ -1,3 +1,5 @@
+import validateConcurrency from './validateConcurrency';
+
 /**
  * Asynchronous version of `Array.prototype.map`.
  *
@@ -14,6 +16,8 @@ export default async function mapAsync<T, R>(
   cb: (value: T, index: number) => Promise<R>,
   concurrency: number = Number.POSITIVE_INFINITY,
 ): Promise<R[]> {
+  validateConcurrency(concurrency);
+
   const results: R[] = new Array(arr.length);
   let index = 0;
 

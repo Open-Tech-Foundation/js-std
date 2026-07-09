@@ -1,3 +1,5 @@
+import validateConcurrency from './validateConcurrency';
+
 /**
  * Asynchronous version of `Array.prototype.forEach`.
  * By default, it runs all iterations in parallel.
@@ -10,6 +12,8 @@ export default async function eachAsync<T>(
   cb: (value: T, index: number) => Promise<void>,
   concurrency: number = Number.POSITIVE_INFINITY,
 ): Promise<void> {
+  validateConcurrency(concurrency);
+
   let index = 0;
   let aborted = false;
 

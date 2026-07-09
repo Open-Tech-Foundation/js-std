@@ -61,4 +61,21 @@ describe('mapAsync', () => {
     // Total calls should be less than 5.
     expect(callCount).toBeLessThan(5);
   });
+
+  test('throws on invalid concurrency', async () => {
+    const cb = async (n: number) => n;
+
+    await expect(mapAsync([1], cb, 0)).rejects.toThrow(
+      'Concurrency must be a positive integer or Infinity.',
+    );
+    await expect(mapAsync([1], cb, -1)).rejects.toThrow(
+      'Concurrency must be a positive integer or Infinity.',
+    );
+    await expect(mapAsync([1], cb, 1.5)).rejects.toThrow(
+      'Concurrency must be a positive integer or Infinity.',
+    );
+    await expect(mapAsync([1], cb, Number.NaN)).rejects.toThrow(
+      'Concurrency must be a positive integer or Infinity.',
+    );
+  });
 });

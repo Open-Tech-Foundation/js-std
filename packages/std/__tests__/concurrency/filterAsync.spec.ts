@@ -14,4 +14,10 @@ describe('Array > filterAsync', () => {
 
     expect(filteredArr).toEqual([2, 4]);
   });
+
+  test('throws on invalid concurrency', async () => {
+    await expect(filterAsync([1], async () => true, 0)).rejects.toThrow(
+      'Concurrency must be a positive integer or Infinity.',
+    );
+  });
 });

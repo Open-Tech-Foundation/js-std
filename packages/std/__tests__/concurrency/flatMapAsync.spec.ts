@@ -23,4 +23,10 @@ describe('flatMapAsync', () => {
     expect(res).toEqual([1, 2, 3]);
     expect(maxRunning).toBe(1);
   });
+
+  test('throws on invalid concurrency', async () => {
+    await expect(flatMapAsync([1], async (n) => [n], 0)).rejects.toThrow(
+      'Concurrency must be a positive integer or Infinity.',
+    );
+  });
 });

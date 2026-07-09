@@ -48,4 +48,38 @@ describe('rateLimitRun', () => {
 
     expect(await Promise.all(results)).toEqual([1, 2, 3]);
   });
+
+  test('throws on invalid limit', () => {
+    const func = vi.fn(async (val: number) => val);
+
+    expect(() => rateLimitRun(func, 0, 100)).toThrow(
+      'Limit must be a positive integer.',
+    );
+    expect(() => rateLimitRun(func, -1, 100)).toThrow(
+      'Limit must be a positive integer.',
+    );
+    expect(() => rateLimitRun(func, 1.5, 100)).toThrow(
+      'Limit must be a positive integer.',
+    );
+    expect(() => rateLimitRun(func, Number.POSITIVE_INFINITY, 100)).toThrow(
+      'Limit must be a positive integer.',
+    );
+  });
+
+  test('throws on invalid period', () => {
+    const func = vi.fn(async (val: number) => val);
+
+    expect(() => rateLimitRun(func, 1, 0)).toThrow(
+      'Period must be a positive finite number.',
+    );
+    expect(() => rateLimitRun(func, 1, -1)).toThrow(
+      'Period must be a positive finite number.',
+    );
+    expect(() => rateLimitRun(func, 1, Number.NaN)).toThrow(
+      'Period must be a positive finite number.',
+    );
+    expect(() => rateLimitRun(func, 1, Number.POSITIVE_INFINITY)).toThrow(
+      'Period must be a positive finite number.',
+    );
+  });
 });
