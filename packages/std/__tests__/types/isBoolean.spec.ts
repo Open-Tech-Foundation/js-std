@@ -15,5 +15,6 @@ describe('Types > isBoolean', () => {
   test('valid cases', () => {
     expect(isBoolean(true)).toBe(true);
     expect(isBoolean(false)).toBe(true);
+    expect([true, 'false', false, 0].filter(isBoolean)).toEqual([true, false]);
   });
 });

@@ -14,6 +14,7 @@
 ### Changed
 
 - Crypto helpers now use capability detection: Web Crypto first, then `node:crypto` fallback where available.
+- `isBoolean` and `isDefined` now expose TypeScript predicate return types for better narrowing.
 - Simplified project validation to build, lint, typecheck, and the Bun test suite.
 - Removed Cloudflare Worker/Vitest-pool test configuration from the package.
 - Removed the remaining Vitest dependency; tests now run on Bun's native test runner only.

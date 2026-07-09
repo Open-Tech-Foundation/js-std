@@ -10,6 +10,6 @@
  * isBoolean(null) //=> false
  */
 
-export default function isBoolean(val: unknown): boolean {
+export default function isBoolean(val: unknown): val is boolean {
   return typeof val === 'boolean';
 }

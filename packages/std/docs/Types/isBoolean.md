@@ -2,6 +2,12 @@
 
 Checks if the given value is boolean.
 
+### Syntax
+
+```ts
+isBoolean(val: unknown): val is boolean
+```
+
 ### Example
 
 ```js

@@ -5,7 +5,7 @@ Checks if the given value is [Boolean](https://developer.mozilla.org/en-US/docs/
 ```ts
 import { isBoolean } from '@opentf/std';
 
-isBoolean(val: unknown): boolean;
+isBoolean(val: unknown): val is boolean;
 ```
 
 ## Examples
@@ -26,4 +26,3 @@ isBoolean() //=> false
 
 - [isObject](/docs/Types/isObject)
 - [isPlainObject](/docs/Types/isPlainObject)
-

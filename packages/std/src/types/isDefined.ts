@@ -10,6 +10,6 @@
  *
  */
 
-export default function isDefined(val: unknown): boolean {
+export default function isDefined<T>(val: T): val is Exclude<T, undefined> {
   return val !== undefined;
 }

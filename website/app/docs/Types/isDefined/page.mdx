@@ -9,7 +9,7 @@ Checks if the given value is defined.
 ```ts
 import { isDefined } from '@opentf/std';
 
-isDefined(value: unknown): boolean;
+isDefined<T>(value: T): value is Exclude<T, undefined>;
 ```
 
 ## Examples
@@ -29,4 +29,3 @@ isDefined([]) //=> true
 
 isDefined({}) //=> true
 ```
-
