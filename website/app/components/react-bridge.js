@@ -1,5 +1,5 @@
-import { createElement } from "react";
-import { createRoot } from "react-dom/client";
+import { createElement } from 'react';
+import { createRoot } from 'react-dom/client';
 
 const roots = new WeakMap();
 
@@ -19,7 +19,7 @@ export function mountReact(el, Component, props = {}) {
 }
 
 export function readTheme() {
-  return document.documentElement.getAttribute("data-theme") === "dark"
-    ? "dark"
-    : "light";
+  return document.documentElement.getAttribute('data-theme') === 'dark'
+    ? 'dark'
+    : 'light';
 }

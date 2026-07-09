@@ -16,13 +16,13 @@ describe('Array', () => {
 
   test('chunk throws on invalid size', () => {
     expect(() => chunk([1, 2, 3], 0)).toThrow(
-      'Size must be an integer greater than zero.'
+      'Size must be an integer greater than zero.',
     );
     expect(() => chunk([1, 2, 3], -1)).toThrow(
-      'Size must be an integer greater than zero.'
+      'Size must be an integer greater than zero.',
     );
     expect(() => chunk([1, 2, 3], 1.5)).toThrow(
-      'Size must be an integer greater than zero.'
+      'Size must be an integer greater than zero.',
     );
   });
 });

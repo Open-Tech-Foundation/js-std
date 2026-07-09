@@ -1,29 +1,25 @@
-import { Callout } from "@opentf/web-docs";
+import { Callout } from '@opentf/web-docs';
 
 
 # 🌍 Environment Support
 
-Our library is designed to be truly universal, ensuring that you can use the same code across all modern runtimes.
+Our library is designed to be runtime agnostic: utilities target standard JavaScript capabilities instead of branching on named platforms.
 
-## 📊 Compatibility Matrix
+## 📊 Compatibility Model
 
-| Environment | Supported Versions | Note |
-| :--- | :--- | :--- |
-| **Node.js** | **>= 18.0.0** | **Polyfill required for Node 18** |
-| **Browsers** | All modern browsers | Native |
-| **Bun** | >= 1.0.0 | Native |
-| **Deno** | >= 1.0.0 | Native |
-| **Cloudflare Workers** | Current | Native |
-
-Use [isCloudflareWorker](/docs/Runtime/isCloudflareWorker) to detect the Workers runtime at execution time.
+If a runtime provides the JavaScript and Web Platform APIs a utility needs, that utility can run there. This keeps `@opentf/std` portable across Node.js, Bun, Deno, browsers, edge workers, embedded engines such as QuickJS, and future runtimes without adding platform-specific detection helpers.
 
 ---
 
-## 🛠️ Node.js 18 Support
+## 🛠️ Capability Detection
 
-To use features like `uuid` or `randomBytes` in Node.js 18, you must manually polyfill the `webcrypto` API as it is not available globally in that version.
+Most utilities are pure JavaScript. Utilities that need platform APIs, such as crypto helpers, use capability detection:
 
-Add this at the top of your entry file (e.g., `index.js`, `server.js`, or `main.ts`):
+- Prefer `globalThis.crypto` / Web Crypto when available.
+- Fall back to `node:crypto` in Node-compatible environments where appropriate.
+- Throw a clear error if neither capability exists.
+
+For runtimes without Web Crypto, provide a polyfill before calling crypto utilities:
 
 ```js
 import crypto from 'node:crypto';
@@ -38,7 +34,7 @@ if (typeof globalThis.crypto === 'undefined') {
 ```
 
 <Callout type="info">
-  We bring modern language features and APIs to your environment, allowing you to write future-proof code today without polluting the global namespace (except when manual polyfills are required).
+  `@opentf/std` does not expose public runtime detection helpers. Prefer checking for the capability your code needs, not the runtime name.
 </Callout>
 
 ---
@@ -47,6 +43,6 @@ if (typeof globalThis.crypto === 'undefined') {
 
 The `@opentf/std` library is built using modern ESM standards and leverages native platform APIs wherever possible. By choosing this library, you are ensuring that your code:
 
--   **Runs Everywhere**: Seamlessly move logic between Edge, Server, and Browser.
+-   **Runs Anywhere Capabilities Exist**: Seamlessly move logic between edge, server, browser, and embedded runtimes.
 -   **Remains Lightweight**: Zero external dependencies and full tree-shaking support.
 -   **Stays Modern**: We use the latest JavaScript features while providing stable fallbacks for the environments you need to support.

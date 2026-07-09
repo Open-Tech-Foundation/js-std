@@ -11,7 +11,7 @@ import isInteger from '../types/isInteger';
  * chunk(['a', 'b', 'c', 'd'], 2) //=> [['a', 'b'], ['c', 'd']]
  * chunk(['a', 'b', 'c', 'd'], 3) //=> [['a', 'b', 'c'], ['d']]
  */
-export default function chunk<T>(arr: T[], size: number = 1): T[][] {
+export default function chunk<T>(arr: T[], size = 1): T[][] {
   if (!isInteger(size) || size <= 0) {
     throw new Error('Size must be an integer greater than zero.');
   }

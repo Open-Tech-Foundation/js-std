@@ -1,9 +1,9 @@
 export default {
-  "batchRun": "batchRun",
-  "idleRun": "idleRun",
-  "memoizeRun": "memoizeRun",
-  "paceRun": "paceRun",
-  "rateLimitRun": "rateLimitRun",
-  "retryRun": "retryRun",
-  "timeoutRun": "timeoutRun",
+  batchRun: 'batchRun',
+  idleRun: 'idleRun',
+  memoizeRun: 'memoizeRun',
+  paceRun: 'paceRun',
+  rateLimitRun: 'rateLimitRun',
+  retryRun: 'retryRun',
+  timeoutRun: 'timeoutRun',
 };

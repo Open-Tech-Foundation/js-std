@@ -52,6 +52,8 @@ describe('Array > drop', () => {
   });
 
   test('drops from right with cb', () => {
-    expect(drop([1, 2, 3, 4, 5], 2, (val) => val % 2 === 0, true)).toEqual([1, 3, 5]);
+    expect(drop([1, 2, 3, 4, 5], 2, (val) => val % 2 === 0, true)).toEqual([
+      1, 3, 5,
+    ]);
   });
 });

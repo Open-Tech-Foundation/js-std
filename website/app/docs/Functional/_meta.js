@@ -1,5 +1,5 @@
 export default {
-  "compose": "compose",
-  "noop": "noop",
-  "pipe": "pipe",
+  compose: 'compose',
+  noop: 'noop',
+  pipe: 'pipe',
 };

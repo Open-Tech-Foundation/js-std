@@ -7,7 +7,7 @@
 - [chunkWhile](./Array/chunkWhile.md)
 - [compact](./Array/compact.md)
 - [countBy](./Array/countBy.md)
-- [diff](./Array/diff.md)
+- [difference](./Array/difference.md)
 - [drop](./Array/drop.md)
 - [dropWhile](./Array/dropWhile.md)
 - [first](./Array/first.md)
@@ -221,13 +221,6 @@
 - [toUnset](./Object/toUnset.md)
 - [unset](./Object/unset.md)
 
-## Runtime
-
-- [isBrowser](./Runtime/isBrowser.md)
-- [isBun](./Runtime/isBun.md)
-- [isDeno](./Runtime/isDeno.md)
-- [isNode](./Runtime/isNode.md)
-
 ## String
 
 - [camelCase](./String/camelCase.md)
@@ -289,4 +282,3 @@
 - [isWeakMap](./Types/isWeakMap.md)
 - [isWeakRef](./Types/isWeakRef.md)
 - [isWeakSet](./Types/isWeakSet.md)
-

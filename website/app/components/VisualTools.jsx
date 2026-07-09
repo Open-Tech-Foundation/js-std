@@ -1,8 +1,8 @@
-import VisualToolsPanel from "./VisualToolsPanel.jsx";
-import { mountReact } from "./react-bridge.js";
+import VisualToolsPanel from './VisualToolsPanel.jsx';
+import { mountReact } from './react-bridge.js';
 
 export default function VisualTools() {
-  let host = $ref();
+  const host = $ref();
   let dispose = null;
 
   onMount(() => {

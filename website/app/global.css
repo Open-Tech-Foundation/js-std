@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "@opentf/web-docs/theme";
 @import "./components/VisualTools.css";
+@import "./components/repl.css";
 
 * {
   box-sizing: border-box;

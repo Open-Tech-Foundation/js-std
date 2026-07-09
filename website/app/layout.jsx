@@ -1,5 +1,5 @@
-import { Footer, Navbar } from "@opentf/web-docs";
-import config from "../otfw.config.js";
+import { Footer, Navbar } from '@opentf/web-docs';
+import config from '../otfw.config.js';
 
 export default function Layout(props) {
   return (

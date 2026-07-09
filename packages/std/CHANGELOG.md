@@ -1,5 +1,18 @@
 # @opentf/std
 
+## Unreleased
+
+### Breaking Changes
+
+- Removed public runtime detection helpers: `isNode`, `isBrowser`, `isDeno`, `isBun`, and `isCloudflareWorker`.
+- Removed the Runtime documentation category and runtime-specific test matrix.
+
+### Changed
+
+- Crypto helpers now use capability detection: Web Crypto first, then `node:crypto` fallback where available.
+- Simplified project validation to build, lint, typecheck, and the Bun test suite.
+- Removed Cloudflare Worker/Vitest-pool test configuration from the package.
+
 ## 1.0.0-beta.3
 
 ### Minor Changes

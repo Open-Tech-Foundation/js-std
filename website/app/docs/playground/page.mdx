@@ -1,20 +1,13 @@
 import { Callout } from "@opentf/web-docs";
 
-import PlaygroundREPL from "../../components/PlaygroundREPL.jsx";
+import PlaygroundRepl from "../../components/PlaygroundRepl.jsx";
 
 <div style="text-align: center">
 ### Playground
 </div>
 
-<PlaygroundREPL />
+<PlaygroundRepl />
 
 <Callout type="note">
-  Press `CTRL + Enter` in the editor to run the code.
-</Callout>
-
-<Callout type="info">
- - The [Lodash](https://lodash.com/docs/) methods were preloaded. You can use it like, `_.isEmpty(value)`
-
- - The [Ramda](https://ramdajs.com/) methods were preloaded. You can use it like, `R.pipe(Math.pow, R.negate, R.inc)`
-
+  Press `CTRL + Enter` in the editor to run the code. Code runs in a sandboxed iframe with a Web Worker (browser build of `@opentf/std`).
 </Callout>

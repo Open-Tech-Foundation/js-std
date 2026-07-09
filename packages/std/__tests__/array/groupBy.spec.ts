@@ -52,7 +52,9 @@ describe('Array', () => {
 
   test('uses index and array params', () => {
     const items = ['a', 'b', 'c', 'd'];
-    expect(groupBy(items, (item, index) => (index % 2 === 0 ? 'even' : 'odd'))).toEqual({
+    expect(
+      groupBy(items, (item, index) => (index % 2 === 0 ? 'even' : 'odd')),
+    ).toEqual({
       even: ['a', 'c'],
       odd: ['b', 'd'],
     });

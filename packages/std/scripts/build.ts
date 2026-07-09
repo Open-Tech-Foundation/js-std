@@ -1,7 +1,6 @@
-import { existsSync, mkdirSync, copyFileSync } from 'node:fs';
+import { copyFileSync, cpSync, existsSync, mkdirSync } from 'node:fs';
 import { join, resolve } from 'node:path';
-import { execSync } from 'node:child_process';
-import * as esbuild from 'esbuild';
+import { execFileSync } from 'node:child_process';
 
 const root = process.cwd();
 const dist = join(root, 'dist');
@@ -10,38 +9,39 @@ if (!existsSync(dist)) {
   mkdirSync(dist);
 }
 
-const baseConfig: esbuild.BuildOptions = {
-  entryPoints: [join(root, 'src/index.ts')],
-  bundle: true,
-  minify: true,
-  sourcemap: true,
-  platform: 'node',
-  target: 'esnext',
-};
+function runBunX(args: string[]) {
+  execFileSync(process.execPath, ['x', ...args], { stdio: 'inherit' });
+}
+
+function buildBundle(format: 'esm' | 'cjs', outfile: string) {
+  runBunX([
+    'esbuild',
+    'src/index.ts',
+    '--bundle',
+    '--minify',
+    '--sourcemap',
+    '--platform=node',
+    '--target=esnext',
+    `--format=${format}`,
+    `--outfile=${outfile}`,
+  ]);
+}
 
 async function build() {
   console.log('🚀 Building @opentf/std...');
 
   try {
     // ESM build
-    await esbuild.build({
-      ...baseConfig,
-      format: 'esm',
-      outfile: join(dist, 'index.js'),
-    });
+    buildBundle('esm', join(dist, 'index.js'));
     console.log('✅ ESM build completed');
 
     // CJS build
-    await esbuild.build({
-      ...baseConfig,
-      format: 'cjs',
-      outfile: join(dist, 'index.cjs'),
-    });
+    buildBundle('cjs', join(dist, 'index.cjs'));
     console.log('✅ CJS build completed');
 
     // Generate Types
     console.log('⏳ Generating type definitions...');
-    execSync('tsc --emitDeclarationOnly --outDir dist --noEmit false', { stdio: 'inherit' });
+    runBunX(['tsc', '--emitDeclarationOnly', '--outDir', 'dist', '--noEmit', 'false']);
     const dts = join(dist, 'index.d.ts');
     const dcts = join(dist, 'index.d.cts');
     if (existsSync(dts)) {
@@ -68,7 +68,7 @@ async function build() {
     const docsSrc = join(root, 'docs');
     const docsDist = join(dist, 'docs');
     if (existsSync(docsSrc)) {
-      execSync(`cp -r ${docsSrc} ${docsDist}`);
+      cpSync(docsSrc, docsDist, { recursive: true });
       console.log('✅ docs/ copied to dist/docs');
     }
   } catch (error) {
@@ -77,4 +77,4 @@ async function build() {
   }
 }
 
-build();
+await build();

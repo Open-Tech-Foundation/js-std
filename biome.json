@@ -9,8 +9,9 @@
       "packages/std/dist",
       "scripts",
       "packages/std/scripts",
+      "website/.dev",
+      "website/public/std.js",
       "**/coverage/**",
-      ".changeset",
       "packages/std/README.md",
       "packages/std/LICENSE",
       "**/package.json"

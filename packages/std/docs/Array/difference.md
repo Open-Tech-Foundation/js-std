@@ -1,4 +1,4 @@
-# diff
+# difference
 
 Creates an array with the values of the first array not included in the other arrays.
 
@@ -9,6 +9,6 @@ Creates an array with the values of the first array not included in the other ar
 ### Example
 
 ```js
-diff([[1, 2], [2, 3]]) //=> [1]
-diff([[1, "a"], [1, 2]]) //=> ['a']
+difference([[1, 2], [2, 3]]) //=> [1]
+difference([[1, "a"], [1, 2]]) //=> ['a']
 ```

@@ -28,15 +28,17 @@ describe('Array', () => {
     const letters = ['a', 'b', 'A', 'a', 'B', 'c'];
 
     expect(countBy(letters, (l) => l.toLowerCase())).toEqual({
-       a: 3,
-       b: 2,
-       c: 1,
-     });
+      a: 3,
+      b: 2,
+      c: 1,
+    });
 
-     const nums = [10, 20, 30, 40];
-     expect(countBy(nums, (val, index) => (index < 2 ? 'firstHalf' : 'secondHalf'))).toEqual({
-       firstHalf: 2,
-       secondHalf: 2,
-     });
+    const nums = [10, 20, 30, 40];
+    expect(
+      countBy(nums, (val, index) => (index < 2 ? 'firstHalf' : 'secondHalf')),
+    ).toEqual({
+      firstHalf: 2,
+      secondHalf: 2,
+    });
   });
 });

@@ -15,29 +15,27 @@
 
 ---
 
-> *A lightweight, high-accuracy, and cross-runtime collection of essential utilities.*
+> *A lightweight, high-accuracy, runtime-agnostic collection of essential utilities.*
+
 ## ✨ Features
 
 - 🎨 **Intuitive API**: Designed for clarity, simplicity, and ease of use.
-- 🌍 **Runtime Agnostic**: Seamless execution across all JavaScript environments.
+- 🌍 **Runtime Agnostic**: Uses standard JavaScript and capability detection instead of named-runtime branching.
 - ⚡ **High Performance**: Optimized for speed without sacrificing accuracy.
 - ⏳ **Modern Async**: Advanced tools for managing complex asynchronous flows.
 - 🛡️ **Full Type Safety**: Built with TypeScript for deep, native type inference.
 - 📦 **Zero Dependencies**: Lightweight, tree-shakeable, and ESM/CJS ready.
 - 🌲 **Broad Compatibility**: Future-proof code with broad environment support.
 
-## 🌍 Environment Support
+## 🌍 Runtime Agnostic Design
 
-| Environment | Supported Versions | Note |
-| :--- | :--- | :--- |
-| **Node.js** | **>= 18.0.0** | **Polyfill required for Node 18** |
-| **Browsers** | All modern browsers | Native |
-| **Bun** | >= 1.0.0 | Native |
-| **Deno** | >= 1.0.0 | Native |
+`@opentf/std` avoids public runtime detection helpers. Utilities are written against standard JavaScript APIs and use feature/capability detection only where platform APIs are unavoidable.
 
-### 🛠️ Node.js 18 Support
+This keeps the package portable across mainstream runtimes and smaller embeddable engines such as QuickJS, as long as the specific API a utility needs is available or polyfilled.
 
-To use features like `uuid` or `randomBytes` in Node.js 18, you must manually polyfill the `webcrypto` API:
+### 🛠️ Web Crypto Support
+
+Crypto helpers use `globalThis.crypto` when available and fall back to `node:crypto` in Node-compatible environments. For runtimes without either API, provide a Web Crypto polyfill before calling crypto utilities:
 
 ```js
 import crypto from 'node:crypto';
@@ -50,6 +48,16 @@ if (typeof globalThis.crypto === 'undefined') {
   });
 }
 ```
+
+## 🧪 Testing
+
+Run the project validation suite:
+
+```sh
+bun run ci
+```
+
+The CI suite builds the package, runs Biome linting, checks TypeScript, and executes the full Bun test suite.
 
 ## 📦 Installation
 

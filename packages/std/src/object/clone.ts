@@ -40,7 +40,7 @@ function cloneObj<T>(obj: T, objRefMap: WeakMap<WeakKey, unknown>): T {
     for (const sym of Object.getOwnPropertySymbols(obj)) {
       cObj[sym as unknown as string] = cloneObj(
         (obj as Record<string | symbol, unknown>)[sym],
-        objRefMap
+        objRefMap,
       );
     }
 

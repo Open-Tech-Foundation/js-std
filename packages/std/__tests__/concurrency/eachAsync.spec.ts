@@ -27,8 +27,8 @@ describe('Array > eachAsync', () => {
           if (n === 3) throw new Error('Fail');
           result.push(n);
         },
-        2
-      )
+        2,
+      ),
     ).rejects.toThrow('Fail');
     expect(result.length).toBeLessThan(arr.length);
   });

@@ -1,31 +1,31 @@
-import { NodeREPL } from "@opentf/react-node-repl";
-import { mountReact, readTheme } from "./react-bridge.js";
+import { NodeREPL } from '@opentf/react-node-repl';
+import { mountReact, readTheme } from './react-bridge.js';
 
 const setupCode = `const _ = require('lodash');
 const R = require('ramda');
 const log = console.log;`;
 
 function ReplPanel(props) {
-  const darkMode = readTheme() === "dark";
+  const darkMode = readTheme() === 'dark';
   return (
-    <div style={{ padding: "5px" }}>
+    <div style={{ padding: '5px' }}>
       <NodeREPL
-        code={props.code || ""}
+        code={props.code || ''}
         setupCode={setupCode}
-        deps={["@opentf/std@1.0.0-beta.3", "lodash", "ramda"]}
+        deps={['@opentf/std@1.0.0-beta.3', 'lodash', 'ramda']}
         editor={{
           darkMode,
           header: false,
-          style: { minHeight: "150px", maxHeight: "300px" },
+          style: { minHeight: '150px', maxHeight: '300px' },
         }}
         terminal={{
           show: false,
-          style: { minHeight: "150px", maxHeight: "300px" },
+          style: { minHeight: '150px', maxHeight: '300px' },
         }}
-        console={{ style: { minHeight: "150px", maxHeight: "300px" } }}
+        console={{ style: { minHeight: '150px', maxHeight: '300px' } }}
       />
-      <div style={{ textAlign: "right", fontSize: "14px" }}>
-        ⚡ by{" "}
+      <div style={{ textAlign: 'right', fontSize: '14px' }}>
+        ⚡ by{' '}
         <a href="https://node-repl.pages.dev/" target="_blank" rel="noreferrer">
           React Node REPL
         </a>
@@ -35,7 +35,7 @@ function ReplPanel(props) {
 }
 
 export default function REPL(props) {
-  let host = $ref();
+  const host = $ref();
   let dispose = null;
 
   onMount(() => {

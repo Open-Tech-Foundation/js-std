@@ -1,5 +1,5 @@
-import { NodeREPL } from "@opentf/react-node-repl";
-import { mountReact, readTheme } from "./react-bridge.js";
+import { NodeREPL } from '@opentf/react-node-repl';
+import { mountReact, readTheme } from './react-bridge.js';
 
 const code = `/**
  * @opentf/std Playground
@@ -62,19 +62,19 @@ const R = require('ramda');
 const log = console.log;`;
 
 function PlaygroundPanel() {
-  const darkMode = readTheme() === "dark";
+  const darkMode = readTheme() === 'dark';
   return (
-    <div style={{ padding: "25px" }}>
+    <div style={{ padding: '25px' }}>
       <NodeREPL
         code={code}
         setupCode={setupCode}
-        deps={["@opentf/std@1.0.0-beta.3", "lodash", "ramda"]}
+        deps={['@opentf/std@1.0.0-beta.3', 'lodash', 'ramda']}
         layout="SPLIT_PANEL"
         editor={{ darkMode }}
-        style={{ height: "50vh" }}
+        style={{ height: '50vh' }}
       />
-      <div style={{ textAlign: "right", fontSize: "14px" }}>
-        ⚡ by{" "}
+      <div style={{ textAlign: 'right', fontSize: '14px' }}>
+        ⚡ by{' '}
         <a href="https://node-repl.pages.dev/" target="_blank" rel="noreferrer">
           React Node REPL
         </a>
@@ -84,7 +84,7 @@ function PlaygroundPanel() {
 }
 
 export default function PlaygroundREPL() {
-  let host = $ref();
+  const host = $ref();
   let dispose = null;
 
   onMount(() => {

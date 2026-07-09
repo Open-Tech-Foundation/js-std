@@ -1,7 +1,7 @@
 {
   "name": "@opentf/std",
   "version": "1.0.0-beta.3",
-  "description": "The Modern JavaScript Standard Library. A lightweight, high-accuracy, and cross-runtime collection of essential utilities.",
+  "description": "The Modern JavaScript Standard Library. A lightweight, high-accuracy, runtime-agnostic collection of essential utilities.",
   "keywords": [
     "collection",
     "js",
@@ -27,7 +27,7 @@
     "case",
     "assert",
     "replace",
-    "diff",
+    "difference",
     "range",
     "sort",
     "merge",
@@ -64,7 +64,6 @@
   "scripts": {
     "build": "bun scripts/build.ts",
     "test": "bun test",
-    "test:node": "vitest run",
     "dev": "bun scripts/build.ts --watch",
     "check-types": "tsc --noEmit",
     "lint": "biome check ./src",

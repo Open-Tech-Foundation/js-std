@@ -15,9 +15,9 @@ export default function countBy<T>(
   by: ((val: T, index: number, arr: T[]) => string) | string,
 ): Record<string, number> {
   return arr.reduce((acc: Record<string, number>, cur, index, array) => {
-    const k = isFunction(by)
-      ? by(cur, index, array)
-      : (cur[by as keyof T] as string);
+    const k = String(
+      isFunction(by) ? by(cur, index, array) : cur[by as keyof T],
+    );
     acc[k] = (acc[k] ?? 0) + 1;
     return acc;
   }, {});

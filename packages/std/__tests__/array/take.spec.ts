@@ -51,6 +51,8 @@ describe('Array > take', () => {
   });
 
   test('takes from right with cb', () => {
-    expect(take([1, 2, 3, 4, 5], 2, (val) => val % 2 === 0, true)).toEqual([2, 4]);
+    expect(take([1, 2, 3, 4, 5], 2, (val) => val % 2 === 0, true)).toEqual([
+      2, 4,
+    ]);
   });
 });

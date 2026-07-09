@@ -9,8 +9,8 @@ import isFunction from '../types/isFunction';
  * @returns {unknown[]} A new array of filtered values.
  *
  * @example
- * diff([[1, 2], [2, 3]]) //=> [1]
- * diff([[1, "a"], [1, 2]]) //=> ['a']
+ * difference([[1, 2], [2, 3]]) //=> [1]
+ * difference([[1, "a"], [1, 2]]) //=> ['a']
  */
 export default function difference(
   collections: unknown[][] = [],

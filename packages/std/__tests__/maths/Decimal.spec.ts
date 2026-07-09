@@ -1,4 +1,4 @@
-import { describe, test, expect } from 'vitest';
+import { describe, expect, test } from 'vitest';
 import Decimal from '../../src/maths/Decimal';
 
 describe('Decimal > Construction', () => {
@@ -48,9 +48,15 @@ describe('Decimal > Construction', () => {
   });
 
   test('handles extreme JS numbers', () => {
-    expect(new Decimal(Number.MAX_SAFE_INTEGER).toString()).toBe('9007199254740991');
-    expect(new Decimal(Number.MIN_SAFE_INTEGER).toString()).toBe('-9007199254740991');
-    expect(new Decimal(Number.EPSILON).toString()).toBe('0.0000000000000002220446049250313');
+    expect(new Decimal(Number.MAX_SAFE_INTEGER).toString()).toBe(
+      '9007199254740991',
+    );
+    expect(new Decimal(Number.MIN_SAFE_INTEGER).toString()).toBe(
+      '-9007199254740991',
+    );
+    expect(new Decimal(Number.EPSILON).toString()).toBe(
+      '0.0000000000000002220446049250313',
+    );
   });
 
   test('handles already-imprecise number input', () => {
@@ -65,9 +71,9 @@ describe('Decimal > Construction', () => {
     expect(() => new Decimal('1.2.3')).toThrow();
     expect(() => new Decimal('1,000.50')).toThrow();
     expect(() => new Decimal('1_000.50')).toThrow();
-    expect(() => new Decimal(Infinity)).toThrow();
-    expect(() => new Decimal(-Infinity)).toThrow();
-    expect(() => new Decimal(NaN)).toThrow();
+    expect(() => new Decimal(Number.POSITIVE_INFINITY)).toThrow();
+    expect(() => new Decimal(Number.NEGATIVE_INFINITY)).toThrow();
+    expect(() => new Decimal(Number.NaN)).toThrow();
   });
 });
 
@@ -113,7 +119,9 @@ describe('Decimal > Representation', () => {
   test('toJSON returns string for safe serialization', () => {
     const d = new Decimal('3.14');
     expect(JSON.stringify(d)).toBe('"3.14"');
-    expect(JSON.stringify({ price: new Decimal('1.99') })).toBe('{"price":"1.99"}');
+    expect(JSON.stringify({ price: new Decimal('1.99') })).toBe(
+      '{"price":"1.99"}',
+    );
   });
 
   test('valueOf', () => {
@@ -136,7 +144,9 @@ describe('Decimal > Arithmetic', () => {
   });
 
   test('add - very different magnitudes', () => {
-    expect(new Decimal('1e20').add('0.0001').toString()).toBe('100000000000000000000.0001');
+    expect(new Decimal('1e20').add('0.0001').toString()).toBe(
+      '100000000000000000000.0001',
+    );
   });
 
   test('add - arbitrarily large BigInt', () => {

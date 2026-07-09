@@ -15,8 +15,9 @@ export default function groupBy<T>(
   key: ((val: T, index: number, arr: T[]) => string) | string,
 ): Record<string, T[]> {
   return arr.reduce((acc: Record<string, T[]>, obj, index, array) => {
-    const k =
-      isFunction(key) ? key(obj, index, array) : (obj[key as keyof T] as string);
+    const k = String(
+      isFunction(key) ? key(obj, index, array) : obj[key as keyof T],
+    );
     if (!acc[k]) {
       acc[k] = [];
     }

@@ -1,8 +1,8 @@
-import { router } from "@opentf/web";
+import { router } from '@opentf/web';
 
 export default function Home() {
   onMount(() => {
-    router.replace("/docs");
+    router.replace('/docs');
   });
 
   return <main />;

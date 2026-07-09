@@ -1,7 +1,0 @@
-export default {
-  "isNode": "isNode",
-  "isBrowser": "isBrowser",
-  "isDeno": "isDeno",
-  "isBun": "isBun",
-  "isCloudflareWorker": "isCloudflareWorker",
-};
