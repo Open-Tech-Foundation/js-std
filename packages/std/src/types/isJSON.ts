@@ -1,6 +1,6 @@
 import isPlainObject from './isPlainObject';
 /**
- * Checks whether the given string is a valid JSON plain object
+ * Checks whether the given value is a valid JSON plain object string.
  *
  * @example
  *
@@ -11,9 +11,13 @@ import isPlainObject from './isPlainObject';
  * isJSON("{}") //=> true
  */
 
-export default function isJSON(str: string): boolean {
+export default function isJSON(val: unknown): boolean {
+  if (typeof val !== 'string') {
+    return false;
+  }
+
   try {
-    const o = JSON.parse(str);
+    const o = JSON.parse(val);
     return isPlainObject(o);
   } catch (error) {
     return false;

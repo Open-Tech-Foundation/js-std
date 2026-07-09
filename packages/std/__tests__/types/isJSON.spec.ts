@@ -3,6 +3,11 @@ import { isJSON } from '../../src';
 describe('Types > isJSON', () => {
   test('invalid cases', () => {
     expect(isJSON()).toBeFalsy();
+    expect(isJSON(null)).toBeFalsy();
+    expect(isJSON(false)).toBeFalsy();
+    expect(isJSON(1)).toBeFalsy();
+    expect(isJSON({})).toBeFalsy();
+    expect(isJSON([])).toBeFalsy();
     expect(isJSON('')).toBeFalsy();
     expect(isJSON('undefined')).toBeFalsy();
     expect(isJSON('null')).toBeFalsy();

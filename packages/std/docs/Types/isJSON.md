@@ -1,6 +1,12 @@
 # isJSON
 
-Checks whether the given string is a valid JSON plain object
+Checks whether the given value is a valid JSON plain object string.
+
+### Syntax
+
+```ts
+isJSON(val: unknown): boolean
+```
 
 ### Example
 
@@ -11,4 +17,6 @@ isJSON("null") //=> false
 isJSON("[]") //=> false
 
 isJSON("{}") //=> true
+
+isJSON({}) //=> false
 ```
