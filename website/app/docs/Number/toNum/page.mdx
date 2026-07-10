@@ -16,6 +16,8 @@ toNum(val: unknown): number
 
 The converted number if the value is a valid numeric representation; otherwise, `NaN`.
 
+Supports numeric separators in valid positions. Invalid separator placements such as `1_e2` or `1._5` return `NaN`.
+
 ## Examples
 
 ```ts
@@ -27,8 +29,9 @@ toNum('1_000') //=> 1000 (Supports numeric separators)
 
 toNum('0xF') //=> 15 (Supports hex strings)
 
+toNum('0xF_F') //=> 255 (Supports separated hex strings)
+
 toNum(Infinity) //=> NaN
 
 toNum('abc') //=> NaN
 ```
-

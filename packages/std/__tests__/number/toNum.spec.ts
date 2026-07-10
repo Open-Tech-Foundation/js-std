@@ -16,7 +16,11 @@ describe('Number', () => {
     expect(toNum(Number.POSITIVE_INFINITY)).toBe(Number.NaN);
     expect(toNum(Number.NEGATIVE_INFINITY)).toBe(Number.NaN);
     expect(toNum('0_1')).toBe(Number.NaN);
+    expect(toNum('0_2')).toBe(Number.NaN);
     expect(toNum('1__000')).toBe(Number.NaN);
+    expect(toNum('1_e2')).toBe(Number.NaN);
+    expect(toNum('1_.5')).toBe(Number.NaN);
+    expect(toNum('1._5')).toBe(Number.NaN);
     expect(toNum('Infinity')).toBe(Number.NaN);
     expect(toNum('-Infinity')).toBe(Number.NaN);
     expect(toNum(5n)).toBe(Number.NaN);
@@ -35,5 +39,7 @@ describe('Number', () => {
     expect(toNum('1.3')).toBe(1.3);
     expect(toNum('1_0')).toBe(10);
     expect(toNum('1_000_00')).toBe(100000);
+    expect(toNum('0xF_F')).toBe(255);
+    expect(toNum('0b1_0')).toBe(2);
   });
 });
