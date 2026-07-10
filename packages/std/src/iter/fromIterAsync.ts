@@ -25,6 +25,18 @@ export default function fromIterAsync<T>(
       next() {
         return asyncIter.next();
       },
+      return(value?: unknown) {
+        if (typeof asyncIter.return === 'function') {
+          return asyncIter.return(value as never);
+        }
+        return Promise.resolve({ value, done: true } as IteratorResult<T>);
+      },
+      throw(error?: unknown) {
+        if (typeof asyncIter.throw === 'function') {
+          return asyncIter.throw(error);
+        }
+        return Promise.reject(error);
+      },
       [Symbol.asyncIterator]() {
         return this;
       },
@@ -36,6 +48,18 @@ export default function fromIterAsync<T>(
     return {
       async next() {
         return syncIter.next();
+      },
+      async return(value?: unknown) {
+        if (typeof syncIter.return === 'function') {
+          return syncIter.return(value as never);
+        }
+        return { value, done: true } as IteratorResult<T>;
+      },
+      async throw(error?: unknown) {
+        if (typeof syncIter.throw === 'function') {
+          return syncIter.throw(error);
+        }
+        throw error;
       },
       [Symbol.asyncIterator]() {
         return this;
@@ -51,6 +75,18 @@ export default function fromIterAsync<T>(
     return {
       async next() {
         return (iter as any).next();
+      },
+      async return(value?: unknown) {
+        if (typeof (iter as any).return === 'function') {
+          return (iter as any).return(value);
+        }
+        return { value, done: true } as IteratorResult<T>;
+      },
+      async throw(error?: unknown) {
+        if (typeof (iter as any).throw === 'function') {
+          return (iter as any).throw(error);
+        }
+        throw error;
       },
       [Symbol.asyncIterator]() {
         return this;

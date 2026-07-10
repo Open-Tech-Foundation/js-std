@@ -16,6 +16,8 @@ fromIterAsync<T>(iter: AsyncIterable<T> | Iterable<T> | { next: () => Promise<It
 
 A new async iterable iterator.
 
+If the source iterator exposes `return()` or `throw()`, the wrapped async iterator forwards those methods so early loop exit and errors can close the underlying iterator correctly.
+
 ## Examples
 
 ```ts

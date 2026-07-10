@@ -169,6 +169,52 @@ describe('IterAsync Helpers', () => {
           fromIterAsync({ next: () => ({ value: 1, done: true }) }),
         ),
       ).toEqual([]);
+
+      let syncClosed = false;
+      function* syncClosable() {
+        try {
+          yield 1;
+          yield 2;
+        } finally {
+          syncClosed = true;
+        }
+      }
+      for await (const value of fromIterAsync(syncClosable())) {
+        expect(value).toBe(1);
+        break;
+      }
+      expect(syncClosed).toBe(true);
+
+      let asyncClosed = false;
+      async function* asyncClosable() {
+        try {
+          yield 1;
+          yield 2;
+        } finally {
+          asyncClosed = true;
+        }
+      }
+      for await (const value of fromIterAsync(asyncClosable())) {
+        expect(value).toBe(1);
+        break;
+      }
+      expect(asyncClosed).toBe(true);
+    });
+
+    test('fromIterAsync forwards throw and return', async () => {
+      const iter = fromIterAsync({
+        next: () => ({ value: 1, done: false }),
+        return: (value?: unknown) => ({ value, done: true }),
+        throw: (error?: unknown) => {
+          throw error;
+        },
+      });
+
+      await expect(iter.return?.('done')).resolves.toEqual({
+        value: 'done',
+        done: true,
+      });
+      await expect(iter.throw?.(new Error('boom'))).rejects.toThrow('boom');
     });
 
     test('toAsyncIter', async () => {

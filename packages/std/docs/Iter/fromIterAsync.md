@@ -4,6 +4,10 @@ Creates an AsyncIterableIterator from an iterable, async iterable, or iterator-l
 
 Equivalent to `AsyncIterator.from(O)` proposal.
 
+If the source iterator exposes `return()` or `throw()`, the wrapped async
+iterator forwards those methods so early loop exit and errors can close the
+underlying iterator correctly.
+
 @param {AsyncIterable<T> | Iterable<T> | { next: () => Promise<IteratorResult<T>> | IteratorResult<T> }} iter The source object.
 @returns {AsyncIterableIterator<T>} A new async iterable iterator.
 
