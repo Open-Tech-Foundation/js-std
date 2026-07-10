@@ -1,5 +1,10 @@
+import { getCrypto } from './getCrypto';
+
 /**
  * Generates a cryptographically strong random float within a range.
+ *
+ * Uses Web Crypto when available and falls back to `node:crypto.webcrypto`
+ * in Node-compatible environments.
  *
  * @param min - The minimum value (inclusive).
  * @param max - The maximum value (exclusive).
@@ -15,7 +20,7 @@ export default function randomFloat(min: number, max: number): number {
     throw new Error('The min value must be less than the max value.');
   }
   const array = new Uint32Array(2);
-  globalThis.crypto.getRandomValues(array);
+  getCrypto().getRandomValues(array);
   const fraction = (array[0] * 2 ** 32 + array[1]) / 2 ** 64;
   return min + fraction * (max - min);
 }

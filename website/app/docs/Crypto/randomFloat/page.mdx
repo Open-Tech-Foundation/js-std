@@ -1,5 +1,8 @@
 🎲 Generates a cryptographically strong random float within a range.
 
+Uses Web Crypto when available and falls back to `node:crypto.webcrypto`
+in Node-compatible environments.
+
 ## Syntax
 
 ```ts
@@ -30,4 +33,3 @@ randomFloat(1, 5) //=> 3.456789123456789
 
 - [randomInt](/docs/Crypto/randomInt)
 - [randomString](/docs/Crypto/randomString)
-

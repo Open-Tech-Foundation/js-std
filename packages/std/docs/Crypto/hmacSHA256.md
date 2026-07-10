@@ -2,8 +2,8 @@
 
 Computes an HMAC-SHA-256 digest of a message with the given key.
 
-Uses Node.js `crypto` module when available, otherwise falls back to
-the Web Crypto API (`SubtleCrypto`).
+Uses Web Crypto when available and falls back to `node:crypto`
+in Node-compatible environments.
 
 @param key - The secret key.
 @param message - The message to authenticate.
@@ -12,6 +12,5 @@ the Web Crypto API (`SubtleCrypto`).
 ### Example
 
 ```js
-
 await hmacSHA256('secret', 'hello')
 ```

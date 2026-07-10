@@ -44,6 +44,44 @@ describe('Crypto Utilities', () => {
     expect(randomBytes(16)).not.toEqual(bytes);
   });
 
+  test('sync crypto helpers fall back when globalThis.crypto is unavailable', () => {
+    const originalCrypto = globalThis.crypto;
+
+    try {
+      Object.defineProperty(globalThis, 'crypto', {
+        value: undefined,
+        writable: true,
+        configurable: true,
+      });
+
+      expect(uuidv4()).toMatch(
+        /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/,
+      );
+
+      const bytes = randomBytes(8);
+      expect(bytes).toBeInstanceOf(Uint8Array);
+      expect(bytes.length).toBe(8);
+
+      const intVal = randomInt(1, 10);
+      expect(intVal).toBeGreaterThanOrEqual(1);
+      expect(intVal).toBeLessThanOrEqual(10);
+
+      const floatVal = randomFloat(0, 1);
+      expect(floatVal).toBeGreaterThanOrEqual(0);
+      expect(floatVal).toBeLessThan(1);
+
+      expect(uuidv7()).toMatch(
+        /^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/,
+      );
+    } finally {
+      Object.defineProperty(globalThis, 'crypto', {
+        value: originalCrypto,
+        writable: true,
+        configurable: true,
+      });
+    }
+  });
+
   test('randomInt', () => {
     const val = randomInt(1, 10);
     expect(val).toBeGreaterThanOrEqual(1);

@@ -1,9 +1,9 @@
 import { Callout } from "@opentf/web-docs";
 
-🆔 Generates a time-sortable UUID v7 using native crypto.
+🆔 Generates a time-sortable UUID v7 using capability-detected crypto.
 
 <Callout type="info">
-  UUID v7 is time-ordered, making it better for database primary keys than v4.
+  Uses Web Crypto when available and falls back to \`node:crypto.webcrypto\` in Node-compatible environments.
 </Callout>
 
 ## Syntax
@@ -28,4 +28,3 @@ uuidv7() //=> e.g. '0195e2a4-8c3d-7000-8000-123456789abc' (time-ordered)
 
 - [uuidv4](/docs/Crypto/uuidv4)
 - [randomId](/docs/Crypto/randomId)
-

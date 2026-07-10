@@ -1,5 +1,10 @@
+import { getCrypto } from './getCrypto';
+
 /**
  * Generates a time-sortable UUID v7.
+ *
+ * Uses Web Crypto when available and falls back to `node:crypto.webcrypto`
+ * in Node-compatible environments.
  *
  * @example
  *
@@ -7,7 +12,7 @@
  */
 export default function uuidv7(): string {
   const bytes = new Uint8Array(16);
-  globalThis.crypto.getRandomValues(bytes);
+  getCrypto().getRandomValues(bytes);
 
   const timestamp = Date.now();
 

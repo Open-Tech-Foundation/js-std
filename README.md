@@ -35,7 +35,13 @@ This keeps the package portable across mainstream runtimes and smaller embeddabl
 
 ### 🛠️ Web Crypto Support
 
-Crypto helpers use `globalThis.crypto` when available and fall back to `node:crypto` in Node-compatible environments. For runtimes without either API, provide a Web Crypto polyfill before calling crypto utilities:
+Crypto helpers use capability detection instead of runtime-name detection:
+
+- Random and UUID helpers use Web Crypto when available and fall back to `node:crypto.webcrypto` in Node-compatible environments.
+- Hash and HMAC helpers use Web Crypto when available and fall back to `node:crypto`.
+- Helpers throw a clear error if neither capability exists.
+
+For runtimes without either API, provide a Web Crypto polyfill before calling crypto utilities:
 
 ```js
 import crypto from 'node:crypto';

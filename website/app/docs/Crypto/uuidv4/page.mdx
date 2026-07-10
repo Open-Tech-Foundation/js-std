@@ -1,9 +1,9 @@
 import { Callout } from "@opentf/web-docs";
 
-🆔 Generates a random UUID v4 using native crypto.
+🆔 Generates a random UUID v4 using capability-detected crypto.
 
 <Callout type="info">
-  In Node.js 18, you need to polyfill \`globalThis.crypto\` to use this function.
+  Uses Web Crypto when available and falls back to \`node:crypto\` in Node-compatible environments.
 </Callout>
 
 ## Syntax
@@ -28,4 +28,3 @@ uuidv4() //=> 'f47ac10b-58cc-4372-a567-0e02b2c3d479'
 
 - [uuidv7](/docs/Crypto/uuidv7)
 - [randomId](/docs/Crypto/randomId)
-

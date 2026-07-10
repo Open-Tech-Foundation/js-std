@@ -1,5 +1,10 @@
+import { getCrypto } from './getCrypto';
+
 /**
  * Generates a cryptographically strong random integer within a range.
+ *
+ * Uses Web Crypto when available and falls back to `node:crypto.webcrypto`
+ * in Node-compatible environments.
  *
  * @example
  *
@@ -16,7 +21,7 @@ export default function randomInt(min: number, max: number): number {
   const array = new Uint32Array(1);
   let val: number;
   do {
-    globalThis.crypto.getRandomValues(array);
+    getCrypto().getRandomValues(array);
     val = array[0];
   } while (val > maxUint32 - (maxUint32 % range));
   return min + (val % range);

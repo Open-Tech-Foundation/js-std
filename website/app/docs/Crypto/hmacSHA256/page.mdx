@@ -3,7 +3,7 @@ import { Callout } from "@opentf/web-docs";
 🔐 Computes an HMAC-SHA-256 digest of a message with a secret key.
 
 <Callout type="info">
-  Uses Node.js \`crypto\` for synchronous HMAC and Web Crypto API (\`SubtleCrypto\`) in browsers (async).
+  Always returns a \`Promise\`. Uses Web Crypto when available and falls back to Node.js \`crypto\` in Node-compatible environments.
 </Callout>
 
 ## Syntax
@@ -36,4 +36,3 @@ await hmacSHA256('secret', 'hello')
 
 - [hmacSHA512](/docs/Crypto/hmacSHA512)
 - [sha256](/docs/Crypto/sha256)
-

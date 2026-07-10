@@ -1,16 +1,19 @@
 🔢 Generates an array of cryptographically secure random bytes.
 
+Uses Web Crypto when available and falls back to `node:crypto.webcrypto`
+in Node-compatible environments.
+
 ## Syntax
 
 ```ts
 import { randomBytes } from '@opentf/std';
 
-randomBytes(size: number = 32): Uint8Array;
+randomBytes(size: number): Uint8Array;
 ```
 
 ## Parameters
 
-- `size`: The number of bytes to generate. Default: `32`.
+- `size`: The number of bytes to generate.
 
 ## Returns
 
@@ -25,4 +28,3 @@ randomBytes(16) //=> Uint8Array(16) [ ... ]
 ## Related
 
 - [randomInt](/docs/Crypto/randomInt)
-

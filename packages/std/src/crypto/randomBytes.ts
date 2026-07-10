@@ -1,5 +1,10 @@
+import { getCrypto } from './getCrypto';
+
 /**
  * Generates cryptographically strong random values.
+ *
+ * Uses Web Crypto when available and falls back to `node:crypto.webcrypto`
+ * in Node-compatible environments.
  *
  * @example
  *
@@ -7,6 +12,6 @@
  */
 export default function randomBytes(size: number): Uint8Array {
   const bytes = new Uint8Array(size);
-  globalThis.crypto.getRandomValues(bytes);
+  getCrypto().getRandomValues(bytes);
   return bytes;
 }

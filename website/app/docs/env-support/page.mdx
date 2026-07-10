@@ -15,8 +15,8 @@ If a runtime provides the JavaScript and Web Platform APIs a utility needs, that
 
 Most utilities are pure JavaScript. Utilities that need platform APIs, such as crypto helpers, use capability detection:
 
-- Prefer `globalThis.crypto` / Web Crypto when available.
-- Fall back to `node:crypto` in Node-compatible environments where appropriate.
+- Random and UUID helpers prefer `globalThis.crypto` and fall back to `node:crypto.webcrypto` in Node-compatible environments.
+- Hash and HMAC helpers prefer Web Crypto and fall back to `node:crypto` where appropriate.
 - Throw a clear error if neither capability exists.
 
 For runtimes without Web Crypto, provide a polyfill before calling crypto utilities:
