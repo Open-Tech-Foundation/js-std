@@ -44,6 +44,9 @@ describe('Encoding Utilities', () => {
     const unpadded = encodeBase64Url(bytes, { pad: false });
     expect(unpadded).toBe('aGVsbG8_d29ybGQmZm9vPWJhcg');
     expect(decodeBase64Url(unpadded)).toEqual(bytes);
+    expect(() => decodeBase64Url('+/')).toThrow(
+      'Invalid Base64URL string: use only URL-safe characters.',
+    );
   });
 
   test('stringToBytes and bytesToString', () => {

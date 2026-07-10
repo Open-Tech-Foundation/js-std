@@ -16,6 +16,8 @@ decodeBase64Url(str: string): Uint8Array
 
 The decoded bytes.
 
+Rejects standard Base64 `+` and `/` characters; use `decodeBase64()` for the non-URL-safe alphabet.
+
 ## Examples
 
 ```ts
