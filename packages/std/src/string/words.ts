@@ -1,3 +1,5 @@
+import escapeRegExp from './escapeRegExp';
+
 /**
  * Splits string into an array of its words.
  *
@@ -15,5 +17,10 @@ export default function words(
     const wordsRegex = /[A-Z]?[a-z]+|[A-Z]+(?=[A-Z][a-z]|$)|\d+|[a-z]+|[A-Z]+/g;
     return str.match(wordsRegex) || [];
   }
+
+  if (typeof pattern === 'string') {
+    return str.match(new RegExp(escapeRegExp(pattern), 'g')) || [];
+  }
+
   return str.match(pattern) || [];
 }

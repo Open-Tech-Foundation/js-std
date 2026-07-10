@@ -20,16 +20,19 @@ words(
 
 An array of words.
 
+String patterns are treated literally. Use a `RegExp` when you need regex matching behavior.
+
 ## Examples
 
 ```ts
 words('fred, barney, & pebbles') //=> ['fred', 'barney', 'pebbles']
 
 words('fred, barney, & pebbles', /[^, ]+/g) //=> ['fred', 'barney', '&', 'pebbles']
+
+words('a+b+c', '+') //=> ['+', '+']
 ```
 
 ## Related
 
 - [trim](/docs/String/trim)
 - [truncate](/docs/String/truncate)
-

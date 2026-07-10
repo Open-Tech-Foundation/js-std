@@ -60,6 +60,8 @@ describe('String Utils', () => {
       'pebbles',
     ]);
     expect(words('camelCase')).toEqual(['camel', 'Case']);
+    expect(words('a+b+c', '+')).toEqual(['+', '+']);
+    expect(words('a.b.c', '.')).toEqual(['.', '.']);
   });
 
   test('pad', () => {
