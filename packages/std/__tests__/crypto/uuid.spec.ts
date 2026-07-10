@@ -42,6 +42,12 @@ describe('Crypto Utilities', () => {
     expect(bytes).toBeInstanceOf(Uint8Array);
     expect(bytes.length).toBe(16);
     expect(randomBytes(16)).not.toEqual(bytes);
+    expect(() => randomBytes(-1)).toThrow(
+      'The size must be a non-negative integer.',
+    );
+    expect(() => randomBytes(1.5)).toThrow(
+      'The size must be a non-negative integer.',
+    );
   });
 
   test('sync crypto helpers fall back when globalThis.crypto is unavailable', () => {
@@ -88,13 +94,30 @@ describe('Crypto Utilities', () => {
     expect(val).toBeLessThanOrEqual(10);
     expect(Number.isInteger(val)).toBe(true);
     expect(() => randomInt(10, 1)).toThrow();
+    expect(() => randomInt(1.2, 10)).toThrow(
+      'The min and max values must be integers.',
+    );
+    expect(() => randomInt(1, 10.2)).toThrow(
+      'The min and max values must be integers.',
+    );
   });
 
   test('randomString', () => {
+    const defaultStr = randomString();
+    expect(defaultStr.length).toBe(10);
     const str = randomString(10);
     expect(str.length).toBe(10);
     expect(typeof str).toBe('string');
     expect(randomString(5, '01')).toMatch(/^[01]{5}$/);
+    expect(() => randomString(-1)).toThrow(
+      'The length must be a non-negative integer.',
+    );
+    expect(() => randomString(2.5)).toThrow(
+      'The length must be a non-negative integer.',
+    );
+    expect(() => randomString(3, '')).toThrow(
+      'The character set must not be empty.',
+    );
   });
 
   test('randomId', () => {
@@ -102,6 +125,12 @@ describe('Crypto Utilities', () => {
     expect(id.length).toBe(21);
     expect(randomId(10).length).toBe(10);
     expect(id).toMatch(/^[A-Za-z0-9_-]{21}$/);
+    expect(() => randomId(-1)).toThrow(
+      'The length must be a non-negative integer.',
+    );
+    expect(() => randomId(2.1)).toThrow(
+      'The length must be a non-negative integer.',
+    );
   });
 
   test('randomFloat', () => {

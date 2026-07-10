@@ -11,6 +11,10 @@ import { getCrypto } from './getCrypto';
  * randomInt(1, 10) //=> 7
  */
 export default function randomInt(min: number, max: number): number {
+  if (!Number.isInteger(min) || !Number.isInteger(max)) {
+    throw new RangeError('The min and max values must be integers.');
+  }
+
   if (min > max) {
     throw new Error(
       'The min value must be less than or equal to the max value.',

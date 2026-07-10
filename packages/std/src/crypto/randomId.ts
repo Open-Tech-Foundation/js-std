@@ -13,5 +13,9 @@ const ALPHABET =
  * randomId() //=> 'V1StGXR8_Z5jdHi6B-myT'
  */
 export default function randomId(length = 21): string {
+  if (!Number.isInteger(length) || length < 0) {
+    throw new RangeError('The length must be a non-negative integer.');
+  }
+
   return randomString(length, ALPHABET);
 }

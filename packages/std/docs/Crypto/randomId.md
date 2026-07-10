@@ -5,6 +5,8 @@ Generates a URL-friendly, cryptographically strong random ID.
 @param {number} [length=21] The length of the ID.
 @returns {string} A random ID string.
 
+`length` must be a non-negative integer.
+
 ### Example
 
 ```js
