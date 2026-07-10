@@ -16,4 +16,28 @@ describe('reduceAsync', () => {
       'Reduce of empty array with no initial value',
     );
   });
+
+  test('reduceAsync skips sparse holes like Array.prototype.reduce', async () => {
+    const sparse = [, 1, , 2] as number[];
+    const seen: number[] = [];
+    const res = await reduceAsync(sparse, async (acc, n, i) => {
+      seen.push(i);
+      return acc + n;
+    }, 0);
+
+    expect(seen).toEqual([1, 3]);
+    expect(res).toBe(3);
+  });
+
+  test('reduceAsync without initial value starts at first present item', async () => {
+    const sparse = [, 1, , 2] as number[];
+    const seen: number[] = [];
+    const res = await reduceAsync(sparse, async (acc, n, i) => {
+      seen.push(i);
+      return acc + n;
+    });
+
+    expect(seen).toEqual([3]);
+    expect(res).toBe(3);
+  });
 });

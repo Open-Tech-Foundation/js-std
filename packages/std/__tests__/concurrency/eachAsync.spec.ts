@@ -43,4 +43,15 @@ describe('Array > eachAsync', () => {
       'Concurrency must be a positive integer or Infinity.',
     );
   });
+
+  test('skips sparse holes like Array.prototype.forEach', async () => {
+    const sparse = [, 1, , 2] as number[];
+    const seen: number[] = [];
+
+    await eachAsync(sparse, async (_n, i) => {
+      seen.push(i);
+    });
+
+    expect(seen).toEqual([1, 3]);
+  });
 });

@@ -20,4 +20,16 @@ describe('Array > filterAsync', () => {
       'Concurrency must be a positive integer or Infinity.',
     );
   });
+
+  test('skips sparse holes like Array.prototype.filter', async () => {
+    const sparse = [, 1, , 2] as number[];
+    const seen: number[] = [];
+    const res = await filterAsync(sparse, async (n, i) => {
+      seen.push(i);
+      return n > 1;
+    });
+
+    expect(seen).toEqual([1, 3]);
+    expect(res).toEqual([2]);
+  });
 });

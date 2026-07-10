@@ -3,6 +3,9 @@
 Asynchronous version of `Array.prototype.flatMap`.
 By default, it runs all iterations in parallel.
 
+Sparse array holes are skipped, matching native
+`Array.prototype.flatMap()` behavior.
+
 ### Example
 
 ```js

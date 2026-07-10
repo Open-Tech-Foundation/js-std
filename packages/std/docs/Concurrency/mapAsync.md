@@ -2,6 +2,9 @@
 
 Asynchronous version of `Array.prototype.map`.
 
+Sparse array holes are skipped, matching native `Array.prototype.map()`
+behavior.
+
 @param {T[]} arr The source array.
 @param {Function} cb The async callback to run for each element.
 @param {number} [concurrency=Infinity] The maximum number of concurrent executions.

@@ -45,6 +45,7 @@
 - `size` and `isEmpty` now count enumerable symbol-keyed properties on plain objects.
 - `toNum` now rejects invalid numeric-separator placements such as `0_2`, `1_e2`, and `1._5` while continuing to support valid separated decimal, binary, and hex strings.
 - `pickBy`, `omitBy`, `mapKeys`, and `mapValues` now include enumerable symbol keys instead of silently dropping them.
+- Async array helpers now skip sparse holes like their native `Array.prototype` counterparts, and `reduceAsync` now starts from the first present element when no initial value is provided.
 - Reworked `memoizeRun` default keying to support structural caching for common built-in value types, including `BigInt`, `Date`, `Map`, `Set`, typed arrays, and cyclic structures, while preserving reference identity for unsupported object instances and functions.
 - Preserved `Object.create(null)` prototypes across `merge`, `mergeAll`, `shallowMerge`, and `shallowMergeAll`.
 - Corrected the CSS named color mapping for `palegreen` in `color()`.

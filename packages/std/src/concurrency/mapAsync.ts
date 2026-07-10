@@ -27,6 +27,9 @@ export default async function mapAsync<T, R>(
   const worker = async () => {
     while (index < arr.length && !hasError) {
       const i = index++;
+      if (!Object.hasOwn(arr, i)) {
+        continue;
+      }
       try {
         results[i] = await cb(arr[i], i);
       } catch (err) {

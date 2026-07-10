@@ -14,14 +14,22 @@ export default async function reduceAsync<T, R>(
   let startIdx = 0;
 
   if (initialValue === undefined) {
-    if (arr.length === 0) {
+    while (startIdx < arr.length && !Object.hasOwn(arr, startIdx)) {
+      startIdx += 1;
+    }
+
+    if (startIdx >= arr.length) {
       throw new TypeError('Reduce of empty array with no initial value');
     }
-    acc = arr[0] as unknown as R;
-    startIdx = 1;
+
+    acc = arr[startIdx] as unknown as R;
+    startIdx += 1;
   }
 
   for (let i = startIdx; i < arr.length; i++) {
+    if (!Object.hasOwn(arr, i)) {
+      continue;
+    }
     acc = await cb(acc, arr[i], i);
   }
 

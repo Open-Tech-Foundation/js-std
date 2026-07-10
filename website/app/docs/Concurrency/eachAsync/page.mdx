@@ -29,6 +29,8 @@ eachAsync<T>(
 
 A Promise that resolves when all iterations are complete.
 
+Sparse array holes are skipped, matching native `Array.prototype.forEach()` behavior.
+
 ## Examples
 
 ```ts
@@ -42,4 +44,3 @@ await eachAsync(items, async (n) => {
 
 - [mapAsync](/docs/Concurrency/mapAsync)
 - [filterAsync](/docs/Concurrency/filterAsync)
-

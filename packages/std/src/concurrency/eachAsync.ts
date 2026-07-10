@@ -22,6 +22,7 @@ export default async function eachAsync<T>(
       while (index < arr.length && !aborted) {
         const i = index++;
         if (i >= arr.length) break;
+        if (!Object.hasOwn(arr, i)) continue;
         await cb(arr[i], i);
       }
     } catch (err) {

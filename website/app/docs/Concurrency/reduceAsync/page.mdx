@@ -28,6 +28,8 @@ reduceAsync<T, R>(
 
 A Promise that resolves to the final accumulated value.
 
+Sparse array holes are skipped, and when no initial value is provided the first present element becomes the accumulator, matching native `Array.prototype.reduce()` behavior.
+
 ## Examples
 
 ```ts
@@ -41,4 +43,3 @@ const sum = await reduceAsync(items, async (acc, n) => {
 
 - [mapAsync](/docs/Concurrency/mapAsync)
 - [filterAsync](/docs/Concurrency/filterAsync)
-

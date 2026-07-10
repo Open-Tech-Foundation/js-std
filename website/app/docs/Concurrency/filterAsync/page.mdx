@@ -29,6 +29,8 @@ filterAsync<T>(
 
 A Promise that resolves to the filtered array.
 
+Sparse array holes are skipped, matching native `Array.prototype.filter()` behavior.
+
 ## Examples
 
 ```ts
@@ -42,4 +44,3 @@ const result = await filterAsync(items, async (n) => {
 
 - [mapAsync](/docs/Concurrency/mapAsync)
 - [reduceAsync](/docs/Concurrency/reduceAsync)
-

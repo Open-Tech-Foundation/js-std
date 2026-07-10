@@ -29,6 +29,8 @@ flatMapAsync<T, R>(
 
 A Promise that resolves to the flattened mapped array.
 
+Sparse array holes are skipped, matching native `Array.prototype.flatMap()` behavior.
+
 ## Examples
 
 ```ts
@@ -42,4 +44,3 @@ const result = await flatMapAsync(items, async (n) => {
 
 - [mapAsync](/docs/Concurrency/mapAsync)
 - [filterAsync](/docs/Concurrency/filterAsync)
-

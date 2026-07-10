@@ -29,6 +29,8 @@ mapAsync<T, R>(
 
 A Promise that resolves to the new mapped array.
 
+Sparse array holes are skipped, matching native `Array.prototype.map()` behavior.
+
 ## Examples
 
 ### Parallel Execution (Default)
@@ -60,4 +62,3 @@ await mapAsync(
 - [eachAsync](/docs/Concurrency/eachAsync)
 - [filterAsync](/docs/Concurrency/filterAsync)
 - [reduceAsync](/docs/Concurrency/reduceAsync)
-

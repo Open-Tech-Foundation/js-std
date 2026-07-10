@@ -29,4 +29,16 @@ describe('flatMapAsync', () => {
       'Concurrency must be a positive integer or Infinity.',
     );
   });
+
+  test('skips sparse holes like Array.prototype.flatMap', async () => {
+    const sparse = [, 1, , 2] as number[];
+    const seen: number[] = [];
+    const res = await flatMapAsync(sparse, async (n, i) => {
+      seen.push(i);
+      return [n, n * 2];
+    });
+
+    expect(seen).toEqual([1, 3]);
+    expect(res).toEqual([1, 2, 2, 4]);
+  });
 });
