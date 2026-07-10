@@ -24,6 +24,18 @@ function deepMerge(acc: IterableObj, cur: IterableObj) {
       acc[key] = val;
     }
   }
+
+  for (const sym of Object.getOwnPropertySymbols(cur)) {
+    const val = cur[sym];
+    if (isArray(val) && isArray(acc[sym])) {
+      acc[sym] = (acc[sym] as unknown[]).concat(val);
+    } else if (isPlainObject(val) && isPlainObject(acc[sym])) {
+      acc[sym] = deepMerge(acc[sym] as IterableObj, val as IterableObj);
+    } else {
+      acc[sym] = val;
+    }
+  }
+
   return acc;
 }
 

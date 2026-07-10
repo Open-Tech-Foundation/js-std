@@ -166,4 +166,30 @@ describe('Object => mergeAll', () => {
     expect(Object.getPrototypeOf(out)).toBe(null);
     expect(out).toEqual({ a: 1, b: 2 });
   });
+
+  test('preserves symbol-keyed values across deep merges', () => {
+    const sym = Symbol('meta');
+    const a = {
+      [sym]: {
+        tags: ['a'],
+        nested: { x: 1 },
+      },
+    };
+    const b = {
+      [sym]: {
+        tags: ['b'],
+        nested: { y: 2 },
+      },
+    };
+
+    const out = mergeAll(a, b) as Record<string | symbol, unknown>;
+    const merged = out[sym] as Record<string, unknown>;
+
+    expect(merged).toEqual({
+      tags: ['a', 'b'],
+      nested: { x: 1, y: 2 },
+    });
+    expect(merged).not.toBe(a[sym]);
+    expect(merged).not.toBe(b[sym]);
+  });
 });

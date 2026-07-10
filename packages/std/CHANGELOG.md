@@ -27,6 +27,7 @@
 - `clone` now preserves deep `Error.cause` graphs and custom own properties for supported `Error` values.
 - Crypto generators now reject invalid non-integer sizes and lengths, and `randomString()` now defaults to length `10`.
 - `zip` and `unzip` now expose `undefined` padding in their TypeScript return types, and number formatters now validate option ranges with stable errors.
+- `mergeAll` now preserves symbol-keyed values across recursive merges.
 - Reworked `memoizeRun` default keying to support structural caching for common built-in value types, including `BigInt`, `Date`, `Map`, `Set`, typed arrays, and cyclic structures, while preserving reference identity for unsupported object instances and functions.
 - Preserved `Object.create(null)` prototypes across `merge`, `mergeAll`, `shallowMerge`, and `shallowMergeAll`.
 - Corrected the CSS named color mapping for `palegreen` in `color()`.

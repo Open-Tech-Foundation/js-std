@@ -14,6 +14,10 @@ mergeAll(obj1, ...objN);
 Immutable: This does not mutate the given arrays or objects.
 </Callout>
 
+<Callout type="info">
+  Both string-keyed and symbol-keyed object properties participate in the deep merge. Arrays at matching keys are concatenated.
+</Callout>
+
 ## Examples
 
 ```ts
@@ -21,4 +25,3 @@ const a = { a: { b: [1] } };
 const b = { a: { b: [2] } };
 mergeAll(a, b); //=> { a: { b: [1, 2] }
 ```
-
