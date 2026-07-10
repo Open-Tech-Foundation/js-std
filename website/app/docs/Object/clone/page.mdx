@@ -1,6 +1,6 @@
 import { Callout } from "@opentf/web-docs";
 
-👯 Creates a deep clone of a value, supporting circular references and various built-in types.
+👯 Creates a fast deep clone of supported values, with circular reference support.
 
 <Callout type="info">
   The following types are supported for deep cloning:
@@ -10,6 +10,7 @@ import { Callout } from "@opentf/web-docs";
   - **Maps & Sets**
   - **Dates**
   - **RegExps** (lastIndex is not preserved)
+  - **RegExps** (including `lastIndex`)
   - **Errors**
   - **ArrayBuffers & TypedArrays**
   - **DataViews**
@@ -20,7 +21,7 @@ import { Callout } from "@opentf/web-docs";
 </Callout>
 
 <Callout type="info">
-  If you need to clone transferable objects or specialized web APIs, consider using the native [structuredClone()](https://developer.mozilla.org/en-US/docs/Web/API/structuredClone).
+  Functions and unsupported object instances are preserved by reference. If you need a generic platform clone for transferable objects, DOM/web APIs, or other specialized instances, use native [structuredClone()](https://developer.mozilla.org/en-US/docs/Web/API/structuredClone).
 </Callout>
 
 ## Syntax
@@ -37,7 +38,7 @@ clone<T>(val: T): T
 
 ## Returns
 
-A deep clone of the input value.
+A deep clone of supported values. Unsupported object instances and functions are returned by reference.
 
 ## Examples
 
@@ -57,10 +58,19 @@ output.obj === input.obj; // false
 output.map === input.map; // false
 output.date.getTime() === input.date.getTime(); // true
 
+class Box {
+  constructor(value) {
+    this.value = value;
+  }
+}
+
+const boxed = new Box(1);
+const clonedBoxed = clone({ boxed });
+clonedBoxed.boxed === boxed; // true
+
 // Circular references
 const circular: any = { a: 1 };
 circular.self = circular;
 const clonedCircular = clone(circular);
 clonedCircular.self === clonedCircular; // true
 ```
-

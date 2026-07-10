@@ -116,7 +116,7 @@ sort([1, 10, 21, 2], "desc"); //=> [21, 10, 2, 1]
 import { clone } from "@opentf/std";
 
 const obj = { a: 1, b: "abc", c: new Map([["key", "val"]]) };
-clone(obj); // Returns deeply cloned value
+clone(obj); // Fast deep clone for supported built-in types
 ```
 
 ### 5. Smart Equality

@@ -32,6 +32,18 @@ describe('Object > Clone', () => {
     expect(output).toStrictEqual(input);
   });
 
+  test('null-prototype objects', () => {
+    const input = Object.create(null) as Record<string, unknown>;
+    input.a = { b: 1 };
+
+    const output = clone(input);
+
+    expect(output).not.toBe(input);
+    expect(Object.getPrototypeOf(output)).toBe(null);
+    expect(output.a).toEqual({ b: 1 });
+    expect(output.a).not.toBe(input.a);
+  });
+
   test('Dates', () => {
     const input = new Date();
     const output = clone(input);
@@ -241,18 +253,22 @@ describe('Object > Clone', () => {
 
   test('regexp', () => {
     let regex = /foo/g;
+    regex.lastIndex = 2;
     let output = clone(regex);
     expect(output).not.toBe(regex);
     expect(output).toEqual(regex);
     expect(output.global).toBe(true);
     expect(output.ignoreCase).toBe(false);
+    expect(output.lastIndex).toBe(2);
 
     regex = /ab+c/gi;
+    regex.lastIndex = 1;
     output = clone(regex);
     expect(output).not.toBe(regex);
     expect(output).toEqual(regex);
     expect(output.global).toBe(true);
     expect(output.ignoreCase).toBe(true);
+    expect(output.lastIndex).toBe(1);
   });
 
   test('Symbols', () => {
@@ -263,5 +279,19 @@ describe('Object > Clone', () => {
     expect(output[sym]).toBe('bar');
     expect(output.a).toBe(1);
     expect(Object.getOwnPropertySymbols(output)).toContain(sym);
+  });
+
+  test('unsupported object instances are returned by reference', () => {
+    class Box {
+      constructor(public value: number) {}
+    }
+
+    const box = new Box(1);
+    const input = { box };
+    const output = clone(input);
+
+    expect(output).not.toBe(input);
+    expect(output.box).toBe(box);
+    expect(output.box).toBeInstanceOf(Box);
   });
 });

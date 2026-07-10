@@ -1,6 +1,14 @@
 # clone
 
-It deeply clones the given value
+Creates a fast deep clone for supported built-in container and value types.
+
+Supported deep-clone cases include plain objects, arrays, maps, sets, dates,
+errors, regular expressions, array buffers, typed arrays, data views, and
+circular references.
+
+Functions and unsupported object instances are preserved by reference instead of
+being generically cloned. This utility is intended for fast application-level
+deep cloning, not as a full replacement for `structuredClone`.
 
 ### Example
 

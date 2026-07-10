@@ -27,7 +27,8 @@ function cloneObj<T>(obj: T, objRefMap: WeakMap<WeakKey, unknown>): T {
   }
 
   if (isPlainObject(obj)) {
-    const cObj: Record<string, unknown> = {};
+    const cObj: Record<string | symbol, unknown> =
+      Object.getPrototypeOf(obj) === null ? Object.create(null) : {};
     objRefMap.set(obj, cObj);
 
     for (const [k, v] of Object.entries(obj)) {
@@ -97,7 +98,9 @@ function cloneObj<T>(obj: T, objRefMap: WeakMap<WeakKey, unknown>): T {
   }
 
   if (isRegExp(obj)) {
-    return new RegExp(obj.source, obj.flags) as T;
+    const regex = new RegExp(obj.source, obj.flags);
+    regex.lastIndex = obj.lastIndex;
+    return regex as T;
   }
 
   if (isArrayBuffer(obj)) {

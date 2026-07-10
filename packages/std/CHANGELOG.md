@@ -28,6 +28,7 @@
 - Aligned `isJSON` with its public name so it now returns `true` for any valid JSON string instead of only plain-object JSON.
 - Prevented `set` and `toSet` from overwriting existing falsy intermediate values such as `0`, `false`, `''`, and `null` when traversing deep paths.
 - Hardened object path mutators against unsafe prototype keys in `set`, `unset`, `toSet`, and `toUnset`.
+- Preserved `Object.create(null)` prototypes and `RegExp.lastIndex` during cloning, and clarified that unsupported object instances are preserved by reference.
 - Added validation for invalid async concurrency and rate-limit options.
 - Corrected `isAsyncFunction` and `isGeneratorFunction` so async generator functions no longer match either guard.
 - Removed an internal TypeScript suppression from `withResolvers`.
