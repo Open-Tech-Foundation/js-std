@@ -1,9 +1,9 @@
 import { Callout } from "@opentf/web-docs";
 
-📄 Checks if a value is a valid JSON **object** string.
+📄 Checks if a value is a valid JSON string.
 
 <Callout type="info">
-  This function specifically checks if the string parses into a **plain object** `{}`. It returns `false` for arrays `[]`, primitives, or other valid JSON types that are not plain objects.
+  This function returns `true` for any syntactically valid JSON string, including objects, arrays, strings, numbers, booleans, and `null`.
 </Callout>
 
 ## Syntax
@@ -20,7 +20,7 @@ isJSON(val: unknown): boolean
 
 ## Returns
 
-`true` if the string is a valid JSON plain object, `false` otherwise.
+`true` if the string is valid JSON, `false` otherwise.
 
 ## Examples
 
@@ -29,18 +29,19 @@ isJSON("{}") //=> true
 
 isJSON('{"a": 1}') //=> true
 
+isJSON("[]") //=> true
+
+isJSON("null") //=> true
+
+isJSON("123") //=> true
+
+isJSON("true") //=> true
+
+isJSON('"hello"') //=> true
+
 isJSON({}) //=> false
 
 isJSON(null) //=> false
-
-// Valid JSON but not objects
-isJSON("[]") //=> false
-
-isJSON("null") //=> false
-
-isJSON("123") //=> false
-
-isJSON("true") //=> false
 
 // Invalid JSON
 isJSON("{a: 1}") //=> false (Keys must be double-quoted)

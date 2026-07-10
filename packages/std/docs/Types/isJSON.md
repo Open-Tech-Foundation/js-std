@@ -1,6 +1,6 @@
 # isJSON
 
-Checks whether the given value is a valid JSON plain object string.
+Checks whether the given value is a valid JSON string.
 
 ### Syntax
 
@@ -12,11 +12,13 @@ isJSON(val: unknown): boolean
 
 ```js
 
-isJSON("null") //=> false
+isJSON("null") //=> true
 
-isJSON("[]") //=> false
+isJSON("[]") //=> true
 
 isJSON("{}") //=> true
+
+isJSON('"hello"') //=> true
 
 isJSON({}) //=> false
 ```

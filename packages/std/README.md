@@ -7,7 +7,7 @@
 [![CI](https://github.com/Open-Tech-Foundation/js-std/actions/workflows/ci.yml/badge.svg)](https://github.com/Open-Tech-Foundation/js-std/actions/workflows/ci.yml)
 [![JSR Score](https://jsr.io/badges/@opentf/std/score)](https://jsr.io/@opentf/std)
 
-*Part of the <img src="https://open-tech-foundation.pages.dev/img/Logo.svg" width="18" height="18" style="vertical-align: middle;" /> [Open Tech Foundation](https://github.com/Open-Tech-Foundation) ecosystem.*
+*Part of the <img src="https://raw.githubusercontent.com/Open-Tech-Foundation/website/3ed7ac70ec44465eec0f94e5185cb28a9b11ed07/static/img/OTF-Logo.svg" width="24" align="center" /> [Open Tech Foundation](https://github.com/Open-Tech-Foundation) ecosystem.*
 
 [**Live Demo**](https://js-std.pages.dev/playground) | [**Documentation**](https://js-std.pages.dev) | [**Report Bug**](https://github.com/open-tech-foundation/js-std/issues)
 

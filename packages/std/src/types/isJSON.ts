@@ -1,12 +1,11 @@
-import isPlainObject from './isPlainObject';
 /**
- * Checks whether the given value is a valid JSON plain object string.
+ * Checks whether the given value is a valid JSON string.
  *
  * @example
  *
- * isJSON("null") //=> false
+ * isJSON("null") //=> true
  *
- * isJSON("[]") //=> false
+ * isJSON("[]") //=> true
  *
  * isJSON("{}") //=> true
  */
@@ -17,8 +16,8 @@ export default function isJSON(val: unknown): boolean {
   }
 
   try {
-    const o = JSON.parse(val);
-    return isPlainObject(o);
+    JSON.parse(val);
+    return true;
   } catch (error) {
     return false;
   }
