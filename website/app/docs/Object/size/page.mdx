@@ -6,7 +6,7 @@ import { Callout } from "@opentf/web-docs";
   The following types are supported:
   - **String**: Number of characters.
   - **Array**: Number of elements.
-  - **Plain Object**: Number of enumerable own string-keyed properties.
+  - **Plain Object**: Number of enumerable own string-keyed and symbol-keyed properties.
   - **Map & Set**: Number of entries.
   - **ArrayBuffer, TypedArray, & DataView**: Byte length or number of elements.
 </Callout>
@@ -45,6 +45,7 @@ size([1, 2, 3]) //=> 3
 // --- Objects ---
 size({}) //=> 0
 size({ a: 1, b: 2 }) //=> 2
+size({ [Symbol('x')]: 1 }) //=> 1
 
 // --- Maps & Sets ---
 size(new Map([['a', 1]])) //=> 1
@@ -58,4 +59,3 @@ size(new Uint8Array(10)) //=> 10
 size(null) //=> -1
 size(123) //=> -1
 ```
-

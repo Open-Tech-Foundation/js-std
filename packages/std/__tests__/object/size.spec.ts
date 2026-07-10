@@ -23,10 +23,12 @@ describe('Object => size', () => {
   });
 
   test('Non empty objs', () => {
+    const sym = Symbol('size');
     expect(size(' ')).toBe(1);
     expect(size('abc')).toBe(3);
     expect(size([1])).toBe(1);
     expect(size({ length: 0, size: 0, byteLength: 0 })).toBe(3);
+    expect(size({ [sym]: 1 })).toBe(1);
     expect(size(new Map([[1, 1]]))).toBe(1);
     expect(size(new Set(['a', 'b']))).toBe(2);
     expect(size(new ArrayBuffer(8))).toBe(8);

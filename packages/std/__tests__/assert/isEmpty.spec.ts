@@ -13,6 +13,7 @@ describe('Assert => isEmpty', () => {
   });
 
   test('falsy', () => {
+    const sym = Symbol('empty');
     expect(isEmpty()).toBe(false);
     expect(isEmpty(undefined)).toBe(false);
     expect(isEmpty(null)).toBe(false);
@@ -24,6 +25,7 @@ describe('Assert => isEmpty', () => {
     expect(isEmpty(' ')).toBe(false);
     expect(isEmpty('a')).toBe(false);
     expect(isEmpty([1])).toBe(false);
+    expect(isEmpty({ [sym]: 1 })).toBe(false);
     expect(isEmpty({ length: 0, size: 0, byteLength: 0 })).toBe(false);
     const arr = [undefined];
     expect(isEmpty(arr)).toBe(false);

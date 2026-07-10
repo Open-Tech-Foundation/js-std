@@ -45,6 +45,7 @@ isEmpty(new Array(5), true) //=> true
 isEmpty(' ') //=> false
 isEmpty('a') //=> false
 isEmpty([1]) //=> false
+isEmpty({ [Symbol('x')]: 1 }) //=> false
 isEmpty({ length: 0, size: 0, byteLength: 0 }) //=> false
 isEmpty([,]) //=> false
 
@@ -58,4 +59,3 @@ isEmpty(false) //=> false
 ## Related
 
 - [isNil](/docs/Assert/isNil)
-

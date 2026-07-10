@@ -11,4 +11,5 @@ Checks if the given collection is empty.
 ```js
 isEmpty([]) //=> true
 isEmpty({a: 1}) //=> false
+isEmpty({[Symbol('x')]: 1}) //=> false
 ```

@@ -24,7 +24,12 @@ export default function size(val: unknown): number {
   }
 
   if (isPlainObject(val)) {
-    return Object.keys(val).length;
+    return (
+      Object.keys(val).length +
+      Object.getOwnPropertySymbols(val).filter((sym) =>
+        Object.prototype.propertyIsEnumerable.call(val, sym),
+      ).length
+    );
   }
 
   if (isMap(val) || isSet(val)) {
