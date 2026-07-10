@@ -29,6 +29,8 @@ stringReplace(
 
 A new string with the replacements made.
 
+String patterns are treated literally. Regular expression patterns preserve their existing flags, and the `all` / `case` options add `g` / `i` behavior on top.
+
 ## Examples
 
 ```ts
@@ -51,4 +53,3 @@ stringReplace('212F', /(-?\d+(?:\.\d*)?)F\b/, fahrenheitToCelsius) //=> '100C'
 ## Related
 
 - [stringReplaceAt](/docs/String/stringReplaceAt)
-

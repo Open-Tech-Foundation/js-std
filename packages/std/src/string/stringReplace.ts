@@ -1,4 +1,5 @@
 import shallowMerge from '../object/shallowMerge';
+import escapeRegExp from './escapeRegExp';
 
 export type StringReplaceOptions = { all?: boolean; case?: boolean };
 
@@ -14,17 +15,31 @@ export type StringReplaceOptions = { all?: boolean; case?: boolean };
 export default function stringReplace(
   str: string,
   pattern: string | RegExp,
-  replacement: string,
+  replacement: string | ((...args: any[]) => string),
   options?: StringReplaceOptions,
 ): string {
+  if (pattern == null) {
+    return str;
+  }
+
   const defaultOptions: StringReplaceOptions = { all: false, case: false };
   const opts = shallowMerge(
     defaultOptions,
     options as Record<string, unknown>,
   ) as StringReplaceOptions;
-  let flags = '';
-  flags = opts.all ? `${flags}g` : flags;
-  flags = opts.case ? `${flags}i` : flags;
+  const source =
+    typeof pattern === 'string' ? escapeRegExp(pattern) : pattern.source;
+  const flags = new Set(typeof pattern === 'string' ? '' : pattern.flags);
 
-  return str.replace(new RegExp(pattern, flags), replacement);
+  if (opts.all) {
+    flags.add('g');
+  }
+  if (opts.case) {
+    flags.add('i');
+  }
+
+  return str.replace(
+    new RegExp(source, Array.from(flags).join('')),
+    replacement,
+  );
 }

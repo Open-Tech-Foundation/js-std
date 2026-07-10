@@ -36,6 +36,7 @@
 - `round`, `stringInsertAt`, and `stringReplaceAt` now reject invalid fractional or negative precision/index inputs with stable errors.
 - `truncate`, `pad`, and `repeat` now validate invalid fractional, negative, and non-finite length/count inputs consistently.
 - `decodeBase64Url` now rejects non-URL-safe `+` and `/` characters instead of accepting the standard Base64 alphabet.
+- `stringReplace` now treats string patterns literally, preserves existing `RegExp` flags, and aligns its TypeScript signature with documented replacement-function support.
 - Reworked `memoizeRun` default keying to support structural caching for common built-in value types, including `BigInt`, `Date`, `Map`, `Set`, typed arrays, and cyclic structures, while preserving reference identity for unsupported object instances and functions.
 - Preserved `Object.create(null)` prototypes across `merge`, `mergeAll`, `shallowMerge`, and `shallowMergeAll`.
 - Corrected the CSS named color mapping for `palegreen` in `color()`.

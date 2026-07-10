@@ -8,6 +8,7 @@ describe('String > stringReplace', () => {
 
   test('single replace', () => {
     expect(stringReplace('abc', 'a', 'x')).toBe('xbc');
+    expect(stringReplace('a.b.c', '.', '-')).toBe('a-b.c');
   });
 
   test('multi replace', () => {
@@ -44,6 +45,10 @@ describe('String > stringReplace', () => {
     expect(
       stringReplace(str, /apple/, 'Orange', { all: true, case: true }),
     ).toBe('Oranges are round, and Oranges are juicy.');
+  });
+
+  test('preserves regular expression flags', () => {
+    expect(stringReplace('a\nb', /a.b/s, 'x')).toBe('x');
   });
 
   test('Replacement fn', () => {
