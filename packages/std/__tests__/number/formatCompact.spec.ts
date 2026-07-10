@@ -14,5 +14,8 @@ describe('Number', () => {
     expect(() => formatCompact(1200, { fractionDigits: 1.5 })).toThrow(
       'The fractionDigits option must be an integer between 0 and 100.',
     );
+    expect(() => formatCompact(1200, { display: 'wide' as never })).toThrow(
+      "The display option must be either 'short' or 'long'.",
+    );
   });
 });

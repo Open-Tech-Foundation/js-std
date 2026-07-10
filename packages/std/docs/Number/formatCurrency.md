@@ -13,7 +13,8 @@ Formats a number as a currency string using Intl.NumberFormat.
 
 `currency` must be a 3-letter ISO 4217 code. Fraction digit options must be
 integers between `0` and `100`, and `minFraction` must not exceed
-`maxFraction`.
+`maxFraction`. `options.display` must be one of `'symbol'`, `'code'`, or
+`'name'`.
 
 ### Example
 

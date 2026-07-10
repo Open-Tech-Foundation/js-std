@@ -34,6 +34,14 @@ const DISPLAY_MAP: Record<string, string> = {
   name: 'name',
 };
 
+function validateDisplay(display: string): void {
+  if (!(display in DISPLAY_MAP)) {
+    throw new RangeError(
+      "The display option must be one of 'symbol', 'code', or 'name'.",
+    );
+  }
+}
+
 function validateFractionDigits(
   value: number,
   optionName: 'minFraction' | 'maxFraction',
@@ -57,6 +65,8 @@ export default function formatCurrency(
       'The currency code must be a 3-letter ISO 4217 string.',
     );
   }
+
+  validateDisplay(display);
 
   const intlOptions: Intl.NumberFormatOptions = {
     style: 'currency',

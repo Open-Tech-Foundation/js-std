@@ -25,6 +25,14 @@ interface FormatCompactOptions {
   fractionDigits?: number;
 }
 
+function validateDisplay(display: string): void {
+  if (display !== 'short' && display !== 'long') {
+    throw new RangeError(
+      "The display option must be either 'short' or 'long'.",
+    );
+  }
+}
+
 function validateFractionDigits(fractionDigits: number): void {
   if (
     !Number.isInteger(fractionDigits) ||
@@ -43,9 +51,11 @@ export default function formatCompact(
 ): string {
   const { display = 'short', locale, fractionDigits } = options;
 
+  validateDisplay(display);
+
   const intlOptions: Intl.NumberFormatOptions = {
     notation: 'compact',
-    compactDisplay: display === 'long' ? 'long' : 'short',
+    compactDisplay: display,
   };
 
   if (fractionDigits !== undefined) {
