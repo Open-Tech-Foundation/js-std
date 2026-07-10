@@ -142,7 +142,7 @@ const COLOR_NAMES: Record<string, string> = {
   orangered: '#ff4500',
   orchid: '#da70d6',
   palegoldenrod: '#eee8aa',
-  paleggreen: '#98fb98',
+  palegreen: '#98fb98',
   paleturquoise: '#afeeee',
   palevioletred: '#db7093',
   papayawhip: '#ffefd5',

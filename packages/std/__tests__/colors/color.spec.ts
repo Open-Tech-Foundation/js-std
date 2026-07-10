@@ -26,6 +26,7 @@ describe('Colors > color', () => {
     test('Color names', () => {
       expect(color('red', 'rgba-object')).toEqual({ r: 255, g: 0, b: 0, a: 1 });
       expect(color('AliceBlue', 'hex')).toBe('#f0f8ff');
+      expect(color('palegreen', 'hex')).toBe('#98fb98');
       expect(color('rebeccapurple', 'hex')).toBe('#663399');
     });
 
@@ -167,6 +168,7 @@ describe('Colors > color', () => {
     test('css (smart format)', () => {
       expect(color(red, 'css')).toBe('red');
       expect(color('#f0f8ff', 'css')).toBe('aliceblue');
+      expect(color('#98fb98', 'css')).toBe('palegreen');
       expect(color({ ...red, a: 0.5 }, 'css')).toBe('rgba(255, 0, 0, 0.5)');
       expect(color('#123456', 'css')).toBe('#123456');
     });
