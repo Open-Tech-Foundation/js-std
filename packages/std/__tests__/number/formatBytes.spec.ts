@@ -13,6 +13,8 @@ describe('Number', () => {
     expect(formatBytes(1099511627776)).toBe('1 TiB');
     expect(formatBytes(1125899906842624)).toBe('1 PiB');
     expect(formatBytes(-1024)).toBe('-1 KiB');
+    expect(formatBytes(0.5)).toBe('0.5 B');
+    expect(formatBytes(-0.5)).toBe('-0.5 B');
     expect(formatBytes(Number.NaN)).toBe('NaN');
     expect(formatBytes(Number.POSITIVE_INFINITY)).toBe('Infinity');
 

@@ -39,6 +39,7 @@
 - `stringReplace` now treats string patterns literally, preserves existing `RegExp` flags, and aligns its TypeScript signature with documented replacement-function support.
 - `dropWhile(..., true)` now preserves the original callback indexes and source array instead of evaluating against a reversed view.
 - `takeWhile(..., true)` now preserves the original callback indexes and source array instead of evaluating against a reversed view.
+- `formatBytes` now keeps fractional values smaller than `1` byte in the `B` unit instead of producing an undefined unit label.
 - Reworked `memoizeRun` default keying to support structural caching for common built-in value types, including `BigInt`, `Date`, `Map`, `Set`, typed arrays, and cyclic structures, while preserving reference identity for unsupported object instances and functions.
 - Preserved `Object.create(null)` prototypes across `merge`, `mergeAll`, `shallowMerge`, and `shallowMergeAll`.
 - Corrected the CSS named color mapping for `palegreen` in `color()`.

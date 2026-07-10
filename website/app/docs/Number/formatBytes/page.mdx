@@ -19,6 +19,8 @@ formatBytes(bytes: number, options?: { decimals?: number; binary?: boolean }): s
 
 `options.decimals` must be an integer between `0` and `100`.
 
+Values smaller than `1` byte stay in the `B` unit instead of overflowing to an invalid smaller unit.
+
 ## Returns
 
 The formatted string with appropriate unit (B, KiB/MiB/GiB for binary, KB/MB/GB for decimal).
@@ -33,6 +35,8 @@ formatBytes(1023) //=> '1023 B'
 formatBytes(1024) //=> '1 KiB'
 
 formatBytes(1536) //=> '1.5 KiB'
+
+formatBytes(0.5) //=> '0.5 B'
 
 formatBytes(1234567) //=> '1.18 MiB'
 

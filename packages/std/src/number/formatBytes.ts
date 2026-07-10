@@ -61,7 +61,7 @@ export default function formatBytes(
   const units = binary ? BINARY_UNITS : DECIMAL_UNITS;
   const k = binary ? 1024 : 1000;
   const i = Math.floor(Math.log(Math.abs(bytes)) / Math.log(k));
-  const unitIndex = Math.min(i, units.length - 1);
+  const unitIndex = Math.max(0, Math.min(i, units.length - 1));
   const value = bytes / k ** unitIndex;
 
   return `${Number.parseFloat(value.toFixed(decimals))} ${units[unitIndex]}`;
