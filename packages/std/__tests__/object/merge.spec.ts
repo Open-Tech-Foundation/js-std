@@ -146,4 +146,16 @@ describe('Object => merge', () => {
     const result = merge(a, b) as any;
     expect(result[sym]).toEqual({ b: 1, c: 2 });
   });
+
+  test('preserves null-prototype objects', () => {
+    const a = Object.create(null) as Record<string, unknown>;
+    a.a = { x: 1 };
+    const b = Object.create(null) as Record<string, unknown>;
+    b.b = 2;
+
+    const out = merge(a, b) as Record<string, unknown>;
+
+    expect(Object.getPrototypeOf(out)).toBe(null);
+    expect(out).toEqual({ a: { x: 1 }, b: 2 });
+  });
 });

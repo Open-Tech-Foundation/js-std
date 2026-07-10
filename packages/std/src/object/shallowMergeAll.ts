@@ -1,6 +1,6 @@
 import isArray from '../types/isArray';
 import isPlainObject from '../types/isPlainObject';
-import shallowMerge from './shallowMerge';
+import { createMergeTarget } from './merge';
 
 /**
  * Merges all the given objects or arrays.
@@ -23,7 +23,9 @@ export default function shallowMergeAll(
   return filteredObjs.reduce(
     (acc, cur, i) => {
       if (i === 0) {
-        return isArray(cur) ? cur.slice() : Object.assign({}, cur);
+        return isArray(cur)
+          ? cur.slice()
+          : Object.assign(createMergeTarget(cur as object), cur);
       }
       if (isArray(acc) && isArray(cur)) {
         return acc.concat(cur);
@@ -33,7 +35,7 @@ export default function shallowMergeAll(
           ? Object.fromEntries(Object.entries(acc))
           : isArray(acc)
             ? acc.slice()
-            : Object.assign({}, acc);
+            : Object.assign(createMergeTarget(acc as object), acc);
       return Object.assign(target, cur);
     },
     {} as Record<string, unknown> | unknown[],

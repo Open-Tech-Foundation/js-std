@@ -24,6 +24,7 @@
 
 ### Fixed
 
+- Preserved `Object.create(null)` prototypes across `merge`, `mergeAll`, `shallowMerge`, and `shallowMergeAll`.
 - Corrected the CSS named color mapping for `palegreen` in `color()`.
 - Aligned sync crypto helpers (`randomBytes`, `randomInt`, `randomFloat`, `uuidv4`, and `uuidv7`) with strict capability detection so they now fall back to `node:crypto` in Node-compatible environments instead of requiring `globalThis.crypto`.
 - Aligned `isJSON` with its public name so it now returns `true` for any valid JSON string instead of only plain-object JSON.

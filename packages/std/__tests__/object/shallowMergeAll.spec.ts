@@ -98,4 +98,15 @@ describe('Object => shallowMergeAll', () => {
     expect(shallowMergeAll(a, c)).toEqual({ foo: undefined });
     expect(shallowMergeAll(a, b, c)).toEqual({ foo: undefined });
   });
+
+  test('preserves null-prototype objects', () => {
+    const a = Object.create(null) as Record<string, unknown>;
+    a.a = 1;
+    const b = Object.create(null) as Record<string, unknown>;
+    b.b = 2;
+    const out = shallowMergeAll(a, b) as Record<string, unknown>;
+
+    expect(Object.getPrototypeOf(out)).toBe(null);
+    expect(out).toEqual({ a: 1, b: 2 });
+  });
 });

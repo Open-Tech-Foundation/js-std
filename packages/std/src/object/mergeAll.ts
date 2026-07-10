@@ -1,6 +1,6 @@
 import isArray from '../types/isArray';
 import isPlainObject from '../types/isPlainObject';
-import merge, { type IterableObj } from './merge';
+import merge, { createMergeTarget, type IterableObj } from './merge';
 
 /**
  * Deeply merges all the given objects or arrays.
@@ -38,9 +38,7 @@ export default function mergeAll(
 
   return filteredObjs.reduce((acc: IterableObj, cur, i) => {
     if (i === 0) {
-      return (
-        isArray(cur) ? cur.slice() : Object.assign({}, cur)
-      ) as IterableObj;
+      return merge(createMergeTarget(cur as object) as object, cur as object) as IterableObj;
     }
 
     if (isArray(acc) && isArray(cur)) {
@@ -50,7 +48,7 @@ export default function mergeAll(
     if (isArray(acc) || isArray(cur)) {
       const target = isArray(acc)
         ? Object.fromEntries(Object.entries(acc))
-        : Object.assign({}, acc);
+        : merge(createMergeTarget(acc as object) as object, acc as object);
       return deepMerge(target as IterableObj, cur as IterableObj);
     }
 

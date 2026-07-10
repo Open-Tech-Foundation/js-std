@@ -5,6 +5,18 @@ export type IterableObj = {
   [key: number | string | symbol]: unknown;
 };
 
+export function createMergeTarget(source: object | undefined): IterableObj {
+  if (isArray(source)) {
+    return [] as unknown as IterableObj;
+  }
+
+  if (isPlainObject(source) && Object.getPrototypeOf(source) === null) {
+    return Object.create(null) as IterableObj;
+  }
+
+  return {};
+}
+
 /**
  * It deeply merges objects or arrays.
  *
@@ -15,7 +27,7 @@ export type IterableObj = {
  */
 export default function merge(...objs: object[]): object {
   const filteredObjs = objs.filter((v) => isArray(v) || isPlainObject(v));
-  const initialVal = isArray(filteredObjs[0]) ? [] : {};
+  const initialVal = createMergeTarget(filteredObjs[0]);
 
   return filteredObjs.reduce((acc: IterableObj, cur) => {
     for (const [key, val] of Object.entries(cur)) {
