@@ -15,15 +15,22 @@ export default function takeWhile<T>(
   predicate: (val: T, index: number, arr: T[]) => boolean,
   right = false,
 ): T[] {
-  const source = right ? [...arr].reverse() : arr;
-  const result: T[] = [];
-
-  for (let i = 0; i < source.length; i++) {
-    if (!predicate(source[i], i, source)) {
-      break;
+  if (!right) {
+    const result: T[] = [];
+    for (let i = 0; i < arr.length; i++) {
+      if (!predicate(arr[i], i, arr)) {
+        break;
+      }
+      result.push(arr[i]);
     }
-    result.push(source[i]);
+    return result;
   }
 
-  return right ? result.reverse() : result;
+  for (let i = arr.length - 1; i >= 0; i--) {
+    if (!predicate(arr[i], i, arr)) {
+      return arr.slice(i + 1);
+    }
+  }
+
+  return arr.slice();
 }

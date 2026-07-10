@@ -14,4 +14,11 @@ describe('Array > takeWhile', () => {
   test('uses index and array params', () => {
     expect(takeWhile([1, 2, 3, 4, 5], (_, i) => i < 3)).toEqual([1, 2, 3]);
   });
+
+  test('preserves original index and array params from right', () => {
+    expect(
+      takeWhile([10, 20, 30, 40], (_, i, arr) => i >= arr.length - 2, true),
+    ).toEqual([30, 40]);
+    expect(takeWhile([1, 2, 3, 4], (_, i) => i >= 2, true)).toEqual([3, 4]);
+  });
 });

@@ -24,11 +24,9 @@ export default function dropWhile<T>(
     return [];
   }
 
-  const reversed = [...arr].reverse();
-  for (let i = 0; i < reversed.length; i++) {
-    if (!predicate(reversed[i], i, reversed)) {
-      const result = reversed.slice(i);
-      return result.reverse();
+  for (let i = arr.length - 1; i >= 0; i--) {
+    if (!predicate(arr[i], i, arr)) {
+      return arr.slice(0, i + 1);
     }
   }
   return [];

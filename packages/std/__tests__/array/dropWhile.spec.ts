@@ -14,4 +14,11 @@ describe('Array > dropWhile', () => {
   test('uses index and array params', () => {
     expect(dropWhile([1, 2, 3, 4, 5], (_, i) => i < 2)).toEqual([3, 4, 5]);
   });
+
+  test('preserves original index and array params from right', () => {
+    expect(
+      dropWhile([10, 20, 30, 40], (_, i, arr) => i < arr.length - 1, true),
+    ).toEqual([10, 20, 30, 40]);
+    expect(dropWhile([1, 2, 3, 4], (_, i) => i >= 2, true)).toEqual([1, 2]);
+  });
 });
