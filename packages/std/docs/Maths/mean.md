@@ -2,6 +2,8 @@
 
 Calculates the mean value of the given array.
 
+Sparse array holes are ignored.
+
 ### Example
 
 ```js

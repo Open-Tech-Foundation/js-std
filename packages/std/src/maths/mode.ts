@@ -17,6 +17,10 @@ export default function mode<T>(
   const frequency = new Map<string | number, number>();
   let maxFreq = 0;
   for (let i = 0; i < arr.length; i++) {
+    if (!Object.hasOwn(arr, i)) {
+      continue;
+    }
+
     const val = cb
       ? cb(arr[i] as T, i)
       : (arr[i] as unknown as string | number);

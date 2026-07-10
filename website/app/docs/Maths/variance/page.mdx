@@ -10,6 +10,8 @@ variance<T>(arr: T[], cb?: (val: T, index: number) => number): number;
 
 The population variance.
 
+Sparse array holes are ignored.
+
 ## Examples
 
 ```ts
@@ -20,4 +22,3 @@ variance([2, 4, 4, 4, 5, 5, 7, 9]) //=> 4
 
 - [stddev](/docs/Maths/stddev)
 - [mean](/docs/Maths/mean)
-

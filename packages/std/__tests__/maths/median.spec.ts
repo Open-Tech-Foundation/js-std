@@ -9,5 +9,7 @@ describe('Maths', () => {
     expect(median([4, 2, 8])).toBe(4);
     expect(median([1, 4, 2, 5, 0])).toBe(2);
     expect(median([10, 20, 40, 50])).toBe(30);
+    expect(median([1, , 3] as number[])).toBe(2);
+    expect(median([, ,] as number[])).toBeNaN();
   });
 });

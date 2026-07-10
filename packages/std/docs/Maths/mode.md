@@ -2,6 +2,8 @@
 
 Calculates the mode of the given array.
 
+Sparse array holes are ignored.
+
 ### Example
 
 ```js

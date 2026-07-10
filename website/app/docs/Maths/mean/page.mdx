@@ -29,6 +29,8 @@ mean<T>(
 
 The calculated mean. Returns `NaN` for empty arrays.
 
+Sparse array holes are ignored.
+
 ## Examples
 
 ```ts
@@ -48,4 +50,3 @@ mean(objects, (o) => o.a) //=> 4.666666666666667
 
 - [median](/docs/Maths/median)
 - [mode](/docs/Maths/mode)
-

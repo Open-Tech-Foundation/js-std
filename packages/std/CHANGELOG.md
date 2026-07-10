@@ -32,6 +32,8 @@
 - `pick`, `pickBy`, `omitBy`, `mapKeys`, and `mapValues` now preserve `Object.create(null)` prototypes.
 - `fromIterAsync` now forwards `return()` and `throw()` so wrapped iterators close correctly on early exit and propagated errors.
 - Flow helpers now validate invalid numeric options consistently, and `batchRun` now rejects when the batch processor returns the wrong number of results.
+- Maths reducers now ignore sparse array holes consistently across `mean`, `median`, `mode`, `variance`, and `stddev`.
+- `round`, `stringInsertAt`, and `stringReplaceAt` now reject invalid fractional or negative precision/index inputs with stable errors.
 - Reworked `memoizeRun` default keying to support structural caching for common built-in value types, including `BigInt`, `Date`, `Map`, `Set`, typed arrays, and cyclic structures, while preserving reference identity for unsupported object instances and functions.
 - Preserved `Object.create(null)` prototypes across `merge`, `mergeAll`, `shallowMerge`, and `shallowMergeAll`.
 - Corrected the CSS named color mapping for `palegreen` in `color()`.

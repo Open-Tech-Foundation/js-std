@@ -1,3 +1,5 @@
+import collectPresentValues from './collectPresentValues';
+
 /**
  * Calculates the mean value of the given array.
  *
@@ -10,11 +12,12 @@ export default function mean<T>(
   arr: T[] = [],
   cb?: (val: T, index: number) => number,
 ): number {
-  if (arr.length === 0) {
+  const values = collectPresentValues(arr, cb);
+
+  if (values.length === 0) {
     return Number.NaN;
   }
-  const sum = (arr as unknown[]).reduce((prev: number, cur, i) => {
-    return prev + (cb ? cb(cur as T, i) : (cur as number));
-  }, 0);
-  return sum / arr.length;
+
+  const total = values.reduce((prev, cur) => prev + cur, 0);
+  return total / values.length;
 }

@@ -2,6 +2,8 @@
 
 Calculates the population standard deviation of the given array.
 
+Sparse array holes are ignored.
+
 ### Example
 
 ```js

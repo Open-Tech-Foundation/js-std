@@ -11,5 +11,10 @@ describe('Maths', () => {
     expect(
       mode([{ n: 1 }, { n: 2 }, { n: 3 }, { n: 2 }], ({ n }) => n),
     ).toEqual([2]);
+    expect(mode([1, , 1] as number[])).toEqual([1]);
+    expect(mode([1, , 2] as number[])).toEqual([]);
+    expect(
+      mode([{ n: 1 }, , { n: 1 }] as { n: number }[], ({ n }) => n),
+    ).toEqual([1]);
   });
 });

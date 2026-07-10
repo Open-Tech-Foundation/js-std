@@ -19,6 +19,11 @@ describe('Maths > variance', () => {
   test('single element has zero variance', () => {
     expect(variance([5])).toBe(0);
   });
+
+  test('ignores sparse holes', () => {
+    expect(variance([1, , 3] as number[])).toBe(1);
+    expect(variance([, ,] as number[])).toBeNaN();
+  });
 });
 
 describe('Maths > stddev', () => {
@@ -35,6 +40,11 @@ describe('Maths > stddev', () => {
       8.165,
       4,
     );
+  });
+
+  test('ignores sparse holes', () => {
+    expect(stddev([1, , 3] as number[])).toBe(1);
+    expect(stddev([, ,] as number[])).toBeNaN();
   });
 });
 

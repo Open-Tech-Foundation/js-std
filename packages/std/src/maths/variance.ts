@@ -1,3 +1,5 @@
+import collectPresentValues from './collectPresentValues';
+
 /**
  * Calculates the population variance of the given array.
  *
@@ -9,8 +11,8 @@ export default function variance<T>(
   arr: T[] = [],
   cb?: (val: T, index: number) => number,
 ): number {
-  if (arr.length === 0) return Number.NaN;
-  const values = cb ? arr.map((v, i) => cb(v as T, i)) : (arr as number[]);
+  const values = collectPresentValues(arr, cb);
+  if (values.length === 0) return Number.NaN;
   const m = values.reduce((a, b) => a + b, 0) / values.length;
   return values.reduce((a, b) => a + (b - m) ** 2, 0) / values.length;
 }

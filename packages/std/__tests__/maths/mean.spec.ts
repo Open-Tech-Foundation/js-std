@@ -7,5 +7,7 @@ describe('Maths', () => {
     expect(mean([1])).toBe(1);
     expect(mean([4, 1, 7])).toBe(4);
     expect(mean([4, 2, 8])).toBeCloseTo(4.67);
+    expect(mean([1, , 3] as number[])).toBe(2);
+    expect(mean([, ,] as number[])).toBeNaN();
   });
 });

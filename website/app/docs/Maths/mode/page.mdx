@@ -33,6 +33,8 @@ mode<T>(
 
 An array containing the most frequent element(s). Returns `[]` if all elements are unique or if the input array is empty.
 
+Sparse array holes are ignored.
+
 ## Examples
 
 ```ts
@@ -55,4 +57,3 @@ mode([{ n: 1 }, { n: 2 }, { n: 3 }, { n: 2 }], ({ n }) => n) //=> [2]
 
 - [mean](/docs/Maths/mean)
 - [median](/docs/Maths/median)
-
