@@ -46,6 +46,16 @@ describe('Assert => isEql', () => {
     ]);
     expect(isEql(map1, map2)).toBe(true);
 
+    const objectKeyMap1 = new Map([
+      [{ a: 1 }, { b: 2 }],
+      [{ c: 3 }, { d: 4 }],
+    ]);
+    const objectKeyMap2 = new Map([
+      [{ a: 1 }, { b: 2 }],
+      [{ c: 3 }, { d: 4 }],
+    ]);
+    expect(isEql(objectKeyMap1, objectKeyMap2)).toBe(true);
+
     const mySet1 = new Set([1, 2, 3, 4]);
     const mySet2 = new Set([1, 2, 3, 4]);
     expect(isEql(mySet1, mySet2)).toBe(true);
@@ -76,6 +86,7 @@ describe('Assert => isEql', () => {
     const sym = Symbol('foo');
     const symObj = { [sym]: 'foo' };
     expect(isEql(symObj, { [sym]: 'foo' })).toBe(true);
+    expect(isEql({}, { [sym]: 'foo' })).toBe(false);
 
     const e = new Error('Test msg.');
     const e2 = new Error('Test msg.');
@@ -115,6 +126,10 @@ describe('Assert => isEql', () => {
       ['a', 1],
     ]);
     expect(isEql(mapA, mapB)).toBe(false);
+
+    const objectKeyMap1 = new Map([[{ a: 1 }, { b: 2 }]]);
+    const objectKeyMap2 = new Map([[{ a: 1 }, { b: 3 }]]);
+    expect(isEql(objectKeyMap1, objectKeyMap2)).toBe(false);
 
     expect(isEql(new Set([1, [2, 3]]), new Set([1, [3, 2]]))).toBe(false);
 
@@ -236,5 +251,26 @@ describe('Assert => isEql', () => {
     custom3.code = 500;
     expect(isEql(custom1, custom2)).toBe(true);
     expect(isEql(custom1, custom3)).toBe(false);
+
+    const sym = Symbol('meta');
+    const symError1 = new Error('msg') as Error &
+      Record<string | symbol, unknown>;
+    const symError2 = new Error('msg') as Error &
+      Record<string | symbol, unknown>;
+    const symError3 = new Error('msg') as Error &
+      Record<string | symbol, unknown>;
+    symError1[sym] = { id: 1 };
+    symError2[sym] = { id: 1 };
+    symError3[sym] = { id: 2 };
+    expect(isEql(symError1, symError2)).toBe(true);
+    expect(isEql(symError1, symError3)).toBe(false);
+  });
+
+  test('shallow comparison includes symbol keys', () => {
+    const sym = Symbol('foo');
+
+    expect(isEql({ [sym]: 1 }, { [sym]: 1 }, { shallow: true })).toBe(true);
+    expect(isEql({ [sym]: 1 }, { [sym]: 2 }, { shallow: true })).toBe(false);
+    expect(isEql({ [sym]: 1 }, {}, { shallow: true })).toBe(false);
   });
 });

@@ -23,6 +23,10 @@ import { Callout } from "@opentf/web-docs";
   **Other Types**: Checked by reference (e.g., Functions).
 </Callout>
 
+<Callout type="info">
+  For supported `Map` values, entry order still matters, but object keys are compared structurally instead of by reference. Symbol-keyed own properties are also included in deep comparisons and shallow object comparisons.
+</Callout>
+
 ## Syntax
 
 ```ts
@@ -77,4 +81,3 @@ isEql({a: {b: 1}}, {a: {b: 1}}, {shallow: true}) //=> false
 ## Related
 
 - [isUnorderedEqual](/docs/Assert/isUnorderedEqual)
-

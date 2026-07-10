@@ -10,8 +10,16 @@ import isRegExp from '../types/isRegExp';
 import isSet from '../types/isSet';
 import isTypedArray from '../types/isTypedArray';
 
-function getMapKeys(map: Map<unknown, unknown>) {
-  return Array.from(map.keys());
+function getEnumerableOwnKeys(value: object): (string | symbol)[] {
+  return [...Object.keys(value), ...Object.getOwnPropertySymbols(value)];
+}
+
+function hasOwnKey(value: object, key: string | symbol): boolean {
+  return Object.prototype.hasOwnProperty.call(value, key);
+}
+
+function isObjectLike(value: unknown): value is object {
+  return typeof value === 'object' && value !== null;
 }
 
 function isEqlVal(
@@ -26,7 +34,12 @@ function isEqlVal(
   }
 
   // For circular refs
-  if (objRefSet1.has(val1 as WeakKey) && objRefSet2.has(val2 as WeakKey)) {
+  if (
+    isObjectLike(val1) &&
+    isObjectLike(val2) &&
+    objRefSet1.has(val1 as WeakKey) &&
+    objRefSet2.has(val2 as WeakKey)
+  ) {
     return true;
   }
 
@@ -58,6 +71,13 @@ function isEqlVal(
   }
 
   if (isArray(val1) || isPlainObject(val1) || isTypedArray(val1)) {
+    if (
+      getEnumerableOwnKeys(val1).length !==
+      getEnumerableOwnKeys(val2 as object).length
+    ) {
+      return false;
+    }
+
     for (const key of Object.keys(val1)) {
       if (
         !isEqlVal(
@@ -92,21 +112,20 @@ function isEqlVal(
   }
 
   if (isMap(val1)) {
-    const map1Keys = getMapKeys(val1);
-    const map2Keys = getMapKeys(val2 as Map<unknown, unknown>);
+    const entries1 = Array.from(val1.entries());
+    const entries2 = Array.from((val2 as Map<unknown, unknown>).entries());
 
-    if (!isEqlVal(map1Keys, map2Keys, objRefSet1, objRefSet2)) {
+    if (entries1.length !== entries2.length) {
       return false;
     }
 
-    for (const [key, value] of val1) {
+    for (let i = 0; i < entries1.length; i++) {
+      const [key1, value1] = entries1[i];
+      const [key2, value2] = entries2[i];
+
       if (
-        !isEqlVal(
-          value,
-          (val2 as Map<unknown, unknown>).get(key),
-          objRefSet1,
-          objRefSet2,
-        )
+        !isEqlVal(key1, key2, objRefSet1, objRefSet2) ||
+        !isEqlVal(value1, value2, objRefSet1, objRefSet2)
       ) {
         return false;
       }
@@ -136,12 +155,31 @@ function isEqlVal(
 
     const keys1 = Object.keys(val1);
     const keys2 = Object.keys(err2);
+    const symKeys1 = Object.getOwnPropertySymbols(val1);
+    const symKeys2 = Object.getOwnPropertySymbols(err2);
 
-    if (keys1.length !== keys2.length) {
+    if (keys1.length !== keys2.length || symKeys1.length !== symKeys2.length) {
       return false;
     }
 
     for (const key of keys1) {
+      if (
+        !isEqlVal(
+          (val1 as any)[key],
+          (val2 as any)[key],
+          objRefSet1,
+          objRefSet2,
+        )
+      ) {
+        return false;
+      }
+    }
+
+    for (const key of symKeys1) {
+      if (!hasOwnKey(err2, key)) {
+        return false;
+      }
+
       if (
         !isEqlVal(
           (val1 as any)[key],
@@ -237,16 +275,37 @@ export default function isEql(
 
       const keys1 = Object.keys(val1 as object);
       const keys2 = Object.keys(val2 as object);
+      const symbolKeys1 = Object.getOwnPropertySymbols(val1);
+      const symbolKeys2 = Object.getOwnPropertySymbols(val2);
 
-      if (keys1.length !== keys2.length) {
+      if (keys1.length !== keys2.length || symbolKeys1.length !== symbolKeys2.length) {
         return false;
       }
 
-      for (let i = 0; i < keys1.length; i++) {
+      for (const key of keys1) {
+        if (!hasOwnKey(val2, key)) {
+          return false;
+        }
+
         if (
           !Object.is(
-            (val1 as object)[keys1[i] as keyof typeof val1],
-            (val2 as object)[keys2[i] as keyof typeof val2],
+            (val1 as Record<string | symbol, unknown>)[key],
+            (val2 as Record<string | symbol, unknown>)[key],
+          )
+        ) {
+          return false;
+        }
+      }
+
+      for (const key of symbolKeys1) {
+        if (!hasOwnKey(val2, key)) {
+          return false;
+        }
+
+        if (
+          !Object.is(
+            (val1 as Record<string | symbol, unknown>)[key],
+            (val2 as Record<string | symbol, unknown>)[key],
           )
         ) {
           return false;
