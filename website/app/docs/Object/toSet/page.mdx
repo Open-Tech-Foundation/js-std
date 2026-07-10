@@ -33,6 +33,10 @@ The value param can be either any `value` or `callback` function.
 The `callback` fn can be called with the property path value if it exist.
 </Callout>
 
+<Callout type="info">
+Missing intermediate branches are created automatically. Existing non-object intermediates such as `0`, `false`, `''`, and `null` are preserved, and deep writes through them are ignored.
+</Callout>
+
 ## Examples
 
 ```ts
@@ -57,5 +61,7 @@ toSet({ a: 1 }, 'a', (val) => val + 1) //=> { a: 2 }
 const fn = () => render('My Component')
 toSet({ subscribeFns: [] }, 'subscribeFns[0]', () => fn)
 //=> { subscribeFns: [fn] }
-```
 
+toSet({ a: false }, 'a.b', 1)
+//=> { a: false }
+```

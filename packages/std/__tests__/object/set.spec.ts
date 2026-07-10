@@ -52,4 +52,22 @@ describe('Object', () => {
     const fn = (a, b) => a ** b;
     expect(set({ a: 1 }, 'b', (val) => fn)).toEqual({ a: 1, b: fn });
   });
+
+  test('does not overwrite existing falsy intermediates', () => {
+    const zeroObj = { a: 0 };
+    expect(set(zeroObj, 'a.b', 1)).toBe(zeroObj);
+    expect(zeroObj).toEqual({ a: 0 });
+
+    const falseObj = { a: false };
+    expect(set(falseObj, 'a.b', 1)).toBe(falseObj);
+    expect(falseObj).toEqual({ a: false });
+
+    const emptyStringObj = { a: '' };
+    expect(set(emptyStringObj, 'a.b', 1)).toBe(emptyStringObj);
+    expect(emptyStringObj).toEqual({ a: '' });
+
+    const nullObj = { a: null };
+    expect(set(nullObj, 'a.b', 1)).toBe(nullObj);
+    expect(nullObj).toEqual({ a: null });
+  });
 });

@@ -25,6 +25,7 @@
 ### Fixed
 
 - Aligned sync crypto helpers (`randomBytes`, `randomInt`, `randomFloat`, `uuidv4`, and `uuidv7`) with strict capability detection so they now fall back to `node:crypto` in Node-compatible environments instead of requiring `globalThis.crypto`.
+- Prevented `set` and `toSet` from overwriting existing falsy intermediate values such as `0`, `false`, `''`, and `null` when traversing deep paths.
 - Hardened object path mutators against unsafe prototype keys in `set`, `unset`, `toSet`, and `toUnset`.
 - Added validation for invalid async concurrency and rate-limit options.
 - Corrected `isAsyncFunction` and `isGeneratorFunction` so async generator functions no longer match either guard.

@@ -28,6 +28,11 @@ set<T>(
 
 The modified object.
 
+## Behavior
+
+- Missing intermediate branches are created automatically.
+- Existing non-object intermediates such as `0`, `false`, `''`, and `null` are preserved. Deep writes through those values are ignored instead of overwriting them.
+
 ## Examples
 
 ```ts
@@ -45,6 +50,9 @@ set({ a: 1 }, 'a', (val) => val + 1) //=> { a: 2 }
 
 // Automatically creates arrays if indices are used in path
 set({}, 'items[2].id', 1) //=> { items: [undefined, undefined, { id: 1 }] }
+
+// Existing falsy non-object intermediates are not replaced
+set({ a: 0 }, 'a.b', 1) //=> { a: 0 }
 ```
 
 ## Related
@@ -53,4 +61,3 @@ set({}, 'items[2].id', 1) //=> { items: [undefined, undefined, { id: 1 }] }
 - [has](/docs/Object/has)
 - [unset](/docs/Object/unset)
 - [toSet](/docs/Object/toSet)
-

@@ -64,4 +64,22 @@ describe('Object', () => {
 
     delete Object.prototype.polluted;
   });
+
+  test('does not overwrite existing falsy intermediates', () => {
+    const zeroObj = { a: 0 };
+    expect(toSet(zeroObj, 'a.b', 1)).toBe(zeroObj);
+    expect(zeroObj).toEqual({ a: 0 });
+
+    const falseObj = { a: false };
+    expect(toSet(falseObj, 'a.b', 1)).toBe(falseObj);
+    expect(falseObj).toEqual({ a: false });
+
+    const emptyStringObj = { a: '' };
+    expect(toSet(emptyStringObj, 'a.b', 1)).toBe(emptyStringObj);
+    expect(emptyStringObj).toEqual({ a: '' });
+
+    const nullObj = { a: null };
+    expect(toSet(nullObj, 'a.b', 1)).toBe(nullObj);
+    expect(nullObj).toEqual({ a: null });
+  });
 });
