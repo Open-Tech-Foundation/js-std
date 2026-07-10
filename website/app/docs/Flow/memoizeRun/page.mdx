@@ -28,11 +28,27 @@ memoizeRun<T, Args extends any[]>(
 - `func`: The asynchronous function to memoize.
 - `options`:
     - `maxAge`: The maximum time in milliseconds to keep the cached result.
-    - `key`: An optional function to generate a cache key from the arguments. Defaults to `JSON.stringify(args)`.
+    - `key`: An optional function to generate a cache key from the arguments. By default, `memoizeRun` derives a structural key for common built-in value types.
 
 ## Returns
 
 The memoized asynchronous function with a `.clear()` method.
+
+## Default Key Semantics
+
+- Structural keys are derived by default for:
+  - plain objects
+  - arrays
+  - `BigInt`
+  - `Date`
+  - `Map`
+  - `Set`
+  - regular expressions
+  - errors
+  - array buffers, typed arrays, and data views
+  - cyclic structures
+- Functions and unsupported object instances are keyed by reference identity.
+- Provide `options.key` when you need application-specific key normalization, different equality semantics, or a smaller/faster custom key.
 
 ## Examples
 
@@ -41,9 +57,12 @@ const memoized = memoizeRun(fetchUser, { maxAge: 5000 });
 
 // Only one API call will be made if these are called concurrently
 const [u1, u2] = await Promise.all([memoized(1), memoized(1)]);
+
+// Structural equality works for common built-in values
+await memoized(new Map([['a', 1]]));
+await memoized(new Map([['a', 1]])); // shares the cached result
 ```
 
 ## Related
 
 - [retryRun](/docs/Flow/retryRun)
-

@@ -93,4 +93,65 @@ describe('memoizeRun', () => {
 
     expect(func).toHaveBeenCalledTimes(2);
   });
+
+  test('supports bigint arguments without a custom key', async () => {
+    const func = vi.fn(async (n: bigint) => n * 2n);
+    const memoized = memoizeRun(func);
+
+    const r1 = await memoized(5n);
+    const r2 = await memoized(5n);
+
+    expect(r1).toBe(10n);
+    expect(r2).toBe(10n);
+    expect(func).toHaveBeenCalledTimes(1);
+  });
+
+  test('supports cyclic arguments without a custom key', async () => {
+    const func = vi.fn(async (obj: { self?: unknown; a: number }) => obj.a);
+    const memoized = memoizeRun(func);
+
+    const a: { self?: unknown; a: number } = { a: 1 };
+    a.self = a;
+    const b: { self?: unknown; a: number } = { a: 1 };
+    b.self = b;
+
+    const r1 = await memoized(a);
+    const r2 = await memoized(b);
+
+    expect(r1).toBe(1);
+    expect(r2).toBe(1);
+    expect(func).toHaveBeenCalledTimes(1);
+  });
+
+  test('supports structural map and set arguments without a custom key', async () => {
+    const func = vi.fn(async (map: Map<string, number>, set: Set<number>) => {
+      return map.get('a')! + set.size;
+    });
+    const memoized = memoizeRun(func);
+
+    const r1 = await memoized(new Map([['a', 1]]), new Set([1, 2]));
+    const r2 = await memoized(new Map([['a', 1]]), new Set([1, 2]));
+
+    expect(r1).toBe(3);
+    expect(r2).toBe(3);
+    expect(func).toHaveBeenCalledTimes(1);
+  });
+
+  test('treats unsupported object instances by reference without a custom key', async () => {
+    class Box {
+      constructor(public value: number) {}
+    }
+
+    const func = vi.fn(async (box: Box) => box.value);
+    const memoized = memoizeRun(func);
+
+    const boxA = new Box(1);
+    const boxB = new Box(1);
+
+    await memoized(boxA);
+    await memoized(boxA);
+    await memoized(boxB);
+
+    expect(func).toHaveBeenCalledTimes(2);
+  });
 });
