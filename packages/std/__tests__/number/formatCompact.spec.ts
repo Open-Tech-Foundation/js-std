@@ -8,5 +8,11 @@ describe('Number', () => {
     expect(formatCompact(1200, { display: 'long' })).toMatch(/1\.2 thousand/);
     expect(formatCompact(1200000, { display: 'long' })).toMatch(/1\.2 million/);
     expect(formatCompact(1234, { fractionDigits: 2 })).toBe('1.23K');
+    expect(() => formatCompact(1200, { fractionDigits: -1 })).toThrow(
+      'The fractionDigits option must be an integer between 0 and 100.',
+    );
+    expect(() => formatCompact(1200, { fractionDigits: 1.5 })).toThrow(
+      'The fractionDigits option must be an integer between 0 and 100.',
+    );
   });
 });

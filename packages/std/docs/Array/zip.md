@@ -4,7 +4,9 @@ Creates an array of grouped elements, the first of which contains the first elem
 the second of which contains the second elements of the given arrays, and so on.
 
 @param {T[][]} arrays The arrays to zip.
-@returns {T[][]} A new zipped array.
+@returns {(T | undefined)[][]} A new zipped array.
+
+Shorter arrays are padded with `undefined` in the output rows.
 
 ### Example
 

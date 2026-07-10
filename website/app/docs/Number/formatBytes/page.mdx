@@ -17,6 +17,8 @@ formatBytes(bytes: number, options?: { decimals?: number; binary?: boolean }): s
 | options.decimals | `number` | The number of decimal places (default 2).                   |
 | options.binary  | `boolean`| If true, use 1024 as base (KiB); otherwise 1000 (KB) (default true). |
 
+`options.decimals` must be an integer between `0` and `100`.
+
 ## Returns
 
 The formatted string with appropriate unit (B, KiB/MiB/GiB for binary, KB/MB/GB for decimal).
@@ -40,4 +42,3 @@ formatBytes(-1024) //=> '-1 KiB'
 
 formatBytes(1000, { binary: false }) //=> '1 KB' (using 1000 as base)
 ```
-

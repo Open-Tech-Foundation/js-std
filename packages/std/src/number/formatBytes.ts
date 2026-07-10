@@ -34,11 +34,21 @@ interface FormatBytesOptions {
   binary?: boolean;
 }
 
+function validateDecimals(decimals: number): void {
+  if (!Number.isInteger(decimals) || decimals < 0 || decimals > 100) {
+    throw new RangeError(
+      'The decimals option must be an integer between 0 and 100.',
+    );
+  }
+}
+
 export default function formatBytes(
   bytes: number,
   options: FormatBytesOptions = {},
 ): string {
   const { decimals = 2, binary = true } = options;
+
+  validateDecimals(decimals);
 
   if (!Number.isFinite(bytes)) {
     return String(bytes);

@@ -5,7 +5,7 @@
 ```ts
 import { unzip } from '@opentf/std';
 
-unzip<T>(zipped: T[][] = []): T[][]
+unzip<T>(zipped: (T | undefined)[][] = []): (T | undefined)[][]
 ```
 
 ## Parameters
@@ -16,6 +16,8 @@ unzip<T>(zipped: T[][] = []): T[][]
 
 A new array of arrays.
 
+Jagged input groups preserve missing positions as `undefined`.
+
 ## Examples
 
 ```ts
@@ -23,10 +25,11 @@ unzip([[1, 'a'], [2, 'b']]) //=> [[1, 2], ['a', 'b']]
 
 unzip([[1], [2]]) //=> [[1, 2]]
 
+unzip([[1, 'a'], [2]]) //=> [[1, 2], ['a', undefined]]
+
 unzip([]) //=> []
 ```
 
 ## Related
 
 - [zip](/docs/Array/zip)
-

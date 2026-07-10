@@ -11,6 +11,10 @@ Formats a number as a currency string using Intl.NumberFormat.
 @param {string} options.locale The locale (default runtime locale).
 @returns {string} The formatted currency string.
 
+`currency` must be a 3-letter ISO 4217 code. Fraction digit options must be
+integers between `0` and `100`, and `minFraction` must not exceed
+`maxFraction`.
+
 ### Example
 
 ```js

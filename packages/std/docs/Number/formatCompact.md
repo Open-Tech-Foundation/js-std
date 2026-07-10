@@ -9,6 +9,8 @@ Formats a number in compact form (e.g., 1.2K, 1.2M).
 @param {number} options.fractionDigits The maximum fraction digits.
 @returns {string} The formatted compact number string.
 
+`options.fractionDigits` must be an integer between `0` and `100`.
+
 ### Example
 
 ```js

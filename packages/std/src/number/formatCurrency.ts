@@ -34,12 +34,29 @@ const DISPLAY_MAP: Record<string, string> = {
   name: 'name',
 };
 
+function validateFractionDigits(
+  value: number,
+  optionName: 'minFraction' | 'maxFraction',
+): void {
+  if (!Number.isInteger(value) || value < 0 || value > 100) {
+    throw new RangeError(
+      `The ${optionName} option must be an integer between 0 and 100.`,
+    );
+  }
+}
+
 export default function formatCurrency(
   value: number,
   currency: string,
   options: FormatCurrencyOptions = {},
 ): string {
   const { display = 'symbol', minFraction, maxFraction, locale } = options;
+
+  if (!/^[A-Za-z]{3}$/.test(currency)) {
+    throw new RangeError(
+      'The currency code must be a 3-letter ISO 4217 string.',
+    );
+  }
 
   const intlOptions: Intl.NumberFormatOptions = {
     style: 'currency',
@@ -50,11 +67,23 @@ export default function formatCurrency(
   };
 
   if (minFraction !== undefined) {
+    validateFractionDigits(minFraction, 'minFraction');
     intlOptions.minimumFractionDigits = minFraction;
   }
 
   if (maxFraction !== undefined) {
+    validateFractionDigits(maxFraction, 'maxFraction');
     intlOptions.maximumFractionDigits = maxFraction;
+  }
+
+  if (
+    minFraction !== undefined &&
+    maxFraction !== undefined &&
+    minFraction > maxFraction
+  ) {
+    throw new RangeError(
+      'The minFraction option must be less than or equal to maxFraction.',
+    );
   }
 
   const formatter = new Intl.NumberFormat(locale, intlOptions);

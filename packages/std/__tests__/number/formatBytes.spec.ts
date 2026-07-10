@@ -21,5 +21,11 @@ describe('Number', () => {
     expect(formatBytes(1000000, { binary: false })).toBe('1 MB');
     expect(formatBytes(1500000, { binary: false })).toBe('1.5 MB');
     expect(formatBytes(1000000000, { binary: false })).toBe('1 GB');
+    expect(() => formatBytes(1024, { decimals: -1 })).toThrow(
+      'The decimals option must be an integer between 0 and 100.',
+    );
+    expect(() => formatBytes(1024, { decimals: 1.5 })).toThrow(
+      'The decimals option must be an integer between 0 and 100.',
+    );
   });
 });

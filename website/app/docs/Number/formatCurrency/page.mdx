@@ -25,6 +25,10 @@ formatCurrency(value: number, currency: string, options?: {
 | options.maxFraction | `number`          | The maximum fraction digits.                          |
 | options.locale     | `string`          | The locale (default runtime locale).                 |
 
+`currency` must be a 3-letter ISO 4217 code. Fraction digit options must be
+integers between `0` and `100`, and `minFraction` must not exceed
+`maxFraction`.
+
 ## Returns
 
 The formatted currency string.
@@ -48,4 +52,3 @@ formatCurrency(1200, 'USD', { display: 'name' }) //=> '1,200.00 US dollars'
 
 formatCurrency(1200, 'USD', { maxFraction: 0 }) //=> '$1,200'
 ```
-

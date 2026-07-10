@@ -3,19 +3,19 @@
  * the second of which contains the second elements of the given arrays, and so on.
  *
  * @param {T[][]} arrays The arrays to zip.
- * @returns {T[][]} A new zipped array.
+ * @returns {(T | undefined)[][]} A new zipped array.
  *
  * @example
  * zip([1, 2], ['a', 'b']) //=> [[1, 'a'], [2, 'b']]
  * zip([1, 2, 3], ['a', 'b']) //=> [[1, 'a'], [2, 'b'], [3, undefined]]
  */
-export default function zip<T>(...arrays: T[][]): T[][] {
+export default function zip<T>(...arrays: T[][]): (T | undefined)[][] {
   if (arrays.length === 0) {
     return [];
   }
 
   const maxLen = Math.max(...arrays.map((a) => a.length));
-  const result: T[][] = [];
+  const result: (T | undefined)[][] = [];
 
   for (let i = 0; i < maxLen; i++) {
     result.push(arrays.map((a) => a[i]));

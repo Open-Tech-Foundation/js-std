@@ -25,6 +25,18 @@ interface FormatCompactOptions {
   fractionDigits?: number;
 }
 
+function validateFractionDigits(fractionDigits: number): void {
+  if (
+    !Number.isInteger(fractionDigits) ||
+    fractionDigits < 0 ||
+    fractionDigits > 100
+  ) {
+    throw new RangeError(
+      'The fractionDigits option must be an integer between 0 and 100.',
+    );
+  }
+}
+
 export default function formatCompact(
   value: number,
   options: FormatCompactOptions = {},
@@ -37,6 +49,7 @@ export default function formatCompact(
   };
 
   if (fractionDigits !== undefined) {
+    validateFractionDigits(fractionDigits);
     intlOptions.minimumFractionDigits = fractionDigits;
     intlOptions.maximumFractionDigits = fractionDigits;
   }

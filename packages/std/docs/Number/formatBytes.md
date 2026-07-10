@@ -8,6 +8,8 @@ Formats a number of bytes into a human-readable string.
 @param {boolean} options.binary If true, use 1024 as base (KiB); otherwise 1000 (KB) (default true).
 @returns {string} The formatted string with appropriate unit.
 
+`options.decimals` must be an integer between `0` and `100`.
+
 ### Example
 
 ```js
