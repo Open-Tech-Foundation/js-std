@@ -1,3 +1,5 @@
+import validateStringCount from './validateStringCount';
+
 /**
  * Repeats the given string n times.
  *
@@ -10,6 +12,8 @@
  * repeat('abc', 0) //=> ''
  */
 export default function repeat(str: string, n = 1): string {
+  validateStringCount(n, 'Count');
+
   if (n <= 0) {
     return '';
   }

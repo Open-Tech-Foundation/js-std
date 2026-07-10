@@ -12,6 +12,8 @@ truncate(
 ): string;
 ```
 
+`length` must be a non-negative finite integer.
+
 ## Examples
 
 ```ts
@@ -19,4 +21,3 @@ truncate('hi-package', 8) //=> 'hi-pa...'
 
 truncate('hi-package', 5, '---') //=> 'hi---'
 ```
-

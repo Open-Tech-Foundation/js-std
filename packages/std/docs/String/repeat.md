@@ -2,6 +2,8 @@
 
 Repeats the given string n times.
 
+`n` must be a non-negative finite integer.
+
 ### Example
 
 ```js

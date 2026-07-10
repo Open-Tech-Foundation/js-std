@@ -33,6 +33,12 @@ describe('String Utils', () => {
     expect(truncate('hi-package', 5, '---')).toBe('hi---');
     expect(truncate('hi', 5)).toBe('hi');
     expect(truncate('😀😃😄😁', 4)).toBe('😀...');
+    expect(() => truncate('hello', -1)).toThrow(
+      'Length must be greater than or equal to 0.',
+    );
+    expect(() => truncate('hello', 1.5)).toThrow(
+      'Length must be a finite integer.',
+    );
   });
 
   test('trim', () => {
@@ -60,11 +66,23 @@ describe('String Utils', () => {
     expect(pad('abc', 8)).toBe('  abc   ');
     expect(pad('abc', 8, '_-')).toBe('_-abc_-_');
     expect(pad('abc', 3)).toBe('abc');
+    expect(() => pad('abc', -1)).toThrow(
+      'Length must be greater than or equal to 0.',
+    );
+    expect(() => pad('abc', Number.POSITIVE_INFINITY)).toThrow(
+      'Length must be a finite integer.',
+    );
   });
 
   test('repeat', () => {
     expect(repeat('*', 3)).toBe('***');
     expect(repeat('abc', 2)).toBe('abcabc');
     expect(repeat('abc', 0)).toBe('');
+    expect(() => repeat('abc', -1)).toThrow(
+      'Count must be greater than or equal to 0.',
+    );
+    expect(() => repeat('abc', 1.5)).toThrow(
+      'Count must be a finite integer.',
+    );
   });
 });

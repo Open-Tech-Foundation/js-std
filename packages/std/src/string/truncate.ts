@@ -1,3 +1,5 @@
+import validateStringCount from './validateStringCount';
+
 /**
  * Truncates string if it's longer than the given maximum string length.
  *
@@ -14,6 +16,8 @@ export default function truncate(
   length = 30,
   omission = '...',
 ): string {
+  validateStringCount(length, 'Length');
+
   if (str.length <= length) {
     return str;
   }

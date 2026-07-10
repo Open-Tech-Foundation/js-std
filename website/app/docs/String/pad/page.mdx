@@ -8,6 +8,8 @@ import { pad } from '@opentf/std';
 pad(str: string, length = 0, chars = ' '): string;
 ```
 
+`length` must be a non-negative finite integer.
+
 ## Examples
 
 ```ts
@@ -17,4 +19,3 @@ pad('abc', 8, '_-') //=> '_-abc_-_'
 
 pad('abc', 3) //=> 'abc'
 ```
-
