@@ -28,6 +28,8 @@ paceRun<T extends (...args: any[]) => any>(
     - `leading`: Specify invoking on the leading edge of the timeout. Default: `true`.
     - `trailing`: Specify invoking on the trailing edge of the timeout. Default: `true`.
 
+`interval` must be a non-negative finite number.
+
 ## Returns
 
 The new throttled function.
@@ -45,4 +47,3 @@ run('b'); // Queued for trailing edge (default trailing: true)
 
 - [idleRun](/docs/Flow/idleRun)
 - [rateLimitRun](/docs/Flow/rateLimitRun)
-

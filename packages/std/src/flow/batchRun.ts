@@ -1,3 +1,5 @@
+import validateFlowNumber from './validateFlowNumber';
+
 /**
  * Creates a batched function that collects calls and processes them in groups.
  *
@@ -20,6 +22,13 @@ export default function batchRun<T extends any[], R>(
   const limit = options.limit ?? Number.POSITIVE_INFINITY;
   const delay = options.delay ?? 0;
 
+  validateFlowNumber(limit, 'Limit', {
+    integer: true,
+    min: 1,
+    allowInfinity: true,
+  });
+  validateFlowNumber(delay, 'Delay', { min: 0 });
+
   let queue: {
     args: T;
     resolve: (val: R) => void;
@@ -37,6 +46,11 @@ export default function batchRun<T extends any[], R>(
       const results = await batchProcessor(
         currentQueue.map((item) => item.args),
       );
+      if (results.length !== currentQueue.length) {
+        throw new Error(
+          `batchProcessor must return exactly ${currentQueue.length} result(s).`,
+        );
+      }
       currentQueue.forEach((item, index) => {
         item.resolve(results[index]);
       });

@@ -1,3 +1,5 @@
+import validateFlowNumber from './validateFlowNumber';
+
 /**
  * Creates a throttled function that only invokes `func` at most once per
  * every `interval` milliseconds.
@@ -27,6 +29,8 @@ export default function paceRun<T extends (...args: any[]) => any>(
 
   const leading = options.leading ?? true;
   const trailing = options.trailing ?? true;
+
+  validateFlowNumber(interval, 'Interval', { min: 0 });
 
   function invoke(time: number) {
     const args = lastArgs!;

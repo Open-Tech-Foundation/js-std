@@ -25,6 +25,8 @@ retryRun<T>(
     - `backoff`: The strategy for calculating delay between retries. Can be `'fixed'` or `'exponential'`. Default: `'fixed'`.
     - `onRetry`: A callback invoked on each retry attempt.
 
+`retries` must be a non-negative integer, `delay` must be a non-negative finite number, and `backoff` must be either `'fixed'` or `'exponential'`.
+
 ## Returns
 
 A Promise that resolves with the function's result or rejects with the last error.
@@ -42,4 +44,3 @@ const result = await retryRun(() => fetchData(), {
 ## Related
 
 - [timeoutRun](/docs/Flow/timeoutRun)
-

@@ -77,4 +77,16 @@ describe('idleRun', () => {
     expect(func).toBeCalledWith('a');
     expect(debounced.pending()).toBe(false);
   });
+
+  test('throws on invalid timing options', () => {
+    expect(() => idleRun(() => {}, -1)).toThrow(
+      'Delay must be greater than or equal to 0.',
+    );
+    expect(() => idleRun(() => {}, Number.NaN)).toThrow(
+      'Delay must be a finite number.',
+    );
+    expect(() => idleRun(() => {}, 0, { maxWait: -1 })).toThrow(
+      'maxWait must be greater than or equal to 0.',
+    );
+  });
 });

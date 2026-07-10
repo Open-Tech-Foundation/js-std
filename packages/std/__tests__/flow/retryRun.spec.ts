@@ -74,4 +74,22 @@ describe('retryRun', () => {
     await expect(result).rejects.toThrow();
     expect(onRetry).toHaveBeenCalledTimes(3);
   });
+
+  test('throws on invalid options', async () => {
+    await expect(
+      retryRun(async () => 'ok', { retries: -1 }),
+    ).rejects.toThrow('Retries must be greater than or equal to 0.');
+
+    await expect(
+      retryRun(async () => 'ok', { retries: 1.5 }),
+    ).rejects.toThrow('Retries must be an integer.');
+
+    await expect(
+      retryRun(async () => 'ok', { delay: -1 }),
+    ).rejects.toThrow('Delay must be greater than or equal to 0.');
+
+    await expect(
+      retryRun(async () => 'ok', { backoff: 'weird' as any }),
+    ).rejects.toThrow("Backoff must be either 'fixed' or 'exponential'.");
+  });
 });

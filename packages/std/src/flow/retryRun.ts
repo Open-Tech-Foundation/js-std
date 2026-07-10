@@ -1,3 +1,5 @@
+import validateFlowNumber from './validateFlowNumber';
+
 /**
  * Retries an asynchronous function according to the specified options.
  *
@@ -18,6 +20,12 @@ export default async function retryRun<T>(
   } = {},
 ): Promise<T> {
   const { retries = 3, delay = 0, backoff = 'fixed', onRetry } = options;
+
+  validateFlowNumber(retries, 'Retries', { integer: true, min: 0 });
+  validateFlowNumber(delay, 'Delay', { min: 0 });
+  if (backoff !== 'fixed' && backoff !== 'exponential') {
+    throw new RangeError("Backoff must be either 'fixed' or 'exponential'.");
+  }
 
   let lastError: any;
 

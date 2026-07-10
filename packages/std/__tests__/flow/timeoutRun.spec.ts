@@ -45,4 +45,16 @@ describe('timeoutRun', () => {
 
     expect(await result).toBe('fallback');
   });
+
+  test('throws on invalid timeout values', async () => {
+    await expect(timeoutRun(async () => 'ok', -1)).rejects.toThrow(
+      'Timeout must be greater than or equal to 0.',
+    );
+    await expect(timeoutRun(async () => 'ok', Number.NaN)).rejects.toThrow(
+      'Timeout must be a finite number.',
+    );
+    await expect(
+      timeoutRun(async () => 'ok', Number.POSITIVE_INFINITY),
+    ).rejects.toThrow('Timeout must be a finite number.');
+  });
 });

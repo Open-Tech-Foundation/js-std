@@ -21,6 +21,8 @@ batchRun<T extends any[], R>(
     - `limit`: The maximum number of calls to collect before processing the batch. Default: `Infinity`.
     - `delay`: The time in milliseconds to wait before processing the batch. Default: `0`.
 
+`limit` must be a positive integer or `Infinity`, `delay` must be a non-negative finite number, and the batch processor must return exactly one result for each queued call.
+
 ## Returns
 
 A function that returns a Promise for the result of the specific call.
@@ -41,4 +43,3 @@ const user2 = batchFetch(2);
 ## Related
 
 - [rateLimitRun](/docs/Flow/rateLimitRun)
-

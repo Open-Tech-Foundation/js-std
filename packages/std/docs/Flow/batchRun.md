@@ -2,6 +2,10 @@
 
 Creates a batched function that collects calls and processes them in groups.
 
+`limit` must be a positive integer or `Infinity`, `delay` must be a
+non-negative finite number, and the batch processor must return exactly one
+result for each queued call.
+
 ### Example
 
 ```js

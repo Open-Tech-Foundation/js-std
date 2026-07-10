@@ -1,3 +1,5 @@
+import validateFlowNumber from './validateFlowNumber';
+
 /**
  * Creates a debounced function that delays invoking `func` until after `delay` milliseconds
  * have elapsed since the last time the debounced function was invoked.
@@ -31,6 +33,11 @@ export default function idleRun<T extends (...args: any[]) => any>(
   const leading = options.leading ?? false;
   const trailing = options.trailing ?? true;
   const maxWait = options.maxWait;
+
+  validateFlowNumber(delay, 'Delay', { min: 0 });
+  if (maxWait !== undefined) {
+    validateFlowNumber(maxWait, 'maxWait', { min: 0 });
+  }
 
   function invoke(time: number) {
     const args = lastArgs!;

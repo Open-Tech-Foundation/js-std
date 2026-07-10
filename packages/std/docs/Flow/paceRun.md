@@ -3,6 +3,8 @@
 Creates a throttled function that only invokes `func` at most once per
 every `interval` milliseconds.
 
+`interval` must be a non-negative finite number.
+
 ### Example
 
 ```js

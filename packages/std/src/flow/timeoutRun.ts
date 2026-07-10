@@ -1,3 +1,5 @@
+import validateFlowNumber from './validateFlowNumber';
+
 /**
  * Enforces a time limit on an asynchronous function.
  *
@@ -17,6 +19,8 @@ export default async function timeoutRun<T>(
     fallback?: T;
   } = {},
 ): Promise<T> {
+  validateFlowNumber(ms, 'Timeout', { min: 0 });
+
   let timeoutId: ReturnType<typeof setTimeout> | undefined;
 
   const timeoutPromise = new Promise<T>((resolve, reject) => {

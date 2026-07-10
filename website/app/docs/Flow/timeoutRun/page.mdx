@@ -23,6 +23,8 @@ timeoutRun<T>(
     - `message`: Custom error message if timed out.
     - `fallback`: A value to return if timed out, instead of rejecting with an error.
 
+`ms` must be a non-negative finite number.
+
 ## Returns
 
 A Promise that resolves with the function's result or the fallback value, or rejects if timed out.
@@ -44,4 +46,3 @@ const data = await timeoutRun(() => fetch(), 500, { fallback: 'DEFAULT' });
 
 - [retryRun](/docs/Flow/retryRun)
 - [paceRun](/docs/Flow/paceRun)
-

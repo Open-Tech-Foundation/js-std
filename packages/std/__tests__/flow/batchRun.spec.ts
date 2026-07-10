@@ -55,4 +55,26 @@ describe('batchRun', () => {
 
     await expect(batched(1)).rejects.toThrow('fail');
   });
+
+  test('rejects when batchProcessor result count mismatches the queue length', async () => {
+    const batched = batchRun(async (batch: number[][]) => {
+      return batch.slice(0, 1).map((args) => args[0] * 2);
+    }, { limit: 2 });
+
+    await expect(Promise.all([batched(1), batched(2)])).rejects.toThrow(
+      'batchProcessor must return exactly 2 result(s).',
+    );
+  });
+
+  test('throws on invalid options', () => {
+    expect(() => batchRun(async () => [], { limit: 0 })).toThrow(
+      'Limit must be greater than or equal to 1.',
+    );
+    expect(() => batchRun(async () => [], { limit: 1.5 })).toThrow(
+      'Limit must be an integer.',
+    );
+    expect(() => batchRun(async () => [], { delay: -1 })).toThrow(
+      'Delay must be greater than or equal to 0.',
+    );
+  });
 });

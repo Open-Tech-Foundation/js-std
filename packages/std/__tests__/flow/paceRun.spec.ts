@@ -64,4 +64,13 @@ describe('paceRun', () => {
     expect(func).toHaveBeenCalledTimes(1);
     expect(func).not.toBeCalledWith('b');
   });
+
+  test('throws on invalid interval', () => {
+    expect(() => paceRun(() => {}, -1)).toThrow(
+      'Interval must be greater than or equal to 0.',
+    );
+    expect(() => paceRun(() => {}, Number.POSITIVE_INFINITY)).toThrow(
+      'Interval must be a finite number.',
+    );
+  });
 });

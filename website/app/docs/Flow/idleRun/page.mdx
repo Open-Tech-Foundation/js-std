@@ -30,6 +30,8 @@ idleRun<T extends (...args: any[]) => any>(
     - `trailing`: Specify invoking on the trailing edge of the timeout. Default: `true`.
     - `maxWait`: The maximum time `func` is allowed to be delayed before it's invoked.
 
+`delay` must be a non-negative finite number. When provided, `maxWait` must also be a non-negative finite number.
+
 ## Returns
 
 The new debounced function.
@@ -49,4 +51,3 @@ run('c');
 
 - [paceRun](/docs/Flow/paceRun)
 - [rateLimitRun](/docs/Flow/rateLimitRun)
-
