@@ -3,6 +3,12 @@ import { stringReplaceAt } from '../../src';
 describe('String > stringReplaceAt', () => {
   test('stringReplaceAt', () => {
     expect(() => stringReplaceAt()).toThrow();
+    expect(() => stringReplaceAt('abc', -1, 'x')).toThrow(
+      'The index must be a non-negative integer.',
+    );
+    expect(() => stringReplaceAt('abc', 1.5, 'x')).toThrow(
+      'The index must be a non-negative integer.',
+    );
     expect(stringReplaceAt('')).toBe('');
     expect(stringReplaceAt('', 0)).toBe('');
     expect(stringReplaceAt('', 0, 'a')).toBe('a');

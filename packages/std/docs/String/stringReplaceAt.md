@@ -2,6 +2,8 @@
 
 Replaces characters in a string at a specific index.
 
+`index` must be a non-negative integer.
+
 @param {string} str The source string.
 @param {number} [index=0] The index to start replacement.
 @param {string} [replaceStr=''] The replacement string.

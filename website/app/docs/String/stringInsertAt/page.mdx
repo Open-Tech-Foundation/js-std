@@ -14,6 +14,10 @@ stringInsertAt(str: string, index?: number, insertStr?: string): string;
 Default index = 0
 </Callout>
 
+<Callout type="info">
+`index` must be a non-negative integer.
+</Callout>
+
 ## Examples
 
 ```ts
@@ -33,4 +37,3 @@ stringInsertAt('a', 1, 'bc') //=> 'abc'
 
 stringInsertAt('foo baz', 3, ' bar') //=> 'foo bar baz'
 ```
-

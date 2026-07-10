@@ -26,6 +26,7 @@ describe('Number > round', () => {
   test('rounds with specified decimals', () => {
     expect(round(1.23456, 3)).toBe(1.235);
     expect(round(1.23456, 2)).toBe(1.23);
+    expect(round(1234.56, -1)).toBe(1230);
   });
 
   test('avoids floating point drift', () => {
@@ -41,5 +42,20 @@ describe('Number > round', () => {
 
   test('returns integer when decimals is 0', () => {
     expect(round(123.456, 0)).toBe(123);
+  });
+
+  test('throws on invalid decimals', () => {
+    expect(() => round(1.2345, 1.5)).toThrow(
+      'The decimals argument must be a finite integer.',
+    );
+    expect(() => round(1.2345, Number.NaN)).toThrow(
+      'The decimals argument must be a finite integer.',
+    );
+    expect(() => round(1.2345, Number.POSITIVE_INFINITY)).toThrow(
+      'The decimals argument must be a finite integer.',
+    );
+    expect(() => round(1.2345, 309)).toThrow(
+      'The decimals argument must be between -308 and 308.',
+    );
   });
 });

@@ -14,6 +14,10 @@ stringReplaceAt(str: string, index?: number, replaceStr?: string): string;
 Default index = 0
 </Callout>
 
+<Callout type="info">
+`index` must be a non-negative integer.
+</Callout>
+
 ## Examples
 
 ```ts
@@ -41,4 +45,3 @@ stringReplaceAt("abc", 0, "z"); //=> 'zbc'
 
 stringReplaceAt("iphone", 1, "P"); //=> 'iPhone'
 ```
-

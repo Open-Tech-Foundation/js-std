@@ -14,5 +14,9 @@ export default function stringInsertAt(
   index = 0,
   insertStr = '',
 ): string {
+  if (!Number.isInteger(index) || index < 0) {
+    throw new RangeError('The index must be a non-negative integer.');
+  }
+
   return str.slice(0, index) + insertStr + str.slice(index);
 }

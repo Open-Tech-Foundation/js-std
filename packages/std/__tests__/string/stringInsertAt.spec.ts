@@ -3,6 +3,12 @@ import { stringInsertAt } from '../../src';
 describe('String > stringInsertAt', () => {
   test('stringInsertAt', () => {
     expect(() => stringInsertAt()).toThrow();
+    expect(() => stringInsertAt('abc', -1, 'x')).toThrow(
+      'The index must be a non-negative integer.',
+    );
+    expect(() => stringInsertAt('abc', 1.5, 'x')).toThrow(
+      'The index must be a non-negative integer.',
+    );
     expect(stringInsertAt('')).toBe('');
     expect(stringInsertAt('', 0)).toBe('');
     expect(stringInsertAt('', 1, 'abc')).toBe('abc');

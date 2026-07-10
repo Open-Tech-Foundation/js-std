@@ -3,6 +3,8 @@
 Rounds a number to a specified number of decimal places without
 floating point precision drift.
 
+`decimals` must be a finite integer between `-308` and `308`.
+
 @param n - The number to round.
 @param decimals - The number of decimal places (default 0).
 @returns The rounded number.

@@ -14,6 +14,10 @@ export default function stringReplaceAt(
   index = 0,
   replaceStr = '',
 ): string {
+  if (!Number.isInteger(index) || index < 0) {
+    throw new RangeError('The index must be a non-negative integer.');
+  }
+
   const rStrLen = index + (replaceStr.length === 0 ? 1 : replaceStr.length);
 
   return str.slice(0, index) + replaceStr + str.slice(rStrLen);
