@@ -16,6 +16,8 @@ omitBy<T extends object>(
 - `obj`: The source object.
 - `predicate`: The function invoked per iteration.
 
+When the source object uses `Object.create(null)`, the returned object preserves that null prototype.
+
 ## Returns
 
 A new object with omitted properties.
@@ -33,4 +35,3 @@ omitBy(object, (v) => typeof v === 'number')
 
 - [omit](/docs/Object/omit)
 - [pickBy](/docs/Object/pickBy)
-
