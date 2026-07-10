@@ -10,6 +10,8 @@ unescapeHTML(str: string): string;
 
 The unescaped string.
 
+Supports both `&#39;` and `&apos;` for apostrophes.
+
 ## Examples
 
 ```ts
@@ -20,4 +22,3 @@ unescapeHTML('&lt;script&gt;alert(&quot;xss&quot;)&lt;/script&gt;')
 ## Related
 
 - [escapeHTML](/docs/String/escapeHTML)
-

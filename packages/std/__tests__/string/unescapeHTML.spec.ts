@@ -5,6 +5,7 @@ describe('String > unescapeHTML', () => {
     expect(unescapeHTML('&lt;div&gt;')).toBe('<div>');
     expect(unescapeHTML('&quot;hello&quot;')).toBe('"hello"');
     expect(unescapeHTML('&#39;single&#39;')).toBe("'single'");
+    expect(unescapeHTML('&apos;single&apos;')).toBe("'single'");
     expect(unescapeHTML('Tom &amp; Jerry')).toBe('Tom & Jerry');
   });
 

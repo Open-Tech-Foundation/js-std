@@ -2,6 +2,8 @@
 
 Unescapes HTML entities back to their original characters.
 
+Supports both `&#39;` and `&apos;` for apostrophes.
+
 ### Example
 
 ```js

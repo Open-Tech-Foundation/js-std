@@ -47,6 +47,7 @@
 - `pickBy`, `omitBy`, `mapKeys`, and `mapValues` now include enumerable symbol keys instead of silently dropping them.
 - Async array helpers now skip sparse holes like their native `Array.prototype` counterparts, and `reduceAsync` now starts from the first present element when no initial value is provided.
 - `words` now treats string patterns literally instead of interpreting regex metacharacters such as `+` and `.`.
+- `unescapeHTML` now decodes the named apostrophe entity `&apos;` in addition to `&#39;`.
 - Reworked `memoizeRun` default keying to support structural caching for common built-in value types, including `BigInt`, `Date`, `Map`, `Set`, typed arrays, and cyclic structures, while preserving reference identity for unsupported object instances and functions.
 - Preserved `Object.create(null)` prototypes across `merge`, `mergeAll`, `shallowMerge`, and `shallowMergeAll`.
 - Corrected the CSS named color mapping for `palegreen` in `color()`.
