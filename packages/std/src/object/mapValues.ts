@@ -9,11 +9,17 @@ import { createMergeTarget } from './merge';
  */
 export default function mapValues<T extends object, R>(
   obj: T,
-  fn: (value: T[keyof T], key: string) => R,
+  fn: (value: T[keyof T], key: string | symbol) => R,
 ): Record<keyof T, R> {
   const result: any = createMergeTarget(obj);
+  const keys = [
+    ...Object.keys(obj),
+    ...Object.getOwnPropertySymbols(obj).filter((sym) =>
+      Object.prototype.propertyIsEnumerable.call(obj, sym),
+    ),
+  ] as (string | symbol)[];
 
-  for (const key of Object.keys(obj)) {
+  for (const key of keys) {
     result[key as keyof T] = fn(obj[key as keyof T], key);
   }
 

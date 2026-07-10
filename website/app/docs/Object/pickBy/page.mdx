@@ -7,14 +7,14 @@ import { pickBy } from '@opentf/std';
 
 pickBy<T extends object>(
   obj: T,
-  predicate: (value: any, key: string) => boolean
+  predicate: (value: any, key: string | symbol) => boolean
 ): Partial<T>;
 ```
 
 ## Parameters
 
 - `obj`: The source object.
-- `predicate`: The function invoked per iteration.
+- `predicate`: The function invoked per iteration. Enumerable symbol keys are included.
 
 When the source object uses `Object.create(null)`, the returned object preserves that null prototype.
 
