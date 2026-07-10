@@ -88,11 +88,27 @@ function cloneObj<T>(obj: T, objRefMap: WeakMap<WeakKey, unknown>): T {
 
   if (isError(obj)) {
     const c = new (obj.constructor as any)(obj.message);
+    objRefMap.set(obj, c);
+
     if (obj.name !== c.name) {
       c.name = obj.name;
     }
     c.stack = obj.stack;
-    c.cause = obj.cause;
+
+    if ('cause' in obj) {
+      c.cause = cloneObj(obj.cause, objRefMap);
+    }
+
+    for (const key of Object.keys(obj)) {
+      c[key] = cloneObj((obj as Record<string, unknown>)[key], objRefMap);
+    }
+
+    for (const sym of Object.getOwnPropertySymbols(obj)) {
+      c[sym] = cloneObj(
+        (obj as Record<string | symbol, unknown>)[sym],
+        objRefMap,
+      );
+    }
 
     return c as T;
   }

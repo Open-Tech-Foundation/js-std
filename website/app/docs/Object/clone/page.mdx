@@ -24,6 +24,10 @@ import { Callout } from "@opentf/web-docs";
   Functions and unsupported object instances are preserved by reference. If you need a generic platform clone for transferable objects, DOM/web APIs, or other specialized instances, use native [structuredClone()](https://developer.mozilla.org/en-US/docs/Web/API/structuredClone).
 </Callout>
 
+<Callout type="info">
+  Supported `Error` values preserve `name`, `message`, `stack`, `cause`, and custom own enumerable properties. Nested supported `cause` values are cloned deeply.
+</Callout>
+
 ## Syntax
 
 ```ts

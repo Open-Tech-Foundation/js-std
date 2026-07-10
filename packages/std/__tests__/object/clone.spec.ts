@@ -240,6 +240,26 @@ describe('Object > Clone', () => {
     expect(output.stack).toBe(error.stack);
     expect(output.cause).toBe(error.cause);
     expect(output).toBeInstanceOf(Error);
+
+    const sym = Symbol('meta');
+    error = new Error('Whoops!', { cause: { reason: 'Cloning' } }) as Error & {
+      code?: string;
+      meta?: { nested: boolean };
+      [sym]?: { id: number };
+    };
+    error.code = 'E_WHOOPS';
+    error.meta = { nested: true };
+    error[sym] = { id: 1 };
+
+    output = clone(error) as typeof error;
+    expect(output).not.toBe(error);
+    expect(output.cause).toEqual({ reason: 'Cloning' });
+    expect(output.cause).not.toBe(error.cause);
+    expect(output.code).toBe('E_WHOOPS');
+    expect(output.meta).toEqual({ nested: true });
+    expect(output.meta).not.toBe(error.meta);
+    expect(output[sym]).toEqual({ id: 1 });
+    expect(output[sym]).not.toBe(error[sym]);
   });
 
   test('functions', () => {
