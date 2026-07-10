@@ -117,6 +117,12 @@ describe('Colors > color', () => {
         b: 0,
         a: 1,
       });
+      expect(color({ l: 0.5, c: 0.1, h: 30, a: 2 }, 'rgba-object')).toEqual({
+        r: 148,
+        g: 75,
+        b: 64,
+        a: 1,
+      });
     });
   });
 
@@ -125,6 +131,7 @@ describe('Colors > color', () => {
       expect(() => color('invalid', 'hex')).toThrow('Invalid Color');
       expect(() => color('#zzzzzz', 'hex')).toThrow('Invalid Color');
       expect(() => color('rgb(a,b,c)', 'hex')).toThrow('Invalid Color');
+      expect(() => color(null as any, 'hex')).toThrow('Invalid Color');
     });
 
     test('Throws on invalid objects', () => {

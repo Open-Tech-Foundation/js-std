@@ -438,7 +438,7 @@ function normalize(input: ColorInput): RGBA | null {
     };
   }
 
-  if (typeof input === 'object') {
+  if (input !== null && typeof input === 'object') {
     if ('r' in input) {
       return {
         r: clamp(input.r, 0, 255),
@@ -460,7 +460,7 @@ function normalize(input: ColorInput): RGBA | null {
         input.l,
         input.c,
         input.h,
-        input.a === undefined ? 1 : input.a,
+        clamp(input.a === undefined ? 1 : input.a, 0, 1),
       );
     }
   }
