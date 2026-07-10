@@ -17,5 +17,5 @@ export default function fromPath(arr: (string | number)[] = []): string {
       : `${acc}.${cur}`;
   }, '');
 
-  return (out as string).slice(1);
+  return out.startsWith('.') ? out.slice(1) : out;
 }
