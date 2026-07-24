@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [0.14.0] - 2026-07-24
+
 ### Added
 
 - Added repo guidelines and agent instructions (`AGENTS.md`).
