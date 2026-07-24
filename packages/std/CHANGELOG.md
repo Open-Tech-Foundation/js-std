@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [0.14.1] - 2026-07-24
+
 ### Documentation
 
 - Updated README to align with the website documentation intro page structure and updated header links (`Website | Playground`).
