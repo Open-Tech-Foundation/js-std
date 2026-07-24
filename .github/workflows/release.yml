@@ -2,39 +2,90 @@ name: Release
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
 
-concurrency: ${{ github.workflow }}-${{ github.ref }}
+permissions:
+  contents: write  # create tags and GitHub Releases
+  id-token: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
 
 jobs:
-  release:
-    name: Release
+  check-release:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pull-requests: write
-      id-token: write
+    outputs:
+      should_release: ${{ steps.check.outputs.should_release }}
+      release_opentf_std: ${{ steps.check.outputs.release_opentf_std }}
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v4
-
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v2
+      - uses: actions/checkout@v4
         with:
-          bun-version: latest
-
-      - name: Install Dependencies
-        run: bun install
-
-      - name: Run Tests
-        run: bun run test
-
-      - name: Create Release Pull Request or Publish to npm
-        id: changesets
-        uses: changesets/action@v1
-        with:
-          publish: bun run release
+          fetch-depth: 0
+      - name: Install otf-release
+        shell: bash
         env:
+          OTF_RELEASE_VERSION: v0.28.0
+        run: curl -fsSL https://raw.githubusercontent.com/Open-Tech-Foundation/release/v0.28.0/install.sh | bash
+      - id: check
+        run: |
+          echo "should_release=$(otf-release check --exclude-package @opentf/std)" >> "$GITHUB_OUTPUT"
+          echo "release_opentf_std=$(otf-release check --package @opentf/std)" >> "$GITHUB_OUTPUT"
+
+  publish-opentf-std:
+    needs: [check-release]
+    if: needs.check-release.outputs.release_opentf_std == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: oven-sh/setup-bun@v2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+      - run: bun install --frozen-lockfile
+      - name: Build @opentf/std
+        run: npm run build
+        working-directory: packages/std
+      - name: Install otf-release
+        shell: bash
+        env:
+          OTF_RELEASE_VERSION: v0.28.0
+        run: curl -fsSL https://raw.githubusercontent.com/Open-Tech-Foundation/release/v0.28.0/install.sh | bash
+      - name: Publish
+        run: otf-release publish --package @opentf/std
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  publish:
+    needs: [check-release, publish-opentf-std]
+    if: >-
+      always() &&
+      needs.check-release.outputs.should_release == 'true' &&
+      needs.publish-opentf-std.result != 'failure' &&
+      needs.publish-opentf-std.result != 'cancelled'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: oven-sh/setup-bun@v2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+      - run: bun install --frozen-lockfile
+      - name: Install otf-release
+        shell: bash
+        env:
+          OTF_RELEASE_VERSION: v0.28.0
+        run: curl -fsSL https://raw.githubusercontent.com/Open-Tech-Foundation/release/v0.28.0/install.sh | bash
+      - name: Publish
+        run: otf-release publish --exclude-package @opentf/std
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+

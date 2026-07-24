@@ -1,0 +1,24 @@
+adapters = [
+    "npm",
+    "jsr",
+]
+tag_format = "{name}@{version}"
+provider = "github"
+default_branch = "main"
+changelog_strategy = "curated"
+changelog_scope = "package"
+github_release_notes = "curated-changelog"
+
+[hooks]
+
+[publish.ignore_paths]
+"@opentf/std" = []
+
+[[package]]
+name = "@opentf/std"
+adapter = "npm"
+mode = "publish"
+matrix = false
+command = "npm run build"
+artifacts = ""
+manifest = "packages/std/package.json"

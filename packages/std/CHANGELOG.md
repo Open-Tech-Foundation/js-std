@@ -5,6 +5,8 @@
 ### Added
 
 - Added repo guidelines and agent instructions (`AGENTS.md`).
+- Updated release workflow and release configuration.
+
 
 
 ### Breaking Changes
