@@ -62,9 +62,9 @@
     "node": ">=18.0.0"
   },
   "scripts": {
-    "build": "bun scripts/build.ts",
+    "build": "tsup",
     "test": "bun test",
-    "dev": "bun scripts/build.ts --watch",
+    "dev": "tsup --watch",
     "check-types": "tsc --noEmit",
     "lint": "biome check ./src",
     "format": "biome format --write ./src"
@@ -79,6 +79,7 @@
   "devDependencies": {
     "@types/node": "^25.6.0",
     "esbuild": "^0.28.0",
+    "tsup": "^8.5.1",
     "typescript": "^6.0.3"
   }
 }
