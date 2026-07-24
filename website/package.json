@@ -11,7 +11,7 @@
     "build": "otfw build --ssg"
   },
   "dependencies": {
-    "@opentf/std": "^0.14.0",
+    "@opentf/std": "^0.14.1",
     "@opentf/web": "^0.20.0",
     "@opentf/web-docs": "^0.17.0"
   },
