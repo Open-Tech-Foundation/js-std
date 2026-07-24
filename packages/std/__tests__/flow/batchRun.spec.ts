@@ -57,9 +57,12 @@ describe('batchRun', () => {
   });
 
   test('rejects when batchProcessor result count mismatches the queue length', async () => {
-    const batched = batchRun(async (batch: number[][]) => {
-      return batch.slice(0, 1).map((args) => args[0] * 2);
-    }, { limit: 2 });
+    const batched = batchRun(
+      async (batch: number[][]) => {
+        return batch.slice(0, 1).map((args) => args[0] * 2);
+      },
+      { limit: 2 },
+    );
 
     await expect(Promise.all([batched(1), batched(2)])).rejects.toThrow(
       'batchProcessor must return exactly 2 result(s).',

@@ -17,9 +17,7 @@ export default function round(n: number, decimals = 0): number {
   }
 
   if (decimals < -308 || decimals > 308) {
-    throw new RangeError(
-      'The decimals argument must be between -308 and 308.',
-    );
+    throw new RangeError('The decimals argument must be between -308 and 308.');
   }
 
   const factor = 10 ** decimals;

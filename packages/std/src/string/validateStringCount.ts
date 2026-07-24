@@ -1,7 +1,4 @@
-export default function validateStringCount(
-  value: number,
-  name: string,
-): void {
+export default function validateStringCount(value: number, name: string): void {
   if (!Number.isFinite(value) || !Number.isInteger(value)) {
     throw new RangeError(`${name} must be a finite integer.`);
   }

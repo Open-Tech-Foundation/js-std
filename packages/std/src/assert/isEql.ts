@@ -278,7 +278,10 @@ export default function isEql(
       const symbolKeys1 = Object.getOwnPropertySymbols(val1);
       const symbolKeys2 = Object.getOwnPropertySymbols(val2);
 
-      if (keys1.length !== keys2.length || symbolKeys1.length !== symbolKeys2.length) {
+      if (
+        keys1.length !== keys2.length ||
+        symbolKeys1.length !== symbolKeys2.length
+      ) {
         return false;
       }
 

@@ -7,7 +7,7 @@ import parseFiniteNumberString from '../number/parseFiniteNumberString';
  * fromPath(['a', '0', 'b', 'c']) //=> 'a[0].b.c'
  */
 export default function fromPath(arr: (string | number)[] = []): string {
-  const out = arr.reduce((acc, cur) => {
+  const out = arr.reduce<string>((acc, cur) => {
     if (typeof cur === 'number') {
       return Number.isFinite(cur) ? `${acc}[${cur}]` : `${acc}.${cur}`;
     }

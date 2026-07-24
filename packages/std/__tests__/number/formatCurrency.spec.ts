@@ -28,13 +28,11 @@ describe('Number', () => {
     expect(() => formatCurrency(1200, 'USD', { maxFraction: 1.5 })).toThrow(
       'The maxFraction option must be an integer between 0 and 100.',
     );
-    expect(
-      () => formatCurrency(1200, 'USD', { display: 'wide' as never }),
-    ).toThrow(
-      "The display option must be one of 'symbol', 'code', or 'name'.",
-    );
-    expect(
-      () => formatCurrency(1200, 'USD', { minFraction: 3, maxFraction: 2 }),
+    expect(() =>
+      formatCurrency(1200, 'USD', { display: 'wide' as never }),
+    ).toThrow("The display option must be one of 'symbol', 'code', or 'name'.");
+    expect(() =>
+      formatCurrency(1200, 'USD', { minFraction: 3, maxFraction: 2 }),
     ).toThrow(
       'The minFraction option must be less than or equal to maxFraction.',
     );

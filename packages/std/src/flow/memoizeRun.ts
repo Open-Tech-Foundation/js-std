@@ -45,10 +45,7 @@ function serializeBytes(bytes: Uint8Array): string {
   return out;
 }
 
-function serializeValue(
-  value: unknown,
-  seen: Map<object, number>,
-): string {
+function serializeValue(value: unknown, seen: Map<object, number>): string {
   if (value === null) return 'null';
 
   switch (typeof value) {
@@ -100,14 +97,16 @@ function serializeValue(
     });
     const parts = [
       ...stringKeys.map(
-        (key) => `${JSON.stringify(key)}:${serializeValue((value as any)[key], seen)}`,
+        (key) =>
+          `${JSON.stringify(key)}:${serializeValue((value as any)[key], seen)}`,
       ),
       ...symbolKeys.map(
         (key) =>
           `@@symbol:${getSymbolId(key)}:${serializeValue((value as any)[key], seen)}`,
       ),
     ];
-    const protoTag = Object.getPrototypeOf(value) === null ? 'nullproto' : 'object';
+    const protoTag =
+      Object.getPrototypeOf(value) === null ? 'nullproto' : 'object';
     return `${protoTag}#${id}{${parts.join(',')}}`;
   }
 
@@ -127,7 +126,9 @@ function serializeValue(
   }
 
   if (isSet(value)) {
-    const parts = Array.from(value.values(), (item) => serializeValue(item, seen));
+    const parts = Array.from(value.values(), (item) =>
+      serializeValue(item, seen),
+    );
     return `set#${id}[${parts.join(',')}]`;
   }
 
@@ -151,7 +152,8 @@ function serializeValue(
   if (isError(value)) {
     const keys = Object.keys(value).sort();
     const extra = keys.map(
-      (key) => `${JSON.stringify(key)}:${serializeValue((value as any)[key], seen)}`,
+      (key) =>
+        `${JSON.stringify(key)}:${serializeValue((value as any)[key], seen)}`,
     );
     return `error#${id}{name:${JSON.stringify(value.name)},message:${JSON.stringify(
       value.message,
@@ -204,7 +206,11 @@ export default function memoizeRun<T, Args extends any[]>(
     }
 
     const promise = func(...args);
-    const entry: CacheEntry<T, Args> = { args, result: promise, timestamp: now };
+    const entry: CacheEntry<T, Args> = {
+      args,
+      result: promise,
+      timestamp: now,
+    };
     const entries = cache.get(key);
     if (entries) {
       entries.push(entry);

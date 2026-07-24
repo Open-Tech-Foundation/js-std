@@ -83,8 +83,6 @@ describe('String Utils', () => {
     expect(() => repeat('abc', -1)).toThrow(
       'Count must be greater than or equal to 0.',
     );
-    expect(() => repeat('abc', 1.5)).toThrow(
-      'Count must be a finite integer.',
-    );
+    expect(() => repeat('abc', 1.5)).toThrow('Count must be a finite integer.');
   });
 });

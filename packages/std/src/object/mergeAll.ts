@@ -50,7 +50,10 @@ export default function mergeAll(
 
   return filteredObjs.reduce((acc: IterableObj, cur, i) => {
     if (i === 0) {
-      return merge(createMergeTarget(cur as object) as object, cur as object) as IterableObj;
+      return merge(
+        createMergeTarget(cur as object) as object,
+        cur as object,
+      ) as IterableObj;
     }
 
     if (isArray(acc) && isArray(cur)) {

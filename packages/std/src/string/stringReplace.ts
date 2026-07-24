@@ -40,6 +40,6 @@ export default function stringReplace(
 
   return str.replace(
     new RegExp(source, Array.from(flags).join('')),
-    replacement,
+    replacement as any,
   );
 }

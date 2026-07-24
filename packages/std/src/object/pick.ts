@@ -1,6 +1,6 @@
 import isArray from '../types/isArray';
 import isObject from '../types/isObject';
-import { createMergeTarget, type IterableObj } from './merge';
+import { type IterableObj, createMergeTarget } from './merge';
 import toPath from './toPath';
 
 /**
@@ -43,7 +43,7 @@ export default function pick(
         (curOutObj as IterableObj)[prop] = createMergeTarget(curObj);
       }
 
-      curOutObj = (curOutObj as IterableObj)[prop] as object;
+      curOutObj = (curOutObj as IterableObj)[prop] as IterableObj;
     }
   }
 

@@ -20,10 +20,14 @@ describe('reduceAsync', () => {
   test('reduceAsync skips sparse holes like Array.prototype.reduce', async () => {
     const sparse = [, 1, , 2] as number[];
     const seen: number[] = [];
-    const res = await reduceAsync(sparse, async (acc, n, i) => {
-      seen.push(i);
-      return acc + n;
-    }, 0);
+    const res = await reduceAsync(
+      sparse,
+      async (acc, n, i) => {
+        seen.push(i);
+        return acc + n;
+      },
+      0,
+    );
 
     expect(seen).toEqual([1, 3]);
     expect(res).toBe(3);
