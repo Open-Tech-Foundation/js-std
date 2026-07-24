@@ -20,7 +20,7 @@ export default defineDocsConfig({
       links: [
         {
           label: 'Open Tech Foundation',
-          href: 'https://open-tech-foundation.pages.dev/',
+          href: 'https://opentechf.org',
           external: true,
         },
       ],

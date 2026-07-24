@@ -6,6 +6,8 @@
 
 - Added repo guidelines and agent instructions (`AGENTS.md`).
 - Updated release workflow and release configuration.
+- Redesigned website footer and badge styling.
+
 
 
 
