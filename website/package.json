@@ -11,12 +11,12 @@
     "build": "otfw build --ssg"
   },
   "dependencies": {
-    "@opentf/std": "0.14.0",
-    "@opentf/web": "^0.20.0",
-    "@opentf/web-docs": "^0.17.0"
+    "@opentf/std": "0.14.1",
+    "@opentf/web": "^0.21.0",
+    "@opentf/web-docs": "^0.18.0"
   },
   "devDependencies": {
-    "@opentf/web-cli": "^1.18.0",
+    "@opentf/web-cli": "^1.19.0",
     "tailwindcss": "^4.3.3"
   }
 }

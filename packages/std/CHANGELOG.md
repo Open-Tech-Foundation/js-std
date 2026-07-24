@@ -4,7 +4,9 @@
 
 ### Changed
 
-- Updated website `@opentf/std` dependency to published `0.14.0` npm release.
+- Updated website `@opentf/std` dependency to `0.14.1`.
+- Updated OTF Web framework dependencies (`@opentf/web` to `^0.21.0`, `@opentf/web-docs` to `^0.18.0`, `@opentf/web-cli` to `^1.19.0`).
+
 
 
 
