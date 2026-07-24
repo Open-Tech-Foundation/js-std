@@ -12,18 +12,13 @@
   },
   "dependencies": {
     "@opentf/std": "workspace:*",
-    "@opentf/web": "^0.16.0",
-    "@opentf/web-docs": "^0.12.0",
+    "@opentf/web": "^0.20.0",
+    "@opentf/web-docs": "^0.17.0",
     "clsx": "^2.1.1",
-    "framer-motion": "^12.38.0",
-    "lucide-react": "^1.11.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "tailwind-merge": "^3.5.0"
+    "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {
-    "@opentf/web-cli": "^1.12.0",
-    "tailwindcss": "^4.2.2",
-    "wrangler": "^4.87.0"
+    "@opentf/web-cli": "^1.18.0",
+    "tailwindcss": "^4.3.3"
   }
 }

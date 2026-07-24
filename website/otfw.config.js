@@ -13,7 +13,7 @@ export default defineDocsConfig({
     lastUpdated: true,
     nav: [
       { label: 'Docs', href: '/docs' },
-      { label: 'Playground', href: '/docs/playground' },
+      { label: 'Playground', href: '/playground' },
     ],
     footer: {
       text: `MIT ${new Date().getFullYear()} © Open Tech Foundation`,
