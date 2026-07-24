@@ -1,6 +1,6 @@
 # @opentf/std
 
-## Unreleased
+## [Unreleased]
 
 ### Added
 
