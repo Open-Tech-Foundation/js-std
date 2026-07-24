@@ -2,7 +2,11 @@
 
 ## [Unreleased]
 
-## [0.14.0] - 2026-07-24
+### Documentation
+
+- Updated README to align with the website documentation intro page structure and updated header links (`Website | Playground`).
+
+
 
 ### Added
 
@@ -13,6 +17,10 @@
 ### Changed
 
 - Updated documentation website URL to `https://js-std.opentechf.org` and configured Cloudflare Workers deployment (`wrangler.jsonc`).
+- Updated website dependency `@opentf/std` to `^0.14.0`.
+- Removed unused `clsx` and `tailwind-merge` dependencies from website package.
+
+
 
 
 

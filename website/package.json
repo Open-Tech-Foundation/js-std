@@ -11,11 +11,9 @@
     "build": "otfw build --ssg"
   },
   "dependencies": {
-    "@opentf/std": "workspace:*",
+    "@opentf/std": "^0.14.0",
     "@opentf/web": "^0.20.0",
-    "@opentf/web-docs": "^0.17.0",
-    "clsx": "^2.1.1",
-    "tailwind-merge": "^3.6.0"
+    "@opentf/web-docs": "^0.17.0"
   },
   "devDependencies": {
     "@opentf/web-cli": "^1.18.0",
