@@ -16,4 +16,9 @@ jobs:
         with:
           bun-version: latest
       - run: bun install
-      - run: bun run ci
+      - name: Install TSR
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/Open-Tech-Foundation/tsr/main/install.sh | bash
+          echo "$HOME/.tsr/bin" >> $GITHUB_PATH
+      - name: Run CI via TSR
+        run: tsr ci
