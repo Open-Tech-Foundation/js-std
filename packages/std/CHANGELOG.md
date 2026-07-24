@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### Added
+
+- Added repo guidelines and agent instructions (`AGENTS.md`).
+
+
 ### Breaking Changes
 
 - Removed public runtime detection helpers: `isNode`, `isBrowser`, `isDeno`, `isBun`, and `isCloudflareWorker`.
