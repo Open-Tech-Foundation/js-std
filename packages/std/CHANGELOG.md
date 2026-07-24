@@ -4,8 +4,12 @@
 
 ### Changed
 
-- Updated website `@opentf/std` dependency to `0.14.1`.
+- Updated website `@opentf/std` dependency to `0.14.1`, pinned as a registry tarball URL so it always resolves to the published package.
 - Updated OTF Web framework dependencies (`@opentf/web` to `^0.21.0`, `@opentf/web-docs` to `^0.18.0`, `@opentf/web-cli` to `^1.19.0`).
+
+### Fixed
+
+- Fixed the Cloudflare website build failing with `Cannot find module '@opentf/std'`. A plain `0.14.1` range matched the workspace version, so bun linked `packages/std` instead of the registry package, and its gitignored `dist/` is absent in CI.
 
 
 

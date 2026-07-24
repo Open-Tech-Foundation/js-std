@@ -11,7 +11,7 @@
     "build": "otfw build --ssg"
   },
   "dependencies": {
-    "@opentf/std": "0.14.1",
+    "@opentf/std": "https://registry.npmjs.org/@opentf/std/-/std-0.14.1.tgz",
     "@opentf/web": "^0.21.0",
     "@opentf/web-docs": "^0.18.0"
   },
