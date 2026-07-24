@@ -15,10 +15,11 @@
 - Removed the `coerce` option from `isNumber`; use `toNum` when parsing numeric strings.
 - Renamed encoding helpers to verb-first binary codecs: `encodeBase64`, `decodeBase64`, `encodeBase64Url`, `decodeBase64Url`, `encodeHex`, and `decodeHex`.
 - Base64 and hex decoders now return `Uint8Array`; use `bytesToString` for UTF-8 text decoding.
+- Dropped the `node:crypto` fallback from crypto helpers; they now use the standard Web Crypto API (`globalThis.crypto`) exclusively and throw a clear error when it is unavailable.
+- Raised the minimum supported Node.js version to `>=20.0.0`, where Web Crypto is available and stable (Node 18 has reached end-of-life).
 
 ### Changed
 
-- Crypto helpers now use capability detection: Web Crypto first, then `node:crypto` fallback where available.
 - `isBoolean` and `isDefined` now expose TypeScript predicate return types for better narrowing.
 - `isJSON` now accepts `unknown` input and explicitly returns `false` for non-string values.
 - `isPromise` now only matches actual Promise objects instead of arbitrary thenables.

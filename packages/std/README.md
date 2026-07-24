@@ -35,25 +35,9 @@ This keeps the package portable across mainstream runtimes and smaller embeddabl
 
 ### 🛠️ Web Crypto Support
 
-Crypto helpers use capability detection instead of runtime-name detection:
+Crypto helpers (random, UUID, hash, HMAC) use the standard [Web Crypto API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API) via `globalThis.crypto`, and throw a clear error if it is unavailable.
 
-- Random and UUID helpers use Web Crypto when available and fall back to `node:crypto.webcrypto` in Node-compatible environments.
-- Hash and HMAC helpers use Web Crypto when available and fall back to `node:crypto`.
-- Helpers throw a clear error if neither capability exists.
-
-For runtimes without either API, provide a Web Crypto polyfill before calling crypto utilities:
-
-```js
-import crypto from 'node:crypto';
-
-if (typeof globalThis.crypto === 'undefined') {
-  Object.defineProperty(globalThis, 'crypto', {
-    value: crypto.webcrypto,
-    writable: true,
-    configurable: true,
-  });
-}
-```
+`globalThis.crypto` is available out of the box in every supported runtime — **Node.js ≥ 20**, Bun, Deno, modern browsers, and edge workers — so no polyfill or runtime branching is required.
 
 ## 🧪 Testing
 

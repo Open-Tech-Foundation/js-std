@@ -3,7 +3,7 @@ import { Callout } from "@opentf/web-docs";
 🔐 Computes an HMAC-SHA-512 digest of a message with a secret key.
 
 <Callout type="info">
-  Always returns a \`Promise\`. Uses Web Crypto when available and falls back to Node.js \`crypto\` in Node-compatible environments.
+  Always returns a \`Promise\`. Uses the standard Web Crypto API (\`crypto.subtle\`).
 </Callout>
 
 ## Syntax

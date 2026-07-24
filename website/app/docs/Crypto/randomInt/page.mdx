@@ -1,7 +1,6 @@
 🔢 Generates a cryptographically secure random integer between min (inclusive) and max (inclusive).
 
-Uses Web Crypto when available and falls back to `node:crypto.webcrypto`
-in Node-compatible environments.
+Uses the standard Web Crypto API (`globalThis.crypto`).
 
 ## Syntax
 

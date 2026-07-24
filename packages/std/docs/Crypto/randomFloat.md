@@ -2,8 +2,7 @@
 
 Generates a cryptographically strong random float within a range.
 
-Uses Web Crypto when available and falls back to `node:crypto.webcrypto`
-in Node-compatible environments.
+Uses the standard Web Crypto API (`globalThis.crypto`).
 
 @param min - The minimum value (inclusive).
 @param max - The maximum value (exclusive).

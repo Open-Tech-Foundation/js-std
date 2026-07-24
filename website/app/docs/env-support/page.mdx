@@ -11,27 +11,14 @@ If a runtime provides the JavaScript and Web Platform APIs a utility needs, that
 
 ---
 
-## 🛠️ Capability Detection
+## 🛠️ Standard Web APIs
 
-Most utilities are pure JavaScript. Utilities that need platform APIs, such as crypto helpers, use capability detection:
+Most utilities are pure JavaScript. The few that need platform APIs use standard, cross-runtime Web APIs — never runtime-specific modules:
 
-- Random and UUID helpers prefer `globalThis.crypto` and fall back to `node:crypto.webcrypto` in Node-compatible environments.
-- Hash and HMAC helpers prefer Web Crypto and fall back to `node:crypto` where appropriate.
-- Throw a clear error if neither capability exists.
+- Crypto helpers (random, UUID, hash, HMAC) use the [Web Crypto API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API) via `globalThis.crypto`.
+- They throw a clear error if `globalThis.crypto` is unavailable.
 
-For runtimes without Web Crypto, provide a polyfill before calling crypto utilities:
-
-```js
-import crypto from 'node:crypto';
-
-if (typeof globalThis.crypto === 'undefined') {
-  Object.defineProperty(globalThis, 'crypto', {
-    value: crypto.webcrypto,
-    writable: true,
-    configurable: true,
-  });
-}
-```
+`globalThis.crypto` is available out of the box in every runtime `@opentf/std` targets — **Node.js ≥ 20**, Bun, Deno, modern browsers, and edge workers — so no polyfill or runtime branching is required.
 
 <Callout type="info">
   `@opentf/std` does not expose public runtime detection helpers. Prefer checking for the capability your code needs, not the runtime name.
@@ -45,4 +32,4 @@ The `@opentf/std` library is built using modern ESM standards and leverages nati
 
 -   **Runs Anywhere Capabilities Exist**: Seamlessly move logic between edge, server, browser, and embedded runtimes.
 -   **Remains Lightweight**: Zero external dependencies and full tree-shaking support.
--   **Stays Modern**: We use the latest JavaScript features while providing stable fallbacks for the environments you need to support.
+-   **Stays Modern**: We build on the latest JavaScript features and stable, standard platform APIs.

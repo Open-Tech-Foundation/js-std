@@ -3,8 +3,7 @@ import { getCrypto } from './getCrypto';
 /**
  * Generates cryptographically strong random values.
  *
- * Uses Web Crypto when available and falls back to `node:crypto.webcrypto`
- * in Node-compatible environments.
+ * Uses the standard Web Crypto API (`globalThis.crypto`).
  *
  * @example
  *

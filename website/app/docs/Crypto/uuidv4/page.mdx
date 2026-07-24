@@ -3,7 +3,7 @@ import { Callout } from "@opentf/web-docs";
 🆔 Generates a random UUID v4 using capability-detected crypto.
 
 <Callout type="info">
-  Uses Web Crypto when available and falls back to \`node:crypto\` in Node-compatible environments.
+  Uses the standard Web Crypto API (\`globalThis.crypto\`).
 </Callout>
 
 ## Syntax

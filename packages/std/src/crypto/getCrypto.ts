@@ -1,60 +1,18 @@
-type NodeCryptoModule = {
-  randomUUID?: () => string;
-  webcrypto?: Crypto;
-};
-
-let cachedNodeCryptoModule: NodeCryptoModule | null | undefined;
-
-function getNodeCryptoModule(): NodeCryptoModule | undefined {
-  if (cachedNodeCryptoModule !== undefined) {
-    return cachedNodeCryptoModule ?? undefined;
-  }
-
-  const processObj = globalThis.process as
-    | { getBuiltinModule?: (id: string) => unknown }
-    | undefined;
-
-  if (typeof processObj?.getBuiltinModule === 'function') {
-    try {
-      const mod = processObj.getBuiltinModule('node:crypto') as
-        | NodeCryptoModule
-        | undefined;
-      cachedNodeCryptoModule = mod ?? null;
-      return mod;
-    } catch {
-      // Ignore missing built-in module support and continue.
-    }
-  }
-
-  try {
-    const req = Function(
-      'return typeof require === "function" ? require : undefined;',
-    )() as ((id: string) => unknown) | undefined;
-
-    if (req) {
-      const mod = req('node:crypto') as NodeCryptoModule;
-      cachedNodeCryptoModule = mod;
-      return mod;
-    }
-  } catch {
-    // Ignore environments without CommonJS require.
-  }
-
-  cachedNodeCryptoModule = null;
-  return undefined;
-}
-
+/**
+ * Returns the standard Web Crypto API (`globalThis.crypto`).
+ *
+ * Every runtime `@opentf/std` targets — Node.js >= 20, Bun, Deno, browsers and
+ * edge workers — exposes Web Crypto globally, so no runtime-specific fallback
+ * is needed.
+ */
 export function getCrypto(): Crypto {
   if (globalThis.crypto) {
     return globalThis.crypto;
   }
 
-  const nodeCrypto = getNodeCryptoModule();
-  if (nodeCrypto?.webcrypto) {
-    return nodeCrypto.webcrypto;
-  }
-
-  throw new Error('Crypto helpers require Web Crypto or node:crypto support.');
+  throw new Error(
+    'Crypto helpers require the Web Crypto API (globalThis.crypto).',
+  );
 }
 
 export function randomUUIDv4(): string {
@@ -62,11 +20,6 @@ export function randomUUIDv4(): string {
 
   if (typeof crypto.randomUUID === 'function') {
     return crypto.randomUUID();
-  }
-
-  const nodeCrypto = getNodeCryptoModule();
-  if (typeof nodeCrypto?.randomUUID === 'function') {
-    return nodeCrypto.randomUUID();
   }
 
   const bytes = new Uint8Array(16);

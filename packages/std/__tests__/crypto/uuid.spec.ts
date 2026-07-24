@@ -50,8 +50,9 @@ describe('Crypto Utilities', () => {
     );
   });
 
-  test('sync crypto helpers fall back when globalThis.crypto is unavailable', () => {
+  test('crypto helpers throw a clear error when Web Crypto is unavailable', () => {
     const originalCrypto = globalThis.crypto;
+    const message = 'Crypto helpers require the Web Crypto API (globalThis.crypto).';
 
     try {
       Object.defineProperty(globalThis, 'crypto', {
@@ -60,25 +61,11 @@ describe('Crypto Utilities', () => {
         configurable: true,
       });
 
-      expect(uuidv4()).toMatch(
-        /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/,
-      );
-
-      const bytes = randomBytes(8);
-      expect(bytes).toBeInstanceOf(Uint8Array);
-      expect(bytes.length).toBe(8);
-
-      const intVal = randomInt(1, 10);
-      expect(intVal).toBeGreaterThanOrEqual(1);
-      expect(intVal).toBeLessThanOrEqual(10);
-
-      const floatVal = randomFloat(0, 1);
-      expect(floatVal).toBeGreaterThanOrEqual(0);
-      expect(floatVal).toBeLessThan(1);
-
-      expect(uuidv7()).toMatch(
-        /^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/,
-      );
+      expect(() => uuidv4()).toThrow(message);
+      expect(() => uuidv7()).toThrow(message);
+      expect(() => randomBytes(8)).toThrow(message);
+      expect(() => randomInt(1, 10)).toThrow(message);
+      expect(() => randomFloat(0, 1)).toThrow(message);
     } finally {
       Object.defineProperty(globalThis, 'crypto', {
         value: originalCrypto,
