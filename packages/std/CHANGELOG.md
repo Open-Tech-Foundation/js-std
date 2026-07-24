@@ -2,6 +2,13 @@
 
 ## [Unreleased]
 
+### Changed
+
+- Updated website `@opentf/std` dependency to published `0.14.0` npm release.
+
+
+
+
 ## [0.14.1] - 2026-07-24
 
 ### Documentation
