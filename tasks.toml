@@ -1,0 +1,39 @@
+[workspace]
+members = ["apps/*", "packages/*", "website"]
+
+[tasks.dev]
+run = "tsup --watch"
+dir = "packages/std"
+
+[tasks."dev:website"]
+run = "otfw dev"
+dir = "website"
+
+[tasks.test]
+run = "bun test"
+dir = "packages/std"
+
+[tasks.typecheck]
+run = "tsc --noEmit"
+dir = "packages/std"
+
+[tasks.lint]
+run = "biome check ."
+
+[tasks.format]
+run = "biome format --write ."
+
+[tasks.build]
+run = "tsup"
+dir = "packages/std"
+
+[tasks."website#build"]
+run = "otfw build --ssg"
+dir = "website"
+
+[tasks."build:website"]
+deps = ["build", "website#build"]
+
+[tasks.ci]
+deps = ["build", "lint", "typecheck", "test"]
+parallel = true
