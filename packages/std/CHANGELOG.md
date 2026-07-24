@@ -10,6 +10,11 @@
 - Updated release workflow and release configuration.
 - Redesigned website footer and badge styling.
 
+### Changed
+
+- Updated documentation website URL to `https://js-std.opentechf.org` and configured Cloudflare Workers deployment (`wrangler.jsonc`).
+
+
 
 
 

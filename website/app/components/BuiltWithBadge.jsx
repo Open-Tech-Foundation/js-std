@@ -1,5 +1,5 @@
 // Footer badge linking to OTF Web.
-const WEB_DOCS = "https://web.opentechf.org";
+const WEB_DOCS = 'https://web.opentechf.org';
 
 function DocsMark() {
   return (
@@ -11,12 +11,7 @@ function DocsMark() {
       aria-hidden="true"
       class="otfw-footer-badge-mark"
     >
-      <rect
-        width="22"
-        height="22"
-        rx="6"
-        fill="var(--otfw-accent-soft)"
-      />
+      <rect width="22" height="22" rx="6" fill="var(--otfw-accent-soft)" />
       <path
         d="M6.5 6.5h3.75v9H6.5v-9zm5.25 0H15.5v9h-3.75v-9z"
         fill="none"
@@ -49,7 +44,7 @@ export default function BuiltWithBadge() {
       <span class="otfw-footer-badge-copy">
         <span class="otfw-footer-badge-muted">Built with</span>
         <span class="otfw-footer-badge-brand">
-          <span class="otfw-footer-badge-brand-otf">OTF</span>{" "}
+          <span class="otfw-footer-badge-brand-otf">OTF</span>{' '}
           <span class="otfw-footer-badge-brand-web">Web</span>
         </span>
       </span>

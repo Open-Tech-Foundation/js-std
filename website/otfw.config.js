@@ -1,11 +1,11 @@
 import { defineDocsConfig } from '@opentf/web-docs/config';
 
 export default defineDocsConfig({
-  site: { url: 'https://js-std.pages.dev' },
+  site: { url: 'https://js-std.opentechf.org' },
 
   docs: {
     title: 'JS Standard Library',
-    version: 'v1.0.0-beta.3',
+    version: 'v0.14.0',
     logo: '/assets/Logo.svg',
     homeUrl: '/docs',
     github: 'https://github.com/open-tech-foundation/js-std',

@@ -150,7 +150,11 @@ export default function VisualTools() {
 
     // Loop for smooth timeline animation
     animationTimer = setInterval(() => {
-      if (activeTab === 'idle' || activeTab === 'pace' || activeTab === 'rate') {
+      if (
+        activeTab === 'idle' ||
+        activeTab === 'pace' ||
+        activeTab === 'rate'
+      ) {
         const visualizerEl = host.querySelector('.timeline-visualizer-events');
         if (visualizerEl) {
           const now = Date.now();
@@ -163,7 +167,9 @@ export default function VisualTools() {
               const age = (now - e.time) / duration;
               const leftPercent = Math.max(0, 100 - age * 100);
               const cls =
-                e.type === 'request' ? 'vt-dot vt-dot--req' : 'vt-dot vt-dot--exec';
+                e.type === 'request'
+                  ? 'vt-dot vt-dot--req'
+                  : 'vt-dot vt-dot--exec';
               const opacity = Math.max(0, 1 - age * 0.85);
               return `<div class="${cls}" style="left:${leftPercent}%;opacity:${opacity}" title="${e.type} ${e.label || ''}"></div>`;
             })
@@ -234,7 +240,7 @@ export default function VisualTools() {
                   <input class="vt-range" type="range" min="100" max="2000" step="100" value="${idleDelay}" id="idle-delay" />
                 </div>
                 <div class="vt-field">
-                  <label class="vt-field-label">Max wait <span class="vt-field-value">${idleMaxWait === 0 ? 'none' : idleMaxWait + ' ms'}</span></label>
+                  <label class="vt-field-label">Max wait <span class="vt-field-value">${idleMaxWait === 0 ? 'none' : `${idleMaxWait} ms`}</span></label>
                   <input class="vt-range" type="range" min="0" max="5000" step="500" value="${idleMaxWait}" id="idle-maxwait" />
                 </div>
                 <div class="vt-toggles">
@@ -452,11 +458,13 @@ export default function VisualTools() {
           initPaceFn();
           render();
         });
-        host.querySelector('#pace-trailing')?.addEventListener('change', (e) => {
-          paceTrailing = e.target.checked;
-          initPaceFn();
-          render();
-        });
+        host
+          .querySelector('#pace-trailing')
+          ?.addEventListener('change', (e) => {
+            paceTrailing = e.target.checked;
+            initPaceFn();
+            render();
+          });
         host.querySelector('#pace-call')?.addEventListener('click', () => {
           addTimelineEvent('request');
           throttledFn();
@@ -518,36 +526,40 @@ export default function VisualTools() {
           retryDelay = Number(e.target.value);
           render();
         });
-        host.querySelector('#retry-backoff')?.addEventListener('change', (e) => {
-          retryBackoff = e.target.value;
-          render();
-        });
-        host.querySelector('#retry-test')?.addEventListener('click', async () => {
-          let attempts = 0;
-          retryLogs = [];
-          retryStatus = 'running';
-          render();
+        host
+          .querySelector('#retry-backoff')
+          ?.addEventListener('change', (e) => {
+            retryBackoff = e.target.value;
+            render();
+          });
+        host
+          .querySelector('#retry-test')
+          ?.addEventListener('click', async () => {
+            let attempts = 0;
+            retryLogs = [];
+            retryStatus = 'running';
+            render();
 
-          try {
-            await retryRun(
-              async () => {
-                attempts++;
-                const isSuccess = attempts > retryMax;
-                retryLogs.unshift(
-                  `Attempt ${attempts}: ${isSuccess ? 'Success!' : 'Failed, retrying...'}`,
-                );
-                render();
-                if (!isSuccess) throw new Error('fail');
-                return 'ok';
-              },
-              { retries: retryMax, delay: retryDelay, backoff: retryBackoff },
-            );
-            retryStatus = 'success';
-          } catch {
-            retryStatus = 'failed';
-          }
-          render();
-        });
+            try {
+              await retryRun(
+                async () => {
+                  attempts++;
+                  const isSuccess = attempts > retryMax;
+                  retryLogs.unshift(
+                    `Attempt ${attempts}: ${isSuccess ? 'Success!' : 'Failed, retrying...'}`,
+                  );
+                  render();
+                  if (!isSuccess) throw new Error('fail');
+                  return 'ok';
+                },
+                { retries: retryMax, delay: retryDelay, backoff: retryBackoff },
+              );
+              retryStatus = 'success';
+            } catch {
+              retryStatus = 'failed';
+            }
+            render();
+          });
       }
     }
 

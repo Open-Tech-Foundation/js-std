@@ -1,6 +1,6 @@
-import BuiltWithBadge from "./BuiltWithBadge.jsx";
+import BuiltWithBadge from './BuiltWithBadge.jsx';
 
-const OTF_ORG = "https://opentechf.org";
+const OTF_ORG = 'https://opentechf.org';
 
 // Site footer: org link (logo + name) on the left, OTF Web badge on the right.
 export default function SiteFooter() {

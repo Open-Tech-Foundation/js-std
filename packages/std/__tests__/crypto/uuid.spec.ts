@@ -52,7 +52,8 @@ describe('Crypto Utilities', () => {
 
   test('crypto helpers throw a clear error when Web Crypto is unavailable', () => {
     const originalCrypto = globalThis.crypto;
-    const message = 'Crypto helpers require the Web Crypto API (globalThis.crypto).';
+    const message =
+      'Crypto helpers require the Web Crypto API (globalThis.crypto).';
 
     try {
       Object.defineProperty(globalThis, 'crypto', {
