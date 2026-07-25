@@ -14,6 +14,7 @@
 ### Fixed
 
 - Fixed the Cloudflare website build failing with `Cannot find module '@opentf/std'`. A plain `0.14.1` range matched the workspace version, so bun linked `packages/std` instead of the registry package, and its gitignored `dist/` is absent in CI.
+- Fixed flaky `shuffle` test by mocking `Math.random` with `spyOn` for deterministic testing.
 
 
 

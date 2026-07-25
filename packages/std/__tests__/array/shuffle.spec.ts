@@ -1,3 +1,4 @@
+import { describe, expect, spyOn, test } from 'bun:test';
 import { shuffle } from '../../src';
 
 describe('Array > shuffle', () => {
@@ -9,10 +10,16 @@ describe('Array > shuffle', () => {
     expect(shuffle([1])).toEqual([1]);
   });
 
-  test('array of numbers', () => {
+  test('deterministic shuffling with mocked Math.random', () => {
+    const spy = spyOn(Math, 'random').mockReturnValue(0);
     const arr = [1, 2, 3, 4, 5];
-    expect(shuffle(arr)).toEqual(expect.arrayContaining([1, 2, 3, 4, 5]));
-    expect(shuffle(arr)).not.toEqual([1, 2, 3, 4, 5]);
+    const result = shuffle(arr);
+
+    expect(result).toEqual([2, 3, 4, 5, 1]);
+    expect(result).toHaveLength(5);
+    expect(result).toEqual(expect.arrayContaining(arr));
     expect(arr).toEqual([1, 2, 3, 4, 5]);
+
+    spy.mockRestore();
   });
 });

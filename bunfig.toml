@@ -1,2 +1,2 @@
 [test]
-preload = ["./packages/std/vitest.setup.ts"]
+preload = ["./packages/std/bun-test.setup.ts"]

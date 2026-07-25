@@ -4,12 +4,7 @@
 
 **The Modern JavaScript Standard Library.**
 
-[![CI](https://github.com/Open-Tech-Foundation/js-std/actions/workflows/ci.yml/badge.svg)](https://github.com/Open-Tech-Foundation/js-std/actions/workflows/ci.yml)
-[![JSR Score](https://jsr.io/badges/@opentf/std/score)](https://jsr.io/@opentf/std)
-
-*Part of the <img src="https://raw.githubusercontent.com/Open-Tech-Foundation/website/3ed7ac70ec44465eec0f94e5185cb28a9b11ed07/static/img/OTF-Logo.svg" width="24" align="center" /> [Open Tech Foundation](https://github.com/Open-Tech-Foundation) ecosystem.*
-
-[**Website**](https://js-std.opentechf.org) | [**Docs**](./docs/README.md) | [**Playground**](https://js-std.opentechf.org/playground)
+[**Website**](https://js-std.opentechf.org) | [**Docs**](https://github.com/Open-Tech-Foundation/js-std/blob/main/packages/std/docs/README.md) | [**Playground**](https://js-std.opentechf.org/playground)
 
 </div>
 
@@ -75,7 +70,7 @@ stringWidth("🔥こんにちは"); //=> 12
 
 - 🎮 Try the [Interactive Playground](https://js-std.opentechf.org/playground) — visualize `idleRun`, `paceRun`, `batchRun`, `rateLimitRun` & `retryRun` in real time.
 - 🧪 Explore standout utilities: [`Decimal`](https://js-std.opentechf.org/docs/Maths/Decimal), [`color`](https://js-std.opentechf.org/docs/Colors/color), [`uuidv7`](https://js-std.opentechf.org/docs/Crypto/uuidv7), [`formatCurrency`](https://js-std.opentechf.org/docs/Number/formatCurrency), lazy [`Iterators`](https://js-std.opentechf.org/docs/Iter/mapIter) and [set math](https://js-std.opentechf.org/docs/Maths/isSubsetOf).
-- 📚 Browse every utility by category in the [Repository Documentation](./docs/README.md) (or on the [Website](https://js-std.opentechf.org)).
+- 📚 Browse every utility by category in the [Repository Documentation](https://github.com/Open-Tech-Foundation/js-std/blob/main/packages/std/docs/README.md) (or on the [Website](https://js-std.opentechf.org)).
 
 ---
 
