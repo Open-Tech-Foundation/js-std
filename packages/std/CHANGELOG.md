@@ -9,7 +9,7 @@
 ### Changed
 
 - Updated website `@opentf/std` dependency to `0.14.1`, pinned as a registry tarball URL so it always resolves to the published package.
-- Updated OTF Web framework dependencies (`@opentf/web` to `^0.22.0`, `@opentf/web-docs` to `^0.19.0`, `@opentf/web-cli` to `^1.20.0`).
+- Updated OTF Web framework dependencies (`@opentf/web` to `^0.23.0`, `@opentf/web-docs` to `^0.20.0`, `@opentf/web-cli` to `^1.21.0`).
 
 ### Fixed
 

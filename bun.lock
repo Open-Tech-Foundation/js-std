@@ -57,11 +57,11 @@
       "version": "1.0.0",
       "dependencies": {
         "@opentf/std": "https://registry.npmjs.org/@opentf/std/-/std-0.14.1.tgz",
-        "@opentf/web": "^0.22.0",
-        "@opentf/web-docs": "^0.19.0",
+        "@opentf/web": "^0.23.0",
+        "@opentf/web-docs": "^0.20.0",
       },
       "devDependencies": {
-        "@opentf/web-cli": "^1.20.0",
+        "@opentf/web-cli": "^1.21.0",
         "tailwindcss": "^4.3.3",
       },
     },
@@ -215,13 +215,13 @@
 
     "@opentf/std": ["@opentf/std@workspace:packages/std"],
 
-    "@opentf/web": ["@opentf/web@0.22.0", "", {}, "sha512-F6mG4WJUkUiIr0usQCiAcDeunDjdPHn4wxwWX/OitdOBke1W3r7/zykios3zYnxcTdF3sA3AqqtKmO790DN5Rg=="],
+    "@opentf/web": ["@opentf/web@0.23.0", "", {}, "sha512-imF0NIgIQrLDWiLejx7LnRm0WZaOpAOrCe7hzC5VIJLnYqkyQopOMHbcXIPBkaxQCj9XS2cYtpaXL3iJg4lL8Q=="],
 
-    "@opentf/web-cli": ["@opentf/web-cli@1.20.0", "", { "dependencies": { "@opentf/web-compiler": "0.11.0", "@tailwindcss/node": "4.2.2", "@tailwindcss/oxide": "4.2.2", "rolldown": "1.0.0-rc.17", "tailwindcss": "4.2.2" }, "peerDependencies": { "@opentf/web": "*" }, "bin": { "otfw": "src/cli.js" } }, "sha512-mIU8xobZM7UX/krCBDKMfdVp7lWMMKaQvE508IiStUDgUj5u8lKbN0b3Addy6SL1POmUp+OsdEyMIFLlJpDnDg=="],
+    "@opentf/web-cli": ["@opentf/web-cli@1.21.0", "", { "dependencies": { "@opentf/web-compiler": "0.11.0", "@tailwindcss/node": "4.2.2", "@tailwindcss/oxide": "4.2.2", "rolldown": "1.0.0-rc.17", "tailwindcss": "4.2.2" }, "peerDependencies": { "@opentf/web": "*" }, "bin": { "otfw": "src/cli.js" } }, "sha512-sfC5s8tQoppLB70X4Aie4eJdM6MsDk6c9+eI58ZH+6bTSL50fpZyllBVs5fGMNJ6og7wo86fT6mgHsWgiF/Ghg=="],
 
     "@opentf/web-compiler": ["@opentf/web-compiler@0.11.0", "", {}, "sha512-Q1/97a/I/yYX9FzY28HCc85d372KVUodxyyyT4PNXNFwgiA+Mgif8xf8c+dHcbCUyd8jkcSsI5/Emc7PRM7jNA=="],
 
-    "@opentf/web-docs": ["@opentf/web-docs@0.19.0", "", { "dependencies": { "pagefind": "^1.5.2" }, "peerDependencies": { "@opentf/web": "*" } }, "sha512-vhftukWws3Z30JbEKrxXiw3Jo6Pajx12FqrfcWjkef79T1pyIoyyqSn8Lc2AZLd8Jd8+2Xnty7nQHY+BdcfAxw=="],
+    "@opentf/web-docs": ["@opentf/web-docs@0.20.0", "", { "dependencies": { "pagefind": "^1.5.2" }, "peerDependencies": { "@opentf/web": "*" } }, "sha512-K2L+uHN9sDgqRo2+PlhdOZU7ycc5+YRHAePftvsC0zHgcS5hvcX03Mw6xituGWZ66+qSqRe+lKcY3cdQxoagwQ=="],
 
     "@oxc-project/types": ["@oxc-project/types@0.127.0", "", {}, "sha512-aIYXQBo4lCbO4z0R3FHeucQHpF46l2LbMdxRvqvuRuW2OxdnSkcng5B8+K12spgLDj93rtN3+J2Vac/TIO+ciQ=="],
 
