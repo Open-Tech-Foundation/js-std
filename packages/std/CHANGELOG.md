@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Documentation
+
+- Added links to local repository docs in README files for offline reference.
+
 ### Changed
 
 - Updated website `@opentf/std` dependency to `0.14.1`, pinned as a registry tarball URL so it always resolves to the published package.
