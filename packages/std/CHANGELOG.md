@@ -10,6 +10,7 @@
 
 - Updated website `@opentf/std` dependency to `0.14.1`, pinned as a registry tarball URL so it always resolves to the published package.
 - Updated OTF Web framework dependencies (`@opentf/web` to `^0.24.0`, `@opentf/web-docs` to `^0.21.0`, `@opentf/web-cli` to `^1.22.0`).
+- Removed unused `repl.css` stylesheet reference from website `index.html`.
 
 ### Fixed
 
