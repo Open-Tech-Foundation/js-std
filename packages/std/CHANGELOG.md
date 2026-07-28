@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Added
+
+- Added a cross-runtime test harness that bundles the full suite into a single ES2022 module with no `node:` builtins, so every spec can be executed on any runtime.
+
 ### Documentation
 
 - Added links to local repository docs in README files for offline reference.

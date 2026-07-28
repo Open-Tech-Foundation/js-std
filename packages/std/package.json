@@ -77,7 +77,10 @@
     "provenance": true
   },
   "devDependencies": {
+    "@sinonjs/fake-timers": "^15.4.0",
     "@types/node": "^25.6.0",
+    "@vitest/expect": "^4.1.10",
+    "@vitest/spy": "^4.1.10",
     "esbuild": "^0.28.0",
     "tsup": "^8.5.1",
     "typescript": "^6.0.3"
