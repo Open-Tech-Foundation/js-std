@@ -1,0 +1,66 @@
+import { Callout } from "@opentf/web-docs";
+
+🛑 Stops waiting on a promise once a signal aborts.
+
+<Callout type="warning">
+  This settles the promise you get back — it does **not** cancel the underlying work,
+  because a promise has no cancel. The original operation keeps running to completion;
+  you simply stop awaiting its result. Pass the signal into the operation itself (as
+  `fetch` accepts one) when the work must actually stop.
+</Callout>
+
+## Syntax
+
+```ts
+import { abortable } from '@opentf/std';
+
+abortable<T>(promise: Promise<T>, signal: AbortSignal): Promise<T>;
+```
+
+## Parameters
+
+| Name    | Type            | Description                    |
+| ------- | --------------- | ------------------------------ |
+| promise | `Promise<T>`    | The promise to wait on.        |
+| signal  | `AbortSignal`   | The signal that stops the wait. |
+
+## Returns
+
+A promise that settles with `promise`, or rejects with `signal.reason` if the signal aborts first. An already-aborted signal rejects immediately.
+
+A rejection arriving from the original promise *after* an abort is swallowed rather than surfacing as an unhandled rejection, since nothing is listening for it by then.
+
+## Examples
+
+```ts
+const controller = new AbortController();
+setTimeout(() => controller.abort(), 100);
+
+await abortable(slowOperation(), controller.signal); // rejects after 100ms
+```
+
+Whichever settles first wins:
+
+```ts
+await abortable(Promise.resolve('value'), controller.signal); //=> 'value'
+```
+
+### Actually stopping the work
+
+`abortable` only ends your wait. To stop the operation too, give it the same signal:
+
+```ts
+const controller = new AbortController();
+
+// `fetch` observes the signal, so the request itself is cancelled.
+await abortable(fetch(url, { signal: controller.signal }), controller.signal);
+
+// `sleep` observes it too.
+await abortable(sleep(5000, { signal: controller.signal }), controller.signal);
+```
+
+## Related
+
+- [sleep](/docs/Timing/sleep)
+- [timeoutRun](/docs/Flow/timeoutRun)
+- [withResolvers](/docs/Concurrency/withResolvers)

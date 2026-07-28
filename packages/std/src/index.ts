@@ -69,6 +69,7 @@ export { default as eachAsync } from './concurrency/eachAsync';
 export { default as flatMapAsync } from './concurrency/flatMapAsync';
 export { default as reduceAsync } from './concurrency/reduceAsync';
 export { default as withResolvers } from './concurrency/withResolvers';
+export { default as abortable } from './concurrency/abortable';
 
 // Flow
 export { default as idleRun } from './flow/idleRun';

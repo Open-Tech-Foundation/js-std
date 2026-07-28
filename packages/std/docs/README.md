@@ -75,6 +75,7 @@
 
 ## Concurrency
 
+- [abortable](./Concurrency/abortable.md)
 - [eachAsync](./Concurrency/eachAsync.md)
 - [filterAsync](./Concurrency/filterAsync.md)
 - [flatMapAsync](./Concurrency/flatMapAsync.md)

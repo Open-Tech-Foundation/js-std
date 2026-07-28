@@ -1,3 +1,5 @@
+import { Callout } from "@opentf/web-docs";
+
 😴 Suspends execution for a specified number of milliseconds.
 
 ## Syntax
@@ -5,16 +7,19 @@
 ```ts
 import { sleep } from '@opentf/std';
 
-sleep(ms: number = 0): Promise<void>;
+sleep(ms?: number, options?: { signal?: AbortSignal }): Promise<void>;
 ```
 
 ## Parameters
 
-- `ms`: The number of milliseconds to sleep. Default: `0`.
+| Name           | Type          | Default | Description                       |
+| -------------- | ------------- | ------- | --------------------------------- |
+| ms             | `number`      | `0`     | The number of milliseconds to sleep. |
+| options.signal | `AbortSignal` |         | Cancels the sleep when aborted.   |
 
 ## Returns
 
-A `Promise` that resolves after the specified delay.
+A `Promise` that resolves after the specified delay, or rejects with `signal.reason` if the signal aborts first.
 
 ## Examples
 
@@ -24,7 +29,32 @@ await sleep(1000); // Suspends execution for 1 second
 await sleep(0); // Resolves in the next event loop iteration
 ```
 
+### Cancelling a sleep
+
+Aborting rejects the promise and clears the pending timer, so a cancelled sleep does not hold the event loop open waiting to resolve something nobody is listening for.
+
+```ts
+const controller = new AbortController();
+setTimeout(() => controller.abort(), 100);
+
+await sleep(5000, { signal: controller.signal }); // rejects after 100ms
+```
+
+An already-aborted signal rejects immediately, without ever starting a timer:
+
+```ts
+const controller = new AbortController();
+controller.abort(new Error('cancelled'));
+
+await sleep(5000, { signal: controller.signal }); // rejects with that Error
+```
+
+<Callout type="info">
+  The rejection value is `signal.reason` — a `DOMException` named `AbortError` by default,
+  or whatever value was passed to `abort()`.
+</Callout>
+
 ## Related
 
+- [abortable](/docs/Concurrency/abortable)
 - [timeoutRun](/docs/Flow/timeoutRun)
-

@@ -214,12 +214,12 @@ describe('TtlCache', () => {
   });
 
   test('expires an entry once its lifetime passes', async () => {
-    const cache = new TtlCache<string, number>(20);
+    const cache = new TtlCache<string, number>(1);
 
     cache.set('a', 1);
     expect(cache.get('a')).toBe(1);
 
-    await sleep(40);
+    await sleep(50);
 
     expect(cache.get('a')).toBeUndefined();
     expect(cache.has('a')).toBe(false);
@@ -230,23 +230,38 @@ describe('TtlCache', () => {
     const cache = new TtlCache<string, number>(1000);
 
     cache.set('long', 1);
-    cache.set('short', 2, 20);
+    cache.set('short', 2, 1);
 
-    await sleep(40);
+    await sleep(50);
 
     expect(cache.get('long')).toBe(1);
     expect(cache.get('short')).toBeUndefined();
   });
 
   test('restarts the lifetime on rewrite', async () => {
-    const cache = new TtlCache<string, number>(40);
+    const cache = new TtlCache<string, number>(60_000);
 
     cache.set('a', 1);
-    await sleep(25);
-    cache.set('a', 2);
-    await sleep(25);
+    await sleep(20);
 
-    // Without the restart this would already have expired.
+    const beforeRewrite = cache.ttlOf('a') as number;
+    cache.set('a', 2);
+    const afterRewrite = cache.ttlOf('a') as number;
+
+    // Checked through the remaining lifetime rather than by waiting one out,
+    // so the assertion does not depend on timer precision.
+    expect(afterRewrite).toBeGreaterThan(beforeRewrite);
+    expect(cache.get('a')).toBe(2);
+  });
+
+  test('an entry rewritten past its lifetime is alive again', async () => {
+    const cache = new TtlCache<string, number>(1);
+
+    cache.set('a', 1);
+    await sleep(50);
+    expect(cache.get('a')).toBeUndefined();
+
+    cache.set('a', 2, 60_000);
     expect(cache.get('a')).toBe(2);
   });
 
@@ -276,22 +291,22 @@ describe('TtlCache', () => {
   });
 
   test('does not report an expired key as deleted', async () => {
-    const cache = new TtlCache<string, number>(20);
+    const cache = new TtlCache<string, number>(1);
 
     cache.set('a', 1);
-    await sleep(40);
+    await sleep(50);
 
     expect(cache.delete('a')).toBe(false);
   });
 
   test('prunes expired entries on demand', async () => {
-    const cache = new TtlCache<string, number>(20);
+    const cache = new TtlCache<string, number>(1);
 
     cache.set('a', 1);
     cache.set('b', 2);
-    cache.set('c', 3, 1000);
+    cache.set('c', 3, 60_000);
 
-    await sleep(40);
+    await sleep(50);
 
     expect(cache.prune()).toBe(2);
     expect(cache.prune()).toBe(0);
@@ -299,12 +314,12 @@ describe('TtlCache', () => {
   });
 
   test('omits expired entries from size and iteration', async () => {
-    const cache = new TtlCache<string, number>(20);
+    const cache = new TtlCache<string, number>(1);
 
     cache.set('a', 1);
-    cache.set('b', 2, 1000);
+    cache.set('b', 2, 60_000);
 
-    await sleep(40);
+    await sleep(50);
 
     expect(cache.size).toBe(1);
     expect([...cache.keys()]).toEqual(['b']);
@@ -314,12 +329,12 @@ describe('TtlCache', () => {
   });
 
   test('forEach visits only unexpired entries', async () => {
-    const cache = new TtlCache<string, number>(20);
+    const cache = new TtlCache<string, number>(1);
 
     cache.set('a', 1);
-    cache.set('b', 2, 1000);
+    cache.set('b', 2, 60_000);
 
-    await sleep(40);
+    await sleep(50);
 
     const seen: string[] = [];
     cache.forEach((_value, key) => seen.push(key));

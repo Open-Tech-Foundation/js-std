@@ -1,4 +1,5 @@
 export default {
+  abortable: 'abortable',
   filterAsync: 'filterAsync',
   flatMapAsync: 'flatMapAsync',
   eachAsync: 'eachAsync',

@@ -4,6 +4,7 @@
 
 ### Added
 
+- Added `abortable`, which stops waiting on a promise once an `AbortSignal` fires. It settles the returned promise only — the underlying work is not cancelled, since a promise has no cancel — and swallows a late rejection from the original rather than letting it surface unhandled.
 - Added a Cache module — `LruCache` and `TtlCache`. Both are `Map`-shaped. `LruCache` tracks recency through insertion order, so every operation is O(1) without a linked list, and offers `peek` for reads that must not disturb the eviction order. `TtlCache` expires lazily rather than scheduling a timer per entry, which would hold the event loop open.
 - Added a Streams module — `streamToText`, `streamToBytes`, `streamToArray`, `streamToLines`, `concatStreams` and `mergeStreams`. Built on `ReadableStream` and `TextDecoder` only, avoiding `TransformStream`, which is absent on some runtimes and would have thrown at import time.
 - Added a Semver module — `semverParse`, `semverFormat`, `semverIsValid`, `semverCompare`, `semverSort`, `semverIncrement` and `semverSatisfies`. `semverSatisfies` implements the full npm range grammar (comparators, `^`, `~`, wildcards, hyphen ranges, whitespace-joined sets and `||`), including the rule that withholds pre-releases from ranges that did not ask for one, with an `includePrerelease` opt-out.
@@ -15,12 +16,14 @@
 
 ### Documentation
 
+- Noted an ES-Runtime deviation found while testing `sleep`: `clearTimeout` cancels the callback but does not release the event-loop reference, so a process lingers until the original delay elapses. It affects process exit time only, never behaviour, and no utility relies on it.
 - Documented a new runtime deviation: ES-Runtime and LLRT ignore `TextDecoder`'s `stream: true` option, so a multi-byte character split across two chunks decodes as replacement characters. Affects `streamToText` and `streamToLines` on those runtimes only.
 - Added links to local repository docs in README files for offline reference.
 - Replaced the unevidenced runtime-agnosticism claim on the Environment Support page with measured per-runtime results, naming the cause of every failure and the utilities it affects.
 
 ### Changed
 
+- `sleep` now accepts an optional `AbortSignal`: `sleep(ms, { signal })`. Aborting rejects with `signal.reason` and clears the pending timer, and an already-aborted signal rejects without starting one. The one-argument form is unchanged.
 - Consolidated the cross-runtime tooling under `packages/std/__tests__/_matrix/`, instead of splitting it between the repository root and `packages/std/scripts/`.
 - Made the test suite runtime-agnostic. Four specs imported `bun:test` or `node:buffer` while the other 142 relied on injected globals; all 146 now resolve the same way, so the suite can run on any runtime providing the standard globals.
 - Updated website `@opentf/std` dependency to `0.14.1`, pinned as a registry tarball URL so it always resolves to the published package.
