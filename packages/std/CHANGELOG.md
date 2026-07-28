@@ -4,6 +4,7 @@
 
 ### Added
 
+- Added a Cache module — `LruCache` and `TtlCache`. Both are `Map`-shaped. `LruCache` tracks recency through insertion order, so every operation is O(1) without a linked list, and offers `peek` for reads that must not disturb the eviction order. `TtlCache` expires lazily rather than scheduling a timer per entry, which would hold the event loop open.
 - Added a Streams module — `streamToText`, `streamToBytes`, `streamToArray`, `streamToLines`, `concatStreams` and `mergeStreams`. Built on `ReadableStream` and `TextDecoder` only, avoiding `TransformStream`, which is absent on some runtimes and would have thrown at import time.
 - Added a Semver module — `semverParse`, `semverFormat`, `semverIsValid`, `semverCompare`, `semverSort`, `semverIncrement` and `semverSatisfies`. `semverSatisfies` implements the full npm range grammar (comparators, `^`, `~`, wildcards, hyphen ranges, whitespace-joined sets and `||`), including the rule that withholds pre-releases from ranges that did not ask for one, with an `includePrerelease` opt-out.
 - Added `encodeBase32` and `decodeBase32` (RFC 4648). The decoder accepts unpadded, lowercase and whitespaced input, so TOTP/2FA secrets can be passed in the form users are shown them.

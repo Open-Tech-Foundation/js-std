@@ -1,0 +1,71 @@
+import { Callout } from "@opentf/web-docs";
+
+🗃️ A fixed-capacity cache that evicts the least recently used entry once it is full.
+
+<Callout type="info">
+  Recency is tracked by `Map` insertion order — reading or writing a key moves it to the
+  end, so the oldest key is always the first the map yields. Every operation is O(1) with
+  no auxiliary linked list.
+</Callout>
+
+## Syntax
+
+```ts
+import { LruCache } from '@opentf/std';
+
+new LruCache<K, V>(maxSize: number);
+```
+
+## Parameters
+
+| Name    | Type     | Description                                  |
+| ------- | -------- | -------------------------------------------- |
+| maxSize | `number` | The number of entries to hold before evicting. |
+
+Throws a `RangeError` unless `maxSize` is a positive integer.
+
+## Members
+
+| Member              | Returns                       | Description                                        |
+| ------------------- | ----------------------------- | -------------------------------------------------- |
+| `get(key)`          | `V \| undefined`              | Reads a value **and** marks it most recently used. |
+| `peek(key)`         | `V \| undefined`              | Reads a value **without** affecting eviction order. |
+| `set(key, value)`   | `this`                        | Writes a value, marking it most recently used.      |
+| `has(key)`          | `boolean`                     | Checks a key. Does not count as a use.              |
+| `delete(key)`       | `boolean`                     | Removes a key.                                      |
+| `clear()`           | `void`                        | Removes every entry.                                |
+| `size`              | `number`                      | Entries currently held.                             |
+| `maxSize`           | `number`                      | The configured capacity.                            |
+| `keys()` / `values()` / `entries()` | iterator      | Least recently used first.                          |
+| `forEach(cb)`       | `void`                        | Visits every entry.                                 |
+
+## Examples
+
+```ts
+const cache = new LruCache<string, number>(2);
+
+cache.set('a', 1);
+cache.set('b', 2);
+cache.get('a');    // 'a' is now the most recently used
+cache.set('c', 3); // evicts 'b', not 'a'
+
+cache.has('b'); //=> false
+cache.has('a'); //=> true
+```
+
+`peek` inspects without disturbing what is about to be evicted:
+
+```ts
+cache.peek('a'); // does not count as a use
+```
+
+Iteration runs least recently used first, so the next eviction is at the front:
+
+```ts
+[...cache.keys()] //=> ['c', 'a']
+```
+
+## Related
+
+- [TtlCache](/docs/Cache/TtlCache)
+- [memoizeRun](/docs/Flow/memoizeRun)

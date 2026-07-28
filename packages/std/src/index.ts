@@ -244,6 +244,10 @@ export { default as streamToLines } from './streams/streamToLines';
 export { default as concatStreams } from './streams/concatStreams';
 export { default as mergeStreams } from './streams/mergeStreams';
 
+// Cache
+export { default as LruCache } from './cache/LruCache';
+export { default as TtlCache } from './cache/TtlCache';
+
 // Iter
 export { default as takeIter } from './iter/takeIter';
 export { default as dropIter } from './iter/dropIter';

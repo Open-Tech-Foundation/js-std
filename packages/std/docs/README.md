@@ -49,6 +49,11 @@
 - [isNil](./Assert/isNil.md)
 - [isUnorderedEqual](./Assert/isUnorderedEqual.md)
 
+## Cache
+
+- [LruCache](./Cache/LruCache.md)
+- [TtlCache](./Cache/TtlCache.md)
+
 ## Colors
 
 - [color](./Colors/color.md)

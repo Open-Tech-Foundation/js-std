@@ -1,0 +1,73 @@
+import { Callout } from "@opentf/web-docs";
+
+🗃️ A cache whose entries expire a fixed time after they are written.
+
+<Callout type="info">
+  No timers are used, deliberately — a timer per entry would hold the event loop open and
+  keep a process alive past its work. Expiry is lazy: an entry is dropped when it is next
+  looked at, and `size` and the iteration methods sweep before reporting.
+</Callout>
+
+## Syntax
+
+```ts
+import { TtlCache } from '@opentf/std';
+
+new TtlCache<K, V>(ttl: number);
+```
+
+## Parameters
+
+| Name | Type     | Description                                   |
+| ---- | -------- | --------------------------------------------- |
+| ttl  | `number` | How long an entry stays valid, in milliseconds. |
+
+Throws a `RangeError` unless `ttl` is a positive finite number.
+
+## Members
+
+| Member                   | Returns              | Description                                     |
+| ------------------------ | -------------------- | ----------------------------------------------- |
+| `get(key)`               | `V \| undefined`     | Reads a value, or `undefined` if expired.       |
+| `set(key, value, ttl?)`  | `this`               | Writes a value, optionally with its own lifetime. |
+| `has(key)`               | `boolean`            | Checks for an unexpired key.                    |
+| `ttlOf(key)`             | `number \| undefined` | Milliseconds left before the key expires.      |
+| `delete(key)`            | `boolean`            | Removes a key.                                  |
+| `clear()`                | `void`               | Removes every entry.                            |
+| `prune()`                | `number`             | Drops expired entries now; returns how many.    |
+| `size`                   | `number`             | Unexpired entries, after sweeping.              |
+| `defaultTtl`             | `number`             | The configured lifetime.                        |
+| `keys()` / `values()` / `entries()` | iterator  | Unexpired entries, in insertion order.          |
+
+## Examples
+
+```ts
+const cache = new TtlCache<string, number>(1000);
+
+cache.set('a', 1);
+cache.get('a'); //=> 1
+
+// ...over a second later
+cache.get('a'); //=> undefined
+```
+
+A per-entry lifetime overrides the default, and rewriting a key restarts it:
+
+```ts
+cache.set('short', 1, 50);   // expires in 50ms
+cache.set('a', 2);           // 'a' gets a fresh second
+```
+
+<Callout type="warning">
+  A cache that is written to but never read holds expired entries until something touches
+  it. Call `prune()` if that matters.
+</Callout>
+
+```ts
+cache.prune(); //=> 2  (the number removed)
+```
+
+## Related
+
+- [LruCache](/docs/Cache/LruCache)
+- [memoizeRun](/docs/Flow/memoizeRun)

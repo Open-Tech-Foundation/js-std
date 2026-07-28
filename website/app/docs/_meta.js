@@ -3,6 +3,7 @@ export default {
   'env-support': 'Environment Support',
   Array: 'Array',
   Assert: 'Assert',
+  Cache: 'Cache',
   Colors: 'Colors',
   Concurrency: 'Concurrency',
   Crypto: 'Crypto',
