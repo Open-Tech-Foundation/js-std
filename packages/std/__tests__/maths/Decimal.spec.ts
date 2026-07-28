@@ -1,5 +1,4 @@
-import { describe, expect, test } from 'bun:test';
-import Decimal from '../../src/maths/Decimal';
+import { Decimal } from '../../src';
 
 describe('Decimal > Construction', () => {
   test('constructs from string', () => {

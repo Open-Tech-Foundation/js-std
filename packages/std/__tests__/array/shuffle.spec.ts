@@ -1,4 +1,3 @@
-import { describe, expect, spyOn, test } from 'bun:test';
 import { shuffle } from '../../src';
 
 describe('Array > shuffle', () => {
@@ -11,7 +10,7 @@ describe('Array > shuffle', () => {
   });
 
   test('deterministic shuffling with mocked Math.random', () => {
-    const spy = spyOn(Math, 'random').mockReturnValue(0);
+    const spy = vi.spyOn(Math, 'random').mockReturnValue(0);
     const arr = [1, 2, 3, 4, 5];
     const result = shuffle(arr);
 
