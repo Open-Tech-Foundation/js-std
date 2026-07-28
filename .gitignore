@@ -23,7 +23,7 @@ play.js
 # Runtime matrix: per-runtime results are CI artifacts, only the aggregated
 # runtime-matrix.json is committed. The bundler entry is temporary.
 results/
-.test-bundle/
+packages/std/__tests__/_matrix/bundle/
 .test-bundle-entry.ts
 
 .next

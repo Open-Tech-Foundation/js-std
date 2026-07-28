@@ -14,6 +14,7 @@
 
 ### Changed
 
+- Consolidated the cross-runtime tooling under `packages/std/__tests__/_matrix/`, instead of splitting it between the repository root and `packages/std/scripts/`.
 - Made the test suite runtime-agnostic. Four specs imported `bun:test` or `node:buffer` while the other 142 relied on injected globals; all 146 now resolve the same way, so the suite can run on any runtime providing the standard globals.
 - Updated website `@opentf/std` dependency to `0.14.1`, pinned as a registry tarball URL so it always resolves to the published package.
 - Updated OTF Web framework dependencies (`@opentf/web` to `^0.24.0`, `@opentf/web-docs` to `^0.21.0`, `@opentf/web-cli` to `^1.22.0`).
@@ -23,6 +24,7 @@
 
 - Fixed the Cloudflare website build failing with `Cannot find module '@opentf/std'`. A plain `0.14.1` range matched the workspace version, so bun linked `packages/std` instead of the registry package, and its gitignored `dist/` is absent in CI.
 - Fixed flaky `shuffle` test by mocking `Math.random` with `spyOn` for deterministic testing.
+- Fixed the runtime matrix workflow failing to locate the test bundle. The artifact was uploaded with two paths, so its root became their common ancestor and it extracted to the wrong directory.
 - Fixed `rateLimitRun` scheduling a timer for every queued call instead of one per drain. `processQueue` runs on each call and cleared `timeoutId` at the top without clearing the timer it referred to, so the pending timer was orphaned and the next queued call scheduled another. A burst of 5,000 queued calls held 4,990 live timers instead of 1. Rate limiting, ordering and timing are unchanged.
 
 

@@ -7,17 +7,17 @@
  *
  * Three modes:
  *
- *   tsr matrix                     (builds the bundle, then sweeps)
- *   node runtime-matrix.js         (sweep only, bundle must already exist)
+ *   tsr matrix       (builds the bundle, then sweeps)
+ *   node packages/std/__tests__/_matrix/runtime-matrix.js         (sweep only, bundle must already exist)
  *       Local sweep. Runs every engine found on PATH. Handy for a quick check,
  *       but it cannot cover multiple Node majors — CI is the source of truth.
  *
- *   node runtime-matrix.js --engine node --id node20 --label "Node.js 20" \
+ *   node packages/std/__tests__/_matrix/runtime-matrix.js --engine node --id node20 --label "Node.js 20" \
  *       --out results/node20.json
  *       Single runtime, for one CI matrix job.
  *
- *   node runtime-matrix.js --aggregate results/
- *       Merges per-runtime results into `runtime-matrix.json` and splices the
+ *   node packages/std/__tests__/_matrix/runtime-matrix.js --aggregate results/
+ *       Merges per-runtime results into `results.json` and splices the
  *       docs page. Rewrites nothing when the numbers are unchanged, so CI only
  *       raises a PR on real drift.
  *
@@ -27,9 +27,10 @@ import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 
-const ROOT = import.meta.dirname;
-const STD = path.join(ROOT, 'packages', 'std');
-const REPORT = path.join(ROOT, 'runtime-matrix.json');
+const HERE = import.meta.dirname;
+const STD = path.resolve(HERE, '..', '..');
+const ROOT = path.resolve(STD, '..', '..');
+const REPORT = path.join(HERE, 'results.json');
 const DOC = path.join(
   ROOT,
   'website',
@@ -40,10 +41,8 @@ const DOC = path.join(
 );
 
 const BUNDLE =
-  process.env.MATRIX_BUNDLE ??
-  path.join(STD, '.test-bundle', 'test-bundle.mjs');
-const PROBE =
-  process.env.MATRIX_PROBE ?? path.join(STD, 'scripts', 'runtime-probe.mjs');
+  process.env.MATRIX_BUNDLE ?? path.join(HERE, 'bundle', 'test-bundle.mjs');
+const PROBE = process.env.MATRIX_PROBE ?? path.join(HERE, 'probe.mjs');
 
 const ENGINES = {
   node: { label: 'Node.js', bin: 'node', args: (f) => [f] },
@@ -479,8 +478,8 @@ if (args.aggregate) {
     // hand-generate results that only CI can produce.
     console.log(
       drifted
-        ? '\nNumbers differ from the committed runtime-matrix.json:'
-        : '\nNo drift from the committed runtime-matrix.json.',
+        ? '\nNumbers differ from the committed results.json:'
+        : '\nNo drift from the committed results.json.',
     );
     for (const l of driftLines) console.log(`  ${l.replace(/\*\*/g, '')}`);
     if (drifted)
@@ -488,14 +487,12 @@ if (args.aggregate) {
         '\nInformational — the matrix is refreshed automatically after merge.',
       );
   } else if (!drifted) {
-    console.log('\nNo drift — runtime-matrix.json left untouched.');
+    console.log('\nNo drift — results.json left untouched.');
   } else {
     fs.writeFileSync(REPORT, `${JSON.stringify(report, null, 2)}\n`);
     formatWithBiome(REPORT);
     spliceDoc(report);
-    console.log(
-      '\nNumbers drifted — updated runtime-matrix.json and the docs page.',
-    );
+    console.log('\nNumbers drifted — updated results.json and the docs page.');
   }
 
   const markdown = `## Runtime compatibility\n\n${renderSection(report)}\n${driftLines.length ? `\n### Changes vs committed matrix\n\n${driftLines.join('\n')}\n` : ''}`;
@@ -556,6 +553,6 @@ if (args.aggregate) {
   console.log(`\n${renderSection(report)}`);
   console.log(
     '\nLocal run only — not written to disk. CI covers every Node major and is the\n' +
-      'source of truth for runtime-matrix.json. Use --aggregate to publish.',
+      'source of truth for results.json. Use --aggregate to publish.',
   );
 }

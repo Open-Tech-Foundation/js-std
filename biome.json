@@ -7,7 +7,7 @@
       ".next",
       "apps",
       "packages/std/dist",
-      "packages/std/.test-bundle",
+      "packages/std/__tests__/_matrix/bundle",
       "results",
       "scripts",
       "packages/std/scripts",

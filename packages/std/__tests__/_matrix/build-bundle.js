@@ -5,7 +5,8 @@
  * matrix measures the artifact users actually install — that also catches
  * minification, tree-shaking and export-map regressions.
  *
- * Output goes to `.test-bundle/` rather than `dist/`, because package.json ships
+ * Output goes to `bundle/` beside this script rather than `dist/`, because
+ * package.json ships
  * `files: ["dist"]` and a 700 KB test bundle must never reach npm.
  * Runnable by any ES2022 runtime with no module resolution, no `node:` builtins
  * and no test runner of its own.
@@ -14,13 +15,16 @@ import fs from 'node:fs';
 import path from 'node:path';
 import esbuild from 'esbuild';
 
-const stdDir = path.resolve(import.meta.dirname, '..');
+const here = import.meta.dirname;
+const stdDir = path.resolve(here, '..', '..');
 const testsDir = path.join(stdDir, '__tests__');
-const outfile = path.join(stdDir, '.test-bundle', 'test-bundle.mjs');
+const outfile = path.join(here, 'bundle', 'test-bundle.mjs');
 const distEntry = path.join(stdDir, 'dist', 'index.js');
 
 if (!fs.existsSync(distEntry)) {
-  throw new Error(`Missing ${distEntry}. Run \`bun run build\` in packages/std first.`);
+  throw new Error(
+    `Missing ${distEntry}. Run \`bun run build\` in packages/std first.`,
+  );
 }
 
 function findSpecs(dir, found = []) {
@@ -76,7 +80,7 @@ try {
     // esbuild drops all 146 imports and the bundle silently runs nothing.
     ignoreAnnotations: true,
     alias: {
-      util: path.join(stdDir, 'scripts', 'util-stub.js'),
+      util: path.join(here, 'util-stub.js'),
     },
     plugins: [
       {
@@ -96,9 +100,13 @@ try {
 }
 
 const { size } = fs.statSync(outfile);
-const leaked = [...fs.readFileSync(outfile, 'utf-8').matchAll(/["']node:[a-z_/]+["']/g)];
+const leaked = [
+  ...fs.readFileSync(outfile, 'utf-8').matchAll(/["']node:[a-z_/]+["']/g),
+];
 if (leaked.length > 0) {
-  throw new Error(`Bundle references Node builtins: ${[...new Set(leaked.map((m) => m[0]))].join(', ')}`);
+  throw new Error(
+    `Bundle references Node builtins: ${[...new Set(leaked.map((m) => m[0]))].join(', ')}`,
+  );
 }
 
 console.log(

@@ -8,9 +8,12 @@
 const has = (v) => typeof v !== 'undefined' && v !== null;
 
 const caps = {
-  'Intl.Segmenter': has(globalThis.Intl) && typeof globalThis.Intl.Segmenter === 'function',
-  'Intl.NumberFormat': has(globalThis.Intl) && typeof globalThis.Intl.NumberFormat === 'function',
-  'crypto.getRandomValues': typeof globalThis.crypto?.getRandomValues === 'function',
+  'Intl.Segmenter':
+    has(globalThis.Intl) && typeof globalThis.Intl.Segmenter === 'function',
+  'Intl.NumberFormat':
+    has(globalThis.Intl) && typeof globalThis.Intl.NumberFormat === 'function',
+  'crypto.getRandomValues':
+    typeof globalThis.crypto?.getRandomValues === 'function',
   'crypto.randomUUID': typeof globalThis.crypto?.randomUUID === 'function',
   'crypto.subtle': has(globalThis.crypto?.subtle),
   Blob: typeof globalThis.Blob === 'function',

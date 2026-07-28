@@ -36,13 +36,13 @@ deps = ["build", "website#build"]
 
 # Bundles the whole spec suite into one runtime-agnostic ESM file.
 [tasks."matrix:bundle"]
-run = "bun scripts/build-test-bundle.js"
+run = "bun __tests__/_matrix/build-bundle.js"
 dir = "packages/std"
 
 # Local sweep over every runtime on PATH. Read-only; CI is the source of truth
 # because it covers multiple Node majors.
 [tasks."matrix:run"]
-run = "node runtime-matrix.js"
+run = "node packages/std/__tests__/_matrix/runtime-matrix.js"
 
 [tasks.matrix]
 deps = ["build", "matrix:bundle", "matrix:run"]
