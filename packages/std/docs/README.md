@@ -269,6 +269,7 @@
 - [stringReverse](./String/stringReverse.md)
 - [stringWidth](./String/stringWidth.md)
 - [stripANSI](./String/stripANSI.md)
+- [stripDiacritics](./String/stripDiacritics.md)
 - [titleCase](./String/titleCase.md)
 - [trim](./String/trim.md)
 - [truncate](./String/truncate.md)

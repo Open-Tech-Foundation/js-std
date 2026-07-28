@@ -4,6 +4,7 @@
 
 ### Added
 
+- Added `stripDiacritics`, which removes accents from Latin text for search normalisation and ASCII-only fields. Marks are stripped only where they sit on a Latin letter, so Cyrillic and Greek pass through untouched — `й` decomposes to `и` plus a breve, but the two are separate letters, and collapsing them would misspell the word.
 - Added `abortable`, which stops waiting on a promise once an `AbortSignal` fires. It settles the returned promise only — the underlying work is not cancelled, since a promise has no cancel — and swallows a late rejection from the original rather than letting it surface unhandled.
 - Added a Cache module — `LruCache` and `TtlCache`. Both are `Map`-shaped. `LruCache` tracks recency through insertion order, so every operation is O(1) without a linked list, and offers `peek` for reads that must not disturb the eviction order. `TtlCache` expires lazily rather than scheduling a timer per entry, which would hold the event loop open.
 - Added a Streams module — `streamToText`, `streamToBytes`, `streamToArray`, `streamToLines`, `concatStreams` and `mergeStreams`. Built on `ReadableStream` and `TextDecoder` only, avoiding `TransformStream`, which is absent on some runtimes and would have thrown at import time.
@@ -32,6 +33,7 @@
 
 ### Fixed
 
+- Fixed `slugify` dropping letters that Unicode cannot decompose. It normalised with `NFD` and then removed anything outside `a–z0–9`, but `ø`, `ß`, `œ`, `ł`, `đ`, `æ` and `þ` are atomic characters with no decomposition, so they were deleted rather than transliterated: `Straße` slugged to `strae`, `Ølberg` to `lberg` and `Þór` to `or`. Any Nordic, Polish, German or Croatian name lost letters. It now returns `strasse`, `olberg` and `thor`. **Slugs generated before this change will not match ones generated after it**, so stored slugs need regenerating.
 - Fixed the Cloudflare website build failing with `Cannot find module '@opentf/std'`. A plain `0.14.1` range matched the workspace version, so bun linked `packages/std` instead of the registry package, and its gitignored `dist/` is absent in CI.
 - Fixed flaky `shuffle` test by mocking `Math.random` with `spyOn` for deterministic testing.
 - Fixed the runtime matrix workflow failing to locate the test bundle. The artifact was uploaded with two paths, so its root became their common ancestor and it extracted to the wrong directory.

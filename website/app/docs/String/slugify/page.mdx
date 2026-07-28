@@ -1,13 +1,24 @@
-Converts a string into a URL-friendly slug. Handles accents and special characters.
+import { Callout } from "@opentf/web-docs";
 
+Converts a string into a URL-friendly slug. Handles accents and special characters.
 
 ## Syntax
 
 ```ts
 import { slugify } from "@opentf/std";
 
-slugify(str: string)
+slugify(str: string): string;
 ```
+
+## Parameters
+
+| Name | Type     | Description            |
+| ---- | -------- | ---------------------- |
+| str  | `string` | The string to slugify. |
+
+## Returns
+
+A lowercase, hyphen-separated slug containing only `a–z`, `0–9` and `-`.
 
 ## Examples
 
@@ -19,3 +30,19 @@ slugify('Café au Lait'); //=> 'cafe-au-lait'
 slugify('Special characters like @#$%'); //=> 'special-characters-like'
 ```
 
+<Callout type="info">
+  Diacritics are transliterated rather than stripped, so a letter with no Unicode
+  decomposition becomes its ASCII equivalent instead of being dropped from the slug.
+</Callout>
+
+```ts
+slugify('Straße'); //=> 'strasse'
+slugify('Ølberg'); //=> 'olberg'
+slugify('Łódź');   //=> 'lodz'
+slugify('Þór');    //=> 'thor'
+```
+
+## Related
+
+- [stripDiacritics](/docs/String/stripDiacritics)
+- [kebabCase](/docs/String/kebabCase)

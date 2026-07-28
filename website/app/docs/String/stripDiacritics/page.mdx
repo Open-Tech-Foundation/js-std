@@ -1,0 +1,78 @@
+import { Callout } from "@opentf/web-docs";
+
+🔤 Removes accents and other diacritics from Latin text, leaving the base letters.
+
+<Callout type="info">
+  Case is preserved — this normalises characters, it does not transform case.
+</Callout>
+
+## Syntax
+
+```ts
+import { stripDiacritics } from '@opentf/std';
+
+stripDiacritics(str: string): string;
+```
+
+## Parameters
+
+| Name | Type     | Description             |
+| ---- | -------- | ----------------------- |
+| str  | `string` | The string to normalise. |
+
+## Returns
+
+The string with its diacritics removed.
+
+## Examples
+
+```ts
+stripDiacritics('José')      //=> 'Jose'
+stripDiacritics('Ångström')  //=> 'Angstrom'
+stripDiacritics('crème brûlée') //=> 'creme brulee'
+```
+
+### Letters with no decomposition
+
+Unicode normalisation splits a character into a base letter plus combining marks, which handles `é`, `ü` and `ñ`. But a letter formed with a stroke or a ligature is **atomic** — it has no decomposition, so normalising leaves it untouched and a naive ASCII filter deletes it outright. These are transliterated instead:
+
+```ts
+stripDiacritics('Straße') //=> 'Strasse'   (not 'Strae')
+stripDiacritics('Ølberg') //=> 'Olberg'    (not 'lberg')
+stripDiacritics('Œuvre')  //=> 'Oeuvre'    (not 'uvre')
+stripDiacritics('Łódź')   //=> 'Lodz'      (not 'odz')
+stripDiacritics('Đorđe')  //=> 'Dorde'     (not 'ore')
+stripDiacritics('Þór')    //=> 'Thor'      (not 'or')
+```
+
+### Other scripts are left alone
+
+<Callout type="warning">
+  Marks are only stripped when they sit on a Latin letter. A mark that is an accent in
+  Latin can be part of the letter itself elsewhere — Cyrillic `й` decomposes to `и` plus
+  a breve, and `ё` to `е` plus a diaeresis, but those are separate letters of the
+  alphabet. Stripping them would turn `Йогурт` into `Иогурт`, a misspelling.
+</Callout>
+
+```ts
+stripDiacritics('Йогурт') //=> 'Йогурт'  (unchanged)
+stripDiacritics('Ελλάδα') //=> 'Ελλάδα'  (unchanged)
+stripDiacritics('日本語')  //=> '日本語'   (unchanged)
+
+stripDiacritics('Café Йогурт') //=> 'Cafe Йогурт'
+```
+
+### Accent-insensitive search
+
+```ts
+const matches = (a, b) =>
+  stripDiacritics(a).toLowerCase() === stripDiacritics(b).toLowerCase();
+
+matches('jose', 'José')   //=> true
+matches('MALMO', 'Malmö') //=> true
+```
+
+## Related
+
+- [slugify](/docs/String/slugify)
+- [stripANSI](/docs/String/stripANSI)

@@ -16,6 +16,7 @@ export default {
   stringReverse: 'stringReverse',
   stringWidth: 'stringWidth',
   stripANSI: 'stripANSI',
+  stripDiacritics: 'stripDiacritics',
   titleCase: 'titleCase',
   trim: 'trim',
   truncate: 'truncate',
