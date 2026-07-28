@@ -95,9 +95,13 @@
 ## Encoding
 
 - [bytesToString](./Encoding/bytesToString.md)
+- [decodeBase32](./Encoding/decodeBase32.md)
+- [decodeBase58](./Encoding/decodeBase58.md)
 - [decodeBase64](./Encoding/decodeBase64.md)
 - [decodeBase64Url](./Encoding/decodeBase64Url.md)
 - [decodeHex](./Encoding/decodeHex.md)
+- [encodeBase32](./Encoding/encodeBase32.md)
+- [encodeBase58](./Encoding/encodeBase58.md)
 - [encodeBase64](./Encoding/encodeBase64.md)
 - [encodeBase64Url](./Encoding/encodeBase64Url.md)
 - [encodeHex](./Encoding/encodeHex.md)

@@ -1,0 +1,47 @@
+import { Callout } from "@opentf/web-docs";
+
+🪙 Decodes a Base58 string using the Bitcoin alphabet.
+
+<Callout type="warning">
+  Base58 is case-sensitive, and `0`, `O`, `I` and `l` are not part of the alphabet, so they
+  are rejected rather than silently corrected to their look-alikes.
+</Callout>
+
+## Syntax
+
+```ts
+import { decodeBase58 } from '@opentf/std';
+
+decodeBase58(str: string): Uint8Array;
+```
+
+## Parameters
+
+| Name | Type     | Description                  |
+| ---- | -------- | ---------------------------- |
+| str  | `string` | The Base58 string to decode. |
+
+## Returns
+
+The decoded bytes as a `Uint8Array`.
+
+Throws if the string holds a character outside the alphabet.
+
+## Examples
+
+```ts
+decodeBase58('9Ajdvzr')         //=> Uint8Array [72, 101, 108, 108, 111]
+bytesToString(decodeBase58('StV1DL6CwTryKyV')) //=> 'hello world'
+```
+
+Leading `1`s decode back to leading zero bytes:
+
+```ts
+decodeBase58('112') //=> Uint8Array [0, 0, 1]
+```
+
+## Related
+
+- [encodeBase58](/docs/Encoding/encodeBase58)
+- [decodeBase32](/docs/Encoding/decodeBase32)
+- [decodeBase64Url](/docs/Encoding/decodeBase64Url)

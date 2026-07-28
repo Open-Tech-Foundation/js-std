@@ -1,0 +1,49 @@
+import { Callout } from "@opentf/web-docs";
+
+🔢 Encodes bytes to a Base32 string using the standard RFC 4648 alphabet.
+
+<Callout type="info">
+  This is the encoding used for TOTP/2FA shared secrets, which are normally exchanged
+  unpadded — pass `{ pad: false }` for those.
+</Callout>
+
+## Syntax
+
+```ts
+import { encodeBase32 } from '@opentf/std';
+
+encodeBase32(
+  bytes: Uint8Array | ArrayBuffer,
+  options?: { pad?: boolean },
+): string;
+```
+
+## Parameters
+
+| Name          | Type                       | Default | Description                    |
+| ------------- | -------------------------- | ------- | ------------------------------ |
+| bytes         | `Uint8Array \| ArrayBuffer` |         | The bytes to encode.           |
+| options.pad   | `boolean`                  | `true`  | Append `=` padding to a multiple of 8 characters. |
+
+## Returns
+
+The Base32 string, using the alphabet `A–Z` and `2–7`.
+
+## Examples
+
+```ts
+encodeBase32(new Uint8Array([72, 101, 108, 108, 111])) //=> 'JBSWY3DP'
+encodeBase32(stringToBytes('foobar'))                  //=> 'MZXW6YTBOI======'
+```
+
+Unpadded, as TOTP secrets are usually shared:
+
+```ts
+encodeBase32(stringToBytes('foobar'), { pad: false }) //=> 'MZXW6YTBOI'
+```
+
+## Related
+
+- [decodeBase32](/docs/Encoding/decodeBase32)
+- [encodeBase58](/docs/Encoding/encodeBase58)
+- [encodeBase64](/docs/Encoding/encodeBase64)

@@ -1,0 +1,48 @@
+import { Callout } from "@opentf/web-docs";
+
+🔢 Decodes a Base32 string using the standard RFC 4648 alphabet.
+
+<Callout type="info">
+  Padding is optional, whitespace is ignored and lowercase input is accepted, so TOTP/2FA
+  secrets can be passed in the form users normally see them.
+</Callout>
+
+## Syntax
+
+```ts
+import { decodeBase32 } from '@opentf/std';
+
+decodeBase32(str: string): Uint8Array;
+```
+
+## Parameters
+
+| Name | Type     | Description                   |
+| ---- | -------- | ----------------------------- |
+| str  | `string` | The Base32 string to decode.  |
+
+## Returns
+
+The decoded bytes as a `Uint8Array`.
+
+Throws if the string is truncated (a length of 1, 3 or 6 modulo 8 cannot come from whole bytes), if padding appears anywhere but at the end, or if a character is outside the alphabet — note that `0`, `1` and `8` are **not** part of RFC 4648 Base32.
+
+## Examples
+
+```ts
+decodeBase32('JBSWY3DP') //=> Uint8Array [72, 101, 108, 108, 111]
+```
+
+Lenient about the forms a secret gets copied in:
+
+```ts
+bytesToString(decodeBase32('MZXW6YTBOI======')) //=> 'foobar'
+bytesToString(decodeBase32('MZXW6YTBOI'))       //=> 'foobar'
+bytesToString(decodeBase32('mzxw 6ytb oi'))     //=> 'foobar'
+```
+
+## Related
+
+- [encodeBase32](/docs/Encoding/encodeBase32)
+- [decodeBase58](/docs/Encoding/decodeBase58)
+- [decodeBase64](/docs/Encoding/decodeBase64)
