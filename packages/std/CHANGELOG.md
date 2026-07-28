@@ -13,7 +13,7 @@
 - Added `encodeBase58` and `decodeBase58` (Bitcoin alphabet), for identifiers that must survive being read, typed or double-click selected by a human — Bitcoin and Solana addresses, IPFS CIDv0 hashes and short public IDs.
 - Added `timingSafeEqual`, a constant-time comparison for secrets. Verifying an `hmacSHA256`/`hmacSHA512` digest with `===` returns on the first differing byte, and that timing difference lets an attacker recover the expected digest one byte at a time.
 - Added a cross-runtime test harness that bundles the full suite into a single ES2022 module with no `node:` builtins, so every spec can be executed on any runtime.
-- Added a runtime compatibility matrix that runs the suite on Node.js 20/22/24, Bun, Deno, ES-Runtime and LLRT, and refreshes the published results when they drift.
+- Added a runtime compatibility matrix that runs the suite on Node.js 20/22/24/26, Bun, Deno, ES-Runtime and LLRT, and refreshes the published results when they drift.
 
 ### Documentation
 

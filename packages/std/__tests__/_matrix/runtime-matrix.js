@@ -58,6 +58,7 @@ const ORDER = [
   'node20',
   'node22',
   'node24',
+  'node26',
   'node',
   'bun',
   'deno',

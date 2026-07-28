@@ -78,6 +78,7 @@ jobs:
           - { id: node20, engine: node, label: 'Node.js 20', node: '20' }
           - { id: node22, engine: node, label: 'Node.js 22', node: '22' }
           - { id: node24, engine: node, label: 'Node.js 24', node: '24' }
+          - { id: node26, engine: node, label: 'Node.js 26', node: '26' }
           - { id: bun, engine: bun, label: 'Bun' }
           - { id: deno, engine: deno, label: 'Deno' }
           - { id: esrun, engine: esrun, label: 'ES-Runtime' }
@@ -91,7 +92,7 @@ jobs:
           path: packages/std/__tests__/_matrix/bundle
 
       # Node is needed to drive runtime-matrix.js itself, whichever runtime is
-      # under test. For the node20/22/24 jobs this IS the runtime under test.
+      # under test. For the node20/22/24/26 jobs this IS the runtime under test.
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node || '22' }}
