@@ -1,0 +1,79 @@
+import { Callout } from "@opentf/web-docs";
+
+🏷️ Checks whether a version satisfies a range.
+
+Supports the full npm range grammar: comparators (`>`, `>=`, `<`, `<=`, `=`), caret (`^1.2.3`) and tilde (`~1.2.3`) ranges, wildcards (`1.x`, `1.2.*`, `*`), hyphen ranges (`1.2.3 - 2.3.4`), whitespace-joined sets that must all hold, and `||` between alternatives.
+
+<Callout type="warning">
+  A pre-release only satisfies a range when some comparator in the matching set names a
+  pre-release on the same `major.minor.patch`. Without that rule, `^1.2.3` would quietly
+  pick up `2.0.0-alpha.1`, which is unreleased and by definition unstable.
+</Callout>
+
+## Syntax
+
+```ts
+import { semverSatisfies } from '@opentf/std';
+
+semverSatisfies(
+  version: string,
+  range: string,
+  options?: { includePrerelease?: boolean },
+): boolean;
+```
+
+## Parameters
+
+| Name                       | Type      | Default | Description                            |
+| -------------------------- | --------- | ------- | -------------------------------------- |
+| version                    | `string`  |         | The version to test.                   |
+| range                      | `string`  |         | The range to test against.             |
+| options.includePrerelease  | `boolean` | `false` | Match pre-releases anywhere in the range. |
+
+## Returns
+
+`true` if the version satisfies the range. Throws a `TypeError` if either the version or the range cannot be parsed.
+
+## Supported range syntax
+
+| Range             | Means                      |
+| ----------------- | -------------------------- |
+| `1.2.3`, `=1.2.3` | exactly that version       |
+| `^1.2.3`          | `>=1.2.3 <2.0.0`           |
+| `^0.2.3`          | `>=0.2.3 <0.3.0`           |
+| `^0.0.3`          | `>=0.0.3 <0.0.4`           |
+| `~1.2.3`          | `>=1.2.3 <1.3.0`           |
+| `1.2.x`, `1.2`    | `>=1.2.0 <1.3.0`           |
+| `1.x`, `1`        | `>=1.0.0 <2.0.0`           |
+| `*`, `''`         | any stable release         |
+| `1.2.3 - 2.3.4`   | `>=1.2.3 <=2.3.4`          |
+| `>=1.2.3 <2.0.0`  | both must hold             |
+| `^1.2.3 \|\| ^2.0.0` | either may hold         |
+
+Below `1.0.0` the caret pins to the left-most non-zero segment, since a `0.x` minor bump is allowed to break.
+
+## Examples
+
+```ts
+semverSatisfies('1.2.5', '^1.2.3') //=> true
+semverSatisfies('2.0.0', '^1.2.3') //=> false
+semverSatisfies('1.2.7', '~1.2.3') //=> true
+
+semverSatisfies('1.5.0', '>=1.2.3 <2.0.0 || 3.x') //=> true
+semverSatisfies('1.2.3', '1.2.3 - 2.3.4')         //=> true
+```
+
+Pre-releases are withheld unless the range asked for one:
+
+```ts
+semverSatisfies('2.0.0-alpha', '>=1.0.0')     //=> false
+semverSatisfies('1.2.3-rc.1', '>=1.2.3-rc.1') //=> true
+semverSatisfies('1.2.3-rc.1', '^1.2.3-alpha') //=> true
+
+semverSatisfies('2.0.0-alpha', '>=1.0.0', { includePrerelease: true }) //=> true
+```
+
+## Related
+
+- [semverCompare](/docs/Semver/semverCompare)
+- [semverIsValid](/docs/Semver/semverIsValid)

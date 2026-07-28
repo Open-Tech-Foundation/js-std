@@ -13,6 +13,7 @@ export default {
   Maths: 'Maths',
   Number: 'Number',
   Object: 'Object',
+  Semver: 'Semver',
   String: 'String',
   Timing: 'Timing',
   Types: 'Types',

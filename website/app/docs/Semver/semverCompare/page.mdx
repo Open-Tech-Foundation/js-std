@@ -1,0 +1,48 @@
+import { Callout } from "@opentf/web-docs";
+
+🏷️ Compares two versions by SemVer precedence, for use as an `Array#sort` comparator.
+
+<Callout type="info">
+  Build metadata is ignored, as the specification requires, so `1.0.0+a` and `1.0.0+b`
+  compare equal. A pre-release ranks below the release it precedes.
+</Callout>
+
+## Syntax
+
+```ts
+import { semverCompare } from '@opentf/std';
+
+semverCompare(a: string, b: string): -1 | 0 | 1;
+```
+
+## Parameters
+
+| Name | Type     | Description         |
+| ---- | -------- | ------------------- |
+| a    | `string` | The first version.  |
+| b    | `string` | The second version. |
+
+## Returns
+
+`-1` if `a` is lower, `1` if `a` is higher, `0` if they are equal in precedence.
+
+Throws a `TypeError` if either string is not a valid version.
+
+## Examples
+
+```ts
+semverCompare('1.2.3', '1.10.0')   //=> -1  (segments compare numerically)
+semverCompare('2.0.0', '2.0.0-rc.1') //=> 1
+semverCompare('1.0.0+a', '1.0.0+b')  //=> 0
+```
+
+As a sort comparator:
+
+```ts
+['1.10.0', '1.2.3'].sort(semverCompare) //=> ['1.2.3', '1.10.0']
+```
+
+## Related
+
+- [semverSort](/docs/Semver/semverSort)
+- [semverSatisfies](/docs/Semver/semverSatisfies)

@@ -226,6 +226,16 @@
 - [toUnset](./Object/toUnset.md)
 - [unset](./Object/unset.md)
 
+## Semver
+
+- [semverCompare](./Semver/semverCompare.md)
+- [semverFormat](./Semver/semverFormat.md)
+- [semverIncrement](./Semver/semverIncrement.md)
+- [semverIsValid](./Semver/semverIsValid.md)
+- [semverParse](./Semver/semverParse.md)
+- [semverSatisfies](./Semver/semverSatisfies.md)
+- [semverSort](./Semver/semverSort.md)
+
 ## String
 
 - [camelCase](./String/camelCase.md)

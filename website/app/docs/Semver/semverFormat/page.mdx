@@ -1,0 +1,40 @@
+🏷️ Formats a parsed version back into a [Semantic Versioning 2.0.0](https://semver.org) string.
+
+## Syntax
+
+```ts
+import { semverFormat } from '@opentf/std';
+
+semverFormat(version: Semver): string;
+```
+
+## Parameters
+
+| Name    | Type     | Description         |
+| ------- | -------- | ------------------- |
+| version | `Semver` | The parsed version. |
+
+## Returns
+
+The version string. This is the inverse of [semverParse](/docs/Semver/semverParse), less the tolerated `v` prefix — the output is always canonical.
+
+## Examples
+
+```ts
+semverFormat({ major: 1, minor: 2, patch: 3, prerelease: [], build: [] })
+//=> '1.2.3'
+
+semverFormat(semverParse('v2.0.0-alpha.1+build.5'))
+//=> '2.0.0-alpha.1+build.5'
+```
+
+Normalising a version:
+
+```ts
+semverFormat(semverParse('  v1.2.3  ')) //=> '1.2.3'
+```
+
+## Related
+
+- [semverParse](/docs/Semver/semverParse)
+- [semverIncrement](/docs/Semver/semverIncrement)

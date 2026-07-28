@@ -1,0 +1,50 @@
+import { Callout } from "@opentf/web-docs";
+
+🏷️ Sorts version strings by SemVer precedence, returning a new array.
+
+<Callout type="info">
+  A plain `sort` orders versions as strings, which puts `1.10.0` before `1.2.3`. This
+  orders them numerically per segment.
+</Callout>
+
+## Syntax
+
+```ts
+import { semverSort } from '@opentf/std';
+
+semverSort(versions: string[], order?: 'asc' | 'desc'): string[];
+```
+
+## Parameters
+
+| Name     | Type               | Default | Description            |
+| -------- | ------------------ | ------- | ---------------------- |
+| versions | `string[]`         | `[]`    | The versions to sort.  |
+| order    | `'asc' \| 'desc'`  | `'asc'` | The sort order.        |
+
+## Returns
+
+A new sorted array. The input is not mutated, and the original strings are preserved — a `v` prefix survives the sort.
+
+Throws a `TypeError` if any string is not a valid version.
+
+## Examples
+
+```ts
+semverSort(['1.10.0', '1.2.3', '1.0.0'])
+//=> ['1.0.0', '1.2.3', '1.10.0']
+
+semverSort(['1.0.0', '1.10.0', '1.2.3'], 'desc')
+//=> ['1.10.0', '1.2.3', '1.0.0']
+```
+
+Pre-releases sort below their release:
+
+```ts
+semverSort(['1.0.0', '1.0.0-rc.1', '1.0.0-alpha'])
+//=> ['1.0.0-alpha', '1.0.0-rc.1', '1.0.0']
+```
+
+## Related
+
+- [semverCompare](/docs/Semver/semverCompare)

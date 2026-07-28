@@ -1,0 +1,71 @@
+import { Callout } from "@opentf/web-docs";
+
+🏷️ Increments a version, returning the new version string.
+
+<Callout type="info">
+  The plain releases resolve an in-progress pre-release rather than skipping past it, so
+  `1.0.0-rc.1` majors to `1.0.0`, not `2.0.0`. Build metadata is dropped, since it does
+  not carry over.
+</Callout>
+
+## Syntax
+
+```ts
+import { semverIncrement } from '@opentf/std';
+
+semverIncrement(
+  version: string,
+  release: SemverRelease,
+  identifier?: string,
+): string;
+
+type SemverRelease =
+  | 'major' | 'minor' | 'patch'
+  | 'premajor' | 'preminor' | 'prepatch' | 'prerelease';
+```
+
+## Parameters
+
+| Name       | Type            | Description                                |
+| ---------- | --------------- | ------------------------------------------ |
+| version    | `string`        | The version to increment.                  |
+| release    | `SemverRelease` | The kind of increment to apply.            |
+| identifier | `string`        | The pre-release identifier, e.g. `'beta'`. |
+
+## Returns
+
+The incremented version string. Throws a `TypeError` if the version is invalid or the release is unknown.
+
+## Examples
+
+```ts
+semverIncrement('1.2.3', 'major') //=> '2.0.0'
+semverIncrement('1.2.3', 'minor') //=> '1.3.0'
+semverIncrement('1.2.3', 'patch') //=> '1.2.4'
+```
+
+An in-progress pre-release is resolved, not skipped:
+
+```ts
+semverIncrement('1.0.0-rc.1', 'major') //=> '1.0.0'
+semverIncrement('1.2.3-rc.1', 'patch') //=> '1.2.3'
+
+// But 1.2.3-rc.1 is a patch pre-release, so the next major is still 2.0.0.
+semverIncrement('1.2.3-rc.1', 'major') //=> '2.0.0'
+```
+
+Running a pre-release series:
+
+```ts
+semverIncrement('1.2.3', 'preminor', 'beta')     //=> '1.3.0-beta.0'
+semverIncrement('1.3.0-beta.0', 'prerelease')    //=> '1.3.0-beta.1'
+semverIncrement('1.3.0-beta.9', 'prerelease')    //=> '1.3.0-beta.10'
+
+// A different identifier restarts the series.
+semverIncrement('1.3.0-alpha.5', 'prerelease', 'beta') //=> '1.3.0-beta.0'
+```
+
+## Related
+
+- [semverParse](/docs/Semver/semverParse)
+- [semverCompare](/docs/Semver/semverCompare)

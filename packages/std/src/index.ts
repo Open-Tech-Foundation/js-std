@@ -227,6 +227,15 @@ export { default as decodeHex } from './encoding/decodeHex';
 export { default as stringToBytes } from './encoding/stringToBytes';
 export { default as bytesToString } from './encoding/bytesToString';
 
+// Semver
+export { default as semverParse } from './semver/semverParse';
+export { default as semverFormat } from './semver/semverFormat';
+export { default as semverIsValid } from './semver/semverIsValid';
+export { default as semverCompare } from './semver/semverCompare';
+export { default as semverSatisfies } from './semver/semverSatisfies';
+export { default as semverIncrement } from './semver/semverIncrement';
+export { default as semverSort } from './semver/semverSort';
+
 // Iter
 export { default as takeIter } from './iter/takeIter';
 export { default as dropIter } from './iter/dropIter';

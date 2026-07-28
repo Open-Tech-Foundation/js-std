@@ -4,6 +4,7 @@
 
 ### Added
 
+- Added a Semver module — `semverParse`, `semverFormat`, `semverIsValid`, `semverCompare`, `semverSort`, `semverIncrement` and `semverSatisfies`. `semverSatisfies` implements the full npm range grammar (comparators, `^`, `~`, wildcards, hyphen ranges, whitespace-joined sets and `||`), including the rule that withholds pre-releases from ranges that did not ask for one, with an `includePrerelease` opt-out.
 - Added `encodeBase32` and `decodeBase32` (RFC 4648). The decoder accepts unpadded, lowercase and whitespaced input, so TOTP/2FA secrets can be passed in the form users are shown them.
 - Added `encodeBase58` and `decodeBase58` (Bitcoin alphabet), for identifiers that must survive being read, typed or double-click selected by a human — Bitcoin and Solana addresses, IPFS CIDv0 hashes and short public IDs.
 - Added `timingSafeEqual`, a constant-time comparison for secrets. Verifying an `hmacSHA256`/`hmacSHA512` digest with `===` returns on the first differing byte, and that timing difference lets an attacker recover the expected digest one byte at a time.

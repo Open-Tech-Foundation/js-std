@@ -1,0 +1,59 @@
+import { Callout } from "@opentf/web-docs";
+
+🏷️ Parses a [Semantic Versioning 2.0.0](https://semver.org) string.
+
+<Callout type="info">
+  A leading `v` and surrounding whitespace are tolerated, because that is how versions
+  appear in git tags and changelogs.
+</Callout>
+
+## Syntax
+
+```ts
+import { semverParse } from '@opentf/std';
+
+semverParse(version: string): Semver;
+
+interface Semver {
+  major: number;
+  minor: number;
+  patch: number;
+  prerelease: (string | number)[];
+  build: string[];
+}
+```
+
+## Parameters
+
+| Name    | Type     | Description                  |
+| ------- | -------- | ---------------------------- |
+| version | `string` | The version string to parse. |
+
+## Returns
+
+The parsed version. Numeric pre-release identifiers come back as numbers, so they compare numerically rather than as strings.
+
+Throws a `TypeError` if the string is not a valid version. Use [semverIsValid](/docs/Semver/semverIsValid) when you want a boolean instead.
+
+## Examples
+
+```ts
+semverParse('1.2.3')
+//=> { major: 1, minor: 2, patch: 3, prerelease: [], build: [] }
+
+semverParse('v2.0.0-alpha.1+build.5')
+//=> { major: 2, minor: 0, patch: 0, prerelease: ['alpha', 1], build: ['build', '5'] }
+```
+
+Partial versions and ranges are not versions:
+
+```ts
+semverParse('1.2')    // throws TypeError
+semverParse('^1.2.3') // throws TypeError
+semverParse('01.2.3') // throws TypeError — leading zeroes are invalid
+```
+
+## Related
+
+- [semverFormat](/docs/Semver/semverFormat)
+- [semverIsValid](/docs/Semver/semverIsValid)
