@@ -20,6 +20,12 @@ lib
 play.js
 .turbo
 
+# Runtime matrix: per-runtime results are CI artifacts, only the aggregated
+# runtime-matrix.json is committed. The bundler entry is temporary.
+results/
+.test-bundle/
+.test-bundle-entry.ts
+
 .next
 website/.dev
 website/.otfw-api

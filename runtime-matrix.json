@@ -1,0 +1,270 @@
+{
+  "generatedAt": "2026-07-28",
+  "package": "@opentf/std",
+  "version": "0.14.1",
+  "runtimes": [
+    {
+      "id": "node",
+      "label": "Node.js",
+      "version": "24.14.0",
+      "status": "pass",
+      "passed": 699,
+      "failed": 0,
+      "total": 699,
+      "percent": 100,
+      "capabilities": {
+        "Intl.Segmenter": true,
+        "Intl.NumberFormat": true,
+        "crypto.getRandomValues": true,
+        "crypto.randomUUID": true,
+        "crypto.subtle": true,
+        "Blob": true,
+        "Blob.toStringTag": true,
+        "structuredClone": true,
+        "TextEncoder": true,
+        "BigInt": true,
+        "WeakRef": true,
+        "Proxy": true
+      },
+      "failures": []
+    },
+    {
+      "id": "bun",
+      "label": "Bun",
+      "version": "1.4.0",
+      "status": "pass",
+      "passed": 699,
+      "failed": 0,
+      "total": 699,
+      "percent": 100,
+      "capabilities": {
+        "Intl.Segmenter": true,
+        "Intl.NumberFormat": true,
+        "crypto.getRandomValues": true,
+        "crypto.randomUUID": true,
+        "crypto.subtle": true,
+        "Blob": true,
+        "Blob.toStringTag": true,
+        "structuredClone": true,
+        "TextEncoder": true,
+        "BigInt": true,
+        "WeakRef": true,
+        "Proxy": true
+      },
+      "failures": []
+    },
+    {
+      "id": "deno",
+      "label": "Deno",
+      "version": "2.8.3",
+      "status": "pass",
+      "passed": 699,
+      "failed": 0,
+      "total": 699,
+      "percent": 100,
+      "capabilities": {
+        "Intl.Segmenter": true,
+        "Intl.NumberFormat": true,
+        "crypto.getRandomValues": true,
+        "crypto.randomUUID": true,
+        "crypto.subtle": true,
+        "Blob": true,
+        "Blob.toStringTag": true,
+        "structuredClone": true,
+        "TextEncoder": true,
+        "BigInt": true,
+        "WeakRef": true,
+        "Proxy": true
+      },
+      "failures": []
+    },
+    {
+      "id": "esrun",
+      "label": "ES-Runtime",
+      "version": "0.11.0",
+      "status": "partial",
+      "passed": 698,
+      "failed": 1,
+      "total": 699,
+      "percent": 99.9,
+      "capabilities": {
+        "Intl.Segmenter": true,
+        "Intl.NumberFormat": true,
+        "crypto.getRandomValues": true,
+        "crypto.randomUUID": true,
+        "crypto.subtle": true,
+        "Blob": true,
+        "Blob.toStringTag": false,
+        "structuredClone": true,
+        "TextEncoder": true,
+        "BigInt": true,
+        "WeakRef": true,
+        "Proxy": true
+      },
+      "failures": [
+        {
+          "title": "Types > isBlob > valid cases",
+          "message": "expected false to be true // Object.is equality",
+          "category": "runtime-deviation",
+          "reason": "Runtime `Blob` is missing `Symbol.toStringTag`, so `Object.prototype.toString.call(blob)` returns `[object Object]`. This deviates from the File API spec; the fix belongs in the runtime.",
+          "requires": "Blob.toStringTag",
+          "affects": ["isBlob"]
+        }
+      ]
+    },
+    {
+      "id": "llrt",
+      "label": "LLRT",
+      "version": "0.8.0-beta",
+      "status": "partial",
+      "passed": 683,
+      "failed": 16,
+      "total": 699,
+      "percent": 97.7,
+      "capabilities": {
+        "Intl.Segmenter": false,
+        "Intl.NumberFormat": false,
+        "crypto.getRandomValues": true,
+        "crypto.randomUUID": true,
+        "crypto.subtle": true,
+        "Blob": true,
+        "Blob.toStringTag": true,
+        "structuredClone": true,
+        "TextEncoder": true,
+        "BigInt": true,
+        "WeakRef": true,
+        "Proxy": true
+      },
+      "failures": [
+        {
+          "title": "IterAsync Helpers > New Iter Utilities > fromIterAsync",
+          "message": "expected false to be true // Object.is equality",
+          "category": "runtime-deviation",
+          "reason": "Runtime does not perform `IteratorClose` when a `for await...of` loop exits early, so a `finally` block in an async generator never runs. Required by ECMA-262; the equivalent sync `for...of` path is handled correctly. The fix belongs in the runtime.",
+          "requires": null,
+          "affects": ["fromIterAsync"]
+        },
+        {
+          "title": "Number > formatCompact",
+          "message": "not a function",
+          "category": "missing-capability",
+          "reason": "Number formatting needs `Intl.NumberFormat`. Runtimes built without ICU cannot format compact notation or currencies.",
+          "requires": "Intl.NumberFormat",
+          "affects": ["formatCompact", "formatCurrency"]
+        },
+        {
+          "title": "Number > formatCurrency",
+          "message": "not a function",
+          "category": "missing-capability",
+          "reason": "Number formatting needs `Intl.NumberFormat`. Runtimes built without ICU cannot format compact notation or currencies.",
+          "requires": "Intl.NumberFormat",
+          "affects": ["formatCompact", "formatCurrency"]
+        },
+        {
+          "title": "String > stringReverse > basic reversal",
+          "message": "Intl.Segmenter is not supported in this environment. Use a polyfill or a modern runtime.",
+          "category": "missing-capability",
+          "reason": "Grapheme segmentation needs `Intl.Segmenter`. Runtimes built without full ICU cannot count or reverse multi-codepoint characters correctly.",
+          "requires": "Intl.Segmenter",
+          "affects": ["stringWidth", "stringReverse"]
+        },
+        {
+          "title": "String > stringReverse > combining marks",
+          "message": "Intl.Segmenter is not supported in this environment. Use a polyfill or a modern runtime.",
+          "category": "missing-capability",
+          "reason": "Grapheme segmentation needs `Intl.Segmenter`. Runtimes built without full ICU cannot count or reverse multi-codepoint characters correctly.",
+          "requires": "Intl.Segmenter",
+          "affects": ["stringWidth", "stringReverse"]
+        },
+        {
+          "title": "String > stringReverse > emoji sequences stay intact",
+          "message": "Intl.Segmenter is not supported in this environment. Use a polyfill or a modern runtime.",
+          "category": "missing-capability",
+          "reason": "Grapheme segmentation needs `Intl.Segmenter`. Runtimes built without full ICU cannot count or reverse multi-codepoint characters correctly.",
+          "requires": "Intl.Segmenter",
+          "affects": ["stringWidth", "stringReverse"]
+        },
+        {
+          "title": "String > stringReverse > mixed content",
+          "message": "Intl.Segmenter is not supported in this environment. Use a polyfill or a modern runtime.",
+          "category": "missing-capability",
+          "reason": "Grapheme segmentation needs `Intl.Segmenter`. Runtimes built without full ICU cannot count or reverse multi-codepoint characters correctly.",
+          "requires": "Intl.Segmenter",
+          "affects": ["stringWidth", "stringReverse"]
+        },
+        {
+          "title": "String > stringReverse > surrogate pairs",
+          "message": "Intl.Segmenter is not supported in this environment. Use a polyfill or a modern runtime.",
+          "category": "missing-capability",
+          "reason": "Grapheme segmentation needs `Intl.Segmenter`. Runtimes built without full ICU cannot count or reverse multi-codepoint characters correctly.",
+          "requires": "Intl.Segmenter",
+          "affects": ["stringWidth", "stringReverse"]
+        },
+        {
+          "title": "String Utilities > stringWidth (Official cases) > Basic functionality",
+          "message": "Intl.Segmenter is not supported in this environment. Use a polyfill or a modern runtime.",
+          "category": "missing-capability",
+          "reason": "Grapheme segmentation needs `Intl.Segmenter`. Runtimes built without full ICU cannot count or reverse multi-codepoint characters correctly.",
+          "requires": "Intl.Segmenter",
+          "affects": ["stringWidth", "stringReverse"]
+        },
+        {
+          "title": "String Utilities > stringWidth (Official cases) > East Asian width categories",
+          "message": "Intl.Segmenter is not supported in this environment. Use a polyfill or a modern runtime.",
+          "category": "missing-capability",
+          "reason": "Grapheme segmentation needs `Intl.Segmenter`. Runtimes built without full ICU cannot count or reverse multi-codepoint characters correctly.",
+          "requires": "Intl.Segmenter",
+          "affects": ["stringWidth", "stringReverse"]
+        },
+        {
+          "title": "String Utilities > stringWidth (Official cases) > Control characters (should be ignored)",
+          "message": "Intl.Segmenter is not supported in this environment. Use a polyfill or a modern runtime.",
+          "category": "missing-capability",
+          "reason": "Grapheme segmentation needs `Intl.Segmenter`. Runtimes built without full ICU cannot count or reverse multi-codepoint characters correctly.",
+          "requires": "Intl.Segmenter",
+          "affects": ["stringWidth", "stringReverse"]
+        },
+        {
+          "title": "String Utilities > stringWidth (Official cases) > ANSI escape sequences",
+          "message": "Intl.Segmenter is not supported in this environment. Use a polyfill or a modern runtime.",
+          "category": "missing-capability",
+          "reason": "Grapheme segmentation needs `Intl.Segmenter`. Runtimes built without full ICU cannot count or reverse multi-codepoint characters correctly.",
+          "requires": "Intl.Segmenter",
+          "affects": ["stringWidth", "stringReverse"]
+        },
+        {
+          "title": "String Utilities > stringWidth (Official cases) > Zero-width characters",
+          "message": "Intl.Segmenter is not supported in this environment. Use a polyfill or a modern runtime.",
+          "category": "missing-capability",
+          "reason": "Grapheme segmentation needs `Intl.Segmenter`. Runtimes built without full ICU cannot count or reverse multi-codepoint characters correctly.",
+          "requires": "Intl.Segmenter",
+          "affects": ["stringWidth", "stringReverse"]
+        },
+        {
+          "title": "String Utilities > stringWidth (Official cases) > Combining characters",
+          "message": "Intl.Segmenter is not supported in this environment. Use a polyfill or a modern runtime.",
+          "category": "missing-capability",
+          "reason": "Grapheme segmentation needs `Intl.Segmenter`. Runtimes built without full ICU cannot count or reverse multi-codepoint characters correctly.",
+          "requires": "Intl.Segmenter",
+          "affects": ["stringWidth", "stringReverse"]
+        },
+        {
+          "title": "String Utilities > stringWidth (Official cases) > Emoji and surrogate pairs",
+          "message": "Intl.Segmenter is not supported in this environment. Use a polyfill or a modern runtime.",
+          "category": "missing-capability",
+          "reason": "Grapheme segmentation needs `Intl.Segmenter`. Runtimes built without full ICU cannot count or reverse multi-codepoint characters correctly.",
+          "requires": "Intl.Segmenter",
+          "affects": ["stringWidth", "stringReverse"]
+        },
+        {
+          "title": "String Utilities > stringWidth (Official cases) > Soft hyphen",
+          "message": "Intl.Segmenter is not supported in this environment. Use a polyfill or a modern runtime.",
+          "category": "missing-capability",
+          "reason": "Grapheme segmentation needs `Intl.Segmenter`. Runtimes built without full ICU cannot count or reverse multi-codepoint characters correctly.",
+          "requires": "Intl.Segmenter",
+          "affects": ["stringWidth", "stringReverse"]
+        }
+      ]
+    }
+  ]
+}

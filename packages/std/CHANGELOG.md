@@ -5,6 +5,7 @@
 ### Added
 
 - Added a cross-runtime test harness that bundles the full suite into a single ES2022 module with no `node:` builtins, so every spec can be executed on any runtime.
+- Added a runtime compatibility matrix that runs the suite on Node.js 20/22/24, Bun, Deno, ES-Runtime and LLRT, and refreshes the published results when they drift.
 
 ### Documentation
 

@@ -1,5 +1,6 @@
 {
   "private": true,
+  "type": "module",
   "workspaces": ["apps/*", "packages/*", "website"],
   "devDependencies": {
     "@biomejs/biome": "1.8.3",

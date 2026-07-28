@@ -1,0 +1,221 @@
+name: Runtime Matrix
+
+# Measures how much of the @opentf/std suite passes on each JS runtime and
+# publishes the numbers to the docs site.
+#
+# Deliberately NOT a merge gate — ci.yml is the gate. This workflow tracks
+# experimental and embedded runtimes (LLRT, esrun, QuickJS) where a failure is
+# usually a fact about the runtime, not a regression in the library.
+#
+# Every runtime executes the SAME prebuilt bundle, so a difference in the numbers
+# is always a difference in the runtime.
+
+# Runs on every PR into main, so you see the per-runtime numbers before merging,
+# and again on main after merge to refresh the published data.
+#
+# The monthly cron exists for the one case a PR run cannot catch: a runtime
+# *release* moving the numbers with no change on our side (e.g. LLRT shipping
+# Intl would take it from 678 to 694 with an empty diff).
+#
+# (Paths are duplicated below because GitHub Actions does not support YAML anchors.)
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'packages/std/**'
+      - 'runtime-matrix.js'
+      - '.github/workflows/runtime-matrix.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'packages/std/**'
+      - 'runtime-matrix.js'
+      - '.github/workflows/runtime-matrix.yml'
+  schedule:
+    - cron: '0 3 1 * *' # 1st of the month, 03:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: runtime-matrix-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build test bundle
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - run: bun install --frozen-lockfile
+
+      - name: Build dist
+        run: bun run --cwd packages/std build
+
+      - name: Bundle test suite
+        run: bun packages/std/scripts/build-test-bundle.js
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: test-bundle
+          path: |
+            packages/std/.test-bundle/test-bundle.mjs
+            packages/std/scripts/runtime-probe.mjs
+          retention-days: 7
+
+  test:
+    name: ${{ matrix.label }}
+    needs: build
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { id: node20, engine: node, label: 'Node.js 20', node: '20' }
+          - { id: node22, engine: node, label: 'Node.js 22', node: '22' }
+          - { id: node24, engine: node, label: 'Node.js 24', node: '24' }
+          - { id: bun, engine: bun, label: 'Bun' }
+          - { id: deno, engine: deno, label: 'Deno' }
+          - { id: esrun, engine: esrun, label: 'ES-Runtime' }
+          - { id: llrt, engine: llrt, label: 'LLRT' }
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: test-bundle
+
+      # Node is needed to drive runtime-matrix.js itself, whichever runtime is
+      # under test. For the node20/22/24 jobs this IS the runtime under test.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node || '22' }}
+
+      - name: Setup Bun
+        if: matrix.engine == 'bun'
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Setup Deno
+        if: matrix.engine == 'deno'
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+
+      - name: Setup ES-Runtime
+        if: matrix.engine == 'esrun'
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/Open-Tech-Foundation/ES-Runtime/main/install.sh | bash
+          echo "$HOME/.esrun/bin" >> "$GITHUB_PATH"
+
+      - name: Setup LLRT
+        if: matrix.engine == 'llrt'
+        run: |
+          mkdir -p "$HOME/.llrt/bin"
+          curl -fsSL -o /tmp/llrt.zip \
+            https://github.com/awslabs/llrt/releases/latest/download/llrt-linux-x64-full-sdk.zip
+          unzip -oq /tmp/llrt.zip -d "$HOME/.llrt/bin"
+          chmod +x "$HOME/.llrt/bin/llrt"
+          echo "$HOME/.llrt/bin" >> "$GITHUB_PATH"
+
+      - name: Run suite
+        env:
+          MATRIX_BUNDLE: ${{ github.workspace }}/packages/std/.test-bundle/test-bundle.mjs
+          MATRIX_PROBE: ${{ github.workspace }}/packages/std/scripts/runtime-probe.mjs
+        run: |
+          node runtime-matrix.js \
+            --engine "${{ matrix.engine }}" \
+            --id "${{ matrix.id }}" \
+            --label "${{ matrix.label }}" \
+            --out "results/${{ matrix.id }}.json"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: result-${{ matrix.id }}
+          path: results/${{ matrix.id }}.json
+          retention-days: 7
+
+  publish:
+    name: Aggregate
+    needs: test
+    # Runs even if some runtimes failed to set up — a missing runtime should not
+    # discard the results from the ones that did run.
+    if: always()
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      # Needed for Biome: the aggregate step formats the generated JSON with it,
+      # so a drift PR never lands unformatted.
+      - run: bun install --frozen-lockfile
+
+      - uses: actions/download-artifact@v4
+        with:
+          path: results
+          pattern: result-*
+          merge-multiple: true
+
+      # On a PR: report the numbers, change nothing. Contributors never have to
+      # hand-generate results that only CI can produce.
+      - name: Report (PR)
+        if: github.event_name == 'pull_request'
+        env:
+          MATRIX_COMMENT_FILE: ${{ runner.temp }}/matrix-comment.md
+        run: node runtime-matrix.js --aggregate results --check
+
+      - name: Comment the matrix on the PR
+        if: github.event_name == 'pull_request'
+        # Fork PRs get a read-only token and cannot be commented on. The numbers
+        # are still in the job summary, so this must not fail the run.
+        continue-on-error: true
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          # Same header on every run, so the comment is edited in place rather
+          # than adding a new one on each push.
+          header: runtime-matrix
+          path: ${{ runner.temp }}/matrix-comment.md
+
+      # On main (or cron): refresh the committed data and open a PR if it moved.
+      - name: Aggregate and publish
+        id: agg
+        if: github.event_name != 'pull_request'
+        run: node runtime-matrix.js --aggregate results
+
+      - name: Open PR if the numbers drifted
+        if: github.event_name != 'pull_request' && steps.agg.outputs.drifted == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: chore/runtime-matrix
+          base: main
+          title: 'chore: update runtime compatibility matrix'
+          commit-message: 'chore: update runtime compatibility matrix'
+          body: |
+            Regenerated by the [Runtime Matrix](../actions/workflows/runtime-matrix.yml) workflow.
+
+            The measured numbers changed — a runtime version bumped, or a suite result moved.
+            Review the diff in `runtime-matrix.json` before merging: a drop in passing tests is
+            either a new runtime gap or a regression in `@opentf/std`.
+          labels: |
+            documentation
+            automated
+          add-paths: |
+            runtime-matrix.json
+            website/app/docs/env-support/page.mdx
+          delete-branch: true

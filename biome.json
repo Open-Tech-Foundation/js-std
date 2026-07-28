@@ -7,6 +7,8 @@
       ".next",
       "apps",
       "packages/std/dist",
+      "packages/std/.test-bundle",
+      "results",
       "scripts",
       "packages/std/scripts",
       "website/.dev",
