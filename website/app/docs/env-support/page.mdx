@@ -11,6 +11,56 @@ If a runtime provides the JavaScript and Web Platform APIs a utility needs, that
 
 ---
 
+## ✅ Verified Runtime Support
+
+We don't just claim portability — we measure it. The **entire test suite** is bundled and executed on each runtime below, and these are the raw results.
+
+Where a runtime falls short, the cause is listed so you can tell the difference between *"this runtime is missing an API"* and *"this library is broken"*. In every case below, the gap is in the runtime, not in `@opentf/std`.
+
+{/* MATRIX:START */}
+
+_Measured on 2026-07-28 against `@opentf/std@0.14.1`, running the full suite of 699 tests on each runtime._
+
+| Runtime | Version | Tests passing | Status |
+| --- | --- | --- | --- |
+| Node.js | `24.14.0` | 699 / 699 (100%) | ✅ Fully supported |
+| Bun | `1.4.0` | 699 / 699 (100%) | ✅ Fully supported |
+| Deno | `2.8.3` | 699 / 699 (100%) | ✅ Fully supported |
+| ES-Runtime | `0.11.0` | 698 / 699 (99.9%) | ⚠️ Partial |
+| LLRT | `0.8.0-beta` | 683 / 699 (97.7%) | ⚠️ Partial |
+
+### ES-Runtime 0.11.0
+
+**Runtime spec deviation — `Blob.toStringTag` unavailable** (1 test)
+
+Runtime `Blob` is missing `Symbol.toStringTag`, so `Object.prototype.toString.call(blob)` returns `[object Object]`. This deviates from the File API spec; the fix belongs in the runtime.
+
+Affected utilities: `isBlob`. Everything else works as expected.
+
+### LLRT 0.8.0-beta
+
+**Runtime spec deviation** (1 test)
+
+Runtime does not perform `IteratorClose` when a `for await...of` loop exits early, so a `finally` block in an async generator never runs. Required by ECMA-262; the equivalent sync `for...of` path is handled correctly. The fix belongs in the runtime.
+
+Affected utilities: `fromIterAsync`. Everything else works as expected.
+
+**Missing platform API — `Intl.NumberFormat` unavailable** (2 tests)
+
+Number formatting needs `Intl.NumberFormat`. Runtimes built without ICU cannot format compact notation or currencies.
+
+Affected utilities: `formatCompact`, `formatCurrency`. Everything else works as expected.
+
+**Missing platform API — `Intl.Segmenter` unavailable** (13 tests)
+
+Grapheme segmentation needs `Intl.Segmenter`. Runtimes built without full ICU cannot count or reverse multi-codepoint characters correctly.
+
+Affected utilities: `stringWidth`, `stringReverse`. Everything else works as expected.
+
+{/* MATRIX:END */}
+
+---
+
 ## 🛠️ Standard Web APIs
 
 Most utilities are pure JavaScript. The few that need platform APIs use standard, cross-runtime Web APIs — never runtime-specific modules:

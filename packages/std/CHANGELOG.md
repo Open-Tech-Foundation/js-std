@@ -10,6 +10,7 @@
 ### Documentation
 
 - Added links to local repository docs in README files for offline reference.
+- Replaced the unevidenced runtime-agnosticism claim on the Environment Support page with measured per-runtime results, naming the cause of every failure and the utilities it affects.
 
 ### Changed
 
