@@ -236,6 +236,14 @@ export { default as semverSatisfies } from './semver/semverSatisfies';
 export { default as semverIncrement } from './semver/semverIncrement';
 export { default as semverSort } from './semver/semverSort';
 
+// Streams
+export { default as streamToText } from './streams/streamToText';
+export { default as streamToBytes } from './streams/streamToBytes';
+export { default as streamToArray } from './streams/streamToArray';
+export { default as streamToLines } from './streams/streamToLines';
+export { default as concatStreams } from './streams/concatStreams';
+export { default as mergeStreams } from './streams/mergeStreams';
+
 // Iter
 export { default as takeIter } from './iter/takeIter';
 export { default as dropIter } from './iter/dropIter';

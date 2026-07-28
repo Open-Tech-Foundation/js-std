@@ -4,6 +4,7 @@
 
 ### Added
 
+- Added a Streams module — `streamToText`, `streamToBytes`, `streamToArray`, `streamToLines`, `concatStreams` and `mergeStreams`. Built on `ReadableStream` and `TextDecoder` only, avoiding `TransformStream`, which is absent on some runtimes and would have thrown at import time.
 - Added a Semver module — `semverParse`, `semverFormat`, `semverIsValid`, `semverCompare`, `semverSort`, `semverIncrement` and `semverSatisfies`. `semverSatisfies` implements the full npm range grammar (comparators, `^`, `~`, wildcards, hyphen ranges, whitespace-joined sets and `||`), including the rule that withholds pre-releases from ranges that did not ask for one, with an `includePrerelease` opt-out.
 - Added `encodeBase32` and `decodeBase32` (RFC 4648). The decoder accepts unpadded, lowercase and whitespaced input, so TOTP/2FA secrets can be passed in the form users are shown them.
 - Added `encodeBase58` and `decodeBase58` (Bitcoin alphabet), for identifiers that must survive being read, typed or double-click selected by a human — Bitcoin and Solana addresses, IPFS CIDv0 hashes and short public IDs.
@@ -13,6 +14,7 @@
 
 ### Documentation
 
+- Documented a new runtime deviation: ES-Runtime and LLRT ignore `TextDecoder`'s `stream: true` option, so a multi-byte character split across two chunks decodes as replacement characters. Affects `streamToText` and `streamToLines` on those runtimes only.
 - Added links to local repository docs in README files for offline reference.
 - Replaced the unevidenced runtime-agnosticism claim on the Environment Support page with measured per-runtime results, naming the cause of every failure and the utilities it affects.
 

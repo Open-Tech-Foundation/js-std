@@ -1,0 +1,53 @@
+import { Callout } from "@opentf/web-docs";
+
+🌊 Interleaves streams, forwarding every chunk as soon as any source produces it.
+
+<Callout type="warning">
+  Because the sources are read concurrently, chunk order **between** them is not defined —
+  only the order within a single source is. Use [concatStreams](/docs/Streams/concatStreams)
+  when order across sources matters.
+</Callout>
+
+## Syntax
+
+```ts
+import { mergeStreams } from '@opentf/std';
+
+mergeStreams<T>(...streams: ReadableStream<T>[]): ReadableStream<T>;
+```
+
+## Parameters
+
+| Name    | Type                    | Description             |
+| ------- | ----------------------- | ----------------------- |
+| streams | `ReadableStream<T>[]`   | The streams to merge.   |
+
+## Returns
+
+A stream over every chunk, as it arrives. It closes once every source has closed, and errors as soon as any source errors.
+
+## Examples
+
+```ts
+const events = mergeStreams(clicks, keys);
+await streamToArray(events)
+```
+
+A slow source does not hold up a fast one:
+
+```ts
+// `fast` arrives first even though `slow` was listed first.
+await streamToArray(mergeStreams(slow, fast)) //=> ['fast', 'slow']
+```
+
+Order within each source is still guaranteed:
+
+```ts
+const merged = await streamToArray(mergeStreams(a, b));
+merged.filter((c) => c.startsWith('a')) //=> ['a1', 'a2', 'a3']
+```
+
+## Related
+
+- [concatStreams](/docs/Streams/concatStreams)
+- [streamToArray](/docs/Streams/streamToArray)

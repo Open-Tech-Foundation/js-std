@@ -14,6 +14,7 @@ export default {
   Number: 'Number',
   Object: 'Object',
   Semver: 'Semver',
+  Streams: 'Streams',
   String: 'String',
   Timing: 'Timing',
   Types: 'Types',

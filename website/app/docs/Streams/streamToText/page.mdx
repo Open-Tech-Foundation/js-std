@@ -1,0 +1,45 @@
+import { Callout } from "@opentf/web-docs";
+
+🌊 Reads a stream fully into a string.
+
+<Callout type="info">
+  Byte chunks are decoded as UTF-8 **across** chunk boundaries, so a multi-byte character
+  split between two chunks still decodes correctly. String chunks are concatenated as they are.
+</Callout>
+
+## Syntax
+
+```ts
+import { streamToText } from '@opentf/std';
+
+streamToText(stream: ReadableStream<Uint8Array | string>): Promise<string>;
+```
+
+## Parameters
+
+| Name   | Type                                     | Description         |
+| ------ | ---------------------------------------- | ------------------- |
+| stream | `ReadableStream<Uint8Array \| string>`   | The stream to drain. |
+
+## Returns
+
+A promise for the decoded text.
+
+## Examples
+
+```ts
+await streamToText(response.body) //=> 'Hello World'
+```
+
+Chunk boundaries do not corrupt characters:
+
+```ts
+const bytes = stringToBytes('héllo 🌍');
+// Split mid-character — still decodes correctly.
+await streamToText(streamOf([bytes.slice(0, 3), bytes.slice(3)])) //=> 'héllo 🌍'
+```
+
+## Related
+
+- [streamToLines](/docs/Streams/streamToLines)
+- [streamToBytes](/docs/Streams/streamToBytes)

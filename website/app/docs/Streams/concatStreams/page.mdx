@@ -1,0 +1,47 @@
+import { Callout } from "@opentf/web-docs";
+
+🌊 Joins streams end to end, reading each one only once the previous has closed.
+
+<Callout type="info">
+  The result pulls lazily — a later stream is not touched until the reader has drained
+  everything before it, so an endless source can sit at the end without being buffered.
+</Callout>
+
+## Syntax
+
+```ts
+import { concatStreams } from '@opentf/std';
+
+concatStreams<T>(...streams: ReadableStream<T>[]): ReadableStream<T>;
+```
+
+## Parameters
+
+| Name    | Type                    | Description                  |
+| ------- | ----------------------- | ---------------------------- |
+| streams | `ReadableStream<T>[]`   | The streams to concatenate.  |
+
+## Returns
+
+A stream over every chunk, in stream order.
+
+Cancelling the result cancels the stream in flight and every stream still queued. Use [mergeStreams](/docs/Streams/mergeStreams) when you want chunks as soon as any source produces them.
+
+## Examples
+
+```ts
+const all = concatStreams(header, body, footer);
+await streamToText(all) //=> 'headerbodyfooter'
+```
+
+Order holds even when an earlier source is slower:
+
+```ts
+// `slow` finishes first in the output despite taking longer per chunk.
+await streamToArray(concatStreams(slow, fast)) //=> ['a', 'b', 'c', 'd']
+```
+
+## Related
+
+- [mergeStreams](/docs/Streams/mergeStreams)
+- [streamToText](/docs/Streams/streamToText)

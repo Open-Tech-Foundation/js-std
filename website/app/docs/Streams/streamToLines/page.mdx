@@ -1,0 +1,62 @@
+import { Callout } from "@opentf/web-docs";
+
+🌊 Reads a stream and yields it one line at a time, without buffering the whole body first.
+
+<Callout type="info">
+  This is the shape most line-oriented sources want — log tails, NDJSON, CSV, server-sent
+  events. Because it is a generator, `break` stops reading rather than draining the rest.
+</Callout>
+
+## Syntax
+
+```ts
+import { streamToLines } from '@opentf/std';
+
+streamToLines(
+  stream: ReadableStream<Uint8Array | string>,
+): AsyncGenerator<string>;
+```
+
+## Parameters
+
+| Name   | Type                                    | Description        |
+| ------ | --------------------------------------- | ------------------ |
+| stream | `ReadableStream<Uint8Array \| string>`  | The stream to read. |
+
+## Returns
+
+An async generator over the lines, in order.
+
+Both `\n` and `\r\n` terminate a line, and neither is included in the yielded value. A trailing terminator does not produce a final empty line, but a blank line in the middle is preserved.
+
+## Examples
+
+Reading NDJSON as it arrives:
+
+```ts
+for await (const line of streamToLines(response.body)) {
+  console.log(JSON.parse(line));
+}
+```
+
+Line handling:
+
+```ts
+// 'a\nb\nc'   -> ['a', 'b', 'c']
+// 'a\r\nb'    -> ['a', 'b']
+// 'a\nb\n'    -> ['a', 'b']   (no trailing empty line)
+// 'a\n\nb'    -> ['a', '', 'b'] (blank lines preserved)
+```
+
+Stopping early:
+
+```ts
+for await (const line of streamToLines(logStream)) {
+  if (line.includes('ERROR')) break; // the rest is never read
+}
+```
+
+## Related
+
+- [streamToText](/docs/Streams/streamToText)
+- [streamToArray](/docs/Streams/streamToArray)

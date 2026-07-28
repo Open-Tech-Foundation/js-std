@@ -100,6 +100,17 @@ const KNOWN_ISSUES = [
       'compact notation or currencies.',
   },
   {
+    match: /splits every byte into its own chunk/,
+    requires: 'TextDecoder stream: true',
+    affects: ['streamToText', 'streamToLines'],
+    category: 'runtime-deviation',
+    reason:
+      'Runtime `TextDecoder` ignores the `stream: true` option, so the trailing bytes of a ' +
+      'multi-byte character split across two chunks are decoded as replacement characters ' +
+      'instead of being held back for the next call. Required by the Encoding spec; the fix ' +
+      'belongs in the runtime. Text arriving in whole characters per chunk is unaffected.',
+  },
+  {
     match: /uuid|randomInt|randomBytes|randomFloat|hash|hmac/i,
     requires: 'crypto.getRandomValues',
     affects: ['uuidv4', 'uuidv7', 'randomInt', 'randomBytes', 'randomFloat'],

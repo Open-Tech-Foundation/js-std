@@ -1,0 +1,33 @@
+🌊 Reads a stream fully into an array of its chunks.
+
+Works on a stream of any chunk type, so it is the general form of [streamToText](/docs/Streams/streamToText) and [streamToBytes](/docs/Streams/streamToBytes).
+
+## Syntax
+
+```ts
+import { streamToArray } from '@opentf/std';
+
+streamToArray<T>(stream: ReadableStream<T>): Promise<T[]>;
+```
+
+## Parameters
+
+| Name   | Type                  | Description          |
+| ------ | --------------------- | -------------------- |
+| stream | `ReadableStream<T>`   | The stream to drain. |
+
+## Returns
+
+A promise for the chunks, in order.
+
+## Examples
+
+```ts
+await streamToArray(stream) //=> ['a', 'b', 'c']
+await streamToArray(objectStream) //=> [{ a: 1 }, { b: 2 }]
+```
+
+## Related
+
+- [streamToText](/docs/Streams/streamToText)
+- [streamToLines](/docs/Streams/streamToLines)

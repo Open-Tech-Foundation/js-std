@@ -1,0 +1,37 @@
+🌊 Reads a byte stream fully into a single `Uint8Array`.
+
+## Syntax
+
+```ts
+import { streamToBytes } from '@opentf/std';
+
+streamToBytes(stream: ReadableStream<Uint8Array>): Promise<Uint8Array>;
+```
+
+## Parameters
+
+| Name   | Type                          | Description          |
+| ------ | ----------------------------- | -------------------- |
+| stream | `ReadableStream<Uint8Array>`  | The stream to drain. |
+
+## Returns
+
+A promise for the concatenated bytes. The chunks are joined in one allocation at the end rather than reallocated per chunk.
+
+## Examples
+
+```ts
+await streamToBytes(response.body) //=> Uint8Array [...]
+```
+
+Hashing a response body:
+
+```ts
+const bytes = await streamToBytes(response.body);
+await sha256(bytesToString(bytes));
+```
+
+## Related
+
+- [streamToText](/docs/Streams/streamToText)
+- [streamToArray](/docs/Streams/streamToArray)

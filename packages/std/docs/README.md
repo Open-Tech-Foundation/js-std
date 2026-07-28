@@ -236,6 +236,15 @@
 - [semverSatisfies](./Semver/semverSatisfies.md)
 - [semverSort](./Semver/semverSort.md)
 
+## Streams
+
+- [concatStreams](./Streams/concatStreams.md)
+- [mergeStreams](./Streams/mergeStreams.md)
+- [streamToArray](./Streams/streamToArray.md)
+- [streamToBytes](./Streams/streamToBytes.md)
+- [streamToLines](./Streams/streamToLines.md)
+- [streamToText](./Streams/streamToText.md)
+
 ## String
 
 - [camelCase](./String/camelCase.md)
