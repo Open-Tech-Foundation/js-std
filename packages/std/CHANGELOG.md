@@ -4,6 +4,10 @@
 
 ### Added
 
+- Added `keyBy`, the one-to-one counterpart of `groupBy`, for indexing a list into a lookup table.
+- Added `slidingWindows`, which slides an overlapping fixed-size window over an array — the overlapping counterpart of `chunk`, for moving averages, deltas between neighbours and n-grams.
+- Added `runningReduce`, which reduces an array while keeping every intermediate result, for running balances and cumulative totals.
+- Added `invert`, which swaps an object's keys and values to build a reverse lookup.
 - Added `stripDiacritics`, which removes accents from Latin text for search normalisation and ASCII-only fields. Marks are stripped only where they sit on a Latin letter, so Cyrillic and Greek pass through untouched — `й` decomposes to `и` plus a breve, but the two are separate letters, and collapsing them would misspell the word.
 - Added `abortable`, which stops waiting on a promise once an `AbortSignal` fires. It settles the returned promise only — the underlying work is not cancelled, since a promise has no cancel — and swallows a late rejection from the original rather than letting it surface unhandled.
 - Added a Cache module — `LruCache` and `TtlCache`. Both are `Map`-shaped. `LruCache` tracks recency through insertion order, so every operation is O(1) without a linked list, and offers `peek` for reads that must not disturb the eviction order. `TtlCache` expires lazily rather than scheduling a timer per entry, which would hold the event loop open.

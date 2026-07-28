@@ -1,0 +1,57 @@
+import { Callout } from "@opentf/web-docs";
+
+🔄 Swaps the keys and values of an object.
+
+## Syntax
+
+```ts
+import { invert } from '@opentf/std';
+
+invert<T extends object>(obj: T): Record<string, string>;
+```
+
+## Parameters
+
+| Name | Type     | Description        |
+| ---- | -------- | ------------------ |
+| obj  | `object` | The source object. |
+
+## Returns
+
+The inverted object. Values become keys, so they are coerced to strings the same way any property name is. Only own enumerable properties are read.
+
+<Callout type="warning">
+  The mapping is only reversible when the values are unique. Where two keys share a value
+  the **later one wins**, and the earlier key is lost.
+</Callout>
+
+## Examples
+
+```ts
+invert({ a: 1, b: 2 }) //=> { '1': 'a', '2': 'b' }
+```
+
+Turning a code table into a reverse lookup:
+
+```ts
+const STATUS = { ok: 200, notFound: 404 };
+
+invert(STATUS) //=> { '200': 'ok', '404': 'notFound' }
+```
+
+Duplicate values collapse:
+
+```ts
+invert({ a: 1, b: 1 }) //=> { '1': 'b' }
+```
+
+Round-trips when the values are unique:
+
+```ts
+invert(invert({ a: '1', b: '2' })) //=> { a: '1', b: '2' }
+```
+
+## Related
+
+- [mapKeys](/docs/Object/mapKeys)
+- [mapValues](/docs/Object/mapValues)

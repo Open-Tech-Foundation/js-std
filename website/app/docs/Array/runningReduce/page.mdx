@@ -1,0 +1,58 @@
+import { Callout } from "@opentf/web-docs";
+
+📈 Reduces an array, keeping every intermediate result rather than only the last one.
+
+<Callout type="info">
+  Where `reduce` answers "what is the total", this answers "what was the total after each
+  step" — running balances, cumulative totals for a chart, prefix sums.
+</Callout>
+
+## Syntax
+
+```ts
+import { runningReduce } from '@opentf/std';
+
+runningReduce<T, A>(
+  arr: T[],
+  cb: (accumulator: A, current: T, index: number, arr: T[]) => A,
+  initial: A,
+): A[];
+```
+
+## Parameters
+
+| Name    | Type       | Description                       |
+| ------- | ---------- | --------------------------------- |
+| arr     | `T[]`      | The source array.                 |
+| cb      | `Function` | The reducer, invoked per element. |
+| initial | `A`        | The value to start from.          |
+
+## Returns
+
+The accumulated value after each element. The output always has the same length as the input, and its last entry equals what `reduce` would have returned.
+
+The initial value is **required**, so an empty array returns `[]` rather than having to guess a seed.
+
+## Examples
+
+```ts
+runningReduce([1, 2, 3, 4], (acc, cur) => acc + cur, 0); //=> [1, 3, 6, 10]
+```
+
+A running balance:
+
+```ts
+runningReduce([-20, 50, -5], (bal, t) => bal + t, 100); //=> [80, 130, 125]
+```
+
+Accumulating into a different type:
+
+```ts
+runningReduce(['a', 'b', 'c'], (acc, cur) => [...acc, cur], []);
+//=> [['a'], ['a', 'b'], ['a', 'b', 'c']]
+```
+
+## Related
+
+- [slidingWindows](/docs/Array/slidingWindows)
+- [sum](/docs/Maths/sum)

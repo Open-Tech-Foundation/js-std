@@ -1,0 +1,69 @@
+import { Callout } from "@opentf/web-docs";
+
+🗝️ Indexes an array by a key, giving one element per key.
+
+<Callout type="info">
+  This is the one-to-one counterpart of [groupBy](/docs/Array/groupBy). `groupBy` collects
+  every match into an array; `keyBy` keeps a single element, which is the shape you want
+  for a lookup table.
+</Callout>
+
+## Syntax
+
+```ts
+import { keyBy } from '@opentf/std';
+
+keyBy<T>(
+  arr: T[],
+  by: ((val: T, index: number, arr: T[]) => string) | string,
+): Record<string, T>;
+```
+
+## Parameters
+
+| Name | Type                    | Description                                  |
+| ---- | ----------------------- | -------------------------------------------- |
+| arr  | `T[]`                   | The source array.                            |
+| by   | `Function \| string`    | The iteratee, or the name of a property to read. |
+
+## Returns
+
+An object mapping each key to a single element. Keys are coerced to strings.
+
+<Callout type="warning">
+  When two elements produce the same key the **later one wins**. Pass a list already
+  ordered oldest-first to keep the newest.
+</Callout>
+
+## Examples
+
+```ts
+const users = [
+  { id: 'a1', name: 'Ada' },
+  { id: 'b2', name: 'Linus' },
+];
+
+keyBy(users, 'id');
+//=> { a1: { id: 'a1', name: 'Ada' }, b2: { id: 'b2', name: 'Linus' } }
+```
+
+With an iteratee:
+
+```ts
+keyBy(users, (u) => u.name.toLowerCase());
+//=> { ada: {...}, linus: {...} }
+
+keyBy([6.1, 4.2], Math.floor); //=> { '4': 4.2, '6': 6.1 }
+```
+
+Compared with `groupBy`:
+
+```ts
+groupBy(users, 'id'); //=> { a1: [ {...} ] }   ← arrays
+keyBy(users, 'id');   //=> { a1: {...} }       ← single elements
+```
+
+## Related
+
+- [groupBy](/docs/Array/groupBy)
+- [countBy](/docs/Array/countBy)

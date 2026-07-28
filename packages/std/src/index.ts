@@ -32,6 +32,7 @@ export { default as difference } from './array/difference';
 export { default as symDiff } from './array/symDiff';
 export { default as range } from './array/range';
 export { default as groupBy } from './array/groupBy';
+export { default as keyBy } from './array/keyBy';
 export { default as move } from './array/move';
 export { default as sort } from './array/sort';
 export { default as sortBy } from './array/sortBy';
@@ -60,6 +61,8 @@ export { default as shuffle } from './array/shuffle';
 export { default as dropWhile } from './array/dropWhile';
 export { default as takeWhile } from './array/takeWhile';
 export { default as chunkWhile } from './array/chunkWhile';
+export { default as slidingWindows } from './array/slidingWindows';
+export { default as runningReduce } from './array/runningReduce';
 export { default as partition } from './array/partition';
 export { default as swap } from './array/swap';
 
@@ -157,6 +160,7 @@ export { default as pickBy } from './object/pickBy';
 export { default as omitBy } from './object/omitBy';
 export { default as mapKeys } from './object/mapKeys';
 export { default as mapValues } from './object/mapValues';
+export { default as invert } from './object/invert';
 
 // Assert
 export { default as isEmpty } from './assert/isEmpty';

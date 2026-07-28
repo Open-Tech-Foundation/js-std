@@ -5,6 +5,7 @@ export default {
   has: 'has',
   mapKeys: 'mapKeys',
   mapValues: 'mapValues',
+  invert: 'invert',
   merge: 'merge',
   mergeAll: 'mergeAll',
   omit: 'omit',
