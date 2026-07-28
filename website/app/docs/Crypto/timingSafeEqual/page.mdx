@@ -1,0 +1,64 @@
+import { Callout } from "@opentf/web-docs";
+
+🛡️ Compares two values in constant time, so the comparison leaks no information about *where* they differ.
+
+<Callout type="warning">
+  Use this instead of `===` whenever one side is a secret — an HMAC digest, an API key,
+  a session token or a password hash. A plain `===` returns as soon as it hits the first
+  differing byte, and that timing difference lets an attacker recover the expected value
+  one byte at a time.
+</Callout>
+
+## Syntax
+
+```ts
+import { timingSafeEqual } from '@opentf/std';
+
+timingSafeEqual(
+  a: string | ArrayBuffer | ArrayBufferView,
+  b: string | ArrayBuffer | ArrayBufferView,
+): boolean;
+```
+
+## Parameters
+
+| Name | Type                                        | Description       |
+| ---- | ------------------------------------------- | ----------------- |
+| a    | `string \| ArrayBuffer \| ArrayBufferView`  | The first value.  |
+| b    | `string \| ArrayBuffer \| ArrayBufferView`  | The second value. |
+
+## Returns
+
+`true` when both values hold the same bytes, otherwise `false`.
+
+Strings are compared by their UTF-8 bytes. The comparison always scans the longer of the
+two inputs, so the running time reveals nothing beyond the input lengths — which are not
+secret for digests of a fixed size.
+
+Throws a `TypeError` if either value is not a string, `ArrayBuffer` or `ArrayBufferView`.
+
+## Examples
+
+Verifying a webhook signature:
+
+```ts
+const expected = await hmacSHA256(signingSecret, rawBody);
+
+if (!timingSafeEqual(expected, request.headers.get('x-signature'))) {
+  throw new Error('Invalid signature');
+}
+```
+
+Comparing raw bytes:
+
+```ts
+timingSafeEqual(new Uint8Array([1, 2, 3]), new Uint8Array([1, 2, 3])) //=> true
+timingSafeEqual('abc', 'abd') //=> false
+timingSafeEqual('abc', 'abcd') //=> false
+```
+
+## Related
+
+- [hmacSHA256](/docs/Crypto/hmacSHA256)
+- [hmacSHA512](/docs/Crypto/hmacSHA512)
+- [sha256](/docs/Crypto/sha256)

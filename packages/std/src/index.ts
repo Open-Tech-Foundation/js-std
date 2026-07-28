@@ -200,6 +200,7 @@ export { default as sha256 } from './crypto/sha256';
 export { default as sha512 } from './crypto/sha512';
 export { default as hmacSHA256 } from './crypto/hmacSHA256';
 export { default as hmacSHA512 } from './crypto/hmacSHA512';
+export { default as timingSafeEqual } from './crypto/timingSafeEqual';
 
 // Number
 export { default as isZero } from './number/isZero';

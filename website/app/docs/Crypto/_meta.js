@@ -10,4 +10,5 @@ export default {
   sha512: 'sha512',
   hmacSHA256: 'hmacSHA256',
   hmacSHA512: 'hmacSHA512',
+  timingSafeEqual: 'timingSafeEqual',
 };
