@@ -49,6 +49,96 @@ describe('rateLimitRun', () => {
     expect(await Promise.all(results)).toEqual([1, 2, 3]);
   });
 
+  test('handles rapid bursts of a synchronous function', async () => {
+    const func = vi.fn((val: number) => val);
+    const limited = rateLimitRun(func, 1, 100);
+
+    const results = [limited(1), limited(2), limited(3)];
+
+    expect(func).toHaveBeenCalledTimes(1);
+
+    vi.advanceTimersByTime(100);
+    expect(func).toHaveBeenCalledTimes(2);
+
+    vi.advanceTimersByTime(100);
+    expect(func).toHaveBeenCalledTimes(3);
+
+    expect(await Promise.all(results)).toEqual([1, 2, 3]);
+  });
+
+  test('schedules one timer per drain, not one per queued call', async () => {
+    // Regression: `processQueue` runs on every call and used to clear `timeoutId`
+    // at the top without clearing the timer itself, orphaning it. Each queued
+    // call then stacked another timer, so a large burst leaked timers unbounded.
+    const realSetTimeout = globalThis.setTimeout;
+    let scheduled = 0;
+    globalThis.setTimeout = ((...args: Parameters<typeof setTimeout>) => {
+      scheduled++;
+      return realSetTimeout(...args);
+    }) as typeof setTimeout;
+
+    try {
+      const limited = rateLimitRun((val: number) => val, 1, 100);
+      limited(1);
+      for (let i = 2; i <= 6; i++) limited(i);
+
+      // One call runs immediately; the remaining five share a single pending timer.
+      expect(scheduled).toBe(1);
+    } finally {
+      globalThis.setTimeout = realSetTimeout;
+    }
+  });
+
+  test('a slow call does not delay the next window', async () => {
+    const started: number[] = [];
+    const func = vi.fn((val: number) => {
+      started.push(val);
+      // Never settles: the rolling window is measured from when a call starts,
+      // so a pending call must not hold the queue.
+      return new Promise<number>(() => {});
+    });
+    const limited = rateLimitRun(func, 1, 100);
+
+    limited(1);
+    limited(2);
+    expect(started).toEqual([1]);
+
+    vi.advanceTimersByTime(100);
+    expect(started).toEqual([1, 2]);
+  });
+
+  test('a rejected call does not stall the queue', async () => {
+    const func = vi.fn(async (val: number) => {
+      if (val === 1) throw new Error('boom');
+      return val;
+    });
+    const limited = rateLimitRun(func, 1, 100);
+
+    const p1 = limited(1);
+    const p2 = limited(2);
+
+    await expect(p1).rejects.toThrow('boom');
+
+    vi.advanceTimersByTime(100);
+    expect(await p2).toBe(2);
+  });
+
+  test('propagates a synchronous throw', async () => {
+    const func = vi.fn((val: number) => {
+      if (val === 1) throw new Error('sync boom');
+      return val;
+    });
+    const limited = rateLimitRun(func, 1, 100);
+
+    const p1 = limited(1);
+    const p2 = limited(2);
+
+    await expect(p1).rejects.toThrow('sync boom');
+
+    vi.advanceTimersByTime(100);
+    expect(await p2).toBe(2);
+  });
+
   test('throws on invalid limit', () => {
     const func = vi.fn(async (val: number) => val);
 

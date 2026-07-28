@@ -16,6 +16,7 @@
 
 - Fixed the Cloudflare website build failing with `Cannot find module '@opentf/std'`. A plain `0.14.1` range matched the workspace version, so bun linked `packages/std` instead of the registry package, and its gitignored `dist/` is absent in CI.
 - Fixed flaky `shuffle` test by mocking `Math.random` with `spyOn` for deterministic testing.
+- Fixed `rateLimitRun` scheduling a timer for every queued call instead of one per drain. `processQueue` runs on each call and cleared `timeoutId` at the top without clearing the timer it referred to, so the pending timer was orphaned and the next queued call scheduled another. A burst of 5,000 queued calls held 4,990 live timers instead of 1. Rate limiting, ordering and timing are unchanged.
 
 
 

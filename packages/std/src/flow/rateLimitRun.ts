@@ -31,36 +31,44 @@ export default function rateLimitRun<T extends (...args: any[]) => any>(
   }[] = [];
   let timeoutId: ReturnType<typeof setTimeout> | undefined;
 
-  function cleanup() {
-    const now = Date.now();
+  /** Drops start times that have aged out of the rolling window. */
+  function cleanup(now: number) {
     while (timestamps.length > 0 && timestamps[0] <= now - period) {
       timestamps.shift();
     }
   }
 
-  async function processQueue() {
-    timeoutId = undefined;
-    cleanup();
+  function processQueue() {
+    while (queue.length > 0) {
+      // Re-checked every iteration: a slow synchronous `func` can push the clock
+      // past the window boundary part-way through a drain.
+      cleanup(Date.now());
+      if (timestamps.length >= limit) break;
 
-    while (queue.length > 0 && timestamps.length < limit) {
       const item = queue.shift()!;
-      const now = Date.now();
-      timestamps.push(now);
+      timestamps.push(Date.now());
 
+      // The window is measured from when a call *starts*, so settlement never
+      // frees a slot and there is nothing to re-drain on completion.
       try {
-        const result = await func(...item.args);
-        item.resolve(result);
+        const result = func(...item.args);
+        if (result && typeof result.then === 'function') {
+          result.then(item.resolve, item.reject);
+        } else {
+          item.resolve(result);
+        }
       } catch (error) {
         item.reject(error);
       }
-
-      cleanup();
     }
 
     if (queue.length > 0 && timeoutId === undefined) {
-      const nextExecutionTime = timestamps[0] + period;
-      const delay = Math.max(0, nextExecutionTime - Date.now());
-      timeoutId = setTimeout(processQueue, delay);
+      // The oldest start time is the first slot to free up.
+      const delay = Math.max(0, timestamps[0] + period - Date.now());
+      timeoutId = setTimeout(() => {
+        timeoutId = undefined;
+        processQueue();
+      }, delay);
     }
   }
 
