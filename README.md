@@ -53,7 +53,7 @@ import {
 const t = new DateTime("2026-03-07T12:00", { timeZone: "America/New_York" });
 t.add({ days: 1 }).format("HH:mm ZZ"); //=> "12:00 -04:00"  DST-safe: 23 real hours
 t.withTimeZone("Asia/Kolkata").format("EEE d MMM, HH:mm"); //=> "Sat 7 Mar, 22:30"
-new DateTime("2026-01-31").add({ months: 1 }); //=> 2026-02-28  month-end clamps
+new DateTime("2028-02-10").endOf("month"); //=> 2028-02-29  leap-year aware
 
 // 🎯 Exact decimal math — no floating-point errors
 new Decimal("0.1").add("0.2").toString(); //=> "0.3"
