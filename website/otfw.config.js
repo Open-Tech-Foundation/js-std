@@ -7,7 +7,7 @@ export default defineDocsConfig({
     title: 'JS Standard Library',
     version: 'v0.14.0',
     logo: '/assets/Logo.svg',
-    homeUrl: '/docs',
+    homeUrl: '/',
     github: 'https://github.com/open-tech-foundation/js-std',
     repoUrl: 'https://github.com/open-tech-foundation/js-std',
     lastUpdated: true,
