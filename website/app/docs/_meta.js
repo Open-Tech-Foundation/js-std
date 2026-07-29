@@ -1,5 +1,4 @@
 export default {
-  index: 'Introduction',
   'env-support': 'Environment Support',
   Array: 'Array',
   Assert: 'Assert',
