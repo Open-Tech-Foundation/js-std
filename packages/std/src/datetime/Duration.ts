@@ -1,4 +1,11 @@
 import DateTime from './DateTime';
+import {
+  durationFormatter,
+  englishDuration,
+  englishRelative,
+  relativeFormatter,
+} from './durationIntl';
+import durationTokens from './durationTokens';
 import { getTemporal } from './hasTemporal';
 import parseDuration from './parseDuration';
 import type {
@@ -647,6 +654,102 @@ export default class Duration {
   /** The ISO-8601 form, so a `Duration` survives `JSON.stringify`. */
   toJSON(): string {
     return this.toString();
+  }
+
+  /**
+   * Renders against a token pattern, identically on every runtime.
+   *
+   * Tokens are `y`/`yy`, `M`/`MM`, `w`/`ww`, `d`/`dd`, `H`/`HH`, `m`/`mm`,
+   * `s`/`ss` and `SSS`; the doubled forms zero-pad. Text in single quotes is
+   * literal and `''` is a quote.
+   *
+   * The coarsest exact token in the pattern sets where the time part is split,
+   * so `'m:ss'` on ninety minutes reads `90:00` while `'H:mm:ss'` reads
+   * `1:30:00`. Calendar fields are used as stored, nothing being able to
+   * rebalance them without a reference point. A negative duration is prefixed
+   * once with `-`.
+   *
+   * @param {string} pattern The token pattern.
+   * @returns {string} The formatted duration.
+   *
+   * @example
+   * new Duration('PT1H30M').format('H:mm:ss') //=> '1:30:00'
+   */
+  format(pattern: string): string {
+    return durationTokens(this.toObject(), this.sign, pattern);
+  }
+
+  /**
+   * Renders in the reader's language.
+   *
+   * Uses `Intl.DurationFormat` where the runtime provides it and falls back to
+   * a short English rendering where it does not — it is recent enough to be
+   * absent on LLRT and on Node.js before 23. Use `format` when the output has
+   * to be identical everywhere.
+   *
+   * A zero duration renders as a zero count of seconds rather than the empty
+   * string `Intl.DurationFormat` gives it, since a blank label is far more
+   * likely to be a bug than an intent. Passing `secondsDisplay` yourself takes
+   * precedence.
+   *
+   * @param {string} [locale] A BCP 47 tag. Defaults to the ambient locale.
+   * @param {object} [options] `Intl.DurationFormat` options.
+   * @returns {string} The formatted duration.
+   *
+   * @example
+   * new Duration('PT1H30M').toLocaleString('en-US') //=> '1 hr, 30 min'
+   */
+  toLocaleString(locale?: string, options?: object): string {
+    const resolved = this.isZero
+      ? { secondsDisplay: 'always', ...options }
+      : options;
+    const formatter = durationFormatter(locale, resolved);
+
+    return formatter === null
+      ? englishDuration(this.toObject())
+      : formatter.format(this.toObject());
+  }
+
+  /**
+   * Renders as a point in time relative to now, such as `'3 hours ago'`.
+   *
+   * Only the coarsest unit in use is shown, which is what makes the phrasing
+   * read naturally — `round` first to choose a different granularity. A
+   * duration of milliseconds alone is expressed in seconds, that being the
+   * finest unit `Intl.RelativeTimeFormat` has.
+   *
+   * @param {string} [locale] A BCP 47 tag. Defaults to the ambient locale.
+   * @param {object} [options] `Intl.RelativeTimeFormat` options.
+   * @returns {string} The formatted phrase.
+   *
+   * @example
+   * new Duration({ hours: -3 }).toRelative('en-US') //=> '3 hours ago'
+   * new Duration({ days: 2 }).toRelative('en-US')   //=> 'in 2 days'
+   */
+  toRelative(locale?: string, options?: object): string {
+    let unit: DateTimeUnit = 'second';
+    let value = 0;
+
+    for (const candidate of UNITS) {
+      const amount = this[PLURAL[candidate]];
+
+      if (amount !== 0) {
+        unit = candidate;
+        value = amount;
+        break;
+      }
+    }
+
+    if (unit === 'millisecond') {
+      unit = 'second';
+      value /= MS.second;
+    }
+
+    const formatter = relativeFormatter(locale, options);
+
+    return formatter === null
+      ? englishRelative(value, unit)
+      : formatter.format(value, unit);
   }
 
   /**

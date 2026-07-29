@@ -12,6 +12,11 @@ const caps = {
     has(globalThis.Intl) && typeof globalThis.Intl.Segmenter === 'function',
   'Intl.NumberFormat':
     has(globalThis.Intl) && typeof globalThis.Intl.NumberFormat === 'function',
+  'Intl.DurationFormat':
+    has(globalThis.Intl) && typeof globalThis.Intl.DurationFormat === 'function',
+  'Intl.RelativeTimeFormat':
+    has(globalThis.Intl) &&
+    typeof globalThis.Intl.RelativeTimeFormat === 'function',
   'crypto.getRandomValues':
     typeof globalThis.crypto?.getRandomValues === 'function',
   'crypto.randomUUID': typeof globalThis.crypto?.randomUUID === 'function',

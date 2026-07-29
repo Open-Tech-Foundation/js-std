@@ -701,3 +701,183 @@ describe('Duration.round', () => {
     expect(Number.isInteger(d.total('hour', { relativeTo }))).toBe(true);
   });
 });
+
+describe('Duration.format', () => {
+  test('renders a clock pattern', () => {
+    expect(new Duration('PT1H30M').format('H:mm:ss')).toBe('1:30:00');
+    expect(new Duration('PT1H30M5S').format('HH:mm:ss')).toBe('01:30:05');
+  });
+
+  test('splits at the coarsest exact token the pattern asks for', () => {
+    const d = new Duration('PT90M');
+
+    // The hour is kept when there is somewhere to put it, folded in when not.
+    expect(d.format('H:mm')).toBe('1:30');
+    expect(d.format('m')).toBe('90');
+    expect(d.format('s')).toBe('5400');
+  });
+
+  test('rebalances the stored fields', () => {
+    // Storage is unbalanced, so without this PT90S would read 0:00:90.
+    expect(new Duration('PT90S').format('H:mm:ss')).toBe('0:01:30');
+  });
+
+  test('zero-pads the doubled tokens only', () => {
+    const d = new Duration('PT5M');
+
+    expect(d.format('m')).toBe('5');
+    expect(d.format('mm')).toBe('05');
+  });
+
+  test('renders milliseconds to three places', () => {
+    expect(new Duration('PT1.5S').format('s.SSS')).toBe('1.500');
+    expect(new Duration({ milliseconds: 7 }).format('s.SSS')).toBe('0.007');
+  });
+
+  test('uses calendar fields as stored', () => {
+    const d = new Duration('P1Y2M3W4D');
+
+    expect(d.format("y'y' M'm' w'w' d'd'")).toBe('1y 2m 3w 4d');
+    expect(d.format('yy-MM-dd')).toBe('01-02-04');
+  });
+
+  test('treats quoted text as literal', () => {
+    expect(new Duration('PT2H').format("H'h'")).toBe('2h');
+    // A quoted run is literal, so its letters are not tokens.
+    expect(new Duration('PT2H').format("'Hms' H")).toBe('Hms 2');
+  });
+
+  test('renders a doubled quote as one quote', () => {
+    expect(new Duration('PT2H').format("H''")).toBe("2'");
+  });
+
+  test('prefixes a negative duration once', () => {
+    expect(new Duration('-PT1H30M').format('H:mm')).toBe('-1:30');
+    expect(new Duration('-P1DT2H').format("d'd' H'h'")).toBe('-1d 2h');
+  });
+
+  test('renders zero', () => {
+    expect(new Duration().format('H:mm:ss')).toBe('0:00:00');
+  });
+
+  test('is independent of the ambient locale', () => {
+    // No names to localise, so the bytes are fixed.
+    expect(new Duration('P1M2DT3H').format('M-dd HH')).toBe('1-02 03');
+  });
+});
+
+describe('Duration.toLocaleString', () => {
+  test('renders the units in use', () => {
+    const text = new Duration('PT1H30M').toLocaleString('en-US');
+
+    expect(text).toContain('1');
+    expect(text).toContain('30');
+    expect(text.toLowerCase()).toMatch(/h|min/);
+  });
+
+  test('omits zero fields', () => {
+    expect(new Duration('PT30M').toLocaleString('en-US')).not.toMatch(/\b0\b/);
+  });
+
+  test('renders zero as a zero span rather than an empty string', () => {
+    // Intl.DurationFormat gives '' for an all-zero duration, which reads as a
+    // bug wherever the result is a label.
+    expect(new Duration().toLocaleString('en-US')).toBe('0 sec');
+  });
+
+  test('lets an explicit secondsDisplay win', () => {
+    expect(
+      new Duration().toLocaleString('en-US', { secondsDisplay: 'auto' }),
+    ).toBe('');
+  });
+
+  test('renders calendar and exact units together', () => {
+    const text = new Duration('P1DT2H').toLocaleString('en-US');
+
+    expect(text).toContain('1');
+    expect(text).toContain('2');
+  });
+});
+
+describe('Duration.toRelative', () => {
+  test('renders the past and the future', () => {
+    expect(new Duration({ hours: -3 }).toRelative('en-US')).toBe('3 hours ago');
+    expect(new Duration({ days: 2 }).toRelative('en-US')).toBe('in 2 days');
+  });
+
+  test('uses the singular for one', () => {
+    expect(new Duration({ days: -1 }).toRelative('en-US')).toBe('1 day ago');
+  });
+
+  test('shows only the coarsest unit in use', () => {
+    // Relative phrasing does not carry a remainder; round first to choose.
+    expect(new Duration('PT1H30M').toRelative('en-US')).toBe('in 1 hour');
+  });
+
+  test('expresses milliseconds in seconds', () => {
+    // Intl.RelativeTimeFormat has no millisecond unit.
+    expect(new Duration({ milliseconds: -1500 }).toRelative('en-US')).toBe(
+      '1.5 seconds ago',
+    );
+  });
+
+  test('renders zero', () => {
+    expect(new Duration().toRelative('en-US')).toBe('in 0 seconds');
+  });
+
+  test('renders calendar units', () => {
+    expect(new Duration({ months: -2 }).toRelative('en-US')).toBe(
+      '2 months ago',
+    );
+    expect(new Duration({ years: 1 }).toRelative('en-US')).toBe('in 1 year');
+  });
+});
+
+describe('Duration formatting without Intl', () => {
+  const intl = globalThis.Intl as Record<string, unknown>;
+  const duration = intl.DurationFormat;
+  const relative = intl.RelativeTimeFormat;
+
+  afterEach(() => {
+    intl.DurationFormat = duration;
+    intl.RelativeTimeFormat = relative;
+  });
+
+  test('falls back to English when Intl.DurationFormat is absent', () => {
+    intl.DurationFormat = undefined;
+
+    expect(new Duration('PT1H30M').toLocaleString()).toBe('1 hr, 30 min');
+    expect(new Duration('P1DT2H').toLocaleString()).toBe('1 day, 2 hr');
+    expect(new Duration('P1Y2M').toLocaleString()).toBe('1 yr, 2 mths');
+  });
+
+  test('the fallback agrees with Intl on shape and on zero', () => {
+    const cases = ['PT1H30M', 'P1DT2H', 'PT30M'];
+    const native = cases.map((iso) =>
+      new Duration(iso).toLocaleString('en-US'),
+    );
+
+    intl.DurationFormat = undefined;
+
+    expect(
+      cases.map((iso) => new Duration(iso).toLocaleString('en-US')),
+    ).toEqual(native);
+    expect(new Duration().toLocaleString('en-US')).toBe('0 sec');
+  });
+
+  test('falls back to English when Intl.RelativeTimeFormat is absent', () => {
+    intl.RelativeTimeFormat = undefined;
+
+    expect(new Duration({ hours: -3 }).toRelative()).toBe('3 hours ago');
+    expect(new Duration({ days: 2 }).toRelative()).toBe('in 2 days');
+    expect(new Duration({ days: -1 }).toRelative()).toBe('1 day ago');
+    expect(new Duration().toRelative()).toBe('in 0 seconds');
+  });
+
+  test('format needs no Intl at all', () => {
+    intl.DurationFormat = undefined;
+    intl.RelativeTimeFormat = undefined;
+
+    expect(new Duration('PT1H30M').format('H:mm:ss')).toBe('1:30:00');
+  });
+});

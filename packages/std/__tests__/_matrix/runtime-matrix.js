@@ -93,6 +93,18 @@ const KNOWN_ISSUES = [
       'printable ASCII is measured without segmenting and works everywhere.',
   },
   {
+    match: /toLocaleString|toRelative/,
+    requires: 'Intl.DurationFormat',
+    affects: ['Duration'],
+    category: 'missing-capability',
+    reason:
+      'Localised duration text needs `Intl.DurationFormat` and ' +
+      '`Intl.RelativeTimeFormat`. Where either is absent `Duration` falls back to ' +
+      'English rather than throwing, so only the wording differs — and `format` ' +
+      'is locale-independent and unaffected. A failure here means the runtime ' +
+      'has the API but not the locale data behind it.',
+  },
+  {
     match: /formatCompact|formatCurrency|formatNumber/,
     requires: 'Intl.NumberFormat',
     affects: ['formatCompact', 'formatCurrency'],
