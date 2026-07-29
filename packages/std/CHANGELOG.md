@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [0.15.0] - 2026-07-29
+
 ### Added
 
 - Added a DateTime module — `DateTime`, an immutable date and time in an IANA time zone, covering parsing, field access, DST-safe arithmetic, truncation, comparison and formatting. Time-zone support comes from `Intl.DateTimeFormat` alone, so there is no bundled time-zone database and no dependency. Months and days are 1-based and `dayOfWeek` runs 1 (Monday) to 7 (Sunday), following Temporal and ISO-8601 rather than the legacy `Date`. Calendar units move the wall clock, so adding a day across a DST boundary keeps the local time and may advance 23 or 25 real hours, while exact units move the instant; month arithmetic clamps, so 31 January plus one month is 28 or 29 February. Parsing is strict ISO-8601 and throws rather than yielding an `Invalid Date`, because `Date.parse` is implementation-defined outside the ISO subset and disagrees across runtimes.

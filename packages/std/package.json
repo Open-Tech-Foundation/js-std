@@ -1,6 +1,6 @@
 {
   "name": "@opentf/std",
-  "version": "0.14.1",
+  "version": "0.15.0",
   "description": "The Modern JavaScript Standard Library. A lightweight, high-accuracy, runtime-agnostic collection of essential utilities.",
   "keywords": [
     "collection",
