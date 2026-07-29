@@ -183,7 +183,9 @@ export type {
   Disambiguation,
   DurationBetweenOptions,
   DurationLike,
+  DurationRoundOptions,
   RelativeToOptions,
+  RoundingMode,
 } from './datetime/types';
 
 // Functional

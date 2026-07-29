@@ -486,3 +486,218 @@ describe('Duration Temporal interop', () => {
     expect(() => Duration.fromTemporal({} as never)).toThrow(TypeError);
   });
 });
+
+describe('Duration.total', () => {
+  test('measures an exact duration without an anchor', () => {
+    expect(new Duration('PT90M').total('hour')).toBe(1.5);
+    expect(new Duration('PT1H').total('minute')).toBe(60);
+    expect(new Duration('PT1.5S').total('millisecond')).toBe(1500);
+    expect(new Duration({ hours: 90 }).total('hour')).toBe(90);
+  });
+
+  test('keeps the sign', () => {
+    expect(new Duration('-PT90M').total('hour')).toBe(-1.5);
+  });
+
+  test('is zero for a zero duration', () => {
+    expect(new Duration().total('hour')).toBe(0);
+  });
+
+  test('requires an anchor for a calendar duration', () => {
+    expect(() => new Duration('P1M').total('day')).toThrow(RangeError);
+  });
+
+  test('requires an anchor for a calendar unit', () => {
+    // The duration is exact, but months still have no fixed length.
+    expect(() => new Duration('PT720H').total('month')).toThrow(RangeError);
+  });
+
+  test('measures days as exact time only against an anchor', () => {
+    // A plain P1D is 24 hours in UTC...
+    const utc = { relativeTo: new DateTime('2026-03-08') };
+
+    expect(new Duration('P1D').total('hour', utc)).toBe(24);
+
+    // ...but 23 across the spring-forward boundary in New York.
+    const ny = {
+      relativeTo: new DateTime('2026-03-07T12:00', { timeZone: NY }),
+    };
+
+    expect(new Duration('P1D').total('hour', ny)).toBe(23);
+  });
+
+  test('measures a month against the month it actually spans', () => {
+    expect(
+      new Duration('P1M').total('day', {
+        relativeTo: new DateTime('2026-02-01'),
+      }),
+    ).toBe(28);
+    expect(
+      new Duration('P1M').total('day', {
+        relativeTo: new DateTime('2026-03-01'),
+      }),
+    ).toBe(31);
+  });
+
+  test('returns a fraction of the unit that actually follows', () => {
+    // Half of a 28-day February, measured from 1 January.
+    const relativeTo = new DateTime('2026-01-01');
+
+    expect(new Duration('P1M14D').total('month', { relativeTo })).toBe(1.5);
+    expect(new Duration('P45D').total('month', { relativeTo })).toBeCloseTo(
+      1 + 14 / 28,
+      10,
+    );
+  });
+
+  test('measures backwards', () => {
+    const relativeTo = new DateTime('2026-03-01');
+
+    expect(new Duration('-P1M').total('day', { relativeTo })).toBe(-28);
+    expect(new Duration('-P1M').total('month', { relativeTo })).toBe(-1);
+  });
+
+  test('agrees with between over the same span', () => {
+    const a = new DateTime('2026-01-01T00:00', { timeZone: NY });
+    const b = new DateTime('2026-07-04T06:30', { timeZone: NY });
+    const d = Duration.between(a, b, { largestUnit: 'year' });
+
+    expect(d.total('hour', { relativeTo: a })).toBe(
+      (b.epochMs - a.epochMs) / 3_600_000,
+    );
+  });
+
+  test('rejects an unknown unit', () => {
+    expect(() => new Duration('PT1H').total('fortnight' as never)).toThrow(
+      RangeError,
+    );
+  });
+});
+
+describe('Duration.round', () => {
+  test('balances when given only a largestUnit', () => {
+    expect(
+      new Duration('PT90S').round({ largestUnit: 'minute' }).toString(),
+    ).toBe('PT1M30S');
+    expect(
+      new Duration({ minutes: 90 }).round({ largestUnit: 'hour' }).toString(),
+    ).toBe('PT1H30M');
+  });
+
+  test('does not invent units coarser than the duration already uses', () => {
+    expect(new Duration('PT90S').round().toString()).toBe('PT90S');
+  });
+
+  test('rounds to a smallestUnit', () => {
+    expect(
+      new Duration('PT1H30M').round({ smallestUnit: 'hour' }).toString(),
+    ).toBe('PT2H');
+    expect(
+      new Duration('PT1H29M').round({ smallestUnit: 'hour' }).toString(),
+    ).toBe('PT1H');
+  });
+
+  test('honours every rounding mode', () => {
+    const d = new Duration('PT1H30M');
+    const modes = {
+      trunc: 'PT1H',
+      floor: 'PT1H',
+      ceil: 'PT2H',
+      halfExpand: 'PT2H',
+    } as const;
+
+    for (const [roundingMode, expected] of Object.entries(modes)) {
+      expect(
+        d
+          .round({ smallestUnit: 'hour', roundingMode: roundingMode as never })
+          .toString(),
+      ).toBe(expected);
+    }
+  });
+
+  test('rounds negatives away from zero on halfExpand, not toward it', () => {
+    // Math.round would send -0.5 to zero while sending 0.5 to one.
+    const d = new Duration('-PT30M');
+
+    expect(d.round({ smallestUnit: 'hour' }).toString()).toBe('-PT1H');
+    expect(
+      new Duration('PT30M').round({ smallestUnit: 'hour' }).toString(),
+    ).toBe('PT1H');
+  });
+
+  test('floor and ceil follow the number line, not the magnitude', () => {
+    const d = new Duration('-PT1H30M');
+
+    expect(
+      d.round({ smallestUnit: 'hour', roundingMode: 'floor' }).toString(),
+    ).toBe('-PT2H');
+    expect(
+      d.round({ smallestUnit: 'hour', roundingMode: 'ceil' }).toString(),
+    ).toBe('-PT1H');
+    expect(
+      d.round({ smallestUnit: 'hour', roundingMode: 'trunc' }).toString(),
+    ).toBe('-PT1H');
+  });
+
+  test('rounds calendar units against an anchor', () => {
+    const relativeTo = new DateTime('2026-01-01');
+
+    expect(
+      new Duration('P1M20D')
+        .round({ smallestUnit: 'month', relativeTo })
+        .toString(),
+    ).toBe('P2M');
+    expect(
+      new Duration('P1M2D')
+        .round({ smallestUnit: 'month', relativeTo })
+        .toString(),
+    ).toBe('P1M');
+  });
+
+  test('rebalances into calendar units', () => {
+    const relativeTo = new DateTime('2026-01-01');
+
+    expect(
+      new Duration('P45D')
+        .round({ largestUnit: 'month', relativeTo })
+        .toString(),
+    ).toBe('P1M14D');
+  });
+
+  test('requires an anchor for calendar rounding', () => {
+    expect(() => new Duration('P45D').round({ largestUnit: 'month' })).toThrow(
+      RangeError,
+    );
+  });
+
+  test('rejects an unknown mode or unit', () => {
+    const d = new Duration('PT1H');
+
+    expect(() => d.round({ roundingMode: 'nearest' as never })).toThrow(
+      RangeError,
+    );
+    expect(() => d.round({ smallestUnit: 'fortnight' as never })).toThrow(
+      RangeError,
+    );
+  });
+
+  test('rejects a largestUnit finer than the smallestUnit', () => {
+    expect(() =>
+      new Duration('PT1H').round({
+        smallestUnit: 'minute',
+        largestUnit: 'second',
+      }),
+    ).toThrow(RangeError);
+  });
+
+  test('a rounded duration still measures what it says', () => {
+    const relativeTo = new DateTime('2026-01-15T08:20', { timeZone: NY });
+    const d = new Duration('P2M13DT7H41M').round({
+      smallestUnit: 'hour',
+      largestUnit: 'month',
+      relativeTo,
+    });
+
+    expect(Number.isInteger(d.total('hour', { relativeTo }))).toBe(true);
+  });
+});

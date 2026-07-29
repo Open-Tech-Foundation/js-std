@@ -5,7 +5,9 @@ import type {
   DateTimeUnit,
   DurationBetweenOptions,
   DurationLike,
+  DurationRoundOptions,
   RelativeToOptions,
+  RoundingMode,
 } from './types';
 import { DURATION_KEYS, MS, PLURAL, UNITS, assertUnit, isExact } from './units';
 
@@ -113,6 +115,24 @@ function balanceExact(ms: number, largestUnit: DateTimeUnit): ExactFields {
     seconds: seconds * sign,
     milliseconds: rest * sign,
   };
+}
+
+const ROUNDING_MODES: RoundingMode[] = ['trunc', 'floor', 'ceil', 'halfExpand'];
+
+function applyRounding(value: number, mode: RoundingMode): number {
+  switch (mode) {
+    case 'trunc':
+      return Math.trunc(value);
+    case 'floor':
+      return Math.floor(value);
+    case 'ceil':
+      return Math.ceil(value);
+    default:
+      // `Math.round` breaks ties toward positive infinity, so -0.5 would go to
+      // zero while 0.5 goes to one. Rounding the magnitude keeps the two
+      // directions symmetrical.
+      return Math.sign(value) * Math.round(Math.abs(value));
+  }
 }
 
 /** The coarsest unit either duration actually uses. */
@@ -408,6 +428,109 @@ export default class Duration {
     options: RelativeToOptions = {},
   ): Duration {
     return this.add(Duration.from(other).negated(), options);
+  }
+
+  /**
+   * The whole duration measured in one unit, fraction included.
+   *
+   * Needs no anchor while both the duration and the unit stay at hours or
+   * below, since those lengths are fixed. Anything touching a calendar unit
+   * depends on where it falls and so requires `relativeTo`.
+   *
+   * @param {DateTimeUnit} unit The unit to measure in.
+   * @param {RelativeToOptions} [options] `relativeTo`, when calendar units apply.
+   * @returns {number} The signed total, which may be fractional.
+   *
+   * @throws {RangeError} When a calendar unit is in play without `relativeTo`.
+   */
+  total(unit: DateTimeUnit, options: RelativeToOptions = {}): number {
+    assertUnit(unit);
+
+    if (!this.hasCalendar && isExact(unit)) {
+      return this.exactMs / MS[unit];
+    }
+
+    const relativeTo = this.anchor(options, 'Measuring');
+    const end = relativeTo.add(this.toObject());
+
+    if (isExact(unit)) {
+      return (end.epochMs - relativeTo.epochMs) / MS[unit];
+    }
+
+    if (end.epochMs === relativeTo.epochMs) {
+      return 0;
+    }
+
+    // Whole units come from the calendar, so month lengths and DST are already
+    // accounted for. What is left over is then measured against the unit that
+    // would come next, which is the only length that makes the fraction mean
+    // anything: half of a 31-day month is not half of a 28-day one.
+    const whole = end.diff(relativeTo, unit);
+    const step = end.epochMs > relativeTo.epochMs ? 1 : -1;
+    const after = relativeTo.add({ [PLURAL[unit]]: whole });
+    const next = relativeTo.add({ [PLURAL[unit]]: whole + step });
+    const span = Math.abs(next.epochMs - after.epochMs);
+
+    return whole + (end.epochMs - after.epochMs) / span;
+  }
+
+  /**
+   * Rounds to a unit, and rebalances.
+   *
+   * `smallestUnit` sets what survives and `largestUnit` how coarsely the result
+   * is expressed; giving only the latter balances without discarding anything.
+   *
+   * @param {DurationRoundOptions} [options] Rounding options.
+   * @returns {Duration} A new, rounded duration.
+   *
+   * @throws {RangeError} On an unknown unit or mode, or when a calendar unit is
+   *   in play without `relativeTo`.
+   */
+  round(options: DurationRoundOptions = {}): Duration {
+    const smallestUnit = options.smallestUnit ?? 'millisecond';
+    const roundingMode = options.roundingMode ?? 'halfExpand';
+
+    assertUnit(smallestUnit);
+
+    // Default to the coarsest unit already in use, so rounding does not invent
+    // larger ones — but never finer than what is being rounded to, or a
+    // duration rounded up to whole hours would have nowhere to put them.
+    const used = largestUsed(this, this);
+    const largestUnit =
+      options.largestUnit ??
+      (UNITS.indexOf(used) < UNITS.indexOf(smallestUnit) ? used : smallestUnit);
+
+    assertUnit(largestUnit);
+
+    if (!ROUNDING_MODES.includes(roundingMode)) {
+      throw new RangeError(
+        `The roundingMode must be one of ${ROUNDING_MODES.join(', ')}. Received: ${roundingMode}`,
+      );
+    }
+
+    if (UNITS.indexOf(largestUnit) > UNITS.indexOf(smallestUnit)) {
+      throw new RangeError(
+        `The largestUnit (${largestUnit}) cannot be finer than the smallestUnit (${smallestUnit}).`,
+      );
+    }
+
+    const count = applyRounding(
+      this.total(smallestUnit, options),
+      roundingMode,
+    );
+    const rounded = { [PLURAL[smallestUnit]]: count };
+
+    if (isExact(smallestUnit) && isExact(largestUnit)) {
+      return new Duration(balanceExact(count * MS[smallestUnit], largestUnit));
+    }
+
+    // Re-measuring from the anchor is what turns a flat count of one unit back
+    // into a mixture of calendar ones.
+    const relativeTo = this.anchor(options, 'Rounding');
+
+    return Duration.between(relativeTo, relativeTo.add(rounded), {
+      largestUnit,
+    });
   }
 
   /**

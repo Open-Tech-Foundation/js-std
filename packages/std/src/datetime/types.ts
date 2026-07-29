@@ -67,6 +67,26 @@ export interface DurationBetweenOptions {
 }
 
 /**
+ * How to resolve a value that falls between two whole units.
+ *
+ * - `trunc` — toward zero.
+ * - `floor` / `ceil` — toward negative / positive infinity.
+ * - `halfExpand` — to the nearest, with a half going away from zero.
+ */
+export type RoundingMode = 'trunc' | 'floor' | 'ceil' | 'halfExpand';
+
+/** Options for `Duration.round`. */
+export interface DurationRoundOptions extends RelativeToOptions {
+  /** The finest unit to keep. Defaults to `'millisecond'`. */
+  smallestUnit?: DateTimeUnit;
+  /** The coarsest unit to express the result in. Defaults to the coarsest the
+   * duration already uses, so rounding does not invent larger units. */
+  largestUnit?: DateTimeUnit;
+  /** Defaults to `'halfExpand'`. */
+  roundingMode?: RoundingMode;
+}
+
+/**
  * A fully resolved wall-clock reading in a specific zone, plus the offset that
  * was in force at that instant. This is the value both civil backends produce.
  */
