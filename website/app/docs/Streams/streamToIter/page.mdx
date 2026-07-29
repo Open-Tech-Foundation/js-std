@@ -1,0 +1,76 @@
+import { Callout } from "@opentf/web-docs";
+
+🌊 Reads a stream as an async iterable, so the `*IterAsync` operators apply to it.
+
+<Callout type="info">
+  `ReadableStream` is async iterable on some runtimes and not on others. This gives every
+  runtime the same handle — it is what lets `mapIterAsync`, `filterIterAsync`,
+  `takeIterAsync` and the rest of the Iter module run against a stream.
+</Callout>
+
+## Syntax
+
+```ts
+import { streamToIter } from '@opentf/std';
+
+streamToIter<T>(
+  stream: ReadableStream<T>,
+  options?: { preventCancel?: boolean },
+): AsyncGenerator<T>;
+```
+
+## Parameters
+
+| Name                   | Type                    | Description                                          |
+| ---------------------- | ----------------------- | ---------------------------------------------------- |
+| stream                 | `ReadableStream<T>`     | The stream to read.                                   |
+| options.preventCancel  | `boolean` (default `false`) | Leave the stream open when iteration ends early. |
+
+## Returns
+
+An async generator over the chunks, in order.
+
+Reading is lazy — the stream is pulled one chunk at a time, as the consumer asks for it, so backpressure reaches the source unchanged.
+
+## Examples
+
+Applying the Iter operators to a response body:
+
+```ts
+import { streamToIter, mapIterAsync, toArrayIterAsync } from '@opentf/std';
+
+const sizes = mapIterAsync(streamToIter(response.body), (chunk) => chunk.length);
+
+await toArrayIterAsync(sizes); //=> [64, 64, 12]
+```
+
+Taking the first few chunks and stopping:
+
+```ts
+for await (const chunk of streamToIter(stream)) {
+  process(chunk);
+  break; // the stream is cancelled here
+}
+```
+
+## Cancellation
+
+Leaving the loop early — `break`, `return`, or a throw — cancels the stream, matching what the platform's own async iteration does. `preventCancel` leaves it open so the rest can be handed to another consumer:
+
+```ts
+// Read the header, then pass the remainder on untouched.
+for await (const chunk of streamToIter(stream, { preventCancel: true })) {
+  header = parse(chunk);
+  break;
+}
+
+await upload(stream); // still readable
+```
+
+The reader lock is released either way, so the stream is never left locked. A stream that errors surfaces its own error and is not cancelled on the way out.
+
+## Related
+
+- [iterToStream](/docs/Streams/iterToStream)
+- [streamToLines](/docs/Streams/streamToLines)
+- [streamToArray](/docs/Streams/streamToArray)

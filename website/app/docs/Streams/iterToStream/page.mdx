@@ -1,0 +1,78 @@
+import { Callout } from "@opentf/web-docs";
+
+🌊 Turns an iterable, async iterable or iterator into a stream.
+
+<Callout type="info">
+  The inverse of `streamToIter`, and the step that hands an `*Iter` pipeline to anything
+  that consumes a `ReadableStream` — `Response`, `fetch`, `pipeThrough`.
+</Callout>
+
+## Syntax
+
+```ts
+import { iterToStream } from '@opentf/std';
+
+iterToStream<T>(
+  iter: AsyncIterable<T> | Iterable<T> | { next: () => Promise<IteratorResult<T>> | IteratorResult<T> },
+): ReadableStream<T>;
+```
+
+## Parameters
+
+| Name | Type                                              | Description        |
+| ---- | ------------------------------------------------- | ------------------ |
+| iter | `AsyncIterable<T> \| Iterable<T> \| Iterator<T>`  | The source to read. |
+
+## Returns
+
+A `ReadableStream<T>` over every value, in order.
+
+Anything not iterable throws a `TypeError` at the call, rather than on the first read.
+
+## Examples
+
+Serving a generator as a response body:
+
+```ts
+async function* rows() {
+  for await (const row of query()) {
+    yield JSON.stringify(row) + '\n';
+  }
+}
+
+new Response(iterToStream(rows()));
+```
+
+Round tripping a stream through the Iter operators:
+
+```ts
+import { streamToIter, iterToStream, mapIterAsync } from '@opentf/std';
+
+const upper = mapIterAsync(streamToIter(input), (chunk) => chunk.toUpperCase());
+
+const output = iterToStream(upper);
+```
+
+## Backpressure
+
+The source is pulled lazily, one value per read, so nothing is produced until the consumer asks. An infinite generator is safe:
+
+```ts
+function* naturals() {
+  let n = 0;
+  while (true) yield n++;
+}
+
+const reader = iterToStream(naturals()).getReader();
+
+await reader.read(); //=> { value: 0, done: false }
+await reader.cancel(); // the generator's `finally` runs here
+```
+
+Cancelling the stream calls `return` on the source, so a generator's `finally` block runs and its resources are released.
+
+## Related
+
+- [streamToIter](/docs/Streams/streamToIter)
+- [concatStreams](/docs/Streams/concatStreams)
+- [fromIterAsync](/docs/Iter/fromIterAsync)

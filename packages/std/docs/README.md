@@ -253,9 +253,11 @@
 ## Streams
 
 - [concatStreams](./Streams/concatStreams.md)
+- [iterToStream](./Streams/iterToStream.md)
 - [mergeStreams](./Streams/mergeStreams.md)
 - [streamToArray](./Streams/streamToArray.md)
 - [streamToBytes](./Streams/streamToBytes.md)
+- [streamToIter](./Streams/streamToIter.md)
 - [streamToLines](./Streams/streamToLines.md)
 - [streamToText](./Streams/streamToText.md)
 

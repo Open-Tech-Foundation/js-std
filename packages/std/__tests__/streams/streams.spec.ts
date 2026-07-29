@@ -1,11 +1,17 @@
 import {
   concatStreams,
+  filterIterAsync,
+  iterToStream,
+  mapIterAsync,
   mergeStreams,
   streamToArray,
   streamToBytes,
+  streamToIter,
   streamToLines,
   streamToText,
   stringToBytes,
+  takeIterAsync,
+  toArrayIterAsync,
 } from '../../src';
 
 function fromArray<T>(chunks: T[]): ReadableStream<T> {
@@ -399,5 +405,243 @@ describe('mergeStreams', () => {
     );
 
     await expect(collect(stream)).rejects.toThrow('boom');
+  });
+});
+
+describe('streamToIter', () => {
+  test('yields every chunk in order', async () => {
+    const seen: string[] = [];
+
+    for await (const chunk of streamToIter(fromArray(['a', 'b', 'c']))) {
+      seen.push(chunk);
+    }
+
+    expect(seen).toEqual(['a', 'b', 'c']);
+  });
+
+  test('yields nothing for an empty stream', async () => {
+    expect(await toArrayIterAsync(streamToIter(fromArray([])))).toEqual([]);
+  });
+
+  test('feeds the async iter operators', async () => {
+    const stream = fromArray([1, 2, 3, 4, 5]);
+    const evens = filterIterAsync(streamToIter(stream), (n) => n % 2 === 0);
+
+    expect(await toArrayIterAsync(mapIterAsync(evens, (n) => n * 10))).toEqual([
+      20, 40,
+    ]);
+  });
+
+  test('pulls lazily, one chunk at a time', async () => {
+    let produced = 0;
+
+    const endless = new ReadableStream<number>({
+      pull(controller) {
+        controller.enqueue(produced++);
+      },
+    });
+
+    expect(
+      await toArrayIterAsync(takeIterAsync(streamToIter(endless), 3)),
+    ).toEqual([0, 1, 2]);
+    // A ReadableStream may fill its queue ahead of demand, but not without end.
+    expect(produced).toBeLessThan(10);
+  });
+
+  test('cancels the stream when the loop exits early', async () => {
+    let cancelled = false;
+
+    const stream = new ReadableStream<string>({
+      start(controller) {
+        controller.enqueue('a');
+        controller.enqueue('b');
+      },
+      cancel() {
+        cancelled = true;
+      },
+    });
+
+    for await (const chunk of streamToIter(stream)) {
+      expect(chunk).toBe('a');
+      break;
+    }
+
+    expect(cancelled).toBe(true);
+    expect(stream.locked).toBe(false);
+  });
+
+  test('leaves the stream open under preventCancel', async () => {
+    let cancelled = false;
+
+    const stream = new ReadableStream<string>({
+      start(controller) {
+        controller.enqueue('a');
+        controller.enqueue('b');
+        controller.close();
+      },
+      cancel() {
+        cancelled = true;
+      },
+    });
+
+    for await (const chunk of streamToIter(stream, { preventCancel: true })) {
+      expect(chunk).toBe('a');
+      break;
+    }
+
+    expect(cancelled).toBe(false);
+    // The lock is released either way, so the rest is still readable.
+    expect(stream.locked).toBe(false);
+    expect(await collect(stream)).toEqual(['b']);
+  });
+
+  test('releases the lock once drained', async () => {
+    const stream = fromArray(['a']);
+
+    expect(await toArrayIterAsync(streamToIter(stream))).toEqual(['a']);
+    expect(stream.locked).toBe(false);
+  });
+
+  test('propagates a stream error', async () => {
+    const iter = streamToIter(failingStream(new Error('boom')));
+
+    await expect(toArrayIterAsync(iter)).rejects.toThrow('boom');
+  });
+
+  test('surfaces the stream error, not a failure from the underlying cancel', async () => {
+    // An errored stream is not cancelled on the way out, so a source whose
+    // `cancel` throws cannot contribute an error of its own.
+    const stream = new ReadableStream<string>({
+      start(controller) {
+        controller.error(new Error('boom'));
+      },
+      cancel() {
+        throw new Error('cancel failed');
+      },
+    });
+
+    await expect(toArrayIterAsync(streamToIter(stream))).rejects.toThrow(
+      'boom',
+    );
+  });
+
+  test('cancels when the body throws', async () => {
+    let cancelled = false;
+
+    const stream = new ReadableStream<string>({
+      start(controller) {
+        controller.enqueue('a');
+      },
+      cancel() {
+        cancelled = true;
+      },
+    });
+
+    await expect(
+      (async () => {
+        for await (const _ of streamToIter(stream)) {
+          throw new Error('caller failed');
+        }
+      })(),
+    ).rejects.toThrow('caller failed');
+
+    expect(cancelled).toBe(true);
+  });
+});
+
+describe('iterToStream', () => {
+  test('streams a sync iterable', async () => {
+    expect(await collect(iterToStream(['a', 'b', 'c']))).toEqual([
+      'a',
+      'b',
+      'c',
+    ]);
+  });
+
+  test('streams an async iterable', async () => {
+    async function* source() {
+      yield 1;
+      yield 2;
+    }
+
+    expect(await collect(iterToStream(source()))).toEqual([1, 2]);
+  });
+
+  test('streams an iterator-like object', async () => {
+    let n = 0;
+    const iterator = {
+      next: () =>
+        n < 2 ? { value: n++, done: false } : { value: undefined, done: true },
+    };
+
+    expect(await collect(iterToStream(iterator))).toEqual([0, 1]);
+  });
+
+  test('handles an empty source', async () => {
+    expect(await collect(iterToStream([]))).toEqual([]);
+  });
+
+  test('throws on a non-iterable, at the call', () => {
+    expect(() => iterToStream(42 as never)).toThrow(TypeError);
+  });
+
+  test('pulls lazily, so an infinite source is safe', async () => {
+    let produced = 0;
+
+    function* endless() {
+      while (true) {
+        produced++;
+        yield produced;
+      }
+    }
+
+    const reader = iterToStream(endless()).getReader();
+    const seen: number[] = [];
+
+    for (let i = 0; i < 3; i++) {
+      const { value } = await reader.read();
+      seen.push(value as number);
+    }
+
+    expect(seen).toEqual([1, 2, 3]);
+    expect(produced).toBeLessThan(20);
+
+    await reader.cancel();
+  });
+
+  test('runs the source finally block on cancel', async () => {
+    let closed = false;
+
+    function* source() {
+      try {
+        yield 'a';
+        yield 'b';
+      } finally {
+        closed = true;
+      }
+    }
+
+    const reader = iterToStream(source()).getReader();
+
+    await reader.read();
+    await reader.cancel();
+
+    expect(closed).toBe(true);
+  });
+
+  test('errors the stream when the source throws', async () => {
+    function* source(): Generator<string> {
+      yield 'a';
+      throw new Error('boom');
+    }
+
+    await expect(collect(iterToStream(source()))).rejects.toThrow('boom');
+  });
+
+  test('round trips through streamToIter', async () => {
+    const original = ['a', 'b', 'c'];
+    const stream = iterToStream(streamToIter(iterToStream(original)));
+
+    expect(await collect(stream)).toEqual(original);
   });
 });

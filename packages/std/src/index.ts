@@ -257,6 +257,8 @@ export { default as streamToText } from './streams/streamToText';
 export { default as streamToBytes } from './streams/streamToBytes';
 export { default as streamToArray } from './streams/streamToArray';
 export { default as streamToLines } from './streams/streamToLines';
+export { default as streamToIter } from './streams/streamToIter';
+export { default as iterToStream } from './streams/iterToStream';
 export { default as concatStreams } from './streams/concatStreams';
 export { default as mergeStreams } from './streams/mergeStreams';
 

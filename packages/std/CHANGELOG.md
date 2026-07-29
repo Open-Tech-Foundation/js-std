@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+### Added
+
+- Added `streamToIter` and `iterToStream`, the bridge between the Streams and Iter modules. The library already had a complete set of async-iterable operators and a Streams module, but no adapter between them, so `mapIterAsync` and the rest could not be pointed at a `ReadableStream`. `streamToIter` closes that gap in the one direction and `iterToStream` in the other, which also makes an `*Iter` pipeline usable as a `Response` body. Both are built on the `ReadableStream` constructor and reader alone, avoiding `TransformStream` for the same reason the rest of the module does — it is absent on some runtimes and would throw at import time.
+- `streamToIter` cancels the stream when iteration ends early, matching the platform's own async iteration of a `ReadableStream`, and takes `preventCancel` to leave it open for the next consumer instead; the reader lock is released either way. A stream that errors is not cancelled on the way out, since cancelling an errored stream only re-raises the error it already carries. `ReadableStream` is not async iterable on every runtime — Safari still ships it without `Symbol.asyncIterator` — so this is what gives the operators a handle that works everywhere.
+- `iterToStream` pulls its source lazily, one value per read, so backpressure reaches the source unchanged and an infinite generator is safe. Cancelling the stream calls `return` on the source, running a generator's `finally` block. The source is validated at the call rather than on the first read, so a bad argument throws while the stack that produced it is still there.
+
 ## [0.15.1] - 2026-07-29
 
 ### Fixed
