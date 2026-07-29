@@ -462,30 +462,36 @@ describe('Duration with DateTime', () => {
   });
 });
 
-describe('Duration Temporal interop', () => {
-  const itTemporal = DateTime.hasTemporal ? test : test.skip;
+/**
+ * Declared only where Temporal exists, matching the backend-equivalence block
+ * in `datetime.spec.ts`. The cross-runtime harness has no `test.skip` — a test
+ * declared without a body is its skip — so a guard on the describe is the one
+ * form that works under both it and `bun test`.
+ */
+if (DateTime.hasTemporal) {
+  describe('Duration Temporal interop', () => {
+    test('converts to a Temporal.Duration', () => {
+      const temporal = new Duration('P1DT2H30M').toTemporal() as {
+        toString(): string;
+      };
 
-  itTemporal('converts to a Temporal.Duration', () => {
-    const temporal = new Duration('P1DT2H30M').toTemporal() as {
-      toString(): string;
-    };
+      expect(temporal.toString()).toBe('P1DT2H30M');
+    });
 
-    expect(temporal.toString()).toBe('P1DT2H30M');
+    test('converts back from a Temporal.Duration', () => {
+      const source = new Duration('P1Y2M3DT4H5M6S');
+      const round = Duration.fromTemporal(
+        source.toTemporal() as Record<string, number>,
+      );
+
+      expect(round.toString()).toBe(source.toString());
+    });
+
+    test('rejects a value that is not a Temporal.Duration', () => {
+      expect(() => Duration.fromTemporal({} as never)).toThrow(TypeError);
+    });
   });
-
-  itTemporal('converts back from a Temporal.Duration', () => {
-    const source = new Duration('P1Y2M3DT4H5M6S');
-    const round = Duration.fromTemporal(
-      source.toTemporal() as Record<string, number>,
-    );
-
-    expect(round.toString()).toBe(source.toString());
-  });
-
-  itTemporal('rejects a value that is not a Temporal.Duration', () => {
-    expect(() => Duration.fromTemporal({} as never)).toThrow(TypeError);
-  });
-});
+}
 
 describe('Duration.total', () => {
   test('measures an exact duration without an anchor', () => {

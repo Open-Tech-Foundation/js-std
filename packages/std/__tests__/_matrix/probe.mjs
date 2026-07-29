@@ -7,9 +7,30 @@
  */
 const has = (v) => typeof v !== 'undefined' && v !== null;
 
+/** For capabilities only an actual call can settle. A throw counts as absent. */
+const works = (fn) => {
+  try {
+    return fn() === true;
+  } catch {
+    return false;
+  }
+};
+
 const caps = {
   'Intl.Segmenter':
     has(globalThis.Intl) && typeof globalThis.Intl.Segmenter === 'function',
+  // Presence of the constructor says nothing here: a runtime built without the
+  // name tables still exposes `Intl.DateTimeFormat`, silently ignores `month`
+  // and `weekday`, and hands back a numeric date. Only a call reveals it.
+  'Intl.DateTimeFormat names': works(
+    () =>
+      has(globalThis.Intl) &&
+      typeof globalThis.Intl.DateTimeFormat === 'function' &&
+      new globalThis.Intl.DateTimeFormat('en', {
+        month: 'long',
+        timeZone: 'UTC',
+      }).format(0) === 'January',
+  ),
   'Intl.NumberFormat':
     has(globalThis.Intl) && typeof globalThis.Intl.NumberFormat === 'function',
   'Intl.DurationFormat':

@@ -20,8 +20,14 @@
 
 - Documented `Duration` in `docs/DateTime/Duration.md` and on the website. Every example on both pages was checked against the built package rather than written from memory.
 
+### Fixed
+
+- Fixed the `Duration` Temporal interop tests, which threw on every runtime without Temporal instead of skipping. They guarded with `test.skip`, which `bun test` provides but the cross-runtime harness does not — there a test declared without a body is the skip — so the whole describe body threw and the matrix reported an undiagnosed failure on Node.js 20, 22 and 24, Bun and LLRT. They are now declared inside an `if (DateTime.hasTemporal)` guard, matching the backend-equivalence block in `datetime.spec.ts`, which is the one form both runners understand.
+
 ### Changed
 
+- Diagnosed the two remaining runtime shortfalls the matrix was reporting as unexplained. `streamToIter` joins `fromIterAsync` under the existing `IteratorClose` deviation — a runtime that does not close an async generator when a `for await...of` loop exits early never runs the `finally`, so a `break` neither cancels the stream nor releases the reader lock. The match is scoped to the tests that actually depend on that, rather than the whole suite, so unrelated breakage there is still reported as new.
+- Added a behavioural probe for `Intl.DateTimeFormat` month and weekday names, and an entry attributing `DateTime`'s name-token failures to it. Presence of the constructor proves nothing here: a runtime built without the name tables still exposes `Intl.DateTimeFormat`, silently ignores the `month` and `weekday` options and returns a numeric date, so only calling it settles the question. Only the `MMM`, `MMMM`, `EEE` and `EEEE` tokens are affected; supplying the names ourselves would mean bundling the locale data the module exists to avoid.
 - Moved the unit tables shared by `DateTime` and `Duration` into an internal `datetime/units` module rather than duplicating them, and hardened `DateTime.subtract` to negate the known unit list instead of whatever own keys its argument happens to carry. `Duration` keeps its fields as own enumerable properties precisely so it satisfies `DurationLike` structurally and `DateTime` needs no import of it — the two would otherwise form a cycle — but the negation should not depend on that continuing to hold.
 
 - Added `streamToIter` and `iterToStream`, the bridge between the Streams and Iter modules. The library already had a complete set of async-iterable operators and a Streams module, but no adapter between them, so `mapIterAsync` and the rest could not be pointed at a `ReadableStream`. `streamToIter` closes that gap in the one direction and `iterToStream` in the other, which also makes an `*Iter` pipeline usable as a `Response` body. Both are built on the `ReadableStream` constructor and reader alone, avoiding `TransformStream` for the same reason the rest of the module does — it is absent on some runtimes and would throw at import time.

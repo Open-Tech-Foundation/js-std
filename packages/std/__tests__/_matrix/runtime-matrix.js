@@ -132,14 +132,33 @@ const KNOWN_ISSUES = [
     reason: 'Requires the Web Crypto API via `globalThis.crypto`.',
   },
   {
-    match: /fromIterAsync/,
+    // Only the tests that actually depend on an early exit running the
+    // generator's `finally`. Matching the whole `streamToIter` suite would
+    // excuse unrelated breakage on this runtime as a known deviation.
+    match: /fromIterAsync|streamToIter > (?:cancels|leaves the stream open)/,
     requires: null,
-    affects: ['fromIterAsync'],
+    affects: ['fromIterAsync', 'streamToIter'],
     category: 'runtime-deviation',
     reason:
       'Runtime does not perform `IteratorClose` when a `for await...of` loop exits early, so a ' +
       '`finally` block in an async generator never runs. Required by ECMA-262; the equivalent ' +
-      'sync `for...of` path is handled correctly. The fix belongs in the runtime.',
+      'sync `for...of` path is handled correctly. The fix belongs in the runtime. For ' +
+      '`streamToIter` this means a `break` neither cancels the stream nor releases the reader ' +
+      'lock, so the stream stays locked — drain it rather than exiting early on this runtime.',
+  },
+  {
+    match:
+      /startOf week lands on Monday|renders every token|emits quoted text literally|localises names only/,
+    requires: 'Intl.DateTimeFormat names',
+    affects: ['DateTime'],
+    category: 'missing-capability',
+    reason:
+      'Month and weekday names come from `Intl.DateTimeFormat`, which a runtime built without ' +
+      'the name tables still exposes while silently ignoring the `month` and `weekday` options ' +
+      'and returning a numeric date. Only the `MMM`, `MMMM`, `EEE` and `EEEE` tokens are ' +
+      'affected; every other token is computed arithmetically and is unaffected, as is the rest ' +
+      'of `DateTime`. Supplying the names ourselves would mean bundling the locale data the ' +
+      'module exists to avoid.',
   },
 ];
 
