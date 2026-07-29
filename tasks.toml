@@ -2,7 +2,7 @@
 members = ["apps/*", "packages/*", "website"]
 
 [tasks.dev]
-run = "tsup --watch"
+run = "rolldown -c --watch"
 dir = "packages/std"
 
 [tasks."dev:website"]
@@ -24,7 +24,7 @@ run = "biome check ."
 run = "biome format --write ."
 
 [tasks.build]
-run = "tsup"
+run = "rolldown -c"
 dir = "packages/std"
 
 [tasks."website#build"]

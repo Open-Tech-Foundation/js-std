@@ -2,7 +2,13 @@
 
 ## [Unreleased]
 
-## [0.15.0] - 2026-07-29
+### Fixed
+
+- Fixed tree shaking, which the build had been defeating entirely. tsup emitted the ESM output as one merged file, so importing a single function pulled in unrelated module-level tables — the CSS named-colour map, the diacritics map and their computed `new RegExp(...)` initialisers, which no bundler can prove pure. The floor was about 3.9 KB per import regardless of what was imported: `noop`, which is `() => {}`, cost 3,963 bytes. `sideEffects: false` could not help, because it lets a bundler drop whole modules that were never imported and merging had left none to drop.
+
+### Changed
+
+- Replaced tsup with rolldown as the build tool. The ESM output now preserves one file per module, so unimported code stays in files a bundler can drop. Measured with esbuild against a real install: `noop` 3,963 → 30 bytes, `isString` 3,989 → 56, `sum` 4,016 → 78, `camelCase` 4,217 → 269, `clone` 6,246 → 2,304, `DateTime` 16,661 → 12,771. A consumer importing the entire library pays about 4 KB gzipped more than before (32.4 KB against 28.3 KB) for the per-module boilerplate, which is the intended trade — the whole surface is 266 functions and nobody imports all of them. The CJS output stays a single bundle, since `require` consumers do not tree shake. The published tarball is unchanged in size (1.6 MB unpacked); only the file count rises. Public entry points, the exports map and the runtime matrix results are unaffected.
 
 ### Added
 

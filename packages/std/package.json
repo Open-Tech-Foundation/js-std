@@ -62,9 +62,9 @@
     "node": ">=20.0.0"
   },
   "scripts": {
-    "build": "tsup",
+    "build": "rolldown -c",
     "test": "bun test",
-    "dev": "tsup --watch",
+    "dev": "rolldown -c --watch",
     "check-types": "tsc --noEmit",
     "lint": "biome check ./src",
     "format": "biome format --write ./src"
@@ -82,7 +82,8 @@
     "@vitest/expect": "^4.1.10",
     "@vitest/spy": "^4.1.10",
     "esbuild": "^0.28.0",
-    "tsup": "^8.5.1",
+    "rolldown": "^1.2.0",
+    "rolldown-plugin-dts": "^0.27.14",
     "typescript": "^6.0.3"
   }
 }
