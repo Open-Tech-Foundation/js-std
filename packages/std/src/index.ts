@@ -19,6 +19,8 @@ export { default as trim } from './string/trim';
 export { default as words } from './string/words';
 export { default as pad } from './string/pad';
 export { default as repeat } from './string/repeat';
+export { default as wordWrap } from './string/wordWrap';
+export type { WordWrapOptions } from './string/wordWrap';
 export { default as escapeRegExp } from './string/escapeRegExp';
 export { default as slugify } from './string/slugify';
 

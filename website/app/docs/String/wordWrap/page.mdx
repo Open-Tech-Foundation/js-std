@@ -1,0 +1,104 @@
+import { Callout } from "@opentf/web-docs";
+
+Wraps text to a column width, breaking at whitespace.
+
+<Callout type="info">
+  Width is measured with `stringWidth`, so ANSI escapes cost nothing, CJK and emoji count
+  as two columns, and a grapheme is never split down the middle. That is what makes the
+  result line up in a terminal, which counting `String.length` does not.
+</Callout>
+
+## Syntax
+
+```ts
+import { wordWrap } from '@opentf/std';
+
+wordWrap(
+  str: string,
+  width = 80,
+  options?: { hard?: boolean },
+): string;
+```
+
+## Parameters
+
+| Name         | Type                        | Description                                          |
+| ------------ | --------------------------- | ---------------------------------------------------- |
+| str          | `string`                    | The text to wrap.                                     |
+| width        | `number` (default `80`)     | The maximum column width. Must be a positive integer. |
+| options.hard | `boolean` (default `false`) | Break words wider than `width`.                       |
+
+A width below `1`, or one that is not a finite integer, throws a `RangeError`.
+
+## Returns
+
+The wrapped text, with lines joined by `\n`.
+
+## Examples
+
+```ts
+wordWrap('the quick brown fox', 10);
+//=> 'the quick
+//    brown fox'
+
+wordWrap('one two three four five six', 12);
+//=> 'one two
+//    three four
+//    five six'
+```
+
+Wrapping terminal output to the window:
+
+```ts
+console.log(wordWrap(help, process.stdout.columns ?? 80));
+```
+
+## Long words
+
+A word wider than `width` overruns by default, so a URL or a hash stays in one piece:
+
+```ts
+wordWrap('see https://example.com/a/very/long/path now', 20);
+//=> 'see
+//    https://example.com/a/very/long/path
+//    now'
+```
+
+`hard` breaks it instead. The word is still given a line of its own first, and is only split if it does not fit there either:
+
+```ts
+wordWrap('a supercalifragilistic b', 5, { hard: true });
+//=> 'a
+//    super
+//    calif
+//    ragil
+//    istic
+//    b'
+```
+
+## Line structure
+
+Each input line is wrapped on its own, so blank lines and paragraph breaks survive. Leading whitespace is kept on the line the author wrote it on, so an indented block stays indented — continuation lines are not indented to match:
+
+```ts
+wordWrap('    aaa bbb ccc', 8);
+//=> '    aaa
+//    bbb ccc'
+```
+
+The whitespace run at a break is consumed by the newline, so no output line carries trailing whitespace. Line endings — `\r\n`, `\r` or `\n` — are normalised to `\n`.
+
+## Styled text
+
+ANSI escape sequences are measured as zero columns and survive a break intact, so styled output wraps by what the reader actually sees:
+
+```ts
+wordWrap(`\u001b[31m${message}\u001b[0m`, 40);
+```
+
+## Related
+
+- [stringWidth](/docs/String/stringWidth)
+- [stripANSI](/docs/String/stripANSI)
+- [truncate](/docs/String/truncate)
+- [pad](/docs/String/pad)

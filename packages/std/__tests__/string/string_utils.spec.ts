@@ -89,5 +89,28 @@ describe('String Utilities', () => {
       expect(stringWidth('\u00AD')).toBe(0);
       expect(stringWidth('a\u00ADb')).toBe(2);
     });
+
+    test('printable ASCII is one column per character', () => {
+      // The fast path answers these without segmenting. Every character from
+      // space to tilde is a single grapheme of a single column, so the width
+      // has to equal the length \u2014 nothing in the range combines or is wide.
+      let ascii = '';
+
+      for (let code = 0x20; code <= 0x7e; code++) {
+        ascii += String.fromCharCode(code);
+      }
+
+      expect(stringWidth(ascii)).toBe(ascii.length);
+
+      for (const char of ascii) {
+        expect(stringWidth(char)).toBe(1);
+      }
+    });
+
+    test('the fast path does not swallow a non-ASCII neighbour', () => {
+      expect(stringWidth('abc\u4F60')).toBe(5);
+      expect(stringWidth('a\u0301bc')).toBe(3);
+      expect(stringWidth('abc\u001b[31m')).toBe(3);
+    });
   });
 });

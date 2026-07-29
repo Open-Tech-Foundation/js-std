@@ -20,5 +20,6 @@ export default {
   titleCase: 'titleCase',
   trim: 'trim',
   truncate: 'truncate',
+  wordWrap: 'wordWrap',
   words: 'words',
 };

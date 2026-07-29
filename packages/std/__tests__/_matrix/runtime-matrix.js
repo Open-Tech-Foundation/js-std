@@ -83,13 +83,14 @@ const KNOWN_ISSUES = [
       'returns `[object Object]`. This deviates from the File API spec; the fix belongs in the runtime.',
   },
   {
-    match: /stringWidth|stringReverse|truncate/,
+    match: /stringWidth|stringReverse|truncate|wordWrap/,
     requires: 'Intl.Segmenter',
-    affects: ['stringWidth', 'stringReverse'],
+    affects: ['stringWidth', 'stringReverse', 'wordWrap'],
     category: 'missing-capability',
     reason:
       'Grapheme segmentation needs `Intl.Segmenter`. Runtimes built without full ICU cannot ' +
-      'count or reverse multi-codepoint characters correctly.',
+      'count, reverse or wrap multi-codepoint characters correctly. Text that is entirely ' +
+      'printable ASCII is measured without segmenting and works everywhere.',
   },
   {
     match: /formatCompact|formatCurrency|formatNumber/,

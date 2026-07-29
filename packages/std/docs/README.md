@@ -284,6 +284,7 @@
 - [trim](./String/trim.md)
 - [truncate](./String/truncate.md)
 - [unescapeHTML](./String/unescapeHTML.md)
+- [wordWrap](./String/wordWrap.md)
 - [words](./String/words.md)
 
 ## Timing

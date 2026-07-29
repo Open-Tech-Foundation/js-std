@@ -1,5 +1,8 @@
 import stripANSI from './stripANSI';
 
+/** Space through tilde — no escapes, no combining marks, no wide characters. */
+const PRINTABLE_ASCII = /^[\x20-\x7e]*$/;
+
 /**
  * Calculates the visual width of a string in a terminal.
  * Handles ANSI escape codes (0 width) and full-width characters (2 width).
@@ -15,6 +18,15 @@ import stripANSI from './stripANSI';
 export default function stringWidth(str: string): number {
   if (typeof str !== 'string' || str.length === 0) {
     return 0;
+  }
+
+  // Printable ASCII is one grapheme and one column per character, so the answer
+  // is the length. Worth checking first: segmentation dominates the cost, and a
+  // caller measuring many small strings — wrapping a paragraph word by word —
+  // would otherwise build a segmenter for each. It also means the common case
+  // needs no `Intl.Segmenter` at all.
+  if (PRINTABLE_ASCII.test(str)) {
+    return str.length;
   }
 
   const cleanStr = stripANSI(str);
