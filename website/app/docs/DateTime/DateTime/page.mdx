@@ -161,7 +161,7 @@ instances survive `JSON.stringify`.
 |                       | `@opentf/std`   | date-fns v4          | Luxon        | Day.js           | Moment          | js-joda            |
 | --------------------- | --------------- | -------------------- | ------------ | ---------------- | --------------- | ------------------ |
 | Paradigm              | immutable class | functions on `Date`  | immutable class | immutable wrapper | **mutable**  | immutable class    |
-| Size, min + gzip      | **4.5 KB**      | ~1–15 KB, per import | ~20 KB       | 2 KB + plugins   | ~20 KB + locales | ~40 KB          |
+| Size, min + gzip      | **4.6 KB**      | ~1–15 KB, per import | ~20 KB       | 2 KB + plugins   | ~20 KB + locales | ~40 KB          |
 | Tree-shakeable        | ❌ one class    | ✅ **best in class** | ❌           | via plugins      | ❌              | ❌                 |
 | IANA time zones       | ✅ `Intl`       | ✅ `@date-fns/tz`    | ✅ `Intl`    | ✅ tz plugin     | ✅ moment-timezone | ✅ `@js-joda/timezone` |
 | Bundles a tz database | **no**          | no                   | no           | no               | **yes**         | **yes**            |
@@ -171,6 +171,10 @@ instances survive `JSON.stringify`.
 | Invalid input yields  | throws          | `Invalid Date`       | invalid object | invalid object | invalid object  | throws             |
 | Locales               | `Intl`          | ~200 bundled modules | `Intl`       | bundled files    | bundled files   | separate package   |
 | Status                | new             | active               | active       | active           | **maintenance** | active             |
+
+The `@opentf/std` figure is measured, not estimated: `import { DateTime } from '@opentf/std'`
+bundled with esbuild against a real install, minified and gzipped. The other columns are the
+sizes those projects publish for themselves.
 
 <Callout type="info">
   Closest in spirit to **Luxon** — an immutable class with `Intl`-backed zones and no
@@ -184,7 +188,7 @@ throws instead of handing back an invalid object that propagates silently. And i
 already installed if you use `@opentf/std`.
 
 **Where it does not.** `DateTime` is one class, so it cannot be tree-shaken the way
-date-fns can — importing it costs the full 4.5 KB even if you only format. date-fns also
+date-fns can — importing it costs the full 4.6 KB even if you only format. date-fns also
 ships far more functions, including business-day maths and dozens of `differenceIn*`
 variants. Luxon and date-fns have absorbed a decade of DST and calendar bug reports;
 this is new. And there is no `Duration` or `Interval` type yet, so `diff` returns a plain
