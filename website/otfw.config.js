@@ -12,7 +12,7 @@ export default defineDocsConfig({
     repoUrl: 'https://github.com/open-tech-foundation/js-std',
     lastUpdated: true,
     nav: [
-      { label: 'Docs', href: '/docs' },
+      { label: 'Home', href: '/' },
       { label: 'Playground', href: '/playground' },
     ],
     footer: {
