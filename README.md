@@ -39,6 +39,7 @@ Beyond the everyday helpers, `@opentf/std` ships capabilities you'd normally rea
 
 ```js
 import {
+  DateTime,
   Decimal,
   color,
   colorContrast,
@@ -47,6 +48,11 @@ import {
   uuidv7,
   stringWidth,
 } from "@opentf/std";
+
+// 🕒 DST-safe dates in any IANA zone — no time-zone database, no dependency
+const t = new DateTime("2026-03-07T12:00", { timeZone: "America/New_York" });
+t.add({ days: 1 }).format("HH:mm ZZ");  //=> "12:00 -04:00"  (23 real hours)
+t.add({ hours: 24 }).format("HH:mm ZZ"); //=> "13:00 -04:00"  (exactly 24)
 
 // 🎯 Exact decimal math — no floating-point errors
 new Decimal("0.1").add("0.2").toString(); //=> "0.3"
@@ -69,7 +75,7 @@ stringWidth("🔥こんにちは"); //=> 12
 ## 👉 Next Steps
 
 - 🎮 Try the [Interactive Playground](https://js-std.opentechf.org/playground) — visualize `idleRun`, `paceRun`, `batchRun`, `rateLimitRun` & `retryRun` in real time.
-- 🧪 Explore standout utilities: [`Decimal`](https://js-std.opentechf.org/docs/Maths/Decimal), [`color`](https://js-std.opentechf.org/docs/Colors/color), [`uuidv7`](https://js-std.opentechf.org/docs/Crypto/uuidv7), [`formatCurrency`](https://js-std.opentechf.org/docs/Number/formatCurrency), lazy [`Iterators`](https://js-std.opentechf.org/docs/Iter/mapIter) and [set math](https://js-std.opentechf.org/docs/Maths/isSubsetOf).
+- 🧪 Explore standout utilities: [`DateTime`](https://js-std.opentechf.org/docs/DateTime/DateTime), [`Decimal`](https://js-std.opentechf.org/docs/Maths/Decimal), [`color`](https://js-std.opentechf.org/docs/Colors/color), [`uuidv7`](https://js-std.opentechf.org/docs/Crypto/uuidv7), [`formatCurrency`](https://js-std.opentechf.org/docs/Number/formatCurrency), lazy [`Iterators`](https://js-std.opentechf.org/docs/Iter/mapIter) and [set math](https://js-std.opentechf.org/docs/Maths/isSubsetOf).
 - 📚 Browse every utility by category in the [Repository Documentation](https://github.com/Open-Tech-Foundation/js-std/blob/main/packages/std/docs/README.md) (or on the [Website](https://js-std.opentechf.org)).
 
 ---

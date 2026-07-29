@@ -37,7 +37,7 @@ new DateTime('2026-07-29');
 new DateTime('2026-07-29T14:30:15.250');
 new DateTime('2026-07-29T14:30:15+05:30');
 new DateTime('2026-07-29T14:30:15+05:30[Asia/Kolkata]');
-new DateTime(1785076215250);
+new DateTime(1785315615250);
 new DateTime({ year: 2026, month: 7, day: 29 }, { timeZone: 'Asia/Kolkata' });
 ```
 
@@ -155,6 +155,43 @@ dt.toISOString();                    //=> '2026-07-29T14:30:15.250+05:30[Asia/Ko
 
 `toISOString` round-trips through the constructor exactly, and `toJSON` uses it, so
 instances survive `JSON.stringify`.
+
+## Compared with other date libraries
+
+|                       | `@opentf/std`   | date-fns v4          | Luxon        | Day.js           | Moment          | js-joda            |
+| --------------------- | --------------- | -------------------- | ------------ | ---------------- | --------------- | ------------------ |
+| Paradigm              | immutable class | functions on `Date`  | immutable class | immutable wrapper | **mutable**  | immutable class    |
+| Size, min + gzip      | **4.5 KB**      | ~1–15 KB, per import | ~20 KB       | 2 KB + plugins   | ~20 KB + locales | ~40 KB          |
+| Tree-shakeable        | ❌ one class    | ✅ **best in class** | ❌           | via plugins      | ❌              | ❌                 |
+| IANA time zones       | ✅ `Intl`       | ✅ `@date-fns/tz`    | ✅ `Intl`    | ✅ tz plugin     | ✅ moment-timezone | ✅ `@js-joda/timezone` |
+| Bundles a tz database | **no**          | no                   | no           | no               | **yes**         | **yes**            |
+| Runtime dependencies  | **zero**        | zero                 | zero         | zero             | zero            | separate packages  |
+| Temporal precision    | ✅ where available | ❌               | ❌           | ❌               | ❌              | ❌ own model       |
+| Strict parsing        | ✅ throws       | ✅                   | ✅           | ❌ loose         | ❌ loose        | ✅                 |
+| Invalid input yields  | throws          | `Invalid Date`       | invalid object | invalid object | invalid object  | throws             |
+| Locales               | `Intl`          | ~200 bundled modules | `Intl`       | bundled files    | bundled files   | separate package   |
+| Status                | new             | active               | active       | active           | **maintenance** | active             |
+
+<Callout type="info">
+  Closest in spirit to **Luxon** — an immutable class with `Intl`-backed zones and no
+  bundled database — but with a much smaller API and Temporal precision where the runtime
+  offers it.
+</Callout>
+
+**Where this wins.** Real IANA time-zone support with zero dependencies and no bundled
+database. Temporal precision, which no other library in the table has. Strict parsing that
+throws instead of handing back an invalid object that propagates silently. And it is
+already installed if you use `@opentf/std`.
+
+**Where it does not.** `DateTime` is one class, so it cannot be tree-shaken the way
+date-fns can — importing it costs the full 4.5 KB even if you only format. date-fns also
+ships far more functions, including business-day maths and dozens of `differenceIn*`
+variants. Luxon and date-fns have absorbed a decade of DST and calendar bug reports;
+this is new. And there is no `Duration` or `Interval` type yet, so `diff` returns a plain
+number.
+
+If bundle size dominates your decision, use date-fns. If you already depend on
+`@opentf/std` and want correct dates without another package, use this.
 
 ## Runtime support
 
