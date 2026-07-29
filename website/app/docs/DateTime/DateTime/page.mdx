@@ -199,9 +199,10 @@ The whole API works on every runtime. Only the machinery underneath changes.
 
 | Runtime | Backend |
 | --- | --- |
-| Deno, ES-Runtime, Firefox | Temporal |
+| Deno, ES-Runtime | Temporal |
+| Chrome 144+, Edge 144+, Firefox 139+ | Temporal |
 | Node.js with `--harmony-temporal` | Temporal |
-| Node.js (default), Bun, LLRT, Chrome, Safari | `Intl` |
+| Node.js (default), Bun, LLRT, Safari | `Intl` |
 
 <Callout type="warning">
   `toTemporal` and `DateTime.fromTemporal` are the only members that need Temporal, and

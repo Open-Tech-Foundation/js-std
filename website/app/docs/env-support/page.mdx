@@ -79,10 +79,13 @@ Most utilities are pure JavaScript. The few that need platform APIs use standard
 | Runtime | Temporal | `DateTime` backend |
 | --- | --- | --- |
 | Deno, ES-Runtime | ✅ | Temporal |
+| Chrome 144+, Edge 144+ | ✅ | Temporal |
 | Firefox 139+ | ✅ | Temporal |
 | Node.js with `--harmony-temporal` | ✅ | Temporal |
 | Node.js (default), Bun, LLRT | ❌ | `Intl` |
-| Chrome, Safari | ❌ | `Intl` |
+| Safari | ❌ Technology Preview only | `Intl` |
+
+Browser support is now the majority position — Chrome, Edge and Firefox all ship Temporal, with Safari the remaining holdout. Server runtimes lag: Bun has none at all and Node.js needs a flag, so the `Intl` backend is what most server-side code will run on for some time yet.
 
 `toTemporal()` and `DateTime.fromTemporal()` are the only members that require it; they throw a clear error where it is absent, so check `DateTime.hasTemporal` first.
 

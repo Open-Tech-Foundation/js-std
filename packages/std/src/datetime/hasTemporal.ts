@@ -1,11 +1,11 @@
 /**
  * Detects the TC39 Temporal API.
  *
- * Temporal is not yet universal: as of 2026 it is present on Deno, ES-Runtime
- * and Firefox, and on Node.js only behind `--harmony-temporal`. It is absent on
- * Bun, LLRT, default Node.js, Chrome and Safari. `DateTime` therefore uses it
- * when it exists and falls back to `Intl` when it does not, so the detection
- * result must never be assumed.
+ * Temporal is not yet universal: as of 2026 it is present on Deno, ES-Runtime,
+ * Chrome and Edge 144+, and Firefox 139+, and on Node.js only behind
+ * `--harmony-temporal`. It is absent on Bun, LLRT, default Node.js and Safari.
+ * `DateTime` therefore uses it when it exists and falls back to `Intl` when it
+ * does not, so the detection result must never be assumed.
  */
 
 let cached: boolean | undefined;
@@ -47,7 +47,8 @@ export function getTemporal(): TemporalGlobal {
   if (!hasTemporal() || !temporal) {
     throw new Error(
       'This runtime does not provide the Temporal API. It is available on ' +
-        'Deno, ES-Runtime and Firefox, and on Node.js with --harmony-temporal.',
+        'Deno, ES-Runtime, Chrome/Edge 144+ and Firefox 139+, and on Node.js ' +
+        'with --harmony-temporal.',
     );
   }
 
