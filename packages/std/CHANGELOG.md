@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [0.15.1] - 2026-07-29
+
 ### Fixed
 
 - Fixed tree shaking, which the build had been defeating entirely. tsup emitted the ESM output as one merged file, so importing a single function pulled in unrelated module-level tables — the CSS named-colour map, the diacritics map and their computed `new RegExp(...)` initialisers, which no bundler can prove pure. The floor was about 3.9 KB per import regardless of what was imported: `noop`, which is `() => {}`, cost 3,963 bytes. `sideEffects: false` could not help, because it lets a bundler drop whole modules that were never imported and merging had left none to drop.
