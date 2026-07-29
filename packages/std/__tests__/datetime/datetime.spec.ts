@@ -145,12 +145,12 @@ for (const backend of backends) {
       test('tracks a DST change across the year', () => {
         const zone = 'America/New_York';
 
-        expect(new DateTime('2026-01-15T12:00', { timeZone: zone }).offset).toBe(
-          '-05:00',
-        );
-        expect(new DateTime('2026-07-15T12:00', { timeZone: zone }).offset).toBe(
-          '-04:00',
-        );
+        expect(
+          new DateTime('2026-01-15T12:00', { timeZone: zone }).offset,
+        ).toBe('-05:00');
+        expect(
+          new DateTime('2026-07-15T12:00', { timeZone: zone }).offset,
+        ).toBe('-04:00');
       });
 
       test('withTimeZone keeps the instant and moves the clock', () => {
@@ -216,12 +216,12 @@ for (const backend of backends) {
         // Lord Howe Island moves between +10:30 and +11:00.
         const zone = 'Australia/Lord_Howe';
 
-        expect(new DateTime('2026-01-15T12:00', { timeZone: zone }).offset).toBe(
-          '+11:00',
-        );
-        expect(new DateTime('2026-07-15T12:00', { timeZone: zone }).offset).toBe(
-          '+10:30',
-        );
+        expect(
+          new DateTime('2026-01-15T12:00', { timeZone: zone }).offset,
+        ).toBe('+11:00');
+        expect(
+          new DateTime('2026-07-15T12:00', { timeZone: zone }).offset,
+        ).toBe('+10:30');
       });
     });
 
@@ -247,7 +247,9 @@ for (const backend of backends) {
       test('clamps month overflow', () => {
         const jan31 = new DateTime('2026-01-31');
 
-        expect(jan31.add({ months: 1 }).format('yyyy-MM-dd')).toBe('2026-02-28');
+        expect(jan31.add({ months: 1 }).format('yyyy-MM-dd')).toBe(
+          '2026-02-28',
+        );
         expect(jan31.add({ months: 13 }).format('yyyy-MM-dd')).toBe(
           '2027-02-28',
         );
@@ -289,9 +291,9 @@ for (const backend of backends) {
       test('applies calendar units before exact units', () => {
         const dt = new DateTime('2026-07-29T12:00:00');
 
-        expect(
-          dt.add({ months: 1, hours: 2 }).format('yyyy-MM-dd HH:mm'),
-        ).toBe('2026-08-29 14:00');
+        expect(dt.add({ months: 1, hours: 2 }).format('yyyy-MM-dd HH:mm')).toBe(
+          '2026-08-29 14:00',
+        );
       });
 
       test('rejects fractional calendar units', () => {
@@ -320,7 +322,9 @@ for (const backend of backends) {
         );
         expect(dt.startOf('hour').format('HH:mm:ss')).toBe('14:00:00');
         expect(dt.startOf('minute').format('HH:mm:ss')).toBe('14:30:00');
-        expect(dt.startOf('second').format('HH:mm:ss.SSS')).toBe('14:30:15.000');
+        expect(dt.startOf('second').format('HH:mm:ss.SSS')).toBe(
+          '14:30:15.000',
+        );
       });
 
       test('startOf week lands on Monday', () => {
@@ -370,9 +374,9 @@ for (const backend of backends) {
         expect(early.compare(new DateTime(early))).toBe(0);
         expect(early.isBefore(late)).toBe(true);
         expect(late.isAfter(early)).toBe(true);
-        expect(
-          new DateTime('2026-07-29T12:00:00').isBetween(early, late),
-        ).toBe(true);
+        expect(new DateTime('2026-07-29T12:00:00').isBetween(early, late)).toBe(
+          true,
+        );
         expect(early.isBetween(early, late)).toBe(true);
       });
 
@@ -395,9 +399,9 @@ for (const backend of backends) {
         expect(late.diff(early, 'hour')).toBe(8);
         expect(early.diff(late, 'hour')).toBe(-8);
         expect(late.diff(early, 'minute')).toBe(480);
-        expect(
-          new DateTime('2026-07-29T10:30:00').diff(early, 'hour'),
-        ).toBe(0.5);
+        expect(new DateTime('2026-07-29T10:30:00').diff(early, 'hour')).toBe(
+          0.5,
+        );
       });
 
       test('diff in calendar units counts whole units', () => {
@@ -407,10 +411,18 @@ for (const backend of backends) {
         expect(b.diff(a, 'month')).toBe(2);
         expect(a.diff(b, 'month')).toBe(-2);
         expect(new DateTime('2026-03-30').diff(a, 'month')).toBe(1);
-        expect(new DateTime('2027-07-29').diff(new DateTime('2026-07-29'), 'year')).toBe(1);
-        expect(new DateTime('2027-07-28').diff(new DateTime('2026-07-29'), 'year')).toBe(0);
-        expect(new DateTime('2026-08-12').diff(new DateTime('2026-07-29'), 'week')).toBe(2);
-        expect(new DateTime('2026-08-01').diff(new DateTime('2026-07-29'), 'day')).toBe(3);
+        expect(
+          new DateTime('2027-07-29').diff(new DateTime('2026-07-29'), 'year'),
+        ).toBe(1);
+        expect(
+          new DateTime('2027-07-28').diff(new DateTime('2026-07-29'), 'year'),
+        ).toBe(0);
+        expect(
+          new DateTime('2026-08-12').diff(new DateTime('2026-07-29'), 'week'),
+        ).toBe(2);
+        expect(
+          new DateTime('2026-08-01').diff(new DateTime('2026-07-29'), 'day'),
+        ).toBe(3);
       });
 
       test('diff in days counts wall-clock days across a DST boundary', () => {
@@ -543,7 +555,9 @@ describe('DateTime backend selection', () => {
   });
 
   test('picks a backend automatically', () => {
-    expect(DateTime._backend()).toBe(DateTime.hasTemporal ? 'temporal' : 'intl');
+    expect(DateTime._backend()).toBe(
+      DateTime.hasTemporal ? 'temporal' : 'intl',
+    );
   });
 
   test('Temporal interop throws where Temporal is absent', () => {
@@ -616,7 +630,11 @@ if (DateTime.hasTemporal) {
     test('both backends resolve wall-clock times identically', () => {
       for (const timeZone of zones) {
         for (const wall of walls) {
-          for (const disambiguation of ['compatible', 'earlier', 'later'] as const) {
+          for (const disambiguation of [
+            'compatible',
+            'earlier',
+            'later',
+          ] as const) {
             DateTime._setBackend('intl');
             const intl = render(
               new DateTime(wall, { timeZone, disambiguation }),
@@ -675,9 +693,7 @@ if (DateTime.hasTemporal) {
           { hours: 24 },
         ]) {
           DateTime._setBackend('intl');
-          const intl = render(
-            new DateTime(start, { timeZone }).add(duration),
-          );
+          const intl = render(new DateTime(start, { timeZone }).add(duration));
 
           DateTime._setBackend('temporal');
           const temporal = render(

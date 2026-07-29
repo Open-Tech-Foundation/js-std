@@ -8,6 +8,7 @@
 
 ### Changed
 
+- Formatted `__tests__/datetime/datetime.spec.ts` to match biome. It was the only file in the repository `biome check .` still rejected; the package `lint` script covers `./src` alone, so the drift went unnoticed. Line breaks only — no test behaviour changed.
 - Replaced tsup with rolldown as the build tool. The ESM output now preserves one file per module, so unimported code stays in files a bundler can drop. Measured with esbuild against a real install: `noop` 3,963 → 30 bytes, `isString` 3,989 → 56, `sum` 4,016 → 78, `camelCase` 4,217 → 269, `clone` 6,246 → 2,304, `DateTime` 16,661 → 12,771. A consumer importing the entire library pays about 4 KB gzipped more than before (32.4 KB against 28.3 KB) for the per-module boilerplate, which is the intended trade — the whole surface is 266 functions and nobody imports all of them. The CJS output stays a single bundle, since `require` consumers do not tree shake. The published tarball is unchanged in size (1.6 MB unpacked); only the file count rises. Public entry points, the exports map and the runtime matrix results are unaffected.
 
 ### Added
