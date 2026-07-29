@@ -50,6 +50,23 @@ export interface DateTimeOptions {
 }
 
 /**
+ * Where to anchor a duration that carries calendar units.
+ *
+ * A year, month, week or day has no fixed length, so converting or comparing
+ * one needs a point on the calendar to measure from. Durations made only of
+ * hours and below never need this.
+ */
+export interface RelativeToOptions {
+  relativeTo?: import('./DateTime').default;
+}
+
+/** Options for `Duration.between`. */
+export interface DurationBetweenOptions {
+  /** The coarsest unit to express the result in. Defaults to `'day'`. */
+  largestUnit?: DateTimeUnit;
+}
+
+/**
  * A fully resolved wall-clock reading in a specific zone, plus the offset that
  * was in force at that instant. This is the value both civil backends produce.
  */

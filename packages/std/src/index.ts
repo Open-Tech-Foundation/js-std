@@ -175,12 +175,15 @@ export { default as sleep } from './timing/sleep';
 
 // DateTime
 export { default as DateTime } from './datetime/DateTime';
+export { default as Duration } from './datetime/Duration';
 export type {
   DateTimeFields,
   DateTimeOptions,
   DateTimeUnit,
   Disambiguation,
+  DurationBetweenOptions,
   DurationLike,
+  RelativeToOptions,
 } from './datetime/types';
 
 // Functional

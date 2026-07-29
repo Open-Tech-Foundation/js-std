@@ -20,34 +20,7 @@ import type {
   DateTimeUnit,
   DurationLike,
 } from './types';
-
-const MS: Record<string, number> = {
-  hour: 3_600_000,
-  minute: 60_000,
-  second: 1000,
-  millisecond: 1,
-};
-
-const PLURAL: Record<DateTimeUnit, keyof DurationLike> = {
-  year: 'years',
-  month: 'months',
-  week: 'weeks',
-  day: 'days',
-  hour: 'hours',
-  minute: 'minutes',
-  second: 'seconds',
-  millisecond: 'milliseconds',
-};
-
-const UNITS = Object.keys(PLURAL) as DateTimeUnit[];
-
-function assertUnit(unit: DateTimeUnit): void {
-  if (!UNITS.includes(unit)) {
-    throw new RangeError(
-      `The unit must be one of ${UNITS.join(', ')}. Received: ${unit}`,
-    );
-  }
-}
+import { DURATION_KEYS, MS, PLURAL, assertUnit } from './units';
 
 /**
  * Normalises a wall-clock reading by round-tripping it through a UTC instant,
@@ -478,8 +451,16 @@ export default class DateTime {
   subtract(duration: DurationLike): DateTime {
     const negated: DurationLike = {};
 
-    for (const [key, value] of Object.entries(duration)) {
-      negated[key as keyof DurationLike] = -(value as number);
+    // Read the known units rather than whatever own keys the argument happens
+    // to carry: a `Duration` is accepted here too, and reading its keys off the
+    // instance would silently negate nothing the moment any of them moved to
+    // the prototype.
+    for (const key of DURATION_KEYS) {
+      const value = duration[key];
+
+      if (value !== undefined) {
+        negated[key] = -value;
+      }
     }
 
     return this.add(negated);

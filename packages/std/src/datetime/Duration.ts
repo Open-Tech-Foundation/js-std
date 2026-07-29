@@ -1,0 +1,561 @@
+import DateTime from './DateTime';
+import { getTemporal } from './hasTemporal';
+import parseDuration from './parseDuration';
+import type {
+  DateTimeUnit,
+  DurationBetweenOptions,
+  DurationLike,
+  RelativeToOptions,
+} from './types';
+import { DURATION_KEYS, MS, PLURAL, UNITS, assertUnit, isExact } from './units';
+
+type Fields = Required<DurationLike>;
+type ExactFields = Pick<
+  Fields,
+  'hours' | 'minutes' | 'seconds' | 'milliseconds'
+>;
+
+const ZERO: Fields = {
+  years: 0,
+  months: 0,
+  weeks: 0,
+  days: 0,
+  hours: 0,
+  minutes: 0,
+  seconds: 0,
+  milliseconds: 0,
+};
+
+/**
+ * Rejects fields that cannot be held as written.
+ *
+ * Every non-zero field must share one sign. This is not strictness for its own
+ * sake: ISO-8601 puts a single sign in front of the whole duration and has no
+ * way to write "a month minus two hours", so allowing it would make
+ * `toString` lossy and leave `sign`, `abs` and `negated` undefined.
+ */
+function assertFields(fields: Fields): void {
+  let sign = 0;
+
+  for (const key of DURATION_KEYS) {
+    const value = fields[key] as number;
+
+    if (!Number.isFinite(value) || !Number.isInteger(value)) {
+      throw new RangeError(
+        `The ${key} of a Duration must be a finite integer. Received: ${value}`,
+      );
+    }
+
+    if (value === 0) {
+      continue;
+    }
+
+    const current = value < 0 ? -1 : 1;
+
+    if (sign === 0) {
+      sign = current;
+    } else if (current !== sign) {
+      throw new RangeError(
+        'Every non-zero field of a Duration must have the same sign, because ' +
+          'ISO 8601 signs the duration as a whole. Anchor the mixed value to a ' +
+          'DateTime instead, or express it in one direction.',
+      );
+    }
+  }
+}
+
+function resolve(input: DurationLike): Fields {
+  const fields = { ...ZERO };
+
+  for (const key of DURATION_KEYS) {
+    const value = input[key];
+
+    if (value !== undefined) {
+      fields[key] = value;
+    }
+  }
+
+  return fields;
+}
+
+/**
+ * Splits a millisecond span into whole exact units, largest first.
+ *
+ * A calendar `largestUnit` means the calendar walk has already run and handed
+ * over the sub-day remainder, so hours is the ceiling.
+ */
+function balanceExact(ms: number, largestUnit: DateTimeUnit): ExactFields {
+  const sign = ms < 0 ? -1 : 1;
+  const from = isExact(largestUnit) ? largestUnit : 'hour';
+  let rest = Math.abs(ms);
+  let hours = 0;
+  let minutes = 0;
+  let seconds = 0;
+
+  if (from === 'hour') {
+    hours = Math.trunc(rest / MS.hour);
+    rest -= hours * MS.hour;
+  }
+
+  if (from === 'hour' || from === 'minute') {
+    minutes = Math.trunc(rest / MS.minute);
+    rest -= minutes * MS.minute;
+  }
+
+  if (from !== 'millisecond') {
+    seconds = Math.trunc(rest / MS.second);
+    rest -= seconds * MS.second;
+  }
+
+  return {
+    hours: hours * sign,
+    minutes: minutes * sign,
+    seconds: seconds * sign,
+    milliseconds: rest * sign,
+  };
+}
+
+/** The coarsest unit either duration actually uses. */
+function largestUsed(a: Duration, b: Duration): DateTimeUnit {
+  for (const unit of UNITS) {
+    const key = PLURAL[unit];
+
+    if (a[key] !== 0 || b[key] !== 0) {
+      return unit;
+    }
+  }
+
+  return 'millisecond';
+}
+
+/**
+ * An immutable length of time.
+ *
+ * Calendar units — years, months, weeks and days — are carried as written and
+ * never silently converted, because none of them has a fixed length: a month is
+ * 28 to 31 days and a day across a DST boundary is 23 or 25 hours. Anything
+ * that would need that conversion takes a `relativeTo` `DateTime` to measure
+ * from. Durations made only of hours and below need no such anchor.
+ *
+ * Fields are stored exactly as given, so `PT90S` round-trips as `PT90S` rather
+ * than becoming `PT1M30S`. Balancing is opt-in through `round`.
+ *
+ * Every method returns a new instance; nothing mutates.
+ */
+export default class Duration {
+  readonly years: number;
+  readonly months: number;
+  readonly weeks: number;
+  readonly days: number;
+  readonly hours: number;
+  readonly minutes: number;
+  readonly seconds: number;
+  readonly milliseconds: number;
+
+  /**
+   * @param input An ISO-8601 duration string, a count of milliseconds, a
+   *   fields object, or another `Duration`. Omit it for a zero duration.
+   *
+   * @throws {RangeError} On an unparseable string, a non-integer field, or
+   *   fields whose signs disagree.
+   * @throws {TypeError} On an unsupported input type.
+   */
+  constructor(input: DurationLike | Duration | string | number = {}) {
+    let fields: Fields;
+
+    if (typeof input === 'string') {
+      fields = parseDuration(input);
+    } else if (typeof input === 'number') {
+      if (!Number.isFinite(input)) {
+        throw new RangeError(
+          `The milliseconds must be a finite number. Received: ${input}`,
+        );
+      }
+
+      fields = { ...ZERO, milliseconds: Math.trunc(input) };
+    } else if (typeof input === 'object' && input !== null) {
+      fields = resolve(input);
+    } else {
+      throw new TypeError(
+        'The input must be a string, number, Duration or fields object.',
+      );
+    }
+
+    assertFields(fields);
+
+    this.years = fields.years;
+    this.months = fields.months;
+    this.weeks = fields.weeks;
+    this.days = fields.days;
+    this.hours = fields.hours;
+    this.minutes = fields.minutes;
+    this.seconds = fields.seconds;
+    this.milliseconds = fields.milliseconds;
+
+    Object.freeze(this);
+  }
+
+  /** Coerces anything duration-shaped to a `Duration`, passing one through. */
+  static from(input: DurationLike | Duration | string | number): Duration {
+    return input instanceof Duration ? input : new Duration(input);
+  }
+
+  /**
+   * The duration from `a` to `b`, negative when `b` is earlier.
+   *
+   * Calendar units are measured against the calendar rather than assumed, so a
+   * day spanning a DST change counts as one day and a month as one month
+   * whatever its length. `largestUnit` sets the coarsest unit used and defaults
+   * to `'day'`, which keeps the result free of the ambiguity that months and
+   * years carry.
+   *
+   * @throws {TypeError} When either argument is not a `DateTime`.
+   */
+  static between(
+    a: DateTime,
+    b: DateTime,
+    options: DurationBetweenOptions = {},
+  ): Duration {
+    if (!(a instanceof DateTime) || !(b instanceof DateTime)) {
+      throw new TypeError('Both arguments must be a DateTime.');
+    }
+
+    const largestUnit = options.largestUnit ?? 'day';
+
+    assertUnit(largestUnit);
+
+    if (isExact(largestUnit)) {
+      return new Duration(balanceExact(b.epochMs - a.epochMs, largestUnit));
+    }
+
+    const fields = { ...ZERO };
+    const start = UNITS.indexOf(largestUnit);
+    let cursor = a;
+
+    for (let i = start; i < UNITS.length; i++) {
+      const unit = UNITS[i];
+
+      if (isExact(unit)) {
+        break;
+      }
+
+      // Weeks are produced only when asked for. Nobody reads a span as "two
+      // months and two weeks", and mixing the two makes the day field mean
+      // something different depending on the month — Temporal draws the same
+      // line.
+      if (unit === 'week' && largestUnit !== 'week') {
+        continue;
+      }
+
+      // `diff` already truncates a whole-unit calendar difference toward zero
+      // and knows about month lengths and DST, so the walk only has to advance
+      // the cursor and let the next unit measure what is left.
+      const count = b.diff(cursor, unit);
+
+      if (count !== 0) {
+        fields[PLURAL[unit]] = count;
+        cursor = cursor.add({ [PLURAL[unit]]: count });
+      }
+    }
+
+    return new Duration({
+      ...fields,
+      ...balanceExact(b.epochMs - cursor.epochMs, 'hour'),
+    });
+  }
+
+  /** Orders two durations. Suitable as an `Array.prototype.sort` comparator. */
+  static compare(
+    a: DurationLike | Duration | string | number,
+    b: DurationLike | Duration | string | number,
+    options: RelativeToOptions = {},
+  ): -1 | 0 | 1 {
+    return Duration.from(a).compare(b, options);
+  }
+
+  /**
+   * Converts from a `Temporal.Duration`.
+   *
+   * Microseconds and nanoseconds are dropped: a `Duration` resolves to
+   * milliseconds, as `DateTime` does.
+   *
+   * @throws {Error} On a runtime without Temporal.
+   */
+  static fromTemporal(value: DurationLike): Duration {
+    getTemporal();
+
+    if (
+      value === null ||
+      typeof value !== 'object' ||
+      typeof value.seconds !== 'number'
+    ) {
+      throw new TypeError('The value must be a Temporal.Duration.');
+    }
+
+    return new Duration(resolve(value));
+  }
+
+  /** `-1`, `0` or `1`. Every non-zero field shares this sign. */
+  get sign(): -1 | 0 | 1 {
+    for (const key of DURATION_KEYS) {
+      const value = this[key];
+
+      if (value !== 0) {
+        return value < 0 ? -1 : 1;
+      }
+    }
+
+    return 0;
+  }
+
+  /** Whether every field is zero. */
+  get isZero(): boolean {
+    return this.sign === 0;
+  }
+
+  /** Whether any calendar unit is in use, and so whether an anchor is needed. */
+  private get hasCalendar(): boolean {
+    return (
+      this.years !== 0 ||
+      this.months !== 0 ||
+      this.weeks !== 0 ||
+      this.days !== 0
+    );
+  }
+
+  /** The exact part in milliseconds. Calendar fields are not represented. */
+  private get exactMs(): number {
+    return (
+      this.hours * MS.hour +
+      this.minutes * MS.minute +
+      this.seconds * MS.second +
+      this.milliseconds
+    );
+  }
+
+  private anchor(options: RelativeToOptions, action: string): DateTime {
+    const { relativeTo } = options;
+
+    if (!(relativeTo instanceof DateTime)) {
+      throw new RangeError(
+        `${action} a Duration that uses years, months, weeks or days needs a relativeTo DateTime, because none of those units has a fixed length.`,
+      );
+    }
+
+    return relativeTo;
+  }
+
+  /** Replaces the given fields, keeping the rest. */
+  with(fields: DurationLike): Duration {
+    return new Duration({ ...this.toObject(), ...fields });
+  }
+
+  /** Flips the sign of every field. */
+  negated(): Duration {
+    const fields = { ...ZERO };
+
+    for (const key of DURATION_KEYS) {
+      // Negating a zero would give `-0`, which serialises with a stray sign.
+      if (this[key] !== 0) {
+        fields[key] = -this[key];
+      }
+    }
+
+    return new Duration(fields);
+  }
+
+  /** Drops the sign, giving the same length forwards. */
+  abs(): Duration {
+    const fields = { ...ZERO };
+
+    for (const key of DURATION_KEYS) {
+      fields[key] = Math.abs(this[key]);
+    }
+
+    return new Duration(fields);
+  }
+
+  /**
+   * Adds another duration.
+   *
+   * Two durations of hours and below combine by arithmetic alone, and the
+   * result is balanced. Once either side uses a calendar unit the sum depends
+   * on where it lands, so `relativeTo` is required.
+   *
+   * @throws {RangeError} When a calendar unit is in play without `relativeTo`.
+   */
+  add(
+    other: DurationLike | Duration | string | number,
+    options: RelativeToOptions = {},
+  ): Duration {
+    const addend = Duration.from(other);
+
+    if (!this.hasCalendar && !addend.hasCalendar) {
+      return new Duration(balanceExact(this.exactMs + addend.exactMs, 'hour'));
+    }
+
+    const relativeTo = this.anchor(options, 'Adding to');
+    const end = relativeTo.add(this.toObject()).add(addend.toObject());
+
+    return Duration.between(relativeTo, end, {
+      largestUnit: largestUsed(this, addend),
+    });
+  }
+
+  /** Subtracts another duration. Equivalent to adding its negation. */
+  subtract(
+    other: DurationLike | Duration | string | number,
+    options: RelativeToOptions = {},
+  ): Duration {
+    return this.add(Duration.from(other).negated(), options);
+  }
+
+  /**
+   * Orders this against another duration.
+   *
+   * @throws {RangeError} When a calendar unit is in play without `relativeTo`.
+   */
+  compare(
+    other: DurationLike | Duration | string | number,
+    options: RelativeToOptions = {},
+  ): -1 | 0 | 1 {
+    const against = Duration.from(other);
+    let a: number;
+    let b: number;
+
+    if (!this.hasCalendar && !against.hasCalendar) {
+      a = this.exactMs;
+      b = against.exactMs;
+    } else {
+      const relativeTo = this.anchor(options, 'Comparing');
+
+      a = relativeTo.add(this.toObject()).epochMs;
+      b = relativeTo.add(against.toObject()).epochMs;
+    }
+
+    if (a === b) {
+      return 0;
+    }
+
+    return a < b ? -1 : 1;
+  }
+
+  /**
+   * Whether both describe the same length of time.
+   *
+   * This compares value, not shape, so `PT60M` equals `PT1H`. Use `toString`
+   * for identity of the fields as written.
+   */
+  equals(
+    other: DurationLike | Duration | string | number,
+    options: RelativeToOptions = {},
+  ): boolean {
+    return this.compare(other, options) === 0;
+  }
+
+  /** The fields as a plain object, with every unit present. */
+  toObject(): Fields {
+    return {
+      years: this.years,
+      months: this.months,
+      weeks: this.weeks,
+      days: this.days,
+      hours: this.hours,
+      minutes: this.minutes,
+      seconds: this.seconds,
+      milliseconds: this.milliseconds,
+    };
+  }
+
+  /**
+   * The ISO-8601 form, such as `'P1Y2M3DT4H5M6S'`. Zero is `'PT0S'`.
+   *
+   * Milliseconds appear as the fraction of the seconds component, ISO having no
+   * unit of its own for them, so `{ milliseconds: 1500 }` writes as `'PT1.5S'`
+   * and reads back as one second and five hundred milliseconds.
+   */
+  toString(): string {
+    if (this.isZero) {
+      return 'PT0S';
+    }
+
+    let date = '';
+    let time = '';
+
+    if (this.years !== 0) {
+      date += `${Math.abs(this.years)}Y`;
+    }
+
+    if (this.months !== 0) {
+      date += `${Math.abs(this.months)}M`;
+    }
+
+    if (this.weeks !== 0) {
+      date += `${Math.abs(this.weeks)}W`;
+    }
+
+    if (this.days !== 0) {
+      date += `${Math.abs(this.days)}D`;
+    }
+
+    if (this.hours !== 0) {
+      time += `${Math.abs(this.hours)}H`;
+    }
+
+    if (this.minutes !== 0) {
+      time += `${Math.abs(this.minutes)}M`;
+    }
+
+    const secondsMs = Math.abs(this.seconds * MS.second + this.milliseconds);
+
+    if (secondsMs !== 0) {
+      const whole = Math.trunc(secondsMs / MS.second);
+      const fraction = secondsMs % MS.second;
+
+      time +=
+        fraction === 0
+          ? `${whole}S`
+          : `${whole}.${String(fraction).padStart(3, '0').replace(/0+$/, '')}S`;
+    }
+
+    return `${this.sign < 0 ? '-' : ''}P${date}${time === '' ? '' : `T${time}`}`;
+  }
+
+  /** The ISO-8601 form, so a `Duration` survives `JSON.stringify`. */
+  toJSON(): string {
+    return this.toString();
+  }
+
+  /**
+   * Converts to a `Temporal.Duration`.
+   *
+   * @throws {Error} On a runtime without Temporal.
+   */
+  toTemporal(): unknown {
+    const temporal = getTemporal() as {
+      Duration?: { from(item: unknown): unknown };
+    };
+
+    if (typeof temporal.Duration?.from !== 'function') {
+      throw new Error('This runtime does not provide Temporal.Duration.');
+    }
+
+    return temporal.Duration.from(this.toString());
+  }
+
+  /**
+   * Always throws.
+   *
+   * A duration carrying calendar units has no single numeric value, so `<` and
+   * `>` between two of them would compare something meaningless. `compare` and
+   * `total` are the operations that actually answer the question.
+   */
+  valueOf(): never {
+    throw new TypeError(
+      'A Duration has no numeric value. Use compare() to order two durations, ' +
+        'or total(unit) to measure one.',
+    );
+  }
+}
+
+export { Duration };
