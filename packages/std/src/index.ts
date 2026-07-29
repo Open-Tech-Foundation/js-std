@@ -171,6 +171,16 @@ export { default as isUnorderedEqual } from './assert/isUnorderedEqual';
 // Timing
 export { default as sleep } from './timing/sleep';
 
+// DateTime
+export { default as DateTime } from './datetime/DateTime';
+export type {
+  DateTimeFields,
+  DateTimeOptions,
+  DateTimeUnit,
+  Disambiguation,
+  DurationLike,
+} from './datetime/types';
+
 // Functional
 export { default as noop } from './functional/noop';
 export { default as pipe } from './functional/pipe';
