@@ -78,14 +78,18 @@ Most utilities are pure JavaScript. The few that need platform APIs use standard
 
 | Runtime | Temporal | `DateTime` backend |
 | --- | --- | --- |
+| Node.js 26+ | ✅ | Temporal |
 | Deno, ES-Runtime | ✅ | Temporal |
 | Chrome 144+, Edge 144+ | ✅ | Temporal |
 | Firefox 139+ | ✅ | Temporal |
-| Node.js with `--harmony-temporal` | ✅ | Temporal |
-| Node.js (default), Bun, LLRT | ❌ | `Intl` |
+| Node.js 24 / 25 | ⚠️ `--harmony-temporal` only | `Intl` unless flagged |
+| Node.js 22 and earlier, incl. 20 LTS | ❌ | `Intl` |
+| Bun, LLRT | ❌ | `Intl` |
 | Safari | ❌ Technology Preview only | `Intl` |
 
-Browser support is now the majority position — Chrome, Edge and Firefox all ship Temporal, with Safari the remaining holdout. Server runtimes lag: Bun has none at all and Node.js needs a flag, so the `Intl` backend is what most server-side code will run on for some time yet.
+Temporal is now the majority position in browsers, and Node.js 26 enables it by default. The `Intl` backend still matters: Node.js 20 LTS and 22, Bun and LLRT have no Temporal at all, so it remains what a large share of server-side code runs on.
+
+Revisions also differ. The Temporal in Node.js 24/25 predates `timeZoneId` and exposes a `timeZone` object instead; `DateTime.fromTemporal` reads both, so a zone is never silently lost. Zone spellings can differ between revisions too — an older ICU may report `Asia/Calcutta` where a newer one reports `Asia/Kolkata`. Both are the same zone and behave identically.
 
 `toTemporal()` and `DateTime.fromTemporal()` are the only members that require it; they throw a clear error where it is absent, so check `DateTime.hasTemporal` first.
 

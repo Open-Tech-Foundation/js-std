@@ -282,6 +282,7 @@ export default class DateTime {
   static fromTemporal(value: {
     epochMilliseconds: number;
     timeZoneId?: string;
+    timeZone?: unknown;
   }): DateTime {
     getTemporal();
 
@@ -291,8 +292,18 @@ export default class DateTime {
       );
     }
 
+    // Older revisions of the proposal — still what Node.js 24/25 ship behind
+    // `--harmony-temporal` — expose the zone as a `timeZone` object rather than
+    // a `timeZoneId` string. Reading only `timeZoneId` there would silently
+    // drop the zone and fall back to UTC. A `Temporal.Instant` has neither.
+    const zone =
+      value.timeZoneId ??
+      (value.timeZone === undefined || value.timeZone === null
+        ? undefined
+        : String(value.timeZone));
+
     return new DateTime(value.epochMilliseconds, {
-      timeZone: value.timeZoneId ?? 'UTC',
+      timeZone: zone ?? 'UTC',
     });
   }
 
