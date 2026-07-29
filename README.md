@@ -49,10 +49,11 @@ import {
   stringWidth,
 } from "@opentf/std";
 
-// 🕒 DST-safe dates in any IANA zone — no time-zone database, no dependency
+// 🕒 Dates in any IANA zone — no time-zone database, no dependency
 const t = new DateTime("2026-03-07T12:00", { timeZone: "America/New_York" });
-t.add({ days: 1 }).format("HH:mm ZZ");  //=> "12:00 -04:00"  (23 real hours)
-t.add({ hours: 24 }).format("HH:mm ZZ"); //=> "13:00 -04:00"  (exactly 24)
+t.add({ days: 1 }).format("HH:mm ZZ"); //=> "12:00 -04:00"  DST-safe: 23 real hours
+t.withTimeZone("Asia/Kolkata").format("EEE d MMM, HH:mm"); //=> "Sat 7 Mar, 22:30"
+new DateTime("2026-01-31").add({ months: 1 }); //=> 2026-02-28  month-end clamps
 
 // 🎯 Exact decimal math — no floating-point errors
 new Decimal("0.1").add("0.2").toString(); //=> "0.3"
