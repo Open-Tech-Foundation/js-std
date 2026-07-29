@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [0.16.0] - 2026-07-29
+
 ### Added
 
 - Added `Duration`, an immutable length of time. `DateTime` could already apply a duration through `add`/`subtract` and measure one through `diff`, but there was no value type to hold one: no ISO-8601 duration parsing, no way to express a span without collapsing it to a single unit, and nothing to pass around. `Duration` parses and serialises `P1Y2M3DT4H5M6S`, holds calendar and exact units side by side, and compares, negates and combines them.
