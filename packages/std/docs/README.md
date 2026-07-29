@@ -101,6 +101,10 @@
 - [uuidv4](./Crypto/uuidv4.md)
 - [uuidv7](./Crypto/uuidv7.md)
 
+## DateTime
+
+- [DateTime](./DateTime/DateTime.md)
+
 ## Encoding
 
 - [bytesToString](./Encoding/bytesToString.md)
