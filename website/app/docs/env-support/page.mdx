@@ -72,6 +72,24 @@ Most utilities are pure JavaScript. The few that need platform APIs use standard
 
 `globalThis.crypto` is available out of the box in every runtime `@opentf/std` targets — **Node.js ≥ 20**, Bun, Deno, modern browsers, and edge workers — so no polyfill or runtime branching is required.
 
+### Temporal and `DateTime`
+
+`DateTime` uses the TC39 [Temporal](https://tc39.es/proposal-temporal/docs/) API where the runtime provides it, and `Intl.DateTimeFormat` everywhere else. Both backends implement identical semantics and are held to that by a differential test, so the API behaves the same regardless of which one is active.
+
+| Runtime | Temporal | `DateTime` backend |
+| --- | --- | --- |
+| Deno, ES-Runtime | ✅ | Temporal |
+| Firefox 139+ | ✅ | Temporal |
+| Node.js with `--harmony-temporal` | ✅ | Temporal |
+| Node.js (default), Bun, LLRT | ❌ | `Intl` |
+| Chrome, Safari | ❌ | `Intl` |
+
+`toTemporal()` and `DateTime.fromTemporal()` are the only members that require it; they throw a clear error where it is absent, so check `DateTime.hasTemporal` first.
+
+Time-zone support relies only on `Intl.DateTimeFormat` accepting a `timeZone` and exposing `formatToParts`, which every target runtime provides — including LLRT. No time-zone database is bundled.
+
+On **LLRT**, `Intl` ignores locales and component options, so `DateTime` month names, weekday names and `toLocaleString` do not work there. Numeric format tokens, time-zone handling and all date arithmetic are unaffected. This is the same ICU limitation that affects `formatCompact` and `formatCurrency`.
+
 <Callout type="info">
   `@opentf/std` does not expose public runtime detection helpers. Prefer checking for the capability your code needs, not the runtime name.
 </Callout>

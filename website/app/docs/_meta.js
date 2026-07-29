@@ -7,6 +7,7 @@ export default {
   Colors: 'Colors',
   Concurrency: 'Concurrency',
   Crypto: 'Crypto',
+  DateTime: 'DateTime',
   Encoding: 'Encoding',
   Flow: 'FlowControl',
   Functional: 'Functional',

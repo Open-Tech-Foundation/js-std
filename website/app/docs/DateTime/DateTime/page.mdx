@@ -1,0 +1,176 @@
+import { Callout } from "@opentf/web-docs";
+
+🕒 An immutable date and time in an IANA time zone.
+
+<Callout type="info">
+  Backed by the TC39 **Temporal** API where the runtime provides it, and by
+  `Intl.DateTimeFormat` everywhere else. Both paths implement the same semantics, so
+  behaviour does not change with the host. Time-zone support needs no bundled database
+  and no dependency.
+</Callout>
+
+Months and days are **1-based** and `dayOfWeek` runs 1 (Monday) to 7 (Sunday), following
+Temporal and ISO-8601 rather than the legacy `Date`. Every method returns a new instance;
+nothing mutates.
+
+## Syntax
+
+```ts
+import { DateTime } from '@opentf/std';
+
+new DateTime(input?, options?);
+```
+
+## Parameters
+
+| Name      | Type                                                        | Description                                                       |
+| --------- | ----------------------------------------------------------- | ----------------------------------------------------------------- |
+| `input`   | `string \| number \| Date \| DateTime \| DateTimeFields`     | ISO-8601 string, epoch milliseconds, `Date`, `DateTime` or fields. Omit for now. |
+| `options` | `{ timeZone?: string, disambiguation?: Disambiguation }`      | `timeZone` defaults to `'UTC'`; `disambiguation` to `'compatible'`. |
+
+Parsing is strict ISO-8601 — it throws a `RangeError` rather than yielding an
+`Invalid Date`, because `Date.parse` is implementation-defined outside the ISO subset
+and disagrees across runtimes.
+
+```ts
+new DateTime('2026-07-29');
+new DateTime('2026-07-29T14:30:15.250');
+new DateTime('2026-07-29T14:30:15+05:30');
+new DateTime('2026-07-29T14:30:15+05:30[Asia/Kolkata]');
+new DateTime(1785076215250);
+new DateTime({ year: 2026, month: 7, day: 29 }, { timeZone: 'Asia/Kolkata' });
+```
+
+## Statics
+
+| Member                  | Returns      | Description                                        |
+| ----------------------- | ------------ | -------------------------------------------------- |
+| `DateTime.now(tz?)`     | `DateTime`   | The current time.                                   |
+| `DateTime.compare(a, b)`| `-1 \| 0 \| 1` | Comparator for `Array.prototype.sort`.            |
+| `DateTime.hasTemporal`  | `boolean`    | Whether this runtime provides Temporal.             |
+| `DateTime.fromTemporal(v)` | `DateTime` | From a `Temporal.ZonedDateTime` or `Temporal.Instant`. |
+
+## Getters
+
+| Member | Description | | Member | Description |
+| --- | --- | --- | --- | --- |
+| `year` `month` `day` | 1-based month and day | | `dayOfWeek` | 1 = Monday … 7 = Sunday |
+| `hour` `minute` `second` | wall clock | | `dayOfYear` | 1–366 |
+| `millisecond` | 0–999 | | `weekOfYear` `weekYear` | ISO-8601 week numbering |
+| `timeZone` | IANA id | | `daysInMonth` `daysInYear` | calendar lengths |
+| `offset` `offsetMs` | `'+05:30'` / `19800000` | | `inLeapYear` | `boolean` |
+| `epochMs` | epoch milliseconds | | | |
+
+## Methods
+
+| Member                   | Returns    | Description                                          |
+| ------------------------ | ---------- | ---------------------------------------------------- |
+| `add(duration)`          | `DateTime` | Advances by calendar and/or exact units.              |
+| `subtract(duration)`     | `DateTime` | As `add`, with every value negated.                   |
+| `with(fields)`           | `DateTime` | Replaces wall-clock fields, keeping the zone.         |
+| `withTimeZone(tz)`       | `DateTime` | Keeps the instant, moves the clock.                   |
+| `startOf(unit)`          | `DateTime` | Truncates. Weeks start on Monday.                     |
+| `endOf(unit)`            | `DateTime` | The last millisecond of the unit.                     |
+| `diff(other, unit)`      | `number`   | Signed `this − other`.                                |
+| `compare(other)`         | `-1 \| 0 \| 1` | Orders by instant, ignoring zone.                 |
+| `equals(other)`          | `boolean`  | Same instant **and** zone.                            |
+| `isBefore` `isAfter`     | `boolean`  | Instant comparison.                                   |
+| `isBetween(start, end)`  | `boolean`  | Inclusive of both bounds.                             |
+| `format(pattern, locale?)` | `string` | Token formatting.                                     |
+| `toLocaleString(locale?, options?)` | `string` | Localised, via `Intl`.                   |
+| `toISOString()` `toJSON()` `toString()` | `string` | Round-trippable ISO form.        |
+| `toDate()`               | `Date`     | The same instant as a `Date`.                         |
+| `toTemporal()`           | `Temporal.ZonedDateTime` | Requires Temporal.                      |
+
+Units are `'year'`, `'month'`, `'week'`, `'day'`, `'hour'`, `'minute'`, `'second'` and
+`'millisecond'`.
+
+## Arithmetic
+
+**Calendar units** (`years`, `months`, `weeks`, `days`) move the wall clock. **Exact
+units** (`hours` and below) move the instant. Across a DST boundary the two differ:
+
+```ts
+const dt = new DateTime('2026-03-07T12:00:00', { timeZone: 'America/New_York' });
+
+dt.add({ days: 1 }).format('HH:mm');  //=> '12:00'  — 23 real hours later
+dt.add({ hours: 24 }).format('HH:mm'); //=> '13:00' — exactly 24 hours later
+```
+
+Month arithmetic clamps rather than rolling over:
+
+```ts
+new DateTime('2026-01-31').add({ months: 1 }).format('yyyy-MM-dd'); //=> '2026-02-28'
+```
+
+`diff` counts **whole** units for `year`, `month`, `week` and `day`, truncated toward
+zero, and returns fractional elapsed time for `hour` and below.
+
+## Time zones and DST
+
+A wall-clock time can be missing or repeated at a DST transition. `disambiguation`
+decides, matching Temporal:
+
+```ts
+const wall = '2026-03-08T02:30:00';           // never happens in New York
+const timeZone = 'America/New_York';
+
+new DateTime(wall, { timeZone }).format('HH:mm ZZ');
+//=> '03:30 -04:00'  — 'compatible' shifts a gap forward
+
+new DateTime(wall, { timeZone, disambiguation: 'earlier' }).format('HH:mm ZZ');
+//=> '01:30 -05:00'
+
+new DateTime(wall, { timeZone, disambiguation: 'reject' });
+//=> throws RangeError
+```
+
+For an overlap — a wall time that happens twice — `'compatible'` takes the earlier
+instant. `'reject'` throws in both cases.
+
+## Format tokens
+
+| Token | Output | | Token | Output |
+| --- | --- | --- | --- | --- |
+| `yyyy` `yy` | `2026` `26` | | `HH` `H` | hour, 0–23 |
+| `MMMM` `MMM` `MM` `M` | `July` `Jul` `07` `7` | | `hh` `h` | hour, 1–12 |
+| `dd` `d` | `29` `29` | | `mm` `m` | minute |
+| `EEEE` `EEE` | `Wednesday` `Wed` | | `ss` `s` | second |
+| `DDD` | day of year | | `SSS` | millisecond |
+| `ww` | ISO week | | `a` | `AM` / `PM` |
+| `zzz` | `Asia/Kolkata` | | `ZZ` `Z` | `+05:30` `+0530` |
+
+Text in single quotes is literal. Only month and weekday names depend on `locale`;
+everything else is locale-independent, so a pattern produces the same bytes on every
+runtime — safe for filenames, log lines and database columns.
+
+```ts
+const dt = new DateTime('2026-07-29T14:30:15.250', { timeZone: 'Asia/Kolkata' });
+
+dt.format("yyyy-MM-dd'T'HH:mm:ss");  //=> '2026-07-29T14:30:15'
+dt.format('EEEE, d MMMM yyyy');      //=> 'Wednesday, 29 July 2026'
+dt.format('MMMM', 'fr-FR');          //=> 'juillet'
+dt.toISOString();                    //=> '2026-07-29T14:30:15.250+05:30[Asia/Kolkata]'
+```
+
+`toISOString` round-trips through the constructor exactly, and `toJSON` uses it, so
+instances survive `JSON.stringify`.
+
+## Runtime support
+
+The whole API works on every runtime. Only the machinery underneath changes.
+
+| Runtime | Backend |
+| --- | --- |
+| Deno, ES-Runtime, Firefox | Temporal |
+| Node.js with `--harmony-temporal` | Temporal |
+| Node.js (default), Bun, LLRT, Chrome, Safari | `Intl` |
+
+<Callout type="warning">
+  `toTemporal` and `DateTime.fromTemporal` are the only members that need Temporal, and
+  they throw where it is absent. Check `DateTime.hasTemporal` first.
+
+  On **LLRT**, `Intl` ignores locales and component options, so month names, weekday
+  names and `toLocaleString` do not work. Numeric tokens and all date arithmetic are
+  unaffected.
+</Callout>
