@@ -104,6 +104,7 @@
 ## DateTime
 
 - [DateTime](./DateTime/DateTime.md)
+- [Duration](./DateTime/Duration.md)
 
 ## Encoding
 

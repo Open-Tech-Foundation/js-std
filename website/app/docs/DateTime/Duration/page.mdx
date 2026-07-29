@@ -1,0 +1,162 @@
+import { Callout } from "@opentf/web-docs";
+
+⏳ An immutable length of time.
+
+<Callout type="info">
+  Calendar units — years, months, weeks and days — are carried as written and never
+  silently converted, because none of them has a fixed length: a month is 28 to 31 days
+  and a day across a DST boundary is 23 or 25 hours. Anything needing that conversion
+  takes a `relativeTo` `DateTime` to measure from. Durations of hours and below need no
+  anchor at all.
+</Callout>
+
+Fields are stored exactly as given, so `PT90S` round-trips as `PT90S` rather than becoming
+`PT1M30S`. Balancing is opt-in through `round`. Every method returns a new instance;
+nothing mutates.
+
+## Syntax
+
+```ts
+import { Duration } from '@opentf/std';
+
+new Duration(input?);
+```
+
+## Parameters
+
+| Name    | Type                                             | Description                                                          |
+| ------- | ------------------------------------------------ | -------------------------------------------------------------------- |
+| `input` | `string \| number \| DurationLike \| Duration`   | ISO-8601 duration, milliseconds, a fields object, or another `Duration`. Omit for zero. |
+
+## Signs
+
+Every non-zero field must share one sign, and mixed signs throw a `RangeError`:
+
+```ts
+new Duration({ hours: 1, minutes: -30 }); // RangeError
+```
+
+This is not strictness for its own sake. ISO-8601 signs the duration as a whole and has no
+way to write "a month minus two hours", so allowing it would make `toString` lossy and
+leave `sign`, `abs` and `negated` undefined. Arithmetic still resolves across the boundary,
+since a sum has one direction even when its operands could not sit side by side:
+
+```ts
+new Duration('PT1H').add('-PT90M').toString(); //=> '-PT30M'
+```
+
+## ISO 8601
+
+```ts
+new Duration('P1Y2M3DT4H5M6S').years; //=> 1
+new Duration('PT1H30M').toString();   //=> 'PT1H30M'
+new Duration().toString();            //=> 'PT0S'
+```
+
+A fraction on the smallest component cascades into the smaller units, so every stored field
+stays an integer:
+
+```ts
+new Duration('PT1.5H').toObject(); //=> { hours: 1, minutes: 30, ... }
+```
+
+Milliseconds are the one thing that cannot round-trip unchanged — ISO has no millisecond
+component, so they serialise as the fraction of the seconds field:
+
+```ts
+new Duration({ milliseconds: 1500 }).toString(); //=> 'PT1.5S'
+```
+
+## Measuring two points
+
+`Duration.between` measures against the calendar rather than assuming a fixed day length:
+
+```ts
+const a = new DateTime('2026-03-07T12:00', { timeZone: 'America/New_York' });
+const b = new DateTime('2026-03-08T12:00', { timeZone: 'America/New_York' });
+
+Duration.between(a, b).toString();                        //=> 'P1D'    the calendar day
+Duration.between(a, b, { largestUnit: 'hour' }).toString(); //=> 'PT23H' the real elapsed time
+```
+
+`largestUnit` defaults to `'day'`, which keeps the result clear of the ambiguity months and
+years carry. Weeks are produced only when asked for, since "two months and two weeks" makes
+the day field mean something different depending on the month.
+
+## total and round
+
+`total` measures the whole duration in one unit, fraction included. The fraction is taken
+against the unit that actually follows, so half of a 28-day February is not half of a 31-day
+March:
+
+```ts
+new Duration('PT90M').total('hour'); //=> 1.5   no anchor needed
+
+new Duration('P1M').total('day', { relativeTo: new DateTime('2026-02-01') }); //=> 28
+new Duration('P1M').total('day', { relativeTo: new DateTime('2026-03-01') }); //=> 31
+```
+
+Without an anchor, anything touching a calendar unit throws:
+
+```ts
+new Duration('P1M').total('day'); // RangeError
+```
+
+`round` takes `smallestUnit`, `largestUnit`, `roundingMode` and `relativeTo`. Giving only
+`largestUnit` balances without discarding anything:
+
+```ts
+new Duration('PT90S').round({ largestUnit: 'minute' }).toString(); //=> 'PT1M30S'
+new Duration('PT1H30M').round({ smallestUnit: 'hour' }).toString(); //=> 'PT2H'
+```
+
+Modes are `'trunc'`, `'floor'`, `'ceil'` and `'halfExpand'`. `halfExpand` — the default —
+sends a half away from zero in both directions, where `Math.round` would send `-0.5` toward
+zero and `0.5` away from it.
+
+## Formatting
+
+`format` is locale-independent, so a pattern produces the same bytes on every runtime and
+under every ambient locale. The coarsest exact token in the pattern decides where the time
+part is split:
+
+```ts
+new Duration('PT90M').format('H:mm'); //=> '1:30'
+new Duration('PT90M').format('m');    //=> '90'
+new Duration('PT90S').format('H:mm:ss'); //=> '0:01:30'
+```
+
+Tokens are `y`/`yy`, `M`/`MM`, `w`/`ww`, `d`/`dd`, `H`/`HH`, `m`/`mm`, `s`/`ss` and `SSS`;
+the doubled forms zero-pad. Text in single quotes is literal and `''` is a quote.
+
+`toLocaleString` and `toRelative` use `Intl.DurationFormat` and `Intl.RelativeTimeFormat`
+where the runtime provides them, falling back to English in the same short style where it
+does not:
+
+```ts
+new Duration('PT1H30M').toLocaleString('en-US'); //=> '1 hr, 30 min'
+new Duration('PT1H30M').toLocaleString('de-DE'); //=> '1 Std., 30 Min.'
+
+new Duration({ hours: -3 }).toRelative('en-US'); //=> '3 hours ago'
+new Duration({ days: 2 }).toRelative('en-US');   //=> 'in 2 days'
+```
+
+`toRelative` shows only the coarsest unit in use — `round` first to pick a different
+granularity.
+
+## No numeric value
+
+`valueOf()` always throws. A duration carrying calendar units has no single numeric value,
+so `d1 > d2` would compare something meaningless:
+
+```ts
+new Duration('P1M') > new Duration('P30D'); // TypeError
+Duration.compare('P1M', 'P30D', { relativeTo: new DateTime('2026-02-01') }); //=> -1
+```
+
+`toString` still works, so a `Duration` interpolates and survives `JSON.stringify`.
+
+## Related
+
+- [DateTime](/docs/DateTime/DateTime)
+- [Environment Support](/docs/env-support)

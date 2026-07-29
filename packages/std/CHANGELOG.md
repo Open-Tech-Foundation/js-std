@@ -16,6 +16,8 @@
 - `toRelative` shows only the coarsest unit in use, which is what makes the phrasing read naturally — `round` first to pick a different granularity. A duration of milliseconds alone is expressed in seconds, that being the finest unit `Intl.RelativeTimeFormat` has.
 - `Duration.prototype.valueOf` throws rather than returning a number. A duration carrying calendar units has no single numeric value, so `d1 > d2` would compare something meaningless; `compare` answers that question and `toString` still works in a template literal.
 
+- Documented `Duration` in `docs/DateTime/Duration.md` and on the website. Every example on both pages was checked against the built package rather than written from memory.
+
 ### Changed
 
 - Moved the unit tables shared by `DateTime` and `Duration` into an internal `datetime/units` module rather than duplicating them, and hardened `DateTime.subtract` to negate the known unit list instead of whatever own keys its argument happens to carry. `Duration` keeps its fields as own enumerable properties precisely so it satisfies `DurationLike` structurally and `DateTime` needs no import of it — the two would otherwise form a cycle — but the negation should not depend on that continuing to hold.
