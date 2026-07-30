@@ -1,6 +1,5 @@
 // String
-export { default as stringInsertAt } from './string/stringInsertAt';
-export { default as stringReplaceAt } from './string/stringReplaceAt';
+export { default as stringSplice } from './string/stringSplice';
 export { default as capitalize } from './string/capitalize';
 export { default as camelCase } from './string/camelCase';
 export { default as pascalCase } from './string/pascalCase';

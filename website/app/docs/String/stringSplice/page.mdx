@@ -1,0 +1,80 @@
+import { Callout } from "@opentf/web-docs";
+
+Removes characters from a string and inserts another in their place, following `Array.prototype.splice`.
+
+It is the short form of the round trip most code writes by hand:
+
+```ts
+const chars = str.split('');
+chars.splice(2, 2, 'X', 'Y');
+const result = chars.join('');
+```
+
+## Syntax
+
+```ts
+import { stringSplice } from '@opentf/std';
+
+stringSplice(
+  str: string,
+  start?: number,
+  deleteCount?: number,
+  insert?: string
+): string;
+```
+
+<Callout type="info">
+Default start = 0, insert = ''. Omitting `deleteCount` removes everything from `start` onwards.
+</Callout>
+
+<Callout type="info">
+`start` must be a finite integer, and `deleteCount` a non-negative finite integer. A negative `start` counts back from the end of the string.
+</Callout>
+
+Indices count UTF-16 code units, the same as `String.prototype.slice` and `indexOf`, so a position taken from either can be passed straight in. A boundary landing inside a surrogate pair is widened to cover the whole character, so the result never contains a lone surrogate — unlike `split('')`, which cuts an emoji in half.
+
+## Examples
+
+Replacing a range:
+
+```ts
+stringSplice('abcdef', 2, 2, 'XY'); //=> 'abXYef'
+
+stringSplice('I HATE U', 2, 4, 'LUV'); //=> 'I LUV U'
+```
+
+Inserting, by removing nothing:
+
+```ts
+stringSplice('ac', 1, 0, 'b'); //=> 'abc'
+
+stringSplice('foo baz', 3, 0, ' bar'); //=> 'foo bar baz'
+```
+
+Deleting, by inserting nothing:
+
+```ts
+stringSplice('abc', 1, 1); //=> 'ac'
+
+stringSplice('abcdef', 2); //=> 'ab'
+```
+
+Counting from the end:
+
+```ts
+stringSplice('abcdef', -2, 2, 'XY'); //=> 'abcdXY'
+
+stringSplice('abcdef', -1); //=> 'abcde'
+```
+
+Multi code unit characters stay intact:
+
+```ts
+stringSplice('😀😃😄😁', 2, 2, '😎'); //=> '😀😎😄😁'
+
+stringSplice('I__JS', 1, 2, '❤️'); //=> 'I❤️JS'
+```
+
+## Related
+
+- [stringReplace](/docs/String/stringReplace)

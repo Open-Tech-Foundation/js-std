@@ -2,6 +2,15 @@
 
 ## [Unreleased]
 
+### Added
+
+- Added `stringSplice`, which removes characters from a string and inserts another in their place, following `Array.prototype.splice`. It is the short form of the round trip most code writes by hand — `split('')`, `splice`, `join('')` — without the intermediate array, and it covers insertion, deletion and range replacement in one function: `stringSplice('abcdef', 2, 2, 'XY')` gives `'abXYef'`, a zero `deleteCount` inserts, and an empty `insert` deletes. Omitting `deleteCount` removes everything from `start` onwards and a negative `start` counts back from the end, as with the array method.
+- `stringSplice` indices count UTF-16 code units, matching `slice` and `indexOf`, so a position from either — or from a textarea's `selectionStart` — can be passed straight in. A boundary landing inside a surrogate pair is widened to cover the whole character, so the result is always well-formed; `split('')` splits on code units and will cut an emoji in half.
+
+### Removed
+
+- Removed `stringInsertAt` and `stringReplaceAt` in favour of `stringSplice`. `stringInsertAt(str, i, s)` becomes `stringSplice(str, i, 0, s)` and `stringReplaceAt(str, i, s)` becomes `stringSplice(str, i, s.length, s)`. Both sliced on raw UTF-16 indices and so could emit lone surrogates, and `stringReplaceAt` had no way to express the operation callers actually wanted: it overwrote exactly as many characters as the replacement was long, so replacing a four-letter word with a three-letter one left the stray letter behind, and an empty replacement deleted one character rather than none. A `deleteCount` separate from the replacement resolves both.
+
 ### Fixed
 
 - Fixed `pad` throwing a `RangeError` when given an empty padding string. `chars.length` is then `0`, so `Math.ceil(leftLength / chars.length)` is `Infinity` and `String.prototype.repeat` rejects it. There is nothing to pad with, so the string is now returned unchanged, matching the existing behaviour when it is already at least `length` long.
