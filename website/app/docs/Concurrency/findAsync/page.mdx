@@ -1,0 +1,67 @@
+import { Callout } from "@opentf/web-docs";
+
+⚡ Asynchronous version of \`Array.prototype.find\`.
+
+<Callout type="info">
+  By default, it runs all iterations in **parallel**. You can limit the
+  concurrency by providing a third argument.
+</Callout>
+
+## Syntax
+
+```ts
+import { findAsync } from '@opentf/std';
+
+findAsync<T>(
+  arr: T[],
+  cb: (value: T, index: number) => Promise<boolean>,
+  concurrency?: number
+): Promise<T | undefined>;
+```
+
+## Parameters
+
+- `arr`: The array to iterate over.
+- `cb`: An async predicate that returns a boolean.
+- `concurrency` (Optional): The maximum number of concurrent executions. Default: `Infinity`.
+
+## Returns
+
+A Promise that resolves to the first matching element, or `undefined` if none match.
+
+<Callout type="warning">
+  The result is the earliest match **by index**, not the first predicate to
+  resolve. Those are the same thing only when running one at a time — with
+  several in flight a later element can settle first, and returning it would
+  make the answer depend on how fast each callback happened to be.
+</Callout>
+
+Elements at or beyond a known match are never started, since they cannot improve
+on it, but everything before one is awaited — any of those could still turn out
+to be the earlier match.
+
+Sparse array holes are visited and seen as `undefined`, matching native
+`Array.prototype.find()` behavior.
+
+## Examples
+
+```ts
+await findAsync([1, 2, 3], async (n) => n > 1); //=> 2
+```
+
+Find the first reachable mirror, four at a time. `mirrors[0]` wins even if a
+later one answers sooner:
+
+```ts
+const mirror = await findAsync(
+  mirrors,
+  async (url) => (await fetch(url)).ok,
+  4,
+);
+```
+
+## Related
+
+- [someAsync](/docs/Concurrency/someAsync)
+- [everyAsync](/docs/Concurrency/everyAsync)
+- [filterAsync](/docs/Concurrency/filterAsync)

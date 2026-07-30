@@ -1,0 +1,57 @@
+import { Callout } from "@opentf/web-docs";
+
+⚡ Asynchronous version of \`Array.prototype.some\`.
+
+<Callout type="info">
+  By default, it runs all iterations in **parallel**. You can limit the
+  concurrency by providing a third argument.
+</Callout>
+
+## Syntax
+
+```ts
+import { someAsync } from '@opentf/std';
+
+someAsync<T>(
+  arr: T[],
+  cb: (value: T, index: number) => Promise<boolean>,
+  concurrency?: number
+): Promise<boolean>;
+```
+
+## Parameters
+
+- `arr`: The array to iterate over.
+- `cb`: An async predicate that returns a boolean.
+- `concurrency` (Optional): The maximum number of concurrent executions. Default: `Infinity`.
+
+## Returns
+
+A Promise that resolves to `true` if any element satisfied the predicate, else `false`.
+
+Once an element matches, no further ones are started — though those already
+running are awaited, since work handed to the callback cannot be recalled.
+
+Sparse array holes are skipped, matching native `Array.prototype.some()` behavior.
+
+## Examples
+
+```ts
+await someAsync([1, 2, 3], async (n) => n > 2); //=> true
+```
+
+Stop hitting the network as soon as one URL answers:
+
+```ts
+const anyUp = await someAsync(
+  urls,
+  async (url) => (await fetch(url)).ok,
+  4,
+); //=> true
+```
+
+## Related
+
+- [everyAsync](/docs/Concurrency/everyAsync)
+- [findAsync](/docs/Concurrency/findAsync)
+- [filterAsync](/docs/Concurrency/filterAsync)

@@ -5,5 +5,8 @@ export default {
   eachAsync: 'eachAsync',
   mapAsync: 'mapAsync',
   reduceAsync: 'reduceAsync',
+  someAsync: 'someAsync',
+  everyAsync: 'everyAsync',
+  findAsync: 'findAsync',
   withResolvers: 'withResolvers',
 };

@@ -80,10 +80,13 @@
 
 - [abortable](./Concurrency/abortable.md)
 - [eachAsync](./Concurrency/eachAsync.md)
+- [everyAsync](./Concurrency/everyAsync.md)
 - [filterAsync](./Concurrency/filterAsync.md)
+- [findAsync](./Concurrency/findAsync.md)
 - [flatMapAsync](./Concurrency/flatMapAsync.md)
 - [mapAsync](./Concurrency/mapAsync.md)
 - [reduceAsync](./Concurrency/reduceAsync.md)
+- [someAsync](./Concurrency/someAsync.md)
 - [withResolvers](./Concurrency/withResolvers.md)
 
 ## Crypto
