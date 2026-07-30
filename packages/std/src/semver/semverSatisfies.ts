@@ -41,6 +41,11 @@ function opensToPrerelease(version: Semver, set: Comparator[]): boolean {
   );
 }
 
+export interface SemverSatisfiesOptions {
+  /** Compare pre-releases on precedence alone. Defaults to `false`. */
+  includePrerelease?: boolean;
+}
+
 /**
  * Checks whether a version satisfies a range.
  *
@@ -76,7 +81,7 @@ function opensToPrerelease(version: Semver, set: Comparator[]): boolean {
 export default function semverSatisfies(
   version: string,
   range: string,
-  options: { includePrerelease?: boolean } = {},
+  options: SemverSatisfiesOptions = {},
 ): boolean {
   const { includePrerelease = false } = options;
   const parsed = semverParse(version);

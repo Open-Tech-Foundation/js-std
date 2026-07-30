@@ -7,6 +7,7 @@ export { default as snakeCase } from './string/snakeCase';
 export { default as kebabCase } from './string/kebabCase';
 export { default as titleCase } from './string/titleCase';
 export { default as stringReplace } from './string/stringReplace';
+export type { StringReplaceOptions } from './string/stringReplace';
 export { default as escapeHTML } from './string/escapeHTML';
 export { default as unescapeHTML } from './string/unescapeHTML';
 export { default as stripANSI } from './string/stripANSI';
@@ -36,7 +37,9 @@ export { default as groupBy } from './array/groupBy';
 export { default as keyBy } from './array/keyBy';
 export { default as move } from './array/move';
 export { default as sort } from './array/sort';
+export type { OrderType } from './array/sort';
 export { default as sortBy } from './array/sortBy';
+export type { OrderTuples, SortCB } from './array/sortBy';
 export { default as chunk } from './array/chunk';
 export { default as compact } from './array/compact';
 export { default as intersection } from './array/intersection';
@@ -74,16 +77,23 @@ export { default as eachAsync } from './concurrency/eachAsync';
 export { default as flatMapAsync } from './concurrency/flatMapAsync';
 export { default as reduceAsync } from './concurrency/reduceAsync';
 export { default as withResolvers } from './concurrency/withResolvers';
+export type { PromiseResolvers } from './concurrency/withResolvers';
 export { default as abortable } from './concurrency/abortable';
 
 // Flow
 export { default as idleRun } from './flow/idleRun';
+export type { IdleRunFn, IdleRunOptions } from './flow/idleRun';
 export { default as paceRun } from './flow/paceRun';
+export type { PaceRunFn, PaceRunOptions } from './flow/paceRun';
 export { default as batchRun } from './flow/batchRun';
+export type { BatchRunOptions } from './flow/batchRun';
 export { default as rateLimitRun } from './flow/rateLimitRun';
 export { default as retryRun } from './flow/retryRun';
+export type { RetryRunOptions } from './flow/retryRun';
 export { default as timeoutRun } from './flow/timeoutRun';
+export type { TimeoutRunOptions } from './flow/timeoutRun';
 export { default as memoizeRun } from './flow/memoizeRun';
+export type { MemoizeRunFn, MemoizeRunOptions } from './flow/memoizeRun';
 
 // Maths
 export { default as percentage } from './maths/percentage';
@@ -125,6 +135,7 @@ export { default as isSet } from './types/isSet';
 export { default as isString } from './types/isString';
 export { default as isSymbol } from './types/isSymbol';
 export { default as isTypedArray } from './types/isTypedArray';
+export type { TypedArray } from './types/isTypedArray';
 export { default as isArrayBuffer } from './types/isArrayBuffer';
 export { default as isUndefined } from './types/isUndefined';
 export { default as isWeakMap } from './types/isWeakMap';
@@ -166,11 +177,13 @@ export { default as invert } from './object/invert';
 // Assert
 export { default as isEmpty } from './assert/isEmpty';
 export { default as isEql } from './assert/isEql';
+export type { IsEqlOptions } from './assert/isEql';
 export { default as isNil } from './assert/isNil';
 export { default as isUnorderedEqual } from './assert/isUnorderedEqual';
 
 // Timing
 export { default as sleep } from './timing/sleep';
+export type { SleepOptions } from './timing/sleep';
 
 // DateTime
 export { default as DateTime } from './datetime/DateTime';
@@ -194,6 +207,7 @@ export { default as compose } from './functional/compose';
 
 // colors
 export { default as color, ColorFormat } from './colors/color';
+export type { ColorInput } from './colors/color';
 export { default as colorLighten } from './colors/colorLighten';
 export { default as colorDarken } from './colors/colorDarken';
 export { default as colorSaturate } from './colors/colorSaturate';
@@ -239,8 +253,10 @@ export { default as formatCompact } from './number/formatCompact';
 export { default as encodeBase64 } from './encoding/encodeBase64';
 export { default as decodeBase64 } from './encoding/decodeBase64';
 export { default as encodeBase64Url } from './encoding/encodeBase64Url';
+export type { EncodeBase64UrlOptions } from './encoding/encodeBase64Url';
 export { default as decodeBase64Url } from './encoding/decodeBase64Url';
 export { default as encodeBase32 } from './encoding/encodeBase32';
+export type { EncodeBase32Options } from './encoding/encodeBase32';
 export { default as decodeBase32 } from './encoding/decodeBase32';
 export { default as encodeBase58 } from './encoding/encodeBase58';
 export { default as decodeBase58 } from './encoding/decodeBase58';
@@ -251,11 +267,14 @@ export { default as bytesToString } from './encoding/bytesToString';
 
 // Semver
 export { default as semverParse } from './semver/semverParse';
+export type { Semver } from './semver/semverParse';
 export { default as semverFormat } from './semver/semverFormat';
 export { default as semverIsValid } from './semver/semverIsValid';
 export { default as semverCompare } from './semver/semverCompare';
 export { default as semverSatisfies } from './semver/semverSatisfies';
+export type { SemverSatisfiesOptions } from './semver/semverSatisfies';
 export { default as semverIncrement } from './semver/semverIncrement';
+export type { SemverRelease } from './semver/semverIncrement';
 export { default as semverSort } from './semver/semverSort';
 
 // Streams
@@ -264,6 +283,7 @@ export { default as streamToBytes } from './streams/streamToBytes';
 export { default as streamToArray } from './streams/streamToArray';
 export { default as streamToLines } from './streams/streamToLines';
 export { default as streamToIter } from './streams/streamToIter';
+export type { StreamToIterOptions } from './streams/streamToIter';
 export { default as iterToStream } from './streams/iterToStream';
 export { default as concatStreams } from './streams/concatStreams';
 export { default as mergeStreams } from './streams/mergeStreams';

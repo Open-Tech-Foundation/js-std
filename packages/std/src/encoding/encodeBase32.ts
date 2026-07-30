@@ -4,6 +4,11 @@ function toUint8Array(bytes: Uint8Array | ArrayBuffer): Uint8Array {
   return bytes instanceof Uint8Array ? bytes : new Uint8Array(bytes);
 }
 
+export interface EncodeBase32Options {
+  /** Keep the trailing `=` padding. Defaults to `true`. */
+  pad?: boolean;
+}
+
 /**
  * Encodes bytes to a Base32 string using the standard RFC 4648 alphabet.
  *
@@ -22,7 +27,7 @@ function toUint8Array(bytes: Uint8Array | ArrayBuffer): Uint8Array {
  */
 export default function encodeBase32(
   bytes: Uint8Array | ArrayBuffer,
-  options: { pad?: boolean } = {},
+  options: EncodeBase32Options = {},
 ): string {
   const { pad = true } = options;
   const input = toUint8Array(bytes);

@@ -1,5 +1,12 @@
 import validateFlowNumber from './validateFlowNumber';
 
+export interface BatchRunOptions {
+  /** The most calls one batch may hold. Defaults to `Infinity`. */
+  limit?: number;
+  /** How long to keep collecting calls before flushing. Defaults to `0`. */
+  delay?: number;
+}
+
 /**
  * Creates a batched function that collects calls and processes them in groups.
  *
@@ -14,10 +21,7 @@ import validateFlowNumber from './validateFlowNumber';
  */
 export default function batchRun<T extends any[], R>(
   batchProcessor: (argsList: T[]) => Promise<R[]>,
-  options: {
-    limit?: number;
-    delay?: number;
-  } = {},
+  options: BatchRunOptions = {},
 ): (...args: T) => Promise<R> {
   const limit = options.limit ?? Number.POSITIVE_INFINITY;
   const delay = options.delay ?? 0;

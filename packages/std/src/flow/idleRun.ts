@@ -1,5 +1,25 @@
 import validateFlowNumber from './validateFlowNumber';
 
+export interface IdleRunOptions {
+  /** Invoke on the leading edge of the delay. Defaults to `false`. */
+  leading?: boolean;
+  /** Invoke on the trailing edge of the delay. Defaults to `true`. */
+  trailing?: boolean;
+  /** The longest `func` may be held back before it is invoked regardless. */
+  maxWait?: number;
+}
+
+/** The debounced function returned by {@link idleRun}. */
+export interface IdleRunFn<T extends (...args: any[]) => any> {
+  (...args: Parameters<T>): void;
+  /** Discards the pending invocation, if there is one. */
+  cancel: () => void;
+  /** Invokes the pending call immediately. */
+  flush: () => void;
+  /** Whether an invocation is currently waiting to run. */
+  pending: () => boolean;
+}
+
 /**
  * Creates a debounced function that delays invoking `func` until after `delay` milliseconds
  * have elapsed since the last time the debounced function was invoked.
@@ -13,17 +33,8 @@ import validateFlowNumber from './validateFlowNumber';
 export default function idleRun<T extends (...args: any[]) => any>(
   func: T,
   delay = 0,
-  options: {
-    leading?: boolean;
-    trailing?: boolean;
-    maxWait?: number;
-  } = {},
-): {
-  (...args: Parameters<T>): void;
-  cancel: () => void;
-  flush: () => void;
-  pending: () => boolean;
-} {
+  options: IdleRunOptions = {},
+): IdleRunFn<T> {
   let timeoutId: ReturnType<typeof setTimeout> | undefined;
   let lastArgs: Parameters<T> | undefined;
   let lastCallTime: number | undefined;

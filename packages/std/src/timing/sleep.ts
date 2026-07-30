@@ -1,3 +1,8 @@
+export interface SleepOptions {
+  /** Aborting this signal rejects the sleep and clears the pending timer. */
+  signal?: AbortSignal;
+}
+
 /**
  * Suspends execution for the given number of milliseconds.
  *
@@ -21,7 +26,7 @@
  */
 export default function sleep(
   ms = 0,
-  options: { signal?: AbortSignal } = {},
+  options: SleepOptions = {},
 ): Promise<void> {
   const { signal } = options;
 

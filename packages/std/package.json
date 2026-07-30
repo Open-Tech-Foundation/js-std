@@ -66,6 +66,7 @@
     "test": "bun test",
     "dev": "rolldown -c --watch",
     "check-types": "tsc --noEmit",
+    "check-types:api": "tsc --noEmit -p tsconfig.api.json",
     "lint": "biome check ./src",
     "format": "biome format --write ./src"
   },

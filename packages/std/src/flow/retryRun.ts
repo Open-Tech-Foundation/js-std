@@ -1,5 +1,16 @@
 import validateFlowNumber from './validateFlowNumber';
 
+export interface RetryRunOptions {
+  /** How many times to retry after the first attempt fails. Defaults to `3`. */
+  retries?: number;
+  /** The delay between attempts, in milliseconds. Defaults to `0`. */
+  delay?: number;
+  /** Whether `delay` stays constant or doubles each attempt. Defaults to `'fixed'`. */
+  backoff?: 'fixed' | 'exponential';
+  /** Called before each retry with the error that caused it. */
+  onRetry?: (error: any, attempt: number) => void;
+}
+
 /**
  * Retries an asynchronous function according to the specified options.
  *
@@ -12,12 +23,7 @@ import validateFlowNumber from './validateFlowNumber';
  */
 export default async function retryRun<T>(
   func: () => Promise<T>,
-  options: {
-    retries?: number;
-    delay?: number;
-    backoff?: 'fixed' | 'exponential';
-    onRetry?: (error: any, attempt: number) => void;
-  } = {},
+  options: RetryRunOptions = {},
 ): Promise<T> {
   const { retries = 3, delay = 0, backoff = 'fixed', onRetry } = options;
 

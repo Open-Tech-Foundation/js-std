@@ -238,6 +238,11 @@ function isEqlVal(
   return false;
 }
 
+export interface IsEqlOptions {
+  /** Compare only the first level, leaving nested values to `Object.is`. */
+  shallow?: boolean;
+}
+
 /**
  * Checks deeply if the given two values are equivalent.
  *
@@ -253,7 +258,7 @@ function isEqlVal(
 export default function isEql(
   val1: unknown,
   val2: unknown,
-  options?: { shallow?: boolean },
+  options?: IsEqlOptions,
 ): boolean {
   if (options?.shallow) {
     if (Object.is(val1, val2)) {

@@ -1,3 +1,9 @@
+export interface PromiseResolvers<T> {
+  promise: Promise<T>;
+  resolve: (value: T | PromiseLike<T>) => void;
+  reject: (reason?: unknown) => void;
+}
+
 /**
  * Creates a promise along with its resolve and reject functions.
  *
@@ -7,11 +13,7 @@
  * const { promise, resolve, reject } = withResolvers();
  */
 
-export default function withResolvers<T>(): {
-  promise: Promise<T>;
-  resolve: (value: T | PromiseLike<T>) => void;
-  reject: (reason?: unknown) => void;
-} {
+export default function withResolvers<T>(): PromiseResolvers<T> {
   let resolve!: (value: T | PromiseLike<T>) => void;
   let reject!: (reason?: unknown) => void;
   const promise = new Promise<T>((res, rej) => {

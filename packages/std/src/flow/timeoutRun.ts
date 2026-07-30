@@ -1,5 +1,12 @@
 import validateFlowNumber from './validateFlowNumber';
 
+export interface TimeoutRunOptions<T> {
+  /** The message of the error thrown when the time limit is reached. */
+  message?: string;
+  /** Resolve with this instead of throwing when the time limit is reached. */
+  fallback?: T;
+}
+
 /**
  * Enforces a time limit on an asynchronous function.
  *
@@ -14,10 +21,7 @@ import validateFlowNumber from './validateFlowNumber';
 export default async function timeoutRun<T>(
   func: () => Promise<T>,
   ms: number,
-  options: {
-    message?: string;
-    fallback?: T;
-  } = {},
+  options: TimeoutRunOptions<T> = {},
 ): Promise<T> {
   validateFlowNumber(ms, 'Timeout', { min: 0 });
 

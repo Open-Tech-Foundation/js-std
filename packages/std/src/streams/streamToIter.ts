@@ -1,3 +1,8 @@
+export interface StreamToIterOptions {
+  /** Leave the stream open when iteration ends early. Defaults to `false`. */
+  preventCancel?: boolean;
+}
+
 /**
  * Reads a stream as an async iterable, so the `*IterAsync` operators apply to it.
  *
@@ -22,7 +27,7 @@
  */
 export default async function* streamToIter<T>(
   stream: ReadableStream<T>,
-  options: { preventCancel?: boolean } = {},
+  options: StreamToIterOptions = {},
 ): AsyncGenerator<T> {
   const { preventCancel = false } = options;
   const reader = stream.getReader();

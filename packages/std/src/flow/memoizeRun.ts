@@ -163,6 +163,20 @@ function serializeValue(value: unknown, seen: Map<object, number>): string {
   return `object-ref:${getRefId(obj)}`;
 }
 
+export interface MemoizeRunOptions<Args extends any[]> {
+  /** How long a cached result stays usable, in milliseconds. Unlimited by default. */
+  maxAge?: number;
+  /** Derives the cache key from the arguments. Defaults to structural serialisation. */
+  key?: (...args: Args) => string;
+}
+
+/** The memoized function returned by {@link memoizeRun}. */
+export interface MemoizeRunFn<T, Args extends any[]> {
+  (...args: Args): Promise<T>;
+  /** Empties the cache. */
+  clear(): void;
+}
+
 /**
  * Caches the results of an asynchronous function.
  * Supports Single Flight (concurrent request de-duplication) and TTL.
@@ -172,11 +186,8 @@ function serializeValue(value: unknown, seen: Map<object, number>): string {
  */
 export default function memoizeRun<T, Args extends any[]>(
   func: (...args: Args) => Promise<T>,
-  options: {
-    maxAge?: number;
-    key?: (...args: Args) => string;
-  } = {},
-) {
+  options: MemoizeRunOptions<Args> = {},
+): MemoizeRunFn<T, Args> {
   const { maxAge, key: keyFn } = options;
   const cache = new Map<string, CacheEntry<T, Args>[]>();
 

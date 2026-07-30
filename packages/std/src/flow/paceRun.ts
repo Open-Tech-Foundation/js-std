@@ -1,5 +1,23 @@
 import validateFlowNumber from './validateFlowNumber';
 
+export interface PaceRunOptions {
+  /** Invoke on the leading edge of the interval. Defaults to `true`. */
+  leading?: boolean;
+  /** Invoke on the trailing edge of the interval. Defaults to `true`. */
+  trailing?: boolean;
+}
+
+/** The throttled function returned by {@link paceRun}. */
+export interface PaceRunFn<T extends (...args: any[]) => any> {
+  (...args: Parameters<T>): void;
+  /** Discards the pending invocation, if there is one. */
+  cancel: () => void;
+  /** Invokes the pending call immediately. */
+  flush: () => void;
+  /** Whether an invocation is currently waiting to run. */
+  pending: () => boolean;
+}
+
 /**
  * Creates a throttled function that only invokes `func` at most once per
  * every `interval` milliseconds.
@@ -13,16 +31,8 @@ import validateFlowNumber from './validateFlowNumber';
 export default function paceRun<T extends (...args: any[]) => any>(
   func: T,
   interval = 0,
-  options: {
-    leading?: boolean;
-    trailing?: boolean;
-  } = {},
-): {
-  (...args: Parameters<T>): void;
-  cancel: () => void;
-  flush: () => void;
-  pending: () => boolean;
-} {
+  options: PaceRunOptions = {},
+): PaceRunFn<T> {
   let timeoutId: ReturnType<typeof setTimeout> | undefined;
   let lastArgs: Parameters<T> | undefined;
   let lastInvokeTime = 0;

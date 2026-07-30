@@ -17,6 +17,13 @@ dir = "packages/std"
 run = "tsc --noEmit"
 dir = "packages/std"
 
+# Compiles the public type surface against the package entry. Separate from
+# `typecheck` because the rest of `__tests__` passes wrong types on purpose to
+# exercise the runtime guards, so it cannot be typechecked as a whole.
+[tasks."typecheck:api"]
+run = "tsc --noEmit -p tsconfig.api.json"
+dir = "packages/std"
+
 [tasks.lint]
 run = "biome check ."
 
@@ -48,5 +55,5 @@ run = "node packages/std/__tests__/_matrix/runtime-matrix.js"
 deps = ["build", "matrix:bundle", "matrix:run"]
 
 [tasks.ci]
-deps = ["build", "lint", "typecheck", "test"]
+deps = ["build", "lint", "typecheck", "typecheck:api", "test"]
 parallel = true

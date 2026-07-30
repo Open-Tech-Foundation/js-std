@@ -1,5 +1,10 @@
 import encodeBase64 from './encodeBase64';
 
+export interface EncodeBase64UrlOptions {
+  /** Keep the trailing `=` padding. Defaults to `true`. */
+  pad?: boolean;
+}
+
 /**
  * Encodes bytes to a URL-safe Base64 string.
  *
@@ -9,7 +14,7 @@ import encodeBase64 from './encodeBase64';
  */
 export default function encodeBase64Url(
   bytes: Uint8Array | ArrayBuffer,
-  options: { pad?: boolean } = {},
+  options: EncodeBase64UrlOptions = {},
 ): string {
   const { pad = true } = options;
   const encoded = encodeBase64(bytes).replace(/\+/g, '-').replace(/\//g, '_');
