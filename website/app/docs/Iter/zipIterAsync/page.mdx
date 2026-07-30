@@ -1,0 +1,38 @@
+🧩 Yields one group per position, taking one item from each async iterable.
+
+## Syntax
+
+```ts
+import { zipIterAsync } from '@opentf/std';
+
+zipIterAsync<T>(...iterables: AsyncIterable<T>[]): AsyncGenerator<(T | undefined)[]>
+```
+
+## Parameters
+
+- `...iterables`: The async iterables to zip.
+
+## Returns
+
+A new async generator of groups.
+
+The sources are advanced together rather than one after another, so a row costs
+the slowest of them rather than the sum — which is the whole reason to zip
+streams instead of collecting each one first.
+
+Runs until every source is exhausted, padding the ones that finished early with
+`undefined`. An endless source never lets it end; pair it with
+[takeIterAsync](/docs/Iter/takeIterAsync).
+
+## Examples
+
+```ts
+const rows = zipIterAsync(streamToIter(names), streamToIter(scores));
+
+await toArrayIterAsync(rows) //=> [['ann', 9], ['bob', 7]]
+```
+
+## Related
+
+- [zipIter](/docs/Iter/zipIter)
+- [streamToIter](/docs/Streams/streamToIter)

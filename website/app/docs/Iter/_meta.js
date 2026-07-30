@@ -1,4 +1,12 @@
 export default {
+  chunkIter: 'chunkIter',
+  chunkIterAsync: 'chunkIterAsync',
+  concatIter: 'concatIter',
+  concatIterAsync: 'concatIterAsync',
+  uniqueIter: 'uniqueIter',
+  uniqueIterAsync: 'uniqueIterAsync',
+  zipIter: 'zipIter',
+  zipIterAsync: 'zipIterAsync',
   countIter: 'countIter',
   countIterAsync: 'countIterAsync',
   dropIter: 'dropIter',

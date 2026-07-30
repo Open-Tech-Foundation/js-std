@@ -1,0 +1,33 @@
+🧩 Yields the items of each iterable in turn.
+
+## Syntax
+
+```ts
+import { concatIter } from '@opentf/std';
+
+concatIter<T>(...iterables: Iterable<T>[]): Generator<T>
+```
+
+## Parameters
+
+- `...iterables`: The iterables to concatenate.
+
+## Returns
+
+A new generator over all of them, in order.
+
+Each source is only started once the one before it is exhausted, so a consumer
+that stops early never touches the later ones.
+
+## Examples
+
+```ts
+[...concatIter([1, 2], [3, 4])] //=> [1, 2, 3, 4]
+
+[...concatIter('ab', [1, 2])] //=> ['a', 'b', 1, 2]
+```
+
+## Related
+
+- [concatIterAsync](/docs/Iter/concatIterAsync)
+- [zipIter](/docs/Iter/zipIter)

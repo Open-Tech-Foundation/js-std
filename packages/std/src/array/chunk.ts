@@ -1,3 +1,5 @@
+import validateChunkSize from './validateChunkSize';
+
 /**
  * Splits an array into groups of a specified size.
  *
@@ -10,9 +12,8 @@
  * chunk(['a', 'b', 'c', 'd'], 3) //=> [['a', 'b', 'c'], ['d']]
  */
 export default function chunk<T>(arr: T[], size = 1): T[][] {
-  if (!Number.isInteger(size) || size <= 0) {
-    throw new Error('Size must be an integer greater than zero.');
-  }
+  validateChunkSize(size);
+
   const result: T[][] = [];
   for (let i = 0; i < arr.length; i += size) {
     result.push(arr.slice(i, i + size));

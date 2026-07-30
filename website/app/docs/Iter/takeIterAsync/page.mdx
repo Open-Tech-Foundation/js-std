@@ -15,7 +15,12 @@ takeIterAsync<T>(iterable: AsyncIterable<T>, n: number): AsyncGenerator<T>
 
 ## Returns
 
-A new async generator with the first n items.
+A new async generator with the first n items, or all of them if the source is
+shorter.
+
+Exactly `n` items are read from the source and no more, so a value the result
+does not include is never awaited — which matters when producing one costs a
+request. An `n` of zero or less reads nothing at all.
 
 ## Examples
 

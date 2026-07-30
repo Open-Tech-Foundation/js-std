@@ -1,0 +1,42 @@
+🧩 Yields each item of an async iterable the first time it is seen.
+
+## Syntax
+
+```ts
+import { uniqueIterAsync } from '@opentf/std';
+
+uniqueIterAsync<T>(
+  iterable: AsyncIterable<T>,
+  by?: (val: T) => unknown | Promise<unknown>
+): AsyncGenerator<T>
+```
+
+## Parameters
+
+- `iterable`: The source async iterable.
+- `by` (Optional): The iteratee invoked per item to derive its key. May be async.
+
+## Returns
+
+A new async generator without duplicates, in first-seen order.
+
+Items come through as they are read, so an early duplicate-free prefix is
+available before the stream ends — but the keys seen so far are held, and that
+set only grows.
+
+Primitive keys are matched by identity. Object keys are compared structurally
+with [isEql](/docs/Assert/isEql) against every distinct object seen so far —
+quadratic in the number of them, so prefer a `by` that returns a primitive.
+
+## Examples
+
+```ts
+const ids = uniqueIterAsync(events, (e) => e.userId);
+
+await toArrayIterAsync(ids) //=> one event per user, in first-seen order
+```
+
+## Related
+
+- [uniqueIter](/docs/Iter/uniqueIter)
+- [unique](/docs/Array/unique)

@@ -1,0 +1,37 @@
+🧩 Yields the items of an async iterable in groups of a specified size.
+
+## Syntax
+
+```ts
+import { chunkIterAsync } from '@opentf/std';
+
+chunkIterAsync<T>(iterable: AsyncIterable<T>, size?: number): AsyncGenerator<T[]>
+```
+
+## Parameters
+
+- `iterable`: The source async iterable.
+- `size` (Optional): The length of each group. Default: `1`.
+
+## Returns
+
+A new async generator of groups. A trailing group shorter than `size` is still yielded.
+
+Only one group is held at a time, so this works on a stream too large to
+collect. `size` is checked when `chunkIterAsync` is called, not on the first
+pull, and it throws if `size` is not an integer greater than zero.
+
+## Examples
+
+Batch a stream of rows into inserts of five hundred:
+
+```ts
+for await (const batch of chunkIterAsync(rows, 500)) {
+  await db.insertMany(batch);
+}
+```
+
+## Related
+
+- [chunkIter](/docs/Iter/chunkIter)
+- [streamToIter](/docs/Streams/streamToIter)

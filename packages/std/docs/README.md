@@ -142,6 +142,10 @@
 
 ## Iter
 
+- [chunkIter](./Iter/chunkIter.md)
+- [chunkIterAsync](./Iter/chunkIterAsync.md)
+- [concatIter](./Iter/concatIter.md)
+- [concatIterAsync](./Iter/concatIterAsync.md)
 - [countIter](./Iter/countIter.md)
 - [countIterAsync](./Iter/countIterAsync.md)
 - [dropIter](./Iter/dropIter.md)
@@ -184,6 +188,10 @@
 - [toArrayIter](./Iter/toArrayIter.md)
 - [toArrayIterAsync](./Iter/toArrayIterAsync.md)
 - [toAsyncIter](./Iter/toAsyncIter.md)
+- [uniqueIter](./Iter/uniqueIter.md)
+- [uniqueIterAsync](./Iter/uniqueIterAsync.md)
+- [zipIter](./Iter/zipIter.md)
+- [zipIterAsync](./Iter/zipIterAsync.md)
 
 ## Maths
 

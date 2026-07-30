@@ -1,0 +1,43 @@
+🧩 Yields each item the first time it is seen.
+
+## Syntax
+
+```ts
+import { uniqueIter } from '@opentf/std';
+
+uniqueIter<T>(iterable: Iterable<T>, by?: (val: T) => unknown): Generator<T>
+```
+
+## Parameters
+
+- `iterable`: The source iterable.
+- `by` (Optional): The iteratee invoked per item to derive its key.
+
+## Returns
+
+A new generator without duplicates, in first-seen order.
+
+Items come through as they are read, so an early duplicate-free prefix is
+available before the source ends — but the keys seen so far are held, and that
+set only grows. On an unbounded source of distinct values it grows without
+limit, as any deduplication must.
+
+Primitive keys are matched by identity, so `NaN` equals `NaN` and `-0` equals
+`0`. Object keys are compared structurally with [isEql](/docs/Assert/isEql),
+matching [unique](/docs/Array/unique), and against every distinct object seen so
+far — quadratic in the number of them, so prefer a `by` that returns a primitive
+when the source is long.
+
+## Examples
+
+```ts
+[...uniqueIter([1, 2, 2, 3, 1])] //=> [1, 2, 3]
+
+const users = [{ id: 1 }, { id: 2 }, { id: 1 }];
+[...uniqueIter(users, (u) => u.id)] //=> [{ id: 1 }, { id: 2 }]
+```
+
+## Related
+
+- [uniqueIterAsync](/docs/Iter/uniqueIterAsync)
+- [unique](/docs/Array/unique)

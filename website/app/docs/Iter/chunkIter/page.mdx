@@ -1,0 +1,46 @@
+🧩 Yields the items in groups of a specified size.
+
+## Syntax
+
+```ts
+import { chunkIter } from '@opentf/std';
+
+chunkIter<T>(iterable: Iterable<T>, size?: number): Generator<T[]>
+```
+
+## Parameters
+
+- `iterable`: The source iterable.
+- `size` (Optional): The length of each group. Default: `1`.
+
+## Returns
+
+A new generator of groups. A trailing group shorter than `size` is still yielded.
+
+Only one group is held at a time, so this works on a source too large to
+collect — the reason to reach for it over [chunk](/docs/Array/chunk), which
+needs the whole array up front.
+
+`size` is checked when `chunkIter` is called, not on the first pull: a generator
+body does not run until then, and a bad argument should throw while the call
+that made it is still on the stack. It throws if `size` is not an integer
+greater than zero.
+
+## Examples
+
+```ts
+[...chunkIter([1, 2, 3, 4, 5], 2)] //=> [[1, 2], [3, 4], [5]]
+```
+
+Group an endless source without ever collecting it:
+
+```ts
+function* naturals() { let n = 0; while (true) yield n++; }
+
+[...takeIter(chunkIter(naturals(), 3), 2)] //=> [[0, 1, 2], [3, 4, 5]]
+```
+
+## Related
+
+- [chunkIterAsync](/docs/Iter/chunkIterAsync)
+- [chunk](/docs/Array/chunk)
