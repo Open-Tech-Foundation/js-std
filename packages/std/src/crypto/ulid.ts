@@ -1,8 +1,5 @@
+import { CROCKFORD_ALPHABET as ALPHABET } from './crockford';
 import { getCrypto } from './getCrypto';
-
-// Crockford's Base32: the digits and upper-case letters, less I, L, O and U —
-// the four that are misread as 1, 1, 0 and V when a human copies an ID down.
-const ALPHABET = '0123456789ABCDEFGHJKMNPQRSTVWXYZ';
 
 const TIME_LENGTH = 10;
 const RANDOM_LENGTH = 16;

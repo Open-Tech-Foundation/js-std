@@ -93,6 +93,8 @@
 
 - [hmacSHA256](./Crypto/hmacSHA256.md)
 - [hmacSHA512](./Crypto/hmacSHA512.md)
+- [isULID](./Crypto/isULID.md)
+- [isUUID](./Crypto/isUUID.md)
 - [randomBytes](./Crypto/randomBytes.md)
 - [randomFloat](./Crypto/randomFloat.md)
 - [randomId](./Crypto/randomId.md)
@@ -102,8 +104,10 @@
 - [sha512](./Crypto/sha512.md)
 - [timingSafeEqual](./Crypto/timingSafeEqual.md)
 - [ulid](./Crypto/ulid.md)
+- [ulidTime](./Crypto/ulidTime.md)
 - [uuidv4](./Crypto/uuidv4.md)
 - [uuidv7](./Crypto/uuidv7.md)
+- [uuidv7Time](./Crypto/uuidv7Time.md)
 
 ## DateTime
 

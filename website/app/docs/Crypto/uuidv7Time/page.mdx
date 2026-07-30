@@ -1,0 +1,51 @@
+🆔 Reads the timestamp back out of a UUID v7.
+
+A v7 leads with a 48-bit count of milliseconds since the Unix epoch — that is
+what makes it sortable — but the value is only useful if it can be got back
+out, and picking it out of the string by hand means knowing that it is the
+first twelve hex digits with a hyphen in the middle of them.
+
+## Syntax
+
+```ts
+import { uuidv7Time } from '@opentf/std';
+
+uuidv7Time(uuid: string): number;
+```
+
+## Parameters
+
+| Name | Type     | Description          |
+| ---- | -------- | -------------------- |
+| uuid | `string` | The UUID v7 to read. |
+
+## Returns
+
+Milliseconds since the Unix epoch, as `Date.now()` gives.
+
+Only version 7 carries a timestamp in this layout, so anything else throws a
+`TypeError` rather than being decoded into a number that would mean nothing.
+Guard with [isUUID](/docs/Crypto/isUUID)`(id, 7)` when the input is untrusted.
+
+## Examples
+
+```ts
+const id = uuidv7();
+
+uuidv7Time(id) //=> 1769000000000
+new Date(uuidv7Time(id)) //=> the moment it was generated
+```
+
+Recovering a creation time you never stored:
+
+```ts
+rows
+  .filter((row) => isUUID(row.id, 7))
+  .map((row) => ({ ...row, createdAt: new Date(uuidv7Time(row.id)) }));
+```
+
+## Related
+
+- [uuidv7](/docs/Crypto/uuidv7)
+- [isUUID](/docs/Crypto/isUUID)
+- [ulidTime](/docs/Crypto/ulidTime)

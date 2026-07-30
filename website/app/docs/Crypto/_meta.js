@@ -1,7 +1,11 @@
 export default {
   uuidv4: 'uuidv4',
   uuidv7: 'uuidv7',
+  uuidv7Time: 'uuidv7Time',
+  isUUID: 'isUUID',
   ulid: 'ulid',
+  ulidTime: 'ulidTime',
+  isULID: 'isULID',
   randomId: 'randomId',
   randomBytes: 'randomBytes',
   randomInt: 'randomInt',

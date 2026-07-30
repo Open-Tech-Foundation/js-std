@@ -1,0 +1,53 @@
+import { Callout } from "@opentf/web-docs";
+
+🆔 Checks whether a value is a ULID.
+
+## Syntax
+
+```ts
+import { isULID } from '@opentf/std';
+
+isULID(val: unknown): val is string;
+```
+
+## Parameters
+
+| Name | Type      | Description         |
+| ---- | --------- | ------------------- |
+| val  | `unknown` | The value to check. |
+
+## Returns
+
+`true` if the value is a ULID.
+
+<Callout type="info">
+  Length alone is not the test. The alphabet excludes `I`, `L`, `O` and `U`, and
+  the first character is capped at `7` — ten Base32 characters hold fifty bits
+  where the timestamp is forty-eight, so a string above `7ZZZZZZZZZ...` would
+  overflow it and is not a ULID however well-formed it looks.
+</Callout>
+
+Upper and lower case are both accepted: the canonical form is upper case, but
+systems that lower-case their identifiers are common enough that rejecting them
+would be unhelpful. The I/L/O substitutions Crockford permits a *decoder* to
+make are not accepted, since a string carrying them is not one this module
+produced.
+
+## Examples
+
+```ts
+isULID('01ARZ3NDEKTSV4RRFFQ69G5FAV') //=> true
+isULID(ulid()) //=> true
+```
+
+```ts
+isULID('01ARZ3NDEKTSV4RRFFQ69G5FA')  //=> false  25 characters
+isULID('81ARZ3NDEKTSV4RRFFQ69G5FAV') //=> false  timestamp overflows
+isULID('01ARZ3NDEKTSV4RRFFQ69G5FAI') //=> false  I is not in the alphabet
+```
+
+## Related
+
+- [ulid](/docs/Crypto/ulid)
+- [ulidTime](/docs/Crypto/ulidTime)
+- [isUUID](/docs/Crypto/isUUID)

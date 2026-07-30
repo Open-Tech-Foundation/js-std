@@ -1,0 +1,47 @@
+🆔 Reads the timestamp back out of a ULID.
+
+A ULID leads with a 48-bit count of milliseconds since the Unix epoch — that is
+what makes it sortable — held in the first ten characters. Decoding it means
+knowing the alphabet and that the most significant character comes first, which
+is the sort of thing worth having in one place.
+
+## Syntax
+
+```ts
+import { ulidTime } from '@opentf/std';
+
+ulidTime(id: string): number;
+```
+
+## Parameters
+
+| Name | Type     | Description       |
+| ---- | -------- | ----------------- |
+| id   | `string` | The ULID to read. |
+
+## Returns
+
+Milliseconds since the Unix epoch, as `Date.now()` gives.
+
+A malformed string throws a `TypeError` rather than being decoded into a number
+that would mean nothing. Guard with [isULID](/docs/Crypto/isULID) when the input
+is untrusted.
+
+## Examples
+
+```ts
+const id = ulid();
+
+ulidTime(id) //=> 1769000000000
+new Date(ulidTime(id)) //=> the moment it was generated
+```
+
+```ts
+ulidTime('01ARYZ6S41TSV4RRFFQ69G5FAV') //=> 1469918176385
+```
+
+## Related
+
+- [ulid](/docs/Crypto/ulid)
+- [isULID](/docs/Crypto/isULID)
+- [uuidv7Time](/docs/Crypto/uuidv7Time)
