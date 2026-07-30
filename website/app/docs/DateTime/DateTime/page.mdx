@@ -1,4 +1,6 @@
 import { Callout } from "@opentf/web-docs";
+import CheckIcon from "../../../components/CheckIcon.jsx";
+import CrossIcon from "../../../components/CrossIcon.jsx";
 
 🕒 An immutable date and time in an IANA time zone.
 
@@ -162,12 +164,12 @@ instances survive `JSON.stringify`.
 | --------------------- | --------------- | -------------------- | ------------ | ---------------- | --------------- | ------------------ |
 | Paradigm              | immutable class | functions on `Date`  | immutable class | immutable wrapper | **mutable**  | immutable class    |
 | Size, min + gzip      | **4.6 KB**      | ~1–15 KB, per import | ~20 KB       | 2 KB + plugins   | ~20 KB + locales | ~40 KB          |
-| Tree-shakeable        | ❌ one class    | ✅ **best in class** | ❌           | via plugins      | ❌              | ❌                 |
-| IANA time zones       | ✅ `Intl`       | ✅ `@date-fns/tz`    | ✅ `Intl`    | ✅ tz plugin     | ✅ moment-timezone | ✅ `@js-joda/timezone` |
+| Tree-shakeable        | <CrossIcon size={16} /> one class    | <CheckIcon size={16} /> **best in class** | <CrossIcon size={16} />           | via plugins      | <CrossIcon size={16} />              | <CrossIcon size={16} />                 |
+| IANA time zones       | <CheckIcon size={16} /> `Intl`       | <CheckIcon size={16} /> `@date-fns/tz`    | <CheckIcon size={16} /> `Intl`    | <CheckIcon size={16} /> tz plugin     | <CheckIcon size={16} /> moment-timezone | <CheckIcon size={16} /> `@js-joda/timezone` |
 | Bundles a tz database | **no**          | no                   | no           | no               | **yes**         | **yes**            |
 | Runtime dependencies  | **zero**        | zero                 | zero         | zero             | zero            | separate packages  |
-| Temporal precision    | ✅ where available | ❌               | ❌           | ❌               | ❌              | ❌ own model       |
-| Strict parsing        | ✅ throws       | ✅                   | ✅           | ❌ loose         | ❌ loose        | ✅                 |
+| Temporal precision    | <CheckIcon size={16} /> where available | <CrossIcon size={16} />               | <CrossIcon size={16} />           | <CrossIcon size={16} />               | <CrossIcon size={16} />              | <CrossIcon size={16} /> own model       |
+| Strict parsing        | <CheckIcon size={16} /> throws       | <CheckIcon size={16} />                   | <CheckIcon size={16} />           | <CrossIcon size={16} /> loose         | <CrossIcon size={16} /> loose        | <CheckIcon size={16} />                 |
 | Invalid input yields  | throws          | `Invalid Date`       | invalid object | invalid object | invalid object  | throws             |
 | Locales               | `Intl`          | ~200 bundled modules | `Intl`       | bundled files    | bundled files   | separate package   |
 | Status                | new             | active               | active       | active           | **maintenance** | active             |

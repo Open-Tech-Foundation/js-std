@@ -1,4 +1,6 @@
 import { Callout } from '@opentf/web-docs';
+import CheckIcon from '../../components/CheckIcon.jsx';
+import CrossIcon from '../../components/CrossIcon.jsx';
 
 
 # 🌍 Environment Support
@@ -25,11 +27,11 @@ _Measured on 2026-07-29 against `@opentf/std@0.16.0`, running the full suite of 
 | --- | --- | --- | --- |
 | Node.js 20 | `20.20.2` | 1149 / 1150 (99.9%) | ⚠️ Partial |
 | Node.js 22 | `22.23.1` | 1149 / 1150 (99.9%) | ⚠️ Partial |
-| Node.js 24 | `24.18.0` | 1150 / 1150 (100%) | ✅ Fully supported |
-| Node.js 26 | `26.5.0` | 1207 / 1207 (100%) | ✅ Fully supported |
-| Bun | `1.3.14` | 1150 / 1150 (100%) | ✅ Fully supported |
-| Deno | `2.9.4` | 1207 / 1207 (100%) | ✅ Fully supported |
-| ES-Runtime | `0.12.0` | 1207 / 1207 (100%) | ✅ Fully supported |
+| Node.js 24 | `24.18.0` | 1150 / 1150 (100%) | <CheckIcon size={18} /> Fully supported |
+| Node.js 26 | `26.5.0` | 1207 / 1207 (100%) | <CheckIcon size={18} /> Fully supported |
+| Bun | `1.3.14` | 1150 / 1150 (100%) | <CheckIcon size={18} /> Fully supported |
+| Deno | `2.9.4` | 1207 / 1207 (100%) | <CheckIcon size={18} /> Fully supported |
+| ES-Runtime | `0.12.0` | 1207 / 1207 (100%) | <CheckIcon size={18} /> Fully supported |
 | LLRT | `0.8.0-beta` | 1118 / 1150 (97.2%) | ⚠️ Partial |
 
 ### Node.js 20 20.20.2
@@ -105,14 +107,15 @@ Most utilities are pure JavaScript. The few that need platform APIs use standard
 
 | Runtime | Temporal | `DateTime` backend |
 | --- | --- | --- |
-| Node.js 26+ | ✅ | Temporal |
-| Deno, ES-Runtime | ✅ | Temporal |
-| Chrome 144+, Edge 144+ | ✅ | Temporal |
-| Firefox 139+ | ✅ | Temporal |
+| Node.js 26+ | <CheckIcon size={18} /> | Temporal |
+| Deno | <CheckIcon size={18} /> | Temporal |
+| ES-Runtime | <CheckIcon size={18} /> | Temporal |
+| Chrome 144+, Edge 144+ | <CheckIcon size={18} /> | Temporal |
+| Firefox 139+ | <CheckIcon size={18} /> | Temporal |
 | Node.js 24 / 25 | ⚠️ `--harmony-temporal` only | `Intl` unless flagged |
-| Node.js 22 and earlier, incl. 20 LTS | ❌ | `Intl` |
-| Bun, LLRT | ❌ | `Intl` |
-| Safari | ❌ Technology Preview only | `Intl` |
+| Node.js 22 and earlier, incl. 20 LTS | <CrossIcon size={18} /> | `Intl` |
+| Bun, LLRT | <CrossIcon size={18} /> | `Intl` |
+| Safari | <CrossIcon size={18} /> | `Intl` |
 
 Temporal is now the majority position in browsers, and Node.js 26 enables it by default. The `Intl` backend still matters: Node.js 20 LTS and 22, Bun and LLRT have no Temporal at all, so it remains what a large share of server-side code runs on.
 
