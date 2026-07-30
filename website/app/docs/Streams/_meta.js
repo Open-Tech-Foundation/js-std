@@ -1,4 +1,6 @@
 export default {
+  mapStream: 'mapStream',
+  filterStream: 'filterStream',
   streamToText: 'streamToText',
   streamToBytes: 'streamToBytes',
   streamToArray: 'streamToArray',

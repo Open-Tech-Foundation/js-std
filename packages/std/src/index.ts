@@ -315,6 +315,8 @@ export { default as streamToLines } from './streams/streamToLines';
 export { default as streamToIter } from './streams/streamToIter';
 export type { StreamToIterOptions } from './streams/streamToIter';
 export { default as iterToStream } from './streams/iterToStream';
+export { default as mapStream } from './streams/mapStream';
+export { default as filterStream } from './streams/filterStream';
 export { default as concatStreams } from './streams/concatStreams';
 export { default as mergeStreams } from './streams/mergeStreams';
 

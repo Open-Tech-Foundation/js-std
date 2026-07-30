@@ -1,0 +1,61 @@
+import { Callout } from "@opentf/web-docs";
+
+🌊 Keeps only the chunks of a stream that satisfy a predicate.
+
+## Syntax
+
+```ts
+import { filterStream } from '@opentf/std';
+
+filterStream<T>(
+  stream: ReadableStream<T>,
+  fn: (chunk: T, index: number) => boolean | Promise<boolean>,
+): ReadableStream<T>;
+```
+
+## Parameters
+
+| Name   | Type                | Description                                   |
+| ------ | ------------------- | --------------------------------------------- |
+| stream | `ReadableStream<T>` | The source stream.                            |
+| fn     | `Function`          | The predicate to test each chunk. May be async. |
+
+## Returns
+
+A stream of the chunks that passed.
+
+The same result as `iterToStream(filterIterAsync(streamToIter(s), fn))`, with
+one call instead of three.
+
+<Callout type="info">
+  Built on the `ReadableStream` constructor rather than `TransformStream`, which
+  the rest of this module also avoids: it is missing from some runtimes, and
+  referring to it would throw when the module is imported rather than when it is
+  used.
+</Callout>
+
+Rejected chunks are read and discarded as the reader asks for more, so a run of
+them costs reads but no memory. Cancelling the result cancels the source, and a
+predicate that throws does the same before erroring the stream.
+
+## Examples
+
+```ts
+const errors = filterStream(lines, (line) => line.startsWith('ERROR'));
+
+await streamToArray(errors) //=> ['ERROR one', 'ERROR two']
+```
+
+Composing with [mapStream](/docs/Streams/mapStream):
+
+```ts
+const report = mapStream(
+  filterStream(events, (e) => e.level === 'error'),
+  (e) => `${e.time} ${e.message}`,
+);
+```
+
+## Related
+
+- [mapStream](/docs/Streams/mapStream)
+- [streamToIter](/docs/Streams/streamToIter)

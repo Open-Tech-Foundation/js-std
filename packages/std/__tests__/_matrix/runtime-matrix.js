@@ -107,11 +107,22 @@ const KNOWN_ISSUES = [
   {
     match: /formatCompact|formatCurrency|formatNumber/,
     requires: 'Intl.NumberFormat',
-    affects: ['formatCompact', 'formatCurrency'],
+    affects: ['formatCompact', 'formatCurrency', 'formatNumber'],
     category: 'missing-capability',
     reason:
       'Number formatting needs `Intl.NumberFormat`. Runtimes built without ICU cannot format ' +
-      'compact notation or currencies.',
+      'compact notation, currencies, or a plain number with grouping separators.',
+  },
+  {
+    match: /formatList > follows the locale/,
+    requires: 'Intl.ListFormat',
+    affects: ['formatList'],
+    category: 'missing-capability',
+    reason:
+      'Localised list joining needs `Intl.ListFormat`. Where it is absent `formatList` falls ' +
+      'back to the English forms rather than throwing, so only the language differs and the ' +
+      'shape of the output is unchanged — every other `formatList` test passes on such a ' +
+      'runtime. Only this one asserts a non-English result.',
   },
   {
     match: /splits every byte into its own chunk/,
@@ -135,9 +146,10 @@ const KNOWN_ISSUES = [
     // Only the tests that actually depend on an early exit running the
     // generator's `finally`. Matching the whole `streamToIter` suite would
     // excuse unrelated breakage on this runtime as a known deviation.
-    match: /fromIterAsync|streamToIter > (?:cancels|leaves the stream open)/,
+    match:
+      /fromIterAsync|streamToIter > (?:cancels|leaves the stream open)|zipIterAsync > closes the sources/,
     requires: null,
-    affects: ['fromIterAsync', 'streamToIter'],
+    affects: ['fromIterAsync', 'streamToIter', 'zipIterAsync'],
     category: 'runtime-deviation',
     reason:
       'Runtime does not perform `IteratorClose` when a `for await...of` loop exits early, so a ' +

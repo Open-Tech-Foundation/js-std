@@ -276,7 +276,9 @@
 ## Streams
 
 - [concatStreams](./Streams/concatStreams.md)
+- [filterStream](./Streams/filterStream.md)
 - [iterToStream](./Streams/iterToStream.md)
+- [mapStream](./Streams/mapStream.md)
 - [mergeStreams](./Streams/mergeStreams.md)
 - [streamToArray](./Streams/streamToArray.md)
 - [streamToBytes](./Streams/streamToBytes.md)
