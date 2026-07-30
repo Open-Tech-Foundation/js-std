@@ -1,0 +1,64 @@
+import { Callout } from "@opentf/web-docs";
+
+🏷️ Pulls a valid version out of a loosely written one.
+
+Versions in the wild are rarely canonical — a git tag reads `v2`, a Docker
+image `node:20.11`, a vendored file `4.17.21.min`. Each means something obvious
+to a reader and nothing to [semverParse](/docs/Semver/semverParse), which
+requires all three components and throws otherwise.
+
+## Syntax
+
+```ts
+import { semverCoerce } from '@opentf/std';
+
+semverCoerce(version: string): string | null;
+```
+
+## Parameters
+
+| Name    | Type     | Description             |
+| ------- | -------- | ----------------------- |
+| version | `string` | The string to coerce.   |
+
+## Returns
+
+A canonical version string, or `null` if there is no version-shaped run in the
+input. Missing components are filled with zero.
+
+The first version-shaped run wins, and anything after the third component is
+discarded — including a pre-release or build suffix, which cannot be trusted to
+mean what it looks like in a string this loose. Coerce first and parse the
+result when you need the parts.
+
+<Callout type="warning">
+  What comes out is still held to the specification, so a component with a
+  leading zero is not silently renumbered: `'007'` yields `null` rather than
+  `'7.0.0'`. Guessing which version was meant is not this function's job.
+</Callout>
+
+## Examples
+
+```ts
+semverCoerce('v2') //=> '2.0.0'
+semverCoerce('20.11') //=> '20.11.0'
+semverCoerce('4.17.21.min') //=> '4.17.21'
+```
+
+```ts
+semverCoerce('release-1.2.3-rc.1') //=> '1.2.3'
+semverCoerce('not a version') //=> null
+semverCoerce('007') //=> null
+```
+
+Feeding the rest of the module:
+
+```ts
+const tag = semverCoerce('v2'); //=> '2.0.0'
+semverSatisfies(tag, '^2.0.0'); //=> true
+```
+
+## Related
+
+- [semverParse](/docs/Semver/semverParse)
+- [semverIsValid](/docs/Semver/semverIsValid)

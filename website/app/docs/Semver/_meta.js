@@ -6,4 +6,8 @@ export default {
   semverSort: 'semverSort',
   semverSatisfies: 'semverSatisfies',
   semverIncrement: 'semverIncrement',
+  semverDiff: 'semverDiff',
+  semverCoerce: 'semverCoerce',
+  semverMaxSatisfying: 'semverMaxSatisfying',
+  semverMinSatisfying: 'semverMinSatisfying',
 };

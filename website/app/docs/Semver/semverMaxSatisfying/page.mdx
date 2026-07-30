@@ -1,0 +1,63 @@
+🏷️ Returns the highest version in the list that satisfies the range.
+
+This is what resolving a dependency comes down to: a registry hands back every
+published version and the range picks one.
+[semverSatisfies](/docs/Semver/semverSatisfies) answers it for a single
+version, and doing the rest by hand means sorting the whole list when only the
+maximum is wanted.
+
+## Syntax
+
+```ts
+import { semverMaxSatisfying } from '@opentf/std';
+
+semverMaxSatisfying(
+  versions: string[],
+  range: string,
+  options?: { includePrerelease?: boolean },
+): string | null;
+```
+
+## Parameters
+
+| Name                       | Type       | Default | Description                     |
+| -------------------------- | ---------- | ------- | ------------------------------- |
+| versions                   | `string[]` | `[]`    | The versions to choose from.    |
+| range                      | `string`   |         | The range to satisfy.           |
+| options.includePrerelease  | `boolean`  | `false` | Compare pre-releases on precedence alone. |
+
+## Returns
+
+The highest satisfying version, returned exactly as it was given — not
+re-formatted — or `null` if none satisfy the range.
+
+Throws a `TypeError` if any version, or the range, cannot be parsed.
+
+## Examples
+
+```ts
+semverMaxSatisfying(['1.0.0', '1.2.3', '2.0.0'], '^1.0.0') //=> '1.2.3'
+semverMaxSatisfying(['1.0.0', '2.0.0'], '^3.0.0') //=> null
+```
+
+Ordering is by precedence, not as strings, so `1.10.0` beats `1.2.3`:
+
+```ts
+semverMaxSatisfying(['1.2.3', '1.10.0'], '*') //=> '1.10.0'
+```
+
+Pre-releases are excluded unless asked for:
+
+```ts
+semverMaxSatisfying(['1.0.0', '1.1.0-rc.1'], '^1.0.0') //=> '1.0.0'
+
+semverMaxSatisfying(['1.0.0', '1.1.0-rc.1'], '^1.0.0', {
+  includePrerelease: true,
+}) //=> '1.1.0-rc.1'
+```
+
+## Related
+
+- [semverMinSatisfying](/docs/Semver/semverMinSatisfying)
+- [semverSatisfies](/docs/Semver/semverSatisfies)
+- [semverSort](/docs/Semver/semverSort)

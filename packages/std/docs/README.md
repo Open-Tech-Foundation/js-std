@@ -254,10 +254,14 @@
 
 ## Semver
 
+- [semverCoerce](./Semver/semverCoerce.md)
 - [semverCompare](./Semver/semverCompare.md)
+- [semverDiff](./Semver/semverDiff.md)
 - [semverFormat](./Semver/semverFormat.md)
 - [semverIncrement](./Semver/semverIncrement.md)
 - [semverIsValid](./Semver/semverIsValid.md)
+- [semverMaxSatisfying](./Semver/semverMaxSatisfying.md)
+- [semverMinSatisfying](./Semver/semverMinSatisfying.md)
 - [semverParse](./Semver/semverParse.md)
 - [semverSatisfies](./Semver/semverSatisfies.md)
 - [semverSort](./Semver/semverSort.md)

@@ -1,0 +1,50 @@
+🏷️ Returns the lowest version in the list that satisfies the range.
+
+The counterpart to [semverMaxSatisfying](/docs/Semver/semverMaxSatisfying), and
+what you want when testing against the oldest supported dependency rather than
+the newest.
+
+## Syntax
+
+```ts
+import { semverMinSatisfying } from '@opentf/std';
+
+semverMinSatisfying(
+  versions: string[],
+  range: string,
+  options?: { includePrerelease?: boolean },
+): string | null;
+```
+
+## Parameters
+
+| Name                       | Type       | Default | Description                     |
+| -------------------------- | ---------- | ------- | ------------------------------- |
+| versions                   | `string[]` | `[]`    | The versions to choose from.    |
+| range                      | `string`   |         | The range to satisfy.           |
+| options.includePrerelease  | `boolean`  | `false` | Compare pre-releases on precedence alone. |
+
+## Returns
+
+The lowest satisfying version, returned exactly as it was given, or `null` if
+none satisfy the range.
+
+Throws a `TypeError` if any version, or the range, cannot be parsed.
+
+## Examples
+
+```ts
+semverMinSatisfying(['1.0.0', '1.2.3', '2.0.0'], '^1.0.0') //=> '1.0.0'
+semverMinSatisfying(['1.0.0', '2.0.0'], '^3.0.0') //=> null
+```
+
+Pinning a CI job to the oldest version a range allows:
+
+```ts
+const oldest = semverMinSatisfying(published, pkg.peerDependencies.react);
+```
+
+## Related
+
+- [semverMaxSatisfying](/docs/Semver/semverMaxSatisfying)
+- [semverSatisfies](/docs/Semver/semverSatisfies)

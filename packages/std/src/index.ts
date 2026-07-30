@@ -292,6 +292,10 @@ export type { SemverSatisfiesOptions } from './semver/semverSatisfies';
 export { default as semverIncrement } from './semver/semverIncrement';
 export type { SemverRelease } from './semver/semverIncrement';
 export { default as semverSort } from './semver/semverSort';
+export { default as semverDiff } from './semver/semverDiff';
+export { default as semverCoerce } from './semver/semverCoerce';
+export { default as semverMaxSatisfying } from './semver/semverMaxSatisfying';
+export { default as semverMinSatisfying } from './semver/semverMinSatisfying';
 
 // Streams
 export { default as streamToText } from './streams/streamToText';
