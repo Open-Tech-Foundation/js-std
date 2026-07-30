@@ -18,5 +18,19 @@ describe('String > stringInsertAt', () => {
     expect(stringInsertAt('foo baz', 3, ' bar')).toBe('foo bar baz');
     expect(stringInsertAt('I  🍊', 2, 'ate an')).toBe('I ate an 🍊');
     expect(stringInsertAt('IU', 1, '❤️')).toBe('I❤️U');
+
+    // Default parameters
+    expect(stringInsertAt('hello')).toBe('hello');
+    expect(stringInsertAt('hello', 2)).toBe('hello');
+
+    // Edge cases for index
+    expect(() => stringInsertAt('abc', Number.NaN, 'x')).toThrow(
+      'The index must be a non-negative integer.',
+    );
+    expect(() => stringInsertAt('abc', Number.POSITIVE_INFINITY, 'x')).toThrow(
+      'The index must be a non-negative integer.',
+    );
+    expect(stringInsertAt('abc', -0, 'x')).toBe('xabc');
+    expect(stringInsertAt('abc', 100, 'd')).toBe('abcd');
   });
 });
