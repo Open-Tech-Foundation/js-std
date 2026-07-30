@@ -5,7 +5,7 @@ import isObject from '../types/isObject';
 import clone from './clone';
 import isUnsafePathKey from './isUnsafePathKey';
 import type { IterableObj } from './merge';
-import toPath from './toPath';
+import toPath, { type PropertyPath } from './toPath';
 
 /**
  * Removes the property of the given object at the given path & returns new object.
@@ -14,7 +14,7 @@ import toPath from './toPath';
  *
  * toUnset({a: 1, b: 2}, 'a') //=> {b: 2}
  */
-export default function toUnset<T>(obj: T, path: string | unknown[]): T {
+export default function toUnset<T>(obj: T, path: PropertyPath): T {
   const pathArr = toPath(path);
 
   if (isEmpty(pathArr) || !(isObject(obj) || isArray(obj))) {

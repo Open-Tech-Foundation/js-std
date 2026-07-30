@@ -1,7 +1,7 @@
 import isEmpty from '../assert/isEmpty';
 import isObject from '../types/isObject';
 import type { IterableObj } from './merge';
-import toPath from './toPath';
+import toPath, { type PropertyPath } from './toPath';
 
 /**
  * Checks if the given path exists in the given object.
@@ -14,7 +14,7 @@ import toPath from './toPath';
  * has({a: 1}, 'a') //=> true
  * has({a: {b: 2}}, ['a', 'b']) //=> true
  */
-export default function has(obj: object, path: string | unknown[]): boolean {
+export default function has(obj: object, path: PropertyPath): boolean {
   const pathArr = toPath(path);
 
   if (isEmpty(pathArr)) {

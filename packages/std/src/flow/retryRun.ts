@@ -7,8 +7,11 @@ export interface RetryRunOptions {
   delay?: number;
   /** Whether `delay` stays constant or doubles each attempt. Defaults to `'fixed'`. */
   backoff?: 'fixed' | 'exponential';
-  /** Called before each retry with the error that caused it. */
-  onRetry?: (error: any, attempt: number) => void;
+  /**
+   * Called before each retry with the error that caused it. The error is
+   * `unknown` because a rejection can carry any value, not just an `Error`.
+   */
+  onRetry?: (error: unknown, attempt: number) => void;
 }
 
 /**

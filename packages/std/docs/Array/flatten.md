@@ -2,9 +2,12 @@
 
 Flattens an array up to the specified depth.
 
+The element type is resolved against the depth, as `Array.prototype.flat`
+does, so a partial flatten still reports the arrays it left nested.
+
 @param {T[]} arr The source array.
 @param {number} depth The maximum recursion depth. Defaults to 1.
-@returns {any[]} A new flattened array.
+@returns {Array} A new flattened array.
 
 ### Example
 

@@ -7,7 +7,10 @@ export { default as snakeCase } from './string/snakeCase';
 export { default as kebabCase } from './string/kebabCase';
 export { default as titleCase } from './string/titleCase';
 export { default as stringReplace } from './string/stringReplace';
-export type { StringReplaceOptions } from './string/stringReplace';
+export type {
+  StringReplaceOptions,
+  StringReplacer,
+} from './string/stringReplace';
 export { default as escapeHTML } from './string/escapeHTML';
 export { default as unescapeHTML } from './string/unescapeHTML';
 export { default as stripANSI } from './string/stripANSI';
@@ -166,6 +169,7 @@ export { default as shallowMerge } from './object/shallowMerge';
 export { default as shallowMergeAll } from './object/shallowMergeAll';
 export { default as fromPath } from './object/fromPath';
 export { default as toPath } from './object/toPath';
+export type { PropertyPath } from './object/toPath';
 export { default as omit } from './object/omit';
 export { default as pick } from './object/pick';
 export { default as pickBy } from './object/pickBy';
@@ -207,7 +211,14 @@ export { default as compose } from './functional/compose';
 
 // colors
 export { default as color, ColorFormat } from './colors/color';
-export type { ColorInput } from './colors/color';
+export type {
+  ColorFormatMap,
+  ColorInput,
+  ColorOutput,
+  HSLA,
+  OKLCH,
+  RGBA,
+} from './colors/color';
 export { default as colorLighten } from './colors/colorLighten';
 export { default as colorDarken } from './colors/colorDarken';
 export { default as colorSaturate } from './colors/colorSaturate';
@@ -223,6 +234,7 @@ export { default as colorIsLight } from './colors/colorIsLight';
 export { default as colorContrast } from './colors/colorContrast';
 export { default as colorWCAGLevel } from './colors/colorWCAGLevel';
 export { default as colorIsReadable } from './colors/colorIsReadable';
+export type { AccessibilityLevel } from './colors/colorIsReadable';
 
 // Crypto
 export { default as uuidv4 } from './crypto/uuidv4';

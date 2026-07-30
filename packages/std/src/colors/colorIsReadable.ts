@@ -1,7 +1,8 @@
 import type { ColorInput } from './color';
 import colorContrast from './colorContrast';
 
-type AccessibilityLevel = 'AA' | 'AAA' | 'AA_Large' | 'AAA_Large';
+/** A WCAG conformance level, at normal or at large text size. */
+export type AccessibilityLevel = 'AA' | 'AAA' | 'AA_Large' | 'AAA_Large';
 
 /**
  * Checks if the contrast between two colors meets WCAG standards.

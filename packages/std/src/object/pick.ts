@@ -1,7 +1,7 @@
 import isArray from '../types/isArray';
 import isObject from '../types/isObject';
 import { type IterableObj, createMergeTarget } from './merge';
-import toPath from './toPath';
+import toPath, { type PropertyPath } from './toPath';
 
 /**
  * Includes all the property paths from the given object for the given list of paths.
@@ -10,10 +10,7 @@ import toPath from './toPath';
  *
  * pick({a: 1, b: 2}, 'a') //=> {a: 1}
  */
-export default function pick(
-  obj: object,
-  ...paths: (string | unknown[])[]
-): object {
+export default function pick(obj: object, ...paths: PropertyPath[]): object {
   const outObj = createMergeTarget(obj);
 
   for (const path of paths) {

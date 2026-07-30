@@ -2,11 +2,11 @@ import remove from '../array/remove';
 import isArray from '../types/isArray';
 import clone from './clone';
 import type { IterableObj } from './merge';
-import toPath from './toPath';
+import toPath, { type PropertyPath } from './toPath';
 
 function walk(
   obj: object,
-  path: string | unknown[],
+  path: PropertyPath,
   cb: (obj: object, prop: PropertyKey) => void,
 ) {
   let curObj = obj;
@@ -34,10 +34,7 @@ function walk(
  *
  * omit({a: 1, b: 2}, 'a') //=> {b: 2}
  */
-export default function omit(
-  obj: object,
-  ...paths: (string | unknown[])[]
-): object {
+export default function omit(obj: object, ...paths: PropertyPath[]): object {
   let c = clone(obj);
   const arrPathSet = new Set<string | unknown[]>();
 

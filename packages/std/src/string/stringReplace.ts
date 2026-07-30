@@ -4,6 +4,16 @@ import escapeRegExp from './escapeRegExp';
 export type StringReplaceOptions = { all?: boolean; case?: boolean };
 
 /**
+ * Builds the replacement for one match.
+ *
+ * The first argument is the matched substring, then one argument per capture
+ * group, then the offset and the whole input — the same call shape
+ * `String.prototype.replace` uses, and the reason the rest stays `any[]`:
+ * the groups are strings, the offset a number, so no one element type fits.
+ */
+export type StringReplacer = (substring: string, ...args: any[]) => string;
+
+/**
  * Returns a new string with one, some, or all matches of a pattern replaced by a replacement.
  *
  * @example
@@ -15,7 +25,7 @@ export type StringReplaceOptions = { all?: boolean; case?: boolean };
 export default function stringReplace(
   str: string,
   pattern: string | RegExp,
-  replacement: string | ((...args: any[]) => string),
+  replacement: string | StringReplacer,
   options?: StringReplaceOptions,
 ): string {
   if (pattern == null) {

@@ -3,7 +3,7 @@ import isArray from '../types/isArray';
 import isObject from '../types/isObject';
 import isUnsafePathKey from './isUnsafePathKey';
 import type { IterableObj } from './merge';
-import toPath from './toPath';
+import toPath, { type PropertyPath } from './toPath';
 
 /**
  * Removes the property of the given object at the given path.
@@ -12,7 +12,7 @@ import toPath from './toPath';
  *
  * unset({a: 1, b: 2}, 'a') //=> {b: 2}
  */
-export default function unset<T>(obj: T, path: string | unknown[]): T {
+export default function unset<T>(obj: T, path: PropertyPath): T {
   const pathArr = toPath(path);
   let curObj: IterableObj = obj as IterableObj;
 

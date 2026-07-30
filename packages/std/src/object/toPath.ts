@@ -5,12 +5,24 @@ import isString from '../types/isString';
 import isSymbol from '../types/isSymbol';
 
 /**
+ * The location of a property within an object: either a dot-and-bracket
+ * string such as `'a.b[0].c'`, or the segments it parses into.
+ */
+export type PropertyPath = string | unknown[];
+
+/**
  * Converts the given value into an object property path array.
+ *
+ * A number or a symbol is a single-segment path, and anything else has no
+ * segments at all, so it yields an empty array.
+ *
+ * @param {PropertyPath|number|symbol} val The value to convert.
+ * @returns {unknown[]} The path segments.
  *
  * @example
  * toPath('a.b.c') //=> ['a', 'b', 'c']
  */
-export default function toPath(val: string | unknown | unknown[]): unknown[] {
+export default function toPath(val: PropertyPath | number | symbol): unknown[] {
   if (isString(val)) {
     const res = [];
     const regex = /\[(\d+)\]|\[(-?\d+\.?\d+)\]|([^.[\]]+)/g;

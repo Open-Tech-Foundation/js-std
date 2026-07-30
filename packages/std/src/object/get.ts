@@ -1,7 +1,7 @@
 import isEmpty from '../assert/isEmpty';
 import isObject from '../types/isObject';
 import type { IterableObj } from './merge';
-import toPath from './toPath';
+import toPath, { type PropertyPath } from './toPath';
 
 /**
  * Gets the value of an object at the given path.
@@ -16,7 +16,7 @@ import toPath from './toPath';
  */
 export default function get(
   obj: object,
-  path: string | unknown[],
+  path: PropertyPath,
   defVal?: unknown,
 ): unknown {
   let curObj = obj;

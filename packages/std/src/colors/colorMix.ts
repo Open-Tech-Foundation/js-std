@@ -1,4 +1,8 @@
-import color, { type ColorFormat, type ColorInput } from './color';
+import color, {
+  type ColorFormat,
+  type ColorInput,
+  type ColorOutput,
+} from './color';
 
 /**
  * Mixes two colors together.
@@ -7,14 +11,20 @@ import color, { type ColorFormat, type ColorInput } from './color';
  * @param {ColorInput} color2 - The second color.
  * @param {number} [weight=0.5] - The weight of the first color (0 to 1).
  * @param {ColorFormat} [format='hex'] - The output format.
- * @returns {string | number | object} - The mixed color.
+ * @returns {ColorOutput} - The mixed color.
  */
+export default function colorMix<F extends ColorFormat = 'hex'>(
+  color1: ColorInput,
+  color2: ColorInput,
+  weight?: number,
+  format?: F,
+): ColorOutput<F>;
 export default function colorMix(
   color1: ColorInput,
   color2: ColorInput,
   weight = 0.5,
   format: ColorFormat = 'hex',
-): string | number | object {
+): ColorOutput {
   const rgba1 = color(color1, 'rgba-object');
   const rgba2 = color(color2, 'rgba-object');
 

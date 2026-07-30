@@ -1,16 +1,24 @@
-import color, { type ColorFormat, type ColorInput } from './color';
+import color, {
+  type ColorFormat,
+  type ColorInput,
+  type ColorOutput,
+} from './color';
 
 /**
  * Inverts a color.
  *
  * @param {ColorInput} input - The input color.
  * @param {ColorFormat} [format='hex'] - The output format.
- * @returns {string | number | object} - The inverted color.
+ * @returns {ColorOutput} - The inverted color.
  */
+export default function colorInvert<F extends ColorFormat = 'hex'>(
+  input: ColorInput,
+  format?: F,
+): ColorOutput<F>;
 export default function colorInvert(
   input: ColorInput,
   format: ColorFormat = 'hex',
-): string | number | object {
+): ColorOutput {
   const rgba = color(input, 'rgba-object');
   return color(
     {

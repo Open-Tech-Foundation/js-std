@@ -1,8 +1,11 @@
 import clamp from '../maths/clamp';
 
-type RGBA = { r: number; g: number; b: number; a: number };
-type HSLA = { h: number; s: number; l: number; a: number };
-type OKLCH = { l: number; c: number; h: number; a: number };
+/** Red, green and blue in `0-255`, alpha in `0-1`. */
+export type RGBA = { r: number; g: number; b: number; a: number };
+/** Hue in degrees, saturation and lightness as percentages, alpha in `0-1`. */
+export type HSLA = { h: number; s: number; l: number; a: number };
+/** Perceptual lightness, chroma, hue in degrees, alpha in `0-1`. */
+export type OKLCH = { l: number; c: number; h: number; a: number };
 
 export type ColorInput =
   | string
@@ -31,6 +34,34 @@ export const ColorFormat = {
 } as const;
 
 export type ColorFormat = (typeof ColorFormat)[keyof typeof ColorFormat];
+
+/**
+ * What `color` returns for each format.
+ *
+ * Most formats produce a CSS string, but `number` produces a packed integer
+ * and the `*-object` and `*-array` formats produce the components themselves,
+ * so a single return type would be a union the caller has to narrow by hand.
+ */
+export interface ColorFormatMap {
+  hex: string;
+  rgb: string;
+  rgba: string;
+  hsl: string;
+  hsla: string;
+  oklch: string;
+  css: string;
+  number: number;
+  'rgba-object': RGBA;
+  'rgba-array': [number, number, number, number];
+  'hsla-object': HSLA;
+  'hsla-array': [number, number, number, number];
+  'oklch-object': OKLCH;
+  ansi: string;
+}
+
+/** The type `color` returns for the format `F`. */
+export type ColorOutput<F extends ColorFormat = ColorFormat> =
+  ColorFormatMap[F];
 
 const COLOR_NAMES: Record<string, string> = {
   aliceblue: '#f0f8ff',
@@ -480,7 +511,14 @@ function normalize(input: ColorInput): RGBA | null {
  * color('red', 'rgba-object') //=> { r: 255, g: 0, b: 0, a: 1 }
  * color({ h: 0, s: 100, l: 50 }, 'hex') //=> '#ff0000'
  */
-export default function color(input: ColorInput, format: ColorFormat): any {
+export default function color<F extends ColorFormat>(
+  input: ColorInput,
+  format: F,
+): ColorOutput<F>;
+export default function color(
+  input: ColorInput,
+  format: ColorFormat,
+): ColorOutput {
   const rgba = normalize(input);
   if (!rgba) {
     throw new Error('Invalid Color');

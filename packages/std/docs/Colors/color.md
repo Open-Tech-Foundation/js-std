@@ -2,9 +2,14 @@
 
 Parses and converts colors between various formats.
 
-@param {string|number|Array|Object} input The color input.
-@param {string} format The output format.
-@returns {string|number|Array|Object} The converted color.
+The format decides the result type: most produce a CSS string, `number`
+produces a packed integer, and the `*-object` and `*-array` formats produce
+the components themselves. Passing a literal format narrows the return type
+to exactly one of those, so no cast or hand-narrowing is needed.
+
+@param {ColorInput} input The color input.
+@param {ColorFormat} format The output format.
+@returns {ColorOutput} The converted color.
 
 ### Example
 

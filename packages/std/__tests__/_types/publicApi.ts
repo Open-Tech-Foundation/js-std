@@ -13,20 +13,28 @@
  */
 
 import type {
+  AccessibilityLevel,
   BatchRunOptions,
+  ColorFormat,
+  ColorFormatMap,
   ColorInput,
+  ColorOutput,
   EncodeBase32Options,
   EncodeBase64UrlOptions,
+  HSLA,
   IdleRunFn,
   IdleRunOptions,
   IsEqlOptions,
   MemoizeRunFn,
   MemoizeRunOptions,
+  OKLCH,
   OrderTuples,
   OrderType,
   PaceRunFn,
   PaceRunOptions,
   PromiseResolvers,
+  PropertyPath,
+  RGBA,
   RetryRunOptions,
   Semver,
   SemverRelease,
@@ -35,6 +43,7 @@ import type {
   SortCB,
   StreamToIterOptions,
   StringReplaceOptions,
+  StringReplacer,
   TimeoutRunOptions,
   TypedArray,
   WordWrapOptions,
@@ -42,8 +51,16 @@ import type {
 import {
   batchRun,
   color,
+  colorGrayscale,
+  colorInvert,
+  colorIsReadable,
+  colorLighten,
+  colorMix,
   encodeBase32,
   encodeBase64Url,
+  flatten,
+  get,
+  has,
   idleRun,
   isEql,
   memoizeRun,
@@ -52,18 +69,34 @@ import {
   semverIncrement,
   semverParse,
   semverSatisfies,
+  set,
   sleep,
   sort,
   sortBy,
   streamToIter,
   stringReplace,
   timeoutRun,
+  toPath,
   withResolvers,
   wordWrap,
 } from '../../src';
 
 /** Fails to compile unless `Actual` is assignable to `Expected`. */
 function accepts<Expected>(_value: Expected): void {}
+
+/**
+ * True only when `X` and `Y` are the same type. Assignability is too weak
+ * here: everything is assignable to `any`, which is what several of these
+ * signatures used to return.
+ */
+type Equals<X, Y> = (<T>() => T extends X ? 1 : 2) extends <T>() => T extends Y
+  ? 1
+  : 2
+  ? true
+  : false;
+
+/** Fails to compile unless the argument type resolves to `true`. */
+function assertType<_T extends true>(): void {}
 
 // --- Array -----------------------------------------------------------------
 
@@ -79,10 +112,26 @@ const criteria: OrderTuples<Row> = [
 ];
 sortBy<Row>([{ id: 1, name: 'a' }], ...criteria);
 
+// The depth decides the element type, as with `Array.prototype.flat`, so a
+// partial flatten still reports what it left nested. This returned `any[]`
+// at every depth before.
+const flatOnce = flatten([1, [2, [3]]]);
+assertType<Equals<typeof flatOnce, (number | number[])[]>>();
+
+const flatTwice = flatten([1, [2, [3]]], 2);
+assertType<Equals<typeof flatTwice, number[]>>();
+
+// An unbounded depth cannot resolve to one element type, exactly as
+// `Array.prototype.flat(Infinity)` cannot.
+accepts<unknown[]>(flatten([1, [2, [3]]], Number.POSITIVE_INFINITY));
+
 // --- String ----------------------------------------------------------------
 
 const replaceOptions: StringReplaceOptions = { all: true, case: false };
 stringReplace('a-b', '-', '+', replaceOptions);
+
+const replacer: StringReplacer = (substring) => substring.toUpperCase();
+stringReplace('a-b', /[a-z]/, replacer, { all: true });
 
 const wrapOptions: WordWrapOptions = { hard: true };
 wordWrap('some text', 10, wrapOptions);
@@ -160,6 +209,21 @@ const memoized: MemoizeRunFn<string, [number]> = memoizeRun(
 accepts<Promise<string>>(memoized(1));
 memoized.clear();
 
+// --- Object ----------------------------------------------------------------
+
+// One name for the string form and the segment form, used by every accessor.
+const stringPath: PropertyPath = 'a.b[0].c';
+const segmentPath: PropertyPath = ['a', 'b', 0, 'c'];
+accepts<unknown[]>(toPath(stringPath));
+accepts<unknown[]>(toPath(segmentPath));
+accepts<unknown[]>(toPath(Symbol('k')));
+accepts<unknown[]>(toPath(0));
+get({ a: 1 }, stringPath);
+has({ a: 1 }, segmentPath);
+set({ a: 1 }, stringPath, 2);
+// A function at `value` is an updater, and is as valid as any other value.
+set({ a: 1 }, stringPath, (n: unknown) => n);
+
 // --- Types -----------------------------------------------------------------
 
 const bytes: TypedArray = new Uint8Array([1, 2, 3]);
@@ -173,7 +237,51 @@ accepts<ColorInput>([255, 0, 0]);
 accepts<ColorInput>({ r: 255, g: 0, b: 0, a: 1 });
 accepts<ColorInput>({ h: 0, s: 1, l: 0.5 });
 accepts<ColorInput>({ l: 0.5, c: 0.2, h: 30 });
-color('red', 'hex');
+
+// The format decides the result, so each is pinned exactly rather than merely
+// checked for assignability — `any` satisfied every such check before.
+const hex = color('red', 'hex');
+assertType<Equals<typeof hex, string>>();
+
+const packed = color('red', 'number');
+assertType<Equals<typeof packed, number>>();
+
+const rgbaObj = color('red', 'rgba-object');
+assertType<Equals<typeof rgbaObj, RGBA>>();
+
+const hslaObj = color('red', 'hsla-object');
+assertType<Equals<typeof hslaObj, HSLA>>();
+
+const oklchObj = color('red', 'oklch-object');
+assertType<Equals<typeof oklchObj, OKLCH>>();
+
+const rgbaArr = color('red', 'rgba-array');
+assertType<Equals<typeof rgbaArr, [number, number, number, number]>>();
+
+// A format known only to be a `ColorFormat` yields every possibility.
+declare const runtimeFormat: ColorFormat;
+accepts<ColorOutput>(color('red', runtimeFormat));
+
+// The derivatives forward the format, and default to 'hex' when it is omitted.
+const lightened = colorLighten('red', 0.1);
+assertType<Equals<typeof lightened, string>>();
+
+const mixed = colorMix('red', 'blue', 0.5, 'rgba-object');
+assertType<Equals<typeof mixed, RGBA>>();
+
+const inverted = colorInvert('red', 'number');
+assertType<Equals<typeof inverted, number>>();
+
+const gray = colorGrayscale('red');
+assertType<Equals<typeof gray, string>>();
+
+// The map must stay in step with the format union, or `ColorOutput` silently
+// stops covering a format.
+accepts<ColorFormat>('' as keyof ColorFormatMap);
+accepts<keyof ColorFormatMap>('' as ColorFormat);
+
+const level: AccessibilityLevel = 'AAA_Large';
+colorIsReadable('white', 'black', level);
 
 // --- Encoding --------------------------------------------------------------
 

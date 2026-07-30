@@ -5,7 +5,7 @@ Adjusts the alpha channel of a color.
 @param {ColorInput} input The input color.
 @param {number} amount The alpha value (0 to 1).
 @param {ColorFormat} [format='hex'] The output format.
-@returns {string | number | object} The color with adjusted alpha.
+@returns {ColorOutput} The color with adjusted alpha.
 
 ### Example
 
