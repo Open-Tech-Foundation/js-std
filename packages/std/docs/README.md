@@ -101,6 +101,7 @@
 - [sha256](./Crypto/sha256.md)
 - [sha512](./Crypto/sha512.md)
 - [timingSafeEqual](./Crypto/timingSafeEqual.md)
+- [ulid](./Crypto/ulid.md)
 - [uuidv4](./Crypto/uuidv4.md)
 - [uuidv7](./Crypto/uuidv7.md)
 

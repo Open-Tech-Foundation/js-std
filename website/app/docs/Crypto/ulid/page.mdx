@@ -1,0 +1,75 @@
+import { Callout } from "@opentf/web-docs";
+
+🆔 Generates a ULID: a 128-bit, lexicographically sortable identifier.
+
+The first 48 bits are the timestamp in milliseconds and the remaining 80 are
+random, encoded together as 26 characters of Crockford's Base32. Because the
+time leads and the encoding preserves order, **sorting the strings sorts by
+creation time** — no separate column, and no parsing to compare two of them.
+
+## Syntax
+
+```ts
+import { ulid } from '@opentf/std';
+
+ulid(seedTime?: number): string;
+```
+
+## Parameters
+
+| Name     | Type     | Default      | Description                             |
+| -------- | -------- | ------------ | --------------------------------------- |
+| seedTime | `number` | `Date.now()` | The timestamp to encode, in milliseconds. |
+
+## Returns
+
+A 26-character ULID. Throws a `RangeError` if `seedTime` is not an integer
+within the 48-bit range — which runs out in the year 10889.
+
+<Callout type="warning">
+  Ordering holds *between* milliseconds, not within one. Two ULIDs made in the
+  same millisecond differ only in their random half, so their relative order is
+  arbitrary. That is what the specification defines for this function; it
+  recommends a monotonic factory where same-millisecond order has to be stable.
+</Callout>
+
+## Examples
+
+```ts
+ulid() //=> '01ARZ3NDEKTSV4RRFFQ69G5FAV'
+```
+
+Sorting the strings sorts by creation time:
+
+```ts
+const ids = [ulid(), ulid(), ulid()];
+
+ids.sort(); // already in creation order
+```
+
+A fixed time gives a fixed 10-character prefix, which makes it testable and
+lets you build a range query over an interval:
+
+```ts
+ulid(1469918176385).slice(0, 10) //=> '01ARYZ6S41'
+```
+
+## ULID or `uuidv7`?
+
+Both put the time first so they sort. They differ in shape:
+
+| | `ulid` | [uuidv7](/docs/Crypto/uuidv7) |
+| --- | --- | --- |
+| Length | 26 characters | 36 characters |
+| Alphabet | Crockford's Base32, no `I` `L` `O` `U` | hex with hyphens |
+| Fits a UUID column | no | yes |
+| Random bits | 80 | 74 |
+
+A ULID is not a UUID and will not pass a UUID column or validator. Reach for
+`uuidv7` when the shape has to be a UUID.
+
+## Related
+
+- [uuidv7](/docs/Crypto/uuidv7)
+- [uuidv4](/docs/Crypto/uuidv4)
+- [randomId](/docs/Crypto/randomId)

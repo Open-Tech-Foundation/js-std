@@ -243,6 +243,7 @@ export type { AccessibilityLevel } from './colors/colorIsReadable';
 // Crypto
 export { default as uuidv4 } from './crypto/uuidv4';
 export { default as uuidv7 } from './crypto/uuidv7';
+export { default as ulid } from './crypto/ulid';
 export { default as randomBytes } from './crypto/randomBytes';
 export { default as randomInt } from './crypto/randomInt';
 export { default as randomFloat } from './crypto/randomFloat';
