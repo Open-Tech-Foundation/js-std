@@ -10,6 +10,7 @@ export default {
   pascalCase: 'pascalCase',
   repeat: 'repeat',
   slugify: 'slugify',
+  formatList: 'formatList',
   snakeCase: 'snakeCase',
   stringReplace: 'stringReplace',
   stringReverse: 'stringReverse',

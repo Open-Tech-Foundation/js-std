@@ -27,6 +27,8 @@ export { default as wordWrap } from './string/wordWrap';
 export type { WordWrapOptions } from './string/wordWrap';
 export { default as escapeRegExp } from './string/escapeRegExp';
 export { default as slugify } from './string/slugify';
+export { default as formatList } from './string/formatList';
+export type { FormatListOptions } from './string/formatList';
 
 // Array
 export { default as first } from './array/first';
@@ -115,6 +117,7 @@ export { default as median } from './maths/median';
 export { default as mode } from './maths/mode';
 export { default as variance } from './maths/variance';
 export { default as stddev } from './maths/stddev';
+export { default as quantile } from './maths/quantile';
 export { default as lerp } from './maths/lerp';
 export { default as gcd } from './maths/gcd';
 export { default as lcm } from './maths/lcm';
@@ -269,6 +272,8 @@ export { default as formatOrdinal } from './number/formatOrdinal';
 export { default as formatBytes } from './number/formatBytes';
 export { default as formatCurrency } from './number/formatCurrency';
 export { default as formatCompact } from './number/formatCompact';
+export { default as formatNumber } from './number/formatNumber';
+export type { FormatNumberOptions } from './number/formatNumber';
 
 // Encoding
 export { default as encodeBase64 } from './encoding/encodeBase64';

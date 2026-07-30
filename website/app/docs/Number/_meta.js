@@ -1,6 +1,7 @@
 export default {
   formatBytes: 'formatBytes',
   formatCompact: 'formatCompact',
+  formatNumber: 'formatNumber',
   formatCurrency: 'formatCurrency',
   formatOrdinal: 'formatOrdinal',
   inRange: 'inRange',

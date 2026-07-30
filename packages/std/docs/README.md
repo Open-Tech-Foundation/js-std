@@ -200,8 +200,8 @@
 
 ## Maths
 
-- [clamp](./Maths/clamp.md)
 - [Decimal](./Maths/Decimal.md)
+- [clamp](./Maths/clamp.md)
 - [divMod](./Maths/divMod.md)
 - [gcd](./Maths/gcd.md)
 - [isDisjointFrom](./Maths/isDisjointFrom.md)
@@ -217,6 +217,7 @@
 - [percentage](./Maths/percentage.md)
 - [percentageOf](./Maths/percentageOf.md)
 - [prod](./Maths/prod.md)
+- [quantile](./Maths/quantile.md)
 - [stddev](./Maths/stddev.md)
 - [sum](./Maths/sum.md)
 - [variance](./Maths/variance.md)
@@ -226,6 +227,7 @@
 - [formatBytes](./Number/formatBytes.md)
 - [formatCompact](./Number/formatCompact.md)
 - [formatCurrency](./Number/formatCurrency.md)
+- [formatNumber](./Number/formatNumber.md)
 - [formatOrdinal](./Number/formatOrdinal.md)
 - [inRange](./Number/inRange.md)
 - [isNegZero](./Number/isNegZero.md)
@@ -289,6 +291,7 @@
 - [constantCase](./String/constantCase.md)
 - [escapeHTML](./String/escapeHTML.md)
 - [escapeRegExp](./String/escapeRegExp.md)
+- [formatList](./String/formatList.md)
 - [kebabCase](./String/kebabCase.md)
 - [pad](./String/pad.md)
 - [pascalCase](./String/pascalCase.md)

@@ -1,0 +1,67 @@
+import { Callout } from "@opentf/web-docs";
+
+📝 Joins a list of strings into readable prose.
+
+`items.join(', ')` gives `'a, b, c'`, which is not a sentence. This gives
+`'a, b, and c'` — with the connector, the punctuation before it and the separate
+form a two-item list takes, all of which differ by language and none of which
+are worth hand-rolling.
+
+## Syntax
+
+```ts
+import { formatList } from '@opentf/std';
+
+formatList(items: string[], options?: FormatListOptions): string;
+```
+
+## Parameters
+
+| Name           | Type       | Default         | Description                                  |
+| -------------- | ---------- | --------------- | -------------------------------------------- |
+| items          | `string[]` | `[]`            | The strings to join.                         |
+| options.type   | `string`   | `'conjunction'` | `'conjunction'`, `'disjunction'` or `'unit'`. |
+| options.style  | `string`   | `'long'`        | `'long'`, `'short'` or `'narrow'`.           |
+| options.locale | `string`   |                 | The locale (default runtime locale).         |
+
+## Returns
+
+The joined string, empty for an empty list. Throws a `RangeError` if `type` or
+`style` is not one of its allowed values.
+
+<Callout type="info">
+  Where the runtime provides `Intl.ListFormat` it is used, and the result is as
+  correct as the runtime's locale data. Where it does not — some embedded and
+  edge runtimes ship without it — the English forms are produced instead, so the
+  shape of the output never changes with the host, only the language.
+</Callout>
+
+## Examples
+
+```ts
+formatList(['a', 'b', 'c']) //=> 'a, b, and c'
+formatList(['a', 'b']) //=> 'a and b'
+formatList(['a']) //=> 'a'
+formatList([]) //=> ''
+```
+
+The connector varies with `type` and `style`:
+
+```ts
+formatList(['a', 'b', 'c'], { type: 'disjunction' }) //=> 'a, b, or c'
+formatList(['a', 'b', 'c'], { type: 'unit' }) //=> 'a, b, c'
+formatList(['a', 'b', 'c'], { style: 'short' }) //=> 'a, b, & c'
+```
+
+And with the language:
+
+```ts
+formatList(['a', 'b', 'c'], { locale: 'de-DE' }) //=> 'a, b und c'
+formatList(['a', 'b'], { locale: 'es-ES' }) //=> 'a y b'
+```
+
+## Related
+
+- [intersperse](/docs/Array/intersperse)
+- [titleCase](/docs/String/titleCase)
+- [wordWrap](/docs/String/wordWrap)

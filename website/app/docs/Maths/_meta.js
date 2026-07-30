@@ -17,6 +17,7 @@ export default {
   percentageOf: 'percentageOf',
   prod: 'prod',
   stddev: 'stddev',
+  quantile: 'quantile',
   sum: 'sum',
   variance: 'variance',
 };
