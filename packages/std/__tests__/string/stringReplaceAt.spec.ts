@@ -22,5 +22,9 @@ describe('String > stringReplaceAt', () => {
     expect(stringReplaceAt('iphone', 1, 'P')).toBe('iPhone');
     expect(stringReplaceAt('I__JS', 1, '❤️')).toBe('I❤️JS');
     expect(stringReplaceAt('I HATE U', 2, 'LOVE')).toBe('I LOVE U');
+
+    // It overwrites replaceStr.length characters, it does not replace a word.
+    expect(stringReplaceAt('I HATE U', 2, 'LUV')).toBe('I LUVE U');
+    expect(stringReplaceAt('abc', 1, 'wxyz')).toBe('awxyz');
   });
 });

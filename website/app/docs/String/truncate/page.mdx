@@ -14,10 +14,14 @@ truncate(
 
 `length` must be a non-negative finite integer.
 
+The result never exceeds `length`: when `omission` does not fit, it is itself truncated.
+
 ## Examples
 
 ```ts
 truncate('hi-package', 8) //=> 'hi-pa...'
 
 truncate('hi-package', 5, '---') //=> 'hi---'
+
+truncate('hi-package', 2) //=> '..'
 ```

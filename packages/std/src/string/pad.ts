@@ -11,12 +11,14 @@ import validateStringCount from './validateStringCount';
  * pad('abc', 8, '_-') //=> '_-abc_-_'
  *
  * pad('abc', 3) //=> 'abc'
+ *
+ * pad('abc', 8, '') //=> 'abc'
  */
 export default function pad(str: string, length = 0, chars = ' '): string {
   validateStringCount(length, 'Length');
 
   const strLength = str.length;
-  if (strLength >= length) {
+  if (strLength >= length || chars === '') {
     return str;
   }
   const mid = (length - strLength) / 2;

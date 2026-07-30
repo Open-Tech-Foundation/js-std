@@ -2,6 +2,15 @@
 
 ## [Unreleased]
 
+### Fixed
+
+- Fixed `pad` throwing a `RangeError` when given an empty padding string. `chars.length` is then `0`, so `Math.ceil(leftLength / chars.length)` is `Infinity` and `String.prototype.repeat` rejects it. There is nothing to pad with, so the string is now returned unchanged, matching the existing behaviour when it is already at least `length` long.
+- Fixed `truncate` returning a string longer than the requested maximum when `omission` did not fit within it — `truncate('hello world', 2)` returned the full `'...'`. The omission is now truncated to `length` itself, so the result never exceeds the maximum the caller asked for.
+
+### Changed
+
+- Documented that `stringReplaceAt` overwrites exactly as many characters as the replacement is long, rather than replacing whatever word sits at the index, and that an empty replacement removes one character. `stringReplaceAt('I HATE U', 2, 'LUV')` gives `'I LUVE U'`, not `'I LUV U'`: the function is given an index, not a span, so it cannot know where the word ends. Behaviour is unchanged; the tests now pin it.
+
 ## [0.16.0] - 2026-07-29
 
 ### Added

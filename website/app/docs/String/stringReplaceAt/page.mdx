@@ -2,6 +2,8 @@ import { Callout } from "@opentf/web-docs";
 
 Replace a character or string at the index position.
 
+It overwrites as many characters as `replaceStr` is long, so the result keeps the length of the source string. An empty `replaceStr` removes one character.
+
 ## Syntax
 
 ```ts
@@ -44,4 +46,8 @@ stringReplaceAt("abc", 1, ""); //=> 'ac'
 stringReplaceAt("abc", 0, "z"); //=> 'zbc'
 
 stringReplaceAt("iphone", 1, "P"); //=> 'iPhone'
+
+stringReplaceAt("I HATE U", 2, "LOVE"); //=> 'I LOVE U'
+
+stringReplaceAt("I HATE U", 2, "LUV"); //=> 'I LUVE U'
 ```

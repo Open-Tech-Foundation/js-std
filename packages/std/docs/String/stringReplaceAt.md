@@ -2,6 +2,8 @@
 
 Replaces characters in a string at a specific index.
 
+It overwrites as many characters as `replaceStr` is long, so the result keeps the length of the source string. An empty `replaceStr` removes one character.
+
 `index` must be a non-negative integer.
 
 @param {string} str The source string.
@@ -13,4 +15,6 @@ Replaces characters in a string at a specific index.
 
 ```js
 stringReplaceAt('abc', 1, 'z') //=> 'azc'
+
+stringReplaceAt('I HATE U', 2, 'LUV') //=> 'I LUVE U'
 ```

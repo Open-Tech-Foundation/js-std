@@ -5,11 +5,14 @@ import validateStringCount from './validateStringCount';
  *
  * @param {string} str The string to truncate.
  * @param {number} [length=30] The maximum string length.
- * @param {string} [omission='...'] The string to indicate truncation.
+ * @param {string} [omission='...'] The string to indicate truncation. It is
+ * itself truncated when it does not fit within the given length.
  * @returns {string} The truncated string.
  *
  * @example
  * truncate('hi-package', 8) //=> 'hi-pa...'
+ *
+ * truncate('hi-package', 2) //=> '..'
  */
 export default function truncate(
   str: string,
@@ -22,6 +25,13 @@ export default function truncate(
     return str;
   }
 
-  const maxLen = Math.max(length - omission.length, 0);
-  return Array.from(str).slice(0, maxLen).join('') + omission;
+  if (omission.length >= length) {
+    return Array.from(omission).slice(0, length).join('');
+  }
+
+  return (
+    Array.from(str)
+      .slice(0, length - omission.length)
+      .join('') + omission
+  );
 }

@@ -33,6 +33,10 @@ describe('String Utils', () => {
     expect(truncate('hi-package', 5, '---')).toBe('hi---');
     expect(truncate('hi', 5)).toBe('hi');
     expect(truncate('😀😃😄😁', 4)).toBe('😀...');
+    expect(truncate('hello world', 3)).toBe('...');
+    expect(truncate('hello world', 2)).toBe('..');
+    expect(truncate('hello world', 0)).toBe('');
+    expect(truncate('hello world', 2, '')).toBe('he');
     expect(() => truncate('hello', -1)).toThrow(
       'Length must be greater than or equal to 0.',
     );
@@ -68,6 +72,8 @@ describe('String Utils', () => {
     expect(pad('abc', 8)).toBe('  abc   ');
     expect(pad('abc', 8, '_-')).toBe('_-abc_-_');
     expect(pad('abc', 3)).toBe('abc');
+    expect(pad('abc', 10, '')).toBe('abc');
+    expect(pad('', 4, '')).toBe('');
     expect(() => pad('abc', -1)).toThrow(
       'Length must be greater than or equal to 0.',
     );
