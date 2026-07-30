@@ -9,7 +9,7 @@ import validateConcurrency from './validateConcurrency';
  */
 export default async function eachAsync<T>(
   arr: T[],
-  cb: (value: T, index: number) => Promise<void>,
+  cb: (value: T, index: number) => void | Promise<void>,
   concurrency: number = Number.POSITIVE_INFINITY,
 ): Promise<void> {
   validateConcurrency(concurrency);

@@ -27,7 +27,7 @@ import validateConcurrency from './validateConcurrency';
  */
 export default async function findAsync<T>(
   arr: T[],
-  cb: (value: T, index: number) => Promise<boolean>,
+  cb: (value: T, index: number) => boolean | Promise<boolean>,
   concurrency: number = Number.POSITIVE_INFINITY,
 ): Promise<T | undefined> {
   validateConcurrency(concurrency);

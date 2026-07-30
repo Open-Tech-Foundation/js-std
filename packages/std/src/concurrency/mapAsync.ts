@@ -13,7 +13,7 @@ import validateConcurrency from './validateConcurrency';
  */
 export default async function mapAsync<T, R>(
   arr: T[],
-  cb: (value: T, index: number) => Promise<R>,
+  cb: (value: T, index: number) => R | Promise<R>,
   concurrency: number = Number.POSITIVE_INFINITY,
 ): Promise<R[]> {
   validateConcurrency(concurrency);

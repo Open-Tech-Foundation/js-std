@@ -7,7 +7,7 @@
  */
 export default async function reduceAsync<T, R>(
   arr: T[],
-  cb: (accumulator: R, value: T, index: number) => Promise<R>,
+  cb: (accumulator: R, value: T, index: number) => R | Promise<R>,
   initialValue?: R,
 ): Promise<R> {
   let acc = initialValue as R;

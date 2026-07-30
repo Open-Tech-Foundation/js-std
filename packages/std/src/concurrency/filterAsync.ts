@@ -9,7 +9,7 @@ import mapAsync from './mapAsync';
  */
 export default async function filterAsync<T>(
   arr: T[],
-  cb: (value: T, index: number) => Promise<boolean>,
+  cb: (value: T, index: number) => boolean | Promise<boolean>,
   concurrency: number = Number.POSITIVE_INFINITY,
 ): Promise<T[]> {
   const mask = await mapAsync(arr, cb, concurrency);

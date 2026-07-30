@@ -1,4 +1,4 @@
-import isEql from '../assert/isEql';
+import createSeenSet from '../array/createSeenSet';
 import isFunction from '../types/isFunction';
 
 /**
@@ -32,31 +32,10 @@ export default function* uniqueIter<T>(
   by?: (val: T) => unknown,
 ): Generator<T> {
   const byFlag = isFunction(by);
-  const primitives = new Set<unknown>();
-  const objects: unknown[] = [];
+  const isFirstSeen = createSeenSet();
 
   for (const item of iterable) {
-    const key = byFlag ? by(item) : item;
-
-    if (key === null || typeof key !== 'object') {
-      if (primitives.has(key)) {
-        continue;
-      }
-      primitives.add(key);
-      yield item;
-      continue;
-    }
-
-    let seen = false;
-    for (const other of objects) {
-      if (isEql(key, other)) {
-        seen = true;
-        break;
-      }
-    }
-
-    if (!seen) {
-      objects.push(key);
+    if (isFirstSeen(byFlag ? by(item) : item)) {
       yield item;
     }
   }

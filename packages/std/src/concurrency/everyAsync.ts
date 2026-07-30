@@ -22,7 +22,7 @@ import validateConcurrency from './validateConcurrency';
  */
 export default async function everyAsync<T>(
   arr: T[],
-  cb: (value: T, index: number) => Promise<boolean>,
+  cb: (value: T, index: number) => boolean | Promise<boolean>,
   concurrency: number = Number.POSITIVE_INFINITY,
 ): Promise<boolean> {
   validateConcurrency(concurrency);

@@ -1,4 +1,4 @@
-import isEql from '../assert/isEql';
+import createSeenSet from '../array/createSeenSet';
 import isFunction from '../types/isFunction';
 
 /**
@@ -27,31 +27,10 @@ export default async function* uniqueIterAsync<T>(
   by?: (val: T) => unknown | Promise<unknown>,
 ): AsyncGenerator<T> {
   const byFlag = isFunction(by);
-  const primitives = new Set<unknown>();
-  const objects: unknown[] = [];
+  const isFirstSeen = createSeenSet();
 
   for await (const item of iterable) {
-    const key = byFlag ? await by(item) : item;
-
-    if (key === null || typeof key !== 'object') {
-      if (primitives.has(key)) {
-        continue;
-      }
-      primitives.add(key);
-      yield item;
-      continue;
-    }
-
-    let seen = false;
-    for (const other of objects) {
-      if (isEql(key, other)) {
-        seen = true;
-        break;
-      }
-    }
-
-    if (!seen) {
-      objects.push(key);
+    if (isFirstSeen(byFlag ? await by(item) : item)) {
       yield item;
     }
   }
