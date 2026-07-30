@@ -5,6 +5,7 @@ export { default as camelCase } from './string/camelCase';
 export { default as pascalCase } from './string/pascalCase';
 export { default as snakeCase } from './string/snakeCase';
 export { default as kebabCase } from './string/kebabCase';
+export { default as constantCase } from './string/constantCase';
 export { default as titleCase } from './string/titleCase';
 export { default as stringReplace } from './string/stringReplace';
 export type {

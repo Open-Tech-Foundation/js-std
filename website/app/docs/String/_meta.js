@@ -1,6 +1,7 @@
 export default {
   camelCase: 'camelCase',
   capitalize: 'capitalize',
+  constantCase: 'constantCase',
   escapeHTML: 'escapeHTML',
   unescapeHTML: 'unescapeHTML',
   escapeRegExp: 'escapeRegExp',

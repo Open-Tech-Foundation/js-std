@@ -1,0 +1,41 @@
+🔠 Converts string to constant case.
+
+## Syntax
+
+```ts
+import { constantCase } from '@opentf/std';
+
+constantCase(str: string): string;
+```
+
+## Parameters
+
+- `str`: The string to convert.
+
+## Returns
+
+The CONSTANT_CASEd string — [snakeCase](/docs/String/snakeCase) in upper case,
+the spelling environment variables and action type constants use.
+
+## Examples
+
+```ts
+constantCase('Foo Bar') //=> 'FOO_BAR'
+
+constantCase('fooBar') //=> 'FOO_BAR'
+
+constantCase('--foo-bar--') //=> 'FOO_BAR'
+```
+
+A run of capitals still splits at the word boundary:
+
+```ts
+constantCase('XMLHttpRequest') //=> 'XML_HTTP_REQUEST'
+```
+
+## Related
+
+- [snakeCase](/docs/String/snakeCase)
+- [camelCase](/docs/String/camelCase)
+- [pascalCase](/docs/String/pascalCase)
+- [kebabCase](/docs/String/kebabCase)

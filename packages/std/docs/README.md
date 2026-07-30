@@ -277,6 +277,7 @@
 
 - [camelCase](./String/camelCase.md)
 - [capitalize](./String/capitalize.md)
+- [constantCase](./String/constantCase.md)
 - [escapeHTML](./String/escapeHTML.md)
 - [escapeRegExp](./String/escapeRegExp.md)
 - [kebabCase](./String/kebabCase.md)
