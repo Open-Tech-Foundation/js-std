@@ -2,33 +2,46 @@ import { stringSplice } from '../../src';
 
 describe('String > stringSplice', () => {
   test('replaces a range', () => {
+    expect(stringSplice('2026-07-30', 5, 2, '08')).toBe('2026-08-30');
+    expect(stringSplice('v1.4.0', 3, 1, '5')).toBe('v1.5.0');
+    // The replacement need not be the length of what it removes.
+    expect(stringSplice('4111111111111111', 4, 8, '••••')).toBe('4111••••1111');
+    expect(
+      stringSplice('/home/ada/projects/std/src/index.ts', 6, 20, '…'),
+    ).toBe('/home/…/index.ts');
     expect(stringSplice('abcdef', 2, 2, 'XY')).toBe('abXYef');
-    expect(stringSplice('abcdef', 2, 2, 'X')).toBe('abXef');
-    expect(stringSplice('abcdef', 2, 2, 'WXYZ')).toBe('abWXYZef');
-    expect(stringSplice('I HATE U', 2, 4, 'LUV')).toBe('I LUV U');
-    expect(stringSplice('iphone', 0, 1, 'iP')).toBe('iPphone');
   });
 
   test('inserts when nothing is removed', () => {
-    expect(stringSplice('ac', 1, 0, 'b')).toBe('abc');
-    expect(stringSplice('foo baz', 3, 0, ' bar')).toBe('foo bar baz');
+    expect(stringSplice('SELECT * FROM users', 19, 0, ' LIMIT 10')).toBe(
+      'SELECT * FROM users LIMIT 10',
+    );
+    expect(stringSplice('  const x = 1', 2, 0, '// ')).toBe('  // const x = 1');
     expect(stringSplice('abc', 0, 0, 'z')).toBe('zabc');
     expect(stringSplice('abc', 3, 0, 'd')).toBe('abcd');
   });
 
   test('deletes when nothing is inserted', () => {
+    expect(stringSplice('2026-07-30T09:15:00Z', -1, 1)).toBe(
+      '2026-07-30T09:15:00',
+    );
     expect(stringSplice('abc', 1, 1)).toBe('ac');
     expect(stringSplice('abcdef', 1, 4)).toBe('af');
     expect(stringSplice('abc', 0, 0)).toBe('abc');
   });
 
   test('removes to the end when deleteCount is omitted', () => {
+    const url = 'https://example.com/search?q=std&page=2';
+    expect(stringSplice(url, url.indexOf('?'))).toBe(
+      'https://example.com/search',
+    );
     expect(stringSplice('abcdef', 2)).toBe('ab');
     expect(stringSplice('abcdef', 0)).toBe('');
     expect(stringSplice('abcdef', 2, undefined, 'XY')).toBe('abXY');
   });
 
   test('counts a negative start from the end', () => {
+    expect(stringSplice('report.txt', -3, 3, 'csv')).toBe('report.csv');
     expect(stringSplice('abcdef', -2, 2, 'XY')).toBe('abcdXY');
     expect(stringSplice('abcdef', -1)).toBe('abcde');
     expect(stringSplice('abcdef', -3, 1, 'X')).toBe('abcXef');
@@ -77,9 +90,10 @@ describe('String > stringSplice', () => {
   });
 
   test('keeps multi code unit characters intact', () => {
-    expect(stringSplice('I  🍊', 2, 0, 'ate an')).toBe('I ate an 🍊');
-    expect(stringSplice('I__JS', 1, 2, '❤️')).toBe('I❤️JS');
+    // A deleteCount of 1 removes the whole emoji, both its code units.
+    expect(stringSplice('Ship it 🚀', 8, 1, 'now')).toBe('Ship it now');
     expect(stringSplice('😀😃😄😁', 2, 2, '😎')).toBe('😀😎😄😁');
+    expect(stringSplice('I__JS', 1, 2, '❤️')).toBe('I❤️JS');
   });
 
   test('throws on an invalid start or delete count', () => {

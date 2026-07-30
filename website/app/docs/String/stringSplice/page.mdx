@@ -2,7 +2,7 @@ import { Callout } from "@opentf/web-docs";
 
 Removes characters from a string and inserts another in their place, following `Array.prototype.splice`.
 
-It is the short form of the round trip most code writes by hand:
+It is the short form of the round trip most code writes by hand, without the intermediate array:
 
 ```ts
 const chars = str.split('');
@@ -31,50 +31,61 @@ Default start = 0, insert = ''. Omitting `deleteCount` removes everything from `
 `start` must be a finite integer, and `deleteCount` a non-negative finite integer. A negative `start` counts back from the end of the string.
 </Callout>
 
-Indices count UTF-16 code units, the same as `String.prototype.slice` and `indexOf`, so a position taken from either can be passed straight in. A boundary landing inside a surrogate pair is widened to cover the whole character, so the result never contains a lone surrogate — unlike `split('')`, which cuts an emoji in half.
+Indices count UTF-16 code units, the same as `String.prototype.slice` and `indexOf`, so a position taken from either — or from a textarea's `selectionStart` — can be passed straight in. A boundary landing inside a surrogate pair is widened to cover the whole character, so the result never contains a lone surrogate, unlike `split('')`, which cuts an emoji in half.
 
 ## Examples
 
 Replacing a range:
 
 ```ts
-stringSplice('abcdef', 2, 2, 'XY'); //=> 'abXYef'
+stringSplice('2026-07-30', 5, 2, '08'); //=> '2026-08-30'
 
-stringSplice('I HATE U', 2, 4, 'LUV'); //=> 'I LUV U'
+stringSplice('v1.4.0', 3, 1, '5'); //=> 'v1.5.0'
+```
+
+The replacement need not be the length of what it removes, which is what makes masking and eliding work:
+
+```ts
+stringSplice('4111111111111111', 4, 8, '••••'); //=> '4111••••1111'
+
+stringSplice('/home/ada/projects/std/src/index.ts', 6, 20, '…');
+//=> '/home/…/index.ts'
 ```
 
 Inserting, by removing nothing:
 
 ```ts
-stringSplice('ac', 1, 0, 'b'); //=> 'abc'
+stringSplice('SELECT * FROM users', 19, 0, ' LIMIT 10');
+//=> 'SELECT * FROM users LIMIT 10'
 
-stringSplice('foo baz', 3, 0, ' bar'); //=> 'foo bar baz'
+// At the caret of a textarea.
+stringSplice(el.value, el.selectionStart, 0, '\t');
 ```
 
 Deleting, by inserting nothing:
 
 ```ts
-stringSplice('abc', 1, 1); //=> 'ac'
+stringSplice('2026-07-30T09:15:00Z', -1); //=> '2026-07-30T09:15:00'
 
-stringSplice('abcdef', 2); //=> 'ab'
+// Everything from an index onwards, here dropping a query string.
+const url = 'https://example.com/search?q=std&page=2';
+stringSplice(url, url.indexOf('?')); //=> 'https://example.com/search'
 ```
 
-Counting from the end:
+Counting back from the end:
 
 ```ts
-stringSplice('abcdef', -2, 2, 'XY'); //=> 'abcdXY'
-
-stringSplice('abcdef', -1); //=> 'abcde'
+stringSplice('report.txt', -3, 3, 'csv'); //=> 'report.csv'
 ```
 
-Multi code unit characters stay intact:
+Multi code unit characters are removed whole, never split:
 
 ```ts
+stringSplice('Ship it 🚀', 8, 1, 'now'); //=> 'Ship it now'
+
 stringSplice('😀😃😄😁', 2, 2, '😎'); //=> '😀😎😄😁'
-
-stringSplice('I__JS', 1, 2, '❤️'); //=> 'I❤️JS'
 ```
 
 ## Related
 
-- [stringReplace](/docs/String/stringReplace)
+- [stringReplace](/docs/String/stringReplace) — replaces by pattern rather than by position.

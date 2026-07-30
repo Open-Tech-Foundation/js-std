@@ -15,13 +15,18 @@ Indices count UTF-16 code units, as `slice` and `indexOf` do, so a position take
 ### Example
 
 ```js
-stringSplice('abcdef', 2, 2, 'XY') //=> 'abXYef'
+// Replace a range.
+stringSplice('2026-07-30', 5, 2, '08') //=> '2026-08-30'
 
-stringSplice('ac', 1, 0, 'b') //=> 'abc'
+// Insert, by removing nothing.
+stringSplice('SELECT * FROM users', 19, 0, ' LIMIT 10') //=> 'SELECT * FROM users LIMIT 10'
 
-stringSplice('abc', 1, 1) //=> 'ac'
+// Delete, by inserting nothing.
+stringSplice('2026-07-30T09:15:00Z', -1) //=> '2026-07-30T09:15:00'
 
-stringSplice('abcdef', 2) //=> 'ab'
+// Mask, where the replacement need not match the removed length.
+stringSplice('4111111111111111', 4, 8, '••••') //=> '4111••••1111'
 
-stringSplice('abcdef', -2, 2, 'XY') //=> 'abcdXY'
+// A negative start counts back from the end.
+stringSplice('report.txt', -3, 3, 'csv') //=> 'report.csv'
 ```

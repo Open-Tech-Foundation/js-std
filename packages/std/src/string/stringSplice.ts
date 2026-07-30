@@ -30,15 +30,15 @@ function isSplitPoint(str: string, index: number): boolean {
  *
  * @example
  *
- * stringSplice('abcdef', 2, 2, 'XY') //=> 'abXYef'
+ * stringSplice('2026-07-30', 5, 2, '08') //=> '2026-08-30'
  *
- * stringSplice('ac', 1, 0, 'b') //=> 'abc'
+ * stringSplice('SELECT * FROM users', 19, 0, ' LIMIT 10') //=> 'SELECT * FROM users LIMIT 10'
  *
- * stringSplice('abc', 1, 1) //=> 'ac'
+ * stringSplice('4111111111111111', 4, 8, '••••') //=> '4111••••1111'
  *
- * stringSplice('abcdef', 2) //=> 'ab'
+ * stringSplice('report.txt', -3, 3, 'csv') //=> 'report.csv'
  *
- * stringSplice('abcdef', -2, 2, 'XY') //=> 'abcdXY'
+ * stringSplice('2026-07-30T09:15:00Z', -1) //=> '2026-07-30T09:15:00'
  */
 export default function stringSplice(
   str: string,
