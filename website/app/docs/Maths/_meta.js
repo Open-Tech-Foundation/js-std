@@ -10,6 +10,7 @@ export default {
   isSupersetOf: 'isSupersetOf',
   lcm: 'lcm',
   lerp: 'lerp',
+  mapRange: 'mapRange',
   mean: 'mean',
   median: 'median',
   mode: 'mode',

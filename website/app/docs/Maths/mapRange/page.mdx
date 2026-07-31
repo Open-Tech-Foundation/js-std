@@ -1,0 +1,70 @@
+import { Callout } from "@opentf/web-docs";
+
+📐 Re-maps a number from one range to another.
+
+<Callout type="info">
+  The inverse of [lerp](/docs/Maths/lerp) composed with it: where `lerp` turns a fraction of a range into a value, this turns a value in one range into the value at the same fraction of another.
+</Callout>
+
+## Syntax
+
+```ts
+import { mapRange } from '@opentf/std';
+
+mapRange(
+  val: number,
+  from: [number, number],
+  to: [number, number]
+): number
+```
+
+## Parameters
+
+- `val`: The value to re-map.
+- `from`: The range the value is in.
+- `to`: The range to map it to.
+
+## Returns
+
+The re-mapped value.
+
+## Throws
+
+`RangeError` if the input range is empty, since a value has no position in a range of zero width.
+
+## Behavior
+
+- The result is **not clamped**. A value outside the input range maps outside the output range, which is usually what was meant — extrapolation is a valid answer and it is the caller's to reject. Compose with [clamp](/docs/Maths/clamp) where it is not.
+- The ranges are given as pairs rather than as four loose numbers, because four numbers in a row are easy to write in the wrong order and impossible to read back.
+- Either range may run downwards, so a range can be inverted by giving it reversed.
+
+## Examples
+
+```ts
+mapRange(5, [0, 10], [0, 100]) //=> 50
+
+mapRange(0, [0, 10], [0, 100]) //=> 0
+
+mapRange(10, [0, 10], [0, 100]) //=> 100
+
+// A 10-bit sensor reading as a byte
+mapRange(512, [0, 1023], [0, 255]) //=> 127.75
+
+// Celsius to Fahrenheit
+mapRange(50, [0, 100], [32, 212]) //=> 122
+```
+
+```ts
+// An inverted output range
+mapRange(0.25, [0, 1], [100, 0]) //=> 75
+
+// Extrapolation, and clamping it back in
+mapRange(15, [0, 10], [0, 100]) //=> 150
+clamp(mapRange(15, [0, 10], [0, 100]), 0, 100) //=> 100
+```
+
+## Related
+
+- [lerp](/docs/Maths/lerp)
+- [clamp](/docs/Maths/clamp)
+- [percentage](/docs/Maths/percentage)

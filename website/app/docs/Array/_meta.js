@@ -7,6 +7,7 @@ export default {
   insert: 'insert',
   remove: 'remove',
   replace: 'replace',
+  binarySearch: 'binarySearch',
   bounds: 'bounds',
   chunk: 'chunk',
   compact: 'compact',

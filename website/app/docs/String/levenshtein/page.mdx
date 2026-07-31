@@ -1,0 +1,64 @@
+import { Callout } from "@opentf/web-docs";
+
+📝 Measures the **edit distance** between two strings.
+
+<Callout type="info">
+  The fewest single-character insertions, deletions or substitutions that turn one string into the other. This is what "did you mean…?" is built on, and what fuzzy matching, spell checking and de-duplicating near-identical records all reduce to.
+</Callout>
+
+## Syntax
+
+```ts
+import { levenshtein } from '@opentf/std';
+
+levenshtein(a?: string, b?: string): number
+```
+
+## Parameters
+
+- `a`: The first string.
+- `b`: The second string.
+
+## Returns
+
+The number of edits between them.
+
+## Behavior
+
+- Characters are counted as **code points**, not UTF-16 units, so an emoji or any character outside the Basic Multilingual Plane is one edit and not two.
+- Combining marks are still separate characters: `'é'` written as `e` plus a combining acute is two, and one edit from `'e'`. Normalising the inputs first is the way to compare what a reader would see.
+- The result is symmetric, and never more than the length of the longer string.
+- A transposition costs two edits. This is Levenshtein, not Damerau-Levenshtein.
+- The cost is proportional to the product of the two lengths — fine for words and identifiers, not for documents. Only two rows of the matrix are held, so the memory is proportional to the shorter string alone.
+
+## Examples
+
+```ts
+levenshtein('kitten', 'sitting') //=> 3
+
+levenshtein('abc', 'abc') //=> 0
+
+levenshtein('', 'abc') //=> 3
+
+levenshtein('cat', 'bat') //=> 1
+
+levenshtein('cat', 'cart') //=> 1
+
+// A transposition is two edits
+levenshtein('ab', 'ba') //=> 2
+
+// One code point, one edit
+levenshtein('a😀', 'a') //=> 1
+```
+
+```ts
+// "Did you mean…?"
+const commands = ['install', 'uninstall', 'update', 'list'];
+
+sortBy(commands, (cmd) => levenshtein(cmd, 'instal'))[0] //=> 'install'
+```
+
+## Related
+
+- [stringWidth](/docs/String/stringWidth)
+- [stripDiacritics](/docs/String/stripDiacritics)

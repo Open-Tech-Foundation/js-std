@@ -29,6 +29,8 @@ export { default as escapeRegExp } from './string/escapeRegExp';
 export { default as slugify } from './string/slugify';
 export { default as formatList } from './string/formatList';
 export type { FormatListOptions } from './string/formatList';
+export { default as dedent } from './string/dedent';
+export { default as levenshtein } from './string/levenshtein';
 
 // Array
 export { default as first } from './array/first';
@@ -57,6 +59,7 @@ export { default as union } from './array/union';
 export { default as unique } from './array/unique';
 export { default as flatMap } from './array/flatMap';
 export { default as zip } from './array/zip';
+export { default as binarySearch } from './array/binarySearch';
 export { default as unzip } from './array/unzip';
 export { default as sample } from './array/sample';
 export { default as max } from './array/max';
@@ -119,6 +122,7 @@ export { default as variance } from './maths/variance';
 export { default as stddev } from './maths/stddev';
 export { default as quantile } from './maths/quantile';
 export { default as lerp } from './maths/lerp';
+export { default as mapRange } from './maths/mapRange';
 export { default as gcd } from './maths/gcd';
 export { default as lcm } from './maths/lcm';
 export { default as clamp } from './maths/clamp';

@@ -2,6 +2,7 @@
 
 ## Array
 
+- [binarySearch](./Array/binarySearch.md)
 - [bounds](./Array/bounds.md)
 - [chunk](./Array/chunk.md)
 - [chunkWhile](./Array/chunkWhile.md)
@@ -211,6 +212,7 @@
 - [isSupersetOf](./Maths/isSupersetOf.md)
 - [lcm](./Maths/lcm.md)
 - [lerp](./Maths/lerp.md)
+- [mapRange](./Maths/mapRange.md)
 - [mean](./Maths/mean.md)
 - [median](./Maths/median.md)
 - [mode](./Maths/mode.md)
@@ -294,10 +296,12 @@
 - [camelCase](./String/camelCase.md)
 - [capitalize](./String/capitalize.md)
 - [constantCase](./String/constantCase.md)
+- [dedent](./String/dedent.md)
 - [escapeHTML](./String/escapeHTML.md)
 - [escapeRegExp](./String/escapeRegExp.md)
 - [formatList](./String/formatList.md)
 - [kebabCase](./String/kebabCase.md)
+- [levenshtein](./String/levenshtein.md)
 - [pad](./String/pad.md)
 - [pascalCase](./String/pascalCase.md)
 - [repeat](./String/repeat.md)

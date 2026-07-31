@@ -1,0 +1,71 @@
+import { Callout } from "@opentf/web-docs";
+
+📄 Removes the common leading indentation from every line of a string.
+
+<Callout type="info">
+  A template literal inside an indented block carries that indentation into the string. The alternative is to unindent the literal to the left margin, which makes the code harder to read to keep the string right. This does it the other way round.
+</Callout>
+
+## Syntax
+
+```ts
+import { dedent } from '@opentf/std';
+
+dedent(str?: string): string
+```
+
+## Parameters
+
+- `str`: The string to dedent.
+
+## Returns
+
+The string with its common indentation removed.
+
+## Behavior
+
+- The **smallest** indentation of any non-blank line is removed from all of them, so relative indentation is preserved — a nested clause stays nested.
+- Blank lines are ignored when measuring. One is often left with no whitespace at all by an editor trimming it, and counting it would remove nothing from anything. They are emptied rather than sliced, since a blank line's whitespace is only ever trailing.
+- A leading newline and a trailing line of only whitespace are dropped, since both are artefacts of putting the backticks on their own lines rather than content anyone meant.
+- Indentation is compared as a count of leading spaces and tabs, so a block indented with a mixture of the two may not line up the way it looks. Consistent indentation is measured exactly.
+
+## Examples
+
+```ts
+const sql = dedent(`
+  SELECT *
+    FROM users
+   WHERE id = 1
+`);
+
+//=> 'SELECT *\n  FROM users\n WHERE id = 1'
+```
+
+```ts
+dedent('    a\n    b') //=> 'a\nb'
+
+// Relative indentation survives
+dedent('  a\n    b\n  c') //=> 'a\n  b\nc'
+
+// The least indented line sets the margin
+dedent('      a\n  b\n      c') //=> '    a\nb\n    c'
+
+// Whitespace inside and after a line is untouched
+dedent('  a  b  \n  c') //=> 'a  b  \nc'
+```
+
+```ts
+// Interpolation works, since the template is evaluated first
+const name = 'Tom';
+
+dedent(`
+  Hello, ${name}.
+  Bye.
+`)
+//=> 'Hello, Tom.\nBye.'
+```
+
+## Related
+
+- [trim](/docs/String/trim)
+- [wordWrap](/docs/String/wordWrap)
