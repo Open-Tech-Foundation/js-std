@@ -1,5 +1,7 @@
 export default {
   clone: 'clone',
+  deepFreeze: 'deepFreeze',
+  flattenObject: 'flattenObject',
   fromPath: 'fromPath',
   get: 'get',
   has: 'has',
@@ -19,5 +21,6 @@ export default {
   toPath: 'toPath',
   toSet: 'toSet',
   toUnset: 'toUnset',
+  unflattenObject: 'unflattenObject',
   unset: 'unset',
 };

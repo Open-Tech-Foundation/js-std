@@ -1,0 +1,68 @@
+import { Callout } from "@opentf/web-docs";
+
+🧊 Recursively freezes an object and everything reachable from it.
+
+<Callout emoji="⚠️" type="warning">
+  **Mutable**: This function freezes the original object in place and returns it, so the argument and the result are the same object. Freezing is permanent — there is no thaw.
+</Callout>
+
+## Syntax
+
+```ts
+import { deepFreeze } from '@opentf/std';
+
+deepFreeze<T>(val: T): DeepReadonly<T>
+```
+
+## Parameters
+
+- `val`: The value to freeze.
+
+## Returns
+
+The same value, deeply frozen, typed as `DeepReadonly<T>`.
+
+## Behavior
+
+- `Object.freeze` is shallow: it seals the object it is given and leaves every nested object writable. This walks the whole graph.
+- Own properties, array elements, and the keys and values of a `Map` or `Set` are all reached. Both string and symbol keys are followed.
+- Accessor properties are **not** read. Running a getter is an effect, and one is free to answer with a fresh object that nothing else holds.
+- Cycles are handled, and a shared object reached twice is frozen once.
+- A `Map` or `Set` is frozen as an object, which stops properties being added but not `set`, `add` or `delete` — its entries live in internal slots that no JavaScript mechanism can seal. The same is true of `Date`.
+- Typed arrays and `DataView`s are skipped. `Object.freeze` throws on a non-empty typed array, so passing a structure holding binary data neither fails nor silently protects it.
+
+## Examples
+
+```ts
+const config = deepFreeze({ db: { host: 'localhost', opts: { pool: 5 } } });
+
+Object.isFrozen(config.db) //=> true
+Object.isFrozen(config.db.opts) //=> true
+
+config.db.opts.pool = 10 //=> TypeError in strict mode
+
+// Object.freeze alone reaches only the first level
+const shallow = Object.freeze({ db: { pool: 5 } });
+Object.isFrozen(shallow.db) //=> false
+```
+
+```ts
+// Arrays and their elements
+const rows = deepFreeze([{ id: 1 }, { id: 2 }]);
+
+Object.isFrozen(rows) //=> true
+Object.isFrozen(rows[0]) //=> true
+```
+
+```ts
+// Cycles terminate
+const a = { name: 'a' };
+a.self = a;
+
+deepFreeze(a) //=> a, frozen
+```
+
+## Related
+
+- [clone](/docs/Object/clone)
+- [merge](/docs/Object/merge)

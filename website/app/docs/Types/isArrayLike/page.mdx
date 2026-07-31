@@ -1,0 +1,62 @@
+import { Callout } from "@opentf/web-docs";
+
+📏 Checks if a value is **array-like**.
+
+<Callout type="info">
+  A value is array-like when it has a valid `length` and so can be indexed from `0` to `length - 1`. A `NodeList`, a `FileList`, `arguments`, a `TypedArray` and a string all are, without being arrays.
+</Callout>
+
+## Syntax
+
+```ts
+import { isArrayLike } from '@opentf/std';
+
+isArrayLike(val: unknown): val is ArrayLike<unknown>
+```
+
+## Parameters
+
+- `val`: The value to check.
+
+## Returns
+
+`true` if the value is array-like, `false` otherwise.
+
+## Behavior
+
+- `length` must be an integer between `0` and `Number.MAX_SAFE_INTEGER`, so an object carrying an unrelated `length` — a negative, a fraction or a string — is not mistaken for a collection.
+- Functions are excluded although they have a `length`: it is their arity, not a count of elements.
+- Anything this accepts can be passed to `Array.from`.
+
+## Examples
+
+```ts
+isArrayLike([]) //=> true
+
+isArrayLike([1, 2, 3]) //=> true
+
+isArrayLike('abc') //=> true
+
+isArrayLike({ length: 2, 0: 'a', 1: 'b' }) //=> true
+
+isArrayLike(new Uint8Array(3)) //=> true
+
+// Not array-like
+isArrayLike({}) //=> false
+
+isArrayLike(new Set([1, 2])) //=> false
+
+isArrayLike({ length: -1 }) //=> false
+
+isArrayLike({ length: 1.5 }) //=> false
+
+isArrayLike((a, b) => a + b) //=> false
+
+isArrayLike(null) //=> false
+```
+
+## Related
+
+- [isArray](/docs/Types/isArray)
+- [isIterable](/docs/Types/isIterable)
+- [isTypedArray](/docs/Types/isTypedArray)

@@ -1,6 +1,7 @@
 export default {
   isArray: 'isArray',
   isArrayBuffer: 'isArrayBuffer',
+  isArrayLike: 'isArrayLike',
   isAsyncFunction: 'isAsyncFunction',
   isBigInt: 'isBigInt',
   isBlob: 'isBlob',
@@ -20,6 +21,7 @@ export default {
   isNumber: 'isNumber',
   isObject: 'isObject',
   isPlainObject: 'isPlainObject',
+  isPrimitive: 'isPrimitive',
   isPromise: 'isPromise',
   isRegExp: 'isRegExp',
   isSet: 'isSet',

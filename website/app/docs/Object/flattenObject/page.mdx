@@ -1,0 +1,62 @@
+import { Callout } from "@opentf/web-docs";
+
+🗜️ Flattens a nested object into a single level, keyed by the path to each value.
+
+<Callout type="info">
+  The keys use the same path grammar as the rest of the Object module — dots between properties, brackets around indices — so every key of the result can be handed straight to [get](/docs/Object/get), [set](/docs/Object/set) or [toPath](/docs/Object/toPath).
+</Callout>
+
+## Syntax
+
+```ts
+import { flattenObject } from '@opentf/std';
+
+flattenObject(obj?: object): Record<string, unknown>
+```
+
+## Parameters
+
+- `obj`: The object to flatten.
+
+## Returns
+
+A one-level object keyed by path.
+
+## Behavior
+
+- Nested plain objects and arrays are walked. Everything else is a value, including a `Date`, a `Map`, a class instance and `null`.
+- An empty object or array is kept as a value, since it has no leaves to stand for it and dropping it would lose a key that was present.
+- A key already containing a `.` or a `[` cannot be told apart from the path built around it: `{ 'a.b': 1 }` flattens to the same `'a.b'` that `{ a: { b: 1 } }` does. That is a property of the format, and [unflattenObject](/docs/Object/unflattenObject) reads both back as the nested form.
+
+## Examples
+
+```ts
+flattenObject({ a: { b: { c: 1 } } }) //=> { 'a.b.c': 1 }
+
+flattenObject({ a: 1, b: 2 }) //=> { a: 1, b: 2 }
+
+flattenObject({ a: [1, 2] }) //=> { 'a[0]': 1, 'a[1]': 2 }
+
+flattenObject({ users: [{ name: 'Tom' }, { name: 'Ram' }] })
+//=> { 'users[0].name': 'Tom', 'users[1].name': 'Ram' }
+
+// Empty branches are kept
+flattenObject({ a: {}, b: [], c: 1 }) //=> { a: {}, b: [], c: 1 }
+
+// Non-plain objects are values
+flattenObject({ at: new Date(0) }) //=> { at: Date }
+```
+
+```ts
+// The keys read back with get
+const obj = { a: { b: [{ c: 1 }] } };
+
+Object.keys(flattenObject(obj)) //=> ['a.b[0].c']
+get(obj, 'a.b[0].c') //=> 1
+```
+
+## Related
+
+- [unflattenObject](/docs/Object/unflattenObject)
+- [get](/docs/Object/get)
+- [toPath](/docs/Object/toPath)

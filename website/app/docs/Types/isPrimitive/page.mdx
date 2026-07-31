@@ -1,0 +1,64 @@
+import { Callout } from "@opentf/web-docs";
+
+🧱 Checks if a value is a **primitive**.
+
+<Callout type="info">
+  The seven primitive types are `string`, `number`, `boolean`, `bigint`, `symbol`, `null` and `undefined`. Everything else is an object — functions included.
+</Callout>
+
+## Syntax
+
+```ts
+import { isPrimitive } from '@opentf/std';
+
+isPrimitive(val: unknown): val is Primitive
+```
+
+## Parameters
+
+- `val`: The value to check.
+
+## Returns
+
+`true` if the value is a primitive, `false` otherwise.
+
+## Behavior
+
+- `null` is a primitive, despite `typeof null` being `'object'` — a mistake old enough to be permanent, and the reason a `typeof` check alone gets this wrong.
+- Functions are objects, so they are rejected.
+- A boxed primitive such as `Object(1)` is an object, not a primitive.
+
+## Examples
+
+```ts
+isPrimitive('a') //=> true
+
+isPrimitive(1) //=> true
+
+isPrimitive(true) //=> true
+
+isPrimitive(10n) //=> true
+
+isPrimitive(Symbol('a')) //=> true
+
+isPrimitive(null) //=> true
+
+isPrimitive(undefined) //=> true
+
+// Objects
+isPrimitive({}) //=> false
+
+isPrimitive([]) //=> false
+
+isPrimitive(new Date()) //=> false
+
+isPrimitive(() => {}) //=> false
+
+isPrimitive(Object(1)) //=> false
+```
+
+## Related
+
+- [isObject](/docs/Types/isObject)
+- [isPlainObject](/docs/Types/isPlainObject)
+- [isArrayLike](/docs/Types/isArrayLike)

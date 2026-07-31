@@ -160,6 +160,9 @@ export { default as isInfinity } from './types/isInfinity';
 export { default as isDataView } from './types/isDataView';
 export { default as isIterable } from './types/isIterable';
 export { default as isAsyncIterable } from './types/isAsyncIterable';
+export { default as isPrimitive } from './types/isPrimitive';
+export type { Primitive } from './types/isPrimitive';
+export { default as isArrayLike } from './types/isArrayLike';
 
 // Object
 export { default as has } from './object/has';
@@ -184,6 +187,10 @@ export { default as omitBy } from './object/omitBy';
 export { default as mapKeys } from './object/mapKeys';
 export { default as mapValues } from './object/mapValues';
 export { default as invert } from './object/invert';
+export { default as deepFreeze } from './object/deepFreeze';
+export type { DeepReadonly } from './object/deepFreeze';
+export { default as flattenObject } from './object/flattenObject';
+export { default as unflattenObject } from './object/unflattenObject';
 
 // Assert
 export { default as isEmpty } from './assert/isEmpty';

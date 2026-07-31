@@ -19,6 +19,7 @@ import type {
   ColorFormatMap,
   ColorInput,
   ColorOutput,
+  DeepReadonly,
   EncodeBase32Options,
   EncodeBase64UrlOptions,
   HSLA,
@@ -32,6 +33,7 @@ import type {
   OrderType,
   PaceRunFn,
   PaceRunOptions,
+  Primitive,
   PromiseResolvers,
   PropertyPath,
   RGBA,
@@ -56,13 +58,17 @@ import {
   colorIsReadable,
   colorLighten,
   colorMix,
+  deepFreeze,
   encodeBase32,
   encodeBase64Url,
   flatten,
+  flattenObject,
   get,
   has,
   idleRun,
+  isArrayLike,
   isEql,
+  isPrimitive,
   memoizeRun,
   paceRun,
   retryRun,
@@ -77,6 +83,7 @@ import {
   stringReplace,
   timeoutRun,
   toPath,
+  unflattenObject,
   withResolvers,
   wordWrap,
 } from '../../src';
@@ -309,3 +316,35 @@ semverSatisfies('1.2.3', '^1.0.0', satisfiesOptions);
 declare const stream: ReadableStream<Uint8Array>;
 const streamOptions: StreamToIterOptions = { preventCancel: true };
 streamToIter(stream, streamOptions);
+
+// --- Object ----------------------------------------------------------------
+
+const frozen = deepFreeze({ a: { b: 1 }, list: [{ c: 2 }] });
+assertType<Equals<typeof frozen.a.b, number>>();
+// The readonly modifier must survive both a nested object and an array.
+assertType<
+  Equals<
+    typeof frozen,
+    DeepReadonly<{ a: { b: number }; list: { c: number }[] }>
+  >
+>();
+accepts<readonly { readonly c: number }[]>(frozen.list);
+
+// A function reached by the type stays callable rather than being mapped.
+declare const withFn: DeepReadonly<{ run: (n: number) => string }>;
+accepts<string>(withFn.run(1));
+
+accepts<Record<string, unknown>>(flattenObject({ a: { b: 1 } }));
+accepts<Record<string, unknown> | unknown[]>(unflattenObject({ 'a.b': 1 }));
+
+// --- Types -----------------------------------------------------------------
+
+declare const maybe: unknown;
+
+if (isPrimitive(maybe)) {
+  accepts<Primitive>(maybe);
+}
+
+if (isArrayLike(maybe)) {
+  accepts<number>(maybe.length);
+}

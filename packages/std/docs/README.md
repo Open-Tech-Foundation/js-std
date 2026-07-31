@@ -238,6 +238,8 @@
 ## Object
 
 - [clone](./Object/clone.md)
+- [deepFreeze](./Object/deepFreeze.md)
+- [flattenObject](./Object/flattenObject.md)
 - [fromPath](./Object/fromPath.md)
 - [get](./Object/get.md)
 - [has](./Object/has.md)
@@ -257,6 +259,7 @@
 - [toPath](./Object/toPath.md)
 - [toSet](./Object/toSet.md)
 - [toUnset](./Object/toUnset.md)
+- [unflattenObject](./Object/unflattenObject.md)
 - [unset](./Object/unset.md)
 
 ## Semver
@@ -321,6 +324,7 @@
 
 - [isArray](./Types/isArray.md)
 - [isArrayBuffer](./Types/isArrayBuffer.md)
+- [isArrayLike](./Types/isArrayLike.md)
 - [isAsyncFunction](./Types/isAsyncFunction.md)
 - [isAsyncIterable](./Types/isAsyncIterable.md)
 - [isBigInt](./Types/isBigInt.md)
@@ -340,6 +344,7 @@
 - [isNumber](./Types/isNumber.md)
 - [isObject](./Types/isObject.md)
 - [isPlainObject](./Types/isPlainObject.md)
+- [isPrimitive](./Types/isPrimitive.md)
 - [isPromise](./Types/isPromise.md)
 - [isRegExp](./Types/isRegExp.md)
 - [isSet](./Types/isSet.md)

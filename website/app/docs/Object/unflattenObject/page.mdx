@@ -1,0 +1,62 @@
+import { Callout } from "@opentf/web-docs";
+
+🎈 Expands a one-level object keyed by path back into a nested one.
+
+<Callout type="info">
+  The inverse of [flattenObject](/docs/Object/flattenObject), and the reader for flat shapes arriving from elsewhere — form bodies, query strings, environment maps and the dotted keys configuration files use.
+</Callout>
+
+## Syntax
+
+```ts
+import { unflattenObject } from '@opentf/std';
+
+unflattenObject(obj?: Record<string, unknown>): Record<string, unknown> | unknown[]
+```
+
+## Parameters
+
+- `obj`: The flat object to expand.
+
+## Returns
+
+The nested object, or an array when every key is an index.
+
+## Behavior
+
+- Keys are parsed with [toPath](/docs/Object/toPath), so both `'a.b'` and `'a[0].b'` are understood, and each is written with [set](/docs/Object/set).
+- A level whose keys are all indices becomes an array. That is the rule `set` already applies within a path, applied here to the root as well, so a flattened array survives the round trip.
+- Keys are applied in the order the object gives them. Where two disagree — one naming a branch the other names a leaf — the later wins for the leaf and is ignored for the branch, matching `set`.
+
+<Callout emoji="🛡️" type="info">
+  `__proto__`, `constructor` and `prototype` are refused as path segments. A flat object is very often untrusted input, which is the whole reason this function exists, and expanding one of those keys is how a prototype gets polluted.
+</Callout>
+
+## Examples
+
+```ts
+unflattenObject({ 'a.b.c': 1 }) //=> { a: { b: { c: 1 } } }
+
+unflattenObject({ 'user.name': 'Tom', 'user.age': 30 })
+//=> { user: { name: 'Tom', age: 30 } }
+
+unflattenObject({ 'a[0]': 1, 'a[1]': 2 }) //=> { a: [1, 2] }
+
+// Dotted indices work too
+unflattenObject({ 'a.0': 1, 'a.1': 2 }) //=> { a: [1, 2] }
+
+unflattenObject({ 'users[0].name': 'Tom', 'users[1].name': 'Ram' })
+//=> { users: [{ name: 'Tom' }, { name: 'Ram' }] }
+
+// An all-index root gives an array
+unflattenObject({ '[0]': 'a', '[1]': 'b' }) //=> ['a', 'b']
+
+// Prototype-polluting keys are ignored
+unflattenObject({ '__proto__.polluted': true }) //=> {}
+```
+
+## Related
+
+- [flattenObject](/docs/Object/flattenObject)
+- [set](/docs/Object/set)
+- [toPath](/docs/Object/toPath)
