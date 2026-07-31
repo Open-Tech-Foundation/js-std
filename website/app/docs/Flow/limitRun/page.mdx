@@ -1,0 +1,88 @@
+import { Callout } from "@opentf/web-docs";
+
+🚦 Creates a gate that runs at most `concurrency` tasks at a time.
+
+<Callout type="info">
+  [mapAsync](/docs/Concurrency/mapAsync) already takes a limit, but only over one array processed by one callback. This limits **arbitrary** work — a connection pool shared by several different queries, an API budget spent by unrelated parts of a program, work arriving over time rather than as a list.
+</Callout>
+
+## Syntax
+
+```ts
+import { limitRun } from '@opentf/std';
+
+limitRun(concurrency?: number): LimitRunFn
+```
+
+## Parameters
+
+- `concurrency`: The most tasks that may run at once. Defaults to `1`.
+
+## Returns
+
+A gate: call it with a task to run, and it resolves with the task's result.
+
+```ts
+interface LimitRunFn {
+  <T>(fn: () => T | Promise<T>): Promise<T>;
+  readonly active: number;      // running right now
+  readonly pending: number;     // waiting for a slot
+  readonly concurrency: number; // the limit it was created with
+}
+```
+
+## Throws
+
+`RangeError` if `concurrency` is not a positive integer.
+
+## Behavior
+
+- Unlike the rest of this module, it wraps no particular function. That is the shape the shared-budget case needs, since the whole point is that unrelated operations draw on one limit. Wrapping a single function is a line on top: `const load = (id) => limit(() => fetchUser(id))`.
+- Tasks start in the **order they were submitted**.
+- A task submitted while a slot is free starts immediately, within the same tick, rather than after a turn of the event loop.
+- A task that throws releases its slot and rejects its own promise only. The gate keeps running and the other tasks are unaffected — each caller handles its own rejection, exactly as if it had called the task directly.
+
+<Callout emoji="⏱️" type="info">
+  This limits how many run **at once**, not how often they start. Use [rateLimitRun](/docs/Flow/rateLimitRun) for a budget over time, such as sixty calls a minute.
+</Callout>
+
+## Examples
+
+```ts
+// At most two requests in flight, however many URLs there are
+const limit = limitRun(2);
+
+const pages = await Promise.all(urls.map((url) => limit(() => fetch(url))));
+```
+
+```ts
+// One budget shared by unrelated operations
+const db = limitRun(5);
+
+await Promise.all([
+  db(() => query('SELECT 1')),
+  db(() => insert(row)),
+  db(() => migrate()),
+]);
+```
+
+```ts
+// Wrapping a single function
+const limit = limitRun(3);
+const load = (id) => limit(() => fetchUser(id));
+
+await Promise.all(ids.map(load));
+```
+
+```ts
+// Watching the queue
+limit.active //=> 2
+limit.pending //=> 7
+limit.concurrency //=> 2
+```
+
+## Related
+
+- [rateLimitRun](/docs/Flow/rateLimitRun)
+- [mapAsync](/docs/Concurrency/mapAsync)
+- [batchRun](/docs/Flow/batchRun)

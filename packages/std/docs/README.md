@@ -134,8 +134,10 @@
 
 - [batchRun](./Flow/batchRun.md)
 - [idleRun](./Flow/idleRun.md)
+- [limitRun](./Flow/limitRun.md)
 - [memoizeRun](./Flow/memoizeRun.md)
 - [paceRun](./Flow/paceRun.md)
+- [pollRun](./Flow/pollRun.md)
 - [rateLimitRun](./Flow/rateLimitRun.md)
 - [retryRun](./Flow/retryRun.md)
 - [timeoutRun](./Flow/timeoutRun.md)

@@ -106,6 +106,10 @@ export { default as timeoutRun } from './flow/timeoutRun';
 export type { TimeoutRunOptions } from './flow/timeoutRun';
 export { default as memoizeRun } from './flow/memoizeRun';
 export type { MemoizeRunFn, MemoizeRunOptions } from './flow/memoizeRun';
+export { default as pollRun } from './flow/pollRun';
+export type { PollRunOptions } from './flow/pollRun';
+export { default as limitRun } from './flow/limitRun';
+export type { LimitRunFn } from './flow/limitRun';
 
 // Maths
 export { default as percentage } from './maths/percentage';

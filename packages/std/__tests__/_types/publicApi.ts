@@ -26,6 +26,7 @@ import type {
   IdleRunFn,
   IdleRunOptions,
   IsEqlOptions,
+  LimitRunFn,
   MemoizeRunFn,
   MemoizeRunOptions,
   OKLCH,
@@ -33,6 +34,7 @@ import type {
   OrderType,
   PaceRunFn,
   PaceRunOptions,
+  PollRunOptions,
   Primitive,
   PromiseResolvers,
   PropertyPath,
@@ -69,8 +71,10 @@ import {
   isArrayLike,
   isEql,
   isPrimitive,
+  limitRun,
   memoizeRun,
   paceRun,
+  pollRun,
   retryRun,
   semverIncrement,
   semverParse,
@@ -348,3 +352,26 @@ if (isPrimitive(maybe)) {
 if (isArrayLike(maybe)) {
   accepts<number>(maybe.length);
 }
+
+// --- Flow ------------------------------------------------------------------
+
+const limit: LimitRunFn = limitRun(2);
+accepts<number>(limit.active);
+accepts<number>(limit.pending);
+accepts<number>(limit.concurrency);
+
+// The gate must carry the task's own type through, not widen it.
+const limited = limit(async () => 'a');
+assertType<Equals<typeof limited, Promise<string>>>();
+const limitedSync = limit(() => 1);
+assertType<Equals<typeof limitedSync, Promise<number>>>();
+
+const pollOptions: PollRunOptions<string> = {
+  until: (value, attempt) => value === 'done' && attempt > 0,
+  interval: 100,
+  backoff: 'exponential',
+  attempts: 5,
+  timeout: 1000,
+};
+const polled = pollRun(() => 'done', pollOptions);
+assertType<Equals<typeof polled, Promise<string>>>();
