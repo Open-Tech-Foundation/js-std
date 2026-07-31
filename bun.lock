@@ -44,7 +44,7 @@
     },
     "packages/std": {
       "name": "@opentf/std",
-      "version": "0.15.0",
+      "version": "0.16.0",
       "devDependencies": {
         "@sinonjs/fake-timers": "^15.4.0",
         "@types/node": "^25.6.0",
@@ -60,12 +60,12 @@
       "name": "website",
       "version": "1.0.0",
       "dependencies": {
-        "@opentf/std": "https://registry.npmjs.org/@opentf/std/-/std-0.15.0.tgz",
-        "@opentf/web": "^0.24.0",
-        "@opentf/web-docs": "^0.21.0",
+        "@opentf/std": "https://registry.npmjs.org/@opentf/std/-/std-0.16.0.tgz",
+        "@opentf/web": "^0.27.0",
+        "@opentf/web-docs": "^0.25.0",
       },
       "devDependencies": {
-        "@opentf/web-cli": "^1.22.0",
+        "@opentf/web-cli": "^1.25.0",
         "tailwindcss": "^4.3.3",
       },
     },
@@ -219,13 +219,13 @@
 
     "@opentf/std": ["@opentf/std@workspace:packages/std"],
 
-    "@opentf/web": ["@opentf/web@0.24.0", "", {}, "sha512-9JnCzkpMBq9GzH65nu7puPvm3FBX1Z6/xPzlrNRCQSP/Ia6WUkyiIr2jzEQjrqTVyOgDxa+XiyCC8aXyDqUigg=="],
+    "@opentf/web": ["@opentf/web@0.27.0", "", {}, "sha512-QrUGKYUcsvWpafZURjWvcO7f+6roRSNk7qrN0DkVo4uHmDNIQ3Z6iriqunxq3Lp5l84XLJim5klWF+Kj6zQZHg=="],
 
-    "@opentf/web-cli": ["@opentf/web-cli@1.22.0", "", { "dependencies": { "@opentf/web-compiler": "0.12.0", "@tailwindcss/node": "4.2.2", "@tailwindcss/oxide": "4.2.2", "rolldown": "1.0.0-rc.17", "tailwindcss": "4.2.2" }, "peerDependencies": { "@opentf/web": "*" }, "bin": { "otfw": "src/cli.js" } }, "sha512-Oxvr0It4EQuWz/IMFEZjH78937hgp3tp4AdfXl905ToXoWJ6jhNtQiqwI/ngFBAmCnP3A8Z9YrCK2z4/qTOG0Q=="],
+    "@opentf/web-cli": ["@opentf/web-cli@1.25.0", "", { "dependencies": { "@opentf/web-compiler": "0.16.0", "@tailwindcss/node": "4.2.2", "@tailwindcss/oxide": "4.2.2", "rolldown": "1.0.0-rc.17", "tailwindcss": "4.2.2" }, "peerDependencies": { "@opentf/web": "*" }, "bin": { "otfw": "src/cli.js" } }, "sha512-NuEvK1CeAzekYOq3keleA3k5RoDRN5pO72VVOAVaFb9TzWK5+oXQcBIsRzcs6ptHxxqAEz/6QBKGehiE0WrQSA=="],
 
-    "@opentf/web-compiler": ["@opentf/web-compiler@0.12.0", "", {}, "sha512-4p8xr/aPgrK7xROaTWrMN7hxcFJLB9/0fQrtCosnpvEjHz1mGGyxACRzQ6BuAwSyL08pl7tLaD9nFqB6i5i+bA=="],
+    "@opentf/web-compiler": ["@opentf/web-compiler@0.16.0", "", {}, "sha512-PJE5LslS5WMNp/YnX8qyCvQwnnV5gOtYypNtc+1O+Npc3bwXZZDdOc0fXi0m+X2OcqqGmz+m7gLhftb2jVOhEQ=="],
 
-    "@opentf/web-docs": ["@opentf/web-docs@0.21.0", "", { "dependencies": { "pagefind": "^1.5.2" }, "peerDependencies": { "@opentf/web": "*" } }, "sha512-upKZI8bmX/fU1EwAmQnQf3M6ZAIVP68Ld029w/TH2HMXqLuB0ZeWIXFPb3WzjHR4ogZYRfDG1Wv5FM9ud6Z+xA=="],
+    "@opentf/web-docs": ["@opentf/web-docs@0.25.0", "", { "dependencies": { "pagefind": "^1.5.2" }, "peerDependencies": { "@opentf/web": "*" } }, "sha512-A/EdQ7N61K4h/Zq+gfBeiJYZKcXyAJ7/ifnrQG4YhOWnJyf1hZUNCdWGU2A8+IjMhnjR/Rnkt0aD0to20bqTEA=="],
 
     "@oxc-project/types": ["@oxc-project/types@0.140.0", "", {}, "sha512-h5LUOzGArYemnW1NMz/DuuQhBi96J6JL2Bk8zE4kvqxB5Sg3jxmCiH4uyOWHDkiKSt5vWlG4FIwCR/DbstcNRQ=="],
 
@@ -729,7 +729,7 @@
 
     "vite/rolldown": ["rolldown@1.0.0-rc.17", "", { "dependencies": { "@oxc-project/types": "=0.127.0", "@rolldown/pluginutils": "1.0.0-rc.17" }, "optionalDependencies": { "@rolldown/binding-android-arm64": "1.0.0-rc.17", "@rolldown/binding-darwin-arm64": "1.0.0-rc.17", "@rolldown/binding-darwin-x64": "1.0.0-rc.17", "@rolldown/binding-freebsd-x64": "1.0.0-rc.17", "@rolldown/binding-linux-arm-gnueabihf": "1.0.0-rc.17", "@rolldown/binding-linux-arm64-gnu": "1.0.0-rc.17", "@rolldown/binding-linux-arm64-musl": "1.0.0-rc.17", "@rolldown/binding-linux-ppc64-gnu": "1.0.0-rc.17", "@rolldown/binding-linux-s390x-gnu": "1.0.0-rc.17", "@rolldown/binding-linux-x64-gnu": "1.0.0-rc.17", "@rolldown/binding-linux-x64-musl": "1.0.0-rc.17", "@rolldown/binding-openharmony-arm64": "1.0.0-rc.17", "@rolldown/binding-wasm32-wasi": "1.0.0-rc.17", "@rolldown/binding-win32-arm64-msvc": "1.0.0-rc.17", "@rolldown/binding-win32-x64-msvc": "1.0.0-rc.17" }, "bin": { "rolldown": "bin/cli.mjs" } }, "sha512-ZrT53oAKrtA4+YtBWPQbtPOxIbVDbxT0orcYERKd63VJTF13zPcgXTvD4843L8pcsI7M6MErt8QtON6lrB9tyA=="],
 
-    "website/@opentf/std": ["@opentf/std@https://registry.npmjs.org/@opentf/std/-/std-0.15.0.tgz", {}, "sha512-zbgSL+TSAe6q9nGoGyzOeFVkXhGkA4sj51Uaim1CIAidNAnQRMGLCRb35HaSqT5sGCGMNPRp6QT14P+Q/8p7Cg=="],
+    "website/@opentf/std": ["@opentf/std@https://registry.npmjs.org/@opentf/std/-/std-0.16.0.tgz", {}, "sha512-zr8Mb19BJZfC+HbdS5RZHN+iaBWmTiXJY2GKN1IZEH081FkeJf5C00uGODOTooWP2GXMPqJiC589lzgY0Zl9sA=="],
 
     "@opentf/web-cli/rolldown/@oxc-project/types": ["@oxc-project/types@0.127.0", "", {}, "sha512-aIYXQBo4lCbO4z0R3FHeucQHpF46l2LbMdxRvqvuRuW2OxdnSkcng5B8+K12spgLDj93rtN3+J2Vac/TIO+ciQ=="],
 

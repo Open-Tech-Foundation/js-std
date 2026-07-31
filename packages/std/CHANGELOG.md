@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Changed
+
+- Updated OTF Web framework dependencies (`@opentf/web` to `^0.27.0`, `@opentf/web-docs` to `^0.25.0`, `@opentf/web-cli` to `^1.25.0`) and `@opentf/std` tarball dependency to `0.16.0`.
+
 ### Added
 
 - Added reusable `CheckIcon` and `CrossIcon` status icon components for the website documentation, replacing inline status emojis across environmental support and DateTime comparison tables.

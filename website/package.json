@@ -11,12 +11,12 @@
     "build": "otfw build --ssg"
   },
   "dependencies": {
-    "@opentf/std": "https://registry.npmjs.org/@opentf/std/-/std-0.15.0.tgz",
-    "@opentf/web": "^0.24.0",
-    "@opentf/web-docs": "^0.21.0"
+    "@opentf/std": "https://registry.npmjs.org/@opentf/std/-/std-0.16.0.tgz",
+    "@opentf/web": "^0.27.0",
+    "@opentf/web-docs": "^0.25.0"
   },
   "devDependencies": {
-    "@opentf/web-cli": "^1.22.0",
+    "@opentf/web-cli": "^1.25.0",
     "tailwindcss": "^4.3.3"
   }
 }
