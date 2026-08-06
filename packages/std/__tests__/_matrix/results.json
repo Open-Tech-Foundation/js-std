@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-01",
+  "generatedAt": "2026-08-06",
   "package": "@opentf/std",
   "version": "0.16.0",
   "runtimes": [
@@ -108,7 +108,7 @@
     {
       "id": "node26",
       "label": "Node.js 26",
-      "version": "26.5.1",
+      "version": "26.6.0",
       "status": "pass",
       "passed": 1559,
       "failed": 0,
@@ -192,7 +192,7 @@
     {
       "id": "esrun",
       "label": "ES-Runtime",
-      "version": "0.13.0",
+      "version": "0.17.0",
       "status": "pass",
       "passed": 1559,
       "failed": 0,
