@@ -172,6 +172,14 @@ export { default as isPrimitive } from './types/isPrimitive';
 export type { Primitive } from './types/isPrimitive';
 export { default as isArrayLike } from './types/isArrayLike';
 
+// Json
+export { default as isJSONValue } from './json/isJSONValue';
+export { default as tryParseJSON } from './json/tryParseJSON';
+export { default as tryStringifyJSON } from './json/tryStringifyJSON';
+export type { JsonValue, JsonObject, JsonArray } from './json/JsonValue';
+export type { TryParseJSONOptions } from './json/tryParseJSON';
+export type { TryStringifyJSONOptions } from './json/tryStringifyJSON';
+
 // Object
 export { default as has } from './object/has';
 export { default as get } from './object/get';

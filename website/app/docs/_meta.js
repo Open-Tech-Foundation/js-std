@@ -8,6 +8,7 @@ export default {
   Crypto: 'Crypto',
   DateTime: 'DateTime',
   Encoding: 'Encoding',
+  Json: 'Json',
   Flow: 'FlowControl',
   Functional: 'Functional',
   Iter: 'Iter',

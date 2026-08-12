@@ -1,0 +1,101 @@
+import { Callout } from "@opentf/web-docs";
+
+Checks whether a value can be represented as JSON without loss.
+
+<Callout type="info">
+  Native `JSON.stringify` silently drops or throws on many JS values. This guard tells you *before* you stringify whether the round-trip will be exact.
+</Callout>
+
+## Syntax
+
+```ts
+import { isJSONValue } from '@opentf/std';
+
+isJSONValue(val: unknown): val is JsonValue
+// JsonValue = string | number (finite) | boolean | null | JsonValue[] | { [k: string]: JsonValue }
+```
+
+`JsonValue` is also exported for typing: `isJSONValue(maybe) ? (maybe as JsonObject)` is narrowed automatically.
+
+## Behavior
+
+- `string` (incl. `""`), finite `number`, `boolean`, `null` → `true`
+- `NaN`, `Infinity`, `-Infinity`, `bigint`, `undefined`, `function`, `symbol` → `false`
+- `[]` and plain objects where **every** nested value is `JsonValue` → `true`
+- `Date`, `Map`, `Set`, `RegExp`, custom class instances, or objects with `symbol` keys → `false`
+- Null-prototype objects (`Object.create(null)`) are allowed — they stringify fine
+- Prototype with extra properties (`Object.create({a:1})`) → `false` — not a plain data object
+
+## Returns
+
+`true` if `val` is a `JsonValue`, with type narrowing.
+
+## Examples
+
+```ts
+isJSONValue(null) //=> true
+isJSONValue("hi") //=> true
+isJSONValue(0) //=> true
+isJSONValue(false) //=> true
+
+isJSONValue(NaN) //=> false — would become `null`
+isJSONValue(Infinity) //=> false
+isJSONValue(BigInt(1)) //=> false — would throw
+isJSONValue(undefined) //=> false
+isJSONValue(() => {}) //=> false
+isJSONValue(Symbol("a")) //=> false
+```
+
+```ts
+// Arrays — every element must be a JsonValue
+isJSONValue([1, "a", null, true]) //=> true
+isJSONValue([1, undefined]) //=> false
+isJSONValue([1, NaN]) //=> false
+isJSONValue([1, BigInt(1)]) //=> false
+```
+
+```ts
+// Objects — every value must be a JsonValue
+isJSONValue({ a: 1, b: "x" }) //=> true
+isJSONValue({ a: { b: [1, 2] } }) //=> true
+isJSONValue(Object.create(null)) //=> true
+isJSONValue({ a: undefined }) //=> false
+isJSONValue({ a: BigInt(1) }) //=> false
+
+isJSONValue(new Date()) //=> false — stringifies via toJSON but not a JsonValue
+isJSONValue(new Map()) //=> false
+isJSONValue(new Set([1])) //=> false
+```
+
+```ts
+// Symbol keys are not JSON keys
+const o: any = { a: 1 };
+o[Symbol("s")] = 1;
+isJSONValue(o) //=> false
+```
+
+```ts
+// Guard for safe stringify — branch by type
+declare const maybe: unknown;
+
+if (isJSONValue(maybe)) {
+  // maybe is JsonValue here
+  localStorage.setItem("data", JSON.stringify(maybe));
+} else {
+  console.warn("Not serializable, skipping");
+}
+```
+
+```ts
+// Validate API payload before logging
+function logPayload(payload: unknown) {
+  if (!isJSONValue(payload)) throw new Error("Payload must be JSON");
+  return tryStringifyJSON(payload)!; // safe — we know it stringifies
+}
+```
+
+## Related
+
+- [tryParseJSON](/docs/Json/tryParseJSON) — parse with fallback, no throw
+- [tryStringifyJSON](/docs/Json/tryStringifyJSON) — stringify with `bigint` support
+- [isJSON](/docs/Types/isJSON) — checks if a *string* contains JSON

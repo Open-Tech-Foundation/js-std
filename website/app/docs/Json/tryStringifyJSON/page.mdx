@@ -1,0 +1,143 @@
+import { Callout } from "@opentf/web-docs";
+
+Safely stringifies a value to JSON without throwing. `bigint` and `Temporal` are stringified as decimal/ISO strings by default.
+
+<Callout type="info">
+  `JSON.stringify` throws on `bigint` and on circular objects, and returns `undefined` for `undefined`/`function`/`symbol` at the top level. This never throws — it returns a `fallback` and handles `bigint` + Temporal for you.
+</Callout>
+
+## Syntax
+
+```ts
+import { tryStringifyJSON } from '@opentf/std';
+
+tryStringifyJSON(value: unknown, fallback?: string, options?: {
+  replacer?: ((key: string, value: unknown) => unknown) | (string | number)[] | null,
+  space?: string | number,
+  temporal?: boolean
+}): string | undefined
+```
+
+- `value`: Value to stringify. Any `unknown`.
+- `fallback`: Returned when stringify would throw (circular) or return `undefined` (top-level `undefined`/`function`/`symbol`). Defaults to `undefined`.
+- `options.replacer`: `JSON.stringify` replacer. `bigint`/Temporal is converted *before* your function is called. Array replacers still filter keys, but `bigint`/Temporal inside kept keys is stringified.
+- `options.space`: `JSON.stringify` space for pretty print.
+- `options.temporal`: `DateTime`, `Duration` and native `Temporal` (`Instant`, `ZonedDateTime`, `PlainDate`, etc.) are stringified via `toString()` by default (like `bigint`). Pass `temporal:false` to disable. `Date` already works via `toJSON` even without this flag.
+
+## Returns
+
+JSON `string` on success, `fallback` (or `undefined`) on failure. Never throws.
+
+## Examples
+
+```ts
+tryStringifyJSON({ a: 1 }) //=> '{"a":1}'
+tryStringifyJSON([1, 2, 3]) //=> '[1,2,3]'
+tryStringifyJSON(null) //=> 'null'
+```
+
+```ts
+// BigInt — native throws TypeError, we stringify as "1" by default
+tryStringifyJSON({ n: BigInt(1) }) //=> '{"n":"1"}'
+tryStringifyJSON({ a: BigInt("9007199254740993") }) //=> '{"a":"9007199254740993"}'
+tryStringifyJSON([BigInt(1), BigInt(2)]) //=> '["1","2"]'
+tryStringifyJSON({ a: { b: BigInt(42) } }) //=> '{"a":{"b":"42"}}'
+tryStringifyJSON(BigInt(123)) //=> '"123"'  // top-level bigint → string
+
+// Compare: JSON.stringify({ n: BigInt(1) }) // throws TypeError
+```
+
+```ts
+// Circular → fallback, not throw
+const o: any = {};
+o.self = o;
+tryStringifyJSON(o) //=> undefined
+tryStringifyJSON(o, "{}") //=> "{}"
+
+// Top-level non-serializable → fallback
+tryStringifyJSON(undefined) //=> undefined
+tryStringifyJSON(undefined, "null") //=> "null"
+tryStringifyJSON(() => {}, "fallback") //=> "fallback"
+tryStringifyJSON(Symbol("a"), "x") //=> "x"
+```
+
+```ts
+// Native edge: undefined/function/symbol inside objects/arrays follows spec
+tryStringifyJSON({ a: 1, b: undefined }) //=> '{"a":1}' — omitted
+tryStringifyJSON([1, undefined, 3]) //=> '[1,null,3]' — null in arrays
+```
+
+```ts
+// Pretty print
+tryStringifyJSON({ a: 1 }, undefined, { space: 2 })
+//=> '{\n  "a": 1\n}'
+tryStringifyJSON({ a: 1 }, undefined, { space: "\t" })
+//=> '{\n\t"a": 1\n}'
+```
+
+```ts
+// Replacer as function — bigint/temporal already converted before your fn
+const upper = (_k: string, v: unknown) => typeof v === "string" ? (v as string).toUpperCase() : v;
+tryStringifyJSON({ n: BigInt(1), s: "hi" }, undefined, { replacer: upper })
+//=> '{"n":"1","s":"HI"}'
+
+const omitA = (k: string, v: unknown) => k === "a" ? undefined : v;
+tryStringifyJSON({ a: 1, b: 2 }, undefined, { replacer: omitA })
+//=> '{"b":2}'
+```
+
+```ts
+// Replacer as array — only listed keys kept, bigint/temporal inside still stringified
+tryStringifyJSON({ a: 1, b: BigInt(2), c: 3 }, undefined, { replacer: ["a", "b"] })
+//=> '{"a":1,"b":"2"}'
+```
+
+```ts
+// Temporal — default true (like bigint), no flag needed
+import { DateTime, Duration } from '@opentf/std';
+
+const dt = new DateTime("2024-01-01T00:00:00.000Z");
+tryStringifyJSON({ t: dt })
+//=> '{"t":"2024-01-01T00:00:00.000+00:00[UTC]"}' // ISO via toString()
+
+const dur = new Duration("P1DT2H");
+tryStringifyJSON({ d: dur })
+//=> '{"d":"P1DT2H"}'
+
+// Date already works without flag (via toJSON), but also via temporal
+tryStringifyJSON({ d: new Date("2024-01-01") }) //=> '{"d":"2024-01-01T00:00:00.000Z"}'
+
+// BigInt + temporal together (both default)
+tryStringifyJSON({ n: BigInt(1), t: dt })
+//=> '{"n":"1","t":"2024-01-01T00:00:00.000+00:00[UTC]"}'
+
+// Disable temporal if you want raw
+tryStringifyJSON({ t: dt }, undefined, { temporal: false })
+//=> '{"t":"2024-01-01T00:00:00.000+00:00[UTC]"}' // DateTime still has toJSON, same result
+
+// Native Temporal where runtime has it (Node 26+, Deno)
+tryStringifyJSON({ t: Temporal.Instant.from("2024-01-01T00:00:00Z") })
+//=> '{"t":"2024-01-01T00:00:00Z"}' with default
+```
+
+```ts
+// Real-world: safe localStorage write
+localStorage.setItem("user", tryStringifyJSON(user, "{}")!);
+
+// Real-world: safe logging without crashing on bigint/circular/temporal
+function logSafe(payload: unknown) {
+  console.log(tryStringifyJSON(payload, '"[unserializable]"', { space: 2 }));
+}
+
+// Real-world: API response with bigint + temporal IDs
+const body = tryStringifyJSON({ id: BigInt("123456789012345"), createdAt: new DateTime("2024-01-01") });
+//=> '{"id":"123456789012345","createdAt":"2024-01-01T00:00:00.000+00:00[UTC]"}'
+```
+
+## Related
+
+- [tryParseJSON](/docs/Json/tryParseJSON) — parse with temporal (default)
+- [isJSONValue](/docs/Json/isJSONValue) — guard before stringify
+- [isJSON](/docs/Types/isJSON) — check if string is JSON
+- [DateTime](/docs/DateTime/DateTime) — temporal datetime
+- [Duration](/docs/DateTime/Duration) — temporal duration

@@ -26,6 +26,9 @@ import type {
   IdleRunFn,
   IdleRunOptions,
   IsEqlOptions,
+  JsonArray,
+  JsonObject,
+  JsonValue,
   LimitRunFn,
   MemoizeRunFn,
   MemoizeRunOptions,
@@ -49,6 +52,8 @@ import type {
   StringReplaceOptions,
   StringReplacer,
   TimeoutRunOptions,
+  TryParseJSONOptions,
+  TryStringifyJSONOptions,
   TypedArray,
   WordWrapOptions,
 } from '../../src';
@@ -70,6 +75,7 @@ import {
   idleRun,
   isArrayLike,
   isEql,
+  isJSONValue,
   isPrimitive,
   limitRun,
   memoizeRun,
@@ -87,6 +93,8 @@ import {
   stringReplace,
   timeoutRun,
   toPath,
+  tryParseJSON,
+  tryStringifyJSON,
   unflattenObject,
   withResolvers,
   wordWrap,
@@ -375,3 +383,16 @@ const pollOptions: PollRunOptions<string> = {
 };
 const polled = pollRun(() => 'done', pollOptions);
 assertType<Equals<typeof polled, Promise<string>>>();
+
+// --- Json ------------------------------------------------------------------
+
+accepts<JsonValue>({ a: 1 });
+accepts<JsonObject>({ a: 1 });
+accepts<JsonArray>([1, 'a']);
+const jsonOpts: TryStringifyJSONOptions = { space: 2, temporal: true };
+accepts<string | undefined>(tryStringifyJSON({ a: 1 }, undefined, jsonOpts));
+const jsonParseOpts: TryParseJSONOptions = { temporal: true };
+accepts<boolean>(isJSONValue({ a: 1 }));
+accepts<Record<string, unknown> | undefined>(
+  tryParseJSON('{"a":1}', undefined, jsonParseOpts),
+);

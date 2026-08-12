@@ -1,0 +1,119 @@
+import { Callout } from "@opentf/web-docs";
+
+Safely parses a JSON string without throwing. Returns a fallback instead of `SyntaxError`.
+
+<Callout type="info">
+  `JSON.parse` throws on every typo, empty string, or non-string input. This is the one-liner that replaces `try { JSON.parse } catch { fallback }` at every boundary — `fetch`, `localStorage`, query params, webhooks.
+</Callout>
+
+## Syntax
+
+```ts
+import { tryParseJSON } from '@opentf/std';
+
+tryParseJSON<T>(text: unknown, fallback?: T, reviverOrOptions?: ((key: string, value: unknown) => unknown) | { reviver?: (key: string, value: unknown) => unknown, temporal?: boolean }): T | undefined
+```
+
+- `text`: JSON string to parse. Non-strings immediately return `fallback` — no `TypeError`.
+- `fallback`: Returned on failure. Defaults to `undefined`.
+- `reviverOrOptions`: Either a `JSON.parse` reviver function, or an options object with `reviver` and `temporal`.
+- `options.temporal`: ISO 8601 strings revive to `DateTime`/`Duration` by default (like `bigint` in stringify). Pass `temporal:false` to keep strings. Native `Temporal` also revives where runtime has it.
+
+## Returns
+
+Parsed `T` on success, `fallback` (or `undefined`) on failure. Never throws.
+
+## Examples
+
+```ts
+tryParseJSON('{"a":1}') //=> {a:1}
+tryParseJSON('[1,2,3]') //=> [1,2,3]
+tryParseJSON('null') //=> null
+tryParseJSON('"hi"') //=> "hi"
+```
+
+```ts
+// Invalid JSON → fallback, not throw
+tryParseJSON('bad') //=> undefined
+tryParseJSON('bad', { a: 1 }) //=> {a:1}
+tryParseJSON('{a:1}', 42) //=> 42 — unquoted keys
+tryParseJSON('', 'fallback') //=> "fallback"
+```
+
+```ts
+// Non-string input → fallback (e.g. missing localStorage key)
+tryParseJSON(null as any, []) //=> []
+tryParseJSON(undefined as any) //=> undefined
+tryParseJSON(123 as any, {}) //=> {}
+```
+
+```ts
+// localStorage pattern — the #1 use case
+const cached = tryParseJSON(localStorage.getItem("prefs"), { theme: "light" });
+ // getItem returns string | null — null → fallback, bad JSON → fallback
+
+// fetch + json
+const data = tryParseJSON(await res.text(), null);
+// vs try { await res.json() } catch { null } — same but typed
+```
+
+```ts
+// Generic is preserved
+type User = { id: string; name: string };
+const user = tryParseJSON<User>('{"id":"1","name":"Ana"}');
+//    ^? User | undefined
+
+const safeUser = tryParseJSON<User>('bad', { id: "0", name: "Guest" });
+//    ^? User — fallback guarantees T
+```
+
+```ts
+// Reviver — e.g. revive dates (legacy)
+const reviver = (k: string, v: unknown) =>
+  k === "createdAt" && typeof v === "string" ? new Date(v as string) : v;
+
+tryParseJSON('{"createdAt":"2024-01-01T00:00:00.000Z"}', undefined, reviver)
+//=> { createdAt: Date }
+
+// Options form — reviver + temporal
+tryParseJSON('{"a":1}', undefined, { reviver })
+// same as above
+
+// Temporal — default true (like bigint stringify)
+// Date already works via toJSON, this is for DateTime/Duration/Temporal
+tryParseJSON('{"t":"2024-01-01T00:00:00.000Z"}')
+//=> { t: DateTime } — ISO datetime → DateTime by default
+
+tryParseJSON('{"d":"P1DT2H"}')
+//=> { d: Duration } — ISO duration → Duration
+
+tryParseJSON('{"t":"2024-01-01"}', undefined, { temporal: false })
+//=> { t: "2024-01-01" } — string when disabled
+
+// Temporal composes with reviver
+tryParseJSON('{"n":1}', undefined, {
+  reviver: (k, v) => k === "n" && typeof v === "number" ? v * 10 : v
+}) //=> { n: 10 } — temporal default still revives dates alongside
+```
+
+```ts
+// Native Temporal (where runtime has Temporal) also revives with default
+// {"t":"2024-01-01T00:00:00Z"} → Temporal.Instant when Temporal available
+tryParseJSON('{"t":"2024-01-01T00:00:00Z"}') //=> {t: Temporal.Instant} on Temporal runtimes
+```
+
+```ts
+// Compare with isJSON — check first vs parse with fallback
+import { isJSON } from '@opentf/std';
+
+isJSON('{"a":1}') //=> true — tells you it parses, but not the value
+tryParseJSON('{"a":1}') //=> {a:1} — tells you and gives the value
+```
+
+## Related
+
+- [isJSONValue](/docs/Json/isJSONValue) — guard a *value* before stringify
+- [tryStringifyJSON](/docs/Json/tryStringifyJSON) — stringify with `bigint` + temporal (default)
+- [isJSON](/docs/Types/isJSON) — boolean check for a JSON *string*
+- [DateTime](/docs/DateTime/DateTime) — ISO datetime handled by default
+- [Duration](/docs/DateTime/Duration) — ISO duration handled by default
