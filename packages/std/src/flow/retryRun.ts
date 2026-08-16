@@ -1,7 +1,22 @@
 import validateFlowNumber from './validateFlowNumber';
 
+/**
+ * The most retries a single call will make.
+ *
+ * `Number.isInteger` is true of `1e308`, so a retry count taken from
+ * configuration passed validation and then drove a loop that never ended. With
+ * no delay there is no timer in that loop either, only awaited promises, so it
+ * starves the event loop rather than merely running long: no timer fires, no
+ * socket is read, and the process stops responding altogether. A timer set
+ * before such a call was still unfired twenty seconds later.
+ *
+ * Retries are a handful in practice, so the limit is far above real use and
+ * exists to keep a misconfiguration from wedging a process.
+ */
+export const MAX_RETRIES = 1000;
+
 export interface RetryRunOptions {
-  /** How many times to retry after the first attempt fails. Defaults to `3`. */
+  /** How many times to retry after the first attempt fails. Defaults to `3`, and must not exceed `MAX_RETRIES`. */
   retries?: number;
   /** The delay between attempts, in milliseconds. Defaults to `0`. */
   delay?: number;
@@ -30,7 +45,11 @@ export default async function retryRun<T>(
 ): Promise<T> {
   const { retries = 3, delay = 0, backoff = 'fixed', onRetry } = options;
 
-  validateFlowNumber(retries, 'Retries', { integer: true, min: 0 });
+  validateFlowNumber(retries, 'Retries', {
+    integer: true,
+    min: 0,
+    max: MAX_RETRIES,
+  });
   validateFlowNumber(delay, 'Delay', { min: 0 });
   if (backoff !== 'fixed' && backoff !== 'exponential') {
     throw new RangeError("Backoff must be either 'fixed' or 'exponential'.");

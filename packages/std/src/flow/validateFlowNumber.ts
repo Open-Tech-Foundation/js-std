@@ -4,10 +4,11 @@ export default function validateFlowNumber(
   options: {
     integer?: boolean;
     min?: number;
+    max?: number;
     allowInfinity?: boolean;
   } = {},
 ): void {
-  const { integer = false, min = 0, allowInfinity = false } = options;
+  const { integer = false, min = 0, max, allowInfinity = false } = options;
 
   if (
     typeof value !== 'number' ||
@@ -27,5 +28,9 @@ export default function validateFlowNumber(
 
   if (value < min) {
     throw new RangeError(`${name} must be greater than or equal to ${min}.`);
+  }
+
+  if (max !== undefined && value > max) {
+    throw new RangeError(`${name} must be less than or equal to ${max}.`);
   }
 }

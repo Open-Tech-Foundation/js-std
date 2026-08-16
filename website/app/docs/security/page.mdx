@@ -83,6 +83,22 @@ It also covers the array aggregators that build an object from your data, such a
   leaves your object exactly as it was — no half-built branch.
 </Callout>
 
+### Resource limits
+
+Anything an untrusted caller can size is bounded, so a small input cannot become a large amount of work.
+
+That covers [range](/docs/Array/range), [randomString](/docs/Crypto/randomString), [retryRun](/docs/FlowControl/retryRun), [memoizeRun](/docs/FlowControl/memoizeRun) and the Base58 codec.
+
+<Callout type="info" emoji="⏱️">
+  Each limit is far above real use and exists to turn an unbounded loop, or a cache that
+  never stops growing, into a clear error at the call.
+</Callout>
+
+### Type guards
+
+`isMap`, `isDate` and the rest check an object's internal slot rather than the
+`Symbol.toStringTag` it reports, so a value cannot claim to be something it is not.
+
 ### Cryptography
 
 The `Crypto` module is a thin layer over the standard Web Crypto API. Randomness comes from `crypto.getRandomValues` — never from `Math.random`.
