@@ -1,10 +1,14 @@
+export const metadata = {
+  title: "partition — Array",
+  description: "Creates an array of elements split into two groups: those that pass the predicate and those that don't."
+};
+
 🧩 Creates an array of elements split into two groups: those that pass the predicate and those that don't.
 
 ## Syntax
 
 ```ts
 import { partition } from '@opentf/std';
-
 partition<T>(arr: T[] = [], predicate: (val: T, index: number, arr: T[]) => boolean): [T[], T[]]
 ```
 

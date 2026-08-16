@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "wordWrap — String",
+  description: "Wraps text to a column width, breaking at whitespace."
+};
+
 
 Wraps text to a column width, breaking at whitespace.
 
@@ -12,7 +17,6 @@ Wraps text to a column width, breaking at whitespace.
 
 ```ts
 import { wordWrap } from '@opentf/std';
-
 wordWrap(
   str: string,
   width = 80,

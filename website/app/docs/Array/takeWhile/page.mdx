@@ -1,10 +1,14 @@
+export const metadata = {
+  title: "takeWhile — Array",
+  description: "Creates a slice of array with elements taken from the beginning or end while the predicate returns true."
+};
+
 🧩 Creates a slice of array with elements taken from the beginning or end while the predicate returns true.
 
 ## Syntax
 
 ```ts
 import { takeWhile } from '@opentf/std';
-
 takeWhile<T>(arr: T[] = [], predicate: (val: T, index: number, arr: T[]) => boolean, right?: boolean): T[]
 ```
 

@@ -1,10 +1,14 @@
+export const metadata = {
+  title: "dropWhile — Array",
+  description: "Creates a slice of array with elements dropped from the beginning or end while the predicate returns true."
+};
+
 🧩 Creates a slice of array with elements dropped from the beginning or end while the predicate returns true.
 
 ## Syntax
 
 ```ts
 import { dropWhile } from '@opentf/std';
-
 dropWhile<T>(arr: T[] = [], predicate: (val: T, index: number, arr: T[]) => boolean, right?: boolean): T[]
 ```
 

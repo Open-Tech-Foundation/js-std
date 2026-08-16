@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "streamToText — Streams",
+  description: "Reads a stream fully into a string."
+};
+
 
 🌊 Reads a stream fully into a string.
 
@@ -11,7 +16,6 @@ import { Callout } from "@opentf/web-docs";
 
 ```ts
 import { streamToText } from '@opentf/std';
-
 streamToText(stream: ReadableStream<Uint8Array | string>): Promise<string>;
 ```
 

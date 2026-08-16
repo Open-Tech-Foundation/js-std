@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "isDisjointFrom — Maths",
+  description: "Returns a boolean indicating if this set has no elements in common with the given set."
+};
+
 
 Returns a boolean  indicating if this set has no elements in common with the given set.
 
@@ -27,7 +32,6 @@ Returns a boolean  indicating if this set has no elements in common with the giv
 
 ```ts
 import { isDisjointFrom } from '@opentf/std';
-
 isDisjointFrom(
   a: unknown[] | Set<unknown>,
   b: unknown[] | Set<unknown>

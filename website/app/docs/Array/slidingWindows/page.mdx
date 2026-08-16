@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "slidingWindows — Array",
+  description: "Slides a fixed-size window over an array, one element at a time."
+};
+
 
 🪟 Slides a fixed-size window over an array, one element at a time.
 
@@ -11,7 +16,6 @@ import { Callout } from "@opentf/web-docs";
 
 ```ts
 import { slidingWindows } from '@opentf/std';
-
 slidingWindows<T>(arr: T[], size?: number): T[][];
 ```
 

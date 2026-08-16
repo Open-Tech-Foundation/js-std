@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "symDiff — Array",
+  description: "Returns a new array containing elements that are in either collection, but not in both (symmetric difference)."
+};
+
 
 ⚖️ Returns a new array containing elements that are in either collection, but not in both (symmetric difference).
 
@@ -19,7 +24,6 @@ import { Callout } from "@opentf/web-docs";
 
 ```ts
 import { symDiff } from '@opentf/std';
-
 symDiff(
   collections: unknown[][] = [],
   by?: (val: unknown) => unknown

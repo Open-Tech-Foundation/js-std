@@ -1,10 +1,14 @@
+export const metadata = {
+  title: "formatCompact — Number",
+  description: "Formats a number in compact form using Intl.NumberFormat."
+};
+
 🔢 Formats a number in compact form using Intl.NumberFormat.
 
 ## Syntax
 
 ```ts
 import { formatCompact } from '@opentf/std';
-
 formatCompact(value: number, options?: {
   display?: 'short' | 'long';
   locale?: string;

@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "mergeStreams — Streams",
+  description: "Interleaves streams, forwarding every chunk as soon as any source produces it."
+};
+
 
 🌊 Interleaves streams, forwarding every chunk as soon as any source produces it.
 
@@ -12,7 +17,6 @@ import { Callout } from "@opentf/web-docs";
 
 ```ts
 import { mergeStreams } from '@opentf/std';
-
 mergeStreams<T>(...streams: ReadableStream<T>[]): ReadableStream<T>;
 ```
 

@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "toSet — Object",
+  description: "Sets the value to an object at the given path."
+};
+
 
 Sets the value to an object at the given path.
 
@@ -18,7 +23,6 @@ Immutable: This does not mutate the original object.
 
 ```ts
 import { toSet } from '@opentf/std';
-
 toSet<T>(
   obj: T,
   path: string | unknown[],
@@ -35,6 +39,12 @@ The `callback` fn can be called with the property path value if it exist.
 
 <Callout type="info">
 Missing intermediate branches are created automatically. Existing non-object intermediates such as `0`, `false`, `''`, and `null` are preserved, and deep writes through them are ignored.
+</Callout>
+
+<Callout type="warning" emoji="🛡️">
+  `__proto__`, `constructor` and `prototype` are refused as path segments. The path is
+  checked **before** anything is written, so a refused path returns the original object
+  untouched.
 </Callout>
 
 ## Examples

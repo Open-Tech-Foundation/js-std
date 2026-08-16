@@ -1,10 +1,14 @@
+export const metadata = {
+  title: "flatMap — Array",
+  description: "Maps each item and flattens the result into a single array."
+};
+
 🧩 Maps each item and flattens the result into a single array.
 
 ## Syntax
 
 ```ts
 import { flatMap } from '@opentf/std';
-
 flatMap<T, U>(arr: T[] = [], fn: (val: T, index: number, arr: T[]) => U[] | Iterable<U>): U[]
 ```
 

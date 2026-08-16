@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "tryStringifyJSON — Json",
+  description: "Safely stringifies a value to JSON without throwing. bigint and Temporal are stringified as decimal/ISO strings by default."
+};
+
 
 Safely stringifies a value to JSON without throwing. `bigint` and `Temporal` are stringified as decimal/ISO strings by default.
 
@@ -95,7 +100,6 @@ tryStringifyJSON({ a: 1, b: BigInt(2), c: 3 }, undefined, { replacer: ["a", "b"]
 ```ts
 // Temporal — default true (like bigint), no flag needed
 import { DateTime, Duration } from '@opentf/std';
-
 const dt = new DateTime("2024-01-01T00:00:00.000Z");
 tryStringifyJSON({ t: dt })
 //=> '{"t":"2024-01-01T00:00:00.000+00:00[UTC]"}' // ISO via toString()

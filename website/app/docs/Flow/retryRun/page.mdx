@@ -1,10 +1,14 @@
+export const metadata = {
+  title: "retryRun — FlowControl",
+  description: "Retries an asynchronous function until it succeeds or reaches the maximum number of attempts."
+};
+
 🔁 Retries an asynchronous function until it succeeds or reaches the maximum number of attempts.
 
 ## Syntax
 
 ```ts
 import { retryRun } from '@opentf/std';
-
 retryRun<T>(
   func: () => Promise<T>,
   options?: {

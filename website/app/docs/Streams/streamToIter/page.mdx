@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "streamToIter — Streams",
+  description: "Reads a stream as an async iterable, so the *IterAsync operators apply to it."
+};
+
 
 🌊 Reads a stream as an async iterable, so the `*IterAsync` operators apply to it.
 
@@ -38,7 +43,6 @@ Applying the Iter operators to a response body:
 
 ```ts
 import { streamToIter, mapIterAsync, toArrayIterAsync } from '@opentf/std';
-
 const sizes = mapIterAsync(streamToIter(response.body), (chunk) => chunk.length);
 
 await toArrayIterAsync(sizes); //=> [64, 64, 12]

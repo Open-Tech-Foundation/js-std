@@ -1,10 +1,14 @@
+export const metadata = {
+  title: "uniqueIterAsync — Iter",
+  description: "Yields each item of an async iterable the first time it is seen."
+};
+
 🧩 Yields each item of an async iterable the first time it is seen.
 
 ## Syntax
 
 ```ts
 import { uniqueIterAsync } from '@opentf/std';
-
 uniqueIterAsync<T>(
   iterable: AsyncIterable<T>,
   by?: (val: T) => unknown | Promise<unknown>

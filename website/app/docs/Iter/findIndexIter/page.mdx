@@ -1,10 +1,14 @@
+export const metadata = {
+  title: "findIndexIter — Iter",
+  description: "Finds the index of the first item that matches a predicate."
+};
+
 🧩 Finds the index of the first item that matches a predicate.
 
 ## Syntax
 
 ```ts
 import { findIndexIter } from '@opentf/std';
-
 findIndexIter<T>(iter: Iterable<T>, fn: (val: T) => boolean): number
 ```
 

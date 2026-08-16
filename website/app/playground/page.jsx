@@ -1,5 +1,10 @@
 import VisualTools from '../components/VisualTools.jsx';
 
+export const metadata = {
+  title: 'Playground',
+  description: 'Interactive visual tools for @opentf/std flow control utilities.',
+};
+
 export default function PlaygroundPage() {
   return (
     <main class="max-w-6xl mx-auto px-4 py-8">

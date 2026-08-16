@@ -1,10 +1,14 @@
+export const metadata = {
+  title: "toAsyncIter — Iter",
+  description: "Converts a sync iterable to an async iterable."
+};
+
 🔄 Converts a sync iterable to an async iterable.
 
 ## Syntax
 
 ```ts
 import { toAsyncIter } from '@opentf/std';
-
 toAsyncIter<T>(iter: Iterable<T>): AsyncIterableIterator<T>
 ```
 

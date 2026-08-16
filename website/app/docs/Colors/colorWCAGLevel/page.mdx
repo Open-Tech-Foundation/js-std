@@ -1,10 +1,14 @@
+export const metadata = {
+  title: "colorWCAGLevel — Colors",
+  description: "Returns the WCAG conformance level for the contrast ratio between two colors."
+};
+
 🎨 Returns the WCAG conformance level for the contrast ratio between two colors.
 
 ## Syntax
 
 ```ts
 import { colorWCAGLevel } from '@opentf/std';
-
 colorWCAGLevel(color1: any, color2: any): 'A' | 'AA' | 'AAA' | 'FAIL'
 ```
 

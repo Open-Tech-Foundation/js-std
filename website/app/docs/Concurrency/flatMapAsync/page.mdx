@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "flatMapAsync — Concurrency",
+  description: "Asynchronous version of \\Array.prototype.flatMap\\."
+};
+
 
 ⚡ Asynchronous version of \`Array.prototype.flatMap\`.
 
@@ -11,7 +16,6 @@ import { Callout } from "@opentf/web-docs";
 
 ```ts
 import { flatMapAsync } from '@opentf/std';
-
 flatMapAsync<T, R>(
   arr: T[],
   cb: (value: T, index: number) => Promise<R | R[]>,

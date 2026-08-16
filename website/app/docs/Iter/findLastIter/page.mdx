@@ -1,10 +1,14 @@
+export const metadata = {
+  title: "findLastIter — Iter",
+  description: "Finds the last item that matches a predicate."
+};
+
 🧩 Finds the last item that matches a predicate.
 
 ## Syntax
 
 ```ts
 import { findLastIter } from '@opentf/std';
-
 findLastIter<T>(iter: Iterable<T>, fn: (val: T) => boolean): T | undefined
 ```
 

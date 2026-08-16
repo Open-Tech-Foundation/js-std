@@ -1,3 +1,8 @@
+export const metadata = {
+  title: "semverMaxSatisfying — Semver",
+  description: "Returns the highest version in the list that satisfies the range."
+};
+
 🏷️ Returns the highest version in the list that satisfies the range.
 
 This is what resolving a dependency comes down to: a registry hands back every
@@ -10,7 +15,6 @@ maximum is wanted.
 
 ```ts
 import { semverMaxSatisfying } from '@opentf/std';
-
 semverMaxSatisfying(
   versions: string[],
   range: string,

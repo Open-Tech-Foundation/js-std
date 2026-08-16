@@ -2,6 +2,26 @@
 
 ## [Unreleased]
 
+### Security
+
+- Guarded every utility that writes a key it did not choose itself against `__proto__`, `constructor` and `prototype`. The earlier hardening pass covered the path mutators, `merge`, `mergeAll`, `clone` and `mapKeys`, but not the functions that copy a key out of a source object or derive one from a value, so those still let untrusted input choose the prototype of the result. None of them reached `Object.prototype` itself; each replaced the prototype of the object it returned, which is quiet enough to be worse in some ways than the global form — the key is absent from `Object.keys` and from `JSON.stringify`, so a validator or an audit log over the result sees nothing while every inherited value reads back through it.
+- `shallowMerge` and `shallowMergeAll` copied with `Object.assign`, which assigns through `[[Set]]`, so an own `__proto__` key — exactly what `JSON.parse` produces for `{"__proto__":{...}}` — ran the accessor on `Object.prototype` and replaced the target's prototype. Merging defaults with an untrusted request body is the ordinary use of these two, which made this the most reachable of the set. They now copy with an internal `safeAssign` that skips unsafe keys and preserves symbol keys and null prototypes.
+- `pickBy`, `omitBy` and `mapValues` copied such a key straight through. `pickBy` is usually an allow-list over untrusted input, where failing open loses the whole point of the function.
+- `keyBy` made a record whose key field was `__proto__` the prototype of the lookup table, and dropped it from `Object.keys`. `groupBy` found an inherited value at `acc[k]`, skipped the array initialisation and threw `TypeError: acc[k].push is not a function`, so untrusted grouping keys were an unhandled crash. `countBy` counted into an inherited value and produced a string instead of a number, or lost the count entirely.
+- `invert` needed the check on the *value*, since values become keys there. `flattenObject` produced a key that, replayed against `set` or `unflattenObject`, named a prototype.
+- The path mutators now decide before writing rather than during. Checking segment by segment refused the unsafe write correctly, but only after the branch leading up to it had been built, leaving the caller a half-built path it never asked for; `set`, `toSet`, `unset` and `toUnset` now validate the whole path first and leave the object untouched when they refuse it. `toSet` also no longer deep-clones an object it is about to refuse.
+
+### Changed
+
+- Consolidated the prototype-key check onto a single internal helper, renamed `isUnsafePathKey` to `isUnsafeKey` now that it guards ordinary property keys and not only path segments. It had been copy-pasted inline in four places alongside the helper, which is how the functions above came to be missed: adding the guard is now a missing import rather than a silently missing condition. The helper is internal, so the public API is unchanged.
+
+### Documentation
+
+- Generated `docs/` from the JSDoc on each export, with `bun run docs`. The repository documentation had been hand-copied from those comments, and copying had gone wrong in two directions at once: descriptions had drifted from the comment they came from, and 221 of the 309 pages showed readers a raw `@param {T[]} arr` — a tag pasted into markdown, where nothing renders it. The comment sits next to the code and changes with it, so it is now the source and `docs/` the copy.
+- 33 pages carry a `<!-- handwritten -->` marker and are left alone, because they say more than one function's comment can — `DateTime`, `Duration` and `Decimal` document many methods on one page, and `pickBy` explains null-prototype handling its comment does not. Their leaked tags were fixed in place instead. The generator also reports prose written below the tags rather than dropping it, which is how a misplaced paragraph in `invert` was found and moved.
+- Added a Security page to the documentation site covering how to report a vulnerability, supported versions, scope, and the hardening built into the library. Security disclosures go to `security@opentechf.org`.
+- Fixed the page metadata across the site. Eight pages carried `description: "ts"`, scraped from a code fence's language tag because those pages had no intro line at all; they now have one. Thirty more leaked raw markdown link syntax into `description`, `og:description` and `twitter:description`. Every page now has a unique, plain-text title and description.
+
 ## [0.17.0] - 2026-08-12
 
 ### Changed

@@ -1,10 +1,14 @@
+export const metadata = {
+  title: "isAsyncFunction — Types",
+  description: "Checks if the given value is an AsyncFunction."
+};
+
 Checks if the given value is an [AsyncFunction](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/AsyncFunction).
 
 ## Syntax
 
 ```ts
 import { isAsyncFunction } from '@opentf/std';
-
 isAsyncFunction(
   val: unknown
 ): val is (...args: unknown[]) => Promise<unknown>

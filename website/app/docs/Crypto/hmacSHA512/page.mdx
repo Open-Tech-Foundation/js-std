@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "hmacSHA512 — Crypto",
+  description: "Computes an HMAC-SHA-512 digest of a message with a secret key."
+};
+
 
 🔐 Computes an HMAC-SHA-512 digest of a message with a secret key.
 
@@ -10,7 +15,6 @@ import { Callout } from "@opentf/web-docs";
 
 ```ts
 import { hmacSHA512 } from '@opentf/std';
-
 hmacSHA512(key: string, message: string): Promise<string>;
 ```
 

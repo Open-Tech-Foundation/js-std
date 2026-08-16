@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "LruCache — Cache",
+  description: "A fixed-capacity cache that evicts the least recently used entry once it is full."
+};
+
 
 🗃️ A fixed-capacity cache that evicts the least recently used entry once it is full.
 
@@ -12,7 +17,6 @@ import { Callout } from "@opentf/web-docs";
 
 ```ts
 import { LruCache } from '@opentf/std';
-
 new LruCache<K, V>(maxSize: number);
 ```
 

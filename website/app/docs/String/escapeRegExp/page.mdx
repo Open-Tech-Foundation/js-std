@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "escapeRegExp — String",
+  description: "Escapes the RegExp special characters in string."
+};
+
 
 Escapes the RegExp special characters in string.
 
@@ -10,7 +15,6 @@ Useful when dynamically creating regex from user input.
 
 ```ts
 import { escapeRegExp } from "@opentf/std";
-
 escapeRegExp(str: string)
 ```
 

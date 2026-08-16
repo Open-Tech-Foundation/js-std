@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "union — Array",
+  description: "Returns an array of unique values combined from all provided collections."
+};
+
 
 🎡 Returns an array of unique values combined from all provided collections.
 
@@ -19,7 +24,6 @@ import { Callout } from "@opentf/web-docs";
 
 ```ts
 import { union } from '@opentf/std';
-
 union(
   collections: unknown[][] = [],
   by?: (val: unknown) => unknown

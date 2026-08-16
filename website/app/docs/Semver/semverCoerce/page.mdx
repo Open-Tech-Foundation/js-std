@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "semverCoerce — Semver",
+  description: "Pulls a valid version out of a loosely written one."
+};
+
 
 🏷️ Pulls a valid version out of a loosely written one.
 
@@ -11,7 +16,6 @@ requires all three components and throws otherwise.
 
 ```ts
 import { semverCoerce } from '@opentf/std';
-
 semverCoerce(version: string): string | null;
 ```
 

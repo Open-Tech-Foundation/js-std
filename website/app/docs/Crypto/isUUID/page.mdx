@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "isUUID — Crypto",
+  description: "Checks whether a value is a UUID."
+};
+
 
 🆔 Checks whether a value is a UUID.
 
@@ -16,7 +21,6 @@ checked before it is trusted.
 
 ```ts
 import { isUUID } from '@opentf/std';
-
 isUUID(val: unknown, version?: number): val is string;
 ```
 

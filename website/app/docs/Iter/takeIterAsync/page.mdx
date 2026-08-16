@@ -1,10 +1,14 @@
+export const metadata = {
+  title: "takeIterAsync — Iter",
+  description: "Yields the first N elements of an async iterable."
+};
+
 🏃‍♂️ Yields the first N elements of an async iterable.
 
 ## Syntax
 
 ```ts
 import { takeIterAsync } from '@opentf/std';
-
 takeIterAsync<T>(iterable: AsyncIterable<T>, n: number): AsyncGenerator<T>
 ```
 

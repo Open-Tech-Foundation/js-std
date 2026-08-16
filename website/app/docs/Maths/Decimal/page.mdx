@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "Decimal — Maths",
+  description: "Exact decimal arithmetic without floating-point errors."
+};
+
 
 🎯 Exact decimal arithmetic without floating-point errors.
 
@@ -144,7 +149,6 @@ All methods accept `Decimal | number | string` and return a new `Decimal`.
 
 ```ts
 import { Decimal } from '@opentf/std';
-
 new Decimal('0.1').add('0.2').toString()
 //=> '0.3'
 

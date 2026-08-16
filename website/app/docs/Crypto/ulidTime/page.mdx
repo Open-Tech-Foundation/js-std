@@ -1,3 +1,8 @@
+export const metadata = {
+  title: "ulidTime — Crypto",
+  description: "Reads the timestamp back out of a ULID."
+};
+
 🆔 Reads the timestamp back out of a ULID.
 
 A ULID leads with a 48-bit count of milliseconds since the Unix epoch — that is
@@ -9,7 +14,6 @@ is the sort of thing worth having in one place.
 
 ```ts
 import { ulidTime } from '@opentf/std';
-
 ulidTime(id: string): number;
 ```
 

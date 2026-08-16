@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "isSupersetOf — Maths",
+  description: "Returns a boolean indicating if all elements of the given set are in this set."
+};
+
 
 Returns a boolean indicating if all elements of the given set are in this set.
 
@@ -31,7 +36,6 @@ Returns a boolean indicating if all elements of the given set are in this set.
 
 ```ts
 import { isSupersetOf } from '@opentf/std';
-
 isSupersetOf(
   a: unknown[] | Set<unknown>,
   b: unknown[] | Set<unknown>,

@@ -1,10 +1,14 @@
+export const metadata = {
+  title: "mapIterAsync — Iter",
+  description: "Transforms each item in an async iterator using a mapper function."
+};
+
 🧩 Transforms each item in an async iterator using a mapper function.
 
 ## Syntax
 
 ```ts
 import { mapIterAsync } from '@opentf/std';
-
 mapIterAsync<T, U>(iter: AsyncIterable<T>, fn: (val: T) => U | Promise<U>): AsyncIterableIterator<U>
 ```
 

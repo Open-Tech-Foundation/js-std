@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "tryParseJSON — Json",
+  description: "Safely parses a JSON string without throwing. Returns a fallback instead of SyntaxError."
+};
+
 
 Safely parses a JSON string without throwing. Returns a fallback instead of `SyntaxError`.
 
@@ -105,7 +110,6 @@ tryParseJSON('{"t":"2024-01-01T00:00:00Z"}') //=> {t: Temporal.Instant} on Tempo
 ```ts
 // Compare with isJSON — check first vs parse with fallback
 import { isJSON } from '@opentf/std';
-
 isJSON('{"a":1}') //=> true — tells you it parses, but not the value
 tryParseJSON('{"a":1}') //=> {a:1} — tells you and gives the value
 ```

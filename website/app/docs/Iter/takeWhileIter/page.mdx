@@ -1,10 +1,14 @@
+export const metadata = {
+  title: "takeWhileIter — Iter",
+  description: "Yields items as long as a predicate is true."
+};
+
 🧩 Yields items as long as a predicate is true.
 
 ## Syntax
 
 ```ts
 import { takeWhileIter } from '@opentf/std';
-
 takeWhileIter<T>(iter: Iterable<T>, fn: (val: T) => boolean): IterableIterator<T>
 ```
 

@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "encodeBase32 — Encoding",
+  description: "Encodes bytes to a Base32 string using the standard RFC 4648 alphabet."
+};
+
 
 🔢 Encodes bytes to a Base32 string using the standard RFC 4648 alphabet.
 
@@ -11,7 +16,6 @@ import { Callout } from "@opentf/web-docs";
 
 ```ts
 import { encodeBase32 } from '@opentf/std';
-
 encodeBase32(
   bytes: Uint8Array | ArrayBuffer,
   options?: { pad?: boolean },

@@ -1,3 +1,8 @@
+export const metadata = {
+  title: "semverMinSatisfying — Semver",
+  description: "Returns the lowest version in the list that satisfies the range."
+};
+
 🏷️ Returns the lowest version in the list that satisfies the range.
 
 The counterpart to [semverMaxSatisfying](/docs/Semver/semverMaxSatisfying), and
@@ -8,7 +13,6 @@ the newest.
 
 ```ts
 import { semverMinSatisfying } from '@opentf/std';
-
 semverMinSatisfying(
   versions: string[],
   range: string,

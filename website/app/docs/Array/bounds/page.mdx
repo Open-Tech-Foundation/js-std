@@ -1,10 +1,14 @@
+export const metadata = {
+  title: "bounds — Array",
+  description: "Returns the minimum and maximum values in an array."
+};
+
 📈 Returns the minimum and maximum values in an array.
 
 ## Syntax
 
 ```ts
 import { bounds } from '@opentf/std';
-
 bounds<T>(
   arr: T[] = [],
   by: (val: T) => number | string = (x: T) => x as unknown as number | string

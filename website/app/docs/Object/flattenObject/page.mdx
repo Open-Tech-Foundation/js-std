@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "flattenObject — Object",
+  description: "Flattens a nested object into a single level, keyed by the path to each value."
+};
+
 
 🗜️ Flattens a nested object into a single level, keyed by the path to each value.
 
@@ -10,7 +15,6 @@ import { Callout } from "@opentf/web-docs";
 
 ```ts
 import { flattenObject } from '@opentf/std';
-
 flattenObject(obj?: object): Record<string, unknown>
 ```
 
@@ -27,6 +31,12 @@ A one-level object keyed by path.
 - Nested plain objects and arrays are walked. Everything else is a value, including a `Date`, a `Map`, a class instance and `null`.
 - An empty object or array is kept as a value, since it has no leaves to stand for it and dropping it would lose a key that was present.
 - A key already containing a `.` or a `[` cannot be told apart from the path built around it: `{ 'a.b': 1 }` flattens to the same `'a.b'` that `{ a: { b: 1 } }` does. That is a property of the format, and [unflattenObject](/docs/Object/unflattenObject) reads both back as the nested form.
+
+<Callout type="warning" emoji="🛡️">
+  `__proto__`, `constructor` and `prototype` are skipped at every depth, so no key of
+  the result can be replayed against [set](/docs/Object/set) or
+  [unflattenObject](/docs/Object/unflattenObject) to reach a prototype.
+</Callout>
 
 ## Examples
 

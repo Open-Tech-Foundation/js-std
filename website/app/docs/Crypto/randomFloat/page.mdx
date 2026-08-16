@@ -1,3 +1,8 @@
+export const metadata = {
+  title: "randomFloat — Crypto",
+  description: "Generates a cryptographically strong random float within a range."
+};
+
 🎲 Generates a cryptographically strong random float within a range.
 
 Uses the standard Web Crypto API (`globalThis.crypto`).
@@ -6,7 +11,6 @@ Uses the standard Web Crypto API (`globalThis.crypto`).
 
 ```ts
 import { randomFloat } from '@opentf/std';
-
 randomFloat(min: number, max: number): number;
 ```
 

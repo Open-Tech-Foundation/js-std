@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "streamToLines — Streams",
+  description: "Reads a stream and yields it one line at a time, without buffering the whole body first."
+};
+
 
 🌊 Reads a stream and yields it one line at a time, without buffering the whole body first.
 
@@ -11,7 +16,6 @@ import { Callout } from "@opentf/web-docs";
 
 ```ts
 import { streamToLines } from '@opentf/std';
-
 streamToLines(
   stream: ReadableStream<Uint8Array | string>,
 ): AsyncGenerator<string>;

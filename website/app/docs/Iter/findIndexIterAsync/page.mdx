@@ -1,10 +1,14 @@
+export const metadata = {
+  title: "findIndexIterAsync — Iter",
+  description: "Finds the index of the first item in an async iterator that matches a predicate."
+};
+
 🧩 Finds the index of the first item in an async iterator that matches a predicate.
 
 ## Syntax
 
 ```ts
 import { findIndexIterAsync } from '@opentf/std';
-
 findIndexIterAsync<T>(iter: AsyncIterable<T>, fn: (val: T) => boolean | Promise<boolean>): Promise<number>
 ```
 

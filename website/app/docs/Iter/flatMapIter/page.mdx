@@ -1,10 +1,14 @@
+export const metadata = {
+  title: "flatMapIter — Iter",
+  description: "Maps each item and flattens the result."
+};
+
 🧩 Maps each item and flattens the result.
 
 ## Syntax
 
 ```ts
 import { flatMapIter } from '@opentf/std';
-
 flatMapIter<T, U>(iter: Iterable<T>, fn: (val: T) => Iterable<U>): IterableIterator<U>
 ```
 

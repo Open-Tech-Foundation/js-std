@@ -1,10 +1,14 @@
+export const metadata = {
+  title: "dropWhileIterAsync — Iter",
+  description: "Skips items from an async iterable while a predicate is true, then yields the rest."
+};
+
 🧩 Skips items while a predicate is true, then yields the rest.
 
 ## Syntax
 
 ```ts
 import { dropWhileIterAsync } from '@opentf/std';
-
 dropWhileIterAsync<T>(iter: AsyncIterable<T>, fn: (val: T) => boolean | Promise<boolean>): AsyncIterableIterator<T>
 ```
 

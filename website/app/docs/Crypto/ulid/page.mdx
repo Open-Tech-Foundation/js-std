@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "ulid — Crypto",
+  description: "Generates a ULID: a 128-bit, lexicographically sortable identifier."
+};
+
 
 🆔 Generates a ULID: a 128-bit, lexicographically sortable identifier.
 
@@ -11,7 +16,6 @@ creation time** — no separate column, and no parsing to compare two of them.
 
 ```ts
 import { ulid } from '@opentf/std';
-
 ulid(seedTime?: number): string;
 ```
 

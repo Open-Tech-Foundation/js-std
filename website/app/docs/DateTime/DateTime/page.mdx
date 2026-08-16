@@ -1,6 +1,11 @@
 import { Callout } from "@opentf/web-docs";
 import CheckIcon from "../../../components/CheckIcon.jsx";
 import CrossIcon from "../../../components/CrossIcon.jsx";
+export const metadata = {
+  title: "DateTime — DateTime",
+  description: "An immutable date and time in an IANA time zone."
+};
+
 
 🕒 An immutable date and time in an IANA time zone.
 
@@ -19,7 +24,6 @@ nothing mutates.
 
 ```ts
 import { DateTime } from '@opentf/std';
-
 new DateTime(input?, options?);
 ```
 

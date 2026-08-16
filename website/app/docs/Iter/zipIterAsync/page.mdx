@@ -1,10 +1,14 @@
+export const metadata = {
+  title: "zipIterAsync — Iter",
+  description: "Yields one group per position, taking one item from each async iterable."
+};
+
 🧩 Yields one group per position, taking one item from each async iterable.
 
 ## Syntax
 
 ```ts
 import { zipIterAsync } from '@opentf/std';
-
 zipIterAsync<T>(...iterables: AsyncIterable<T>[]): AsyncGenerator<(T | undefined)[]>
 ```
 

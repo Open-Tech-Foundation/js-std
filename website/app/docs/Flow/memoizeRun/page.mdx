@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "memoizeRun — FlowControl",
+  description: "Caches the results of an asynchronous function. Supports Single Flight (concurrent request de-duplication) and TTL."
+};
+
 
 🧠 Caches the results of an asynchronous function. Supports Single Flight (concurrent request de-duplication) and TTL.
 
@@ -10,7 +15,6 @@ import { Callout } from "@opentf/web-docs";
 
 ```ts
 import { memoizeRun } from '@opentf/std';
-
 memoizeRun<T, Args extends any[]>(
   func: (...args: Args) => Promise<T>,
   options?: {

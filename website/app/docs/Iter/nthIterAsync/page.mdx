@@ -1,10 +1,14 @@
+export const metadata = {
+  title: "nthIterAsync — Iter",
+  description: "Returns the nth item (0-indexed) from an async iterable."
+};
+
 🧩 Returns the nth item (0-indexed) from an async iterable.
 
 ## Syntax
 
 ```ts
 import { nthIterAsync } from '@opentf/std';
-
 nthIterAsync<T>(iter: AsyncIterable<T>, n: number): Promise<T | undefined>
 ```
 

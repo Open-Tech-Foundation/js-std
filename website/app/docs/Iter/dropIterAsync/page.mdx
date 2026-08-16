@@ -1,10 +1,14 @@
+export const metadata = {
+  title: "dropIterAsync — Iter",
+  description: "Skips the first N elements of an async iterable."
+};
+
 🏃‍♂️ Skips the first N elements of an async iterable.
 
 ## Syntax
 
 ```ts
 import { dropIterAsync } from '@opentf/std';
-
 dropIterAsync<T>(iterable: AsyncIterable<T>, n: number): AsyncGenerator<T>
 ```
 

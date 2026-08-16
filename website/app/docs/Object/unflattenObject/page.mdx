@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "unflattenObject — Object",
+  description: "Expands a one-level object keyed by path back into a nested one."
+};
+
 
 🎈 Expands a one-level object keyed by path back into a nested one.
 
@@ -10,7 +15,6 @@ import { Callout } from "@opentf/web-docs";
 
 ```ts
 import { unflattenObject } from '@opentf/std';
-
 unflattenObject(obj?: Record<string, unknown>): Record<string, unknown> | unknown[]
 ```
 

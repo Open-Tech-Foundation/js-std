@@ -1,10 +1,14 @@
+export const metadata = {
+  title: "toArrayIterAsync — Iter",
+  description: "Collects all items from an async iterator into an array."
+};
+
 🧩 Collects all items from an async iterator into an array.
 
 ## Syntax
 
 ```ts
 import { toArrayIterAsync } from '@opentf/std';
-
 toArrayIterAsync<T>(iter: AsyncIterable<T>): Promise<T[]>
 ```
 

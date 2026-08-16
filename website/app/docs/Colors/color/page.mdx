@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "color — Colors",
+  description: "A unified utility for parsing and converting colors between various formats."
+};
+
 
 🎨 A unified utility for parsing and converting colors between various formats.
 
@@ -48,7 +53,6 @@ The desired output format. You can use the `ColorFormat` helper constant or the 
 ### 1. Using Helper Constants
 ```ts
 import { color, ColorFormat } from '@opentf/std';
-
 color('red', ColorFormat.HEX); //=> '#ff0000'
 color('#00ff00', ColorFormat.RGB); //=> 'rgb(0, 255, 0)'
 ```

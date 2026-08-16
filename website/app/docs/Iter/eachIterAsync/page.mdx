@@ -1,10 +1,14 @@
+export const metadata = {
+  title: "eachIterAsync — Iter",
+  description: "Executes a function for each item in an async iterator."
+};
+
 🧩 Executes a function for each item in an async iterator.
 
 ## Syntax
 
 ```ts
 import { eachIterAsync } from '@opentf/std';
-
 eachIterAsync<T>(iter: AsyncIterable<T>, fn: (val: T) => void | Promise<void>): Promise<void>
 ```
 

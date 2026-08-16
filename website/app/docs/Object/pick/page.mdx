@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "pick — Object",
+  description: "Creates an object composed of the picked object properties."
+};
+
 
 🎯 Creates an object composed of the picked object properties.
 
@@ -14,7 +19,6 @@ import { Callout } from "@opentf/web-docs";
 
 ```ts
 import { pick } from '@opentf/std';
-
 pick<T extends object, K extends keyof T>(
   obj: T,
   ...paths: (string | unknown[])[]

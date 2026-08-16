@@ -1,10 +1,14 @@
+export const metadata = {
+  title: "filterIterAsync — Iter",
+  description: "Filters items in an async iterator based on a predicate."
+};
+
 🧩 Filters items in an async iterator based on a predicate.
 
 ## Syntax
 
 ```ts
 import { filterIterAsync } from '@opentf/std';
-
 filterIterAsync<T>(iter: AsyncIterable<T>, fn: (val: T) => boolean | Promise<boolean>): AsyncIterableIterator<T>
 ```
 

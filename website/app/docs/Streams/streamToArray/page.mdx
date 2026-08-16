@@ -1,3 +1,8 @@
+export const metadata = {
+  title: "streamToArray — Streams",
+  description: "Reads a stream fully into an array of its chunks."
+};
+
 🌊 Reads a stream fully into an array of its chunks.
 
 Works on a stream of any chunk type, so it is the general form of [streamToText](/docs/Streams/streamToText) and [streamToBytes](/docs/Streams/streamToBytes).
@@ -6,7 +11,6 @@ Works on a stream of any chunk type, so it is the general form of [streamToText]
 
 ```ts
 import { streamToArray } from '@opentf/std';
-
 streamToArray<T>(stream: ReadableStream<T>): Promise<T[]>;
 ```
 

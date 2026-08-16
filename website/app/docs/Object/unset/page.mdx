@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "unset — Object",
+  description: "Removes a property at a specific path of an object."
+};
+
 
 🎯 Removes a property at a specific path of an object.
 
@@ -14,7 +19,6 @@ import { Callout } from "@opentf/web-docs";
 
 ```ts
 import { unset } from '@opentf/std';
-
 unset<T>(
   obj: T,
   path: string | unknown[],
@@ -29,6 +33,11 @@ unset<T>(
 ## Returns
 
 The modified object.
+
+<Callout type="warning" emoji="🛡️">
+  `__proto__`, `constructor` and `prototype` are refused as path segments, and the whole
+  path is checked before anything is removed.
+</Callout>
 
 ## Examples
 

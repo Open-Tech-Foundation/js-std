@@ -1,10 +1,14 @@
+export const metadata = {
+  title: "idleRun — FlowControl",
+  description: "Creates a debounced function that delays invoking func until after delay milliseconds have elapsed since the last time the debounced function was invoked."
+};
+
 ⏱️ Creates a debounced function that delays invoking `func` until after `delay` milliseconds have elapsed since the last time the debounced function was invoked.
 
 ## Syntax
 
 ```ts
 import { idleRun } from '@opentf/std';
-
 idleRun<T extends (...args: any[]) => any>(
   func: T,
   delay: number = 0,

@@ -1,10 +1,14 @@
+export const metadata = {
+  title: "uniqueIter — Iter",
+  description: "Yields each item the first time it is seen."
+};
+
 🧩 Yields each item the first time it is seen.
 
 ## Syntax
 
 ```ts
 import { uniqueIter } from '@opentf/std';
-
 uniqueIter<T>(iterable: Iterable<T>, by?: (val: T) => unknown): Generator<T>
 ```
 

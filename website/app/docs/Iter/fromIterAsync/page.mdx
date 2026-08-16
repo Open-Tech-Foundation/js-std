@@ -1,10 +1,14 @@
+export const metadata = {
+  title: "fromIterAsync — Iter",
+  description: "Creates an AsyncIterableIterator from an iterable, async iterable, or iterator-like object."
+};
+
 🔗 Creates an AsyncIterableIterator from an iterable, async iterable, or iterator-like object.
 
 ## Syntax
 
 ```ts
 import { fromIterAsync } from '@opentf/std';
-
 fromIterAsync<T>(iter: AsyncIterable<T> | Iterable<T> | { next: () => Promise<IteratorResult<T>> | IteratorResult<T> }): AsyncIterableIterator<T>
 ```
 

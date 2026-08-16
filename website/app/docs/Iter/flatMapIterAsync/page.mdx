@@ -1,10 +1,14 @@
+export const metadata = {
+  title: "flatMapIterAsync — Iter",
+  description: "Maps each item in an async iterator and flattens the result."
+};
+
 🧩 Maps each item in an async iterator and flattens the result.
 
 ## Syntax
 
 ```ts
 import { flatMapIterAsync } from '@opentf/std';
-
 flatMapIterAsync<T, U>(iter: AsyncIterable<T>, fn: (val: T) => AsyncIterable<U> | Iterable<U> | Promise<AsyncIterable<U> | Iterable<U>>): AsyncIterableIterator<U>
 ```
 

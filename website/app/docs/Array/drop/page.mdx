@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "drop — Array",
+  description: "Skips a specified number of elements from the start of an array."
+};
+
 
 💧 Skips a specified number of elements from the start of an array.
 
@@ -10,7 +15,6 @@ import { Callout } from "@opentf/web-docs";
 
 ```ts
 import { drop } from '@opentf/std';
-
 drop<T>(
   arr: T[],
   limit: number | null = 1,

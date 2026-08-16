@@ -1,10 +1,14 @@
+export const metadata = {
+  title: "formatCurrency — Number",
+  description: "Formats a number as a currency string using Intl.NumberFormat."
+};
+
 💰 Formats a number as a currency string using Intl.NumberFormat.
 
 ## Syntax
 
 ```ts
 import { formatCurrency } from '@opentf/std';
-
 formatCurrency(value: number, currency: string, options?: {
   display?: 'symbol' | 'code' | 'name';
   minFraction?: number;

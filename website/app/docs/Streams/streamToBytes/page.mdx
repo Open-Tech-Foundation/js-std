@@ -1,10 +1,14 @@
+export const metadata = {
+  title: "streamToBytes — Streams",
+  description: "Reads a byte stream fully into a single Uint8Array."
+};
+
 🌊 Reads a byte stream fully into a single `Uint8Array`.
 
 ## Syntax
 
 ```ts
 import { streamToBytes } from '@opentf/std';
-
 streamToBytes(stream: ReadableStream<Uint8Array>): Promise<Uint8Array>;
 ```
 

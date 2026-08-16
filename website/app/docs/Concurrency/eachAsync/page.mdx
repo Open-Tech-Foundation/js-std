@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "eachAsync — Concurrency",
+  description: "Asynchronous version of \\Array.prototype.forEach\\."
+};
+
 
 ⚡ Asynchronous version of \`Array.prototype.forEach\`.
 
@@ -11,7 +16,6 @@ import { Callout } from "@opentf/web-docs";
 
 ```ts
 import { eachAsync } from '@opentf/std';
-
 eachAsync<T>(
   arr: T[],
   cb: (value: T, index: number) => Promise<void>,

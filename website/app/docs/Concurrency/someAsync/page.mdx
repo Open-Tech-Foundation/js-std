@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "someAsync — Concurrency",
+  description: "Asynchronous version of \\Array.prototype.some\\."
+};
+
 
 ⚡ Asynchronous version of \`Array.prototype.some\`.
 
@@ -11,7 +16,6 @@ import { Callout } from "@opentf/web-docs";
 
 ```ts
 import { someAsync } from '@opentf/std';
-
 someAsync<T>(
   arr: T[],
   cb: (value: T, index: number) => Promise<boolean>,

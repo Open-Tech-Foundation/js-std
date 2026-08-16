@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "mapStream — Streams",
+  description: "Transforms each chunk of a stream, giving back a stream."
+};
+
 
 🌊 Transforms each chunk of a stream, giving back a stream.
 
@@ -6,7 +11,6 @@ import { Callout } from "@opentf/web-docs";
 
 ```ts
 import { mapStream } from '@opentf/std';
-
 mapStream<T, R>(
   stream: ReadableStream<T>,
   fn: (chunk: T, index: number) => R | Promise<R>,

@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "set — Object",
+  description: "Sets the value at a specific path of an object."
+};
+
 
 🎯 Sets the value at a specific path of an object.
 
@@ -10,7 +15,6 @@ import { Callout } from "@opentf/web-docs";
 
 ```ts
 import { set } from '@opentf/std';
-
 set<T>(
   obj: T,
   path: string | unknown[],
@@ -32,6 +36,12 @@ The modified object.
 
 - Missing intermediate branches are created automatically.
 - Existing non-object intermediates such as `0`, `false`, `''`, and `null` are preserved. Deep writes through those values are ignored instead of overwriting them.
+
+<Callout type="warning" emoji="🛡️">
+  `__proto__`, `constructor` and `prototype` are refused as path segments. The path is
+  checked **before** anything is written, so a path that will be refused leaves the
+  object exactly as it was — no partial branch.
+</Callout>
 
 ## Examples
 

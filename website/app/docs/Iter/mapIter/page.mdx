@@ -1,10 +1,14 @@
+export const metadata = {
+  title: "mapIter — Iter",
+  description: "Transforms each item using a mapper function."
+};
+
 🧩 Transforms each item using a mapper function.
 
 ## Syntax
 
 ```ts
 import { mapIter } from '@opentf/std';
-
 mapIter<T, U>(iter: Iterable<T>, fn: (val: T) => U): IterableIterator<U>
 ```
 

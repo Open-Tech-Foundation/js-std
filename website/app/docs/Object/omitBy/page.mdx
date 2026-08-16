@@ -1,10 +1,15 @@
+import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "omitBy — Object",
+  description: "Creates an object composed of the object properties that do not satisfy the predicate."
+};
+
 🎯 Creates an object composed of the object properties that do not satisfy the predicate.
 
 ## Syntax
 
 ```ts
 import { omitBy } from '@opentf/std';
-
 omitBy<T extends object>(
   obj: T,
   predicate: (value: any, key: string | symbol) => boolean
@@ -21,6 +26,10 @@ When the source object uses `Object.create(null)`, the returned object preserves
 ## Returns
 
 A new object with omitted properties.
+
+<Callout type="warning" emoji="🛡️">
+  `__proto__`, `constructor` and `prototype` are skipped regardless of the predicate.
+</Callout>
 
 ## Examples
 

@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "keyBy — Array",
+  description: "Indexes an array by a key, giving one element per key."
+};
+
 
 🗝️ Indexes an array by a key, giving one element per key.
 
@@ -12,7 +17,6 @@ import { Callout } from "@opentf/web-docs";
 
 ```ts
 import { keyBy } from '@opentf/std';
-
 keyBy<T>(
   arr: T[],
   by: ((val: T, index: number, arr: T[]) => string) | string,
@@ -33,6 +37,12 @@ An object mapping each key to a single element. Keys are coerced to strings.
 <Callout type="warning">
   When two elements produce the same key the **later one wins**. Pass a list already
   ordered oldest-first to keep the newest.
+</Callout>
+
+<Callout type="warning" emoji="🛡️">
+  A key of `__proto__`, `constructor` or `prototype` is refused and its element dropped.
+  The lookup is built from data, so writing one of those would make the element the
+  **prototype** of the table rather than an entry in it.
 </Callout>
 
 ## Examples

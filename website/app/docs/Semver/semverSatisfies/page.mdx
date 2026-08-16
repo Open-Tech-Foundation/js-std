@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "semverSatisfies — Semver",
+  description: "Checks whether a version satisfies a range."
+};
+
 
 🏷️ Checks whether a version satisfies a range.
 
@@ -14,7 +19,6 @@ Supports the full npm range grammar: comparators (`>`, `>=`, `<`, `<=`, `=`), ca
 
 ```ts
 import { semverSatisfies } from '@opentf/std';
-
 semverSatisfies(
   version: string,
   range: string,

@@ -1,10 +1,14 @@
+export const metadata = {
+  title: "everyIterAsync — Iter",
+  description: "Checks if all items in an async iterator match a predicate."
+};
+
 🧩 Checks if all items in an async iterator match a predicate.
 
 ## Syntax
 
 ```ts
 import { everyIterAsync } from '@opentf/std';
-
 everyIterAsync<T>(iter: AsyncIterable<T>, fn: (val: T) => boolean | Promise<boolean>): Promise<boolean>
 ```
 

@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "binarySearch — Array",
+  description: "Finds the index of a value in a sorted array, in O(log n) comparisons."
+};
+
 
 🔍 Finds the index of a value in a **sorted** array, in `O(log n)` comparisons.
 
@@ -10,7 +15,6 @@ import { Callout } from "@opentf/web-docs";
 
 ```ts
 import { binarySearch } from '@opentf/std';
-
 binarySearch<T>(
   arr?: T[],
   target: T,

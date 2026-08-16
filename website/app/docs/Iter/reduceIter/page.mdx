@@ -1,10 +1,14 @@
+export const metadata = {
+  title: "reduceIter — Iter",
+  description: "Accumulates values using a reducer function."
+};
+
 🧩 Accumulates values using a reducer function.
 
 ## Syntax
 
 ```ts
 import { reduceIter } from '@opentf/std';
-
 reduceIter<T, U>(iter: Iterable<T>, fn: (acc: U, val: T) => U, initialValue: U): U
 ```
 

@@ -1,10 +1,14 @@
+export const metadata = {
+  title: "dropWhileIter — Iter",
+  description: "Skips items while a predicate is true, then yields the rest."
+};
+
 🧩 Skips items while a predicate is true, then yields the rest.
 
 ## Syntax
 
 ```ts
 import { dropWhileIter } from '@opentf/std';
-
 dropWhileIter<T>(iter: Iterable<T>, fn: (val: T) => boolean): IterableIterator<T>
 ```
 

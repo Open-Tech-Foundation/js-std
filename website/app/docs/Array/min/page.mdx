@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "min — Array",
+  description: "Returns the minimum value in an array."
+};
+
 
 📉 Returns the minimum value in an array.
 
@@ -10,7 +15,6 @@ import { Callout } from "@opentf/web-docs";
 
 ```ts
 import { min } from '@opentf/std';
-
 min<T>(
   arr: T[] = [],
   by: (val: T) => number | string = (x: T) => x as unknown as number | string

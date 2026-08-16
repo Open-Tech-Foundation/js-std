@@ -1,10 +1,14 @@
+export const metadata = {
+  title: "paceRun — FlowControl",
+  description: "Creates a throttled function that only invokes func at most once per every interval milliseconds."
+};
+
 ⏱️ Creates a throttled function that only invokes `func` at most once per every `interval` milliseconds.
 
 ## Syntax
 
 ```ts
 import { paceRun } from '@opentf/std';
-
 paceRun<T extends (...args: any[]) => any>(
   func: T,
   interval: number = 0,

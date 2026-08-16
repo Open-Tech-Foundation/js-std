@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "intersperse — Array",
+  description: "Inserts a separator between each element of an array or characters of a string."
+};
+
 
 🧵 Inserts a separator between each element of an array or characters of a string.
 
@@ -10,7 +15,6 @@ import { Callout } from "@opentf/web-docs";
 
 ```ts
 import { intersperse } from '@opentf/std';
-
 intersperse(
   list: string | unknown[],
   sep: ((index: number) => unknown) | unknown

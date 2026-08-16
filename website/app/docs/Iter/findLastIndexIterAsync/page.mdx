@@ -1,10 +1,14 @@
+export const metadata = {
+  title: "findLastIndexIterAsync — Iter",
+  description: "Finds the index of the last item in an async iterator that matches a predicate."
+};
+
 🧩 Finds the index of the last item in an async iterator that matches a predicate.
 
 ## Syntax
 
 ```ts
 import { findLastIndexIterAsync } from '@opentf/std';
-
 findLastIndexIterAsync<T>(iter: AsyncIterable<T>, fn: (val: T) => boolean | Promise<boolean>): Promise<number>
 ```
 

@@ -1,10 +1,14 @@
+export const metadata = {
+  title: "chunkWhile — Array",
+  description: "Splits an array into groups where consecutive elements satisfy the grouping predicate."
+};
+
 🧩 Splits an array into groups where consecutive elements satisfy the grouping predicate.
 
 ## Syntax
 
 ```ts
 import { chunkWhile } from '@opentf/std';
-
 chunkWhile<T>(arr: T[] = [], predicate: (curr: T, next: T, index: number, arr: T[]) => boolean): T[][]
 ```
 

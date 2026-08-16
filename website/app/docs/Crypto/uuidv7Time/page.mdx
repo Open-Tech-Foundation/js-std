@@ -1,3 +1,8 @@
+export const metadata = {
+  title: "uuidv7Time — Crypto",
+  description: "Reads the timestamp back out of a UUID v7."
+};
+
 🆔 Reads the timestamp back out of a UUID v7.
 
 A v7 leads with a 48-bit count of milliseconds since the Unix epoch — that is
@@ -9,7 +14,6 @@ first twelve hex digits with a hyphen in the middle of them.
 
 ```ts
 import { uuidv7Time } from '@opentf/std';
-
 uuidv7Time(uuid: string): number;
 ```
 

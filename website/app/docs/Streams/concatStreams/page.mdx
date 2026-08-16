@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "concatStreams — Streams",
+  description: "Joins streams end to end, reading each one only once the previous has closed."
+};
+
 
 🌊 Joins streams end to end, reading each one only once the previous has closed.
 
@@ -11,7 +16,6 @@ import { Callout } from "@opentf/web-docs";
 
 ```ts
 import { concatStreams } from '@opentf/std';
-
 concatStreams<T>(...streams: ReadableStream<T>[]): ReadableStream<T>;
 ```
 

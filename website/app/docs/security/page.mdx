@@ -1,0 +1,108 @@
+import { Callout } from '@opentf/web-docs';
+export const metadata = {
+  title: "Security",
+  description: "How to report a vulnerability in @opentf/std, which versions get fixes, and the hardening built into the library."
+};
+
+# 🔒 Security
+
+`@opentf/std` is used inside request handlers, build tools and CLIs, so a bug here can become a bug in your application.
+
+This page covers how to report a vulnerability, what we support, and the hardening already built in.
+
+## 📬 Reporting a Vulnerability
+
+Report security issues privately to **[security@opentechf.org](mailto:security@opentechf.org)**.
+
+<Callout type="warning" emoji="🚨">
+  Please do not open a public GitHub issue for a security bug. A public report tells
+  everyone how to exploit it before a fix exists.
+</Callout>
+
+For anything that is not a security issue, use the [Open Tech Foundation contact page](https://opentechf.org/contact).
+
+### What to include
+
+A report is easiest to act on when it answers three things: what breaks, how to trigger it, and why it matters.
+
+| Item | Why it helps |
+| ---- | ------------ |
+| Affected version | Tells us whether it is already fixed. |
+| Minimal reproduction | A few lines of JS beats a paragraph of description. |
+| Impact | What an attacker gains — data, code execution, a crash. |
+| Runtime | Node.js, Bun, Deno, browser or edge worker. |
+
+### What to expect
+
+We aim to acknowledge a report within **3 working days** and to send an initial assessment within **10 working days**.
+
+Fixes ship in the next release as soon as they are ready. We will credit you in the release notes unless you ask us not to.
+
+We ask that you give us a reasonable window to release a fix before publishing details.
+
+## 📦 Supported Versions
+
+Security fixes land on the **latest minor release**. There are no long-term support branches.
+
+| Version | Status |
+| ------- | ------ |
+| `0.18.x` | ✅ Supported |
+| `< 0.18` | ❌ Upgrade to the latest release |
+
+Until `1.0`, upgrading to the newest minor is the supported path to a security fix.
+
+## 🎯 Scope
+
+In scope is anything in the published `@opentf/std` package that lets untrusted input do something it should not.
+
+**In scope**
+
+- Prototype pollution through any utility that writes a key or a path.
+- Unsafe behaviour in the `Crypto` and `Encoding` modules.
+- Denial of service — an input that makes a utility hang, throw unexpectedly, or consume unbounded memory.
+- Type or parser confusion that lets a value bypass an `Assert` or `Types` guard.
+
+**Out of scope**
+
+- Vulnerabilities in your own application code that merely call this library.
+- Issues in the documentation site's hosting or infrastructure.
+- Results from a tool that have not been confirmed against a real reproduction.
+
+## 🛡️ Built-in Hardening
+
+### Prototype pollution
+
+Every utility that writes a key it did not choose itself refuses `__proto__`, `constructor` and `prototype`.
+
+That covers the path writers ([set](/docs/Object/set), [unset](/docs/Object/unset)), the key-copying transforms ([pickBy](/docs/Object/pickBy), [mapValues](/docs/Object/mapValues)) and the merges.
+
+It also covers the array aggregators that build an object from your data, such as [keyBy](/docs/Array/keyBy) and [groupBy](/docs/Array/groupBy).
+
+<Callout type="info" emoji="💡">
+  The path writers check the whole path before writing anything, so a refused path
+  leaves your object exactly as it was — no half-built branch.
+</Callout>
+
+### Cryptography
+
+The `Crypto` module is a thin layer over the standard Web Crypto API. Randomness comes from `crypto.getRandomValues` — never from `Math.random`.
+
+Use [timingSafeEqual](/docs/Crypto/timingSafeEqual) whenever one side of a comparison is a secret, such as an HMAC digest or an API key.
+
+<Callout type="warning" emoji="⚠️">
+  A plain `===` returns at the first differing byte. That timing difference can leak the
+  expected value one byte at a time.
+</Callout>
+
+### Supply chain
+
+`@opentf/std` ships with **zero runtime dependencies**. Installing it adds exactly one package to your tree.
+
+The package is published from a tagged release, and every function is covered by the test suite across the runtimes listed in [Environment Support](/docs/env-support).
+
+## 📮 Contact
+
+| Purpose | Where |
+| ------- | ----- |
+| Security disclosures | [security@opentechf.org](mailto:security@opentechf.org) |
+| Everything else | [opentechf.org/contact](https://opentechf.org/contact) |

@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "semverSort — Semver",
+  description: "Sorts version strings by SemVer precedence, returning a new array."
+};
+
 
 🏷️ Sorts version strings by SemVer precedence, returning a new array.
 
@@ -11,7 +16,6 @@ import { Callout } from "@opentf/web-docs";
 
 ```ts
 import { semverSort } from '@opentf/std';
-
 semverSort(versions: string[], order?: 'asc' | 'desc'): string[];
 ```
 

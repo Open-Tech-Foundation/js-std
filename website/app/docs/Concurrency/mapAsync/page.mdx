@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "mapAsync — Concurrency",
+  description: "Asynchronous version of \\Array.prototype.map\\."
+};
+
 
 ⚡ Asynchronous version of \`Array.prototype.map\`.
 
@@ -11,7 +16,6 @@ import { Callout } from "@opentf/web-docs";
 
 ```ts
 import { mapAsync } from '@opentf/std';
-
 mapAsync<T, R>(
   arr: T[],
   cb: (value: T, index: number) => Promise<R>,

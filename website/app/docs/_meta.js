@@ -1,5 +1,6 @@
 export default {
   'env-support': 'Environment Support',
+  security: '🔒 Security',
   Array: 'Array',
   Assert: 'Assert',
   Cache: 'Cache',

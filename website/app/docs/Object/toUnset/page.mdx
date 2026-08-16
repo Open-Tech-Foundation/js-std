@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "toUnset — Object",
+  description: "Removes the property of the given object at the given path."
+};
+
 
 Removes the property of the given object at the given path.
 
@@ -22,12 +27,16 @@ If an array value is removed, then it will not return a [sparsed](https://develo
 
 ```ts
 import { toUnset } from '@opentf/std';
-
 toUnset<T>(
   obj: T,
   path: string | unknown[],
 ): T
 ```
+
+<Callout type="warning" emoji="🛡️">
+  `__proto__`, `constructor` and `prototype` are refused as path segments, and the whole
+  path is checked before anything is removed.
+</Callout>
 
 ## Examples
 

@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "runningReduce — Array",
+  description: "Reduces an array, keeping every intermediate result rather than only the last one."
+};
+
 
 📈 Reduces an array, keeping every intermediate result rather than only the last one.
 
@@ -11,7 +16,6 @@ import { Callout } from "@opentf/web-docs";
 
 ```ts
 import { runningReduce } from '@opentf/std';
-
 runningReduce<T, A>(
   arr: T[],
   cb: (accumulator: A, current: T, index: number, arr: T[]) => A,

@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "replace — Array",
+  description: "Replaces items at the specified index in an array."
+};
+
 
 🔄 Replaces items at the specified index in an array.
 
@@ -10,7 +15,6 @@ import { Callout } from "@opentf/web-docs";
 
 ```ts
 import { replace } from '@opentf/std';
-
 replace<T>(
   arr: T[] = [],
   indexOrFn: number | null | ((item: T, index: number, array: T[]) => boolean),

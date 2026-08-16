@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "omit — Object",
+  description: "The opposite of pick; this method creates an object composed of the own enumerable property paths of the object that are not omitted."
+};
+
 
 🎯 The opposite of [pick](/docs/Object/pick); this method creates an object composed of the own enumerable property paths of the object that are not omitted.
 
@@ -10,7 +15,6 @@ import { Callout } from "@opentf/web-docs";
 
 ```ts
 import { omit } from '@opentf/std';
-
 omit<T extends object>(
   obj: T,
   ...paths: (string | unknown[])[]

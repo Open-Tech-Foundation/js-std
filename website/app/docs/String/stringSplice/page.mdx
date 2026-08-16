@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "stringSplice — String",
+  description: "Removes characters from a string and inserts another in their place, following Array.prototype.splice."
+};
+
 
 Removes characters from a string and inserts another in their place, following `Array.prototype.splice`.
 
@@ -14,7 +19,6 @@ const result = chars.join('');
 
 ```ts
 import { stringSplice } from '@opentf/std';
-
 stringSplice(
   str: string,
   start?: number,

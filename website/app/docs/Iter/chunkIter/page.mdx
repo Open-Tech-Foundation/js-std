@@ -1,10 +1,14 @@
+export const metadata = {
+  title: "chunkIter — Iter",
+  description: "Yields the items in groups of a specified size."
+};
+
 🧩 Yields the items in groups of a specified size.
 
 ## Syntax
 
 ```ts
 import { chunkIter } from '@opentf/std';
-
 chunkIter<T>(iterable: Iterable<T>, size?: number): Generator<T[]>
 ```
 

@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "semverDiff — Semver",
+  description: "Reports which kind of release separates two versions."
+};
+
 
 🏷️ Reports which kind of release separates two versions.
 
@@ -9,7 +14,6 @@ given where you were and where you are, what sort of bump was that?
 
 ```ts
 import { semverDiff } from '@opentf/std';
-
 semverDiff(a: string, b: string): SemverRelease | null;
 ```
 

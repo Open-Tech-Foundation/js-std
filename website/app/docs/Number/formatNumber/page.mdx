@@ -1,3 +1,8 @@
+export const metadata = {
+  title: "formatNumber — Number",
+  description: "Formats a number for reading, with locale-aware grouping and rounding."
+};
+
 💯 Formats a number for reading, with locale-aware grouping and rounding.
 
 The plain case the rest of the module builds on:
@@ -10,7 +15,6 @@ something; this is the one that formats it as itself.
 
 ```ts
 import { formatNumber } from '@opentf/std';
-
 formatNumber(value: number, options?: FormatNumberOptions): string;
 ```
 

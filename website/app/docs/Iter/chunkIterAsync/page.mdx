@@ -1,10 +1,14 @@
+export const metadata = {
+  title: "chunkIterAsync — Iter",
+  description: "Yields the items of an async iterable in groups of a specified size."
+};
+
 🧩 Yields the items of an async iterable in groups of a specified size.
 
 ## Syntax
 
 ```ts
 import { chunkIterAsync } from '@opentf/std';
-
 chunkIterAsync<T>(iterable: AsyncIterable<T>, size?: number): AsyncGenerator<T[]>
 ```
 

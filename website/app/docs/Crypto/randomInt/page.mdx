@@ -1,3 +1,8 @@
+export const metadata = {
+  title: "randomInt — Crypto",
+  description: "Generates a cryptographically secure random integer between min (inclusive) and max (inclusive)."
+};
+
 🔢 Generates a cryptographically secure random integer between min (inclusive) and max (inclusive).
 
 Uses the standard Web Crypto API (`globalThis.crypto`).
@@ -6,7 +11,6 @@ Uses the standard Web Crypto API (`globalThis.crypto`).
 
 ```ts
 import { randomInt } from '@opentf/std';
-
 randomInt(min: number, max: number): number;
 ```
 

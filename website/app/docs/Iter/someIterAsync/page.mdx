@@ -1,10 +1,14 @@
+export const metadata = {
+  title: "someIterAsync — Iter",
+  description: "Checks if any item in an async iterator matches a predicate."
+};
+
 🧩 Checks if any item in an async iterator matches a predicate.
 
 ## Syntax
 
 ```ts
 import { someIterAsync } from '@opentf/std';
-
 someIterAsync<T>(iter: AsyncIterable<T>, fn: (val: T) => boolean | Promise<boolean>): Promise<boolean>
 ```
 

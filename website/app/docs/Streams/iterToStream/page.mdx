@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "iterToStream — Streams",
+  description: "Turns an iterable, async iterable or iterator into a stream."
+};
+
 
 🌊 Turns an iterable, async iterable or iterator into a stream.
 
@@ -47,7 +52,6 @@ Round tripping a stream through the Iter operators:
 
 ```ts
 import { streamToIter, iterToStream, mapIterAsync } from '@opentf/std';
-
 const upper = mapIterAsync(streamToIter(input), (chunk) => chunk.toUpperCase());
 
 const output = iterToStream(upper);

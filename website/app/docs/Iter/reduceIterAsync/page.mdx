@@ -1,10 +1,14 @@
+export const metadata = {
+  title: "reduceIterAsync — Iter",
+  description: "Accumulates values from an async iterator using a reducer function."
+};
+
 🧩 Accumulates values from an async iterator using a reducer function.
 
 ## Syntax
 
 ```ts
 import { reduceIterAsync } from '@opentf/std';
-
 reduceIterAsync<T, U>(iter: AsyncIterable<T>, fn: (acc: U, val: T) => U | Promise<U>, initialValue: U): Promise<U>
 ```
 

@@ -1,10 +1,15 @@
+import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "groupBy — Array",
+  description: "Groups elements of an array based on a specified key or iteratee function."
+};
+
 📂 Groups elements of an array based on a specified key or iteratee function.
 
 ## Syntax
 
 ```ts
 import { groupBy } from '@opentf/std';
-
 groupBy<T>(
   arr: T[],
   key: ((val: T, index: number, arr: T[]) => string) | string
@@ -19,6 +24,11 @@ groupBy<T>(
 ## Returns
 
 An object where keys are the result of the iteratee and values are arrays of elements that produced that key.
+
+<Callout type="warning" emoji="🛡️">
+  Keys of `__proto__`, `constructor` and `prototype` are refused and their elements
+  dropped, as writing one would reach the prototype of the result.
+</Callout>
 
 ## Examples
 

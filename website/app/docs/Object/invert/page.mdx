@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "invert — Object",
+  description: "Swaps the keys and values of an object."
+};
+
 
 🔄 Swaps the keys and values of an object.
 
@@ -6,7 +11,6 @@ import { Callout } from "@opentf/web-docs";
 
 ```ts
 import { invert } from '@opentf/std';
-
 invert<T extends object>(obj: T): Record<string, string>;
 ```
 
@@ -23,6 +27,11 @@ The inverted object. Values become keys, so they are coerced to strings the same
 <Callout type="warning">
   The mapping is only reversible when the values are unique. Where two keys share a value
   the **later one wins**, and the earlier key is lost.
+</Callout>
+
+<Callout type="warning" emoji="🛡️">
+  Values become keys here, so the **value** is what is checked: a value of `__proto__`,
+  `constructor` or `prototype` is refused and its entry dropped.
 </Callout>
 
 ## Examples

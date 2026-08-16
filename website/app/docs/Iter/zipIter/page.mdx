@@ -1,10 +1,14 @@
+export const metadata = {
+  title: "zipIter — Iter",
+  description: "Yields one group per position, taking one item from each iterable."
+};
+
 🧩 Yields one group per position, taking one item from each iterable.
 
 ## Syntax
 
 ```ts
 import { zipIter } from '@opentf/std';
-
 zipIter<T>(...iterables: Iterable<T>[]): Generator<(T | undefined)[]>
 ```
 

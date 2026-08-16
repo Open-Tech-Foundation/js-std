@@ -3,6 +3,12 @@ import navMap from '@opentf/web-docs/nav';
 import config from '../otfw.config.js';
 import Intro from './components/Intro.mdx';
 
+export const metadata = {
+  title: { absolute: 'JS Standard Library' },
+  description:
+    'An extensive JavaScript standard library — lightweight, high-accuracy, and runtime-agnostic.',
+};
+
 /**
  * The landing page renders the docs Introduction directly, rather than
  * redirecting to /docs.

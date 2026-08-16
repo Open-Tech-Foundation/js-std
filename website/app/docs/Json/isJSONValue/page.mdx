@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "isJSONValue — Json",
+  description: "Checks whether a value can be represented as JSON without loss."
+};
+
 
 Checks whether a value can be represented as JSON without loss.
 
@@ -10,7 +15,6 @@ Checks whether a value can be represented as JSON without loss.
 
 ```ts
 import { isJSONValue } from '@opentf/std';
-
 isJSONValue(val: unknown): val is JsonValue
 // JsonValue = string | number (finite) | boolean | null | JsonValue[] | { [k: string]: JsonValue }
 ```

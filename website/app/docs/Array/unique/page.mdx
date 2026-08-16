@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "unique — Array",
+  description: "Creates a unique version of an array by removing duplicate values."
+};
+
 
 💎 Creates a unique version of an array by removing duplicate values.
 
@@ -10,7 +15,6 @@ import { Callout } from "@opentf/web-docs";
 
 ```ts
 import { unique } from '@opentf/std';
-
 unique<T>(
   arr: T[] = [],
   by?: (val: T) => unknown

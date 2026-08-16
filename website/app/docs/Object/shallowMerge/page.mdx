@@ -1,4 +1,9 @@
 import { Callout } from "@opentf/web-docs";
+export const metadata = {
+  title: "shallowMerge — Object",
+  description: "Shallow Merges objects or arrays."
+};
+
 
 Shallow Merges objects or arrays.
 
@@ -6,12 +11,17 @@ Shallow Merges objects or arrays.
 
 ```ts
 import { shallowMerge } from '@opentf/std';
-
 shallowMerge(obj1, ...objN);
 ```
 
 <Callout type="info" emoji="✅">
 Immutable: This does not mutate the given arrays or objects.
+</Callout>
+
+<Callout type="warning" emoji="🛡️">
+  Sources are copied without `Object.assign`, so an own `__proto__` key — what
+  `JSON.parse` produces for `{"__proto__":{...}}` — cannot replace the result's
+  prototype. This matters when merging defaults with an untrusted request body.
 </Callout>
 
 ## Examples
