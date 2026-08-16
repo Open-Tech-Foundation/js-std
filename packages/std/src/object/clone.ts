@@ -9,6 +9,7 @@ import isRegExp from '../types/isRegExp';
 import isSet from '../types/isSet';
 import isTypedArray, { type TypedArray } from '../types/isTypedArray';
 import isUnsafeKey from './isUnsafeKey';
+import { checkDepth } from './maxDepth';
 
 interface TypedArrayConstructor {
   new (buf: ArrayBufferLike, offset: number, len: number): TypedArray;
@@ -18,7 +19,13 @@ interface ArrayBufferConstructor {
   new (byteLength: number, options?: { maxByteLength: number }): ArrayBuffer;
 }
 
-function cloneObj<T>(obj: T, objRefMap: WeakMap<WeakKey, unknown>): T {
+function cloneObj<T>(
+  obj: T,
+  objRefMap: WeakMap<WeakKey, unknown>,
+  depth = 0,
+): T {
+  checkDepth(depth, 'clone');
+
   if (!isObject(obj)) {
     return obj;
   }
@@ -36,7 +43,7 @@ function cloneObj<T>(obj: T, objRefMap: WeakMap<WeakKey, unknown>): T {
       if (isUnsafeKey(k)) {
         continue;
       }
-      cObj[k] = cloneObj(v, objRefMap);
+      cObj[k] = cloneObj(v, objRefMap, depth + 1);
     }
 
     for (const sym of Object.getOwnPropertySymbols(obj)) {
@@ -53,7 +60,7 @@ function cloneObj<T>(obj: T, objRefMap: WeakMap<WeakKey, unknown>): T {
     const arr = new Array(obj.length);
     objRefMap.set(obj, arr);
     obj.forEach((v, i) => {
-      arr[i] = cloneObj(v, objRefMap);
+      arr[i] = cloneObj(v, objRefMap, depth + 1);
     });
 
     return arr as T;
@@ -70,7 +77,10 @@ function cloneObj<T>(obj: T, objRefMap: WeakMap<WeakKey, unknown>): T {
     objRefMap.set(obj, map);
 
     for (const [key, value] of obj) {
-      map.set(cloneObj(key, objRefMap), cloneObj(value, objRefMap));
+      map.set(
+        cloneObj(key, objRefMap, depth + 1),
+        cloneObj(value, objRefMap, depth + 1),
+      );
     }
 
     return map as T;
@@ -81,7 +91,7 @@ function cloneObj<T>(obj: T, objRefMap: WeakMap<WeakKey, unknown>): T {
     objRefMap.set(obj, set);
 
     for (const item of obj) {
-      set.add(cloneObj(item, objRefMap));
+      set.add(cloneObj(item, objRefMap, depth + 1));
     }
 
     return set as T;
@@ -97,11 +107,15 @@ function cloneObj<T>(obj: T, objRefMap: WeakMap<WeakKey, unknown>): T {
     c.stack = obj.stack;
 
     if ('cause' in obj) {
-      c.cause = cloneObj(obj.cause, objRefMap);
+      c.cause = cloneObj(obj.cause, objRefMap, depth + 1);
     }
 
     for (const key of Object.keys(obj)) {
-      c[key] = cloneObj((obj as Record<string, unknown>)[key], objRefMap);
+      c[key] = cloneObj(
+        (obj as Record<string, unknown>)[key],
+        objRefMap,
+        depth + 1,
+      );
     }
 
     for (const sym of Object.getOwnPropertySymbols(obj)) {
@@ -129,7 +143,7 @@ function cloneObj<T>(obj: T, objRefMap: WeakMap<WeakKey, unknown>): T {
   }
 
   if (isTypedArray(obj)) {
-    const buff = cloneObj(obj.buffer, objRefMap) as ArrayBufferLike;
+    const buff = cloneObj(obj.buffer, objRefMap, depth + 1) as ArrayBufferLike;
     return new (obj.constructor as TypedArrayConstructor)(
       buff,
       obj.byteOffset,
@@ -138,7 +152,7 @@ function cloneObj<T>(obj: T, objRefMap: WeakMap<WeakKey, unknown>): T {
   }
 
   if (isDataView(obj)) {
-    const buf = cloneObj(obj.buffer, objRefMap) as ArrayBufferLike;
+    const buf = cloneObj(obj.buffer, objRefMap, depth + 1) as ArrayBufferLike;
 
     return new DataView(buf, obj.byteOffset, obj.byteLength) as T;
   }
@@ -157,5 +171,5 @@ function cloneObj<T>(obj: T, objRefMap: WeakMap<WeakKey, unknown>): T {
  */
 export default function clone<T>(val: T): T {
   const objRefMap = new WeakMap();
-  return cloneObj(val, objRefMap);
+  return cloneObj(val, objRefMap, 0);
 }

@@ -1,6 +1,7 @@
 import isArray from '../types/isArray';
 import isPlainObject from '../types/isPlainObject';
 import isUnsafeKey from './isUnsafeKey';
+import { checkDepth } from './maxDepth';
 import merge, { createMergeTarget, type IterableObj } from './merge';
 
 /**
@@ -12,7 +13,9 @@ import merge, { createMergeTarget, type IterableObj } from './merge';
  *
  * mergeAll([[1], [2]]) //=> [1, 2]
  */
-function deepMerge(acc: IterableObj, cur: IterableObj) {
+function deepMerge(acc: IterableObj, cur: IterableObj, depth = 0) {
+  checkDepth(depth, 'mergeAll');
+
   for (const [key, val] of Object.entries(cur)) {
     if (isUnsafeKey(key)) {
       continue;
@@ -20,7 +23,11 @@ function deepMerge(acc: IterableObj, cur: IterableObj) {
     if (isArray(val) && isArray(acc[key])) {
       acc[key] = (acc[key] as unknown[]).concat(val);
     } else if (isPlainObject(val) && isPlainObject(acc[key])) {
-      acc[key] = deepMerge(acc[key] as IterableObj, val as IterableObj);
+      acc[key] = deepMerge(
+        acc[key] as IterableObj,
+        val as IterableObj,
+        depth + 1,
+      );
     } else {
       acc[key] = val;
     }
@@ -31,7 +38,11 @@ function deepMerge(acc: IterableObj, cur: IterableObj) {
     if (isArray(val) && isArray(acc[sym])) {
       acc[sym] = (acc[sym] as unknown[]).concat(val);
     } else if (isPlainObject(val) && isPlainObject(acc[sym])) {
-      acc[sym] = deepMerge(acc[sym] as IterableObj, val as IterableObj);
+      acc[sym] = deepMerge(
+        acc[sym] as IterableObj,
+        val as IterableObj,
+        depth + 1,
+      );
     } else {
       acc[sym] = val;
     }

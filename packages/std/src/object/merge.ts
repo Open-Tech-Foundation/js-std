@@ -1,6 +1,7 @@
 import isArray from '../types/isArray';
 import isPlainObject from '../types/isPlainObject';
 import isUnsafeKey from './isUnsafeKey';
+import { checkDepth } from './maxDepth';
 
 export type IterableObj = {
   [key: number | string | symbol]: unknown;
@@ -26,7 +27,9 @@ export function createMergeTarget(source: object | undefined): IterableObj {
  * const b = { a: { c: 2 } };
  * merge(a, b); //=> {a: { b: 1, c: 2 } }
  */
-export default function merge(...objs: object[]): object {
+function mergeAt(depth: number, ...objs: object[]): object {
+  checkDepth(depth, 'merge');
+
   const filteredObjs = objs.filter((v) => isArray(v) || isPlainObject(v));
   const initialVal = createMergeTarget(filteredObjs[0]);
 
@@ -36,7 +39,7 @@ export default function merge(...objs: object[]): object {
         continue;
       }
       if (isArray(val) || isPlainObject(val)) {
-        acc[key] = merge(acc[key] as object, val);
+        acc[key] = mergeAt(depth + 1, acc[key] as object, val);
       } else {
         acc[key] = val;
       }
@@ -45,11 +48,15 @@ export default function merge(...objs: object[]): object {
     for (const sym of Object.getOwnPropertySymbols(cur)) {
       const val = (cur as IterableObj)[sym];
       if (isArray(val) || isPlainObject(val)) {
-        acc[sym] = merge(acc[sym] as object, val as object);
+        acc[sym] = mergeAt(depth + 1, acc[sym] as object, val as object);
       } else {
         acc[sym] = val;
       }
     }
     return acc;
   }, initialVal);
+}
+
+export default function merge(...objs: object[]): object {
+  return mergeAt(0, ...objs);
 }

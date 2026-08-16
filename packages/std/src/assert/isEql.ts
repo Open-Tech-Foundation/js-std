@@ -1,3 +1,4 @@
+import { checkDepth } from '../object/maxDepth';
 import type { IterableObj } from '../object/merge';
 import size from '../object/size';
 import isArray from '../types/isArray';
@@ -27,7 +28,10 @@ function isEqlVal(
   val2: unknown,
   objRefSet1: WeakSet<WeakKey>,
   objRefSet2: WeakSet<WeakKey>,
+  depth = 0,
 ): boolean {
+  checkDepth(depth, 'isEql');
+
   // Handles primitives
   if (Object.is(val1, val2)) {
     return true;
@@ -85,6 +89,7 @@ function isEqlVal(
           (val2 as IterableObj)[key],
           objRefSet1,
           objRefSet2,
+          depth + 1,
         )
       ) {
         return false;
@@ -98,6 +103,7 @@ function isEqlVal(
           (val2 as IterableObj)[key],
           objRefSet1,
           objRefSet2,
+          depth + 1,
         )
       ) {
         return false;
@@ -124,8 +130,8 @@ function isEqlVal(
       const [key2, value2] = entries2[i];
 
       if (
-        !isEqlVal(key1, key2, objRefSet1, objRefSet2) ||
-        !isEqlVal(value1, value2, objRefSet1, objRefSet2)
+        !isEqlVal(key1, key2, objRefSet1, objRefSet2, depth + 1) ||
+        !isEqlVal(value1, value2, objRefSet1, objRefSet2, depth + 1)
       ) {
         return false;
       }
@@ -136,7 +142,9 @@ function isEqlVal(
   if (isSet(val1)) {
     const itVal2 = (val2 as Set<unknown>).values();
     for (const value of val1) {
-      if (!isEqlVal(value, itVal2.next().value, objRefSet1, objRefSet2)) {
+      if (
+        !isEqlVal(value, itVal2.next().value, objRefSet1, objRefSet2, depth + 1)
+      ) {
         return false;
       }
     }
@@ -149,7 +157,7 @@ function isEqlVal(
       return false;
     }
 
-    if (!isEqlVal(val1.cause, err2.cause, objRefSet1, objRefSet2)) {
+    if (!isEqlVal(val1.cause, err2.cause, objRefSet1, objRefSet2, depth + 1)) {
       return false;
     }
 
@@ -169,6 +177,7 @@ function isEqlVal(
           (val2 as any)[key],
           objRefSet1,
           objRefSet2,
+          depth + 1,
         )
       ) {
         return false;
@@ -186,6 +195,7 @@ function isEqlVal(
           (val2 as any)[key],
           objRefSet1,
           objRefSet2,
+          depth + 1,
         )
       ) {
         return false;
@@ -210,7 +220,7 @@ function isEqlVal(
     const ta2 = new Uint8Array(val2 as ArrayBuffer);
 
     for (const key of ta1.keys()) {
-      if (!isEqlVal(ta1[key], ta2[key], objRefSet1, objRefSet2)) {
+      if (!isEqlVal(ta1[key], ta2[key], objRefSet1, objRefSet2, depth + 1)) {
         return false;
       }
     }
@@ -226,6 +236,7 @@ function isEqlVal(
           (val2 as DataView).getUint8(i),
           objRefSet1,
           objRefSet2,
+          depth + 1,
         )
       ) {
         return false;
@@ -327,5 +338,5 @@ export default function isEql(
   const objRefSet1 = new WeakSet();
   const objRefSet2 = new WeakSet();
 
-  return isEqlVal(val1, val2, objRefSet1, objRefSet2);
+  return isEqlVal(val1, val2, objRefSet1, objRefSet2, 0);
 }

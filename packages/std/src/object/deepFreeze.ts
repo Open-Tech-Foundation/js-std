@@ -1,5 +1,6 @@
 import isDataView from '../types/isDataView';
 import isTypedArray from '../types/isTypedArray';
+import { checkDepth } from './maxDepth';
 
 /**
  * Every property of `T` made readonly, recursively.
@@ -25,7 +26,9 @@ export type DeepReadonly<T> = T extends
       ? { readonly [K in keyof T]: DeepReadonly<T[K]> }
       : T;
 
-function freeze(val: unknown, seen: WeakSet<WeakKey>): void {
+function freeze(val: unknown, seen: WeakSet<WeakKey>, depth = 0): void {
+  checkDepth(depth, 'deepFreeze');
+
   if (val === null || (typeof val !== 'object' && typeof val !== 'function')) {
     return;
   }
@@ -53,18 +56,18 @@ function freeze(val: unknown, seen: WeakSet<WeakKey>): void {
     // to build a fresh object every call — one nothing else holds a reference
     // to, making it pointless to freeze.
     if (desc && 'value' in desc) {
-      freeze(desc.value, seen);
+      freeze(desc.value, seen, depth + 1);
     }
   }
 
   if (val instanceof Map) {
     for (const [k, v] of val) {
-      freeze(k, seen);
-      freeze(v, seen);
+      freeze(k, seen, depth + 1);
+      freeze(v, seen, depth + 1);
     }
   } else if (val instanceof Set) {
     for (const v of val) {
-      freeze(v, seen);
+      freeze(v, seen, depth + 1);
     }
   }
 }
