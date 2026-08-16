@@ -163,9 +163,17 @@ function serializeValue(value: unknown, seen: Map<object, number>): string {
   return `object-ref:${getRefId(obj)}`;
 }
 
+/** The number of keys held before the least recently used one is dropped. */
+export const DEFAULT_MAX_SIZE = 1000;
+
 export interface MemoizeRunOptions<Args extends any[]> {
   /** How long a cached result stays usable, in milliseconds. Unlimited by default. */
   maxAge?: number;
+  /**
+   * The number of distinct keys to hold. Defaults to `DEFAULT_MAX_SIZE`
+   * (1000); pass `Infinity` for the unbounded cache.
+   */
+  maxSize?: number;
   /** Derives the cache key from the arguments. Defaults to structural serialisation. */
   key?: (...args: Args) => string;
 }
@@ -181,15 +189,46 @@ export interface MemoizeRunFn<T, Args extends any[]> {
  * Caches the results of an asynchronous function.
  * Supports Single Flight (concurrent request de-duplication) and TTL.
  *
+ * The cache holds `maxSize` keys and drops the least recently used one beyond
+ * that. It is bounded by default because `maxAge` alone does not bound it:
+ * expiry is checked when a key is looked up, so a key that is never asked for
+ * again is never reached and its entry stays. Memoizing over anything an
+ * outside caller chooses — a user id, a URL, a search term — would otherwise
+ * grow without limit, and 200,000 distinct keys hold about 72 MB.
+ *
+ * Pass `maxSize: Infinity` for the unbounded behaviour, where the argument
+ * space is known to be small and every result is worth keeping.
+ *
  * @example
  * const memoized = memoizeRun(fetchUser, { maxAge: 5000 });
+ *
+ * @example
+ * // A hot path over a small, fixed set of keys.
+ * const config = memoizeRun(loadConfig, { maxSize: Infinity });
  */
 export default function memoizeRun<T, Args extends any[]>(
   func: (...args: Args) => Promise<T>,
   options: MemoizeRunOptions<Args> = {},
 ): MemoizeRunFn<T, Args> {
-  const { maxAge, key: keyFn } = options;
+  const { maxAge, maxSize = DEFAULT_MAX_SIZE, key: keyFn } = options;
+
+  if (maxSize < 1 || Number.isNaN(maxSize)) {
+    throw new RangeError('The maxSize must be at least 1.');
+  }
+
   const cache = new Map<string, CacheEntry<T, Args>[]>();
+
+  /** Drops the oldest keys until the cache is within `maxSize`. */
+  const evict = (): void => {
+    while (cache.size > maxSize) {
+      const oldest = cache.keys().next();
+      if (oldest.done) {
+        break;
+      }
+
+      cache.delete(oldest.value);
+    }
+  };
 
   const memoized = async (...args: Args): Promise<T> => {
     const key = keyFn
@@ -204,6 +243,9 @@ export default function memoizeRun<T, Args extends any[]>(
       });
 
       if (activeEntries.length > 0) {
+        // Re-inserting moves the key to the end, making it the most recently
+        // used; `set` on a key already present leaves the order alone.
+        cache.delete(key);
         cache.set(key, activeEntries);
 
         for (const entry of activeEntries) {
@@ -227,6 +269,7 @@ export default function memoizeRun<T, Args extends any[]>(
       entries.push(entry);
     } else {
       cache.set(key, [entry]);
+      evict();
     }
 
     try {

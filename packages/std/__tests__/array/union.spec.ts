@@ -38,3 +38,26 @@ describe('Array > union', () => {
     ]);
   });
 });
+
+describe('Array > union flattening', () => {
+  test('is linear in the total number of elements', () => {
+    // Flattening with `reduce` + `concat` copied the accumulator every step,
+    // so 100,000 elements took 3.6 seconds.
+    const collections = Array.from({ length: 100_000 }, (_, i) => [i]);
+
+    const start = performance.now();
+    const out = union(collections);
+    const elapsed = performance.now() - start;
+
+    expect(out).toHaveLength(100_000);
+    expect(elapsed).toBeLessThan(2000);
+  });
+
+  test('keeps the flattening semantics concat had', () => {
+    expect(union([[1, 2], [2, 3]])).toEqual([1, 2, 3]);
+    expect(union([])).toEqual([]);
+    expect(union([[1], [2], [3]])).toEqual([1, 2, 3]);
+    // A non-array member was appended as a single value.
+    expect(union([[1], 2 as unknown as unknown[]])).toEqual([1, 2]);
+  });
+});

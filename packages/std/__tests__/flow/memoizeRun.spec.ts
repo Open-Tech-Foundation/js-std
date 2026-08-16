@@ -155,3 +155,74 @@ describe('memoizeRun', () => {
     expect(func).toHaveBeenCalledTimes(2);
   });
 });
+
+describe('Flow > memoizeRun cache bounds', () => {
+  test('drops the least recently used key past maxSize', async () => {
+    let calls = 0;
+    const fn = memoizeRun(
+      async (n: number) => {
+        calls++;
+        return n;
+      },
+      { maxSize: 3 },
+    );
+
+    await fn(1);
+    await fn(2);
+    await fn(3);
+    await fn(1); // 1 is now the most recent, so 2 is the oldest
+    expect(calls).toBe(3);
+
+    await fn(4); // evicts 2
+    expect(calls).toBe(4);
+
+    await fn(1);
+    expect(calls).toBe(4); // still cached
+
+    await fn(2);
+    expect(calls).toBe(5); // was evicted, so it ran again
+  });
+
+  test('is bounded by default', async () => {
+    let calls = 0;
+    const fn = memoizeRun(async (n: number) => {
+      calls++;
+      return n;
+    });
+
+    // maxAge alone never bounded this: expiry is checked on lookup, so a key
+    // nobody asks for again is never reached and its entry stays for good.
+    for (let i = 0; i < 1200; i++) await fn(i);
+    expect(calls).toBe(1200);
+
+    await fn(0); // past the default bound, so it was dropped
+    expect(calls).toBe(1201);
+
+    await fn(1199); // the newest is still held
+    expect(calls).toBe(1201);
+  });
+
+  test('maxSize Infinity keeps everything', async () => {
+    let calls = 0;
+    const fn = memoizeRun(
+      async (n: number) => {
+        calls++;
+        return n;
+      },
+      { maxSize: Number.POSITIVE_INFINITY },
+    );
+
+    for (let i = 0; i < 1500; i++) await fn(i);
+    await fn(0);
+
+    expect(calls).toBe(1500);
+  });
+
+  test('refuses a maxSize below one', () => {
+    expect(() => memoizeRun(async () => 1, { maxSize: 0 })).toThrow(RangeError);
+    expect(() => memoizeRun(async () => 1, { maxSize: -5 })).toThrow(RangeError);
+    expect(() => memoizeRun(async () => 1, { maxSize: Number.NaN })).toThrow(
+      RangeError,
+    );
+  });
+});

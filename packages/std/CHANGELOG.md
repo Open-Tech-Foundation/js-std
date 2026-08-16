@@ -18,6 +18,15 @@
 - `Decimal.divide` validated nothing about `decimalPlaces`: a negative value silently returned `0`, and a large one was taken at face value even though it sets the size of the BigInt being divided rather than an iteration count. It now requires a non-negative integer and caps it at `Decimal.MAX_DECIMAL_PLACES` (1000).
 - `escapeHTML` now escapes the backtick as `&#96;`, and `unescapeHTML` reverses it. The backtick is not special in HTML itself, but it ends a template literal, and escaped text is often dropped into one on the way to the page. The docstring also states what the function is and is not enough for: an element body or a quoted attribute, but not a `<script>` or `<style>` block, a URL, an unquoted attribute or an event handler.
 
+- `range` never checked its end for size or for finiteness, only its start and step, so `range(1e308)` passed every guard and then looped until the process ran out of memory. The end must be finite now, and a range wider than `MAX_RANGE_LENGTH` (10,000,000) is refused rather than attempted.
+- `randomString` and `randomId` checked the length with `Number.isInteger`, which is true of `1e308`. A length taken from a caller therefore passed and then looped once per character, drawing from the random source each time — about 8.8e292 years for that value. The length must be a safe integer no greater than `MAX_RANDOM_LENGTH` (65,536).
+- `memoizeRun` held its cache without bound, and `maxAge` did not bound it either: expiry is checked when a key is looked up, so a key nobody asks for again is never reached and its entry stays for the life of the process. Memoizing over anything an outside caller chooses — a user id, a URL, a search term — grew without limit, at about 72 MB per 200,000 keys. The cache now holds `maxSize` keys (1000 by default) and drops the least recently used beyond that; pass `maxSize: Infinity` for the old behaviour.
+- `encodeBase58` and `decodeBase58` are quadratic in the length of their input, which is a property of an encoding with no block structure rather than of these implementations. 100,000 bytes took 57 seconds to encode and 50,000 characters took 5 seconds to decode. Both now refuse an input beyond a limit set far above the identifiers the encoding is used for — a Bitcoin address is 25 bytes, an IPFS CIDv0 is 34 — holding the worst case under a tenth of a second.
+
+### Performance
+
+- `union` flattened with `reduce` and `concat`, which copies the whole accumulator on every step and is quadratic in the total number of elements. A union over 100,000 of them took 3.6 seconds; it now takes 13. This affected ordinary calls, not only hostile ones.
+
 ### Changed
 
 - Consolidated the prototype-key check onto a single internal helper, renamed `isUnsafePathKey` to `isUnsafeKey` now that it guards ordinary property keys and not only path segments. It had been copy-pasted inline in four places alongside the helper, which is how the functions above came to be missed: adding the guard is now a missing import rather than a silently missing condition. The helper is internal, so the public API is unchanged.

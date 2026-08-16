@@ -104,3 +104,28 @@ describe('Array > range', () => {
     expect(range(0, 0, { inclusive: true })).toEqual([0]);
   });
 });
+
+describe('Array > range bounds', () => {
+  // `range(1e308)` passed every check and then looped until the process ran
+  // out of memory: `stop` was never tested for finiteness or for size.
+  test('refuses a range that would never finish', () => {
+    expect(() => range(1e308)).toThrow(RangeError);
+    expect(() => range(0, 1e12)).toThrow(RangeError);
+    expect(() => range(-1e308)).toThrow(RangeError);
+  });
+
+  test('refuses an infinite end', () => {
+    expect(() => range(Number.POSITIVE_INFINITY)).toThrow();
+    expect(() => range(0, Number.POSITIVE_INFINITY)).toThrow();
+    expect(() => range(0, Number.NEGATIVE_INFINITY)).toThrow();
+  });
+
+  test('ordinary ranges are unaffected', () => {
+    expect(range(4)).toEqual([0, 1, 2, 3]);
+    expect(range(-4)).toEqual([0, -1, -2, -3]);
+    expect(range(1, 5)).toEqual([1, 2, 3, 4]);
+    expect(range(0, 20, 5)).toEqual([0, 5, 10, 15]);
+    expect(range(1, 4, { inclusiveEnd: true })).toEqual([1, 2, 3, 4]);
+    expect(range(0, 100_000)).toHaveLength(100_000);
+  });
+});

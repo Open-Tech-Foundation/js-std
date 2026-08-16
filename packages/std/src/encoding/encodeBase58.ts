@@ -26,8 +26,27 @@ function toUint8Array(bytes: Uint8Array | ArrayBuffer): Uint8Array {
  * @example
  * encodeBase58(new Uint8Array([0, 0, 1])) //=> '112'
  */
+/**
+ * The most bytes this will encode.
+ *
+ * Base58 has no block structure — every byte carries into the whole
+ * accumulator — so encoding is quadratic in the length of the input, as
+ * decoding is. 100,000 bytes took 57 seconds.
+ *
+ * The encoding is used for identifiers, which are short: a Bitcoin address is
+ * 25 bytes before encoding, an IPFS CIDv0 34. The limit is far above those and
+ * holds the worst case to well under a second.
+ */
+export const MAX_BASE58_BYTES = 3072;
+
 export default function encodeBase58(bytes: Uint8Array | ArrayBuffer): string {
   const input = toUint8Array(bytes);
+
+  if (input.length > MAX_BASE58_BYTES) {
+    throw new RangeError(
+      `The Base58 input must not exceed ${MAX_BASE58_BYTES} bytes.`,
+    );
+  }
 
   if (input.length === 0) {
     return '';

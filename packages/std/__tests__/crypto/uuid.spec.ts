@@ -98,10 +98,10 @@ describe('Crypto Utilities', () => {
     expect(typeof str).toBe('string');
     expect(randomString(5, '01')).toMatch(/^[01]{5}$/);
     expect(() => randomString(-1)).toThrow(
-      'The length must be a non-negative integer.',
+      'The length must be a non-negative safe integer.',
     );
     expect(() => randomString(2.5)).toThrow(
-      'The length must be a non-negative integer.',
+      'The length must be a non-negative safe integer.',
     );
     expect(() => randomString(3, '')).toThrow(
       'The character set must not be empty.',
@@ -114,10 +114,10 @@ describe('Crypto Utilities', () => {
     expect(randomId(10).length).toBe(10);
     expect(id).toMatch(/^[A-Za-z0-9_-]{21}$/);
     expect(() => randomId(-1)).toThrow(
-      'The length must be a non-negative integer.',
+      'The length must be a non-negative safe integer.',
     );
     expect(() => randomId(2.1)).toThrow(
-      'The length must be a non-negative integer.',
+      'The length must be a non-negative safe integer.',
     );
   });
 
