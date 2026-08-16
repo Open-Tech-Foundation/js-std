@@ -2,11 +2,16 @@
 
 Returns a new array containing elements which are in either this or other, but not in both.
 
-@param {unknown[][]} collections The arrays to compare.
-@param {Function} by The iteratee invoked per element.
-@returns {unknown[]} A new array of symmetrical difference values.
+## Parameters
 
-### Example
+- **collections** `unknown[][]` — The arrays to compare.
+- **by** `Function` — The iteratee invoked per element.
+
+## Returns
+
+`unknown[]` — A new array of symmetrical difference values.
+
+## Example
 
 ```js
 const evens = [2, 4, 6, 8];

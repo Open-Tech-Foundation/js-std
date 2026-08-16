@@ -2,13 +2,10 @@
 
 Checks if the given value is a generator function.
 
-### Example
+## Example
 
 ```js
+isFunction(function() {}) //=> false
 
-isGeneratorFunction(function() {}) //=> false
-
-isGeneratorFunction(function*() {}) //=> true
-
-isGeneratorFunction(async function*() {}) //=> false
+isFunction(function*() {}) //=> true
 ```

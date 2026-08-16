@@ -2,10 +2,9 @@
 
 Checks if the given value is null.
 
-### Example
+## Example
 
 ```js
-
 isNull(null) //=> true
 
 isNull(undefined) //=> false

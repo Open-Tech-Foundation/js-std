@@ -63,6 +63,7 @@
   },
   "scripts": {
     "build": "rolldown -c",
+    "docs": "node scripts/gen-docs.js",
     "test": "bun test",
     "dev": "rolldown -c --watch",
     "check-types": "tsc --noEmit",

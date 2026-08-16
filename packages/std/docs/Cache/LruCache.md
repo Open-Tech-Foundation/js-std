@@ -1,3 +1,5 @@
+<!-- handwritten -->
+
 # LruCache
 
 A fixed-capacity cache that evicts the least recently used entry once it is full.
@@ -6,9 +8,11 @@ Recency is tracked by `Map` insertion order: reading or writing a key moves it t
 
 `get` counts as a use; `peek` deliberately does not, so a cache can be inspected without disturbing what it is about to evict. `has` does not count either.
 
-@param maxSize - The number of entries to hold before evicting.
+## Parameters
 
-### Example
+- **maxSize** — The number of entries to hold before evicting.
+
+## Example
 
 ```js
 const cache = new LruCache(2);

@@ -2,10 +2,9 @@
 
 Checks if the given value is a Map object.
 
-### Example
+## Example
 
 ```js
-
 isMap(new Map()) //=> true
 
 isMap(new WeakMap()) //=> false

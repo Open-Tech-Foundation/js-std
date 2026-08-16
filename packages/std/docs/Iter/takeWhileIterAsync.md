@@ -2,11 +2,16 @@
 
 Returns an AsyncGenerator that yields items from an AsyncIterable as long as a predicate is true.
 
-@param {AsyncIterable<T>} iter The source async iterable.
-@param {(val: T) => boolean | Promise<boolean>} fn The predicate function.
-@returns {AsyncIterableIterator<T>} A new async iterable iterator.
+## Parameters
 
-### Example
+- **iter** `AsyncIterable<T>` — The source async iterable.
+- **fn** `(val: T) => boolean | Promise<boolean>` — The predicate function.
+
+## Returns
+
+`AsyncIterableIterator<T>` — A new async iterable iterator.
+
+## Example
 
 ```js
 async function* gen() { yield 1; yield 2; yield 3; }

@@ -2,13 +2,10 @@
 
 Checks if the given value is an async function.
 
-### Example
+## Example
 
 ```js
-
 isAsyncFunction(async () => {}) //=> true
 
 isAsyncFunction(() => {}) //=> false
-
-isAsyncFunction(async function* () {}) //=> false
 ```

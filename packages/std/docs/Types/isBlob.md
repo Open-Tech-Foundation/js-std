@@ -2,10 +2,9 @@
 
 Checks if the given value is a blob.
 
-### Example
+## Example
 
 ```js
-
 isBlob(new Blob()) //=> true
 
 isBlob({}) //=> false

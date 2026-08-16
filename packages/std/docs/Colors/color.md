@@ -1,3 +1,5 @@
+<!-- handwritten -->
+
 # color
 
 Parses and converts colors between various formats.
@@ -7,11 +9,16 @@ produces a packed integer, and the `*-object` and `*-array` formats produce
 the components themselves. Passing a literal format narrows the return type
 to exactly one of those, so no cast or hand-narrowing is needed.
 
-@param {ColorInput} input The color input.
-@param {ColorFormat} format The output format.
-@returns {ColorOutput} The converted color.
+## Parameters
 
-### Example
+- **input** `ColorInput` — The color input.
+- **format** `ColorFormat` — The output format.
+
+## Returns
+
+`ColorOutput` — The converted color.
+
+## Example
 
 ```js
 color('#ff0000', 'rgb') //=> 'rgb(255, 0, 0)'

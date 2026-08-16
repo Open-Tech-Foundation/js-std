@@ -1,6 +1,12 @@
 # percentageOf
 
 It returns percentage of a number.
-@param {number} percentage - The percentage to calculate
-@param {number} num - The number to find percentage
-@returns {number}
+
+## Parameters
+
+- **percentage** `number` — The percentage to calculate
+- **num** `number` — The number to find percentage
+
+## Returns
+
+`number`

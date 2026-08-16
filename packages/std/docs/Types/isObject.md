@@ -2,10 +2,9 @@
 
 Checks if the given value is an object and not null.
 
-### Example
+## Example
 
 ```js
-
 isObject({}) //=> true
 
 isObject([]) //=> true

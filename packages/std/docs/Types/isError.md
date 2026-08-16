@@ -2,10 +2,9 @@
 
 Checks if the given value is an error.
 
-### Example
+## Example
 
 ```js
-
 isError(new Error()) //=> true
 
 isError({msg: '', name: ''}) //=> false

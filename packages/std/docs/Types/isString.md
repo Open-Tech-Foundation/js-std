@@ -2,10 +2,9 @@
 
 Checks if the given value is a string.
 
-### Example
+## Example
 
 ```js
-
 isString('abc') //=> true
 
 isString(String(1)) //=> true

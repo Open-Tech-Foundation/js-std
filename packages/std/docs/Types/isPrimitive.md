@@ -7,19 +7,31 @@ The seven primitive types are `string`, `number`, `boolean`, `bigint`,
 included.
 
 `null` is one of them, despite `typeof null` being `'object'` — a mistake old
-enough to be permanent, and the reason a `typeof` check alone gets this wrong.
+enough to be permanent, and the reason a `typeof` check alone gets this
+wrong.
 
-@param {unknown} val The value to check.
-@returns {boolean} `true` if the value is a primitive.
+## Parameters
 
-### Example
+- **val** `unknown` — The value to check.
+
+## Returns
+
+`boolean` — `true` if the value is a primitive.
+
+## Examples
 
 ```js
 isPrimitive(1) //=> true
+```
 
+```js
 isPrimitive(null) //=> true
+```
 
+```js
 isPrimitive({}) //=> false
+```
 
+```js
 isPrimitive(() => {}) //=> false
 ```

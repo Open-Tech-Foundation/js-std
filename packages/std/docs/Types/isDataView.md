@@ -2,10 +2,9 @@
 
 Checks if the given value is a DataView object.
 
-### Example
+## Example
 
 ```js
-
 const buffer = new ArrayBuffer(8)
 
 isDataView(buffer) //=> false

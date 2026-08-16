@@ -2,10 +2,9 @@
 
 Escapes characters for use in HTML.
 
-### Example
+## Example
 
 ```js
-
 escapeHTML('<script>alert("xss")</script>')
 //=> '&lt;script&gt;alert(&quot;xss&quot;)&lt;/script&gt;'
 ```

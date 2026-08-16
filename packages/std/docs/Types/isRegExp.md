@@ -2,10 +2,9 @@
 
 Checks if the given value is a RegExp object.
 
-### Example
+## Example
 
 ```js
-
 isRegExp(new RegExp()) //=> true
 
 isRegExp(/a/) //=> true

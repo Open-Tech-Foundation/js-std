@@ -2,10 +2,9 @@
 
 Checks if the given value is undefined.
 
-### Example
+## Example
 
 ```js
-
 isUndefined() //=> true
 
 isUndefined(undefined) //=> true

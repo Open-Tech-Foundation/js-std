@@ -1,3 +1,5 @@
+<!-- handwritten -->
+
 # batchRun
 
 Creates a batched function that collects calls and processes them in groups.
@@ -6,7 +8,7 @@ Creates a batched function that collects calls and processes them in groups.
 non-negative finite number, and the batch processor must return exactly one
 result for each queued call.
 
-### Example
+## Example
 
 ```js
 const batchFetch = batchRun(async (batch) => {

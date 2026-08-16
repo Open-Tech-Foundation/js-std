@@ -2,10 +2,9 @@
 
 Converts string to kebab-case.
 
-### Example
+## Example
 
 ```js
-
 kebabCase('Foo Bar') //=> 'foo-bar'
 
 kebabCase('fooBar') //=> 'foo-bar'

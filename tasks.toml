@@ -34,6 +34,12 @@ run = "biome format --write ."
 run = "rolldown -c"
 dir = "packages/std"
 
+# Regenerates `docs/` from the JSDoc on each export. Pages marked
+# `<!-- handwritten -->` are left alone; see scripts/gen-docs.js.
+[tasks.docs]
+run = "node scripts/gen-docs.js"
+dir = "packages/std"
+
 [tasks."website#build"]
 run = "otfw build --ssg"
 dir = "website"

@@ -1,3 +1,5 @@
+<!-- handwritten -->
+
 # pollRun
 
 Runs an asynchronous function repeatedly until its result satisfies a condition,
@@ -24,10 +26,14 @@ promise, the call in flight is not cancelled, because a promise has no cancel;
 polling simply stops. Pass `signal` through to the work itself where it must
 actually stop.
 
-@param {Function} fn The function to poll. May be sync or async.
-@param {PollRunOptions<T>} options The polling options. `until` is required.
-@returns {Promise<T>} The first result that satisfied `until`.
-@throws {Error} If the attempts or the timeout run out first.
+## Parameters
+
+- **fn** `Function` — The function to poll. May be sync or async.
+- **options** `PollRunOptions<T>` — The polling options. `until` is required.
+
+## Returns
+
+`Promise<T>` — The first result that satisfied `until`.
 
 ### Options
 
@@ -38,7 +44,11 @@ actually stop.
 - `timeout`: The longest to keep polling, in milliseconds. Defaults to `Infinity`.
 - `signal`: Aborting this signal rejects the poll and stops the pending wait.
 
-### Example
+## Throws
+
+- `Error` — If the attempts or the timeout run out first.
+
+## Example
 
 ```js
 const job = await pollRun(() => getJob(id), {

@@ -2,15 +2,20 @@
 
 Returns an AsyncGenerator that yields the first n items from an AsyncIterable.
 
-Exactly `n` items are read from the source and no more, so a value the result
-does not include is never awaited — which matters when producing one costs a
-request. An `n` of zero or less reads nothing at all.
+Exactly `n` items are read from the source and no more, so a value the
+result does not include is never awaited — which matters when producing one
+costs a request.
 
-@param {AsyncIterable} iterable The source async iterable.
-@param {number} n The number of items to take.
-@returns {AsyncGenerator} A new async generator with the first n items.
+## Parameters
 
-### Example
+- **iterable** `AsyncIterable` — The source async iterable.
+- **n** `number` — The number of items to take.
+
+## Returns
+
+`AsyncGenerator` — A new async generator with the first n items.
+
+## Example
 
 ```js
 const it = takeIterAsync(asyncIterable, 2);

@@ -1,3 +1,5 @@
+<!-- handwritten -->
+
 # stringSplice
 
 Removes characters from a string and inserts another in their place, following `Array.prototype.splice`.
@@ -6,13 +8,18 @@ Indices count UTF-16 code units, as `slice` and `indexOf` do, so a position take
 
 `start` must be a finite integer; a negative one counts back from the end. Omit `deleteCount` to remove everything from `start` onwards.
 
-@param {string} str The source string.
-@param {number} [start=0] The index to start changing the string at.
-@param {number} [deleteCount] The number of characters to remove.
-@param {string} [insert=''] The string to insert at `start`.
-@returns {string} The modified string.
+## Parameters
 
-### Example
+- **str** `string` — The source string.
+- **start** `number` _(default: `0`)_ — The index to start changing the string at.
+- **deleteCount** `number` _(optional)_ — The number of characters to remove.
+- **insert** `string` _(default: `''`)_ — The string to insert at `start`.
+
+## Returns
+
+`string` — The modified string.
+
+## Example
 
 ```js
 // Replace a range.

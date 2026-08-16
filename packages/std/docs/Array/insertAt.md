@@ -2,12 +2,17 @@
 
 Inserts items at the given index into the given array.
 
-@param {T[]} arr The source array.
-@param {number} index The index to insert items at.
-@param {T[]} items The items to insert.
-@returns {T[]} A new array with the inserted items.
+## Parameters
 
-### Example
+- **arr** `T[]` — The source array.
+- **index** `number` — The index to insert items at.
+- **items** `T[]` — The items to insert.
+
+## Returns
+
+`T[]` — A new array with the inserted items.
+
+## Example
 
 ```js
 insertAt([1, 2, 3], 1, 5); //=> [1, 5, 2, 3]

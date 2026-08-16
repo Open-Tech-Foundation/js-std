@@ -2,10 +2,9 @@
 
 Checks if the given value is Infinity.
 
-### Example
+## Example
 
 ```js
-
 isInfinity(0) //=> false
 
 isInfinity(NaN) //=> false

@@ -1,3 +1,5 @@
+<!-- handwritten -->
+
 # DateTime
 
 An immutable date and time in an IANA time zone.
@@ -6,8 +8,10 @@ Backed by the TC39 Temporal API where the runtime provides it, and by `Intl.Date
 
 Months and days are 1-based and `dayOfWeek` runs 1 (Monday) to 7 (Sunday), following Temporal and ISO-8601 rather than the legacy `Date`. Every method returns a new instance; nothing mutates.
 
-@param input - An ISO-8601 string, epoch milliseconds, a `Date`, another `DateTime`, or a wall-clock fields object. Omit it for the current time.
-@param options - `timeZone` (IANA id, default `'UTC'`) and `disambiguation` (`'compatible'` | `'earlier'` | `'later'` | `'reject'`, default `'compatible'`).
+## Parameters
+
+- **input** — An ISO-8601 string, epoch milliseconds, a `Date`, another `DateTime`, or a wall-clock fields object. Omit it for the current time.
+- **options** — `timeZone` (IANA id, default `'UTC'`) and `disambiguation` (`'compatible'` | `'earlier'` | `'later'` | `'reject'`, default `'compatible'`).
 
 Parsing is strict ISO-8601 and throws a `RangeError` rather than yielding an `Invalid Date`, because `Date.parse` is implementation-defined outside the ISO subset and disagrees across runtimes.
 
@@ -35,7 +39,7 @@ Parsing is strict ISO-8601 and throws a `RangeError` rather than yielding an `In
 
 Units are `'year'`, `'month'`, `'week'`, `'day'`, `'hour'`, `'minute'`, `'second'` and `'millisecond'`.
 
-### Example
+## Example
 
 ```js
 const dt = new DateTime('2026-03-08T01:30:00', { timeZone: 'America/New_York' });

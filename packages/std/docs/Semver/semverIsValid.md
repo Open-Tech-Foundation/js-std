@@ -1,13 +1,20 @@
 # semverIsValid
 
-Checks whether a string is a valid [Semantic Versioning 2.0.0](https://semver.org) version.
+Checks whether a string is a valid
+[Semantic Versioning 2.0.0](https://semver.org) version.
 
-A leading `v` and surrounding whitespace are tolerated. Partial versions such as `1.2` and ranges such as `^1.2.3` are not versions, so they are rejected.
+A leading `v` and surrounding whitespace are tolerated. Partial versions such
+as `1.2` and ranges such as `^1.2.3` are not versions, so they are rejected.
 
-@param version - The string to check.
-@returns `true` if the string is a valid SemVer version.
+## Parameters
 
-### Example
+- **version** `string` — The string to check.
+
+## Returns
+
+`boolean` — `true` if the string is a valid SemVer version.
+
+## Example
 
 ```js
 semverIsValid('1.2.3') //=> true

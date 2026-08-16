@@ -2,10 +2,9 @@
 
 Checks if the given value is a valid date object.
 
-### Example
+## Example
 
 ```js
-
 isDate(new Date()) //=> true
 
 isDate(new Date('')) //=> false

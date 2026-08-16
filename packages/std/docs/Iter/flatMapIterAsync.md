@@ -2,11 +2,16 @@
 
 Maps each item in an async iterator and flattens the result.
 
-@param {AsyncIterable<T>} iter The async iterable to transform.
-@param {(val: T) => AsyncIterable<U> | Iterable<U> | Promise<AsyncIterable<U> | Iterable<U>>} fn The mapper function.
-@returns {AsyncIterableIterator<U>} A new async iterable iterator.
+## Parameters
 
-### Example
+- **iter** `AsyncIterable<T>` — The async iterable to transform.
+- **fn** `(val: T) => AsyncIterable<U> | Iterable<U> | Promise<AsyncIterable<U> | Iterable<U>>` — The mapper function.
+
+## Returns
+
+`AsyncIterableIterator<U>` — A new async iterable iterator.
+
+## Example
 
 ```js
 async function* gen() { yield 1; yield 2; }

@@ -1,19 +1,26 @@
+<!-- handwritten -->
+
 # formatBytes
 
 Formats a number of bytes into a human-readable string.
 
-@param {number} bytes The number of bytes.
-@param {object} options The options object.
-@param {number} options.decimals The number of decimal places (default 2).
-@param {boolean} options.binary If true, use 1024 as base (KiB); otherwise 1000 (KB) (default true).
-@returns {string} The formatted string with appropriate unit.
+## Parameters
+
+- **bytes** `number` — The number of bytes.
+- **options** `object` — The options object.
+  - **options.decimals** `number` — The number of decimal places (default 2).
+  - **options.binary** `boolean` — If true, use 1024 as base (KiB); otherwise 1000 (KB) (default true).
+
+## Returns
+
+`string` — The formatted string with appropriate unit.
 
 `options.decimals` must be an integer between `0` and `100`.
 
 Values smaller than `1` byte stay in the `B` unit instead of overflowing to an
 invalid smaller unit.
 
-### Example
+## Example
 
 ```js
 formatBytes(0) //=> '0 B'

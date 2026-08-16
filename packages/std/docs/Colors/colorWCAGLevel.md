@@ -2,11 +2,16 @@
 
 Returns the WCAG conformance level for the contrast ratio between two colors.
 
-@param {ColorInput} color1 The first color.
-@param {ColorInput} color2 The second color.
-@returns {'A' | 'AA' | 'AAA' | 'FAIL'} The WCAG level.
+## Parameters
 
-### Example
+- **color1** `ColorInput` — The first color.
+- **color2** `ColorInput` — The second color.
+
+## Returns
+
+`'A' | 'AA' | 'AAA' | 'FAIL'` — The WCAG level.
+
+## Example
 
 ```js
 colorWCAGLevel('#000', '#fff') //=> 'AAA'

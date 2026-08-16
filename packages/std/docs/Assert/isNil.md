@@ -2,10 +2,15 @@
 
 Checks if the given value is null or undefined.
 
-@param {unknown} val The value to check.
-@returns {boolean} True if null or undefined, false otherwise.
+## Parameters
 
-### Example
+- **val** `unknown` — The value to check.
+
+## Returns
+
+`boolean` — True if null or undefined, false otherwise.
+
+## Example
 
 ```js
 isNil(null) //=> true

@@ -2,5 +2,10 @@
 
 Calculates the relative luminance of a color.
 
-@param {ColorInput} input - The input color.
-@returns {number} - The relative luminance (0 to 1).
+## Parameters
+
+- **input** `ColorInput` — The input color.
+
+## Returns
+
+`number` — The relative luminance (0 to 1).

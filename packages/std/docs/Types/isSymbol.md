@@ -2,10 +2,9 @@
 
 Checks if the given value is a Symbol.
 
-### Example
+## Example
 
 ```js
-
 isSymbol(Symbol()) //=> true
 
 isSymbol(Symbol('abc')) //=> true

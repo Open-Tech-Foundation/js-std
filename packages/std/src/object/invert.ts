@@ -7,12 +7,12 @@ import isUnsafeKey from './isUnsafeKey';
  * name is. The mapping is only reversible when the values are unique — where
  * two keys share a value the later one wins, and the earlier key is lost.
  *
- * @param {T} obj The source object.
- * @returns {Record<string, string>} The inverted object.
- *
  * Because values become keys, a value of `__proto__`, `constructor` or
  * `prototype` is refused and its entry dropped, as writing one would set the
  * result's prototype rather than a property on it.
+ *
+ * @param {T} obj The source object.
+ * @returns {Record<string, string>} The inverted object.
  *
  * @example
  * invert({ a: 1, b: 2 }) //=> { '1': 'a', '2': 'b' }

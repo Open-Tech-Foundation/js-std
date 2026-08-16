@@ -2,10 +2,9 @@
 
 Checks if the given value is a Promise object.
 
-### Example
+## Example
 
 ```js
-
 isPromise({}) //=> false
 
 isPromise(Promise.resolve()) //=> true

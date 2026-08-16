@@ -1,3 +1,5 @@
+<!-- handwritten -->
+
 # clone
 
 Creates a fast deep clone for supported built-in container and value types.
@@ -14,7 +16,7 @@ Functions and unsupported object instances are preserved by reference instead of
 being generically cloned. This utility is intended for fast application-level
 deep cloning, not as a full replacement for `structuredClone`.
 
-### Example
+## Example
 
 ```js
 const obj1 = {a: 1, b: ['x']}

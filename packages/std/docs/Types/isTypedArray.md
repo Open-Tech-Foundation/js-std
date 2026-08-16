@@ -2,10 +2,9 @@
 
 Checks if the given value is a TypedArray.
 
-### Example
+## Example
 
 ```js
-
 isTypedArray([]) //=> false
 
 isTypedArray(new Int8Array()) //=> true

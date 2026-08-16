@@ -2,11 +2,16 @@
 
 Filters items in an iterator based on a predicate.
 
-@param {Iterable<T>} iter The iterable to filter.
-@param {(val: T) => boolean} fn The predicate function.
-@returns {IterableIterator<T>} A new iterable iterator.
+## Parameters
 
-### Example
+- **iter** `Iterable<T>` — The iterable to filter.
+- **fn** `(val: T) => boolean` — The predicate function.
+
+## Returns
+
+`IterableIterator<T>` — A new iterable iterator.
+
+## Example
 
 ```js
 const evens = filterIter([1, 2, 3, 4], x => x % 2 === 0);

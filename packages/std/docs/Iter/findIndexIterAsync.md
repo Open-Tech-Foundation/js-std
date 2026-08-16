@@ -2,11 +2,16 @@
 
 Finds the index of the first item in an async iterator that matches a predicate.
 
-@param {AsyncIterable<T>} iter The async iterable to search.
-@param {(val: T) => boolean | Promise<boolean>} fn The predicate function.
-@returns {Promise<number>} A promise that resolves to the index of the first matching item, or -1.
+## Parameters
 
-### Example
+- **iter** `AsyncIterable<T>` — The async iterable to search.
+- **fn** `(val: T) => boolean | Promise<boolean>` — The predicate function.
+
+## Returns
+
+`Promise<number>` — A promise that resolves to the index of the first matching item, or -1.
+
+## Example
 
 ```js
 async function* gen() { yield 1; yield 2; }

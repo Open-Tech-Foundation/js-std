@@ -1,3 +1,5 @@
+<!-- handwritten -->
+
 # tryStringifyJSON
 
 Safely stringifies a value to JSON without throwing. `bigint` is stringified as decimal strings by default. With `temporal:true`, `DateTime`/`Duration` and native `Temporal` are stringified via ISO.
@@ -8,7 +10,7 @@ Safely stringifies a value to JSON without throwing. `bigint` is stringified as 
 tryStringifyJSON(value: unknown, fallback?: string, options?: { replacer?: Function | (string|number)[] | null, space?: string | number, temporal?: boolean }): string | undefined
 ```
 
-### Example
+## Example
 
 ```js
 tryStringifyJSON({a:1}) //=> '{"a":1}'

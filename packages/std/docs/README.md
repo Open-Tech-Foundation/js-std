@@ -115,12 +115,6 @@
 - [DateTime](./DateTime/DateTime.md)
 - [Duration](./DateTime/Duration.md)
 
-## Json
-
-- [isJSONValue](./Json/isJSONValue.md)
-- [tryParseJSON](./Json/tryParseJSON.md)
-- [tryStringifyJSON](./Json/tryStringifyJSON.md)
-
 ## Encoding
 
 - [bytesToString](./Encoding/bytesToString.md)
@@ -206,6 +200,12 @@
 - [uniqueIterAsync](./Iter/uniqueIterAsync.md)
 - [zipIter](./Iter/zipIter.md)
 - [zipIterAsync](./Iter/zipIterAsync.md)
+
+## Json
+
+- [isJSONValue](./Json/isJSONValue.md)
+- [tryParseJSON](./Json/tryParseJSON.md)
+- [tryStringifyJSON](./Json/tryStringifyJSON.md)
 
 ## Maths
 

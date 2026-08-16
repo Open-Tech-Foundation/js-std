@@ -2,11 +2,16 @@
 
 Returns an AsyncGenerator that skips the first n items from an AsyncIterable.
 
-@param {AsyncIterable} iterable The source async iterable.
-@param {number} n The number of items to skip.
-@returns {AsyncGenerator} A new async generator with the remaining items.
+## Parameters
 
-### Example
+- **iterable** `AsyncIterable` — The source async iterable.
+- **n** `number` — The number of items to skip.
+
+## Returns
+
+`AsyncGenerator` — A new async generator with the remaining items.
+
+## Example
 
 ```js
 const it = dropIterAsync(asyncIterable, 1);

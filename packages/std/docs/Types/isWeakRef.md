@@ -2,10 +2,9 @@
 
 Checks if the given value is a WeakRef object.
 
-### Example
+## Example
 
 ```js
-
 isWeakRef({}) //=> false
 
 let user = { name: "John" };

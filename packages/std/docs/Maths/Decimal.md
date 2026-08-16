@@ -1,3 +1,5 @@
+<!-- handwritten -->
+
 # Decimal
 
 A precision decimal arithmetic class that avoids floating-point errors by using BigInt internally for exact integer arithmetic.
@@ -53,7 +55,7 @@ new Decimal(value)
 **Coercion:**
 - `valueOf()` / `Symbol.toPrimitive` — Enable operators (`+d`, `d * 2`, `d > 1`) via JS number. Prefer method chaining for precision-sensitive code.
 
-### Example
+## Example
 
 ```js
 new Decimal('0.1').add('0.2').toString() //=> '0.3'

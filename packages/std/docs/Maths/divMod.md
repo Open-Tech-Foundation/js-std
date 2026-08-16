@@ -2,11 +2,16 @@
 
 Returns a tuple containing the quotient and the remainder.
 
-@param {number} a The dividend.
-@param {number} b The divisor.
-@returns {[number, number]} A tuple containing [quotient, remainder].
+## Parameters
 
-### Example
+- **a** `number` — The dividend.
+- **b** `number` — The divisor.
+
+## Returns
+
+`[number, number]` — A tuple containing [quotient, remainder].
+
+## Example
 
 ```js
 divMod(4, 2) //=> [2, 0]

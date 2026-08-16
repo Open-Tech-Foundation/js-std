@@ -1,3 +1,5 @@
+<!-- handwritten -->
+
 # randomString
 
 Generates a cryptographically strong random string.
@@ -6,7 +8,7 @@ Generates a cryptographically strong random string.
 - `length` must be a non-negative integer
 - `chars` must not be empty
 
-### Example
+## Example
 
 ```js
 

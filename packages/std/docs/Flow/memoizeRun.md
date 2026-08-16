@@ -1,3 +1,5 @@
+<!-- handwritten -->
+
 # memoizeRun
 
 Caches the results of an asynchronous function.
@@ -11,7 +13,7 @@ Functions and unsupported object instances are keyed by reference identity.
 Provide a custom `key` function when you need domain-specific cache semantics,
 canonicalization rules, or a simpler keying strategy.
 
-### Example
+## Example
 
 ```js
 const memoized = memoizeRun(fetchUser, { maxAge: 5000 });

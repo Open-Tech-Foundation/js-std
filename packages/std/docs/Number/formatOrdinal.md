@@ -2,10 +2,15 @@
 
 Formats a number to its ordinal form (1st, 2nd, 3rd, etc.).
 
-@param {number} n The number to format.
-@returns {string} The ordinal formatted string.
+## Parameters
 
-### Example
+- **n** `number` — The number to format.
+
+## Returns
+
+`string` — The ordinal formatted string.
+
+## Example
 
 ```js
 formatOrdinal(1) //=> '1st'

@@ -2,17 +2,19 @@
 
 Formats a number in compact form (e.g., 1.2K, 1.2M).
 
-@param {number} value The number to format.
-@param {object} options The options object.
-@param {string} options.display The display format: 'short' or 'long' (default 'short').
-@param {string} options.locale The locale (default runtime locale).
-@param {number} options.fractionDigits The maximum fraction digits.
-@returns {string} The formatted compact number string.
+## Parameters
 
-`options.fractionDigits` must be an integer between `0` and `100`.
-`options.display` must be either `'short'` or `'long'`.
+- **value** `number` — The number to format.
+- **options** `object` — The options object.
+  - **options.display** `string` — The display format: 'short' or 'long' (default 'short').
+  - **options.locale** `string` — The locale (default runtime locale).
+  - **options.fractionDigits** `number` — The maximum fraction digits.
 
-### Example
+## Returns
+
+`string` — The formatted compact number string.
+
+## Example
 
 ```js
 formatCompact(1200) //=> '1.2K'

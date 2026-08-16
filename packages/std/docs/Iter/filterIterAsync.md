@@ -2,11 +2,16 @@
 
 Filters items in an async iterator based on a predicate.
 
-@param {AsyncIterable<T>} iter The async iterable to filter.
-@param {(val: T) => boolean | Promise<boolean>} fn The predicate function.
-@returns {AsyncIterableIterator<T>} A new async iterable iterator.
+## Parameters
 
-### Example
+- **iter** `AsyncIterable<T>` — The async iterable to filter.
+- **fn** `(val: T) => boolean | Promise<boolean>` — The predicate function.
+
+## Returns
+
+`AsyncIterableIterator<T>` — A new async iterable iterator.
+
+## Example
 
 ```js
 async function* gen() { yield 1; yield 2; yield 3; }

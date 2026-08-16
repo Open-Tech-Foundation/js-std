@@ -2,15 +2,12 @@
 
 Returns the size of the given value.
 
-### Example
+## Example
 
 ```js
-
 size([]) //=> 0
 
 size('a') //=> 1
 
 size({a: 1, b: 3}) //=> 2
-
-size({[Symbol('x')]: 1}) //=> 1
 ```

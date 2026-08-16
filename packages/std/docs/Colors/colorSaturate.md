@@ -2,7 +2,12 @@
 
 Increases the saturation of a color.
 
-@param {ColorInput} input - The input color.
-@param {number} amount - The amount to saturate (0 to 1).
-@param {ColorFormat} [format='hex'] - The output format.
-@returns {ColorOutput} - The saturated color.
+## Parameters
+
+- **input** `ColorInput` — The input color.
+- **amount** `number` — The amount to saturate (0 to 1).
+- **format** `ColorFormat` _(default: `'hex'`)_ — The output format.
+
+## Returns
+
+`ColorOutput` — The saturated color.

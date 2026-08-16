@@ -2,6 +2,11 @@
 
 Inverts a color.
 
-@param {ColorInput} input - The input color.
-@param {ColorFormat} [format='hex'] - The output format.
-@returns {ColorOutput} - The inverted color.
+## Parameters
+
+- **input** `ColorInput` — The input color.
+- **format** `ColorFormat` _(default: `'hex'`)_ — The output format.
+
+## Returns
+
+`ColorOutput` — The inverted color.

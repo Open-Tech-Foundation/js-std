@@ -2,10 +2,9 @@
 
 Converts string to title case.
 
-### Example
+## Example
 
 ```js
-
 titleCase('hello world') //=> 'Hello World'
 
 titleCase('foo-bar') //=> 'Foo Bar'

@@ -2,10 +2,15 @@
 
 Converts string to camelCase.
 
-@param {string} str The string to convert.
-@returns {string} The camelCased string.
+## Parameters
 
-### Example
+- **str** `string` — The string to convert.
+
+## Returns
+
+`string` — The camelCased string.
+
+## Example
 
 ```js
 camelCase('Foo Bar') //=> 'fooBar'

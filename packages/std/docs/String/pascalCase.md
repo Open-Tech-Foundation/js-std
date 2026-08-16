@@ -2,10 +2,15 @@
 
 Converts string to PascalCase.
 
-@param {string} str The string to convert.
-@returns {string} The PascalCased string.
+## Parameters
 
-### Example
+- **str** `string` — The string to convert.
+
+## Returns
+
+`string` — The PascalCased string.
+
+## Example
 
 ```js
 pascalCase('foo bar') //=> 'FooBar'

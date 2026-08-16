@@ -1,3 +1,5 @@
+<!-- handwritten -->
+
 # reduceAsync
 
 Asynchronous version of `Array.prototype.reduce`.
@@ -7,7 +9,7 @@ Sparse array holes are skipped, and when no initial value is provided the first
 present element becomes the accumulator, matching native
 `Array.prototype.reduce()` behavior.
 
-### Example
+## Example
 
 ```js
 await reduceAsync([1, 2, 3], async (acc, n) => acc + n, 0) //=> 6

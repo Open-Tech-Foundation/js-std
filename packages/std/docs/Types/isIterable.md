@@ -2,10 +2,9 @@
 
 Checks if the given value is an iterable.
 
-### Example
+## Example
 
 ```js
-
 isIterable([1, 2, 3]) //=> true
 
 isIterable('abc') //=> true

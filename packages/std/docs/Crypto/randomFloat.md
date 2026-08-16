@@ -4,11 +4,16 @@ Generates a cryptographically strong random float within a range.
 
 Uses the standard Web Crypto API (`globalThis.crypto`).
 
-@param min - The minimum value (inclusive).
-@param max - The maximum value (exclusive).
-@returns A random float between min and max.
+## Parameters
 
-### Example
+- **min** — The minimum value (inclusive).
+- **max** — The maximum value (exclusive).
+
+## Returns
+
+A random float between min and max.
+
+## Example
 
 ```js
 randomFloat(0, 1) //=> 0.456789123456789

@@ -6,15 +6,22 @@ Passing a function calls it for each gap, with the index of that gap, and
 inserts what it returns. A function cannot be distinguished from a value to
 insert by type, so `sep` is `unknown` and the form is chosen at run time.
 
-@param {string|unknown[]} list The source list.
-@param {unknown} sep The separator to insert, or a function returning it.
-@returns {string|unknown[]} A new list with the separator inserted.
+## Parameters
 
-### Example
+- **list** `string|unknown[]` — The source list.
+- **sep** `unknown` — The separator to insert, or a function returning it.
+
+## Returns
+
+`string|unknown[]` — A new list with the separator inserted.
+
+## Examples
 
 ```js
 intersperse([1, 2, 3], '*') //=> [1, '*', 2, '*', 3]
 intersperse('Hello', '-') //=> "H-e-l-l-o"
+```
 
+```js
 intersperse([1, 2, 3], (i) => i) //=> [1, 0, 2, 1, 3]
 ```

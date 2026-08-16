@@ -1,3 +1,5 @@
+<!-- handwritten -->
+
 # Duration
 
 An immutable length of time.
@@ -6,7 +8,9 @@ Calendar units — years, months, weeks and days — are carried as written and 
 
 Fields are stored exactly as given, so `PT90S` round-trips as `PT90S` rather than becoming `PT1M30S`. Balancing is opt-in through `round`. Every method returns a new instance; nothing mutates.
 
-@param input - An ISO-8601 duration string, a count of milliseconds, a fields object, or another `Duration`. Omit it for a zero duration.
+## Parameters
+
+- **input** — An ISO-8601 duration string, a count of milliseconds, a fields object, or another `Duration`. Omit it for a zero duration.
 
 Every non-zero field must share one sign, and mixed signs throw a `RangeError`. ISO-8601 signs the duration as a whole and has no way to write "a month minus two hours", so allowing it would make `toString` lossy. Arithmetic still resolves across the boundary, since a sum has one direction even when its operands could not sit side by side.
 
@@ -37,7 +41,7 @@ Every non-zero field must share one sign, and mixed signs throw a `RangeError`. 
 
 Units are `'year'`, `'month'`, `'week'`, `'day'`, `'hour'`, `'minute'`, `'second'` and `'millisecond'`. Rounding modes are `'trunc'`, `'floor'`, `'ceil'` and `'halfExpand'`.
 
-### Example
+## Example
 
 ```js
 // Parse and serialise the wire format

@@ -2,12 +2,17 @@
 
 Removes items at the given index or all elements matching the predicate.
 
-@param {T[]} arr The source array.
-@param {number|Function} indexOrFn The index or predicate function.
-@param {number} count The number of items to remove (ignored when using predicate).
-@returns {T[]} A new array with the removed items.
+## Parameters
 
-### Example
+- **arr** `T[]` — The source array.
+- **indexOrFn** `number|Function` — The index or predicate function.
+- **count** `number` — The number of items to remove (ignored when using predicate).
+
+## Returns
+
+`T[]` — A new array with the removed items.
+
+## Example
 
 ```js
 remove([1, 2, 3], 1, 2); //=> [1]

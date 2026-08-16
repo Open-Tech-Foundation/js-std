@@ -1,3 +1,5 @@
+<!-- handwritten -->
+
 # wordWrap
 
 Wraps text to a column width, breaking at whitespace.
@@ -8,13 +10,18 @@ Each input line is wrapped on its own, so blank lines and paragraph breaks survi
 
 A word wider than `width` overruns by default. Pass `hard` to break it instead — the word is still given a line of its own first, and is only split if it does not fit there either.
 
-@param {string} str The text to wrap.
-@param {number} [width=80] The maximum column width. Must be a positive integer.
-@param {object} [options] Wrapping options.
-@param {boolean} [options.hard=false] Break words wider than `width`.
-@returns {string} The wrapped text.
+## Parameters
 
-### Example
+- **str** `string` — The text to wrap.
+- **width** `number` _(default: `80`)_ — The maximum column width. Must be a positive integer.
+- **options** `object` _(optional)_ — Wrapping options.
+  - **options.hard** `boolean` _(default: `false`)_ — Break words wider than `width`.
+
+## Returns
+
+`string` — The wrapped text.
+
+## Example
 
 ```js
 wordWrap('the quick brown fox', 10)

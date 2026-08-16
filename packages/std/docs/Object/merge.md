@@ -2,7 +2,7 @@
 
 It deeply merges objects or arrays.
 
-### Example
+## Example
 
 ```js
 const a = { a: { b: 1 } };

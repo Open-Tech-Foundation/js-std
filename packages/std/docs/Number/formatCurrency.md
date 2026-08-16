@@ -2,21 +2,21 @@
 
 Formats a number as a currency string using Intl.NumberFormat.
 
-@param {number} value The number to format.
-@param {string} currency The ISO 4217 currency code (e.g., 'USD', 'EUR').
-@param {object} options The options object.
-@param {string} options.display The display format: 'symbol', 'code', or 'name' (default 'symbol').
-@param {number} options.minFraction The minimum fraction digits.
-@param {number} options.maxFraction The maximum fraction digits.
-@param {string} options.locale The locale (default runtime locale).
-@returns {string} The formatted currency string.
+## Parameters
 
-`currency` must be a 3-letter ISO 4217 code. Fraction digit options must be
-integers between `0` and `100`, and `minFraction` must not exceed
-`maxFraction`. `options.display` must be one of `'symbol'`, `'code'`, or
-`'name'`.
+- **value** `number` — The number to format.
+- **currency** `string` — The ISO 4217 currency code (e.g., 'USD', 'EUR').
+- **options** `object` — The options object.
+  - **options.display** `string` — The display format: 'symbol', 'code', or 'name' (default 'symbol').
+  - **options.minFraction** `number` — The minimum fraction digits.
+  - **options.maxFraction** `number` — The maximum fraction digits.
+  - **options.locale** `string` — The locale (default runtime locale).
 
-### Example
+## Returns
+
+`string` — The formatted currency string.
+
+## Example
 
 ```js
 formatCurrency(1200, 'USD') //=> '$1,200.00'

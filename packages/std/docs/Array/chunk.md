@@ -2,11 +2,16 @@
 
 Splits an array into groups of a specified size.
 
-@param {T[]} arr The source array.
-@param {number} size The length of each chunk.
-@returns {T[][]} A new array containing the chunks.
+## Parameters
 
-### Example
+- **arr** `T[]` — The source array.
+- **size** `number` — The length of each chunk.
+
+## Returns
+
+`T[][]` — A new array containing the chunks.
+
+## Example
 
 ```js
 chunk(['a', 'b', 'c', 'd'], 2) //=> [['a', 'b'], ['c', 'd']]

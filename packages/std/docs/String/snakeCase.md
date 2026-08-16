@@ -2,10 +2,9 @@
 
 Converts string to snake_case.
 
-### Example
+## Example
 
 ```js
-
 snakeCase('Foo Bar') //=> 'foo_bar'
 
 snakeCase('fooBar') //=> 'foo_bar'
