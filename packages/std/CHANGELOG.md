@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [0.18.0] - 2026-08-16
+
 ### Security
 
 - Guarded every utility that writes a key it did not choose itself against `__proto__`, `constructor` and `prototype`. The earlier hardening pass covered the path mutators, `merge`, `mergeAll`, `clone` and `mapKeys`, but not the functions that copy a key out of a source object or derive one from a value, so those still let untrusted input choose the prototype of the result. None of them reached `Object.prototype` itself; each replaced the prototype of the object it returned, which is quiet enough to be worse in some ways than the global form — the key is absent from `Object.keys` and from `JSON.stringify`, so a validator or an audit log over the result sees nothing while every inherited value reads back through it.
