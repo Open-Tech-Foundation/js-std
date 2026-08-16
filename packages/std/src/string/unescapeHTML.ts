@@ -14,6 +14,7 @@ export default function unescapeHTML(str: string): string {
     '&quot;': '"',
     '&#39;': "'",
     '&apos;': "'",
+    '&#96;': '`',
   };
-  return str.replace(/&(amp|lt|gt|quot|#39|apos);/g, (m) => map[m]);
+  return str.replace(/&(amp|lt|gt|quot|#39|apos|#96);/g, (m) => map[m]);
 }

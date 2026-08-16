@@ -5,6 +5,16 @@ const DECIMAL_REGEX = /^-?(?:\d+(?:\.\d+)?|\.\d+)$/;
  * Uses BigInt internally for exact integer arithmetic.
  */
 export default class Decimal {
+  /**
+   * The most decimal places `divide` will produce.
+   *
+   * The quotient is computed by scaling the numerator by `10 ** places`, so the
+   * figure sets the size of the BigInt being divided rather than an iteration
+   * count. A thousand places is far past any accounting or scientific use and
+   * keeps a caller-supplied value from turning into a memory cost.
+   */
+  static readonly MAX_DECIMAL_PLACES = 1000;
+
   private readonly value: string;
 
   constructor(value: number | string | Decimal) {
@@ -175,6 +185,22 @@ export default class Decimal {
   }
 
   divide(other: Decimal | number | string, decimalPlaces = 20): Decimal {
+    // Unvalidated, a negative value silently returned `0` and a large one was
+    // taken at face value: the working integer is scaled by `10 ** places`, so
+    // the cost is in the size of that number rather than in the loop, and a
+    // caller-supplied figure could ask for one megabyte of digits.
+    if (!Number.isInteger(decimalPlaces) || decimalPlaces < 0) {
+      throw new RangeError(
+        'The decimalPlaces value must be a non-negative integer.',
+      );
+    }
+
+    if (decimalPlaces > Decimal.MAX_DECIMAL_PLACES) {
+      throw new RangeError(
+        `The decimalPlaces value must not exceed ${Decimal.MAX_DECIMAL_PLACES}.`,
+      );
+    }
+
     const rhs = new Decimal(other);
     const decA = Decimal.precision(this.value);
     const decB = Decimal.precision(rhs.value);

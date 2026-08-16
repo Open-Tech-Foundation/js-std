@@ -1,9 +1,15 @@
 import isPlainObject from '../types/isPlainObject';
-import set from './set';
+import set, { MAX_ARRAY_INDEX } from './set';
 import toPath from './toPath';
 
 function isIndex(segment: unknown): boolean {
-  return typeof segment === 'string' && /^(?:0|[1-9]\d*)$/.test(segment);
+  if (typeof segment !== 'string' || !/^(?:0|[1-9]\d*)$/.test(segment)) {
+    return false;
+  }
+
+  // The root array is chosen from the keys of untrusted input, so it is bounded
+  // for the same reason `set` bounds the branches below it.
+  return Number(segment) <= MAX_ARRAY_INDEX;
 }
 
 /**

@@ -14,6 +14,14 @@ describe('String > unescapeHTML', () => {
     expect(unescapeHTML(escapeHTML(original))).toBe(original);
   });
 
+  test('round-trips a backtick, which escapeHTML also escapes', () => {
+    expect(escapeHTML('`')).toBe('&#96;');
+    expect(unescapeHTML('&#96;')).toBe('`');
+
+    const original = 'a `template` <b> & "c"';
+    expect(unescapeHTML(escapeHTML(original))).toBe(original);
+  });
+
   test('handles strings without entities', () => {
     expect(unescapeHTML('hello')).toBe('hello');
   });

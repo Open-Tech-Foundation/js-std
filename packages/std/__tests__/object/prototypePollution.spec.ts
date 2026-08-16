@@ -9,6 +9,7 @@ import {
   merge,
   mergeAll,
   omitBy,
+  pick,
   pickBy,
   set,
   shallowMerge,
@@ -80,6 +81,15 @@ describe('Object > prototype pollution', () => {
 
     expect(Object.keys(out)).toEqual(['safe']);
     expectClean(out);
+  });
+
+  test('pick refuses an unsafe path segment', () => {
+    const out = pick(hostile(), '__proto__') as Record<string, unknown>;
+
+    expectClean(out);
+    expect(Object.keys(out)).toEqual([]);
+    // The safe siblings still come through.
+    expect(pick(hostile(), 'safe')).toEqual({ safe: 1 });
   });
 
   test('keyBy does not adopt a record as the lookup prototype', () => {

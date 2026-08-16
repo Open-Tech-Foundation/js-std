@@ -1,5 +1,6 @@
 import isArray from '../types/isArray';
 import isObject from '../types/isObject';
+import isUnsafeKey from './isUnsafeKey';
 import { type IterableObj, createMergeTarget } from './merge';
 import toPath, { type PropertyPath } from './toPath';
 
@@ -20,6 +21,13 @@ export default function pick(obj: object, ...paths: PropertyPath[]): object {
 
     for (let i = 0; i < pathArr.length; i++) {
       const prop = pathArr[i] as PropertyKey;
+
+      // A source object can carry an own `__proto__` — `JSON.parse` makes one
+      // — and copying it would set the result's prototype rather than a
+      // property on it, as everywhere else in this module.
+      if (isUnsafeKey(prop)) {
+        break;
+      }
 
       if (!isObject(curObj) || !Object.hasOwn(curObj, prop)) {
         break;

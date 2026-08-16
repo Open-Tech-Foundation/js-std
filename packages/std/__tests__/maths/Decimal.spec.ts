@@ -476,3 +476,27 @@ describe('Decimal > Integration with existing codebase', () => {
     expect(d.add('0.2').equals('0.3')).toBe(true);
   });
 });
+
+describe('Decimal > divide decimalPlaces validation', () => {
+  test('refuses a negative, fractional or NaN value', () => {
+    // A negative value used to return `0` without complaint.
+    expect(() => new Decimal('1').divide('3', -1)).toThrow(RangeError);
+    expect(() => new Decimal('1').divide('3', 2.5)).toThrow(RangeError);
+    expect(() => new Decimal('1').divide('3', Number.NaN)).toThrow(RangeError);
+  });
+
+  test('caps the places, since they size the working BigInt', () => {
+    expect(() => new Decimal('1').divide('3', 100000)).toThrow(RangeError);
+    expect(Decimal.MAX_DECIMAL_PLACES).toBe(1000);
+    expect(
+      new Decimal('1').divide('3', Decimal.MAX_DECIMAL_PLACES).toString(),
+    ).toHaveLength(1002);
+  });
+
+  test('still accepts the ordinary values', () => {
+    expect(new Decimal('1').divide('3', 0).toString()).toBe('0');
+    expect(new Decimal('1').divide('3', 2).toString()).toBe('0.33');
+    expect(new Decimal('1').divide('3').toString()).toBe('0.33333333333333333333');
+  });
+});
+

@@ -6,6 +6,7 @@ import isObject from '../types/isObject';
 import clone from './clone';
 import { hasUnsafeKey } from './isUnsafeKey';
 import type { IterableObj } from './merge';
+import { MAX_ARRAY_INDEX } from './set';
 import toPath, { type PropertyPath } from './toPath';
 
 /**
@@ -50,11 +51,13 @@ export default function toSet<T>(
     }
 
     if (curObj[prop] === undefined) {
-      curObj[prop] = !Number.isNaN(
-        parseFiniteNumberString(String(pathArr[i + 1])),
-      )
-        ? []
-        : {};
+      const nextIndex = parseFiniteNumberString(String(pathArr[i + 1]));
+      curObj[prop] =
+        !Number.isNaN(nextIndex) &&
+        nextIndex >= 0 &&
+        nextIndex <= MAX_ARRAY_INDEX
+          ? []
+          : {};
     } else if (!(isObject(curObj[prop]) || isArray(curObj[prop]))) {
       return obj;
     }

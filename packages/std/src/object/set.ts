@@ -30,6 +30,21 @@ import toPath, { type PropertyPath } from './toPath';
  * @example
  * set({ a: 1 }, 'a', (n) => (n as number) + 1) //=> { a: 2 }
  */
+/**
+ * The largest numeric path segment that will create an array.
+ *
+ * A segment decides whether a missing branch becomes an array or an object, and
+ * that segment is often untrusted — `unflattenObject` reads exactly the flat
+ * shapes that arrive from form bodies and query strings. `a[100000000]` would
+ * otherwise cost eighteen bytes of input and produce an array whose `length` is
+ * a hundred million: the array stays sparse and cheap, but anything that walks
+ * it by length does not. `JSON.stringify` on that result is a 477 MB string.
+ *
+ * A larger index still stores its value; the branch just becomes a plain object
+ * keyed by the number, so nothing is lost but the array-ness.
+ */
+export const MAX_ARRAY_INDEX = 1_000_000;
+
 export default function set<T>(obj: T, path: PropertyPath, value: unknown): T {
   const pathArr = toPath(path);
   let curObj: IterableObj = obj as IterableObj;
@@ -47,11 +62,13 @@ export default function set<T>(obj: T, path: PropertyPath, value: unknown): T {
     }
 
     if (curObj[prop] === undefined) {
-      curObj[prop] = !Number.isNaN(
-        parseFiniteNumberString(String(pathArr[i + 1])),
-      )
-        ? []
-        : {};
+      const nextIndex = parseFiniteNumberString(String(pathArr[i + 1]));
+      curObj[prop] =
+        !Number.isNaN(nextIndex) &&
+        nextIndex >= 0 &&
+        nextIndex <= MAX_ARRAY_INDEX
+          ? []
+          : {};
     } else if (!(isObject(curObj[prop]) || isArray(curObj[prop]))) {
       return obj;
     }
