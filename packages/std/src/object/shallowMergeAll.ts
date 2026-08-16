@@ -1,9 +1,13 @@
 import isArray from '../types/isArray';
 import isPlainObject from '../types/isPlainObject';
 import { createMergeTarget } from './merge';
+import safeAssign from './safeAssign';
 
 /**
  * Merges all the given objects or arrays.
+ *
+ * Sources are copied with `safeAssign` rather than `Object.assign`, so an own
+ * `__proto__` key cannot replace the result's prototype.
  *
  * @example
  *
@@ -25,7 +29,7 @@ export default function shallowMergeAll(
       if (i === 0) {
         return isArray(cur)
           ? cur.slice()
-          : Object.assign(createMergeTarget(cur as object), cur);
+          : safeAssign(createMergeTarget(cur as object), cur);
       }
       if (isArray(acc) && isArray(cur)) {
         return acc.concat(cur);
@@ -35,8 +39,8 @@ export default function shallowMergeAll(
           ? Object.fromEntries(Object.entries(acc))
           : isArray(acc)
             ? acc.slice()
-            : Object.assign(createMergeTarget(acc as object), acc);
-      return Object.assign(target, cur);
+            : safeAssign(createMergeTarget(acc as object), acc);
+      return safeAssign(target, cur);
     },
     {} as Record<string, unknown> | unknown[],
   );

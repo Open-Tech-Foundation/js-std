@@ -4,7 +4,7 @@ import isArray from '../types/isArray';
 import isFunction from '../types/isFunction';
 import isObject from '../types/isObject';
 import clone from './clone';
-import isUnsafePathKey from './isUnsafePathKey';
+import { hasUnsafeKey } from './isUnsafeKey';
 import type { IterableObj } from './merge';
 import toPath, { type PropertyPath } from './toPath';
 
@@ -13,6 +13,10 @@ import toPath, { type PropertyPath } from './toPath';
  *
  * As with `set`, passing a function makes it an updater rather than the value
  * to store; the two cannot be told apart by type, so `value` is `unknown`.
+ *
+ * `__proto__`, `constructor` and `prototype` are refused as path segments.
+ * The path is checked before anything is written, so a path that will be
+ * refused leaves the object exactly as it was — no partial branch.
  *
  * @param {T} obj The object to copy from.
  * @param {PropertyPath} path The path of the property to set.
@@ -29,19 +33,16 @@ export default function toSet<T>(
   value: unknown,
 ): T {
   const pathArr = toPath(path);
-  const cObj = clone(obj);
-  let curObj: IterableObj = cObj as IterableObj;
 
-  if (isEmpty(pathArr)) {
+  if (isEmpty(pathArr) || hasUnsafeKey(pathArr)) {
     return obj;
   }
 
+  const cObj = clone(obj);
+  let curObj: IterableObj = cObj as IterableObj;
+
   for (let i = 0; i < pathArr.length; i++) {
     const prop = pathArr[i] as PropertyKey;
-    if (isUnsafePathKey(prop)) {
-      return obj;
-    }
-
     if (i === pathArr.length - 1) {
       const v = isFunction(value) ? value(curObj[prop]) : value;
       curObj[prop] = v;

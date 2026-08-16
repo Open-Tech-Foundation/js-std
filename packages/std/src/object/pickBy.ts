@@ -1,7 +1,13 @@
+import isUnsafeKey from './isUnsafeKey';
 import { createMergeTarget } from './merge';
 
 /**
  * Creates an object composed of the keys that the predicate returns truthy for.
+ *
+ * `__proto__`, `constructor` and `prototype` are skipped, as they are
+ * everywhere in this module. This is often used as an allow-list over
+ * untrusted input, where copying one of those keys would hand the caller a
+ * result whose prototype the input chose.
  *
  * @example
  * pickBy({ a: 1, b: '2', c: 3 }, isNumber) //=> { a: 1, c: 3 }
@@ -19,6 +25,10 @@ export default function pickBy<T extends object>(
   ] as (string | symbol)[];
 
   for (const key of keys) {
+    if (isUnsafeKey(key)) {
+      continue;
+    }
+
     const val = obj[key as keyof T];
     if (predicate(val, key)) {
       result[key] = val;

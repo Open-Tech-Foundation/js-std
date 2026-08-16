@@ -8,6 +8,7 @@ import isPlainObject from '../types/isPlainObject';
 import isRegExp from '../types/isRegExp';
 import isSet from '../types/isSet';
 import isTypedArray, { type TypedArray } from '../types/isTypedArray';
+import isUnsafeKey from './isUnsafeKey';
 
 interface TypedArrayConstructor {
   new (buf: ArrayBufferLike, offset: number, len: number): TypedArray;
@@ -32,7 +33,7 @@ function cloneObj<T>(obj: T, objRefMap: WeakMap<WeakKey, unknown>): T {
     objRefMap.set(obj, cObj);
 
     for (const [k, v] of Object.entries(obj)) {
-      if (k === '__proto__' || k === 'constructor' || k === 'prototype') {
+      if (isUnsafeKey(k)) {
         continue;
       }
       cObj[k] = cloneObj(v, objRefMap);

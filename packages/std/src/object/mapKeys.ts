@@ -1,3 +1,4 @@
+import isUnsafeKey from './isUnsafeKey';
 import { createMergeTarget } from './merge';
 
 /**
@@ -22,12 +23,7 @@ export default function mapKeys<T extends object>(
   for (const key of keys) {
     const val = obj[key as keyof T];
     const newKey = fn(val, key);
-    if (
-      typeof newKey === 'string' &&
-      (newKey === '__proto__' ||
-        newKey === 'constructor' ||
-        newKey === 'prototype')
-    ) {
+    if (isUnsafeKey(newKey)) {
       continue;
     }
     result[newKey] = val;

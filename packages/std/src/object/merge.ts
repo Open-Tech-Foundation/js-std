@@ -1,5 +1,6 @@
 import isArray from '../types/isArray';
 import isPlainObject from '../types/isPlainObject';
+import isUnsafeKey from './isUnsafeKey';
 
 export type IterableObj = {
   [key: number | string | symbol]: unknown;
@@ -31,7 +32,7 @@ export default function merge(...objs: object[]): object {
 
   return filteredObjs.reduce((acc: IterableObj, cur) => {
     for (const [key, val] of Object.entries(cur)) {
-      if (key === '__proto__' || key === 'constructor' || key === 'prototype') {
+      if (isUnsafeKey(key)) {
         continue;
       }
       if (isArray(val) || isPlainObject(val)) {

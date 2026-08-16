@@ -3,7 +3,7 @@ import parseFiniteNumberString from '../number/parseFiniteNumberString';
 import isArray from '../types/isArray';
 import isFunction from '../types/isFunction';
 import isObject from '../types/isObject';
-import isUnsafePathKey from './isUnsafePathKey';
+import { hasUnsafeKey } from './isUnsafeKey';
 import type { IterableObj } from './merge';
 import toPath, { type PropertyPath } from './toPath';
 
@@ -14,6 +14,10 @@ import toPath, { type PropertyPath } from './toPath';
  * the path and its result is stored. There is no type that distinguishes the
  * two — a function is a perfectly good value to store — so `value` is
  * `unknown` and the form is chosen at run time.
+ *
+ * `__proto__`, `constructor` and `prototype` are refused as path segments.
+ * The path is checked before anything is written, so a path that will be
+ * refused leaves the object exactly as it was — no partial branch.
  *
  * @param {T} obj The object to modify.
  * @param {PropertyPath} path The path of the property to set.
@@ -30,16 +34,12 @@ export default function set<T>(obj: T, path: PropertyPath, value: unknown): T {
   const pathArr = toPath(path);
   let curObj: IterableObj = obj as IterableObj;
 
-  if (isEmpty(pathArr)) {
+  if (isEmpty(pathArr) || hasUnsafeKey(pathArr)) {
     return obj;
   }
 
   for (let i = 0; i < pathArr.length; i++) {
     const prop = pathArr[i] as string;
-    if (isUnsafePathKey(prop)) {
-      return obj;
-    }
-
     if (i === pathArr.length - 1) {
       const v = isFunction(value) ? value(curObj[prop]) : value;
       curObj[prop] = v;

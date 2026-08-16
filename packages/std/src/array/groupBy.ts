@@ -1,7 +1,11 @@
+import isUnsafeKey from '../object/isUnsafeKey';
 import isFunction from '../types/isFunction';
 
 /**
  * Creates an object composed of keys generated from the results of running each element of collection through iteratee.
+ *
+ * Keys of `__proto__`, `constructor` and `prototype` are refused and their
+ * elements dropped, as writing one would reach the prototype of the result.
  *
  * @param {T[]} arr The source array.
  * @param {Function|string} key The iteratee to transform keys.
@@ -18,6 +22,10 @@ export default function groupBy<T>(
     const k = String(
       isFunction(key) ? key(obj, index, array) : obj[key as keyof T],
     );
+    if (isUnsafeKey(k)) {
+      return acc;
+    }
+
     if (!acc[k]) {
       acc[k] = [];
     }

@@ -1,6 +1,7 @@
 import isArray from '../types/isArray';
 import isPlainObject from '../types/isPlainObject';
 import fromPath from './fromPath';
+import isUnsafeKey from './isUnsafeKey';
 
 function walk(
   val: unknown,
@@ -31,6 +32,10 @@ function walk(
   }
 
   for (const [key, v] of entries) {
+    if (isUnsafeKey(key)) {
+      continue;
+    }
+
     walk(v, [...path, key], out);
   }
 }
@@ -52,6 +57,10 @@ function walk(
  * built around it: `{ 'a.b': 1 }` flattens to the same `'a.b'` that
  * `{ a: { b: 1 } }` does. That is a property of the format rather than of this
  * function — `unflattenObject` reads both back as the nested form.
+ *
+ * `__proto__`, `constructor` and `prototype` are skipped at every depth, so
+ * that no key of the result can be replayed against `set` to reach a
+ * prototype.
  *
  * @param {object} obj The object to flatten.
  * @returns {Record<string, unknown>} A one-level object keyed by path.

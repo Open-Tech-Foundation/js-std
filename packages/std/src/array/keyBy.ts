@@ -1,3 +1,4 @@
+import isUnsafeKey from '../object/isUnsafeKey';
 import isFunction from '../types/isFunction';
 
 /**
@@ -7,6 +8,10 @@ import isFunction from '../types/isFunction';
  * lookup table: `groupBy` collects every match into an array, `keyBy` keeps a
  * single element. When two elements produce the same key the later one wins,
  * so pass a list already ordered oldest-first to keep the newest.
+ *
+ * A key of `__proto__`, `constructor` or `prototype` is refused and its
+ * element dropped: the lookup is built from data, and writing one of those
+ * would make the element the prototype of the table instead of an entry in it.
  *
  * @param {T[]} arr The source array.
  * @param {Function|string} by The iteratee, or the name of a property to read.
@@ -27,6 +32,10 @@ export default function keyBy<T>(
     const key = String(
       isFunction(by) ? by(cur, index, array) : cur[by as keyof T],
     );
+
+    if (isUnsafeKey(key)) {
+      return acc;
+    }
 
     acc[key] = cur;
 

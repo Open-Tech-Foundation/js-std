@@ -1,3 +1,5 @@
+import isUnsafeKey from './isUnsafeKey';
+
 /**
  * Swaps the keys and values of an object.
  *
@@ -7,6 +9,10 @@
  *
  * @param {T} obj The source object.
  * @returns {Record<string, string>} The inverted object.
+ *
+ * Because values become keys, a value of `__proto__`, `constructor` or
+ * `prototype` is refused and its entry dropped, as writing one would set the
+ * result's prototype rather than a property on it.
  *
  * @example
  * invert({ a: 1, b: 2 }) //=> { '1': 'a', '2': 'b' }
@@ -26,7 +32,13 @@ export default function invert<T extends object>(
   const result: Record<string, string> = {};
 
   for (const key of Object.keys(obj)) {
-    result[String(obj[key as keyof T])] = key;
+    const inverted = String(obj[key as keyof T]);
+
+    if (isUnsafeKey(inverted)) {
+      continue;
+    }
+
+    result[inverted] = key;
   }
 
   return result;

@@ -1,5 +1,6 @@
 import isArray from '../types/isArray';
 import isPlainObject from '../types/isPlainObject';
+import isUnsafeKey from './isUnsafeKey';
 import merge, { createMergeTarget, type IterableObj } from './merge';
 
 /**
@@ -13,7 +14,7 @@ import merge, { createMergeTarget, type IterableObj } from './merge';
  */
 function deepMerge(acc: IterableObj, cur: IterableObj) {
   for (const [key, val] of Object.entries(cur)) {
-    if (key === '__proto__' || key === 'constructor' || key === 'prototype') {
+    if (isUnsafeKey(key)) {
       continue;
     }
     if (isArray(val) && isArray(acc[key])) {

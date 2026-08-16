@@ -3,12 +3,16 @@ import parseFiniteNumberString from '../number/parseFiniteNumberString';
 import isArray from '../types/isArray';
 import isObject from '../types/isObject';
 import clone from './clone';
-import isUnsafePathKey from './isUnsafePathKey';
+import { hasUnsafeKey } from './isUnsafeKey';
 import type { IterableObj } from './merge';
 import toPath, { type PropertyPath } from './toPath';
 
 /**
  * Removes the property of the given object at the given path & returns new object.
+ *
+ * `__proto__`, `constructor` and `prototype` are refused as path segments.
+ * The path is checked before anything is written, so a path that will be
+ * refused leaves the object exactly as it was — no partial branch.
  *
  * @example
  *
@@ -17,7 +21,11 @@ import toPath, { type PropertyPath } from './toPath';
 export default function toUnset<T>(obj: T, path: PropertyPath): T {
   const pathArr = toPath(path);
 
-  if (isEmpty(pathArr) || !(isObject(obj) || isArray(obj))) {
+  if (
+    isEmpty(pathArr) ||
+    hasUnsafeKey(pathArr) ||
+    !(isObject(obj) || isArray(obj))
+  ) {
     return obj;
   }
 
@@ -26,10 +34,6 @@ export default function toUnset<T>(obj: T, path: PropertyPath): T {
 
   for (let i = 0; i < pathArr.length; i++) {
     const prop = pathArr[i] as PropertyKey;
-    if (isUnsafePathKey(prop)) {
-      return obj;
-    }
-
     if (i === pathArr.length - 1) {
       if (isArray(curObj)) {
         if (!Number.isNaN(parseFiniteNumberString(String(prop)))) {
