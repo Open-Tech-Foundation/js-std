@@ -29,6 +29,12 @@ function isIndex(segment: unknown): boolean {
  * naming a branch the other names a leaf — the later wins for the leaf and is
  * ignored for the branch, matching `set`.
  *
+ * A level whose keys are numeric becomes an array only up to `MAX_ARRAY_INDEX`
+ * (10,000). A flat object is very often untrusted input, and a lone large index
+ * such as `{ 'a[100000000]': 1 }` would otherwise expand into an array whose
+ * `length` makes serialising the result cost hundreds of megabytes. Above the
+ * limit the level is a plain object keyed by the number, so no value is lost.
+ *
  * `__proto__`, `constructor` and `prototype` are refused as path segments, as
  * they are everywhere in this module. A flat object is very often untrusted
  * input, which is the whole reason this function exists, and expanding one of

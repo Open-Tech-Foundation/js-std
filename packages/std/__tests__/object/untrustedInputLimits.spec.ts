@@ -19,11 +19,11 @@ describe('Object > limits on untrusted input', () => {
 
   test('the value is kept, only the array-ness is dropped', () => {
     const target: Record<string, unknown> = {};
-    set(target, 'a[9999999]', 'kept');
+    set(target, 'a[99999]', 'kept');
 
     const branch = target.a as Record<string, unknown>;
     expect(Array.isArray(branch)).toBe(false);
-    expect(branch['9999999']).toBe('kept');
+    expect(branch['99999']).toBe('kept');
   });
 
   test('ordinary indices still make arrays', () => {
@@ -43,8 +43,15 @@ describe('Object > limits on untrusted input', () => {
     expect(unflattenObject({ '[0]': 'a', '[1]': 'b' })).toEqual(['a', 'b']);
   });
 
-  test('a flattened array still round-trips', () => {
+  test('a flattened array still round-trips, at any size', () => {
     const original = { list: [1, 2, 3], nested: { deep: [4, 5] } };
     expect(unflattenObject(flattenObject(original))).toEqual(original);
+
+    // The limit is checked only when a branch is created, from the first index
+    // seen, and a flattened array starts at [0] — so its size does not matter.
+    const big = { list: Array.from({ length: 50_000 }, (_, i) => i) };
+    const back = unflattenObject(flattenObject(big)) as { list: number[] };
+    expect(Array.isArray(back.list)).toBe(true);
+    expect(back.list).toHaveLength(50_000);
   });
 });

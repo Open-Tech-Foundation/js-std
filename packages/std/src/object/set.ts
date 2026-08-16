@@ -15,6 +15,14 @@ import toPath, { type PropertyPath } from './toPath';
  * two — a function is a perfectly good value to store — so `value` is
  * `unknown` and the form is chosen at run time.
  *
+ * A numeric segment creates an array only up to `MAX_ARRAY_INDEX` (10,000).
+ * Above that the branch becomes a plain object keyed by the number, so the
+ * value is still stored and only the array-ness is dropped. The limit exists
+ * because a lone large index in untrusted input — `a[100000000]` — would
+ * otherwise produce an array whose `length` makes serialising the result cost
+ * hundreds of megabytes. A flattened array starts at `[0]`, so one of any size
+ * still round trips.
+ *
  * `__proto__`, `constructor` and `prototype` are refused as path segments.
  * The path is checked before anything is written, so a path that will be
  * refused leaves the object exactly as it was — no partial branch.
@@ -38,12 +46,19 @@ import toPath, { type PropertyPath } from './toPath';
  * shapes that arrive from form bodies and query strings. `a[100000000]` would
  * otherwise cost eighteen bytes of input and produce an array whose `length` is
  * a hundred million: the array stays sparse and cheap, but anything that walks
- * it by length does not. `JSON.stringify` on that result is a 477 MB string.
+ * it by length does not, and `JSON.stringify` on that result is a 477 MB string.
+ *
+ * The limit is deliberately low, because a low one costs almost nothing. It is
+ * consulted only when a branch is *created*, from the first index seen for it,
+ * and a flattened array starts at `[0]` — so an array of any size still round
+ * trips through `flattenObject` and `unflattenObject`. What it rules out is a
+ * lone large index, which is the shape an attacker sends and not one a real
+ * payload takes.
  *
  * A larger index still stores its value; the branch just becomes a plain object
  * keyed by the number, so nothing is lost but the array-ness.
  */
-export const MAX_ARRAY_INDEX = 1_000_000;
+export const MAX_ARRAY_INDEX = 10_000;
 
 export default function set<T>(obj: T, path: PropertyPath, value: unknown): T {
   const pathArr = toPath(path);

@@ -36,6 +36,16 @@ The nested object, or an array when every key is an index.
   `__proto__`, `constructor` and `prototype` are refused as path segments. A flat object is very often untrusted input, which is the whole reason this function exists, and expanding one of those keys is how a prototype gets polluted.
 </Callout>
 
+<Callout type="info" emoji="📐">
+  A numeric segment creates an array only up to `MAX_ARRAY_INDEX` (10,000). Above that
+  the branch becomes a plain object keyed by the number, so the value is kept and only
+  the array-ness is dropped.
+
+  A lone large index in untrusted input would otherwise build an array whose `length`
+  makes serialising the result cost hundreds of megabytes. A flattened array starts at
+  `[0]`, so one of any size still round trips.
+</Callout>
+
 ## Examples
 
 ```ts

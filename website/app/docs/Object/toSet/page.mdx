@@ -47,6 +47,16 @@ Missing intermediate branches are created automatically. Existing non-object int
   untouched.
 </Callout>
 
+<Callout type="info" emoji="📐">
+  A numeric segment creates an array only up to `MAX_ARRAY_INDEX` (10,000). Above that
+  the branch becomes a plain object keyed by the number, so the value is kept and only
+  the array-ness is dropped.
+
+  A lone large index in untrusted input would otherwise build an array whose `length`
+  makes serialising the result cost hundreds of megabytes. A flattened array starts at
+  `[0]`, so one of any size still round trips.
+</Callout>
+
 ## Examples
 
 ```ts
