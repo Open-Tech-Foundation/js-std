@@ -343,9 +343,14 @@ function rgbaToOklch(r: number, g: number, b: number, a = 1): OKLCH {
   const lb = toLinear(b);
 
   // Linear RGB to OKLab
+  // The three rows are Ottosson's sRGB-to-LMS matrix, the inverse of the one
+  // `oklchToRgba` uses to come back. Two of them were wrong, which put every
+  // OKLCH value except pure red slightly off and made a round trip lossy:
+  // `#00ff00` came back as `#28fd00`. Only the first column of each row is
+  // exercised by red, so the one colour the tests used was the one that hid it.
   const l = 0.4122214708 * lr + 0.5363325363 * lg + 0.0514459929 * lb;
-  const m = 0.2119034982 * lr + 0.6740817638 * lg + 0.114014738 * lb;
-  const s = 0.0883024619 * lr + 0.2788669539 * lg + 0.6328305841 * lb;
+  const m = 0.2119034982 * lr + 0.6806995451 * lg + 0.1073969566 * lb;
+  const s = 0.0883024619 * lr + 0.2817188376 * lg + 0.6299787005 * lb;
 
   const l_ = Math.cbrt(l);
   const m_ = Math.cbrt(m);
