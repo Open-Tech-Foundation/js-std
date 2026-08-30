@@ -130,9 +130,18 @@ function cloneObj<T>(
     return c as T;
   }
 
+  // The four below record their clone in `objRefMap` for the same reason the
+  // containers above do: a value reached twice must come back as one value
+  // twice, not as two copies. Plain objects, arrays, Dates, Maps and Sets
+  // already did, so `clone({ a: d, b: d })` held one Date but two regexps.
+  // For buffers it decides more than identity — two typed arrays over one
+  // `ArrayBuffer` are views of the same memory, and cloning the buffer twice
+  // silently broke that, leaving writes through one invisible to the other.
   if (isRegExp(obj)) {
     const regex = new RegExp(obj.source, obj.flags);
     regex.lastIndex = obj.lastIndex;
+    objRefMap.set(obj, regex);
+
     return regex as T;
   }
 
@@ -140,23 +149,30 @@ function cloneObj<T>(
     const buff = new (ArrayBuffer as ArrayBufferConstructor)(obj.byteLength, {
       maxByteLength: (obj as any).maxByteLength,
     });
+    objRefMap.set(obj, buff);
     new Uint8Array(buff).set(new Uint8Array(obj as ArrayBuffer));
+
     return buff as T;
   }
 
   if (isTypedArray(obj)) {
     const buff = cloneObj(obj.buffer, objRefMap, depth + 1) as ArrayBufferLike;
-    return new (obj.constructor as TypedArrayConstructor)(
+    const typed = new (obj.constructor as TypedArrayConstructor)(
       buff,
       obj.byteOffset,
       obj.length,
-    ) as T;
+    );
+    objRefMap.set(obj, typed);
+
+    return typed as T;
   }
 
   if (isDataView(obj)) {
     const buf = cloneObj(obj.buffer, objRefMap, depth + 1) as ArrayBufferLike;
+    const view = new DataView(buf, obj.byteOffset, obj.byteLength);
+    objRefMap.set(obj, view);
 
-    return new DataView(buf, obj.byteOffset, obj.byteLength) as T;
+    return view as T;
   }
 
   return obj as T;
