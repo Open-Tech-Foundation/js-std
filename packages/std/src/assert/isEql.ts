@@ -23,11 +23,36 @@ function isObjectLike(value: unknown): value is object {
   return typeof value === 'object' && value !== null;
 }
 
+/**
+ * The pairs already being compared further up the walk.
+ *
+ * A cycle is only a cycle if the *same two* values come round again together,
+ * so the record has to be of pairs rather than of each side separately. Two
+ * sets, one per side, called it a cycle as soon as each value had been seen
+ * anywhere in its own graph, which is true of structures that merely share a
+ * node and are not equal at all.
+ */
+type PairSet = WeakMap<WeakKey, WeakSet<WeakKey>>;
+
+function hasPair(seen: PairSet, val1: WeakKey, val2: WeakKey): boolean {
+  return seen.get(val1)?.has(val2) ?? false;
+}
+
+function addPair(seen: PairSet, val1: WeakKey, val2: WeakKey): void {
+  const paired = seen.get(val1);
+
+  if (paired) {
+    paired.add(val2);
+    return;
+  }
+
+  seen.set(val1, new WeakSet<WeakKey>([val2]));
+}
+
 function isEqlVal(
   val1: unknown,
   val2: unknown,
-  objRefSet1: WeakSet<WeakKey>,
-  objRefSet2: WeakSet<WeakKey>,
+  seen: PairSet,
   depth = 0,
 ): boolean {
   checkDepth(depth, 'isEql');
@@ -37,12 +62,13 @@ function isEqlVal(
     return true;
   }
 
-  // For circular refs
+  // For circular refs. Reaching a pair that is already open above us means the
+  // walk has come round a cycle; the pair is equal exactly if everything else
+  // about it is, which the frames still open are in the middle of deciding.
   if (
     isObjectLike(val1) &&
     isObjectLike(val2) &&
-    objRefSet1.has(val1 as WeakKey) &&
-    objRefSet2.has(val2 as WeakKey)
+    hasPair(seen, val1 as WeakKey, val2 as WeakKey)
   ) {
     return true;
   }
@@ -59,9 +85,11 @@ function isEqlVal(
     return false;
   }
 
-  if (isPlainObject(val1) && isPlainObject(val2)) {
-    objRefSet1.add(val1 as WeakKey);
-    objRefSet2.add(val2 as WeakKey);
+  // Every container is recorded, not only plain objects: an array, a Map or a
+  // Set can hold itself just as easily, and those cycles used to run until the
+  // depth cap threw instead of comparing as equal.
+  if (isObjectLike(val1) && isObjectLike(val2)) {
+    addPair(seen, val1 as WeakKey, val2 as WeakKey);
   }
 
   if (isArray(val1)) {
@@ -87,8 +115,7 @@ function isEqlVal(
         !isEqlVal(
           (val1 as IterableObj)[key],
           (val2 as IterableObj)[key],
-          objRefSet1,
-          objRefSet2,
+          seen,
           depth + 1,
         )
       ) {
@@ -101,8 +128,7 @@ function isEqlVal(
         !isEqlVal(
           (val1 as IterableObj)[key],
           (val2 as IterableObj)[key],
-          objRefSet1,
-          objRefSet2,
+          seen,
           depth + 1,
         )
       ) {
@@ -130,8 +156,8 @@ function isEqlVal(
       const [key2, value2] = entries2[i];
 
       if (
-        !isEqlVal(key1, key2, objRefSet1, objRefSet2, depth + 1) ||
-        !isEqlVal(value1, value2, objRefSet1, objRefSet2, depth + 1)
+        !isEqlVal(key1, key2, seen, depth + 1) ||
+        !isEqlVal(value1, value2, seen, depth + 1)
       ) {
         return false;
       }
@@ -142,9 +168,7 @@ function isEqlVal(
   if (isSet(val1)) {
     const itVal2 = (val2 as Set<unknown>).values();
     for (const value of val1) {
-      if (
-        !isEqlVal(value, itVal2.next().value, objRefSet1, objRefSet2, depth + 1)
-      ) {
+      if (!isEqlVal(value, itVal2.next().value, seen, depth + 1)) {
         return false;
       }
     }
@@ -157,7 +181,7 @@ function isEqlVal(
       return false;
     }
 
-    if (!isEqlVal(val1.cause, err2.cause, objRefSet1, objRefSet2, depth + 1)) {
+    if (!isEqlVal(val1.cause, err2.cause, seen, depth + 1)) {
       return false;
     }
 
@@ -171,15 +195,7 @@ function isEqlVal(
     }
 
     for (const key of keys1) {
-      if (
-        !isEqlVal(
-          (val1 as any)[key],
-          (val2 as any)[key],
-          objRefSet1,
-          objRefSet2,
-          depth + 1,
-        )
-      ) {
+      if (!isEqlVal((val1 as any)[key], (val2 as any)[key], seen, depth + 1)) {
         return false;
       }
     }
@@ -189,15 +205,7 @@ function isEqlVal(
         return false;
       }
 
-      if (
-        !isEqlVal(
-          (val1 as any)[key],
-          (val2 as any)[key],
-          objRefSet1,
-          objRefSet2,
-          depth + 1,
-        )
-      ) {
+      if (!isEqlVal((val1 as any)[key], (val2 as any)[key], seen, depth + 1)) {
         return false;
       }
     }
@@ -220,7 +228,7 @@ function isEqlVal(
     const ta2 = new Uint8Array(val2 as ArrayBuffer);
 
     for (const key of ta1.keys()) {
-      if (!isEqlVal(ta1[key], ta2[key], objRefSet1, objRefSet2, depth + 1)) {
+      if (!isEqlVal(ta1[key], ta2[key], seen, depth + 1)) {
         return false;
       }
     }
@@ -234,8 +242,7 @@ function isEqlVal(
         !isEqlVal(
           val1.getUint8(i),
           (val2 as DataView).getUint8(i),
-          objRefSet1,
-          objRefSet2,
+          seen,
           depth + 1,
         )
       ) {
@@ -335,8 +342,5 @@ export default function isEql(
     return false;
   }
 
-  const objRefSet1 = new WeakSet();
-  const objRefSet2 = new WeakSet();
-
-  return isEqlVal(val1, val2, objRefSet1, objRefSet2, 0);
+  return isEqlVal(val1, val2, new WeakMap(), 0);
 }
