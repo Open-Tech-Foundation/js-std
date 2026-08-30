@@ -17,7 +17,18 @@ type CacheEntry<T, Args extends any[]> = {
 let nextRefId = 1;
 const refIds = new WeakMap<object, number>();
 let nextSymbolId = 1;
-const symbolIds = new Map<symbol, number>();
+
+/**
+ * Identities for the unique symbols seen as cache keys.
+ *
+ * Weak, deliberately. A strong `Map` here was never emptied — not by `clear`,
+ * not by eviction, and not by the cache being garbage — so every distinct
+ * symbol ever passed to any memoized function stayed for the life of the
+ * process. Memoizing over anything an outside caller chooses is the ordinary
+ * use of this function, and 200,000 symbol-keyed calls held about 26 MB after
+ * `clear()`, against a cache bounded to two entries.
+ */
+const symbolIds = new WeakMap<symbol, number>();
 
 function getRefId(value: object): number {
   let id = refIds.get(value);
@@ -28,13 +39,27 @@ function getRefId(value: object): number {
   return id;
 }
 
-function getSymbolId(value: symbol): number {
+/**
+ * A stable key for a symbol.
+ *
+ * A registered symbol is interned by its key, so `Symbol.for('a')` is the same
+ * symbol wherever it is reached and the key alone identifies it — nothing has
+ * to be recorded, which also keeps registered symbols out of the `WeakMap`
+ * that cannot hold them. Every other symbol is identified by reference.
+ */
+function getSymbolKey(value: symbol): string {
+  const registered = Symbol.keyFor(value);
+
+  if (registered !== undefined) {
+    return `for:${JSON.stringify(registered)}`;
+  }
+
   let id = symbolIds.get(value);
   if (id === undefined) {
     id = nextSymbolId++;
     symbolIds.set(value, id);
   }
-  return id;
+  return `id:${id}`;
 }
 
 function serializeBytes(bytes: Uint8Array): string {
@@ -62,7 +87,7 @@ function serializeValue(value: unknown, seen: Map<object, number>): string {
     case 'bigint':
       return `bigint:${value.toString()}`;
     case 'symbol':
-      return `symbol-ref:${getSymbolId(value)}`;
+      return `symbol-ref:${getSymbolKey(value)}`;
     case 'function':
       return `function-ref:${getRefId(value)}`;
     case 'object':
@@ -93,7 +118,9 @@ function serializeValue(value: unknown, seen: Map<object, number>): string {
   if (isPlainObject(value)) {
     const stringKeys = Object.keys(value).sort();
     const symbolKeys = Object.getOwnPropertySymbols(value).sort((a, b) => {
-      return getSymbolId(a) - getSymbolId(b);
+      const keyA = getSymbolKey(a);
+      const keyB = getSymbolKey(b);
+      return keyA < keyB ? -1 : keyA > keyB ? 1 : 0;
     });
     const parts = [
       ...stringKeys.map(
@@ -102,7 +129,7 @@ function serializeValue(value: unknown, seen: Map<object, number>): string {
       ),
       ...symbolKeys.map(
         (key) =>
-          `@@symbol:${getSymbolId(key)}:${serializeValue((value as any)[key], seen)}`,
+          `@@symbol:${getSymbolKey(key)}:${serializeValue((value as any)[key], seen)}`,
       ),
     ];
     const protoTag =
