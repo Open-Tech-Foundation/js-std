@@ -19,9 +19,9 @@ import {
 describe('Colors Expansion', () => {
   describe('Numeric Output', () => {
     test('Returns 24-bit integer', () => {
-      expect(color('red', 'number')).toBe(0xff0000);
-      expect(color('green', 'number')).toBe(0x008000);
-      expect(color('blue', 'number')).toBe(0x0000ff);
+      expect(color({ value: 'red', to: 'number' })).toBe(0xff0000);
+      expect(color({ value: 'green', to: 'number' })).toBe(0x008000);
+      expect(color({ value: 'blue', to: 'number' })).toBe(0x0000ff);
     });
   });
 

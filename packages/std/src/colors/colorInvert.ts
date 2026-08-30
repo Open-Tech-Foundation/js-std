@@ -19,14 +19,14 @@ export default function colorInvert(
   input: ColorInput,
   format: ColorFormat = 'hex',
 ): ColorOutput {
-  const rgba = color(input, 'rgba-object');
-  return color(
-    {
+  const rgba = color({ value: input, to: 'rgba-object' });
+  return color({
+    value: {
       r: 255 - rgba.r,
       g: 255 - rgba.g,
       b: 255 - rgba.b,
       a: rgba.a,
     },
-    format,
-  );
+    to: format,
+  });
 }

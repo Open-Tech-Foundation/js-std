@@ -496,7 +496,8 @@ describe('Decimal > divide decimalPlaces validation', () => {
   test('still accepts the ordinary values', () => {
     expect(new Decimal('1').divide('3', 0).toString()).toBe('0');
     expect(new Decimal('1').divide('3', 2).toString()).toBe('0.33');
-    expect(new Decimal('1').divide('3').toString()).toBe('0.33333333333333333333');
+    expect(new Decimal('1').divide('3').toString()).toBe(
+      '0.33333333333333333333',
+    );
   });
 });
-

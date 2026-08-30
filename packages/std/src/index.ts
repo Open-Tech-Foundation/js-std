@@ -242,9 +242,11 @@ export { default as compose } from './functional/compose';
 // colors
 export { default as color, ColorFormat } from './colors/color';
 export type {
+  ColorConvert,
   ColorFormatMap,
   ColorInput,
   ColorOutput,
+  ColorSourceFormat,
   HSLA,
   OKLCH,
   RGBA,

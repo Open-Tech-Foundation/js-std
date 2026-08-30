@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+### Changed
+
+- **Breaking.** `color` takes a single object stating the conversion — `color({ value, from, to })` — instead of a value and a positional format. `to` defaults to `'hex'`. The old two-argument call throws with a message naming the replacement rather than failing as an invalid colour, so the migration is mechanical: `color(x, 'rgb')` becomes `color({ value: x, to: 'rgb' })`. The nine derivative functions (`colorMix`, `colorLighten` and the rest) keep their positional `format` parameter and are unaffected.
+- `color` can now be told how to read an array, which is what makes `hsla-array` output usable. An array is three numbers and an alpha, and nothing in `[220, 60, 50, 1]` says which space they belong to, so it was always read as RGBA: `color({ value: '#3366cc', to: 'hsla-array' })` produced `[220, 60, 50, 1]`, and handing that straight back gave `#dc3c32` rather than the colour it was made from. `from` names the source space — `'rgb'`, `'rgba'`, `'hsl'`, `'hsla'` or `'oklch'` — and an OKLCH triple can now be read back as well. It applies to arrays alone; passing it with a string, a number or a keyed object throws, since those state their own format and silently ignoring it would leave a caller believing a conversion happened that never did.
+
 ### Fixed
 
 - `clone` let a symbol-keyed structure past the recursion depth cap. Both symbol loops — the one over a plain object's own symbols and the one over an Error's — recursed without passing `depth + 1`, so the counter restarted at zero on every link and `checkDepth` never fired. A 5,000-deep chain of symbol keys cloned without complaint while the identical chain of string keys stopped at 512, which is the stack overflow the cap was added to prevent. The cap had no tests of its own, which is how the gap survived; all five walkers are covered now.

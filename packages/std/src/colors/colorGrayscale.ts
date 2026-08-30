@@ -19,7 +19,7 @@ export default function colorGrayscale(
   input: ColorInput,
   format: ColorFormat = 'hex',
 ): ColorOutput {
-  const hsla = color(input, 'hsla-object');
+  const hsla = color({ value: input, to: 'hsla-object' });
   hsla.s = 0;
-  return color(hsla, format);
+  return color({ value: hsla, to: format });
 }

@@ -26,7 +26,7 @@ export default function colorAlpha(
   amount: number,
   format: ColorFormat = 'hex',
 ): ColorOutput {
-  const rgba = color(input, 'rgba-object');
+  const rgba = color({ value: input, to: 'rgba-object' });
   rgba.a = clamp(amount, 0, 1);
-  return color(rgba, format);
+  return color({ value: rgba, to: format });
 }

@@ -25,8 +25,8 @@ export default function colorMix(
   weight = 0.5,
   format: ColorFormat = 'hex',
 ): ColorOutput {
-  const rgba1 = color(color1, 'rgba-object');
-  const rgba2 = color(color2, 'rgba-object');
+  const rgba1 = color({ value: color1, to: 'rgba-object' });
+  const rgba2 = color({ value: color2, to: 'rgba-object' });
 
   const w = weight;
   const w2 = 1 - w;
@@ -36,5 +36,5 @@ export default function colorMix(
   const b = Math.round(rgba1.b * w + rgba2.b * w2);
   const a = rgba1.a * w + rgba2.a * w2;
 
-  return color({ r, g, b, a }, format);
+  return color({ value: { r, g, b, a }, to: format });
 }

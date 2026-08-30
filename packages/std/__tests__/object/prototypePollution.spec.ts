@@ -136,9 +136,9 @@ describe('Object > prototype pollution', () => {
     expect(flattenObject(hostile('{"nested":{"deep":1}}'))).toEqual({
       safe: 1,
     });
-    expect(flattenObject(JSON.parse('{"a":{"__proto__":{"x":1}},"b":2}'))).toEqual(
-      { b: 2 },
-    );
+    expect(
+      flattenObject(JSON.parse('{"a":{"__proto__":{"x":1}},"b":2}')),
+    ).toEqual({ b: 2 });
   });
 
   test('unflattenObject refuses unsafe path segments', () => {
@@ -199,10 +199,10 @@ describe('Object > prototype pollution', () => {
     const input: Record<string | symbol, unknown> = { a: 1, [sym]: 2 };
 
     expect((pickBy(input, () => true) as Record<symbol, unknown>)[sym]).toBe(2);
-    expect((mapValues(input, (v) => v) as Record<symbol, unknown>)[sym]).toBe(2);
-    expect(
-      (shallowMerge({}, input) as Record<symbol, unknown>)[sym],
-    ).toBe(2);
+    expect((mapValues(input, (v) => v) as Record<symbol, unknown>)[sym]).toBe(
+      2,
+    );
+    expect((shallowMerge({}, input) as Record<symbol, unknown>)[sym]).toBe(2);
   });
 
   test('null-prototype results are still null-prototype', () => {

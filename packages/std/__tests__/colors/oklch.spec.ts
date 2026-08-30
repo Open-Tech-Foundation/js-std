@@ -22,18 +22,21 @@ const SPEC_VALUES: [string, { l: number; c: number; h: number }][] = [
 describe('Colors > OKLCH conversion', () => {
   test('the primaries and secondaries match the CSS Color 4 values', () => {
     for (const [hex, expected] of SPEC_VALUES) {
-      expect(color(hex, 'oklch-object')).toEqual({ ...expected, a: 1 });
+      expect(color({ value: hex, to: 'oklch-object' })).toEqual({
+        ...expected,
+        a: 1,
+      });
     }
   });
 
   test('white and black sit at the ends of the lightness axis', () => {
-    expect(color('#ffffff', 'oklch-object')).toEqual({
+    expect(color({ value: '#ffffff', to: 'oklch-object' })).toEqual({
       l: 1,
       c: 0,
       h: 89.88,
       a: 1,
     });
-    expect(color('#000000', 'oklch-object')).toEqual({
+    expect(color({ value: '#000000', to: 'oklch-object' })).toEqual({
       l: 0,
       c: 0,
       h: 0,
@@ -42,8 +45,8 @@ describe('Colors > OKLCH conversion', () => {
   });
 
   test('a neutral grey has no chroma', () => {
-    expect(color('#808080', 'oklch-object').c).toBe(0);
-    expect(color('#404040', 'oklch-object').c).toBe(0);
+    expect(color({ value: '#808080', to: 'oklch-object' }).c).toBe(0);
+    expect(color({ value: '#404040', to: 'oklch-object' }).c).toBe(0);
   });
 
   test('every channel value survives a round trip', () => {
@@ -63,46 +66,65 @@ describe('Colors > OKLCH conversion', () => {
       '#ff00ff',
       '#ffff00',
     ]) {
-      expect(color(color(hex, 'oklch-object'), 'hex')).toBe(hex);
+      expect(
+        color({ value: color({ value: hex, to: 'oklch-object' }), to: 'hex' }),
+      ).toBe(hex);
     }
   });
 
   test('the oklch string round trips too', () => {
     for (const hex of ['#00ff00', '#3366cc', '#123456', '#ff8800']) {
-      expect(color(color(hex, 'oklch'), 'hex')).toBe(hex);
+      expect(
+        color({ value: color({ value: hex, to: 'oklch' }), to: 'hex' }),
+      ).toBe(hex);
     }
   });
 
   test('a full sweep of the hue circle round trips', () => {
     for (let h = 0; h < 360; h += 5) {
-      const hex = color({ h, s: 70, l: 45 }, 'hex');
-      expect(color(color(hex, 'oklch-object'), 'hex')).toBe(hex);
+      const hex = color({ value: { h, s: 70, l: 45 }, to: 'hex' });
+      expect(
+        color({ value: color({ value: hex, to: 'oklch-object' }), to: 'hex' }),
+      ).toBe(hex);
     }
   });
 
   test('alpha is carried through untouched', () => {
-    expect(color('#00ff0080', 'oklch-object')).toEqual({
+    expect(color({ value: '#00ff0080', to: 'oklch-object' })).toEqual({
       l: 0.8664,
       c: 0.2948,
       h: 142.5,
       a: 0.5,
     });
-    expect(color({ ...color('#00ff00', 'oklch-object'), a: 0.5 }, 'rgba')).toBe(
-      'rgba(0, 255, 0, 0.5)',
-    );
+    expect(
+      color({
+        value: {
+          ...color({ value: '#00ff00', to: 'oklch-object' }),
+          a: 0.5,
+        },
+        to: 'rgba',
+      }),
+    ).toBe('rgba(0, 255, 0, 0.5)');
   });
 
   test('an oklch string parses back to the colour it names', () => {
-    expect(color('oklch(0.8664 0.2948 142.5)', 'hex')).toBe('#00ff00');
-    expect(color('oklch(0.452 0.3132 264.05)', 'hex')).toBe('#0000ff');
-    expect(color('oklch(0.8664 0.2948 142.5 / 0.5)', 'rgba')).toBe(
-      'rgba(0, 255, 0, 0.5)',
+    expect(color({ value: 'oklch(0.8664 0.2948 142.5)', to: 'hex' })).toBe(
+      '#00ff00',
     );
+    expect(color({ value: 'oklch(0.452 0.3132 264.05)', to: 'hex' })).toBe(
+      '#0000ff',
+    );
+    expect(
+      color({ value: 'oklch(0.8664 0.2948 142.5 / 0.5)', to: 'rgba' }),
+    ).toBe('rgba(0, 255, 0, 0.5)');
   });
 
   test('a colour outside the sRGB gamut is clamped, not left as NaN', () => {
     // Maximum chroma at a lightness sRGB cannot reach that far out.
-    const rgba = color({ l: 0.9, c: 0.4, h: 200 }, 'rgba-object');
+    const rgba = color({
+      value: { l: 0.9, c: 0.4, h: 200 },
+      to: 'rgba-object',
+    });
 
     for (const channel of [rgba.r, rgba.g, rgba.b]) {
       expect(Number.isNaN(channel)).toBe(false);

@@ -15,10 +15,12 @@
 import type {
   AccessibilityLevel,
   BatchRunOptions,
+  ColorConvert,
   ColorFormat,
   ColorFormatMap,
   ColorInput,
   ColorOutput,
+  ColorSourceFormat,
   DeepReadonly,
   EncodeBase32Options,
   EncodeBase64UrlOptions,
@@ -259,27 +261,38 @@ accepts<ColorInput>({ l: 0.5, c: 0.2, h: 30 });
 
 // The format decides the result, so each is pinned exactly rather than merely
 // checked for assignability — `any` satisfied every such check before.
-const hex = color('red', 'hex');
+const hex = color({ value: 'red', to: 'hex' });
 assertType<Equals<typeof hex, string>>();
 
-const packed = color('red', 'number');
+const packed = color({ value: 'red', to: 'number' });
 assertType<Equals<typeof packed, number>>();
 
-const rgbaObj = color('red', 'rgba-object');
+const rgbaObj = color({ value: 'red', to: 'rgba-object' });
 assertType<Equals<typeof rgbaObj, RGBA>>();
 
-const hslaObj = color('red', 'hsla-object');
+const hslaObj = color({ value: 'red', to: 'hsla-object' });
 assertType<Equals<typeof hslaObj, HSLA>>();
 
-const oklchObj = color('red', 'oklch-object');
+const oklchObj = color({ value: 'red', to: 'oklch-object' });
 assertType<Equals<typeof oklchObj, OKLCH>>();
 
-const rgbaArr = color('red', 'rgba-array');
+const rgbaArr = color({ value: 'red', to: 'rgba-array' });
 assertType<Equals<typeof rgbaArr, [number, number, number, number]>>();
 
 // A format known only to be a `ColorFormat` yields every possibility.
 declare const runtimeFormat: ColorFormat;
-accepts<ColorOutput>(color('red', runtimeFormat));
+accepts<ColorOutput>(color({ value: 'red', to: runtimeFormat }));
+
+// `to` is optional, and its absence pins the result to hex's `string`.
+const defaulted = color({ value: 'red' });
+assertType<Equals<typeof defaulted, string>>();
+
+// `from` names how to read an array, and is reachable from the entry point.
+accepts<ColorSourceFormat>('hsla');
+const fromHsla = color({ value: [220, 60, 50, 1], from: 'hsla', to: 'number' });
+assertType<Equals<typeof fromHsla, number>>();
+accepts<ColorConvert>({ value: 'red' });
+accepts<ColorConvert<'rgb'>>({ value: 'red', from: 'rgba', to: 'rgb' });
 
 // The derivatives forward the format, and default to 'hex' when it is omitted.
 const lightened = colorLighten('red', 0.1);

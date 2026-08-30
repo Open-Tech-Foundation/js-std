@@ -3,19 +3,19 @@ import { ColorFormat, color } from '../../src';
 describe('Colors > color', () => {
   describe('Input parsing (Standard)', () => {
     test('Hex strings', () => {
-      expect(color('#ff0000', 'rgba-object')).toEqual({
+      expect(color({ value: '#ff0000', to: 'rgba-object' })).toEqual({
         r: 255,
         g: 0,
         b: 0,
         a: 1,
       });
-      expect(color('#f00', 'rgba-object')).toEqual({
+      expect(color({ value: '#f00', to: 'rgba-object' })).toEqual({
         r: 255,
         g: 0,
         b: 0,
         a: 1,
       });
-      expect(color('#ff000080', 'rgba-object')).toEqual({
+      expect(color({ value: '#ff000080', to: 'rgba-object' })).toEqual({
         r: 255,
         g: 0,
         b: 0,
@@ -24,20 +24,27 @@ describe('Colors > color', () => {
     });
 
     test('Color names', () => {
-      expect(color('red', 'rgba-object')).toEqual({ r: 255, g: 0, b: 0, a: 1 });
-      expect(color('AliceBlue', 'hex')).toBe('#f0f8ff');
-      expect(color('palegreen', 'hex')).toBe('#98fb98');
-      expect(color('rebeccapurple', 'hex')).toBe('#663399');
-    });
-
-    test('RGB strings', () => {
-      expect(color('rgb(255, 0, 0)', 'rgba-object')).toEqual({
+      expect(color({ value: 'red', to: 'rgba-object' })).toEqual({
         r: 255,
         g: 0,
         b: 0,
         a: 1,
       });
-      expect(color('rgba(255, 0, 0, 0.5)', 'rgba-object')).toEqual({
+      expect(color({ value: 'AliceBlue', to: 'hex' })).toBe('#f0f8ff');
+      expect(color({ value: 'palegreen', to: 'hex' })).toBe('#98fb98');
+      expect(color({ value: 'rebeccapurple', to: 'hex' })).toBe('#663399');
+    });
+
+    test('RGB strings', () => {
+      expect(color({ value: 'rgb(255, 0, 0)', to: 'rgba-object' })).toEqual({
+        r: 255,
+        g: 0,
+        b: 0,
+        a: 1,
+      });
+      expect(
+        color({ value: 'rgba(255, 0, 0, 0.5)', to: 'rgba-object' }),
+      ).toEqual({
         r: 255,
         g: 0,
         b: 0,
@@ -46,13 +53,15 @@ describe('Colors > color', () => {
     });
 
     test('HSL strings', () => {
-      expect(color('hsl(0, 100%, 50%)', 'rgba-object')).toEqual({
+      expect(color({ value: 'hsl(0, 100%, 50%)', to: 'rgba-object' })).toEqual({
         r: 255,
         g: 0,
         b: 0,
         a: 1,
       });
-      expect(color('hsla(0, 100%, 50%, 0.5)', 'rgba-object')).toEqual({
+      expect(
+        color({ value: 'hsla(0, 100%, 50%, 0.5)', to: 'rgba-object' }),
+      ).toEqual({
         r: 255,
         g: 0,
         b: 0,
@@ -61,63 +70,73 @@ describe('Colors > color', () => {
     });
 
     test('OKLCH strings', () => {
-      expect(color('oklch(0.628 0.258 29.23)', 'hex')).toBe('#ff0000');
-      expect(color('oklch(0.628 0.258 29.23 / 0.5)', 'rgba')).toBe(
-        'rgba(255, 0, 0, 0.5)',
+      expect(color({ value: 'oklch(0.628 0.258 29.23)', to: 'hex' })).toBe(
+        '#ff0000',
       );
+      expect(
+        color({ value: 'oklch(0.628 0.258 29.23 / 0.5)', to: 'rgba' }),
+      ).toBe('rgba(255, 0, 0, 0.5)');
     });
   });
 
   describe('Edge Cases & Robustness', () => {
     test('Weird spacing', () => {
-      expect(color('  #ff0000  ', 'hex')).toBe('#ff0000');
-      expect(color(' rgb( 255 , 0 , 0 ) ', 'rgb')).toBe('rgb(255, 0, 0)');
-      expect(color('hsla( 0 , 100% , 50% , 0.5 )', 'hsla')).toBe(
+      expect(color({ value: '  #ff0000  ', to: 'hex' })).toBe('#ff0000');
+      expect(color({ value: ' rgb( 255 , 0 , 0 ) ', to: 'rgb' })).toBe(
+        'rgb(255, 0, 0)',
+      );
+      expect(color({ value: 'hsla( 0 , 100% , 50% , 0.5 )', to: 'hsla' })).toBe(
         'hsla(0, 100%, 50%, 0.5)',
       );
     });
 
     test('Mixed case', () => {
-      expect(color('rGb(255,0,0)', 'hex')).toBe('#ff0000');
-      expect(color('HSLA(0,100%,50%,1)', 'hex')).toBe('#ff0000');
+      expect(color({ value: 'rGb(255,0,0)', to: 'hex' })).toBe('#ff0000');
+      expect(color({ value: 'HSLA(0,100%,50%,1)', to: 'hex' })).toBe('#ff0000');
     });
 
     test('Out of range values (Clamping)', () => {
       // RGB > 255
-      expect(color('rgb(300, 0, 0)', 'rgba-object')).toEqual({
+      expect(color({ value: 'rgb(300, 0, 0)', to: 'rgba-object' })).toEqual({
         r: 255,
         g: 0,
         b: 0,
         a: 1,
       });
       // Alpha > 1
-      expect(color('rgba(0,0,0,2)', 'rgba-object')).toEqual({
+      expect(color({ value: 'rgba(0,0,0,2)', to: 'rgba-object' })).toEqual({
         r: 0,
         g: 0,
         b: 0,
         a: 1,
       });
       // HSL > limits (Note: white results in h:0, s:0, l:100)
-      expect(color('hsl(400, 150%, 150%)', 'hsla-object')).toEqual({
+      expect(
+        color({ value: 'hsl(400, 150%, 150%)', to: 'hsla-object' }),
+      ).toEqual({
         h: 0,
         s: 0,
         l: 100,
         a: 1,
       });
       // Objects/Arrays out of range
-      expect(color({ r: 500, g: -10, b: 0 }, 'rgba-object')).toEqual({
+      expect(
+        color({ value: { r: 500, g: -10, b: 0 }, to: 'rgba-object' }),
+      ).toEqual({
         r: 255,
         g: 0,
         b: 0,
         a: 1,
       });
-      expect(color([0, 0, 0, 5], 'rgba-object')).toEqual({
+      expect(color({ value: [0, 0, 0, 5], to: 'rgba-object' })).toEqual({
         r: 0,
         g: 0,
         b: 0,
         a: 1,
       });
-      expect(color({ l: 0.5, c: 0.1, h: 30, a: 2 }, 'rgba-object')).toEqual({
+      expect(
+        color({ value: { l: 0.5, c: 0.1, h: 30, a: 2 }, to: 'rgba-object' }),
+      ).toEqual({
         r: 148,
         g: 75,
         b: 64,
@@ -128,19 +147,31 @@ describe('Colors > color', () => {
 
   describe('Error Handling', () => {
     test('Throws on invalid color strings', () => {
-      expect(() => color('invalid', 'hex')).toThrow('Invalid Color');
-      expect(() => color('#zzzzzz', 'hex')).toThrow('Invalid Color');
-      expect(() => color('rgb(a,b,c)', 'hex')).toThrow('Invalid Color');
-      expect(() => color(null as any, 'hex')).toThrow('Invalid Color');
+      expect(() => color({ value: 'invalid', to: 'hex' })).toThrow(
+        'Invalid Color',
+      );
+      expect(() => color({ value: '#zzzzzz', to: 'hex' })).toThrow(
+        'Invalid Color',
+      );
+      expect(() => color({ value: 'rgb(a,b,c)', to: 'hex' })).toThrow(
+        'Invalid Color',
+      );
+      expect(() => color({ value: null as any, to: 'hex' })).toThrow(
+        'Invalid Color',
+      );
     });
 
     test('Throws on invalid objects', () => {
-      expect(() => color({}, 'hex')).toThrow('Invalid Color');
-      expect(() => color({ x: 1 }, 'hex')).toThrow('Invalid Color');
+      expect(() => color({ value: {}, to: 'hex' })).toThrow('Invalid Color');
+      expect(() => color({ value: { x: 1 }, to: 'hex' })).toThrow(
+        'Invalid Color',
+      );
     });
 
     test('Throws on invalid format', () => {
-      expect(() => color('red', 'invalid-format')).toThrow('Invalid format');
+      expect(() => color({ value: 'red', to: 'invalid-format' })).toThrow(
+        'Invalid format',
+      );
     });
   });
 
@@ -148,44 +179,62 @@ describe('Colors > color', () => {
     const red = { r: 255, g: 0, b: 0, a: 1 };
 
     test('hex', () => {
-      expect(color(red, ColorFormat.HEX)).toBe('#ff0000');
-      expect(color({ ...red, a: 0.5 }, 'hex')).toBe('#ff000080');
+      expect(color({ value: red, to: ColorFormat.HEX })).toBe('#ff0000');
+      expect(color({ value: { ...red, a: 0.5 }, to: 'hex' })).toBe('#ff000080');
     });
 
     test('rgb/rgba', () => {
-      expect(color(red, 'rgb')).toBe('rgb(255, 0, 0)');
-      expect(color({ ...red, a: 0.5 }, 'rgba')).toBe('rgba(255, 0, 0, 0.5)');
+      expect(color({ value: red, to: 'rgb' })).toBe('rgb(255, 0, 0)');
+      expect(color({ value: { ...red, a: 0.5 }, to: 'rgba' })).toBe(
+        'rgba(255, 0, 0, 0.5)',
+      );
     });
 
     test('hsl/hsla', () => {
-      expect(color(red, 'hsl')).toBe('hsl(0, 100%, 50%)');
-      expect(color({ ...red, a: 0.5 }, 'hsla')).toBe('hsla(0, 100%, 50%, 0.5)');
+      expect(color({ value: red, to: 'hsl' })).toBe('hsl(0, 100%, 50%)');
+      expect(color({ value: { ...red, a: 0.5 }, to: 'hsla' })).toBe(
+        'hsla(0, 100%, 50%, 0.5)',
+      );
     });
 
     test('rgba-object/array', () => {
-      expect(color(red, 'rgba-object')).toEqual({ r: 255, g: 0, b: 0, a: 1 });
-      expect(color(red, 'rgba-array')).toEqual([255, 0, 0, 1]);
+      expect(color({ value: red, to: 'rgba-object' })).toEqual({
+        r: 255,
+        g: 0,
+        b: 0,
+        a: 1,
+      });
+      expect(color({ value: red, to: 'rgba-array' })).toEqual([255, 0, 0, 1]);
     });
 
     test('hsla-object/array', () => {
-      expect(color(red, 'hsla-object')).toEqual({ h: 0, s: 100, l: 50, a: 1 });
-      expect(color(red, 'hsla-array')).toEqual([0, 100, 50, 1]);
+      expect(color({ value: red, to: 'hsla-object' })).toEqual({
+        h: 0,
+        s: 100,
+        l: 50,
+        a: 1,
+      });
+      expect(color({ value: red, to: 'hsla-array' })).toEqual([0, 100, 50, 1]);
     });
 
     test('css (smart format)', () => {
-      expect(color(red, 'css')).toBe('red');
-      expect(color('#f0f8ff', 'css')).toBe('aliceblue');
-      expect(color('#98fb98', 'css')).toBe('palegreen');
-      expect(color({ ...red, a: 0.5 }, 'css')).toBe('rgba(255, 0, 0, 0.5)');
-      expect(color('#123456', 'css')).toBe('#123456');
+      expect(color({ value: red, to: 'css' })).toBe('red');
+      expect(color({ value: '#f0f8ff', to: 'css' })).toBe('aliceblue');
+      expect(color({ value: '#98fb98', to: 'css' })).toBe('palegreen');
+      expect(color({ value: { ...red, a: 0.5 }, to: 'css' })).toBe(
+        'rgba(255, 0, 0, 0.5)',
+      );
+      expect(color({ value: '#123456', to: 'css' })).toBe('#123456');
     });
 
     test('oklch', () => {
-      expect(color(red, 'oklch')).toBe('oklch(0.628 0.2577 29.23)');
-      expect(color({ ...red, a: 0.5 }, 'oklch')).toBe(
+      expect(color({ value: red, to: 'oklch' })).toBe(
+        'oklch(0.628 0.2577 29.23)',
+      );
+      expect(color({ value: { ...red, a: 0.5 }, to: 'oklch' })).toBe(
         'oklch(0.628 0.2577 29.23 / 0.5)',
       );
-      expect(color(red, 'oklch-object')).toEqual({
+      expect(color({ value: red, to: 'oklch-object' })).toEqual({
         l: 0.628,
         c: 0.2577,
         h: 29.23,
@@ -194,8 +243,10 @@ describe('Colors > color', () => {
     });
 
     test('ansi', () => {
-      expect(color('red', 'ansi')).toBe('\x1b[38;2;255;0;0m');
-      expect(color('#00ff00', 'ansi')).toBe('\x1b[38;2;0;255;0m');
+      expect(color({ value: 'red', to: 'ansi' })).toBe('\x1b[38;2;255;0;0m');
+      expect(color({ value: '#00ff00', to: 'ansi' })).toBe(
+        '\x1b[38;2;0;255;0m',
+      );
     });
   });
 });

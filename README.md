@@ -59,7 +59,7 @@ new DateTime("2028-02-10").endOf("month"); //=> 2028-02-29  leap-year aware
 new Decimal("0.1").add("0.2").toString(); //=> "0.3"
 
 // 🎨 Color parsing, conversion & WCAG accessibility
-color("rebeccapurple", "hex"); //=> "#663399"
+color({ value: "rebeccapurple", to: "hex" }); //=> "#663399"
 colorContrast("white", "black"); //=> 21  (WCAG ratio)
 
 // 💾 Human-readable, locale-aware formatting

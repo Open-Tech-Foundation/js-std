@@ -220,7 +220,9 @@ describe('Flow > memoizeRun cache bounds', () => {
 
   test('refuses a maxSize below one', () => {
     expect(() => memoizeRun(async () => 1, { maxSize: 0 })).toThrow(RangeError);
-    expect(() => memoizeRun(async () => 1, { maxSize: -5 })).toThrow(RangeError);
+    expect(() => memoizeRun(async () => 1, { maxSize: -5 })).toThrow(
+      RangeError,
+    );
     expect(() => memoizeRun(async () => 1, { maxSize: Number.NaN })).toThrow(
       RangeError,
     );

@@ -22,8 +22,8 @@ export default function colorRotateHue(
   degrees: number,
   format: ColorFormat = 'hex',
 ): ColorOutput {
-  const hsla = color(input, 'hsla-object');
+  const hsla = color({ value: input, to: 'hsla-object' });
   hsla.h = (hsla.h + degrees) % 360;
   if (hsla.h < 0) hsla.h += 360;
-  return color(hsla, format);
+  return color({ value: hsla, to: format });
 }

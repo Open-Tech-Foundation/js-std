@@ -100,9 +100,9 @@ describe('Flow > retryRun retry bound', () => {
   // awaited promises, so it starved the event loop rather than merely running
   // long: a timer set before the call was still unfired twenty seconds later.
   test('refuses a retry count that would never finish', async () => {
-    await expect(
-      retryRun(async () => 1, { retries: 1e308 }),
-    ).rejects.toThrow(RangeError);
+    await expect(retryRun(async () => 1, { retries: 1e308 })).rejects.toThrow(
+      RangeError,
+    );
 
     await expect(
       retryRun(async () => 1, { retries: Number.MAX_SAFE_INTEGER }),

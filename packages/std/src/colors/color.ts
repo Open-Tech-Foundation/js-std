@@ -63,6 +63,42 @@ export interface ColorFormatMap {
 export type ColorOutput<F extends ColorFormat = ColorFormat> =
   ColorFormatMap[F];
 
+/**
+ * How to read an array value.
+ *
+ * Only arrays need this. A string, a number and a keyed object each state
+ * their own format — `{ h, s, l }` is hue-saturation-lightness by its keys —
+ * but `[220, 60, 50, 1]` is three numbers and an alpha, and nothing in it says
+ * which space they belong to.
+ */
+export type ColorSourceFormat = 'rgb' | 'rgba' | 'hsl' | 'hsla' | 'oklch';
+
+const SOURCE_FORMATS = new Set<string>(['rgb', 'rgba', 'hsl', 'hsla', 'oklch']);
+
+/**
+ * A conversion stated as one object, naming the format on each side.
+ *
+ * @example
+ * color({ value: [220, 60, 50, 1], from: 'hsla', to: 'hex' }) //=> '#3366cc'
+ */
+export interface ColorConvert<F extends ColorFormat = 'hex'> {
+  /** The color to read. */
+  value: ColorInput;
+  /** How to read `value`. Arrays only; defaults to `'rgba'`. */
+  from?: ColorSourceFormat;
+  /** The format to produce. Defaults to `'hex'`. */
+  to?: F;
+}
+
+function isColorConvert(input: unknown): input is ColorConvert<ColorFormat> {
+  return (
+    input !== null &&
+    typeof input === 'object' &&
+    !Array.isArray(input) &&
+    'value' in input
+  );
+}
+
 const COLOR_NAMES: Record<string, string> = {
   aliceblue: '#f0f8ff',
   antiquewhite: '#faebd7',
@@ -405,7 +441,7 @@ function oklchToRgba(l: number, c: number, h: number, a = 1): RGBA {
   };
 }
 
-function normalize(input: ColorInput): RGBA | null {
+function normalize(input: ColorInput, from?: ColorSourceFormat): RGBA | null {
   if (typeof input === 'string') {
     const s = input.trim().toLowerCase();
     if (COLOR_NAMES[s]) return hexToRgba(COLOR_NAMES[s]);
@@ -466,11 +502,22 @@ function normalize(input: ColorInput): RGBA | null {
   }
 
   if (Array.isArray(input)) {
+    const [x, y, z, w] = input;
+    const a = clamp(w === undefined ? 1 : w, 0, 1);
+
+    if (from === 'hsl' || from === 'hsla') {
+      return hslToRgba(clamp(x, 0, 360), clamp(y, 0, 100), clamp(z, 0, 100), a);
+    }
+
+    if (from === 'oklch') {
+      return oklchToRgba(x, y, z, a);
+    }
+
     return {
-      r: clamp(input[0], 0, 255),
-      g: clamp(input[1], 0, 255),
-      b: clamp(input[2], 0, 255),
-      a: clamp(input[3] === undefined ? 1 : input[3], 0, 1),
+      r: clamp(x, 0, 255),
+      g: clamp(y, 0, 255),
+      b: clamp(z, 0, 255),
+      a,
     };
   }
 
@@ -505,31 +552,59 @@ function normalize(input: ColorInput): RGBA | null {
 }
 
 /**
- * Parses and converts colors between various formats.
+ * Parses and converts colors between formats.
  *
- * @param {string|number|Array|Object} input The color input.
- * @param {string} format The output format.
+ * Takes a single object naming the format on each side. `from` is needed only
+ * for arrays: an array is three numbers and an alpha, and nothing in
+ * `[220, 60, 50, 1]` says which space they belong to, so it is read as RGBA
+ * unless told otherwise. Every other input — a string, a number, a keyed
+ * object — states its own format, and `from` is refused for those rather than
+ * quietly ignored.
+ *
+ * @param {Object} request The conversion: the value, the format to read it as, the format to produce.
  * @returns {string|number|Array|Object} The converted color.
  *
  * @example
- * color('#ff0000', 'rgb') //=> 'rgb(255, 0, 0)'
- * color('red', 'rgba-object') //=> { r: 255, g: 0, b: 0, a: 1 }
- * color({ h: 0, s: 100, l: 50 }, 'hex') //=> '#ff0000'
+ * color({ value: '#ff0000', to: 'rgb' }) //=> 'rgb(255, 0, 0)'
+ * color({ value: 'red', to: 'rgba-object' }) //=> { r: 255, g: 0, b: 0, a: 1 }
+ * color({ value: { h: 0, s: 100, l: 50 } }) //=> '#ff0000'
+ *
+ * @example
+ * // An array needs `from` to say which space its numbers are in.
+ * const hsla = color({ value: '#3366cc', to: 'hsla-array' }); //=> [220, 60, 50, 1]
+ * color({ value: hsla, from: 'hsla' }); //=> '#3366cc'
  */
-export default function color<F extends ColorFormat>(
-  input: ColorInput,
-  format: F,
+export default function color<F extends ColorFormat = 'hex'>(
+  request: ColorConvert<F>,
 ): ColorOutput<F>;
-export default function color(
-  input: ColorInput,
-  format: ColorFormat,
-): ColorOutput {
-  const rgba = normalize(input);
+export default function color(request: ColorConvert<ColorFormat>): ColorOutput {
+  if (!isColorConvert(request)) {
+    throw new Error(
+      "color: pass a single object, e.g. color({ value: '#ff0000', to: 'rgb' }).",
+    );
+  }
+
+  const { value, from } = request;
+  const target: ColorFormat = request.to ?? 'hex';
+
+  if (from !== undefined) {
+    if (!SOURCE_FORMATS.has(from)) {
+      throw new Error(`color: invalid 'from' format: ${from}`);
+    }
+
+    if (!Array.isArray(value)) {
+      throw new Error(
+        `color: 'from' applies to array values only; a ${typeof value} states its own format.`,
+      );
+    }
+  }
+
+  const rgba = normalize(value, from);
   if (!rgba) {
     throw new Error('Invalid Color');
   }
 
-  switch (format) {
+  switch (target) {
     case 'hex': {
       const r = rgba.r.toString(16).padStart(2, '0');
       const g = rgba.g.toString(16).padStart(2, '0');
@@ -589,6 +664,6 @@ export default function color(
     case 'ansi':
       return `\x1b[38;2;${rgba.r};${rgba.g};${rgba.b}m`;
     default:
-      throw new Error(`Invalid format: ${format}`);
+      throw new Error(`Invalid format: ${target}`);
   }
 }

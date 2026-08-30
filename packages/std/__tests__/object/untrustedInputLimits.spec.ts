@@ -30,7 +30,9 @@ describe('Object > limits on untrusted input', () => {
     expect(unflattenObject({ 'a[0]': 'x', 'a[1]': 'y' })).toEqual({
       a: ['x', 'y'],
     });
-    expect(set({}, 'a[3]', 1)).toEqual({ a: [undefined, undefined, undefined, 1] });
+    expect(set({}, 'a[3]', 1)).toEqual({
+      a: [undefined, undefined, undefined, 1],
+    });
     expect(toSet({}, 'a[2]', 1)).toEqual({ a: [undefined, undefined, 1] });
   });
 

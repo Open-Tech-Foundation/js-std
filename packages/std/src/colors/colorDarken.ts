@@ -22,7 +22,7 @@ export default function colorDarken(
   amount: number,
   format: ColorFormat = 'hex',
 ): ColorOutput {
-  const hsla = color(input, 'hsla-object');
+  const hsla = color({ value: input, to: 'hsla-object' });
   hsla.l = Math.max(0, hsla.l - amount * 100);
-  return color(hsla, format);
+  return color({ value: hsla, to: format });
 }

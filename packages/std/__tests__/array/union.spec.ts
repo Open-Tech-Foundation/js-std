@@ -54,7 +54,12 @@ describe('Array > union flattening', () => {
   });
 
   test('keeps the flattening semantics concat had', () => {
-    expect(union([[1, 2], [2, 3]])).toEqual([1, 2, 3]);
+    expect(
+      union([
+        [1, 2],
+        [2, 3],
+      ]),
+    ).toEqual([1, 2, 3]);
     expect(union([])).toEqual([]);
     expect(union([[1], [2], [3]])).toEqual([1, 2, 3]);
     // A non-array member was appended as a single value.
