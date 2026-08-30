@@ -12,3 +12,7 @@ Mixes two colors together.
 ## Returns
 
 `ColorOutput` — The mixed color.
+
+## Throws
+
+- `RangeError` — If the weight is not a finite number.

@@ -11,3 +11,7 @@ Decreases the saturation of a color.
 ## Returns
 
 `ColorOutput` — The desaturated color.
+
+## Throws
+
+- `RangeError` — If the amount is not a finite number.

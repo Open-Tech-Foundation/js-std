@@ -1,3 +1,4 @@
+import checkAmount from './checkAmount';
 import color, {
   type ColorFormat,
   type ColorInput,
@@ -12,6 +13,7 @@ import color, {
  * @param {number} [weight=0.5] - The weight of the first color (0 to 1).
  * @param {ColorFormat} [format='hex'] - The output format.
  * @returns {ColorOutput} - The mixed color.
+ * @throws {RangeError} If the weight is not a finite number.
  */
 export default function colorMix<F extends ColorFormat = 'hex'>(
   color1: ColorInput,
@@ -25,6 +27,8 @@ export default function colorMix(
   weight = 0.5,
   format: ColorFormat = 'hex',
 ): ColorOutput {
+  checkAmount(weight, 'weight');
+
   const rgba1 = color({ value: color1, to: 'rgba-object' });
   const rgba2 = color({ value: color2, to: 'rgba-object' });
 

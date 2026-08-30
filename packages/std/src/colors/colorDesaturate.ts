@@ -1,3 +1,4 @@
+import checkAmount from './checkAmount';
 import color, {
   type ColorFormat,
   type ColorInput,
@@ -11,6 +12,7 @@ import color, {
  * @param {number} amount - The amount to desaturate (0 to 1).
  * @param {ColorFormat} [format='hex'] - The output format.
  * @returns {ColorOutput} - The desaturated color.
+ * @throws {RangeError} If the amount is not a finite number.
  */
 export default function colorDesaturate<F extends ColorFormat = 'hex'>(
   input: ColorInput,
@@ -22,6 +24,8 @@ export default function colorDesaturate(
   amount: number,
   format: ColorFormat = 'hex',
 ): ColorOutput {
+  checkAmount(amount, 'amount');
+
   const hsla = color({ value: input, to: 'hsla-object' });
   hsla.s = Math.max(0, hsla.s - amount * 100);
   return color({ value: hsla, to: format });

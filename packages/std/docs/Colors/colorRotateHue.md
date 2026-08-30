@@ -11,3 +11,7 @@ Rotates the hue of a color.
 ## Returns
 
 `ColorOutput` — The hue-rotated color.
+
+## Throws
+
+- `RangeError` — If the degrees is not a finite number.

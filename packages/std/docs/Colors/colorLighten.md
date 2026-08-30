@@ -11,3 +11,7 @@ Increases the lightness of a color.
 ## Returns
 
 `ColorOutput` — The lightened color.
+
+## Throws
+
+- `RangeError` — If the amount is not a finite number.

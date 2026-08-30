@@ -11,3 +11,7 @@ Decreases the lightness of a color.
 ## Returns
 
 `ColorOutput` — The darkened color.
+
+## Throws
+
+- `RangeError` — If the amount is not a finite number.

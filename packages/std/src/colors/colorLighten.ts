@@ -1,3 +1,4 @@
+import checkAmount from './checkAmount';
 import color, {
   type ColorFormat,
   type ColorInput,
@@ -11,6 +12,7 @@ import color, {
  * @param {number} amount - The amount to lighten (0 to 1).
  * @param {ColorFormat} [format='hex'] - The output format.
  * @returns {ColorOutput} - The lightened color.
+ * @throws {RangeError} If the amount is not a finite number.
  */
 export default function colorLighten<F extends ColorFormat = 'hex'>(
   input: ColorInput,
@@ -22,6 +24,8 @@ export default function colorLighten(
   amount: number,
   format: ColorFormat = 'hex',
 ): ColorOutput {
+  checkAmount(amount, 'amount');
+
   const hsla = color({ value: input, to: 'hsla-object' });
   hsla.l = Math.min(100, hsla.l + amount * 100);
   return color({ value: hsla, to: format });

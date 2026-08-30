@@ -1,3 +1,4 @@
+import checkAmount from './checkAmount';
 import color, {
   type ColorFormat,
   type ColorInput,
@@ -11,6 +12,7 @@ import color, {
  * @param {number} degrees - The degrees to rotate (can be negative).
  * @param {ColorFormat} [format='hex'] - The output format.
  * @returns {ColorOutput} - The hue-rotated color.
+ * @throws {RangeError} If the degrees is not a finite number.
  */
 export default function colorRotateHue<F extends ColorFormat = 'hex'>(
   input: ColorInput,
@@ -22,6 +24,8 @@ export default function colorRotateHue(
   degrees: number,
   format: ColorFormat = 'hex',
 ): ColorOutput {
+  checkAmount(degrees, 'degrees');
+
   const hsla = color({ value: input, to: 'hsla-object' });
   hsla.h = (hsla.h + degrees) % 360;
   if (hsla.h < 0) hsla.h += 360;

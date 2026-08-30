@@ -12,6 +12,10 @@ Adjusts the alpha channel of a color.
 
 `ColorOutput` — The color with adjusted alpha.
 
+## Throws
+
+- `RangeError` — If the amount is not a finite number.
+
 ## Example
 
 ```js
