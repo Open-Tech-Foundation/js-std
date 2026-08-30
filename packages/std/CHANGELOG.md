@@ -4,6 +4,7 @@
 
 ### Fixed
 
+- `clone` let a symbol-keyed structure past the recursion depth cap. Both symbol loops — the one over a plain object's own symbols and the one over an Error's — recursed without passing `depth + 1`, so the counter restarted at zero on every link and `checkDepth` never fired. A 5,000-deep chain of symbol keys cloned without complaint while the identical chain of string keys stopped at 512, which is the stack overflow the cap was added to prevent. The cap had no tests of its own, which is how the gap survived; all five walkers are covered now.
 - Corrected two rows of the sRGB-to-LMS matrix behind the OKLCH conversion. `rgbaToOklch` carried `0.6740817638`/`0.1140147380` and `0.2788669539`/`0.6328305841` where Ottosson's matrix has `0.6806995451`/`0.1073969566` and `0.2817188376`/`0.6299787005`, so every OKLCH value the library produced was off and a round trip did not come back: `#00ff00` read as `oklch(0.8642 0.2899 141.85)` against the CSS Color 4 value of `oklch(0.8664 0.2948 142.5)`, and converting it back gave `#28fd00`. The inverse matrix in `oklchToRgba` was already right, so only the forward direction moved. Pure red is the one colour that cannot catch this — with green and blue at zero only the first column of each row contributes, and that column was correct — and it was the only colour the tests used. The primaries and secondaries are now pinned to their published values, and a sweep of the hue circle guards the round trip.
 
 ## [0.18.0] - 2026-08-16

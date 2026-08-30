@@ -50,6 +50,7 @@ function cloneObj<T>(
       cObj[sym as unknown as string] = cloneObj(
         (obj as Record<string | symbol, unknown>)[sym],
         objRefMap,
+        depth + 1,
       );
     }
 
@@ -122,6 +123,7 @@ function cloneObj<T>(
       c[sym] = cloneObj(
         (obj as Record<string | symbol, unknown>)[sym],
         objRefMap,
+        depth + 1,
       );
     }
 
