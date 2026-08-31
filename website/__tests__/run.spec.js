@@ -68,6 +68,34 @@ describe('run', () => {
     expect(probes(events).map((p) => p.line)).toEqual([0, 1]);
   });
 
+  test('reports what the code printed, in order', async () => {
+    const events = await execute(
+      "console.log('first');\nconsole.warn('careful');",
+    );
+    const logs = events.filter((e) => e.type === 'log');
+    expect(logs.map((l) => [l.level, l.text])).toEqual([
+      ['log', 'first'],
+      ['warn', 'careful'],
+    ]);
+  });
+
+  test('prints a value the way the docs write one', async () => {
+    const events = await execute('console.log(chunk([1, 2], 1));');
+    expect(events.find((e) => e.type === 'log').text).toBe('[[1], [2]]');
+  });
+
+  test('gives the console back when the run is over', async () => {
+    const before = console.log;
+    await execute("console.log('x');");
+    expect(console.log).toBe(before);
+  });
+
+  test('gives the console back even when the run throws', async () => {
+    const before = console.log;
+    await execute('missingHelper();');
+    expect(console.log).toBe(before);
+  });
+
   test('reports a thrown error instead of failing the run', async () => {
     const events = await execute('missingHelper() //=> 1');
     const error = events.find((e) => e.type === 'error');

@@ -15,19 +15,25 @@ import inspect from './inspect.js';
 const AsyncFunction = Object.getPrototypeOf(async () => {}).constructor;
 
 /**
- * Every export is put in scope with `with` rather than destructured.
+ * Every export is bound as a `var`, in one destructuring ahead of the example.
  *
- * Two examples shadow a library name (`const sum = …`, `const chunk = …`),
- * which a `const { sum, chunk } = std` preamble would turn into a redeclaration
- * error. `with` gives the same bare-name access and lets a local declaration
- * shadow the export, which is what the reader's code means. It is legal here
- * because a function built from source text is sloppy-mode by default.
+ * `var` on both sides is what makes the two things the samples do legal at
+ * once. A page's examples are run together and several restate their setup, so
+ * a binding has to be allowed to repeat — `const` would make the second one a
+ * syntax error. And two examples deliberately shadow a library name
+ * (`const sum = …`, `const chunk = …`), which has to keep working: a `var`
+ * redeclaration takes over the name for the rest of the run, where an earlier
+ * `with (__std)` wrapper sent the assignment to a read-only namespace property
+ * and left the library's own function in place.
  *
- * The opening brace shares the first line of the example so that a runtime
- * error's line number still matches the line the reader is looking at.
+ * The preamble shares the first line of the example rather than taking one of
+ * its own, so a runtime error's line number still matches the line the reader
+ * is looking at.
  */
+const BINDINGS = `var {${Object.keys(std).join(',')}} = __std;`;
+
 function compile(code) {
-  return new AsyncFunction('__probe', '__std', `with(__std){${code}\n}`);
+  return new AsyncFunction('__probe', '__std', BINDINGS + code);
 }
 
 /**
@@ -44,7 +50,7 @@ function compile(code) {
  */
 function readExpected(source) {
   try {
-    return new Function('__std', `with(__std){return (${source})}`);
+    return new Function('__std', `${BINDINGS}return (${source})`);
   } catch {
     return null;
   }
@@ -90,6 +96,34 @@ function verdict(value, source) {
 }
 
 /**
+ * Redirects `console` to the report for the length of a run.
+ *
+ * The samples print through `console.log`, so capturing it is part of executing
+ * one rather than part of hosting the worker — putting it here is what lets the
+ * tests see a sample's output.
+ */
+function captureConsole(report) {
+  const levels = ['log', 'info', 'warn', 'error', 'debug'];
+  const saved = new Map(levels.map((level) => [level, console[level]]));
+
+  for (const level of levels) {
+    console[level] = (...args) => {
+      report({
+        type: 'log',
+        level,
+        text: args
+          .map((a) => (typeof a === 'string' ? a : inspect(a)))
+          .join(' '),
+      });
+    };
+  }
+
+  return () => {
+    for (const [level, fn] of saved) console[level] = fn;
+  };
+}
+
+/**
  * Executes `code`, calling `report` for every probe and for the final outcome.
  *
  * @param {string} code The output of `transform`.
@@ -117,6 +151,7 @@ export default async function run(code, probes, report) {
   };
 
   const started = Date.now();
+  const restore = captureConsole(report);
   try {
     await compile(code)(probe, std);
   } catch (error) {
@@ -125,6 +160,8 @@ export default async function run(code, probes, report) {
       name: error?.name ?? 'Error',
       message: error?.message ?? String(error),
     });
+  } finally {
+    restore();
   }
   report({ type: 'done', ms: Date.now() - started });
 }

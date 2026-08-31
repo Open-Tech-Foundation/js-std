@@ -41,6 +41,15 @@ describe('seedFromExample', () => {
     expect(seedFromExample(source)).toBe(source);
   });
 
+  // The semicolon inside the callback ends nothing; the statement is one call.
+  test('prints a call whose callback body has statements of its own', () => {
+    const source =
+      'await mapAsync(items, async (n) => {\n  return n * 2;\n}); //=> [2, 4]';
+    expect(seedFromExample(source)).toBe(
+      'console.log(await mapAsync(items, async (n) => {\n  return n * 2;\n})); //=> [2, 4]',
+    );
+  });
+
   test('leaves several statements sharing a line alone', () => {
     expect(seedFromExample('a(); b(); //=> 1')).toBe('a(); b(); //=> 1');
   });

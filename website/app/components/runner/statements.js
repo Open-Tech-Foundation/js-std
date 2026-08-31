@@ -90,9 +90,14 @@ function describe(lines, start, end) {
 
   const keyword = /^[A-Za-z_$][\w$]*/.exec(bare)?.[0];
 
-  // Several statements sharing a line cannot be wrapped as one expression, and
-  // a `;` survives in the blanked code view only when it is real.
-  const compound = bare.includes(';');
+  // Several statements sharing a line cannot be wrapped as one expression. Only
+  // a semicolon at depth zero separates them, and the statement's own
+  // terminator is not one of those — `await mapAsync(xs, async (n) => { … })`
+  // carries a semicolon inside the callback and is still a single expression.
+  let semis = 0;
+  for (let i = start; i <= end; i++) semis += lines[i].semis.length;
+  const terminated = /;$/.test(parts.join('\n').trim());
+  const compound = semis - (terminated ? 1 : 0) > 0;
 
   return {
     start,

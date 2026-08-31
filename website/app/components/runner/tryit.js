@@ -61,9 +61,10 @@ function button(label, className) {
 /**
  * Builds the section into `host`.
  *
- * @returns {{ update: () => void, destroy: () => void }} `update` re-seeds the
- *   editor from the page currently in the DOM, which is how a client-side
- *   navigation is handled.
+ * @returns {{ section: HTMLElement, update: () => void, destroy: () => void }}
+ *   `update` re-seeds the editor from the page currently in the DOM, which is
+ *   how a client-side navigation is handled, and `section` is the element to
+ *   exclude when watching for one.
  */
 export default function mountTryIt(host, root = document) {
   const section = document.createElement('section');
@@ -212,6 +213,7 @@ export default function mountTryIt(host, root = document) {
   watcher.observe(section);
 
   return {
+    section,
     update: refresh,
     destroy() {
       watcher.disconnect();

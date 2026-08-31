@@ -28,9 +28,10 @@ await sleep(100);
 
 let attempts = 0;
 const value = await retryRun(
-  () => {
+  // retryRun retries a rejected promise, so the callback is async.
+  async () => {
     attempts++;
-    if (attempts < 3) throw new Error('not yet');
+    if (attempts < 3) throw new Error('not ready yet');
     return 'succeeded on attempt ' + attempts;
   },
   { retries: 3, delay: 50 },

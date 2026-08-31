@@ -9,7 +9,9 @@
  * not enough, and a full parser is far more than this needs.
  *
  * The scanner walks the source once and reports, per line, the bracket depth it
- * ends at, the offset of a trailing line comment, and a `code` view of the line
+ * ends at, the offsets of the semicolons that separate statements rather than
+ * ones inside a call or a function body, the offset of a trailing line comment,
+ * and a `code` view of the line
  * with every string, comment, and regex body blanked to spaces. Offsets in that
  * view line up with the original, so a caller can search it for punctuation and
  * still splice the real text. That is the whole surface; `transform.js` builds
@@ -108,6 +110,9 @@ export default function scan(source) {
 
   for (const text of lines) {
     let commentAt = -1;
+    // Only the semicolons at depth zero end a statement: the one in
+    // `mapAsync(xs, async (n) => { return n * 2; })` ends nothing.
+    const semis = [];
     // Same length as `text`, so an offset found here indexes the real line.
     const code = text.split('');
 
@@ -179,6 +184,11 @@ export default function scan(source) {
         continue;
       }
 
+      if (ch === ';' && stack.length === 0) {
+        semis.push(i);
+        continue;
+      }
+
       if (OPENERS[ch]) {
         stack.push(ch);
         continue;
@@ -203,6 +213,7 @@ export default function scan(source) {
     out.push({
       text,
       code: code.join(''),
+      semis,
       commentAt,
       depth: mode === 'string' || mode === 'block-comment' ? 1 : stack.length,
     });

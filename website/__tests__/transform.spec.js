@@ -35,14 +35,14 @@ describe('transform', () => {
 
   test('probes a declaration by name, without wrapping it', () => {
     const { code, probes } = run('const r = sum([1, 2]); //=> 3');
-    expect(code).toBe('const r = sum([1, 2]); __probe(0, r); //=> 3');
+    expect(code).toBe('var   r = sum([1, 2]); __probe(0, r); //=> 3');
     expect(probes[0].expected).toBe('3');
   });
 
   test('terminates a declaration that relied on semicolon insertion', () => {
     const { code } = run('const r = [3, 1]\n  .sort() //=> [1, 3]');
     expect(code).toBe(
-      'const r = [3, 1]\n  .sort(); __probe(0, r); //=> [1, 3]',
+      'var   r = [3, 1]\n  .sort(); __probe(0, r); //=> [1, 3]',
     );
   });
 
@@ -74,6 +74,22 @@ describe('transform', () => {
   test('skips a block statement, which has no value to report', () => {
     const { probes } = run('if (x) {\n  go();\n} //=> 1');
     expect(probes).toEqual([]);
+  });
+
+  // A page's examples run together, and several set the same scene twice.
+  test('executes a top-level binding as var, so a page may restate it', () => {
+    const { code } = transform('const items = [1];\nconst items = [2];');
+    expect(code).toBe('var   items = [1];\nvar   items = [2];');
+  });
+
+  test('pads the keyword so every column after it is unmoved', () => {
+    const source = 'let x = 1; // a note';
+    expect(run(source).code).toBe('var x = 1; // a note');
+  });
+
+  test('leaves a binding inside a block with the scoping it was written with', () => {
+    const source = 'for (const y of [1]) {\n  const z = y;\n}';
+    expect(run(source).code).toBe(source);
   });
 
   test('reads an annotation written without a space', () => {

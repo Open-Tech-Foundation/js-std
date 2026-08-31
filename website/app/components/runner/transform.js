@@ -32,6 +32,20 @@ export default function transform(source, options = {}) {
       continue;
     }
 
+    // A page's examples are run together, and several of them set the same
+    // scene twice — `mapAsync` builds `const items` in both its blocks. Each
+    // is correct alone and the pair is a redeclaration, so top-level bindings
+    // are executed as `var`, which may be restated. The keyword is padded back
+    // to its own width to hold every column after it, and only a statement's
+    // leading keyword is touched, so a `const` inside a block or a loop keeps
+    // the scoping it was written with.
+    if (/^(?:const|let)\s/.test(stmt.bare)) {
+      text[stmt.start] = text[stmt.start].replace(
+        /^(\s*)(const|let)\b/,
+        (_, indent, keyword) => `${indent}var${' '.repeat(keyword.length - 3)}`,
+      );
+    }
+
     if (!probe) continue;
     if (!stmt.isExpression && !stmt.declared) continue;
     if (stmt.expected === null && !probeAll) continue;

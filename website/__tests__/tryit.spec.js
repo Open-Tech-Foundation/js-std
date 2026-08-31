@@ -77,6 +77,23 @@ describe('mountTryIt', () => {
     expect(sample()).toContain('console.log(last([1, 2]));');
   });
 
+  // The section used to hide itself for good when it was built before the
+  // page's content had rendered, which is the order a client-side navigation
+  // arrives in.
+  test('appears once the page it was built ahead of has rendered', () => {
+    const host = page({ examples: [] });
+    const view = mountTryIt(host, document);
+    expect(section().hidden).toBe(true);
+
+    // Keep the section across the page swap, as the layout does.
+    const built = section();
+    page({ examples: ['first([1]) //=> 1'] }).append(built);
+    view.update();
+
+    expect(section().hidden).toBe(false);
+    expect(sample()).toContain('console.log(first([1]));');
+  });
+
   test('falls back to no import when the page states none', () => {
     const host = page({ syntax: '', examples: ['first([1]) //=> 1'] });
     mountTryIt(host, document);

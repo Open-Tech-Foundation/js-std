@@ -1,4 +1,3 @@
-import inspect from './inspect.js';
 import run from './run.js';
 
 /**
@@ -28,23 +27,8 @@ function reply(runId, message) {
   if (runId === current) self.postMessage({ runId, ...message });
 }
 
-function patchConsole(runId) {
-  for (const level of ['log', 'info', 'warn', 'error', 'debug']) {
-    console[level] = (...args) => {
-      reply(runId, {
-        type: 'log',
-        level,
-        text: args
-          .map((a) => (typeof a === 'string' ? a : inspect(a)))
-          .join(' '),
-      });
-    };
-  }
-}
-
 self.onmessage = async (event) => {
   const { runId, code, probes } = event.data;
   current = runId;
-  patchConsole(runId);
   await run(code, probes, (message) => reply(runId, message));
 };

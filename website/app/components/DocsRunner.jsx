@@ -18,14 +18,25 @@ export default function DocsRunner() {
 
     const tryIt = mountTryIt(host, document);
 
-    // The editor lives inside the tree being watched and rewrites its own DOM
-    // on every keystroke, so a mutation on its own says nothing. The route is
-    // what actually changed the page, and it is checked instead.
-    let current = location.pathname;
-    const observer = new MutationObserver(() => {
-      if (location.pathname === current) return;
-      current = location.pathname;
-      tryIt.update();
+    // Re-seeded from what is in the DOM rather than from the URL: on a
+    // client-side navigation the address changes before the new page's content
+    // is rendered, so a component reading the route on its own found an empty
+    // page and hid itself for good.
+    //
+    // The editor is inside the tree being watched and rewrites its own DOM on
+    // every keystroke, so mutations confined to the section are the one thing
+    // that says nothing about the page and are dropped.
+    let queued = false;
+    const observer = new MutationObserver((records) => {
+      if (records.every((record) => tryIt.section.contains(record.target))) {
+        return;
+      }
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(() => {
+        queued = false;
+        tryIt.update();
+      });
     });
 
     observer.observe(document.body, { childList: true, subtree: true });
