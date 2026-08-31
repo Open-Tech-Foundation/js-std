@@ -2,7 +2,8 @@ import VisualTools from '../components/VisualTools.jsx';
 
 export const metadata = {
   title: 'Playground',
-  description: 'Interactive visual tools for @opentf/std flow control utilities.',
+  description:
+    'Interactive visual tools for @opentf/std flow control utilities.',
 };
 
 export default function PlaygroundPage() {

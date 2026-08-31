@@ -33,7 +33,9 @@ export default function Layout(props) {
                 .join(' ')
             : cat);
         const fn = segs[2];
-        title = fn ? `${fn} — ${catLabel} — JS Standard Library` : `${catLabel} — JS Standard Library`;
+        title = fn
+          ? `${fn} — ${catLabel} — JS Standard Library`
+          : `${catLabel} — JS Standard Library`;
       } else {
         title = 'Documentation — JS Standard Library';
       }
