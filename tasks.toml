@@ -24,6 +24,13 @@ dir = "packages/std"
 run = "tsc --noEmit -p tsconfig.api.json"
 dir = "packages/std"
 
+# The docs runner's units: the scanner, the example transform, the value
+# formatter, and the execution core. Kept out of `packages/std` because they
+# belong to the site, not the library.
+[tasks."test:website"]
+run = "bun test ./__tests__"
+dir = "website"
+
 [tasks.lint]
 run = "biome check ."
 
@@ -61,5 +68,5 @@ run = "node packages/std/__tests__/_matrix/runtime-matrix.js"
 deps = ["build", "matrix:bundle", "matrix:run"]
 
 [tasks.ci]
-deps = ["build", "lint", "typecheck", "typecheck:api", "test"]
+deps = ["build", "lint", "typecheck", "typecheck:api", "test", "test:website"]
 parallel = true
