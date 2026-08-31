@@ -44,7 +44,7 @@
     },
     "packages/std": {
       "name": "@opentf/std",
-      "version": "0.16.0",
+      "version": "0.18.0",
       "devDependencies": {
         "@sinonjs/fake-timers": "^15.4.0",
         "@types/node": "^25.6.0",
@@ -60,7 +60,7 @@
       "name": "website",
       "version": "1.0.0",
       "dependencies": {
-        "@opentf/std": "https://registry.npmjs.org/@opentf/std/-/std-0.16.0.tgz",
+        "@opentf/std": "https://registry.npmjs.org/@opentf/std/-/std-0.18.0.tgz",
         "@opentf/web": "^0.27.0",
         "@opentf/web-docs": "^0.25.0",
       },
@@ -729,7 +729,7 @@
 
     "vite/rolldown": ["rolldown@1.0.0-rc.17", "", { "dependencies": { "@oxc-project/types": "=0.127.0", "@rolldown/pluginutils": "1.0.0-rc.17" }, "optionalDependencies": { "@rolldown/binding-android-arm64": "1.0.0-rc.17", "@rolldown/binding-darwin-arm64": "1.0.0-rc.17", "@rolldown/binding-darwin-x64": "1.0.0-rc.17", "@rolldown/binding-freebsd-x64": "1.0.0-rc.17", "@rolldown/binding-linux-arm-gnueabihf": "1.0.0-rc.17", "@rolldown/binding-linux-arm64-gnu": "1.0.0-rc.17", "@rolldown/binding-linux-arm64-musl": "1.0.0-rc.17", "@rolldown/binding-linux-ppc64-gnu": "1.0.0-rc.17", "@rolldown/binding-linux-s390x-gnu": "1.0.0-rc.17", "@rolldown/binding-linux-x64-gnu": "1.0.0-rc.17", "@rolldown/binding-linux-x64-musl": "1.0.0-rc.17", "@rolldown/binding-openharmony-arm64": "1.0.0-rc.17", "@rolldown/binding-wasm32-wasi": "1.0.0-rc.17", "@rolldown/binding-win32-arm64-msvc": "1.0.0-rc.17", "@rolldown/binding-win32-x64-msvc": "1.0.0-rc.17" }, "bin": { "rolldown": "bin/cli.mjs" } }, "sha512-ZrT53oAKrtA4+YtBWPQbtPOxIbVDbxT0orcYERKd63VJTF13zPcgXTvD4843L8pcsI7M6MErt8QtON6lrB9tyA=="],
 
-    "website/@opentf/std": ["@opentf/std@https://registry.npmjs.org/@opentf/std/-/std-0.16.0.tgz", {}, "sha512-zr8Mb19BJZfC+HbdS5RZHN+iaBWmTiXJY2GKN1IZEH081FkeJf5C00uGODOTooWP2GXMPqJiC589lzgY0Zl9sA=="],
+    "website/@opentf/std": ["@opentf/std@https://registry.npmjs.org/@opentf/std/-/std-0.18.0.tgz", {}, "sha512-860vQJifbxZhm/LmxOssz2gvltkNCUALZ6SEI8PwkcyuTzvGSkTEZBxdCF4JR0OWBGLTW+uHODyElb2zM7+3DA=="],
 
     "@opentf/web-cli/rolldown/@oxc-project/types": ["@oxc-project/types@0.127.0", "", {}, "sha512-aIYXQBo4lCbO4z0R3FHeucQHpF46l2LbMdxRvqvuRuW2OxdnSkcng5B8+K12spgLDj93rtN3+J2Vac/TIO+ciQ=="],
 
