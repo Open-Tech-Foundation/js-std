@@ -4,20 +4,30 @@ import colorContrast from './colorContrast';
 /** A WCAG conformance level, at normal or at large text size. */
 export type AccessibilityLevel = 'AA' | 'AAA' | 'AA_Large' | 'AAA_Large';
 
+/** Options for `colorIsReadable`. */
+export interface ColorIsReadableOptions {
+  /** The first color. */
+  color1: ColorInput;
+  /** The second color. */
+  color2: ColorInput;
+  /** The WCAG level to check against. Defaults to `'AA'`. */
+  level?: AccessibilityLevel;
+}
+
 /**
  * Checks if the contrast between two colors meets WCAG standards.
  *
- * @param {ColorInput} color1 - The first color.
- * @param {ColorInput} color2 - The second color.
- * @param {AccessibilityLevel} level - The WCAG level to check against (default: 'AA').
- * @returns {boolean} - Whether the colors are readable.
+ * @param {{ color1: ColorInput, color2: ColorInput, level?: AccessibilityLevel }} An object naming the two colors and the level.
+ * @returns {boolean} Whether the colors are readable.
  */
 export default function colorIsReadable(
-  color1: ColorInput,
-  color2: ColorInput,
-  level: AccessibilityLevel = 'AA',
+  options: ColorIsReadableOptions,
 ): boolean {
-  const ratio = colorContrast(color1, color2);
+  const level: AccessibilityLevel = options.level ?? 'AA';
+  const ratio = colorContrast({
+    color1: options.color1,
+    color2: options.color2,
+  });
   switch (level) {
     case 'AA':
       return ratio >= 4.5;

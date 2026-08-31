@@ -4,22 +4,30 @@ import color, {
   type ColorOutput,
 } from './color';
 
+/** Options for `colorGrayscale`. */
+export interface ColorGrayscaleOptions<F extends ColorFormat = 'hex'> {
+  /** The input color. */
+  value: ColorInput;
+  /** The output format. Defaults to `'hex'`. */
+  to?: F;
+}
+
 /**
  * Converts a color to grayscale.
  *
- * @param {ColorInput} input - The input color.
- * @param {ColorFormat} [format='hex'] - The output format.
- * @returns {ColorOutput} - The grayscale color.
+ * @param {{ value: ColorInput, to?: ColorFormat }} An object naming the value and the format.
+ * @returns {ColorOutput} The grayscale color.
  */
 export default function colorGrayscale<F extends ColorFormat = 'hex'>(
-  input: ColorInput,
-  format?: F,
+  options: ColorGrayscaleOptions<F>,
 ): ColorOutput<F>;
 export default function colorGrayscale(
-  input: ColorInput,
-  format: ColorFormat = 'hex',
+  options: ColorGrayscaleOptions<ColorFormat>,
 ): ColorOutput {
-  const hsla = color({ value: input, to: 'hsla-object' });
+  const { value } = options;
+  const to: ColorFormat = options.to ?? 'hex';
+
+  const hsla = color({ value, to: 'hsla-object' });
   hsla.s = 0;
-  return color({ value: hsla, to: format });
+  return color({ value: hsla, to });
 }

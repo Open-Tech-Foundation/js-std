@@ -14,5 +14,5 @@ Calculates the contrast ratio between two colors.
 ## Example
 
 ```js
-colorContrast('#fff', '#000') //=> 21
+colorContrast({ color1: '#fff', color2: '#000' }) //=> 21
 ```

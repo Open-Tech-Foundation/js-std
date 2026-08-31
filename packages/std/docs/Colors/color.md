@@ -21,12 +21,11 @@ own syntax, and `{ h, s, l }` is hue-saturation-lightness by its keys. Passing
 
 ## Parameters
 
-- **request** `ColorConvert` — The conversion.
-  - **value** `ColorInput` — The color to read.
-  - **from** `ColorSourceFormat` _(optional)_ — How to read `value`: `'rgb'`,
-    `'rgba'`, `'hsl'`, `'hsla'` or `'oklch'`. Arrays only; defaults to `'rgba'`.
-  - **to** `ColorFormat` _(optional)_ — The format to produce. Defaults to
-    `'hex'`.
+- **value** `ColorInput` — The color to read.
+- **from** `ColorSourceFormat` _(optional)_ — How to read `value`: `'rgb'`,
+  `'rgba'`, `'hsl'`, `'hsla'` or `'oklch'`. Arrays only; defaults to `'rgba'`.
+- **to** `ColorFormat` _(optional)_ — The format to produce. Defaults to
+  `'hex'`.
 
 ## Returns
 

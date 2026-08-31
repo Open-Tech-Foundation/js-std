@@ -15,12 +15,24 @@
 import type {
   AccessibilityLevel,
   BatchRunOptions,
+  ColorAlphaOptions,
+  ColorContrastOptions,
   ColorConvert,
+  ColorDarkenOptions,
+  ColorDesaturateOptions,
   ColorFormat,
   ColorFormatMap,
+  ColorGrayscaleOptions,
   ColorInput,
+  ColorInvertOptions,
+  ColorIsReadableOptions,
+  ColorLightenOptions,
+  ColorMixOptions,
   ColorOutput,
+  ColorRotateHueOptions,
+  ColorSaturateOptions,
   ColorSourceFormat,
+  ColorWCAGLevelOptions,
   DeepReadonly,
   EncodeBase32Options,
   EncodeBase64UrlOptions,
@@ -295,17 +307,37 @@ accepts<ColorConvert>({ value: 'red' });
 accepts<ColorConvert<'rgb'>>({ value: 'red', from: 'rgba', to: 'rgb' });
 
 // The derivatives forward the format, and default to 'hex' when it is omitted.
-const lightened = colorLighten('red', 0.1);
+const lightened = colorLighten({ value: 'red', amount: 0.1 });
 assertType<Equals<typeof lightened, string>>();
 
-const mixed = colorMix('red', 'blue', 0.5, 'rgba-object');
+const mixed = colorMix({
+  color1: 'red',
+  color2: 'blue',
+  weight: 0.5,
+  to: 'rgba-object',
+});
 assertType<Equals<typeof mixed, RGBA>>();
 
-const inverted = colorInvert('red', 'number');
+const inverted = colorInvert({ value: 'red', to: 'number' });
 assertType<Equals<typeof inverted, number>>();
 
-const gray = colorGrayscale('red');
+const gray = colorGrayscale({ value: 'red' });
 assertType<Equals<typeof gray, string>>();
+
+// The option types are reachable from the entry point.
+accepts<ColorAlphaOptions>({ value: 'red', amount: 0.5 });
+accepts<ColorAlphaOptions<'rgba'>>({ value: 'red', amount: 0.5, to: 'rgba' });
+accepts<ColorMixOptions>({ color1: 'red', color2: 'blue' });
+accepts<ColorContrastOptions>({ color1: 'red', color2: 'blue' });
+accepts<ColorIsReadableOptions>({ color1: 'red', color2: 'blue' });
+accepts<ColorLightenOptions>({ value: 'red', amount: 0.5 });
+accepts<ColorDarkenOptions>({ value: 'red', amount: 0.5 });
+accepts<ColorDesaturateOptions>({ value: 'red', amount: 0.5 });
+accepts<ColorSaturateOptions>({ value: 'red', amount: 0.5 });
+accepts<ColorGrayscaleOptions>({ value: 'red' });
+accepts<ColorInvertOptions>({ value: 'red' });
+accepts<ColorRotateHueOptions>({ value: 'red', degrees: 120 });
+accepts<ColorWCAGLevelOptions>({ color1: 'red', color2: 'blue' });
 
 // The map must stay in step with the format union, or `ColorOutput` silently
 // stops covering a format.
@@ -313,7 +345,7 @@ accepts<ColorFormat>('' as keyof ColorFormatMap);
 accepts<keyof ColorFormatMap>('' as ColorFormat);
 
 const level: AccessibilityLevel = 'AAA_Large';
-colorIsReadable('white', 'black', level);
+colorIsReadable({ color1: 'white', color2: 'black', level });
 
 // --- Encoding --------------------------------------------------------------
 

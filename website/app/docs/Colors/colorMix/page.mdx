@@ -9,17 +9,19 @@ export const metadata = {
 
 ```ts
 import { colorMix } from '@opentf/std';
-colorMix(color1: any, color2: any, weight?: number, format?: ColorFormat): any
+colorMix({ color1: any; color2: any; weight?: number; to?: ColorFormat }): any
 ```
 
+- `color1`: The first color.
+- `color2`: The second color.
 - `weight`: The weight of the first color between `0` and `1` (default: `0.5`).
-- `format`: The output format (default: `'hex'`).
+- `to`: The output format (default: `'hex'`).
 
 ## Examples
 
 ```ts
-colorMix('white', 'black'); //=> '#808080'
-colorMix('red', 'blue'); //=> '#800080'
-colorMix('red', 'blue', 0.25); //=> '#4000bf'
+colorMix({ color1: 'white', color2: 'black' }); //=> '#808080'
+colorMix({ color1: 'red', color2: 'blue' }); //=> '#800080'
+colorMix({ color1: 'red', color2: 'blue', weight: 0.25 }); //=> '#4000bf'
 ```
 

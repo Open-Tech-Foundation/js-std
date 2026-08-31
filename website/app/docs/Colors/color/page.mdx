@@ -16,10 +16,14 @@ export const metadata = {
 ```ts
 import { color, ColorFormat } from '@opentf/std';
 
-color(input: ColorInput, format: ColorFormat): any
+color({ value: ColorInput; from?: ColorSourceFormat; to?: ColorFormat }): ColorOutput
 ```
 
-### ColorInput
+Takes a single object naming the conversion: `value` is the color to read, `from`
+says how to read an array (default `'rgba'`), and `to` is the format to produce
+(default `'hex'`).
+
+### `value` — ColorInput
 
 Can be any of the following:
 - **String**: Hex (`#fff`, `#ffffff`), RGB/RGBA (`rgb(255, 0, 0)`), HSL/HSLA (`hsl(0, 100%, 50%)`), or **Color Names** (supports all 140+ [CSS Color Module Level 4](https://developer.mozilla.org/en-US/docs/Web/CSS/named-color) names like `aliceblue`, `rebeccapurple`, etc.).
@@ -27,7 +31,11 @@ Can be any of the following:
 - **Array**: `[r, g, b]` or `[r, g, b, a]`.
 - **Object**: `{ r, g, b, a? }` or `{ h, s, l, a? }`.
 
-### ColorFormat
+### `from` — ColorSourceFormat
+
+Needed only for arrays, which carry no indication of their own colour space. Defaults to `'rgba'`; may be `'rgb'`, `'hsl'`, `'hsla'` or `'oklch'`.
+
+### `to` — ColorFormat
 
 The desired output format. You can use the `ColorFormat` helper constant or the equivalent string literal:
 
@@ -53,46 +61,53 @@ The desired output format. You can use the `ColorFormat` helper constant or the 
 ### 1. Using Helper Constants
 ```ts
 import { color, ColorFormat } from '@opentf/std';
-color('red', ColorFormat.HEX); //=> '#ff0000'
-color('#00ff00', ColorFormat.RGB); //=> 'rgb(0, 255, 0)'
+color({ value: 'red', to: ColorFormat.HEX }); //=> '#ff0000'
+color({ value: '#00ff00', to: ColorFormat.RGB }); //=> 'rgb(0, 255, 0)'
 ```
 
 ### 2. Using String Literals
 ```ts
-color([0, 0, 255], 'hsl'); //=> 'hsl(240, 100%, 50%)'
-color('rgb(255, 0, 0)', 'rgba-object'); //=> { r: 255, g: 0, b: 0, a: 1 }
+color({ value: [0, 0, 255], to: 'hsl' }); //=> 'hsl(240, 100%, 50%)'
+color({ value: 'rgb(255, 0, 0)', to: 'rgba-object' }); //=> { r: 255, g: 0, b: 0, a: 1 }
 ```
 
 ### 3. Working with Alpha Channel
 ```ts
-color('rgba(255, 0, 0, 0.5)', 'hex'); //=> '#ff000080'
-color({ r: 0, g: 255, b: 0, a: 0.1 }, 'hsla'); //=> 'hsla(120, 100%, 50%, 0.1)'
+color({ value: 'rgba(255, 0, 0, 0.5)', to: 'hex' }); //=> '#ff000080'
+color({ value: { r: 0, g: 255, b: 0, a: 0.1 }, to: 'hsla' }); //=> 'hsla(120, 100%, 50%, 0.1)'
 ```
 
 ### 3. Smart Format
 ```ts
-color("#ff0000", ColorFormat.CSS); //=> "red"
-color("#f0f8ff", "css");           //=> "aliceblue"
-color("#123456", "css");           //=> "#123456"
-color("rgba(255, 0, 0, 0.5)", "css"); //=> "rgba(255, 0, 0, 0.5)"
+color({ value: "#ff0000", to: ColorFormat.CSS }); //=> "red"
+color({ value: "#f0f8ff", to: "css" });           //=> "aliceblue"
+color({ value: "#123456", to: "css" });           //=> "#123456"
+color({ value: "rgba(255, 0, 0, 0.5)", to: "css" }); //=> "rgba(255, 0, 0, 0.5)"
 ```
 
 ### 4. Advanced Color Spaces (OKLCH)
 ```ts
-color('red', 'oklch'); //=> 'oklch(0.628 0.2577 29.23)'
-color('oklch(0.628 0.2577 29.23)', 'hex'); //=> '#ff0000'
+color({ value: 'red', to: 'oklch' }); //=> 'oklch(0.628 0.2577 29.23)'
+color({ value: 'oklch(0.628 0.2577 29.23)', to: 'hex' }); //=> '#ff0000'
 ```
 
 ### 5. Terminal Output (ANSI)
 ```ts
-color('red', 'ansi'); //=> "\x1b[38;2;255;0;0m"
-color('#00ff00', ColorFormat.ANSI); //=> "\x1b[38;2;0;255;0m"
+color({ value: 'red', to: 'ansi' }); //=> "\x1b[38;2;255;0;0m"
+color({ value: '#00ff00', to: ColorFormat.ANSI }); //=> "\x1b[38;2;0;255;0m"
 ```
 
 ### 6. Extracting Data Structures
 ```ts
-color('#ff0000', ColorFormat.RGBA_OBJ); //=> { r: 255, g: 0, b: 0, a: 1 }
-color('hsl(120, 100%, 50%)', ColorFormat.HSLA_ARR); //=> [120, 100, 50, 1]
+color({ value: '#ff0000', to: ColorFormat.RGBA_OBJ }); //=> { r: 255, g: 0, b: 0, a: 1 }
+color({ value: 'hsl(120, 100%, 50%)', to: ColorFormat.HSLA_ARR }); //=> [120, 100, 50, 1]
+```
+
+### 7. Reading an Array Back
+An array carries no indication of its own colour space, so `from` names it:
+```ts
+const hsla = color({ value: '#3366cc', to: 'hsla-array' }); //=> [220, 60, 50, 1]
+color({ value: hsla, from: 'hsla' }); //=> '#3366cc'
 ```
 
 ## Error Handling
@@ -101,7 +116,7 @@ The `color()` function is strict about its inputs. If the input color cannot be 
 
 ```ts
 try {
-  color('invalid-color', 'hex');
+  color({ value: 'invalid-color', to: 'hex' });
 } catch (e) {
   console.error(e.message); //=> "Invalid Color"
 }

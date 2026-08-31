@@ -267,6 +267,18 @@ export { default as colorContrast } from './colors/colorContrast';
 export { default as colorWCAGLevel } from './colors/colorWCAGLevel';
 export { default as colorIsReadable } from './colors/colorIsReadable';
 export type { AccessibilityLevel } from './colors/colorIsReadable';
+export type { ColorAlphaOptions } from './colors/colorAlpha';
+export type { ColorContrastOptions } from './colors/colorContrast';
+export type { ColorDarkenOptions } from './colors/colorDarken';
+export type { ColorDesaturateOptions } from './colors/colorDesaturate';
+export type { ColorGrayscaleOptions } from './colors/colorGrayscale';
+export type { ColorInvertOptions } from './colors/colorInvert';
+export type { ColorIsReadableOptions } from './colors/colorIsReadable';
+export type { ColorLightenOptions } from './colors/colorLighten';
+export type { ColorMixOptions } from './colors/colorMix';
+export type { ColorRotateHueOptions } from './colors/colorRotateHue';
+export type { ColorSaturateOptions } from './colors/colorSaturate';
+export type { ColorWCAGLevelOptions } from './colors/colorWCAGLevel';
 
 // Crypto
 export { default as uuidv4 } from './crypto/uuidv4';

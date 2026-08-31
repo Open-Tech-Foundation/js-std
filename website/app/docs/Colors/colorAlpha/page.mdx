@@ -9,16 +9,17 @@ export const metadata = {
 
 ```ts
 import { colorAlpha } from '@opentf/std';
-colorAlpha(input: ColorInput, amount: number, format?: ColorFormat): any
+colorAlpha({ value: ColorInput; amount: number; to?: ColorFormat }): any
 ```
 
+- `value`: The input color.
 - `amount`: A number between `0` and `1`.
-- `format`: The output format (default: `'hex'`).
+- `to`: The output format (default: `'hex'`).
 
 ## Examples
 
 ```ts
-colorAlpha('red', 0.5); //=> '#ff000080'
-colorAlpha('red', 0.5, 'rgba'); //=> 'rgba(255, 0, 0, 0.5)'
+colorAlpha({ value: 'red', amount: 0.5 }); //=> '#ff000080'
+colorAlpha({ value: 'red', amount: 0.5, to: 'rgba' }); //=> 'rgba(255, 0, 0, 0.5)'
 ```
 

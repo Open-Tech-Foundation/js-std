@@ -60,7 +60,7 @@ new Decimal("0.1").add("0.2").toString(); //=> "0.3"
 
 // 🎨 Color parsing, conversion & WCAG accessibility
 color({ value: "rebeccapurple", to: "hex" }); //=> "#663399"
-colorContrast("white", "black"); //=> 21  (WCAG ratio)
+colorContrast({ color1: "white", color2: "black" }); //=> 21  (WCAG ratio)
 
 // 💾 Human-readable, locale-aware formatting
 formatBytes(1234567); //=> "1.18 MiB"

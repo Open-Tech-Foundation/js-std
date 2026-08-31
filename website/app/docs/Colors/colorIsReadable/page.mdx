@@ -9,9 +9,11 @@ export const metadata = {
 
 ```ts
 import { colorIsReadable } from '@opentf/std';
-colorIsReadable(color1: any, color2: any, level?: 'AA' | 'AAA' | 'AA_Large' | 'AAA_Large'): boolean
+colorIsReadable({ color1: any; color2: any; level?: 'AA' | 'AAA' | 'AA_Large' | 'AAA_Large' }): boolean
 ```
 
+- `color1`: The first color.
+- `color2`: The second color.
 - `level`: The WCAG level to check against (default: `'AA'`).
     - `'AA'`: Minimum contrast ratio of 4.5:1.
     - `'AA_Large'`: Minimum contrast ratio of 3:1.
@@ -21,8 +23,8 @@ colorIsReadable(color1: any, color2: any, level?: 'AA' | 'AAA' | 'AA_Large' | 'A
 ## Examples
 
 ```ts
-colorIsReadable('black', 'white'); //=> true
-colorIsReadable('gray', 'white'); //=> false
-colorIsReadable('gray', 'white', 'AA_Large'); //=> true
+colorIsReadable({ color1: 'black', color2: 'white' }); //=> true
+colorIsReadable({ color1: 'gray', color2: 'white' }); //=> false
+colorIsReadable({ color1: 'gray', color2: 'white', level: 'AA_Large' }); //=> true
 ```
 

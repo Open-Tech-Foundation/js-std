@@ -5,28 +5,34 @@ import color, {
   type ColorOutput,
 } from './color';
 
+/** Options for `colorSaturate`. */
+export interface ColorSaturateOptions<F extends ColorFormat = 'hex'> {
+  /** The input color. */
+  value: ColorInput;
+  /** The amount to saturate (0 to 1). */
+  amount: number;
+  /** The output format. Defaults to `'hex'`. */
+  to?: F;
+}
+
 /**
  * Increases the saturation of a color.
  *
- * @param {ColorInput} input - The input color.
- * @param {number} amount - The amount to saturate (0 to 1).
- * @param {ColorFormat} [format='hex'] - The output format.
- * @returns {ColorOutput} - The saturated color.
+ * @param {{ value: ColorInput, amount: number, to?: ColorFormat }} An object naming the value, the amount and the format.
+ * @returns {ColorOutput} The saturated color.
  * @throws {RangeError} If the amount is not a finite number.
  */
 export default function colorSaturate<F extends ColorFormat = 'hex'>(
-  input: ColorInput,
-  amount: number,
-  format?: F,
+  options: ColorSaturateOptions<F>,
 ): ColorOutput<F>;
 export default function colorSaturate(
-  input: ColorInput,
-  amount: number,
-  format: ColorFormat = 'hex',
+  options: ColorSaturateOptions<ColorFormat>,
 ): ColorOutput {
+  const { value, amount } = options;
+  const to: ColorFormat = options.to ?? 'hex';
   checkAmount(amount, 'amount');
 
-  const hsla = color({ value: input, to: 'hsla-object' });
+  const hsla = color({ value, to: 'hsla-object' });
   hsla.s = Math.min(100, hsla.s + amount * 100);
-  return color({ value: hsla, to: format });
+  return color({ value: hsla, to });
 }

@@ -9,16 +9,17 @@ export const metadata = {
 
 ```ts
 import { colorInvert } from '@opentf/std';
-colorInvert(input: any, format?: ColorFormat): any
+colorInvert({ value: any; to?: ColorFormat }): any
 ```
 
-- `format`: The output format (default: `'hex'`).
+- `value`: The input color.
+- `to`: The output format (default: `'hex'`).
 
 ## Examples
 
 ```ts
-colorInvert('white'); //=> '#000000'
-colorInvert('black'); //=> '#ffffff'
-colorInvert('red'); //=> '#00ffff'
+colorInvert({ value: 'white' }); //=> '#000000'
+colorInvert({ value: 'black' }); //=> '#ffffff'
+colorInvert({ value: 'red' }); //=> '#00ffff'
 ```
 

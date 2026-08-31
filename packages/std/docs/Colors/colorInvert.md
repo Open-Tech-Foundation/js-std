@@ -4,8 +4,8 @@ Inverts a color.
 
 ## Parameters
 
-- **input** `ColorInput` — The input color.
-- **format** `ColorFormat` _(default: `'hex'`)_ — The output format.
+- **value** `ColorInput` — The input color.
+- **to** `ColorFormat` _(default: `'hex'`)_ — The output format.
 
 ## Returns
 

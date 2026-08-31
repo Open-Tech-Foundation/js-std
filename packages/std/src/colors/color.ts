@@ -561,7 +561,7 @@ function normalize(input: ColorInput, from?: ColorSourceFormat): RGBA | null {
  * object — states its own format, and `from` is refused for those rather than
  * quietly ignored.
  *
- * @param {Object} request The conversion: the value, the format to read it as, the format to produce.
+ * @param {{ value: ColorInput, from?: ColorSourceFormat, to?: ColorFormat }} options The conversion: the value, the format to read it as, the format to produce.
  * @returns {string|number|Array|Object} The converted color.
  *
  * @example

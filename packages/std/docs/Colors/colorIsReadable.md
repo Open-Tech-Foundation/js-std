@@ -6,7 +6,7 @@ Checks if the contrast between two colors meets WCAG standards.
 
 - **color1** `ColorInput` — The first color.
 - **color2** `ColorInput` — The second color.
-- **level** `AccessibilityLevel` — The WCAG level to check against (default: 'AA').
+- **level** `AccessibilityLevel` _(default: `'AA'`)_ — The WCAG level to check against.
 
 ## Returns
 

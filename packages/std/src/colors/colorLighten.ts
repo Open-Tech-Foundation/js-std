@@ -5,28 +5,34 @@ import color, {
   type ColorOutput,
 } from './color';
 
+/** Options for `colorLighten`. */
+export interface ColorLightenOptions<F extends ColorFormat = 'hex'> {
+  /** The input color. */
+  value: ColorInput;
+  /** The amount to lighten (0 to 1). */
+  amount: number;
+  /** The output format. Defaults to `'hex'`. */
+  to?: F;
+}
+
 /**
  * Increases the lightness of a color.
  *
- * @param {ColorInput} input - The input color.
- * @param {number} amount - The amount to lighten (0 to 1).
- * @param {ColorFormat} [format='hex'] - The output format.
- * @returns {ColorOutput} - The lightened color.
+ * @param {{ value: ColorInput, amount: number, to?: ColorFormat }} An object naming the value, the amount and the format.
+ * @returns {ColorOutput} The lightened color.
  * @throws {RangeError} If the amount is not a finite number.
  */
 export default function colorLighten<F extends ColorFormat = 'hex'>(
-  input: ColorInput,
-  amount: number,
-  format?: F,
+  options: ColorLightenOptions<F>,
 ): ColorOutput<F>;
 export default function colorLighten(
-  input: ColorInput,
-  amount: number,
-  format: ColorFormat = 'hex',
+  options: ColorLightenOptions<ColorFormat>,
 ): ColorOutput {
+  const { value, amount } = options;
+  const to: ColorFormat = options.to ?? 'hex';
   checkAmount(amount, 'amount');
 
-  const hsla = color({ value: input, to: 'hsla-object' });
+  const hsla = color({ value, to: 'hsla-object' });
   hsla.l = Math.min(100, hsla.l + amount * 100);
-  return color({ value: hsla, to: format });
+  return color({ value: hsla, to });
 }

@@ -10,13 +10,37 @@ import {
 
 /** Each adjuster with the name of the number it takes. */
 const ADJUSTERS: [string, (amount: number) => unknown, string][] = [
-  ['colorLighten', (n) => colorLighten('#3366cc', n), 'amount'],
-  ['colorDarken', (n) => colorDarken('#3366cc', n), 'amount'],
-  ['colorSaturate', (n) => colorSaturate('#3366cc', n), 'amount'],
-  ['colorDesaturate', (n) => colorDesaturate('#3366cc', n), 'amount'],
-  ['colorRotateHue', (n) => colorRotateHue('#3366cc', n), 'degrees'],
-  ['colorAlpha', (n) => colorAlpha('#3366cc', n), 'amount'],
-  ['colorMix', (n) => colorMix('#3366cc', '#000000', n), 'weight'],
+  [
+    'colorLighten',
+    (n) => colorLighten({ value: '#3366cc', amount: n }),
+    'amount',
+  ],
+  [
+    'colorDarken',
+    (n) => colorDarken({ value: '#3366cc', amount: n }),
+    'amount',
+  ],
+  [
+    'colorSaturate',
+    (n) => colorSaturate({ value: '#3366cc', amount: n }),
+    'amount',
+  ],
+  [
+    'colorDesaturate',
+    (n) => colorDesaturate({ value: '#3366cc', amount: n }),
+    'amount',
+  ],
+  [
+    'colorRotateHue',
+    (n) => colorRotateHue({ value: '#3366cc', degrees: n }),
+    'degrees',
+  ],
+  ['colorAlpha', (n) => colorAlpha({ value: '#3366cc', amount: n }), 'amount'],
+  [
+    'colorMix',
+    (n) => colorMix({ color1: '#3366cc', color2: '#000000', weight: n }),
+    'weight',
+  ],
 ];
 
 describe('Colors > a non-finite amount is refused', () => {
@@ -61,33 +85,49 @@ describe('Colors > a non-finite amount is refused', () => {
 
   describe('ordinary amounts are untouched', () => {
     test('each adjuster still produces a colour', () => {
-      expect(colorLighten('#3366cc', 0.2)).toBe('#85a3e0');
-      expect(colorDarken('#3366cc', 0.2)).toBe('#1f3d7a');
-      expect(colorSaturate('#3366cc', 0.2)).toBe('#195de6');
-      expect(colorDesaturate('#3366cc', 0.2)).toBe('#4d6eb3');
-      expect(colorRotateHue('#3366cc', 180)).toBe('#cc9933');
-      expect(colorAlpha('#3366cc', 0.2)).toBe('#3366cc33');
-      expect(colorMix('#ffffff', '#000000', 0.5)).toBe('#808080');
+      expect(colorLighten({ value: '#3366cc', amount: 0.2 })).toBe('#85a3e0');
+      expect(colorDarken({ value: '#3366cc', amount: 0.2 })).toBe('#1f3d7a');
+      expect(colorSaturate({ value: '#3366cc', amount: 0.2 })).toBe('#195de6');
+      expect(colorDesaturate({ value: '#3366cc', amount: 0.2 })).toBe(
+        '#4d6eb3',
+      );
+      expect(colorRotateHue({ value: '#3366cc', degrees: 180 })).toBe(
+        '#cc9933',
+      );
+      expect(colorAlpha({ value: '#3366cc', amount: 0.2 })).toBe('#3366cc33');
+      expect(
+        colorMix({ color1: '#ffffff', color2: '#000000', weight: 0.5 }),
+      ).toBe('#808080');
     });
 
     test('out-of-range but finite amounts still clamp rather than throw', () => {
-      expect(colorLighten('#3366cc', 500)).toBe('#ffffff');
-      expect(colorDarken('#3366cc', 500)).toBe('#000000');
-      expect(colorAlpha('#3366cc', 5)).toBe('#3366cc');
-      expect(colorAlpha('#3366cc', -1)).toBe('#3366cc00');
-      expect(colorRotateHue('#3366cc', 720)).toBe('#3366cc');
-      expect(colorRotateHue('#3366cc', -360)).toBe('#3366cc');
+      expect(colorLighten({ value: '#3366cc', amount: 500 })).toBe('#ffffff');
+      expect(colorDarken({ value: '#3366cc', amount: 500 })).toBe('#000000');
+      expect(colorAlpha({ value: '#3366cc', amount: 5 })).toBe('#3366cc');
+      expect(colorAlpha({ value: '#3366cc', amount: -1 })).toBe('#3366cc00');
+      expect(colorRotateHue({ value: '#3366cc', degrees: 720 })).toBe(
+        '#3366cc',
+      );
+      expect(colorRotateHue({ value: '#3366cc', degrees: -360 })).toBe(
+        '#3366cc',
+      );
     });
 
     test('zero is a valid amount, not a missing one', () => {
-      expect(colorLighten('#3366cc', 0)).toBe('#3366cc');
-      expect(colorRotateHue('#3366cc', 0)).toBe('#3366cc');
-      expect(colorMix('#ffffff', '#000000', 0)).toBe('#000000');
-      expect(colorMix('#ffffff', '#000000', 1)).toBe('#ffffff');
+      expect(colorLighten({ value: '#3366cc', amount: 0 })).toBe('#3366cc');
+      expect(colorRotateHue({ value: '#3366cc', degrees: 0 })).toBe('#3366cc');
+      expect(
+        colorMix({ color1: '#ffffff', color2: '#000000', weight: 0 }),
+      ).toBe('#000000');
+      expect(
+        colorMix({ color1: '#ffffff', color2: '#000000', weight: 1 }),
+      ).toBe('#ffffff');
     });
 
     test("colorMix's weight still defaults to an even mix", () => {
-      expect(colorMix('#ffffff', '#000000')).toBe('#808080');
+      expect(colorMix({ color1: '#ffffff', color2: '#000000' })).toBe(
+        '#808080',
+      );
     });
   });
 });

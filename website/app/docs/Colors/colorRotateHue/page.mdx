@@ -9,16 +9,17 @@ export const metadata = {
 
 ```ts
 import { colorRotateHue } from '@opentf/std';
-colorRotateHue(input: any, degrees: number, format?: ColorFormat): any
+colorRotateHue({ value: any; degrees: number; to?: ColorFormat }): any
 ```
 
+- `value`: The input color.
 - `degrees`: The degrees to rotate (can be negative).
-- `format`: The output format (default: `'hex'`).
+- `to`: The output format (default: `'hex'`).
 
 ## Examples
 
 ```ts
-colorRotateHue('red', 120); //=> '#00ff00' (lime)
-colorRotateHue('red', -120); //=> '#0000ff' (blue)
+colorRotateHue({ value: 'red', degrees: 120 }); //=> '#00ff00' (lime)
+colorRotateHue({ value: 'red', degrees: -120 }); //=> '#0000ff' (blue)
 ```
 

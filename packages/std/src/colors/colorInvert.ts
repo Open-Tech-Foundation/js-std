@@ -4,22 +4,30 @@ import color, {
   type ColorOutput,
 } from './color';
 
+/** Options for `colorInvert`. */
+export interface ColorInvertOptions<F extends ColorFormat = 'hex'> {
+  /** The input color. */
+  value: ColorInput;
+  /** The output format. Defaults to `'hex'`. */
+  to?: F;
+}
+
 /**
  * Inverts a color.
  *
- * @param {ColorInput} input - The input color.
- * @param {ColorFormat} [format='hex'] - The output format.
- * @returns {ColorOutput} - The inverted color.
+ * @param {{ value: ColorInput, to?: ColorFormat }} An object naming the value and the format.
+ * @returns {ColorOutput} The inverted color.
  */
 export default function colorInvert<F extends ColorFormat = 'hex'>(
-  input: ColorInput,
-  format?: F,
+  options: ColorInvertOptions<F>,
 ): ColorOutput<F>;
 export default function colorInvert(
-  input: ColorInput,
-  format: ColorFormat = 'hex',
+  options: ColorInvertOptions<ColorFormat>,
 ): ColorOutput {
-  const rgba = color({ value: input, to: 'rgba-object' });
+  const { value } = options;
+  const to: ColorFormat = options.to ?? 'hex';
+
+  const rgba = color({ value, to: 'rgba-object' });
   return color({
     value: {
       r: 255 - rgba.r,
@@ -27,6 +35,6 @@ export default function colorInvert(
       b: 255 - rgba.b,
       a: rgba.a,
     },
-    to: format,
+    to,
   });
 }

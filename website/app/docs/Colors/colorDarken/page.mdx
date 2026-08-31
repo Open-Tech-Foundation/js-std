@@ -9,17 +9,18 @@ export const metadata = {
 
 ```ts
 import { colorDarken } from '@opentf/std';
-colorDarken(input: ColorInput, amount: number, format?: ColorFormat): any
+colorDarken({ value: ColorInput; amount: number; to?: ColorFormat }): any
 ```
 
+- `value`: The input color.
 - `amount`: A number between `0` and `1`.
-- `format`: The output format (default: `'hex'`).
+- `to`: The output format (default: `'hex'`).
 
 ## Examples
 
 ```ts
-colorDarken('#fff', 0.5); //=> '#808080'
-colorDarken('red', 0.2); //=> '#990000'
-colorDarken('red', 0.2, 'rgba'); //=> 'rgba(153, 0, 0, 1)'
+colorDarken({ value: '#fff', amount: 0.5 }); //=> '#808080'
+colorDarken({ value: 'red', amount: 0.2 }); //=> '#990000'
+colorDarken({ value: 'red', amount: 0.2, to: 'rgba' }); //=> 'rgba(153, 0, 0, 1)'
 ```
 

@@ -4,9 +4,9 @@ Adjusts the alpha channel of a color.
 
 ## Parameters
 
-- **input** `ColorInput` — The input color.
+- **value** `ColorInput` — The input color.
 - **amount** `number` — The alpha value (0 to 1).
-- **format** `ColorFormat` _(default: `'hex'`)_ — The output format.
+- **to** `ColorFormat` _(default: `'hex'`)_ — The output format.
 
 ## Returns
 
@@ -19,5 +19,5 @@ Adjusts the alpha channel of a color.
 ## Example
 
 ```js
-colorAlpha('red', 0.5, 'rgba') //=> 'rgba(255, 0, 0, 0.5)'
+colorAlpha({ value: 'red', amount: 0.5, to: 'rgba' }) //=> 'rgba(255, 0, 0, 0.5)'
 ```

@@ -9,7 +9,7 @@ export const metadata = {
 
 ```ts
 import { colorWCAGLevel } from '@opentf/std';
-colorWCAGLevel(color1: any, color2: any): 'A' | 'AA' | 'AAA' | 'FAIL'
+colorWCAGLevel({ color1: any; color2: any }): 'A' | 'AA' | 'AAA' | 'FAIL'
 ```
 
 ## Parameters
@@ -26,15 +26,15 @@ The WCAG conformance level: 'A' (3:1+), 'AA' (4.5:1+), 'AAA' (7:1+), or 'FAIL'.
 ## Examples
 
 ```ts
-colorWCAGLevel('#000', '#fff') //=> 'AAA'
+colorWCAGLevel({ color1: '#000', color2: '#fff' }) //=> 'AAA'
 
-colorWCAGLevel('#000', '#999') //=> 'AAA'
+colorWCAGLevel({ color1: '#000', color2: '#999' }) //=> 'AAA'
 
-colorWCAGLevel('#000', '#767676') //=> 'AA'
+colorWCAGLevel({ color1: '#000', color2: '#767676' }) //=> 'AA'
 
-colorWCAGLevel('#000', '#595959') //=> 'A'
+colorWCAGLevel({ color1: '#000', color2: '#595959' }) //=> 'A'
 
-colorWCAGLevel('rgb(0,0,0)', 'rgb(255,255,255)') //=> 'AAA'
+colorWCAGLevel({ color1: 'rgb(0,0,0)', color2: 'rgb(255,255,255)' }) //=> 'AAA'
 ```
 
 ## Related

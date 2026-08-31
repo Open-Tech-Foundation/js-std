@@ -9,16 +9,17 @@ export const metadata = {
 
 ```ts
 import { colorSaturate } from '@opentf/std';
-colorSaturate(input: ColorInput, amount: number, format?: ColorFormat): any
+colorSaturate({ value: ColorInput; amount: number; to?: ColorFormat }): any
 ```
 
+- `value`: The input color.
 - `amount`: A number between `0` and `1`.
-- `format`: The output format (default: `'hex'`).
+- `to`: The output format (default: `'hex'`).
 
 ## Examples
 
 ```ts
-colorSaturate('gray', 0.5); //=> '#bf4040'
-colorSaturate('gray', 0.5, 'hsl'); //=> 'hsl(0, 50%, 50%)'
+colorSaturate({ value: 'gray', amount: 0.5 }); //=> '#bf4040'
+colorSaturate({ value: 'gray', amount: 0.5, to: 'hsl' }); //=> 'hsl(0, 50%, 50%)'
 ```
 
