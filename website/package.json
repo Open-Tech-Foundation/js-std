@@ -11,9 +11,12 @@
     "build": "otfw build --ssg"
   },
   "dependencies": {
+    "@codemirror/lang-javascript": "^6.2.5",
+    "@codemirror/theme-one-dark": "^6.1.3",
     "@opentf/std": "https://registry.npmjs.org/@opentf/std/-/std-0.18.0.tgz",
     "@opentf/web": "^0.27.0",
-    "@opentf/web-docs": "^0.25.0"
+    "@opentf/web-docs": "^0.25.0",
+    "codemirror": "^6.0.2"
   },
   "devDependencies": {
     "@opentf/web-cli": "^1.25.0",

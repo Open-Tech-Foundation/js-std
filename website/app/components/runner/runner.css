@@ -1,31 +1,74 @@
 /*
- * The example runner's toolbar and output panel.
+ * Try it, and the playground's split view.
  *
- * Both sit inside the existing `.otfw-code` block, so everything here is keyed
- * to the theme tokens the docs shell already defines rather than to colours of
- * its own — the panel has to read in light and dark without a second palette.
+ * Both are the same three parts — an editor, the buttons beside it, and a
+ * console below or next to it — so they share everything but the arrangement.
+ * Colours come from the docs shell's own tokens rather than a second palette,
+ * which is what keeps the panels readable in either theme.
  */
 
-.rn-bar {
+.rn-tryit {
+  margin-top: 40px;
+}
+
+.rn-panel {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   gap: 8px;
-  padding: 6px 10px;
+}
+
+.rn-surface {
+  flex: 1;
+  min-width: 0;
   border: 1px solid var(--otfw-border);
-  border-top: 0;
-  border-radius: 0 0 var(--otfw-radius) var(--otfw-radius);
-  background: var(--otfw-bg-surface);
-  font-family: var(--otfw-font);
+  border-radius: var(--otfw-radius);
+  overflow: hidden;
+}
+
+/* Stands in for the editor until CodeMirror arrives, at the same metrics. */
+.rn-preview {
+  margin: 0;
+  padding: 10px 12px;
+  max-height: 420px;
+  overflow: auto;
+  background: var(--otfw-bg-elevated);
+  color: var(--otfw-text);
+  font-family: var(--otfw-mono);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.rn-surface .cm-editor {
+  max-height: 420px;
   font-size: 13px;
 }
 
+.rn-surface .cm-editor.cm-focused {
+  outline: none;
+}
+
+.rn-surface .cm-scroller {
+  font-family: var(--otfw-mono);
+  line-height: 1.6;
+}
+
+/* The action column beside the editor. */
+.rn-side {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: none;
+  width: 88px;
+}
+
 .rn-btn {
-  padding: 3px 10px;
+  padding: 6px 10px;
   border: 1px solid var(--otfw-border);
   border-radius: var(--otfw-radius);
   background: var(--otfw-bg-elevated);
   color: var(--otfw-text);
-  font: inherit;
+  font-family: var(--otfw-font);
+  font-size: 13px;
   cursor: pointer;
 }
 
@@ -37,6 +80,7 @@
   border-color: transparent;
   background: #3b82f6;
   color: #fff;
+  font-weight: 600;
 }
 
 .rn-btn--run:hover {
@@ -44,103 +88,111 @@
   border-color: transparent;
 }
 
-.rn-status {
-  margin-left: auto;
+.rn-hint {
   color: var(--otfw-text-muted);
-  font-variant-numeric: tabular-nums;
+  font-family: var(--otfw-font);
+  font-size: 11px;
+  text-align: center;
 }
 
-.rn-editor {
-  display: block;
-  width: 100%;
-  padding: 12px;
-  border: 0;
-  border-top: 1px solid var(--otfw-border);
+.rn-console {
+  margin-top: 8px;
+  padding: 10px 12px;
+  min-height: 44px;
+  max-height: 320px;
+  border: 1px solid var(--otfw-border);
+  border-radius: var(--otfw-radius);
+  background: var(--otfw-bg-elevated);
+  font-family: var(--otfw-mono);
+  font-size: 12.5px;
+  line-height: 1.7;
+  /* A long value scrolls inside the panel rather than widening the page. */
+  overflow: auto;
+}
+
+.rn-line {
+  color: var(--otfw-text);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.rn-line--muted {
+  color: var(--otfw-text-muted);
+}
+
+.rn-line--warn {
+  color: #d97706;
+}
+
+.rn-line--error {
+  color: #dc2626;
+}
+
+/*
+ * The playground: editor on the left, output on the right, each scrolling on
+ * its own so a long program and a long result do not fight over the page.
+ */
+.rn-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  align-items: stretch;
+  min-height: 60vh;
+}
+
+.rn-split .rn-surface,
+.rn-split .rn-console {
+  margin: 0;
+  height: 100%;
+  max-height: none;
+}
+
+.rn-split /* Stands in for the editor until CodeMirror arrives, at the same metrics. */
+.rn-preview {
+  margin: 0;
+  padding: 10px 12px;
+  max-height: 420px;
+  overflow: auto;
   background: var(--otfw-bg-elevated);
   color: var(--otfw-text);
   font-family: var(--otfw-mono);
   font-size: 13px;
   line-height: 1.6;
-  tab-size: 2;
-  resize: vertical;
 }
 
-.rn-editor:focus {
-  outline: 2px solid #3b82f6;
-  outline-offset: -2px;
+.rn-surface .cm-editor {
+  height: 100%;
+  max-height: none;
 }
 
-.rn-out {
-  padding: 8px 10px;
-  border: 1px solid var(--otfw-border);
-  border-top: 0;
-  border-radius: 0 0 var(--otfw-radius) var(--otfw-radius);
-  background: var(--otfw-bg-elevated);
-  font-family: var(--otfw-mono);
-  font-size: 12.5px;
-  line-height: 1.7;
-  /* Long values scroll inside the panel rather than widening the page. */
-  overflow-x: auto;
-}
-
-/* The toolbar keeps its square corners when a panel is open below it. */
-.rn-bar:has(+ .rn-out:not([hidden])) {
-  border-radius: 0;
-}
-
-.rn-row {
+.rn-toolbar {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 8px;
-  white-space: pre;
+  margin-bottom: 10px;
 }
 
-.rn-mark {
-  width: 1ch;
-  flex: none;
+.rn-toolbar .rn-hint {
+  margin-left: auto;
+  font-size: 12px;
 }
 
-.rn-row--match .rn-mark {
-  color: #16a34a;
-}
+@media (max-width: 860px) {
+  .rn-split {
+    grid-template-columns: 1fr;
+  }
 
-.rn-row--differs .rn-mark {
-  color: #dc2626;
-}
+  .rn-panel {
+    flex-direction: column;
+  }
 
-.rn-row--unverified .rn-mark,
-.rn-row--plain .rn-mark {
-  color: var(--otfw-text-muted);
-}
+  .rn-side {
+    width: auto;
+    flex-direction: row;
+    align-items: center;
+  }
 
-.rn-expr {
-  flex: none;
-  color: var(--otfw-text-muted);
-}
-
-.rn-expr::after {
-  content: ' →';
-}
-
-.rn-value {
-  color: var(--otfw-text);
-}
-
-.rn-claim {
-  color: #dc2626;
-}
-
-.rn-log {
-  color: var(--otfw-text-muted);
-  white-space: pre-wrap;
-}
-
-.rn-log--warn {
-  color: #d97706;
-}
-
-.rn-log--error,
-.rn-error {
-  color: #dc2626;
-  white-space: pre-wrap;
+  .rn-hint {
+    margin-left: auto;
+  }
 }
