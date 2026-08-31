@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "@opentf/web-cli": "^1.25.0",
+    "happy-dom": "^20.12.0",
     "tailwindcss": "^4.3.3"
   }
 }
