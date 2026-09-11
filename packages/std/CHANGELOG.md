@@ -9,6 +9,7 @@
 - Try it now replaces its MDX seed fence once mounted, so each page shows one editor and its controls. Editor and worker loading errors are reported in the runner output instead of leaving Run pending.
 - Try it no longer rewrites documentation examples at runtime. Every sample is authored as the exact JavaScript readers execute, avoiding implicit logging or TypeScript stripping.
 - Try it is now a page-local component with its sample passed as a prop. Client-side navigation therefore mounts the same way as every other page component, with no DOM scanning or attachment retry.
+- Try it headings are authored in MDX so they appear in each page's table of contents; the component renders the editor only.
 - Repository development now uses pnpm workspaces. The pnpm lockfile and CI/release installs replace Bun's workspace and lockfile configuration.
 - The test commands now use `esdev test`. Specs import the `runtime:test` API directly, and the portable runtime matrix maps that API to its existing harness.
 - **Breaking.** `color` takes a single object stating the conversion — `color({ value, from, to })` — instead of a value and a positional format. `to` defaults to `'hex'`. The old two-argument call throws with a message naming the replacement rather than failing as an invalid colour, so the migration is mechanical: `color(x, 'rgb')` becomes `color({ value: x, to: 'rgb' })`.

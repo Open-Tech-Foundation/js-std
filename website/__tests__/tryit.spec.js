@@ -191,7 +191,7 @@ describe('mountTryIt — direct source', () => {
     mountTryIt(host, 'chunk([1, 2], 1) //=> [[1], [2]]');
 
     expect(section().hidden).toBe(false);
-    expect(section().querySelector('h2').textContent).toBe('Try it');
+    expect(section().querySelector('h2')).toBe(null);
     expect(sample()).toBe('chunk([1, 2], 1) //=> [[1], [2]]\n');
   });
 

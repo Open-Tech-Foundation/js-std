@@ -17,8 +17,6 @@ export default function mountTryIt(host, code = '') {
   const section = document.createElement('section');
   section.className = 'rn-tryit';
   section.setAttribute('data-pagefind-ignore', '');
-  const heading = document.createElement('h2');
-  heading.textContent = 'Try it';
   const panel = document.createElement('div');
   panel.className = 'rn-panel';
   const surface = document.createElement('div');
@@ -35,7 +33,7 @@ export default function mountTryIt(host, code = '') {
   const output = document.createElement('div');
   output.className = 'rn-console';
   output.setAttribute('aria-live', 'polite');
-  section.append(heading, panel, output);
+  section.append(panel, output);
   host.append(section);
 
   const out = createConsole(output);

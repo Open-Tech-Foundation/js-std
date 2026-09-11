@@ -1,5 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
-export const tryItCode = "import { color, ColorFormat } from '@opentf/std';\nconsole.log(color({ value: 'red', to.HEX })); //=> '#ff0000'\nconsole.log(color({ value: '#00ff00', to.RGB })); //=> 'rgb(0, 255, 0)'";
+export const tryItCode = "import { color, ColorFormat } from '@opentf/std';\n\nconsole.log(color('red', ColorFormat.HEX)); //=> '#ff0000'\nconsole.log(color('#00ff00', ColorFormat.RGB)); //=> 'rgb(0, 255, 0)'";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "color — Colors",
@@ -128,5 +128,7 @@ try {
 ## Why?
 
 Managing color conversions in JavaScript often requires multiple specialized libraries or many small utility functions. `color()` provides a single, high-fidelity entry point that handles almost any standard color representation, making your code cleaner and more maintainable.
+
+## Try it
 
 <TryIt code={tryItCode} />
