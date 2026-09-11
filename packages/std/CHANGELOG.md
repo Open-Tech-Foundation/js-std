@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [0.19.0] - 2026-09-11
+
 ### Changed
 
 - The documentation now gives every API page a small runnable Try it example. The editor uses the authored example in place, including after client-side navigation, and converts TypeScript-only notation to JavaScript before execution.
