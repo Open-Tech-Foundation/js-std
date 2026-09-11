@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(clamp(10, -5, 5)); //=> 5\n\nconsole.log(clamp(0, 1000, 1366)); //=> 1000\n\nconsole.log(clamp(1001, 1000, 1366)); //=> 1001\n\nconsole.log(clamp(1500, 1000, 1366)); //=> 1366";
 export const metadata = {
   title: "clamp — Maths",
   description: "Clamps a number between a specified minimum and maximum value."
@@ -35,4 +36,4 @@ clamp(1001, 1000, 1366) //=> 1001
 clamp(1500, 1000, 1366) //=> 1366
 ```
 
-<TryIt code={"console.log(clamp(10, -5, 5)); //=> 5\n\nconsole.log(clamp(0, 1000, 1366)); //=> 1000\n\nconsole.log(clamp(1001, 1000, 1366)); //=> 1001\n\nconsole.log(clamp(1500, 1000, 1366)); //=> 1366"} />
+<TryIt code={tryItCode} />

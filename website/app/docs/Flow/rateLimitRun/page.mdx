@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "const run = rateLimitRun(async (val) => val, 2, 1000); // 2 per second\n\nrun('a'); // runs immediately\nrun('b'); // runs immediately\nrun('c'); // waits until 1s after 'a' started";
 export const metadata = {
   title: "rateLimitRun — FlowControl",
   description: "Creates a rate-limited function that ensures it only runs a specific number of times within a rolling time window."
@@ -42,4 +43,4 @@ run('c'); // waits until 1s after 'a' started
 - [batchRun](/docs/Flow/batchRun)
 - [paceRun](/docs/Flow/paceRun)
 
-<TryIt code={"const run = rateLimitRun(async (val) => val, 2, 1000); // 2 per second\n\nrun('a'); // runs immediately\nrun('b'); // runs immediately\nrun('c'); // waits until 1s after 'a' started"} />
+<TryIt code={tryItCode} />

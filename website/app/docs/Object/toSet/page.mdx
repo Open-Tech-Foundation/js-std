@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(toSet({}, 'a', null)); //=> { a: null }\n\nconsole.log(toSet({}, 'a', 1)); //=> { a: 1 }\n\nconsole.log(toSet({}, 'a.b', 25)); //=> { a: { b: 25 } }\n\ntoSet({}, 'user.email', 'user@example.com')\n//=>\n// {\n//    user: { email: 'user@example.com' }\n// }\n\nconsole.log(toSet({}, '0', 'Apple')); //=>   { '0': 'Apple' }\n\nconsole.log(toSet({}, 'fruits[0]', 'Apple')); //=>  { fruits: ['Apple'] }\n\nconsole.log(toSet({ a: 1 }, 'a', (val) => val + 1)); //=> { a: 2 }\n\nconst fn = () => render('My Component')\ntoSet({ subscribeFns: [] }, 'subscribeFns[0]', () => fn)\n//=> { subscribeFns: [fn] }\n\ntoSet({ a: false }, 'a.b', 1)\n//=> { a: false }";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "toSet — Object",
@@ -87,4 +88,4 @@ toSet({ a: false }, 'a.b', 1)
 //=> { a: false }
 ```
 
-<TryIt code={"console.log(toSet({}, 'a', null)); //=> { a: null }\n\nconsole.log(toSet({}, 'a', 1)); //=> { a: 1 }\n\nconsole.log(toSet({}, 'a.b', 25)); //=> { a: { b: 25 } }\n\ntoSet({}, 'user.email', 'user@example.com')\n//=>\n// {\n//    user: { email: 'user@example.com' }\n// }\n\nconsole.log(toSet({}, '0', 'Apple')); //=>   { '0': 'Apple' }\n\nconsole.log(toSet({}, 'fruits[0]', 'Apple')); //=>  { fruits: ['Apple'] }\n\nconsole.log(toSet({ a: 1 }, 'a', (val) => val + 1)); //=> { a: 2 }\n\nconst fn = () => render('My Component')\ntoSet({ subscribeFns: [] }, 'subscribeFns[0]', () => fn)\n//=> { subscribeFns: [fn] }\n\ntoSet({ a: false }, 'a.b', 1)\n//=> { a: false }"} />
+<TryIt code={tryItCode} />

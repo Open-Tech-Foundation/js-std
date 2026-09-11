@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(formatCurrency(1200, 'USD')); //=> '$1,200.00'\n\nconsole.log(formatCurrency(1200, 'EUR')); //=> '€1,200.00'\n\nconsole.log(formatCurrency(1200, 'JPY')); //=> '¥1,200' (no decimals, Intl knows)\n\nconsole.log(formatCurrency(1200, 'INR')); //=> '₹1,200.00'\n\nconsole.log(formatCurrency(1200, 'EUR', { locale: 'de-DE' })); //=> '1.200,00 €'\n\nconsole.log(formatCurrency(1200, 'USD', { display: 'code' })); //=> 'USD 1,200.00'\n\nconsole.log(formatCurrency(1200, 'USD', { display: 'name' })); //=> '1,200.00 US dollars'\n\nconsole.log(formatCurrency(1200, 'USD', { maxFraction: 0 })); //=> '$1,200'";
 export const metadata = {
   title: "formatCurrency — Number",
   description: "Formats a number as a currency string using Intl.NumberFormat."
@@ -58,4 +59,4 @@ formatCurrency(1200, 'USD', { display: 'name' }) //=> '1,200.00 US dollars'
 formatCurrency(1200, 'USD', { maxFraction: 0 }) //=> '$1,200'
 ```
 
-<TryIt code={"console.log(formatCurrency(1200, 'USD')); //=> '$1,200.00'\n\nconsole.log(formatCurrency(1200, 'EUR')); //=> '€1,200.00'\n\nconsole.log(formatCurrency(1200, 'JPY')); //=> '¥1,200' (no decimals, Intl knows)\n\nconsole.log(formatCurrency(1200, 'INR')); //=> '₹1,200.00'\n\nconsole.log(formatCurrency(1200, 'EUR', { locale: 'de-DE' })); //=> '1.200,00 €'\n\nconsole.log(formatCurrency(1200, 'USD', { display: 'code' })); //=> 'USD 1,200.00'\n\nconsole.log(formatCurrency(1200, 'USD', { display: 'name' })); //=> '1,200.00 US dollars'\n\nconsole.log(formatCurrency(1200, 'USD', { maxFraction: 0 })); //=> '$1,200'"} />
+<TryIt code={tryItCode} />

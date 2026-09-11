@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(await everyAsync([2, 4, 6], async (n) => n % 2 === 0)); //=> true";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "everyAsync — Concurrency",
@@ -62,4 +63,4 @@ const allUp = await everyAsync(
 - [findAsync](/docs/Concurrency/findAsync)
 - [filterAsync](/docs/Concurrency/filterAsync)
 
-<TryIt code={"console.log(await everyAsync([2, 4, 6], async (n) => n % 2 === 0)); //=> true"} />
+<TryIt code={tryItCode} />

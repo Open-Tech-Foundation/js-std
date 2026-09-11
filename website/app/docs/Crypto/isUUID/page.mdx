@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(isUUID('f47ac10b-58cc-4372-a567-0e02b2c3d479')); //=> true\nconsole.log(isUUID('not-a-uuid')); //=> false\nconsole.log(isUUID(42)); //=> false";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "isUUID — Crypto",
@@ -78,4 +79,4 @@ isUUID('00000000-0000-0000-0000-000000000000', 4) //=> false
 - [uuidv7](/docs/Crypto/uuidv7)
 - [isULID](/docs/Crypto/isULID)
 
-<TryIt code={"console.log(isUUID('f47ac10b-58cc-4372-a567-0e02b2c3d479')); //=> true\nconsole.log(isUUID('not-a-uuid')); //=> false\nconsole.log(isUUID(42)); //=> false"} />
+<TryIt code={tryItCode} />

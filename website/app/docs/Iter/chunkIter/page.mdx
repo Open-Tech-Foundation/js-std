@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log([...chunkIter([1, 2, 3, 4, 5], 2)]); //=> [[1, 2], [3, 4], [5]]";
 export const metadata = {
   title: "chunkIter — Iter",
   description: "Yields the items in groups of a specified size."
@@ -50,4 +51,4 @@ function* naturals() { let n = 0; while (true) yield n++; }
 - [chunkIterAsync](/docs/Iter/chunkIterAsync)
 - [chunk](/docs/Array/chunk)
 
-<TryIt code={"console.log([...chunkIter([1, 2, 3, 4, 5], 2)]); //=> [[1, 2], [3, 4], [5]]"} />
+<TryIt code={tryItCode} />

@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(shuffle([])); //=> []\n\nconsole.log(shuffle([1])); //=> [1]\n\nconsole.log(shuffle([1, 2, 3, 4, 5])); //=> [2, 4, 5, 1, 3] (random result)\n\nconsole.log(shuffle('Apple')); //=> ['p', 'e', 'A', 'l', 'p'] (random result)";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "shuffle — Array",
@@ -44,4 +45,4 @@ shuffle('Apple') //=> ['p', 'e', 'A', 'l', 'p'] (random result)
 - [reverse](/docs/Array/reverse)
 - [sort](/docs/Array/sort)
 
-<TryIt code={"console.log(shuffle([])); //=> []\n\nconsole.log(shuffle([1])); //=> [1]\n\nconsole.log(shuffle([1, 2, 3, 4, 5])); //=> [2, 4, 5, 1, 3] (random result)\n\nconsole.log(shuffle('Apple')); //=> ['p', 'e', 'A', 'l', 'p'] (random result)"} />
+<TryIt code={tryItCode} />

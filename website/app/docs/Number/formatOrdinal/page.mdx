@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(formatOrdinal(1)); //=> '1st'\n\nconsole.log(formatOrdinal(2)); //=> '2nd'\n\nconsole.log(formatOrdinal(3)); //=> '3rd'\n\nconsole.log(formatOrdinal(11)); //=> '11th'\n\nconsole.log(formatOrdinal(21)); //=> '21st'\n\nconsole.log(formatOrdinal(0)); //=> '0th'\n\nconsole.log(formatOrdinal(-1)); //=> '-1st'\n\nconsole.log(formatOrdinal(1.5)); //=> '1.5'\n\nconsole.log(formatOrdinal(Number.NaN)); //=> 'NaN'";
 export const metadata = {
   title: "formatOrdinal — Number",
   description: "Formats a number to its ordinal form (1st, 2nd, 3rd, etc.)."
@@ -43,4 +44,4 @@ formatOrdinal(1.5) //=> '1.5'
 formatOrdinal(Number.NaN) //=> 'NaN'
 ```
 
-<TryIt code={"console.log(formatOrdinal(1)); //=> '1st'\n\nconsole.log(formatOrdinal(2)); //=> '2nd'\n\nconsole.log(formatOrdinal(3)); //=> '3rd'\n\nconsole.log(formatOrdinal(11)); //=> '11th'\n\nconsole.log(formatOrdinal(21)); //=> '21st'\n\nconsole.log(formatOrdinal(0)); //=> '0th'\n\nconsole.log(formatOrdinal(-1)); //=> '-1st'\n\nconsole.log(formatOrdinal(1.5)); //=> '1.5'\n\nconsole.log(formatOrdinal(Number.NaN)); //=> 'NaN'"} />
+<TryIt code={tryItCode} />

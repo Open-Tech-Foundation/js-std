@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(flattenObject({ a: { b: { c: 1 } } })); //=> { 'a.b.c': 1 }\n\nconsole.log(flattenObject({ a: 1, b: 2 })); //=> { a: 1, b: 2 }\n\nconsole.log(flattenObject({ a: [1, 2] })); //=> { 'a[0]': 1, 'a[1]': 2 }\n\nflattenObject({ users: [{ name: 'Tom' }, { name: 'Ram' }] })\n//=> { 'users[0].name': 'Tom', 'users[1].name': 'Ram' }\n\n// Empty branches are kept\nconsole.log(flattenObject({ a: {}, b: [], c: 1 })); //=> { a: {}, b: [], c: 1 }\n\n// Non-plain objects are values\nconsole.log(flattenObject({ at: new Date(0) })); //=> { at: Date }";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "flattenObject — Object",
@@ -72,4 +73,4 @@ get(obj, 'a.b[0].c') //=> 1
 - [get](/docs/Object/get)
 - [toPath](/docs/Object/toPath)
 
-<TryIt code={"console.log(flattenObject({ a: { b: { c: 1 } } })); //=> { 'a.b.c': 1 }\n\nconsole.log(flattenObject({ a: 1, b: 2 })); //=> { a: 1, b: 2 }\n\nconsole.log(flattenObject({ a: [1, 2] })); //=> { 'a[0]': 1, 'a[1]': 2 }\n\nflattenObject({ users: [{ name: 'Tom' }, { name: 'Ram' }] })\n//=> { 'users[0].name': 'Tom', 'users[1].name': 'Ram' }\n\n// Empty branches are kept\nconsole.log(flattenObject({ a: {}, b: [], c: 1 })); //=> { a: {}, b: [], c: 1 }\n\n// Non-plain objects are values\nconsole.log(flattenObject({ at: new Date(0) })); //=> { at: Date }"} />
+<TryIt code={tryItCode} />

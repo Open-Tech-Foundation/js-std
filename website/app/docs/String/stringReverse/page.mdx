@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(stringReverse('hello')); //=> 'olleh'\n\nconsole.log(stringReverse('café')); //=> 'éfac'\n\nconsole.log(stringReverse('👨‍👩‍👧‍👦')); //=> '👨‍👩‍👧‍👦'\n\nconsole.log(stringReverse('ab🔥cd')); //=> 'dc🔥ba'";
 export const metadata = {
   title: "stringReverse — String",
   description: "Reverses a string with full grapheme cluster awareness."
@@ -37,4 +38,4 @@ stringReverse('ab🔥cd') //=> 'dc🔥ba'
 
 - [stringWidth](/docs/String/stringWidth)
 
-<TryIt code={"console.log(stringReverse('hello')); //=> 'olleh'\n\nconsole.log(stringReverse('café')); //=> 'éfac'\n\nconsole.log(stringReverse('👨‍👩‍👧‍👦')); //=> '👨‍👩‍👧‍👦'\n\nconsole.log(stringReverse('ab🔥cd')); //=> 'dc🔥ba'"} />
+<TryIt code={tryItCode} />

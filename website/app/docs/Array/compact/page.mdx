@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(compact([0, 1, false, 2, '', 3, null, undefined, NaN])); //=> [1, 2, 3]\n\nconsole.log(compact(['apple', '', 'Mango'])); //=> ['apple', 'Mango']\n\nconsole.log(compact([{}, []])); //=> [{}, []] (Empty objects and arrays are truthy)";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "compact — Array",
@@ -58,4 +59,4 @@ compact([{}, []]) //=> [{}, []] (Empty objects and arrays are truthy)
 
 - [unique](/docs/Array/unique)
 
-<TryIt code={"console.log(compact([0, 1, false, 2, '', 3, null, undefined, NaN])); //=> [1, 2, 3]\n\nconsole.log(compact(['apple', '', 'Mango'])); //=> ['apple', 'Mango']\n\nconsole.log(compact([{}, []])); //=> [{}, []] (Empty objects and arrays are truthy)"} />
+<TryIt code={tryItCode} />

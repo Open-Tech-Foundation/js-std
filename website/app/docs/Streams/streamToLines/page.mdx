@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "for await (const line of streamToLines(response.body)) {\n  console.log(JSON.parse(line));\n}";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "streamToLines — Streams",
@@ -66,4 +67,4 @@ for await (const line of streamToLines(logStream)) {
 - [streamToText](/docs/Streams/streamToText)
 - [streamToArray](/docs/Streams/streamToArray)
 
-<TryIt code={"for await (const line of streamToLines(response.body)) {\n  console.log(JSON.parse(line));\n}"} />
+<TryIt code={tryItCode} />

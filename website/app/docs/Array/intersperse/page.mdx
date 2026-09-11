@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "const arr = [1, 2, 3];\nconsole.log(intersperse(arr, '&')); //=> [1, '&', 2, '&', 3]\n\nconst menu = ['Home', 'Menu', 'Sub Menu'];\nintersperse(menu, '>')\n//=> [\n//  'Home',\n//  '>',\n//  'Menu',\n//  '>',\n//  'Sub Menu',\n// ]\n\nconsole.log(intersperse('Hello', '-')); //=> 'H-e-l-l-o'\n\nconst items = [\n  { type: 'div', text: 'Apple' },\n  { type: 'div', text: 'Orange' },\n  { type: 'div', text: 'Mango' },\n];\nintersperse(items, { type: 'br' })\n//=> [\n//   {\n//     type: 'div',\n//     text: 'Apple',\n//   },\n//   {\n//     type: 'br',\n//   },\n//   {\n//     type: 'div',\n//     text: 'Orange',\n//   },\n//   {\n//     type: 'br',\n//   },\n//   {\n//     type: 'div',\n//     text: 'Mango',\n//   },\n// ]\n\nintersperse(['a', 'b', 'c'], (i) => `<span key=\"sep-${i}\"> , </span>`)\n//=> [\n//   'a',\n//   '<span key=\"sep-0\"> , </span>',\n//   'b',\n//   '<span key=\"sep-1\"> , </span>',\n//   'c',\n// ]";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "intersperse — Array",
@@ -90,4 +91,4 @@ intersperse(['a', 'b', 'c'], (i) => `<span key="sep-${i}"> , </span>`)
 
 - [range](/docs/Array/range)
 
-<TryIt code={"const arr = [1, 2, 3];\nconsole.log(intersperse(arr, '&')); //=> [1, '&', 2, '&', 3]\n\nconst menu = ['Home', 'Menu', 'Sub Menu'];\nintersperse(menu, '>')\n//=> [\n//  'Home',\n//  '>',\n//  'Menu',\n//  '>',\n//  'Sub Menu',\n// ]\n\nconsole.log(intersperse('Hello', '-')); //=> 'H-e-l-l-o'\n\nconst items = [\n  { type: 'div', text: 'Apple' },\n  { type: 'div', text: 'Orange' },\n  { type: 'div', text: 'Mango' },\n];\nintersperse(items, { type: 'br' })\n//=> [\n//   {\n//     type: 'div',\n//     text: 'Apple',\n//   },\n//   {\n//     type: 'br',\n//   },\n//   {\n//     type: 'div',\n//     text: 'Orange',\n//   },\n//   {\n//     type: 'br',\n//   },\n//   {\n//     type: 'div',\n//     text: 'Mango',\n//   },\n// ]\n\nintersperse(['a', 'b', 'c'], (i) => `<span key=\"sep-${i}\"> , </span>`)\n//=> [\n//   'a',\n//   '<span key=\"sep-0\"> , </span>',\n//   'b',\n//   '<span key=\"sep-1\"> , </span>',\n//   'c',\n// ]"} />
+<TryIt code={tryItCode} />

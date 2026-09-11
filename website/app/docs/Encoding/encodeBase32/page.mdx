@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(encodeBase32(new Uint8Array([72, 101, 108, 108, 111]))); //=> 'JBSWY3DP'\nconsole.log(encodeBase32(stringToBytes('foobar'))); //=> 'MZXW6YTBOI======'";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "encodeBase32 — Encoding",
@@ -53,4 +54,4 @@ encodeBase32(stringToBytes('foobar'), { pad: false }) //=> 'MZXW6YTBOI'
 - [encodeBase58](/docs/Encoding/encodeBase58)
 - [encodeBase64](/docs/Encoding/encodeBase64)
 
-<TryIt code={"console.log(encodeBase32(new Uint8Array([72, 101, 108, 108, 111]))); //=> 'JBSWY3DP'\nconsole.log(encodeBase32(stringToBytes('foobar'))); //=> 'MZXW6YTBOI======'"} />
+<TryIt code={tryItCode} />

@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(formatList(['a', 'b', 'c'])); //=> 'a, b, and c'\nconsole.log(formatList(['a', 'b'])); //=> 'a and b'\nconsole.log(formatList(['a'])); //=> 'a'\nconsole.log(formatList([])); //=> ''";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "formatList — String",
@@ -71,4 +72,4 @@ formatList(['a', 'b'], { locale: 'es-ES' }) //=> 'a y b'
 - [titleCase](/docs/String/titleCase)
 - [wordWrap](/docs/String/wordWrap)
 
-<TryIt code={"console.log(formatList(['a', 'b', 'c'])); //=> 'a, b, and c'\nconsole.log(formatList(['a', 'b'])); //=> 'a and b'\nconsole.log(formatList(['a'])); //=> 'a'\nconsole.log(formatList([])); //=> ''"} />
+<TryIt code={tryItCode} />

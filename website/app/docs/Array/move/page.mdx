@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(move([1, 2, 3], 0, 2)); //=> [2, 3, 1]\n\nconsole.log(move([1, 2, 3], 0, 5)); //=> [2, 3, 1] (capped at array length)\n\nconsole.log(move([1, 2, 3], 5, 0)); //=> [1, 2, 3] (invalid source index returns original)";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "move — Array",
@@ -43,4 +44,4 @@ move([1, 2, 3], 5, 0); //=> [1, 2, 3] (invalid source index returns original)
 
 - [swap](/docs/Array/swap)
 
-<TryIt code={"console.log(move([1, 2, 3], 0, 2)); //=> [2, 3, 1]\n\nconsole.log(move([1, 2, 3], 0, 5)); //=> [2, 3, 1] (capped at array length)\n\nconsole.log(move([1, 2, 3], 5, 0)); //=> [1, 2, 3] (invalid source index returns original)"} />
+<TryIt code={tryItCode} />

@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(isWeakMap(new Map())); //=> false\n\nconsole.log(isWeakMap(new WeakMap())); //=> true";
 export const metadata = {
   title: "isWeakMap — Types",
   description: "Checks if the given value is WeakMap."
@@ -26,4 +27,4 @@ isWeakMap(new WeakMap()) //=> true
 - [isObject](/docs/Types/isObject)
 - [isPlainObject](/docs/Types/isPlainObject)
 
-<TryIt code={"console.log(isWeakMap(new Map())); //=> false\n\nconsole.log(isWeakMap(new WeakMap())); //=> true"} />
+<TryIt code={tryItCode} />

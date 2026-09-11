@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "const evens = [2, 4, 6, 8];\nconst squares = [1, 4, 9];\nconsole.log(symDiff([evens, squares])); //=> [2, 6, 8, 1, 9]\n\nconst bucket1 = ['Fruits', 'Vegs', 'Eggs', 'Cookies', 'Nuts'];\nconst bucket2 = ['fruits', 'Snacks', 'cookies'];\nsymDiff([bucket1, bucket2], (v) => v.toLowerCase())\n//=> [\n//  'Vegs',\n//  'Eggs',\n//  'Nuts',\n//  'Snacks',\n// ]";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "symDiff — Array",
@@ -64,4 +65,4 @@ symDiff([bucket1, bucket2], (v) => v.toLowerCase())
 - [difference](/docs/Array/difference)
 - [union](/docs/Array/union)
 
-<TryIt code={"const evens = [2, 4, 6, 8];\nconst squares = [1, 4, 9];\nconsole.log(symDiff([evens, squares])); //=> [2, 6, 8, 1, 9]\n\nconst bucket1 = ['Fruits', 'Vegs', 'Eggs', 'Cookies', 'Nuts'];\nconst bucket2 = ['fruits', 'Snacks', 'cookies'];\nsymDiff([bucket1, bucket2], (v) => v.toLowerCase())\n//=> [\n//  'Vegs',\n//  'Eggs',\n//  'Nuts',\n//  'Snacks',\n// ]"} />
+<TryIt code={tryItCode} />

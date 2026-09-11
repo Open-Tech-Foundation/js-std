@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "async function* gen() { yield 1; yield 2; }\nconsole.log(await toArrayIterAsync(gen())); //=> [1, 2]";
 export const metadata = {
   title: "toArrayIterAsync — Iter",
   description: "Collects all items from an async iterator into an array."
@@ -32,4 +33,4 @@ await toArrayIterAsync(gen()) //=> [1, 2]
 
 - [toArrayIter](/docs/Iter/toArrayIter)
 
-<TryIt code={"async function* gen() { yield 1; yield 2; }\nconsole.log(await toArrayIterAsync(gen())); //=> [1, 2]"} />
+<TryIt code={tryItCode} />

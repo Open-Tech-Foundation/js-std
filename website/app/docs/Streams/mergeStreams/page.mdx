@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "const events = mergeStreams(clicks, keys);\nawait streamToArray(events)";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "mergeStreams — Streams",
@@ -57,4 +58,4 @@ merged.filter((c) => c.startsWith('a')) //=> ['a1', 'a2', 'a3']
 - [concatStreams](/docs/Streams/concatStreams)
 - [streamToArray](/docs/Streams/streamToArray)
 
-<TryIt code={"const events = mergeStreams(clicks, keys);\nawait streamToArray(events)"} />
+<TryIt code={tryItCode} />

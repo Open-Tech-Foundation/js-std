@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(colorInvert({ value: 'white' })); //=> '#000000'\nconsole.log(colorInvert({ value: 'black' })); //=> '#ffffff'\nconsole.log(colorInvert({ value: 'red' })); //=> '#00ffff'";
 export const metadata = {
   title: "colorInvert — Colors",
   description: "Inverts the red, green, and blue components of a color."
@@ -24,4 +25,4 @@ colorInvert({ value: 'black' }); //=> '#ffffff'
 colorInvert({ value: 'red' }); //=> '#00ffff'
 ```
 
-<TryIt code={"console.log(colorInvert({ value: 'white' })); //=> '#000000'\nconsole.log(colorInvert({ value: 'black' })); //=> '#ffffff'\nconsole.log(colorInvert({ value: 'red' })); //=> '#00ffff'"} />
+<TryIt code={tryItCode} />

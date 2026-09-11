@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(isArrayLike([])); //=> true\n\nconsole.log(isArrayLike([1, 2, 3])); //=> true\n\nconsole.log(isArrayLike('abc')); //=> true\n\nconsole.log(isArrayLike({ length: 2, 0: 'a', 1: 'b' })); //=> true\n\nconsole.log(isArrayLike(new Uint8Array(3))); //=> true\n\n// Not array-like\nconsole.log(isArrayLike({})); //=> false\n\nconsole.log(isArrayLike(new Set([1, 2]))); //=> false\n\nconsole.log(isArrayLike({ length: -1 })); //=> false\n\nconsole.log(isArrayLike({ length: 1.5 })); //=> false\n\nconsole.log(isArrayLike((a, b) => a + b)); //=> false\n\nconsole.log(isArrayLike(null)); //=> false";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "isArrayLike — Types",
@@ -66,4 +67,4 @@ isArrayLike(null) //=> false
 - [isIterable](/docs/Types/isIterable)
 - [isTypedArray](/docs/Types/isTypedArray)
 
-<TryIt code={"console.log(isArrayLike([])); //=> true\n\nconsole.log(isArrayLike([1, 2, 3])); //=> true\n\nconsole.log(isArrayLike('abc')); //=> true\n\nconsole.log(isArrayLike({ length: 2, 0: 'a', 1: 'b' })); //=> true\n\nconsole.log(isArrayLike(new Uint8Array(3))); //=> true\n\n// Not array-like\nconsole.log(isArrayLike({})); //=> false\n\nconsole.log(isArrayLike(new Set([1, 2]))); //=> false\n\nconsole.log(isArrayLike({ length: -1 })); //=> false\n\nconsole.log(isArrayLike({ length: 1.5 })); //=> false\n\nconsole.log(isArrayLike((a, b) => a + b)); //=> false\n\nconsole.log(isArrayLike(null)); //=> false"} />
+<TryIt code={tryItCode} />

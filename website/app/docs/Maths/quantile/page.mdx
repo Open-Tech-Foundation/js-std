@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(quantile([1, 2, 3, 4], 0.25)); //=> 1.75\nconsole.log(quantile([1, 2, 3, 4], 0.5)); //=> 2.5\nconsole.log(quantile([1, 2, 3, 4], 0.75)); //=> 3.25";
 export const metadata = {
   title: "quantile — Maths",
   description: "Calculates the value below which the given fraction of the data falls."
@@ -65,4 +66,4 @@ quantile(requests, 0.95, (r) => r.durationMs);
 - [mean](/docs/Maths/mean)
 - [stddev](/docs/Maths/stddev)
 
-<TryIt code={"console.log(quantile([1, 2, 3, 4], 0.25)); //=> 1.75\nconsole.log(quantile([1, 2, 3, 4], 0.5)); //=> 2.5\nconsole.log(quantile([1, 2, 3, 4], 0.75)); //=> 3.25"} />
+<TryIt code={tryItCode} />

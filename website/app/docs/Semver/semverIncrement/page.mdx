@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(semverIncrement('1.2.3', 'major')); //=> '2.0.0'\nconsole.log(semverIncrement('1.2.3', 'minor')); //=> '1.3.0'\nconsole.log(semverIncrement('1.2.3', 'patch')); //=> '1.2.4'";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "semverIncrement — Semver",
@@ -75,4 +76,4 @@ semverIncrement('1.3.0-alpha.5', 'prerelease', 'beta') //=> '1.3.0-beta.0'
 - [semverParse](/docs/Semver/semverParse)
 - [semverCompare](/docs/Semver/semverCompare)
 
-<TryIt code={"console.log(semverIncrement('1.2.3', 'major')); //=> '2.0.0'\nconsole.log(semverIncrement('1.2.3', 'minor')); //=> '1.3.0'\nconsole.log(semverIncrement('1.2.3', 'patch')); //=> '1.2.4'"} />
+<TryIt code={tryItCode} />

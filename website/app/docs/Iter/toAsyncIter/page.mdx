@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(await toArrayIterAsync(toAsyncIter([1, 2, 3]))); //=> [1, 2, 3]";
 export const metadata = {
   title: "toAsyncIter — Iter",
   description: "Converts a sync iterable to an async iterable."
@@ -32,4 +33,4 @@ await toArrayIterAsync(toAsyncIter([1, 2, 3])) //=> [1, 2, 3]
 - [fromIterAsync](/docs/Iter/fromIterAsync)
 - [mapIterAsync](/docs/Iter/mapIterAsync)
 
-<TryIt code={"console.log(await toArrayIterAsync(toAsyncIter([1, 2, 3]))); //=> [1, 2, 3]"} />
+<TryIt code={tryItCode} />

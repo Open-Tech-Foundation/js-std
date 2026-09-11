@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "const arr = [1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5];\nconsole.log(unique(arr)); //=> [1, 2, 3, 4, 5]\n\nconst nums = [2.1, 1.2, 2.3];\nconsole.log(unique(nums, Math.floor)); //=> [2.1, 1.2]";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "unique — Array",
@@ -46,4 +47,4 @@ unique(nums, Math.floor) //=> [2.1, 1.2]
 - [union](/docs/Array/union)
 - [intersection](/docs/Array/intersection)
 
-<TryIt code={"const arr = [1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5];\nconsole.log(unique(arr)); //=> [1, 2, 3, 4, 5]\n\nconst nums = [2.1, 1.2, 2.3];\nconsole.log(unique(nums, Math.floor)); //=> [2.1, 1.2]"} />
+<TryIt code={tryItCode} />

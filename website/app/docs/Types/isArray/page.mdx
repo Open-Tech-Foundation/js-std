@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(isArray([])); //=> true\n\nconsole.log(isArray(new Array('a', 'b', 'c'))); //=> true\n\nconsole.log(isArray('abc')); //=> false";
 export const metadata = {
   title: "isArray — Types",
   description: "Checks if the given value is an Array."
@@ -28,4 +29,4 @@ isArray('abc') //=> false
 - [isObject](/docs/Types/isObject)
 - [isPlainObject](/docs/Types/isPlainObject)
 
-<TryIt code={"console.log(isArray([])); //=> true\n\nconsole.log(isArray(new Array('a', 'b', 'c'))); //=> true\n\nconsole.log(isArray('abc')); //=> false"} />
+<TryIt code={tryItCode} />

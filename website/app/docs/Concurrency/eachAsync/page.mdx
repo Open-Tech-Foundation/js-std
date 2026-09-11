@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "const items = [1, 2, 3];\nawait eachAsync(items, async (n) => {\n  console.log(n);\n});";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "eachAsync — Concurrency",
@@ -50,4 +51,4 @@ await eachAsync(items, async (n) => {
 - [mapAsync](/docs/Concurrency/mapAsync)
 - [filterAsync](/docs/Concurrency/filterAsync)
 
-<TryIt code={"const items = [1, 2, 3];\nawait eachAsync(items, async (n) => {\n  console.log(n);\n});"} />
+<TryIt code={tryItCode} />

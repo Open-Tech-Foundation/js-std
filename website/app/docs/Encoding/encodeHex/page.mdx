@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(encodeHex(new Uint8Array([72, 101, 108, 108, 111]))); //=> '48656c6c6f'";
 export const metadata = {
   title: "encodeHex — Encoding",
   description: "Encodes bytes to a hexadecimal string."
@@ -32,4 +33,4 @@ encodeHex(new Uint8Array([72, 101, 108, 108, 111])) //=> '48656c6c6f'
 - [decodeHex](/docs/Encoding/decodeHex)
 - [stringToBytes](/docs/Encoding/stringToBytes)
 
-<TryIt code={"console.log(encodeHex(new Uint8Array([72, 101, 108, 108, 111]))); //=> '48656c6c6f'"} />
+<TryIt code={tryItCode} />

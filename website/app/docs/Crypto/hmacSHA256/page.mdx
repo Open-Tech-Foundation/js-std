@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "await hmacSHA256('secret', 'hello')\n//=> '88aab3ede8d3adf94d26ab90d3bafd4a2083070c3bcce9c014ee04a443847c0b'";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "hmacSHA256 — Crypto",
@@ -42,4 +43,4 @@ await hmacSHA256('secret', 'hello')
 - [hmacSHA512](/docs/Crypto/hmacSHA512)
 - [sha256](/docs/Crypto/sha256)
 
-<TryIt code={"await hmacSHA256('secret', 'hello')\n//=> '88aab3ede8d3adf94d26ab90d3bafd4a2083070c3bcce9c014ee04a443847c0b'"} />
+<TryIt code={tryItCode} />

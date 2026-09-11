@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "await sleep(1000); // Suspends execution for 1 second\n\nawait sleep(0); // Resolves in the next event loop iteration";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "sleep — Timing",
@@ -64,4 +65,4 @@ await sleep(5000, { signal: controller.signal }); // rejects with that Error
 - [abortable](/docs/Concurrency/abortable)
 - [timeoutRun](/docs/Flow/timeoutRun)
 
-<TryIt code={"await sleep(1000); // Suspends execution for 1 second\n\nawait sleep(0); // Resolves in the next event loop iteration"} />
+<TryIt code={tryItCode} />

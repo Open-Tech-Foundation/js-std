@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log([...flatMapIter([1, 2], (x) => [x, x * 10])]); //=> [1, 10, 2, 20]";
 export const metadata = {
   title: "flatMapIter — Iter",
   description: "Maps each item and flattens the result."
@@ -32,4 +33,4 @@ A new iterable iterator.
 
 - [flatMapIterAsync](/docs/Iter/flatMapIterAsync)
 
-<TryIt code={"console.log([...flatMapIter([1, 2], (x) => [x, x * 10])]); //=> [1, 10, 2, 20]"} />
+<TryIt code={tryItCode} />

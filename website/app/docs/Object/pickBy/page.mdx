@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "const object = { a: 1, b: 'abc', c: 3 };\n\npickBy(object, (v) => typeof v === 'number')\n//=> { a: 1, c: 3 }";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "pickBy — Object",
@@ -48,4 +49,4 @@ pickBy(object, (v) => typeof v === 'number')
 - [pick](/docs/Object/pick)
 - [omitBy](/docs/Object/omitBy)
 
-<TryIt code={"const object = { a: 1, b: 'abc', c: 3 };\n\npickBy(object, (v) => typeof v === 'number')\n//=> { a: 1, c: 3 }"} />
+<TryIt code={tryItCode} />

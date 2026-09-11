@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "const id = uuidv7();\n\nconsole.log(uuidv7Time(id)); //=> 1769000000000\nconsole.log(new Date(uuidv7Time(id))); //=> the moment it was generated";
 export const metadata = {
   title: "uuidv7Time — Crypto",
   description: "Reads the timestamp back out of a UUID v7."
@@ -55,4 +56,4 @@ rows
 - [isUUID](/docs/Crypto/isUUID)
 - [ulidTime](/docs/Crypto/ulidTime)
 
-<TryIt code={"const id = uuidv7();\n\nconsole.log(uuidv7Time(id)); //=> 1769000000000\nconsole.log(new Date(uuidv7Time(id))); //=> the moment it was generated"} />
+<TryIt code={tryItCode} />

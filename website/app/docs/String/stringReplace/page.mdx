@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(stringReplace('abc', 'a', 'x')); //=> 'xbc'\n\nconsole.log(stringReplace('abbc', 'b', '', { all: true })); //=> 'ac'\n\nconsole.log(stringReplace('aBbBc', 'B', '', { all: true, case })); //=> 'ac'\n\nconst paragraph = \"I think Ruth's dog is cuter than your dog!\";\nconsole.log(stringReplace(paragraph, /dog/, 'ferret')); //=> \"I think Ruth's ferret is cuter than your dog!\"\n\n// Using a function\nfunction fahrenheitToCelsius(match, p1) {\n  return `${((p1 - 32) * 5) / 9}C`;\n}\nconsole.log(stringReplace('212F', /(-?\\d+(?:\\.\\d*)?)F\\b/, fahrenheitToCelsius)); //=> '100C'";
 export const metadata = {
   title: "stringReplace — String",
   description: "Returns a new string with matches of a pattern replaced by a replacement."
@@ -59,4 +60,4 @@ stringReplace('212F', /(-?\d+(?:\.\d*)?)F\b/, fahrenheitToCelsius) //=> '100C'
 
 - [stringSplice](/docs/String/stringSplice)
 
-<TryIt code={"console.log(stringReplace('abc', 'a', 'x')); //=> 'xbc'\n\nconsole.log(stringReplace('abbc', 'b', '', { all: true })); //=> 'ac'\n\nconsole.log(stringReplace('aBbBc', 'B', '', { all: true, case })); //=> 'ac'\n\nconst paragraph = \"I think Ruth's dog is cuter than your dog!\";\nconsole.log(stringReplace(paragraph, /dog/, 'ferret')); //=> \"I think Ruth's ferret is cuter than your dog!\"\n\n// Using a function\nfunction fahrenheitToCelsius(match, p1) {\n  return `${((p1 - 32) * 5) / 9}C`;\n}\nconsole.log(stringReplace('212F', /(-?\\d+(?:\\.\\d*)?)F\\b/, fahrenheitToCelsius)); //=> '100C'"} />
+<TryIt code={tryItCode} />

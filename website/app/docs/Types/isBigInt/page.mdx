@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(isBigInt(1)); //=> false\n\nconsole.log(isBigInt(1n)); //=> true";
 export const metadata = {
   title: "isBigInt — Types",
   description: "Checks if the given value is an BigInt."
@@ -26,4 +27,4 @@ isBigInt(1n) //=> true
 - [isObject](/docs/Types/isObject)
 - [isPlainObject](/docs/Types/isPlainObject)
 
-<TryIt code={"console.log(isBigInt(1)); //=> false\n\nconsole.log(isBigInt(1n)); //=> true"} />
+<TryIt code={tryItCode} />

@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(isDate(new Date())); //=> true\n\nconsole.log(isDate(new Date(''))); //=> false\n\nconsole.log(isDate('2000-01-01')); //=> false";
 export const metadata = {
   title: "isDate — Types",
   description: "Checks if the given value is a valid Date object."
@@ -28,4 +29,4 @@ isDate('2000-01-01') //=> false
 - [isObject](/docs/Types/isObject)
 - [isPlainObject](/docs/Types/isPlainObject)
 
-<TryIt code={"console.log(isDate(new Date())); //=> true\n\nconsole.log(isDate(new Date(''))); //=> false\n\nconsole.log(isDate('2000-01-01')); //=> false"} />
+<TryIt code={tryItCode} />

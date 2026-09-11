@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(isNil()); //=> true\n\nconsole.log(isNil(undefined)); //=> true\n\nconsole.log(isNil(null)); //=> true\n\nconsole.log(isNil('')); //=> false\n\nconsole.log(isNil(0)); //=> false\n\nconsole.log(isNil(false)); //=> false\n\nconsole.log(isNil([])); //=> false\n\nconsole.log(isNil({})); //=> false";
 export const metadata = {
   title: "isNil — Assert",
   description: "Checks if a value is nullish (null or undefined)."
@@ -45,4 +46,4 @@ isNil({}) //=> false
 
 - [isEmpty](/docs/Assert/isEmpty)
 
-<TryIt code={"console.log(isNil()); //=> true\n\nconsole.log(isNil(undefined)); //=> true\n\nconsole.log(isNil(null)); //=> true\n\nconsole.log(isNil('')); //=> false\n\nconsole.log(isNil(0)); //=> false\n\nconsole.log(isNil(false)); //=> false\n\nconsole.log(isNil([])); //=> false\n\nconsole.log(isNil({})); //=> false"} />
+<TryIt code={tryItCode} />

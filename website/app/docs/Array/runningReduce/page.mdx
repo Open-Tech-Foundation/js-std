@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(runningReduce([1, 2, 3, 4], (acc, cur) => acc + cur, 0)); //=> [1, 3, 6, 10]";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "runningReduce — Array",
@@ -62,4 +63,4 @@ runningReduce(['a', 'b', 'c'], (acc, cur) => [...acc, cur], []);
 - [slidingWindows](/docs/Array/slidingWindows)
 - [sum](/docs/Maths/sum)
 
-<TryIt code={"console.log(runningReduce([1, 2, 3, 4], (acc, cur) => acc + cur, 0)); //=> [1, 3, 6, 10]"} />
+<TryIt code={tryItCode} />

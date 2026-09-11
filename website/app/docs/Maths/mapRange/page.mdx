@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(mapRange(5, [0, 10], [0, 100])); //=> 50\n\nconsole.log(mapRange(0, [0, 10], [0, 100])); //=> 0\n\nconsole.log(mapRange(10, [0, 10], [0, 100])); //=> 100\n\n// A 10-bit sensor reading byte\nconsole.log(mapRange(512, [0, 1023], [0, 255])); //=> 127.75\n\n// Celsius to Fahrenheit\nconsole.log(mapRange(50, [0, 100], [32, 212])); //=> 122";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "mapRange — Maths",
@@ -74,4 +75,4 @@ clamp(mapRange(15, [0, 10], [0, 100]), 0, 100) //=> 100
 - [clamp](/docs/Maths/clamp)
 - [percentage](/docs/Maths/percentage)
 
-<TryIt code={"console.log(mapRange(5, [0, 10], [0, 100])); //=> 50\n\nconsole.log(mapRange(0, [0, 10], [0, 100])); //=> 0\n\nconsole.log(mapRange(10, [0, 10], [0, 100])); //=> 100\n\n// A 10-bit sensor reading byte\nconsole.log(mapRange(512, [0, 1023], [0, 255])); //=> 127.75\n\n// Celsius to Fahrenheit\nconsole.log(mapRange(50, [0, 100], [32, 212])); //=> 122"} />
+<TryIt code={tryItCode} />

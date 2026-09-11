@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(mode([1])); //=> []\n\nconsole.log(mode([1, 2, 3, 4, 5])); //=> []\n\nconsole.log(mode([4, 2])); //=> []\n\nconsole.log(mode([4, 2, 3, 2, 2])); //=> [2]\n\nconsole.log(mode([0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 4])); //=> [1, 2]\n\nconsole.log(mode(['a', 'b', 'b', 'c', 'c'])); //=> ['b', 'c']\n\nconsole.log(mode([{ n: 1 }, { n: 2 }, { n: 3 }, { n: 2 }], ({ n }) => n)); //=> [2]";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "mode — Maths",
@@ -63,4 +64,4 @@ mode([{ n: 1 }, { n: 2 }, { n: 3 }, { n: 2 }], ({ n }) => n) //=> [2]
 - [mean](/docs/Maths/mean)
 - [median](/docs/Maths/median)
 
-<TryIt code={"console.log(mode([1])); //=> []\n\nconsole.log(mode([1, 2, 3, 4, 5])); //=> []\n\nconsole.log(mode([4, 2])); //=> []\n\nconsole.log(mode([4, 2, 3, 2, 2])); //=> [2]\n\nconsole.log(mode([0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 4])); //=> [1, 2]\n\nconsole.log(mode(['a', 'b', 'b', 'c', 'c'])); //=> ['b', 'c']\n\nconsole.log(mode([{ n: 1 }, { n: 2 }, { n: 3 }, { n: 2 }], ({ n }) => n)); //=> [2]"} />
+<TryIt code={tryItCode} />

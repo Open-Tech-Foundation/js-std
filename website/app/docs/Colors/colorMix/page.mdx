@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(colorMix({ color1: 'white', color2: 'black' })); //=> '#808080'\nconsole.log(colorMix({ color1: 'red', color2: 'blue' })); //=> '#800080'\nconsole.log(colorMix({ color1: 'red', color2: 'blue', weight: 0.25 })); //=> '#4000bf'";
 export const metadata = {
   title: "colorMix — Colors",
   description: "Mixes two colors together."
@@ -26,4 +27,4 @@ colorMix({ color1: 'red', color2: 'blue' }); //=> '#800080'
 colorMix({ color1: 'red', color2: 'blue', weight: 0.25 }); //=> '#4000bf'
 ```
 
-<TryIt code={"console.log(colorMix({ color1: 'white', color2: 'black' })); //=> '#808080'\nconsole.log(colorMix({ color1: 'red', color2: 'blue' })); //=> '#800080'\nconsole.log(colorMix({ color1: 'red', color2: 'blue', weight: 0.25 })); //=> '#4000bf'"} />
+<TryIt code={tryItCode} />

@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(slidingWindows([1, 2, 3, 4], 2)); //=> [[1, 2], [2, 3], [3, 4]]\nconsole.log(slidingWindows([1, 2, 3, 4, 5], 3)); //=> [[1, 2, 3], [2, 3, 4], [3, 4, 5]]\n\nconsole.log(slidingWindows([1, 2], 3)); //=> []  (too short for a whole window)";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "slidingWindows — Array",
@@ -66,4 +67,4 @@ slidingWindows([1, 2, 3, 4], 2); //=> [[1, 2], [2, 3], [3, 4]] ← overlapping
 - [chunk](/docs/Array/chunk)
 - [runningReduce](/docs/Array/runningReduce)
 
-<TryIt code={"console.log(slidingWindows([1, 2, 3, 4], 2)); //=> [[1, 2], [2, 3], [3, 4]]\nconsole.log(slidingWindows([1, 2, 3, 4, 5], 3)); //=> [[1, 2, 3], [2, 3, 4], [3, 4, 5]]\n\nconsole.log(slidingWindows([1, 2], 3)); //=> []  (too short for a whole window)"} />
+<TryIt code={tryItCode} />

@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(decodeBase58('9Ajdvzr')); //=> Uint8Array [72, 101, 108, 108, 111]\nconsole.log(bytesToString(decodeBase58('StV1DL6CwTryKyV'))); //=> 'hello world'";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "decodeBase58 — Encoding",
@@ -51,4 +52,4 @@ decodeBase58('112') //=> Uint8Array [0, 0, 1]
 - [decodeBase32](/docs/Encoding/decodeBase32)
 - [decodeBase64Url](/docs/Encoding/decodeBase64Url)
 
-<TryIt code={"console.log(decodeBase58('9Ajdvzr')); //=> Uint8Array [72, 101, 108, 108, 111]\nconsole.log(bytesToString(decodeBase58('StV1DL6CwTryKyV'))); //=> 'hello world'"} />
+<TryIt code={tryItCode} />

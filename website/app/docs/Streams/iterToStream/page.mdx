@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "async function* rows() {\n  for await (const row of query()) {\n    yield JSON.stringify(row) + '\\n';\n  }\n}\n\nnew Response(iterToStream(rows()));";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "iterToStream — Streams",
@@ -82,4 +83,4 @@ Cancelling the stream calls `return` on the source, so a generator's `finally` b
 - [concatStreams](/docs/Streams/concatStreams)
 - [fromIterAsync](/docs/Iter/fromIterAsync)
 
-<TryIt code={"async function* rows() {\n  for await (const row of query()) {\n    yield JSON.stringify(row) + '\\n';\n  }\n}\n\nnew Response(iterToStream(rows()));"} />
+<TryIt code={tryItCode} />

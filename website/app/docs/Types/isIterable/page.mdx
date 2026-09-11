@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(isIterable([1, 2, 3])); //=> true\nconsole.log(isIterable('abc')); //=> true\nconsole.log(isIterable({})); //=> false";
 export const metadata = {
   title: "isIterable — Types",
   description: "Checks if the given value is an iterable."
@@ -34,4 +35,4 @@ isIterable({}) //=> false
 - [isAsyncIterable](/docs/Types/isAsyncIterable)
 - [toAsyncIter](/docs/Iter/toAsyncIter)
 
-<TryIt code={"console.log(isIterable([1, 2, 3])); //=> true\nconsole.log(isIterable('abc')); //=> true\nconsole.log(isIterable({})); //=> false"} />
+<TryIt code={tryItCode} />

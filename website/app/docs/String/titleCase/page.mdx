@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(titleCase('hello world')); //=> 'Hello World'\n\nconsole.log(titleCase('foo-bar')); //=> 'Foo Bar'\n\nconsole.log(titleCase('the quick brown fox')); //=> 'The Quick Brown Fox'\n\nconsole.log(titleCase('__FOO_BAR__')); //=> 'Foo Bar'";
 export const metadata = {
   title: "titleCase — String",
   description: "Converts a string to Title Case."
@@ -38,4 +39,4 @@ titleCase('__FOO_BAR__') //=> 'Foo Bar'
 - [capitalize](/docs/String/capitalize)
 - [pascalCase](/docs/String/pascalCase)
 
-<TryIt code={"console.log(titleCase('hello world')); //=> 'Hello World'\n\nconsole.log(titleCase('foo-bar')); //=> 'Foo Bar'\n\nconsole.log(titleCase('the quick brown fox')); //=> 'The Quick Brown Fox'\n\nconsole.log(titleCase('__FOO_BAR__')); //=> 'Foo Bar'"} />
+<TryIt code={tryItCode} />

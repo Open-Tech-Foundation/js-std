@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(isDisjointFrom([1, 3, 5], [2, 4])); //=> true\n\nconst primes = new Set([2, 3, 5, 7, 11, 13, 17, 19]);\nconst squares = new Set([1, 4, 9, 16]);\nconsole.log(isDisjointFrom(primes, squares)); //=> true\n\nconsole.log(isDisjointFrom([1, 2, 3, 5], [2, 4])); //=> false\n\nconst composites = new Set([4, 6, 8, 9, 10, 12, 14, 15, 16, 18]);\nconst squares = new Set([1, 4, 9, 16]);\n\nconsole.log(isDisjointFrom(composites, squares)); //=> false";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "isDisjointFrom — Maths",
@@ -56,4 +57,4 @@ const squares = new Set([1, 4, 9, 16]);
 isDisjointFrom(composites, squares) //=> false
 ```
 
-<TryIt code={"console.log(isDisjointFrom([1, 3, 5], [2, 4])); //=> true\n\nconst primes = new Set([2, 3, 5, 7, 11, 13, 17, 19]);\nconst squares = new Set([1, 4, 9, 16]);\nconsole.log(isDisjointFrom(primes, squares)); //=> true\n\nconsole.log(isDisjointFrom([1, 2, 3, 5], [2, 4])); //=> false\n\nconst composites = new Set([4, 6, 8, 9, 10, 12, 14, 15, 16, 18]);\nconst squares = new Set([1, 4, 9, 16]);\n\nconsole.log(isDisjointFrom(composites, squares)); //=> false"} />
+<TryIt code={tryItCode} />

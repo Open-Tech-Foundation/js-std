@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(isDefined()); //=> false\n\nconsole.log(isDefined(undefined)); //=> false\n\nconsole.log(isDefined(null)); //=> true\n\nconsole.log(isDefined('')); //=> true\n\nconsole.log(isDefined(0)); //=> true\n\nconsole.log(isDefined([])); //=> true\n\nconsole.log(isDefined({})); //=> true";
 export const metadata = {
   title: "isDefined — Types",
   description: "Checks if the given value is defined."
@@ -35,4 +36,4 @@ isDefined([]) //=> true
 isDefined({}) //=> true
 ```
 
-<TryIt code={"console.log(isDefined()); //=> false\n\nconsole.log(isDefined(undefined)); //=> false\n\nconsole.log(isDefined(null)); //=> true\n\nconsole.log(isDefined('')); //=> true\n\nconsole.log(isDefined(0)); //=> true\n\nconsole.log(isDefined([])); //=> true\n\nconsole.log(isDefined({})); //=> true"} />
+<TryIt code={tryItCode} />

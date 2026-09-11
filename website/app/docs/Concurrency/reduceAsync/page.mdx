@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "const items = [1, 2, 3];\nconst sum = await reduceAsync(items, async (acc, n) => {\n  return acc + n;\n}, 0); //=> 6";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "reduceAsync — Concurrency",
@@ -49,4 +50,4 @@ const sum = await reduceAsync(items, async (acc, n) => {
 - [mapAsync](/docs/Concurrency/mapAsync)
 - [filterAsync](/docs/Concurrency/filterAsync)
 
-<TryIt code={"const items = [1, 2, 3];\nconst sum = await reduceAsync(items, async (acc, n) => {\n  return acc + n;\n}, 0); //=> 6"} />
+<TryIt code={tryItCode} />

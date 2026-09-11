@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "const arr = [1, 2, 3, 4];\nconst iter = takeIter(arr, 2);\nconsole.log([...iter]); //=> [1, 2]";
 export const metadata = {
   title: "takeIter — Iter",
   description: "Takes the first N elements of an iterable."
@@ -43,4 +44,4 @@ const iter = takeIter(arr, 2);
 - [dropIter](/docs/Iter/dropIter)
 - [takeIterAsync](/docs/Iter/takeIterAsync)
 
-<TryIt code={"const arr = [1, 2, 3, 4];\nconst iter = takeIter(arr, 2);\nconsole.log([...iter]); //=> [1, 2]"} />
+<TryIt code={tryItCode} />

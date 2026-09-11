@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(isJSON(\"{}\")); //=> true\n\nconsole.log(isJSON('{\"a\": 1}')); //=> true\n\nconsole.log(isJSON(\"[]\")); //=> true\n\nconsole.log(isJSON(\"null\")); //=> true\n\nconsole.log(isJSON(\"123\")); //=> true\n\nconsole.log(isJSON(\"true\")); //=> true\n\nconsole.log(isJSON('\"hello\"')); //=> true\n\nconsole.log(isJSON({})); //=> false\n\nconsole.log(isJSON(null)); //=> false\n\n// Invalid JSON\nconsole.log(isJSON(\"{a: 1}\")); //=> false (Keys must be double-quoted)\n\nconsole.log(isJSON(\"\")); //=> false";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "isJSON — Types",
@@ -59,4 +60,4 @@ isJSON("") //=> false
 - [isObject](/docs/Types/isObject)
 - [isPlainObject](/docs/Types/isPlainObject)
 
-<TryIt code={"console.log(isJSON(\"{}\")); //=> true\n\nconsole.log(isJSON('{\"a\": 1}')); //=> true\n\nconsole.log(isJSON(\"[]\")); //=> true\n\nconsole.log(isJSON(\"null\")); //=> true\n\nconsole.log(isJSON(\"123\")); //=> true\n\nconsole.log(isJSON(\"true\")); //=> true\n\nconsole.log(isJSON('\"hello\"')); //=> true\n\nconsole.log(isJSON({})); //=> false\n\nconsole.log(isJSON(null)); //=> false\n\n// Invalid JSON\nconsole.log(isJSON(\"{a: 1}\")); //=> false (Keys must be double-quoted)\n\nconsole.log(isJSON(\"\")); //=> false"} />
+<TryIt code={tryItCode} />

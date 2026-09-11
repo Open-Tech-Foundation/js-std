@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(await streamToText(response.body)); //=> 'Hello World'";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "streamToText — Streams",
@@ -49,4 +50,4 @@ await streamToText(streamOf([bytes.slice(0, 3), bytes.slice(3)])) //=> 'héllo �
 - [streamToLines](/docs/Streams/streamToLines)
 - [streamToBytes](/docs/Streams/streamToBytes)
 
-<TryIt code={"console.log(await streamToText(response.body)); //=> 'Hello World'"} />
+<TryIt code={tryItCode} />

@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log([...dropWhileIter([1, 2, 3, 4], (x) => x < 3)]); //=> [3, 4]";
 export const metadata = {
   title: "dropWhileIter — Iter",
   description: "Skips items while a predicate is true, then yields the rest."
@@ -32,4 +33,4 @@ A new iterable iterator.
 
 - [dropWhileIterAsync](/docs/Iter/dropWhileIterAsync)
 
-<TryIt code={"console.log([...dropWhileIter([1, 2, 3, 4], (x) => x < 3)]); //=> [3, 4]"} />
+<TryIt code={tryItCode} />

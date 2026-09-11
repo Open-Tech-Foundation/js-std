@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "const errors = filterStream(lines, (line) => line.startsWith('ERROR'));\n\nconsole.log(await streamToArray(errors)); //=> ['ERROR one', 'ERROR two']";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "filterStream — Streams",
@@ -65,4 +66,4 @@ const report = mapStream(
 - [mapStream](/docs/Streams/mapStream)
 - [streamToIter](/docs/Streams/streamToIter)
 
-<TryIt code={"const errors = filterStream(lines, (line) => line.startsWith('ERROR'));\n\nconsole.log(await streamToArray(errors)); //=> ['ERROR one', 'ERROR two']"} />
+<TryIt code={tryItCode} />

@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log([...zipIter([1, 2], ['a', 'b'])]); //=> [[1, 'a'], [2, 'b']]\n\nconsole.log([...zipIter([1, 2, 3], ['a'])]); //=> [[1, 'a'], [2, undefined], [3, undefined]]";
 export const metadata = {
   title: "zipIter — Iter",
   description: "Yields one group per position, taking one item from each iterable."
@@ -43,4 +44,4 @@ stops early.
 - [zipIterAsync](/docs/Iter/zipIterAsync)
 - [zip](/docs/Array/zip)
 
-<TryIt code={"console.log([...zipIter([1, 2], ['a', 'b'])]); //=> [[1, 'a'], [2, 'b']]\n\nconsole.log([...zipIter([1, 2, 3], ['a'])]); //=> [[1, 'a'], [2, undefined], [3, undefined]]"} />
+<TryIt code={tryItCode} />

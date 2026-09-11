@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(isObject({})); //=> true\n\nconsole.log(isObject([])); //=> true\n\nconsole.log(isObject(new Date())); //=> true\n\nconsole.log(isObject(new Map())); //=> true\n\nconsole.log(isObject(null)); //=> false\n\nconsole.log(isObject(123)); //=> false";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "isObject — Types",
@@ -52,4 +53,4 @@ isObject(123) //=> false
 - [isPlainObject](/docs/Types/isPlainObject)
 - [isEmpty](/docs/Assert/isEmpty)
 
-<TryIt code={"console.log(isObject({})); //=> true\n\nconsole.log(isObject([])); //=> true\n\nconsole.log(isObject(new Date())); //=> true\n\nconsole.log(isObject(new Map())); //=> true\n\nconsole.log(isObject(null)); //=> false\n\nconsole.log(isObject(123)); //=> false"} />
+<TryIt code={tryItCode} />

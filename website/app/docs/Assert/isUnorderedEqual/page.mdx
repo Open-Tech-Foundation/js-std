@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(isUnorderedEqual([1, 3, 2], [2, 1, 3])); //=> true\n\nconsole.log(isUnorderedEqual([1, 3, 2], [2, 1, 5])); //=> false\n\nconsole.log(isUnorderedEqual([{ a: 1 }, { b: 2 }], [{ b: 2 }, { a: 1 }])); //=> true";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "isUnorderedEqual — Assert",
@@ -46,4 +47,4 @@ isUnorderedEqual([{ a: 1 }, { b: 2 }], [{ b: 2 }, { a: 1 }]) //=> true
 
 - [isEql](/docs/Assert/isEql)
 
-<TryIt code={"console.log(isUnorderedEqual([1, 3, 2], [2, 1, 3])); //=> true\n\nconsole.log(isUnorderedEqual([1, 3, 2], [2, 1, 5])); //=> false\n\nconsole.log(isUnorderedEqual([{ a: 1 }, { b: 2 }], [{ b: 2 }, { a: 1 }])); //=> true"} />
+<TryIt code={tryItCode} />

@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(toNum(1)); //=> 1\n\nconsole.log(toNum('1.3')); //=> 1.3\n\nconsole.log(toNum('1_000')); //=> 1000 (Supports numeric separators)\n\nconsole.log(toNum('0xF')); //=> 15 (Supports hex strings)\n\nconsole.log(toNum('0xF_F')); //=> 255 (Supports separated hex strings)\n\nconsole.log(toNum(Infinity)); //=> NaN\n\nconsole.log(toNum('abc')); //=> NaN";
 export const metadata = {
   title: "toNum — Number",
   description: "Converts a value to a finite number."
@@ -41,4 +42,4 @@ toNum(Infinity) //=> NaN
 toNum('abc') //=> NaN
 ```
 
-<TryIt code={"console.log(toNum(1)); //=> 1\n\nconsole.log(toNum('1.3')); //=> 1.3\n\nconsole.log(toNum('1_000')); //=> 1000 (Supports numeric separators)\n\nconsole.log(toNum('0xF')); //=> 15 (Supports hex strings)\n\nconsole.log(toNum('0xF_F')); //=> 255 (Supports separated hex strings)\n\nconsole.log(toNum(Infinity)); //=> NaN\n\nconsole.log(toNum('abc')); //=> NaN"} />
+<TryIt code={tryItCode} />

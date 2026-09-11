@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "const a = { a: 1 };\nconst b = { b: 2 };\nconsole.log(shallowMerge(a, b)); //=> { a: 1, b: 2 }\n\nconst a = [1];\nconst b = [2];\nconst c = [3];\nconsole.log(shallowMerge(a, b, c)); //=> [3]";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "shallowMerge — Object",
@@ -38,4 +39,4 @@ const c = [3];
 shallowMerge(a, b, c); //=> [3]
 ```
 
-<TryIt code={"const a = { a: 1 };\nconst b = { b: 2 };\nconsole.log(shallowMerge(a, b)); //=> { a: 1, b: 2 }\n\nconst a = [1];\nconst b = [2];\nconst c = [3];\nconsole.log(shallowMerge(a, b, c)); //=> [3]"} />
+<TryIt code={tryItCode} />

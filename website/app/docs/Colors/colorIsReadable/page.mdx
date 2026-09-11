@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(colorIsReadable({ color1: 'black', color2: 'white' })); //=> true\nconsole.log(colorIsReadable({ color1: 'gray', color2: 'white' })); //=> false\nconsole.log(colorIsReadable({ color1: 'gray', color2: 'white', level: 'AA_Large' })); //=> true";
 export const metadata = {
   title: "colorIsReadable — Colors",
   description: "Checks if the contrast between two colors meets WCAG standards."
@@ -29,4 +30,4 @@ colorIsReadable({ color1: 'gray', color2: 'white' }); //=> false
 colorIsReadable({ color1: 'gray', color2: 'white', level: 'AA_Large' }); //=> true
 ```
 
-<TryIt code={"console.log(colorIsReadable({ color1: 'black', color2: 'white' })); //=> true\nconsole.log(colorIsReadable({ color1: 'gray', color2: 'white' })); //=> false\nconsole.log(colorIsReadable({ color1: 'gray', color2: 'white', level: 'AA_Large' })); //=> true"} />
+<TryIt code={tryItCode} />

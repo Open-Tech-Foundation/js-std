@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(sum([])); //=> 0\n\nconsole.log(sum([1])); //=> 1\n\nconsole.log(sum([1, -1])); //=> 0\n\nconsole.log(sum([-1, -2])); //=> -3\n\nconsole.log(sum([1, 2, 3, 4, 5])); //=> 15\n\nconsole.log(sum([1, 2, 3, 4, 5.4], Math.round)); //=> 15\n\nconst objects = [{ n: 4 }, { n: 2 }, { n: 8 }];\nconsole.log(sum(objects, (v) => v.n)); //=> 14\n\nconsole.log(sum(objects, (v, i) => v.n * i)); //=> 18 ( (4*0) + (2*1) + (8*2) = 18 )";
 export const metadata = {
   title: "sum — Maths",
   description: "Calculates the sum of all numbers in an array."
@@ -51,4 +52,4 @@ sum(objects, (v, i) => v.n * i) //=> 18 ( (4*0) + (2*1) + (8*2) = 18 )
 - [prod](/docs/Maths/prod)
 - [mean](/docs/Maths/mean)
 
-<TryIt code={"console.log(sum([])); //=> 0\n\nconsole.log(sum([1])); //=> 1\n\nconsole.log(sum([1, -1])); //=> 0\n\nconsole.log(sum([-1, -2])); //=> -3\n\nconsole.log(sum([1, 2, 3, 4, 5])); //=> 15\n\nconsole.log(sum([1, 2, 3, 4, 5.4], Math.round)); //=> 15\n\nconst objects = [{ n: 4 }, { n: 2 }, { n: 8 }];\nconsole.log(sum(objects, (v) => v.n)); //=> 14\n\nconsole.log(sum(objects, (v, i) => v.n * i)); //=> 18 ( (4*0) + (2*1) + (8*2) = 18 )"} />
+<TryIt code={tryItCode} />

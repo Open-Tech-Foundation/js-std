@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(unzip([[1, 'a'], [2, 'b']])); //=> [[1, 2], ['a', 'b']]\n\nconsole.log(unzip([[1], [2]])); //=> [[1, 2]]\n\nconsole.log(unzip([[1, 'a'], [2]])); //=> [[1, 2], ['a', undefined]]\n\nconsole.log(unzip([])); //=> []";
 export const metadata = {
   title: "unzip — Array",
   description: "Creates an array of ungrouped elements from a zipped array."
@@ -39,4 +40,4 @@ unzip([]) //=> []
 
 - [zip](/docs/Array/zip)
 
-<TryIt code={"console.log(unzip([[1, 'a'], [2, 'b']])); //=> [[1, 2], ['a', 'b']]\n\nconsole.log(unzip([[1], [2]])); //=> [[1, 2]]\n\nconsole.log(unzip([[1, 'a'], [2]])); //=> [[1, 2], ['a', undefined]]\n\nconsole.log(unzip([])); //=> []"} />
+<TryIt code={tryItCode} />

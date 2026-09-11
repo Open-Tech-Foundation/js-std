@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(stringSplice('2026-07-30', 5, 2, '08')); //=> '2026-08-30'\n\nconsole.log(stringSplice('v1.4.0', 3, 1, '5')); //=> 'v1.5.0'";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "stringSplice — String",
@@ -95,4 +96,4 @@ stringSplice('😀😃😄😁', 2, 2, '😎'); //=> '😀😎😄😁'
 
 - [stringReplace](/docs/String/stringReplace) — replaces by pattern rather than by position.
 
-<TryIt code={"console.log(stringSplice('2026-07-30', 5, 2, '08')); //=> '2026-08-30'\n\nconsole.log(stringSplice('v1.4.0', 3, 1, '5')); //=> 'v1.5.0'"} />
+<TryIt code={tryItCode} />

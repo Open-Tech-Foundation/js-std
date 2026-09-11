@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "const odds = [1, 3, 5, 7, 9];\nconst squares = [1, 4, 9];\nconsole.log(difference([odds, squares])); //=> [3, 5, 7]\n\nconst bucket1 = [\"apple\", \"mango\", \"orange\"]\nconst bucket2 = [\"Mango\", \"Apple\"]\n\nconsole.log(difference([bucket1, bucket2], (f) => f.toLowerCase())); //=> ['orange']\n\nconsole.log(difference([[{ a: 1 }, {a: 3}], [{ a: 1 }, { a: 2 }]])); //=> [{a: 3}]";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "difference — Array",
@@ -61,4 +62,4 @@ difference([[{ a: 1 }, {a: 3}], [{ a: 1 }, { a: 2 }]]); //=> [{a: 3}]
 - [symDiff](/docs/Array/symDiff)
 - [union](/docs/Array/union)
 
-<TryIt code={"const odds = [1, 3, 5, 7, 9];\nconst squares = [1, 4, 9];\nconsole.log(difference([odds, squares])); //=> [3, 5, 7]\n\nconst bucket1 = [\"apple\", \"mango\", \"orange\"]\nconst bucket2 = [\"Mango\", \"Apple\"]\n\nconsole.log(difference([bucket1, bucket2], (f) => f.toLowerCase())); //=> ['orange']\n\nconsole.log(difference([[{ a: 1 }, {a: 3}], [{ a: 1 }, { a: 2 }]])); //=> [{a: 3}]"} />
+<TryIt code={tryItCode} />

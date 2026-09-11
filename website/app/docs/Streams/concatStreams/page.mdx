@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "const all = concatStreams(header, body, footer);\nconsole.log(await streamToText(all)); //=> 'headerbodyfooter'";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "concatStreams — Streams",
@@ -51,4 +52,4 @@ await streamToArray(concatStreams(slow, fast)) //=> ['a', 'b', 'c', 'd']
 - [mergeStreams](/docs/Streams/mergeStreams)
 - [streamToText](/docs/Streams/streamToText)
 
-<TryIt code={"const all = concatStreams(header, body, footer);\nconsole.log(await streamToText(all)); //=> 'headerbodyfooter'"} />
+<TryIt code={tryItCode} />

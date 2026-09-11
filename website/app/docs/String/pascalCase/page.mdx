@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(pascalCase('Foo Bar')); //=> 'FooBar'\n\nconsole.log(pascalCase('--foo-bar--')); //=> 'FooBar'\n\nconsole.log(pascalCase('__FOO_BAR__')); //=> 'FooBar'";
 export const metadata = {
   title: "pascalCase — String",
   description: "Converts string to pascal case."
@@ -37,4 +38,4 @@ pascalCase('__FOO_BAR__') //=> 'FooBar'
 - [kebabCase](/docs/String/kebabCase)
 - [snakeCase](/docs/String/snakeCase)
 
-<TryIt code={"console.log(pascalCase('Foo Bar')); //=> 'FooBar'\n\nconsole.log(pascalCase('--foo-bar--')); //=> 'FooBar'\n\nconsole.log(pascalCase('__FOO_BAR__')); //=> 'FooBar'"} />
+<TryIt code={tryItCode} />

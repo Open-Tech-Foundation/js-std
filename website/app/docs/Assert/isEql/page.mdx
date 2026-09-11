@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(isEql({a: 1, b: 2}, {a: 1, b: 2})); //=> true\n\nconst mapA = new Map([\n  ['a', 1],\n  ['b', 2],\n]);\nconst mapB = new Map([\n  ['b', 2],\n  ['a', 1],\n]);\nconsole.log(isEql(mapA, mapB)); //=> false (Order matters in Maps)\n\nconst re = new RegExp('ab+c');\nconst re2 = new RegExp('ab+d');\nconsole.log(isEql(re, re2)); //=> false\n\nconst ta1 = new Uint8Array([42, 43]);\nconst ta2 = new Uint8Array([42, 43]);\nconst ta3 = new Uint8Array([42, 45]);\nconsole.log(isEql(ta1, ta2)); //=> true\nconsole.log(isEql(ta2, ta3)); //=> false\n\nconsole.log(isEql({a: {b: 1}}, {a: {b: 1}}, {shallow: true})); //=> false";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "isEql — Assert",
@@ -87,4 +88,4 @@ isEql({a: {b: 1}}, {a: {b: 1}}, {shallow: true}) //=> false
 
 - [isUnorderedEqual](/docs/Assert/isUnorderedEqual)
 
-<TryIt code={"console.log(isEql({a: 1, b: 2}, {a: 1, b: 2})); //=> true\n\nconst mapA = new Map([\n  ['a', 1],\n  ['b', 2],\n]);\nconst mapB = new Map([\n  ['b', 2],\n  ['a', 1],\n]);\nconsole.log(isEql(mapA, mapB)); //=> false (Order matters in Maps)\n\nconst re = new RegExp('ab+c');\nconst re2 = new RegExp('ab+d');\nconsole.log(isEql(re, re2)); //=> false\n\nconst ta1 = new Uint8Array([42, 43]);\nconst ta2 = new Uint8Array([42, 43]);\nconst ta3 = new Uint8Array([42, 45]);\nconsole.log(isEql(ta1, ta2)); //=> true\nconsole.log(isEql(ta2, ta3)); //=> false\n\nconsole.log(isEql({a: {b: 1}}, {a: {b: 1}}, {shallow: true})); //=> false"} />
+<TryIt code={tryItCode} />

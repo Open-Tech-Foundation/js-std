@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "import { Duration } from '@opentf/std';\n\nconsole.log(new Duration('PT90M').format('H:mm')); //=> '1:30'";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "Duration — DateTime",
@@ -161,7 +162,7 @@ Duration.compare('P1M', 'P30D', { relativeTo: new DateTime('2026-02-01') }); //=
 
 `toString` still works, so a `Duration` interpolates and survives `JSON.stringify`.
 
-<TryIt code={"import { Duration } from '@opentf/std';\n\nconsole.log(new Duration('PT90M').format('H:mm')); //=> '1:30'"} />
+<TryIt code={tryItCode} />
 
 ## Related
 

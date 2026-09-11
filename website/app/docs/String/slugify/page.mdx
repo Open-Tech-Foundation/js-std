@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(slugify('Hello World!')); //=> 'hello-world'\n\nconsole.log(slugify('Café au Lait')); //=> 'cafe-au-lait'\n\nconsole.log(slugify('Special characters like @#$%')); //=> 'special-characters-like'";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "slugify — String",
@@ -52,4 +53,4 @@ slugify('Þór');    //=> 'thor'
 - [stripDiacritics](/docs/String/stripDiacritics)
 - [kebabCase](/docs/String/kebabCase)
 
-<TryIt code={"console.log(slugify('Hello World!')); //=> 'hello-world'\n\nconsole.log(slugify('Café au Lait')); //=> 'cafe-au-lait'\n\nconsole.log(slugify('Special characters like @#$%')); //=> 'special-characters-like'"} />
+<TryIt code={tryItCode} />

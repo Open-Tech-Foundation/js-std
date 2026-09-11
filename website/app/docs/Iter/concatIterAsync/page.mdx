@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "const all = concatIterAsync(streamToIter(head), streamToIter(tail));\n\nconsole.log(await toArrayIterAsync(all)); //=> [...head, ...tail]";
 export const metadata = {
   title: "concatIterAsync — Iter",
   description: "Yields the items of each async iterable in turn."
@@ -39,4 +40,4 @@ await toArrayIterAsync(all) //=> [...head, ...tail]
 - [concatIter](/docs/Iter/concatIter)
 - [mergeStreams](/docs/Streams/mergeStreams)
 
-<TryIt code={"const all = concatIterAsync(streamToIter(head), streamToIter(tail));\n\nconsole.log(await toArrayIterAsync(all)); //=> [...head, ...tail]"} />
+<TryIt code={tryItCode} />

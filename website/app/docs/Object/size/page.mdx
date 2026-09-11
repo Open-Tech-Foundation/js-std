@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "// --- Strings ---\nconsole.log(size('')); //=> 0\nconsole.log(size('abc')); //=> 3\n\n// --- Arrays ---\nconsole.log(size([])); //=> 0\nconsole.log(size([1, 2, 3])); //=> 3\n\n// --- Objects ---\nconsole.log(size({})); //=> 0\nconsole.log(size({ a: 1, b: 2 })); //=> 2\nconsole.log(size({ [Symbol('x')]: 1 })); //=> 1\n\n// --- Maps & Sets ---\nconsole.log(size(new Map([['a', 1]]))); //=> 1\nconsole.log(size(new Set([1, 2]))); //=> 2\n\n// --- Buffers ---\nconsole.log(size(new ArrayBuffer(8))); //=> 8\nconsole.log(size(new Uint8Array(10))); //=> 10\n\n// --- Unsupported ---\nconsole.log(size(null)); //=> -1\nconsole.log(size(123)); //=> -1";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "size — Object",
@@ -65,4 +66,4 @@ size(null) //=> -1
 size(123) //=> -1
 ```
 
-<TryIt code={"// --- Strings ---\nconsole.log(size('')); //=> 0\nconsole.log(size('abc')); //=> 3\n\n// --- Arrays ---\nconsole.log(size([])); //=> 0\nconsole.log(size([1, 2, 3])); //=> 3\n\n// --- Objects ---\nconsole.log(size({})); //=> 0\nconsole.log(size({ a: 1, b: 2 })); //=> 2\nconsole.log(size({ [Symbol('x')]: 1 })); //=> 1\n\n// --- Maps & Sets ---\nconsole.log(size(new Map([['a', 1]]))); //=> 1\nconsole.log(size(new Set([1, 2]))); //=> 2\n\n// --- Buffers ---\nconsole.log(size(new ArrayBuffer(8))); //=> 8\nconsole.log(size(new Uint8Array(10))); //=> 10\n\n// --- Unsupported ---\nconsole.log(size(null)); //=> -1\nconsole.log(size(123)); //=> -1"} />
+<TryIt code={tryItCode} />

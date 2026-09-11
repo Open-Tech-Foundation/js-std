@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(colorDesaturate({ value: 'red', amount: 0.5 })); //=> '#bf4040'\nconsole.log(colorDesaturate({ value: 'red', amount: 0.5, to: 'rgba-object' })); //=> { r: 191, g: 64, b: 64, a: 1 }";
 export const metadata = {
   title: "colorDesaturate — Colors",
   description: "Decreases the saturation of a color."
@@ -24,4 +25,4 @@ colorDesaturate({ value: 'red', amount: 0.5 }); //=> '#bf4040'
 colorDesaturate({ value: 'red', amount: 0.5, to: 'rgba-object' }); //=> { r: 191, g: 64, b: 64, a: 1 }
 ```
 
-<TryIt code={"console.log(colorDesaturate({ value: 'red', amount: 0.5 })); //=> '#bf4040'\nconsole.log(colorDesaturate({ value: 'red', amount: 0.5, to: 'rgba-object' })); //=> { r: 191, g: 64, b: 64, a: 1 }"} />
+<TryIt code={tryItCode} />

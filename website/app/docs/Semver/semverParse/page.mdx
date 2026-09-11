@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "semverParse('1.2.3')\n//=> { major: 1, minor: 2, patch: 3, prerelease: [], build: [] }\n\nsemverParse('v2.0.0-alpha.1+build.5')\n//=> { major: 2, minor: 0, patch: 0, prerelease: ['alpha', 1], build: ['build', '5'] }";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "semverParse — Semver",
@@ -63,4 +64,4 @@ semverParse('01.2.3') // throws TypeError — leading zeroes are invalid
 - [semverFormat](/docs/Semver/semverFormat)
 - [semverIsValid](/docs/Semver/semverIsValid)
 
-<TryIt code={"semverParse('1.2.3')\n//=> { major: 1, minor: 2, patch: 3, prerelease: [], build: [] }\n\nsemverParse('v2.0.0-alpha.1+build.5')\n//=> { major: 2, minor: 0, patch: 0, prerelease: ['alpha', 1], build: ['build', '5'] }"} />
+<TryIt code={tryItCode} />

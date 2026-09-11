@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(words('fred, barney, & pebbles')); //=> ['fred', 'barney', 'pebbles']\n\nconsole.log(words('fred, barney, & pebbles', /[^, ]+/g)); //=> ['fred', 'barney', '&', 'pebbles']\n\nconsole.log(words('a+b+c', '+')); //=> ['+', '+']";
 export const metadata = {
   title: "words — String",
   description: "Splits a string into an array of its words."
@@ -42,4 +43,4 @@ words('a+b+c', '+') //=> ['+', '+']
 - [trim](/docs/String/trim)
 - [truncate](/docs/String/truncate)
 
-<TryIt code={"console.log(words('fred, barney, & pebbles')); //=> ['fred', 'barney', 'pebbles']\n\nconsole.log(words('fred, barney, & pebbles', /[^, ]+/g)); //=> ['fred', 'barney', '&', 'pebbles']\n\nconsole.log(words('a+b+c', '+')); //=> ['+', '+']"} />
+<TryIt code={tryItCode} />

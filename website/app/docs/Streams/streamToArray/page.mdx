@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(await streamToArray(stream)); //=> ['a', 'b', 'c']\nconsole.log(await streamToArray(objectStream)); //=> [{ a: 1 }, { b: 2 }]";
 export const metadata = {
   title: "streamToArray — Streams",
   description: "Reads a stream fully into an array of its chunks."
@@ -37,4 +38,4 @@ await streamToArray(objectStream) //=> [{ a: 1 }, { b: 2 }]
 - [streamToText](/docs/Streams/streamToText)
 - [streamToLines](/docs/Streams/streamToLines)
 
-<TryIt code={"console.log(await streamToArray(stream)); //=> ['a', 'b', 'c']\nconsole.log(await streamToArray(objectStream)); //=> [{ a: 1 }, { b: 2 }]"} />
+<TryIt code={tryItCode} />

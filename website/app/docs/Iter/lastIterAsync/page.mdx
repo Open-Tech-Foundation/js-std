@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "async function* gen() { yield 1; yield 2; }\nconsole.log(await lastIterAsync(gen())); //=> 2";
 export const metadata = {
   title: "lastIterAsync — Iter",
   description: "Returns the last item from an async iterable."
@@ -32,4 +33,4 @@ await lastIterAsync(gen()) //=> 2
 
 - [lastIter](/docs/Iter/lastIter)
 
-<TryIt code={"async function* gen() { yield 1; yield 2; }\nconsole.log(await lastIterAsync(gen())); //=> 2"} />
+<TryIt code={tryItCode} />

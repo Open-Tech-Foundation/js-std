@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(noop()); //=> undefined\n\n// Useful default callback\nconst { onComplete = noop } = options;";
 export const metadata = {
   title: "noop — Functional",
   description: "A function that does nothing and returns undefined."
@@ -30,4 +31,4 @@ const { onComplete = noop } = options;
 
 - [sleep](/docs/Timing/sleep)
 
-<TryIt code={"console.log(noop()); //=> undefined\n\n// Useful default callback\nconst { onComplete = noop } = options;"} />
+<TryIt code={tryItCode} />

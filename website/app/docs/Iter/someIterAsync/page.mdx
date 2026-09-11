@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "async function* gen() { yield 1; yield 2; }\nconsole.log(await someIterAsync(gen(), x => x > 1)); //=> true";
 export const metadata = {
   title: "someIterAsync — Iter",
   description: "Checks if any item in an async iterator matches a predicate."
@@ -33,4 +34,4 @@ await someIterAsync(gen(), x => x > 1) //=> true
 
 - [someIter](/docs/Iter/someIter)
 
-<TryIt code={"async function* gen() { yield 1; yield 2; }\nconsole.log(await someIterAsync(gen(), x => x > 1)); //=> true"} />
+<TryIt code={tryItCode} />

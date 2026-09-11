@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(partition([1, 2, 3, 4, 5], (n) => n % 2 === 0)); //=> [[2, 4], [1, 3, 5]]\n\nconsole.log(partition([0, 1, false, 2, '', 3], Boolean)); //=> [[1, 2, 3], [0, false, '']]\n\nconsole.log(partition([1, 2, 3], () => true)); //=> [[1, 2, 3], []]\n\nconsole.log(partition([1, 2, 3], () => false)); //=> [[], [1, 2, 3]]";
 export const metadata = {
   title: "partition — Array",
   description: "Creates an array of elements split into two groups: those that pass the predicate and those that don't."
@@ -39,4 +40,4 @@ partition([1, 2, 3], () => false) //=> [[], [1, 2, 3]]
 - [groupBy](/docs/Array/groupBy)
 - [filter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
 
-<TryIt code={"console.log(partition([1, 2, 3, 4, 5], (n) => n % 2 === 0)); //=> [[2, 4], [1, 3, 5]]\n\nconsole.log(partition([0, 1, false, 2, '', 3], Boolean)); //=> [[1, 2, 3], [0, false, '']]\n\nconsole.log(partition([1, 2, 3], () => true)); //=> [[1, 2, 3], []]\n\nconsole.log(partition([1, 2, 3], () => false)); //=> [[], [1, 2, 3]]"} />
+<TryIt code={tryItCode} />

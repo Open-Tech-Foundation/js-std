@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(encodeBase64(new Uint8Array([72, 101, 108, 108, 111]))); //=> 'SGVsbG8='";
 export const metadata = {
   title: "encodeBase64 — Encoding",
   description: "Encodes bytes to a Base64 string."
@@ -38,4 +39,4 @@ encodeBase64(stringToBytes('Hello')) //=> 'SGVsbG8='
 - [decodeBase64](/docs/Encoding/decodeBase64)
 - [stringToBytes](/docs/Encoding/stringToBytes)
 
-<TryIt code={"console.log(encodeBase64(new Uint8Array([72, 101, 108, 108, 111]))); //=> 'SGVsbG8='"} />
+<TryIt code={tryItCode} />

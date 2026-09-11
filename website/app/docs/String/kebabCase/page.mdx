@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(kebabCase('Foo Bar')); //=> 'foo-bar'\n\nconsole.log(kebabCase('fooBar')); //=> 'foo-bar'\n\nconsole.log(kebabCase('__FOO_BAR__')); //=> 'foo-bar'";
 export const metadata = {
   title: "kebabCase — String",
   description: "Converts string to kebab case."
@@ -37,4 +38,4 @@ kebabCase('__FOO_BAR__') //=> 'foo-bar'
 - [pascalCase](/docs/String/pascalCase)
 - [snakeCase](/docs/String/snakeCase)
 
-<TryIt code={"console.log(kebabCase('Foo Bar')); //=> 'foo-bar'\n\nconsole.log(kebabCase('fooBar')); //=> 'foo-bar'\n\nconsole.log(kebabCase('__FOO_BAR__')); //=> 'foo-bar'"} />
+<TryIt code={tryItCode} />

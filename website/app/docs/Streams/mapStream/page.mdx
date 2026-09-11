@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "const sizes = mapStream(response.body, (chunk) => chunk.length);\n\nconsole.log(await streamToArray(sizes)); //=> [64, 64, 12]";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "mapStream — Streams",
@@ -68,4 +69,4 @@ const translated = mapStream(lines, async (line) => (await translate(line)).text
 - [streamToIter](/docs/Streams/streamToIter)
 - [iterToStream](/docs/Streams/iterToStream)
 
-<TryIt code={"const sizes = mapStream(response.body, (chunk) => chunk.length);\n\nconsole.log(await streamToArray(sizes)); //=> [64, 64, 12]"} />
+<TryIt code={tryItCode} />

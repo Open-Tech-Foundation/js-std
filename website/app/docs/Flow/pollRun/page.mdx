@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "// Wait for a job to finish\nconst job = await pollRun(() => getJob(id), {\n  until: (job) => job.status !== 'pending',\n  interval: 1000,\n  timeout: 30_000,\n});";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "pollRun — FlowControl",
@@ -98,4 +99,4 @@ await pollRun(() => fetchStatus({ signal: controller.signal }), {
 - [timeoutRun](/docs/Flow/timeoutRun)
 - [sleep](/docs/Timing/sleep)
 
-<TryIt code={"// Wait for a job to finish\nconst job = await pollRun(() => getJob(id), {\n  until: (job) => job.status !== 'pending',\n  interval: 1000,\n  timeout: 30_000,\n});"} />
+<TryIt code={tryItCode} />

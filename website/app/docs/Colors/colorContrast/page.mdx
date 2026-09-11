@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(colorContrast({ color1: 'white', color2: 'black' })); //=> 21\nconsole.log(colorContrast({ color1: 'white', color2: 'white' })); //=> 1\nconsole.log(colorContrast({ color1: 'red', color2: 'white' })); //=> 4";
 export const metadata = {
   title: "colorContrast — Colors",
   description: "Calculates the contrast ratio between two colors."
@@ -23,4 +24,4 @@ colorContrast({ color1: 'white', color2: 'white' }); //=> 1
 colorContrast({ color1: 'red', color2: 'white' }); //=> 4
 ```
 
-<TryIt code={"console.log(colorContrast({ color1: 'white', color2: 'black' })); //=> 21\nconsole.log(colorContrast({ color1: 'white', color2: 'white' })); //=> 1\nconsole.log(colorContrast({ color1: 'red', color2: 'white' })); //=> 4"} />
+<TryIt code={tryItCode} />

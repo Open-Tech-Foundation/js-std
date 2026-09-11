@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log([...mapIter([1, 2, 3], (x) => x * 2)]); //=> [2, 4, 6]";
 export const metadata = {
   title: "mapIter — Iter",
   description: "Transforms each item using a mapper function."
@@ -32,4 +33,4 @@ A new iterable iterator.
 
 - [mapIterAsync](/docs/Iter/mapIterAsync)
 
-<TryIt code={"console.log([...mapIter([1, 2, 3], (x) => x * 2)]); //=> [2, 4, 6]"} />
+<TryIt code={tryItCode} />

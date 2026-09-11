@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(isNumber(1)); //=> true\nconsole.log(isNumber(1.5)); //=> true\nconsole.log(isNumber(NaN)); //=> false\nconsole.log(isNumber(Infinity)); //=> false\n\nconsole.log(isNumber('1')); //=> false\nconsole.log(isNumber('1_000')); //=> false\n\n// Other types\nconsole.log(isNumber(null)); //=> false\nconsole.log(isNumber(true)); //=> false\nconsole.log(isNumber([])); //=> false";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "isNumber — Types",
@@ -50,4 +51,4 @@ isNumber([]) //=> false
 - [isObject](/docs/Types/isObject)
 - [isPlainObject](/docs/Types/isPlainObject)
 
-<TryIt code={"console.log(isNumber(1)); //=> true\nconsole.log(isNumber(1.5)); //=> true\nconsole.log(isNumber(NaN)); //=> false\nconsole.log(isNumber(Infinity)); //=> false\n\nconsole.log(isNumber('1')); //=> false\nconsole.log(isNumber('1_000')); //=> false\n\n// Other types\nconsole.log(isNumber(null)); //=> false\nconsole.log(isNumber(true)); //=> false\nconsole.log(isNumber([])); //=> false"} />
+<TryIt code={tryItCode} />

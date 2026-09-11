@@ -1,4 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(remove([])); //=> []\n\nconsole.log(remove([1])); //=> []\n\nconsole.log(remove([1, 2])); //=> [1]\n\nconsole.log(remove([1, 2], 1)); //=> [1]\n\nconsole.log(remove([1, 2], 1, 1)); //=> [1]\n\nconsole.log(remove([1, 2, 3, 4, 5], -1)); //=> [1, 2, 3, 4]\n\nconsole.log(remove([1, 2, 3, 4, 5], -1, 1)); //=> [1, 2, 3, 4]\n\nconsole.log(remove([1, 2, 3, 4, 5], -1, 3)); //=> [1, 2, 3, 4]\n\nconsole.log(remove([1, 2, 3, 4, 5], -2, 2)); //=> [1, 2, 3]\n\nconst myFish = ['angel', 'clown', 'mandarin', 'sturgeon'];\nconsole.log(remove(myFish, 2, Infinity)); //=> ['angel', 'clown']\n\n// Predicate-based remove\nconsole.log(remove([1, 2, 3, 4, 5], (x) => x % 2 === 0)); //=> [1, 3, 5]";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "remove — Array",
@@ -66,4 +67,4 @@ remove([1, 2, 3, 4, 5], (x) => x % 2 === 0) //=> [1, 3, 5]
 - [insert](/docs/Array/insert)
 - [replace](/docs/Array/replace)
 
-<TryIt code={"console.log(remove([])); //=> []\n\nconsole.log(remove([1])); //=> []\n\nconsole.log(remove([1, 2])); //=> [1]\n\nconsole.log(remove([1, 2], 1)); //=> [1]\n\nconsole.log(remove([1, 2], 1, 1)); //=> [1]\n\nconsole.log(remove([1, 2, 3, 4, 5], -1)); //=> [1, 2, 3, 4]\n\nconsole.log(remove([1, 2, 3, 4, 5], -1, 1)); //=> [1, 2, 3, 4]\n\nconsole.log(remove([1, 2, 3, 4, 5], -1, 3)); //=> [1, 2, 3, 4]\n\nconsole.log(remove([1, 2, 3, 4, 5], -2, 2)); //=> [1, 2, 3]\n\nconst myFish = ['angel', 'clown', 'mandarin', 'sturgeon'];\nconsole.log(remove(myFish, 2, Infinity)); //=> ['angel', 'clown']\n\n// Predicate-based remove\nconsole.log(remove([1, 2, 3, 4, 5], (x) => x % 2 === 0)); //=> [1, 3, 5]"} />
+<TryIt code={tryItCode} />
