@@ -9,16 +9,10 @@
 
 let loading = null;
 
-/** Loads the editor packages once, however many editors ask for them. */
+/** Loads the bundled editor chunk once, however many editors ask for it. */
 function load() {
   if (!loading) {
-    loading = Promise.all([
-      import('codemirror'),
-      import('@codemirror/view'),
-      import('@codemirror/state'),
-      import('@codemirror/lang-javascript'),
-      import('@codemirror/theme-one-dark'),
-    ]);
+    loading = import('./editor-deps.js');
   }
   return loading;
 }
@@ -40,10 +34,15 @@ function isDark() {
  *   destroy: () => void }>}
  */
 export default async function createEditor(parent, options) {
-  const [cm, view, state, lang, dark] = await load();
-  const { EditorView, basicSetup } = cm;
-  const { keymap } = view;
-  const { Compartment, Prec } = state;
+  const {
+    basicSetup,
+    Compartment,
+    EditorView,
+    javascript,
+    keymap,
+    oneDark,
+    Prec,
+  } = await load();
 
   // The theme is swapped in place rather than by rebuilding the editor, so a
   // reader toggling the site theme keeps whatever they had typed.
@@ -51,9 +50,9 @@ export default async function createEditor(parent, options) {
 
   const extensions = [
     basicSetup,
-    lang.javascript(),
+    javascript(),
     EditorView.lineWrapping,
-    theme.of(isDark() ? dark.oneDark : []),
+    theme.of(isDark() ? oneDark : []),
   ];
 
   if (options.onRun) {
@@ -77,7 +76,7 @@ export default async function createEditor(parent, options) {
 
   const observer = new MutationObserver(() => {
     editor.dispatch({
-      effects: theme.reconfigure(isDark() ? dark.oneDark : []),
+      effects: theme.reconfigure(isDark() ? oneDark : []),
     });
   });
   observer.observe(document.documentElement, {

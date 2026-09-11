@@ -17,6 +17,7 @@ import { seedFromExample } from './seed.js';
  */
 
 const TIMEOUT = 5000;
+let active = null;
 
 function button(label, className) {
   const el = document.createElement('button');
@@ -57,6 +58,10 @@ function sourceOf(root) {
  * @returns {{ section: HTMLElement, update: () => void, destroy: () => void }}
  */
 export default function mountTryIt(host, input = document) {
+  // DocsRunner can be connected again while the docs layout hydrates. Keep the
+  // page singleton here, at the boundary where an editor is actually created.
+  active?.destroy();
+
   const direct = typeof input === 'string';
 
   const section = document.createElement('section');
@@ -196,13 +201,17 @@ export default function mountTryIt(host, input = document) {
   );
   watcher.observe(section);
 
-  return {
+  const view = {
     section,
     update: direct ? () => {} : refresh,
     destroy() {
       watcher.disconnect();
       editor?.destroy();
       section.remove();
+      if (active === view) active = null;
     },
   };
+
+  active = view;
+  return view;
 }

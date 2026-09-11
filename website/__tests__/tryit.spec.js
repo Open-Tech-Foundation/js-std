@@ -233,6 +233,15 @@ describe('mountTryIt — direct source', () => {
     view.update();
     expect(sample()).toBe(before);
   });
+
+  test('keeps only the latest editor when mounted again', () => {
+    const host = mountHost();
+    mountTryIt(host, 'first([1]) //=> 1');
+    mountTryIt(host, 'last([1, 2]) //=> 2');
+
+    expect(document.querySelectorAll('.rn-tryit')).toHaveLength(1);
+    expect(sample()).toBe('console.log(last([1, 2])); //=> 2\n');
+  });
 });
 
 describe('mountTryIt — documentation page', () => {
