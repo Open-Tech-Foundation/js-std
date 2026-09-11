@@ -314,7 +314,7 @@ function formatWithBiome(file) {
   const bin = path.join(ROOT, 'node_modules', '.bin', 'biome');
   if (!fs.existsSync(bin)) {
     throw new Error(
-      `Cannot format ${path.relative(ROOT, file)}: ${bin} not found. Run \`bun install\` first.`,
+      `Cannot format ${path.relative(ROOT, file)}: ${bin} not found. Run \`pnpm install\` first.`,
     );
   }
   execFileSync(bin, ['format', '--write', file], {

@@ -7,7 +7,7 @@
  * name it, so a wrapper has to inline the shape and drifts from ours.
  *
  * There is nothing to run here: the assertions are the compile. This file is
- * checked by `tsconfig.api.json`, not by `bun test`, and deliberately sits
+ * checked by `tsconfig.api.json`, not by the runtime test suite, and deliberately sits
  * outside the main `tsconfig.json` because the rest of `__tests__` feeds
  * wrong types to functions on purpose to exercise their runtime guards.
  */

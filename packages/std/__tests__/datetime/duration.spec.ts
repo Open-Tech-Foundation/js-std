@@ -479,7 +479,7 @@ describe('Duration with DateTime', () => {
  * Declared only where Temporal exists, matching the backend-equivalence block
  * in `datetime.spec.ts`. The cross-runtime harness has no `test.skip` — a test
  * declared without a body is its skip — so a guard on the describe is the one
- * form that works under both it and `bun test`.
+ * form that works under both it and `esdev test`.
  */
 if (DateTime.hasTemporal) {
   describe('Duration Temporal interop', () => {

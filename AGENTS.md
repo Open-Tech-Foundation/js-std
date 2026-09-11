@@ -13,7 +13,7 @@
   * Cover relevant edge cases and error scenarios.
 * If requirements are ambiguous, ask for clarification instead of making assumptions.
 * `website` must consume the **published** `@opentf/std`, not the workspace copy. Its
-  dependency is therefore a registry tarball URL, not a version range — bun links
-  `packages/std` for any plain range the local version satisfies, and `packages/std/dist`
-  is gitignored, so the Cloudflare build would fail with `Cannot find module '@opentf/std'`.
+  dependency is therefore a registry tarball URL, not a version range — `packages/std/dist`
+  is gitignored, so resolving the workspace copy would make the Cloudflare build fail with
+  `Cannot find module '@opentf/std'`.
   On each release, bump the tarball URL in `website/package.json` to the new version.

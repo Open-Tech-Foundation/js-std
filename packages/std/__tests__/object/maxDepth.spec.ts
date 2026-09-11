@@ -81,8 +81,8 @@ describe('Object > the recursion depth cap', () => {
     });
 
     // Errors carry their own symbol loop, which had the same omission.
-    // `expect(fn).not.toThrow()` is no use here: bun reads a *returned* Error
-    // as a thrown one, so the shallow case asserts on the clone instead.
+    // Assert on the clone itself: the shallow case must preserve the payload
+    // rather than only avoiding an error.
     test('counts symbol properties hung off an Error', () => {
       const key = Symbol('payload');
       const shallow = new Error('boom') as Error & Record<symbol, unknown>;

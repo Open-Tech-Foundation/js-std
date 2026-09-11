@@ -1,7 +1,7 @@
 {
   "private": true,
   "type": "module",
-  "workspaces": ["apps/*", "packages/*", "website"],
+  "packageManager": "pnpm@11.21.0",
   "devDependencies": {
     "@biomejs/biome": "1.8.3",
     "clone-deep": "^4.0.1",

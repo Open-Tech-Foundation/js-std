@@ -46,17 +46,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: oven-sh/setup-bun@v2
+      - uses: pnpm/action-setup@v4
         with:
-          bun-version: latest
+          version: 11.21.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
 
-      - run: bun install --frozen-lockfile
+      - run: pnpm install --frozen-lockfile
 
       - name: Build dist
-        run: bun run --cwd packages/std build
+        run: pnpm --filter @opentf/std run build
 
       - name: Bundle test suite
-        run: bun packages/std/__tests__/_matrix/build-bundle.js
+        run: pnpm --dir packages/std exec node __tests__/_matrix/build-bundle.js
 
       # A single path keeps the artifact root at the file's own directory, so it
       # round-trips to the same location on download. The probe is not uploaded;
@@ -90,12 +94,6 @@ jobs:
         with:
           name: test-bundle
           path: packages/std/__tests__/_matrix/bundle
-
-      # Node is needed to drive runtime-matrix.js itself, whichever runtime is
-      # under test. For the node20/22/24/26 jobs this IS the runtime under test.
-      - uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node || '22' }}
 
       - name: Setup Bun
         if: matrix.engine == 'bun'
@@ -159,13 +157,17 @@ jobs:
         with:
           node-version: '22'
 
-      - uses: oven-sh/setup-bun@v2
+      - uses: pnpm/action-setup@v4
         with:
-          bun-version: latest
+          version: 11.21.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
 
       # Needed for Biome: the aggregate step formats the generated JSON with it,
       # so a drift PR never lands unformatted.
-      - run: bun install --frozen-lockfile
+      - run: pnpm install --frozen-lockfile
 
       - uses: actions/download-artifact@v4
         with:
