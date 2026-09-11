@@ -6,7 +6,6 @@ on:
 
 permissions:
   contents: write  # create tags and GitHub Releases
-  id-token: write
 
 concurrency:
   group: release
@@ -25,8 +24,8 @@ jobs:
       - name: Install otf-release
         shell: bash
         env:
-          OTF_RELEASE_VERSION: v0.28.0
-        run: curl -fsSL https://raw.githubusercontent.com/Open-Tech-Foundation/release/v0.28.0/install.sh | bash
+          OTF_RELEASE_VERSION: v0.38.0
+        run: curl -fsSL https://raw.githubusercontent.com/Open-Tech-Foundation/release/v0.38.0/install.sh | bash
       - id: check
         run: |
           echo "should_release=$(otf-release check --exclude-package @opentf/std)" >> "$GITHUB_OUTPUT"
@@ -42,20 +41,20 @@ jobs:
           fetch-depth: 0
       - uses: pnpm/action-setup@v4
         with:
-          version: 11.21.0
+          version: latest
       - uses: actions/setup-node@v4
         with:
           node-version: 24
           registry-url: https://registry.npmjs.org
-          cache: pnpm
       - run: pnpm install --frozen-lockfile
       - name: Build @opentf/std
-        run: pnpm --filter @opentf/std run build
+        run: npm run build
+        working-directory: packages/std
       - name: Install otf-release
         shell: bash
         env:
-          OTF_RELEASE_VERSION: v0.28.0
-        run: curl -fsSL https://raw.githubusercontent.com/Open-Tech-Foundation/release/v0.28.0/install.sh | bash
+          OTF_RELEASE_VERSION: v0.38.0
+        run: curl -fsSL https://raw.githubusercontent.com/Open-Tech-Foundation/release/v0.38.0/install.sh | bash
       - name: Publish
         run: otf-release publish --package @opentf/std
         env:
@@ -76,18 +75,17 @@ jobs:
           fetch-depth: 0
       - uses: pnpm/action-setup@v4
         with:
-          version: 11.21.0
+          version: latest
       - uses: actions/setup-node@v4
         with:
           node-version: 24
           registry-url: https://registry.npmjs.org
-          cache: pnpm
       - run: pnpm install --frozen-lockfile
       - name: Install otf-release
         shell: bash
         env:
-          OTF_RELEASE_VERSION: v0.28.0
-        run: curl -fsSL https://raw.githubusercontent.com/Open-Tech-Foundation/release/v0.28.0/install.sh | bash
+          OTF_RELEASE_VERSION: v0.38.0
+        run: curl -fsSL https://raw.githubusercontent.com/Open-Tech-Foundation/release/v0.38.0/install.sh | bash
       - name: Publish
         run: otf-release publish --exclude-package @opentf/std
         env:
