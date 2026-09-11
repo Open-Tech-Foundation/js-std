@@ -69,23 +69,11 @@ export default function mountTryIt(host, code = '') {
     out.clear();
     try {
       await ensureEditor();
-      const explicitLogs = new Set();
       await execute(editor.value(), {
-        probe: true,
+        probe: false,
         timeout: TIMEOUT,
-        onProbes(probes) {
-          for (const probe of probes) {
-            if (
-              /^console\.(?:log|info|debug|warn|error)\s*\(/.test(probe.expr)
-            ) {
-              explicitLogs.add(probe.id);
-            }
-          }
-        },
         onEvent(event) {
           if (event.type === 'log') out.log(event.level, event.text);
-          else if (event.type === 'probe' && !explicitLogs.has(event.id))
-            out.log('log', event.actual);
           else if (event.type === 'error')
             out.error(`${event.name}: ${event.message}`);
           else if (event.type === 'timeout')

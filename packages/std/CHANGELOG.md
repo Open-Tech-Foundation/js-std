@@ -9,7 +9,6 @@
 - The Playground output now uses a compact DevTools-style console with per-level rows, expandable structured values and a dedicated Clear action.
 - The Playground console now has a dedicated dark theme and formats expanded JavaScript objects with indentation.
 - Updated the website configuration to display the current `v0.19.0` release.
-- Try it now prints the result of each annotated expression, including examples whose expected result is written on the following line; explicit console calls remain single-output.
 
 ## [0.19.0] - 2026-09-11
 

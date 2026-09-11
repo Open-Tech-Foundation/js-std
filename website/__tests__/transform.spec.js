@@ -110,12 +110,6 @@ describe('transform', () => {
     expect(run('f()//=>1').probes[0].expected).toBe('1');
   });
 
-  test('reads an annotation on the line below an expression', () => {
-    const { code, probes } = run('first([1])\n//=> 1');
-    expect(code).toBe('__probe(0, (first([1]))); \n//=> 1');
-    expect(probes[0].expected).toBe('1');
-  });
-
   test('ignores a comment that is not an annotation', () => {
     expect(run('cache.get("a"); // most recently used').probes).toEqual([]);
   });
