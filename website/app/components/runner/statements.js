@@ -103,7 +103,7 @@ function describe(lines, start, end) {
     start,
     end,
     bare,
-    expected: annotation(lines[end]),
+    expected: annotation(lines, end),
     declared: DECLARATION.exec(bare)?.[1] ?? null,
     isImport: /^import\b/.test(bare),
     isExpression: !compound && (!keyword || !STATEMENT_KEYWORDS.has(keyword)),
@@ -111,8 +111,17 @@ function describe(lines, start, end) {
 }
 
 /** The `//=>` annotation on a statement's last line, if it carries one. */
-function annotation(line) {
-  if (line.commentAt === -1) return null;
-  const m = /^\/\/\s*=>\s*(.*)$/.exec(line.text.slice(line.commentAt));
+function annotation(lines, end) {
+  const line = lines[end];
+  if (line.commentAt !== -1) {
+    const m = /^\/\/\s*=>\s*(.*)$/.exec(line.text.slice(line.commentAt));
+    if (m) return m[1].trim();
+  }
+
+  // Multi-line expected values are usually written below an expression. The
+  // first `//=>` line is enough to identify it as a result worth printing;
+  // its following lines are prose for the reader, not executable code.
+  const next = lines[end + 1];
+  const m = next && /^\s*\/\/\s*=>\s*(.*)$/.exec(next.text);
   return m ? m[1].trim() : null;
 }
