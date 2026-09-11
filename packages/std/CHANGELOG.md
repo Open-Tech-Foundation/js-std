@@ -8,6 +8,7 @@
 - The Playground now separates the code editor and flow-control visualisers into accessible tabs.
 - The Playground output now uses a compact DevTools-style console with per-level rows, expandable structured values and a dedicated Clear action.
 - The Playground console now has a dedicated dark theme and formats expanded JavaScript objects with indentation.
+- Updated the website configuration to display the current `v0.19.0` release.
 
 ## [0.19.0] - 2026-09-11
 
