@@ -50,10 +50,8 @@ function formatStructured(text) {
       result += `\n${'  '.repeat(indent)}${char}`;
     } else if (char === ',') {
       result += `,\n${'  '.repeat(indent)}`;
-    } else if (char === ' ' && result.endsWith(`\n${'  '.repeat(indent)}`)) {
+    } else if (char !== ' ' || !result.endsWith(`\n${'  '.repeat(indent)}`)) {
       // inspect() separates entries with ", "; the newline already supplies it.
-      continue;
-    } else {
       result += char;
     }
   }

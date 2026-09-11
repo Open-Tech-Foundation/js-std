@@ -11,6 +11,7 @@
 - Updated the website configuration to display the current `v0.19.0` release.
 - Added explicit console output to Try it examples that previously showed an expected result only in comments.
 - Removed website tests from the CI task; they remain available as a local `test:website` task.
+- Fixed the Playground console formatter so it passes the repository lint rules.
 
 ## [0.19.0] - 2026-09-11
 
