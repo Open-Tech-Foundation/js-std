@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "abortable — Concurrency",
@@ -69,11 +70,4 @@ await abortable(sleep(5000, { signal: controller.signal }), controller.signal);
 - [timeoutRun](/docs/Flow/timeoutRun)
 - [withResolvers](/docs/Concurrency/withResolvers)
 
-## Try it
-
-```ts
-const controller = new AbortController();
-setTimeout(() => controller.abort(), 100);
-
-await abortable(slowOperation(), controller.signal); // rejects after 100ms
-```
+<TryIt code={"const controller = new AbortController();\nsetTimeout(() => controller.abort(), 100);\n\nawait abortable(slowOperation(), controller.signal); // rejects after 100ms"} />

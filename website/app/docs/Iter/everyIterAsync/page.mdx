@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "everyIterAsync — Iter",
   description: "Checks if all items in an async iterator match a predicate."
@@ -32,9 +33,4 @@ await everyIterAsync(gen(), x => x > 0) //=> true
 
 - [everyIter](/docs/Iter/everyIter)
 
-## Try it
-
-```ts
-async function* gen() { yield 1; yield 2; }
-console.log(await everyIterAsync(gen(), x => x > 0)); //=> true
-```
+<TryIt code={"async function* gen() { yield 1; yield 2; }\nconsole.log(await everyIterAsync(gen(), x => x > 0)); //=> true"} />

@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "isULID — Crypto",
@@ -56,9 +57,4 @@ isULID('01ARZ3NDEKTSV4RRFFQ69G5FAI') //=> false  I is not in the alphabet
 - [ulidTime](/docs/Crypto/ulidTime)
 - [isUUID](/docs/Crypto/isUUID)
 
-## Try it
-
-```ts
-console.log(isULID('01ARZ3NDEKTSV4RRFFQ69G5FAV')); //=> true
-console.log(isULID(ulid())); //=> true
-```
+<TryIt code={"console.log(isULID('01ARZ3NDEKTSV4RRFFQ69G5FAV')); //=> true\nconsole.log(isULID(ulid())); //=> true"} />

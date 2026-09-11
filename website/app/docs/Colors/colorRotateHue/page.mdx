@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "colorRotateHue — Colors",
   description: "Rotates the hue of a color."
@@ -23,9 +24,4 @@ colorRotateHue({ value: 'red', degrees: 120 }); //=> '#00ff00' (lime)
 colorRotateHue({ value: 'red', degrees: -120 }); //=> '#0000ff' (blue)
 ```
 
-## Try it
-
-```ts
-console.log(colorRotateHue({ value: 'red', degrees: 120 })); //=> '#00ff00' (lime)
-console.log(colorRotateHue({ value: 'red', degrees: -120 })); //=> '#0000ff' (blue)
-```
+<TryIt code={"console.log(colorRotateHue({ value: 'red', degrees: 120 })); //=> '#00ff00' (lime)\nconsole.log(colorRotateHue({ value: 'red', degrees: -120 })); //=> '#0000ff' (blue)"} />

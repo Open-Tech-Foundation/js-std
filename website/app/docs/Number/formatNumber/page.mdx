@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "formatNumber — Number",
   description: "Formats a number for reading, with locale-aware grouping and rounding."
@@ -65,10 +66,4 @@ formatNumber(0.4235, { style: 'percent', maxFraction: 1 }) //=> '42.4%'
 - [formatCurrency](/docs/Number/formatCurrency)
 - [formatBytes](/docs/Number/formatBytes)
 
-## Try it
-
-```ts
-console.log(formatNumber(1234567.891)); //=> '1,234,567.891'
-console.log(formatNumber(1234.5, { locale: 'de-DE' })); //=> '1.234,5'
-console.log(formatNumber(1234.5, { grouping: false })); //=> '1234.5'
-```
+<TryIt code={"console.log(formatNumber(1234567.891)); //=> '1,234,567.891'\nconsole.log(formatNumber(1234.5, { locale: 'de-DE' })); //=> '1.234,5'\nconsole.log(formatNumber(1234.5, { grouping: false })); //=> '1234.5'"} />

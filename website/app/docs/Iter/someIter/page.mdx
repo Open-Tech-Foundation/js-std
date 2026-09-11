@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "someIter — Iter",
   description: "Checks if any item matches a predicate."
@@ -31,8 +32,4 @@ someIter([1, 2, 3], (x) => x > 1) //=> true
 
 - [someIterAsync](/docs/Iter/someIterAsync)
 
-## Try it
-
-```ts
-console.log(someIter([1, 2, 3], (x) => x > 1)); //=> true
-```
+<TryIt code={"console.log(someIter([1, 2, 3], (x) => x > 1)); //=> true"} />

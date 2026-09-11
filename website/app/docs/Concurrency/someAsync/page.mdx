@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "someAsync — Concurrency",
@@ -60,8 +61,4 @@ const anyUp = await someAsync(
 - [findAsync](/docs/Concurrency/findAsync)
 - [filterAsync](/docs/Concurrency/filterAsync)
 
-## Try it
-
-```ts
-console.log(await someAsync([1, 2, 3], async (n) => n > 2)); //=> true
-```
+<TryIt code={"console.log(await someAsync([1, 2, 3], async (n) => n > 2)); //=> true"} />

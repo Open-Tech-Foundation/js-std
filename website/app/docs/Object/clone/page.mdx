@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "clone — Object",
@@ -83,37 +84,4 @@ const clonedCircular = clone(circular);
 clonedCircular.self === clonedCircular; // true
 ```
 
-## Try it
-
-```ts
-const input = {
-  arr: [1, 2, 3],
-  obj: { a: 'abc', b: 123 },
-  date: new Date(),
-  map: new Map([['a', 1], ['b', 2]])
-};
-
-const output = clone(input);
-
-input === output; // false
-output.arr === input.arr; // false
-output.obj === input.obj; // false
-output.map === input.map; // false
-output.date.getTime() === input.date.getTime(); // true
-
-class Box {
-  constructor(value) {
-    this.value = value;
-  }
-}
-
-const boxed = new Box(1);
-const clonedBoxed = clone({ boxed });
-clonedBoxed.boxed === boxed; // true
-
-// Circular references
-const circular = { a: 1 };
-circular.self = circular;
-const clonedCircular = clone(circular);
-clonedCircular.self === clonedCircular; // true
-```
+<TryIt code={"const input = {\n  arr: [1, 2, 3],\n  obj: { a: 'abc', b: 123 },\n  date: new Date(),\n  map: new Map([['a', 1], ['b', 2]])\n};\n\nconst output = clone(input);\n\ninput === output; // false\noutput.arr === input.arr; // false\noutput.obj === input.obj; // false\noutput.map === input.map; // false\noutput.date.getTime() === input.date.getTime(); // true\n\nclass Box {\n  constructor(value) {\n    this.value = value;\n  }\n}\n\nconst boxed = new Box(1);\nconst clonedBoxed = clone({ boxed });\nclonedBoxed.boxed === boxed; // true\n\n// Circular references\nconst circular = { a: 1 };\ncircular.self = circular;\nconst clonedCircular = clone(circular);\nclonedCircular.self === clonedCircular; // true"} />

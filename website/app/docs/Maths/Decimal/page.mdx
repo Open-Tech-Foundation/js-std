@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "Decimal — Maths",
@@ -288,22 +289,4 @@ Prefer method chaining (`d.add(...)`, `d.compareTo(...)`) over operators for pre
 - [prod](/docs/Maths/prod)
 - [mean](/docs/Maths/mean)
 
-## Try it
-
-```ts
-import { Decimal } from '@opentf/std';
-new Decimal('0.1').add('0.2').toString()
-//=> '0.3'
-
-new Decimal('0.3').subtract('0.1').toString()
-//=> '0.2'
-
-new Decimal('0.1').multiply('0.1').toString()
-//=> '0.01'
-
-new Decimal('0.3').divide('0.1', 10).toString()
-//=> '3'
-
-new Decimal('0').divide('5').toString()
-//=> '0'
-```
+<TryIt code={"import { Decimal } from '@opentf/std';\nnew Decimal('0.1').add('0.2').toString()\n//=> '0.3'\n\nnew Decimal('0.3').subtract('0.1').toString()\n//=> '0.2'\n\nnew Decimal('0.1').multiply('0.1').toString()\n//=> '0.01'\n\nnew Decimal('0.3').divide('0.1', 10).toString()\n//=> '3'\n\nnew Decimal('0').divide('5').toString()\n//=> '0'"} />

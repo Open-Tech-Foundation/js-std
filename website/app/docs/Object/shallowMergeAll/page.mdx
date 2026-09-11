@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "shallowMergeAll — Object",
@@ -32,11 +33,4 @@ const c = [3];
 shallowMergeAll(a, b, c); //=> [1, 2, 3]
 ```
 
-## Try it
-
-```ts
-const a = [1];
-const b = [2];
-const c = [3];
-console.log(shallowMergeAll(a, b, c)); //=> [1, 2, 3]
-```
+<TryIt code={"const a = [1];\nconst b = [2];\nconst c = [3];\nconsole.log(shallowMergeAll(a, b, c)); //=> [1, 2, 3]"} />

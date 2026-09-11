@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "decodeHex — Encoding",
   description: "Decodes a hexadecimal string to bytes."
@@ -31,8 +32,4 @@ decodeHex('48656c6c6f') //=> Uint8Array [72, 101, 108, 108, 111]
 - [encodeHex](/docs/Encoding/encodeHex)
 - [bytesToString](/docs/Encoding/bytesToString)
 
-## Try it
-
-```ts
-console.log(decodeHex('48656c6c6f')); //=> Uint8Array [72, 101, 108, 108, 111]
-```
+<TryIt code={"console.log(decodeHex('48656c6c6f')); //=> Uint8Array [72, 101, 108, 108, 111]"} />

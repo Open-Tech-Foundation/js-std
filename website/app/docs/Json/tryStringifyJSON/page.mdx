@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "tryStringifyJSON — Json",
@@ -146,10 +147,4 @@ const body = tryStringifyJSON({ id: BigInt("123456789012345"), createdAt: new Da
 - [DateTime](/docs/DateTime/DateTime) — temporal datetime
 - [Duration](/docs/DateTime/Duration) — temporal duration
 
-## Try it
-
-```ts
-console.log(tryStringifyJSON({ a: 1 })); //=> '{"a":1}'
-console.log(tryStringifyJSON([1, 2, 3])); //=> '[1,2,3]'
-console.log(tryStringifyJSON(null)); //=> 'null'
-```
+<TryIt code={"console.log(tryStringifyJSON({ a: 1 })); //=> '{\"a\":1}'\nconsole.log(tryStringifyJSON([1, 2, 3])); //=> '[1,2,3]'\nconsole.log(tryStringifyJSON(null)); //=> 'null'"} />

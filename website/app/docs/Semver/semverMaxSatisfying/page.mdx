@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "semverMaxSatisfying — Semver",
   description: "Returns the highest version in the list that satisfies the range."
@@ -66,9 +67,4 @@ semverMaxSatisfying(['1.0.0', '1.1.0-rc.1'], '^1.0.0', {
 - [semverSatisfies](/docs/Semver/semverSatisfies)
 - [semverSort](/docs/Semver/semverSort)
 
-## Try it
-
-```ts
-console.log(semverMaxSatisfying(['1.0.0', '1.2.3', '2.0.0'], '^1.0.0')); //=> '1.2.3'
-console.log(semverMaxSatisfying(['1.0.0', '2.0.0'], '^3.0.0')); //=> null
-```
+<TryIt code={"console.log(semverMaxSatisfying(['1.0.0', '1.2.3', '2.0.0'], '^1.0.0')); //=> '1.2.3'\nconsole.log(semverMaxSatisfying(['1.0.0', '2.0.0'], '^3.0.0')); //=> null"} />

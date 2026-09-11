@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "flatMap — Array",
   description: "Maps each item and flattens the result into a single array."
@@ -36,12 +37,4 @@ flatMap(['a', 'b'], (x, i) => [x + i]) //=> ['a0', 'b1']
 - [flatten](/docs/Array/flatten)
 - [map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
 
-## Try it
-
-```ts
-console.log(flatMap([1, 2], (x) => [x, x * 10])); //=> [1, 10, 2, 20]
-
-console.log(flatMap([1, 2, 3], (x) => [x])); //=> [1, 2, 3]
-
-console.log(flatMap(['a', 'b'], (x, i) => [x + i])); //=> ['a0', 'b1']
-```
+<TryIt code={"console.log(flatMap([1, 2], (x) => [x, x * 10])); //=> [1, 10, 2, 20]\n\nconsole.log(flatMap([1, 2, 3], (x) => [x])); //=> [1, 2, 3]\n\nconsole.log(flatMap(['a', 'b'], (x, i) => [x + i])); //=> ['a0', 'b1']"} />

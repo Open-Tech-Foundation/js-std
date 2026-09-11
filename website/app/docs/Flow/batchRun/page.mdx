@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "batchRun — FlowControl",
   description: "Creates a batched function that collects calls and processes them in groups."
@@ -48,15 +49,4 @@ const user2 = batchFetch(2);
 
 - [rateLimitRun](/docs/Flow/rateLimitRun)
 
-## Try it
-
-```ts
-const batchFetch = batchRun(async (batch) => {
-  // batch is an array of arguments: [[1], [2], [3]]
-  const ids = batch.map(args => args[0]);
-  return await fetchUsers(ids);
-}, { limit: 10, delay: 50 });
-
-const user1 = batchFetch(1);
-const user2 = batchFetch(2);
-```
+<TryIt code={"const batchFetch = batchRun(async (batch) => {\n  // batch is an array of arguments: [[1], [2], [3]]\n  const ids = batch.map(args => args[0]);\n  return await fetchUsers(ids);\n}, { limit: 10, delay: 50 });\n\nconst user1 = batchFetch(1);\nconst user2 = batchFetch(2);"} />

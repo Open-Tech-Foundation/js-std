@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "unset — Object",
@@ -60,16 +61,4 @@ unset(nestedObj, 'x.y.z') //=> { x: { y: {} } }
 - [has](/docs/Object/has)
 - [toUnset](/docs/Object/toUnset)
 
-## Try it
-
-```ts
-console.log(unset({ a: 1, b: 2 }, 'a')); //=> { b: 2 }
-
-console.log(unset({ a: 1, b: 2 }, 'c')); //=> { a: 1, b: 2 } (Non-existent path)
-
-// Sparse array behavior
-console.log(unset([1, 2, 3], '1')); //=> [1, <1 empty item>, 3]
-
-const nestedObj = { x: { y: { z: ['a', null, 'b'] } } };
-console.log(unset(nestedObj, 'x.y.z')); //=> { x: { y: {} } }
-```
+<TryIt code={"console.log(unset({ a: 1, b: 2 }, 'a')); //=> { b: 2 }\n\nconsole.log(unset({ a: 1, b: 2 }, 'c')); //=> { a: 1, b: 2 } (Non-existent path)\n\n// Sparse array behavior\nconsole.log(unset([1, 2, 3], '1')); //=> [1, <1 empty item>, 3]\n\nconst nestedObj = { x: { y: { z: ['a', null, 'b'] } } };\nconsole.log(unset(nestedObj, 'x.y.z')); //=> { x: { y: {} } }"} />

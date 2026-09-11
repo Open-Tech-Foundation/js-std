@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "uniqueIter — Iter",
   description: "Yields each item the first time it is seen."
@@ -46,11 +47,4 @@ const users = [{ id: 1 }, { id: 2 }, { id: 1 }];
 - [uniqueIterAsync](/docs/Iter/uniqueIterAsync)
 - [unique](/docs/Array/unique)
 
-## Try it
-
-```ts
-console.log([...uniqueIter([1, 2, 2, 3, 1])]); //=> [1, 2, 3]
-
-const users = [{ id: 1 }, { id: 2 }, { id: 1 }];
-console.log([...uniqueIter(users, (u) => u.id)]); //=> [{ id: 1 }, { id: 2 }]
-```
+<TryIt code={"console.log([...uniqueIter([1, 2, 2, 3, 1])]); //=> [1, 2, 3]\n\nconst users = [{ id: 1 }, { id: 2 }, { id: 1 }];\nconsole.log([...uniqueIter(users, (u) => u.id)]); //=> [{ id: 1 }, { id: 2 }]"} />

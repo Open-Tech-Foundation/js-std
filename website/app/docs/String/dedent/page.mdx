@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "dedent — String",
@@ -74,14 +75,4 @@ dedent(`
 - [trim](/docs/String/trim)
 - [wordWrap](/docs/String/wordWrap)
 
-## Try it
-
-```ts
-const sql = dedent(`
-  SELECT *
-    FROM users
-   WHERE id = 1
-`);
-
-//=> 'SELECT *\n  FROM users\n WHERE id = 1'
-```
+<TryIt code={"const sql = dedent(`\n  SELECT *\n    FROM users\n   WHERE id = 1\n`);\n\n//=> 'SELECT *\\n  FROM users\\n WHERE id = 1'"} />

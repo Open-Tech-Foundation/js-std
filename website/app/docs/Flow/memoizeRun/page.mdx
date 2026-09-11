@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "memoizeRun — FlowControl",
@@ -71,15 +72,4 @@ await memoized(new Map([['a', 1]])); // shares the cached result
 
 - [retryRun](/docs/Flow/retryRun)
 
-## Try it
-
-```ts
-const memoized = memoizeRun(fetchUser, { maxAge: 5000 });
-
-// Only one API call will be made if these are called concurrently
-const [u1, u2] = await Promise.all([memoized(1), memoized(1)]);
-
-// Structural equality works for common built-in values
-await memoized(new Map([['a', 1]]));
-await memoized(new Map([['a', 1]])); // shares the cached result
-```
+<TryIt code={"const memoized = memoizeRun(fetchUser, { maxAge: 5000 });\n\n// Only one API call will be made if these are called concurrently\nconst [u1, u2] = await Promise.all([memoized(1), memoized(1)]);\n\n// Structural equality works for common built-in values\nawait memoized(new Map([['a', 1]]));\nawait memoized(new Map([['a', 1]])); // shares the cached result"} />

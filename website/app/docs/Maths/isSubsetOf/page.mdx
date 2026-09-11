@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "isSubsetOf — Maths",
@@ -81,40 +82,4 @@ isSubsetOf(set1, set3, true) //=> true
 - [isSupersetOf](/docs/Maths/isSupersetOf)
 - [isDisjointFrom](/docs/Maths/isDisjointFrom)
 
-## Try it
-
-```ts
-const a = [1, 2, 3];
-
-console.log(isSubsetOf([], a)); //=> true
-
-console.log(isSubsetOf([1], a)); //=> true
-
-console.log(isSubsetOf([1, 2], a)); //=> true
-
-console.log(isSubsetOf([1, 2, 3], a)); //=> true
-
-const fours = new Set([4, 8, 12, 16]);
-const evens = new Set([2, 4, 6, 8, 10, 12, 14, 16, 18]);
-
-console.log(isSubsetOf(fours, evens)); //=> true
-
-console.log(isSubsetOf([1, 2, 3, 4, 5], a)); //=> false
-
-const primes = new Set([2, 3, 5, 7, 11, 13, 17, 19]);
-const odds = new Set([3, 5, 7, 9, 11, 13, 15, 17, 19]);
-
-console.log(isSubsetOf(primes, odds)); //=> false
-
-const set1 = new Set([1, 2, 3]);
-const set2 = new Set([1, 2, 3]);
-const set3 = new Set([1, 2]);
-
-console.log(isSubsetOf(set1, set2)); //=> true
-
-console.log(isSubsetOf(set1, set2, false)); //=> true
-
-console.log(isSubsetOf(set1, set2, true)); //=> false
-
-console.log(isSubsetOf(set1, set3, true)); //=> true
-```
+<TryIt code={"const a = [1, 2, 3];\n\nconsole.log(isSubsetOf([], a)); //=> true\n\nconsole.log(isSubsetOf([1], a)); //=> true\n\nconsole.log(isSubsetOf([1, 2], a)); //=> true\n\nconsole.log(isSubsetOf([1, 2, 3], a)); //=> true\n\nconst fours = new Set([4, 8, 12, 16]);\nconst evens = new Set([2, 4, 6, 8, 10, 12, 14, 16, 18]);\n\nconsole.log(isSubsetOf(fours, evens)); //=> true\n\nconsole.log(isSubsetOf([1, 2, 3, 4, 5], a)); //=> false\n\nconst primes = new Set([2, 3, 5, 7, 11, 13, 17, 19]);\nconst odds = new Set([3, 5, 7, 9, 11, 13, 15, 17, 19]);\n\nconsole.log(isSubsetOf(primes, odds)); //=> false\n\nconst set1 = new Set([1, 2, 3]);\nconst set2 = new Set([1, 2, 3]);\nconst set3 = new Set([1, 2]);\n\nconsole.log(isSubsetOf(set1, set2)); //=> true\n\nconsole.log(isSubsetOf(set1, set2, false)); //=> true\n\nconsole.log(isSubsetOf(set1, set2, true)); //=> false\n\nconsole.log(isSubsetOf(set1, set3, true)); //=> true"} />

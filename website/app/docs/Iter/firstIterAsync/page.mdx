@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "firstIterAsync — Iter",
   description: "Returns the first item from an async iterable."
@@ -31,9 +32,4 @@ await firstIterAsync(gen()) //=> 1
 
 - [firstIter](/docs/Iter/firstIter)
 
-## Try it
-
-```ts
-async function* gen() { yield 1; yield 2; }
-console.log(await firstIterAsync(gen())); //=> 1
-```
+<TryIt code={"async function* gen() { yield 1; yield 2; }\nconsole.log(await firstIterAsync(gen())); //=> 1"} />

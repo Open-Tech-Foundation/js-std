@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "first — Array",
   description: "Returns the first element of the array."
@@ -36,18 +37,4 @@ first() //=> undefined
 
 - [last](/docs/Array/last)
 
-## Try it
-
-```ts
-const users = [
-  { name: 'Ada', role: 'admin' },
-  { name: 'Lin', role: 'editor' },
-];
-
-// Grab the first admin, or fall back to a default
-const admin = first(users.filter((u) => u.role === 'admin'));
-console.log(admin); //=> { name: 'Ada', role: 'admin' }
-
-// Safe on empty arrays — returns undefined instead of throwing
-console.log(first([])); //=> undefined
-```
+<TryIt code={"const users = [\n  { name: 'Ada', role: 'admin' },\n  { name: 'Lin', role: 'editor' },\n];\n\n// Grab the first admin, or fall back to a default\nconst admin = first(users.filter((u) => u.role === 'admin'));\nconsole.log(admin); //=> { name: 'Ada', role: 'admin' }\n\n// Safe on empty arrays — returns undefined instead of throwing\nconsole.log(first([])); //=> undefined"} />

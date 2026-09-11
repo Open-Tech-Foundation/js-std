@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "toPath — Object",
   description: "Converts the given string into an object property path array."
@@ -18,8 +19,4 @@ toPath(str: string): (string | number)[]
 toPath('a[0].b.c') //=> ['a', 0, 'b', 'c']
 ```
 
-## Try it
-
-```ts
-console.log(toPath('a[0].b.c')); //=> ['a', 0, 'b', 'c']
-```
+<TryIt code={"console.log(toPath('a[0].b.c')); //=> ['a', 0, 'b', 'c']"} />

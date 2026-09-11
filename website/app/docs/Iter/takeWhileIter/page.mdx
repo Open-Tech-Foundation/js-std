@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "takeWhileIter — Iter",
   description: "Yields items as long as a predicate is true."
@@ -31,8 +32,4 @@ A new iterable iterator.
 
 - [takeWhileIterAsync](/docs/Iter/takeWhileIterAsync)
 
-## Try it
-
-```ts
-console.log([...takeWhileIter([1, 2, 3, 4], (x) => x < 3)]); //=> [1, 2]
-```
+<TryIt code={"console.log([...takeWhileIter([1, 2, 3, 4], (x) => x < 3)]); //=> [1, 2]"} />

@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "takeWhile — Array",
   description: "Creates a slice of array with elements taken from the beginning or end while the predicate returns true."
@@ -41,16 +42,4 @@ takeWhile([1, 2, 3, 4, 5], (n) => n > 3, true) //=> [4, 5]
 - [dropWhile](/docs/Array/dropWhile)
 - [take](/docs/Array/take)
 
-## Try it
-
-```ts
-console.log(takeWhile([1, 2, 3, 4, 5], (n) => n < 4)); //=> [1, 2, 3]
-
-console.log(takeWhile([1, 2, 3], (n) => n > 3)); //=> []
-
-console.log(takeWhile([1, 2, 3], (n) => n < 10)); //=> [1, 2, 3]
-
-console.log(takeWhile([true, true, false, true], Boolean)); //=> [true, true]
-
-console.log(takeWhile([1, 2, 3, 4, 5], (n) => n > 3, true)); //=> [4, 5]
-```
+<TryIt code={"console.log(takeWhile([1, 2, 3, 4, 5], (n) => n < 4)); //=> [1, 2, 3]\n\nconsole.log(takeWhile([1, 2, 3], (n) => n > 3)); //=> []\n\nconsole.log(takeWhile([1, 2, 3], (n) => n < 10)); //=> [1, 2, 3]\n\nconsole.log(takeWhile([true, true, false, true], Boolean)); //=> [true, true]\n\nconsole.log(takeWhile([1, 2, 3, 4, 5], (n) => n > 3, true)); //=> [4, 5]"} />

@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "encodeBase58 — Encoding",
@@ -58,9 +59,4 @@ encodeBase58(randomBytes(32)) //=> '6dRUYs1PkJmpM6bLYLvSCEyKk1zqPr...'
 - [encodeBase32](/docs/Encoding/encodeBase32)
 - [encodeBase64Url](/docs/Encoding/encodeBase64Url)
 
-## Try it
-
-```ts
-console.log(encodeBase58(new Uint8Array([72, 101, 108, 108, 111]))); //=> '9Ajdvzr'
-console.log(encodeBase58(stringToBytes('hello world'))); //=> 'StV1DL6CwTryKyV'
-```
+<TryIt code={"console.log(encodeBase58(new Uint8Array([72, 101, 108, 108, 111]))); //=> '9Ajdvzr'\nconsole.log(encodeBase58(stringToBytes('hello world'))); //=> 'StV1DL6CwTryKyV'"} />

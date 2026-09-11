@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "escapeRegExp — String",
@@ -27,11 +28,4 @@ const regex = new RegExp(escapeRegExp(search));
 regex.test("[opentf]"); //=> true
 ```
 
-## Try it
-
-```ts
-const search = "[opentf]";
-const regex = new RegExp(escapeRegExp(search));
-
-console.log(regex.test("[opentf]")); //=> true
-```
+<TryIt code={"const search = \"[opentf]\";\nconst regex = new RegExp(escapeRegExp(search));\n\nconsole.log(regex.test(\"[opentf]\")); //=> true"} />

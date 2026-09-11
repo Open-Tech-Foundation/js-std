@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "mean — Maths",
@@ -55,17 +56,4 @@ mean(objects, (o) => o.a) //=> 4.666666666666667
 - [median](/docs/Maths/median)
 - [mode](/docs/Maths/mode)
 
-## Try it
-
-```ts
-console.log(mean([])); //=> NaN
-
-console.log(mean([1])); //=> 1
-
-console.log(mean([4, 1, 7])); //=> 4
-
-console.log(mean([4, 2, 8])); //=> 4.666666666666667
-
-const objects = [{ a: 4 }, { a: 2 }, { a: 8 }];
-console.log(mean(objects, (o) => o.a)); //=> 4.666666666666667
-```
+<TryIt code={"console.log(mean([])); //=> NaN\n\nconsole.log(mean([1])); //=> 1\n\nconsole.log(mean([4, 1, 7])); //=> 4\n\nconsole.log(mean([4, 2, 8])); //=> 4.666666666666667\n\nconst objects = [{ a: 4 }, { a: 2 }, { a: 8 }];\nconsole.log(mean(objects, (o) => o.a)); //=> 4.666666666666667"} />

@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "isPromise — Types",
   description: "Checks if the given value is a Promise object."
@@ -32,10 +33,4 @@ isPromise({}) //=> false
 
 - [isAsyncFunction](/docs/Types/isAsyncFunction)
 
-## Try it
-
-```ts
-console.log(isPromise(Promise.resolve())); //=> true
-
-console.log(isPromise({})); //=> false
-```
+<TryIt code={"console.log(isPromise(Promise.resolve())); //=> true\n\nconsole.log(isPromise({})); //=> false"} />

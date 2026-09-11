@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "stringWidth — String",
   description: "Calculates the visual width of a string in a terminal."
@@ -30,11 +31,4 @@ Unlike many other libraries that ship large internal Unicode lookup tables, this
 3.  **High Precision**: Accurately handles complex sequences like **ZWJ Emojis**, **Skin Tone Modifiers**, and **Regional Indicators (Flags)** that simple regex-based approaches miss.
 4.  **ANSI Awareness**: Automatically strips ANSI escape codes (using a comprehensive ECMA-48 compliant regex) before calculating width.
 
-## Try it
-
-```ts
-console.log(stringWidth('abc')); //=> 3
-console.log(stringWidth('\x1b[31mabc\x1b[0m')); //=> 3
-console.log(stringWidth('🔥')); //=> 2
-console.log(stringWidth('こんにちは')); //=> 10
-```
+<TryIt code={"console.log(stringWidth('abc')); //=> 3\nconsole.log(stringWidth('\\x1b[31mabc\\x1b[0m')); //=> 3\nconsole.log(stringWidth('🔥')); //=> 2\nconsole.log(stringWidth('こんにちは')); //=> 10"} />

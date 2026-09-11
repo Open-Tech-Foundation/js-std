@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "semverCoerce — Semver",
@@ -67,10 +68,4 @@ semverSatisfies(tag, '^2.0.0'); //=> true
 - [semverParse](/docs/Semver/semverParse)
 - [semverIsValid](/docs/Semver/semverIsValid)
 
-## Try it
-
-```ts
-console.log(semverCoerce('v2')); //=> '2.0.0'
-console.log(semverCoerce('20.11')); //=> '20.11.0'
-console.log(semverCoerce('4.17.21.min')); //=> '4.17.21'
-```
+<TryIt code={"console.log(semverCoerce('v2')); //=> '2.0.0'\nconsole.log(semverCoerce('20.11')); //=> '20.11.0'\nconsole.log(semverCoerce('4.17.21.min')); //=> '4.17.21'"} />

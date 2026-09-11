@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "stripDiacritics — String",
@@ -81,10 +82,4 @@ matches('MALMO', 'Malmö') //=> true
 - [slugify](/docs/String/slugify)
 - [stripANSI](/docs/String/stripANSI)
 
-## Try it
-
-```ts
-console.log(stripDiacritics('José')); //=> 'Jose'
-console.log(stripDiacritics('Ångström')); //=> 'Angstrom'
-console.log(stripDiacritics('crème brûlée')); //=> 'creme brulee'
-```
+<TryIt code={"console.log(stripDiacritics('José')); //=> 'Jose'\nconsole.log(stripDiacritics('Ångström')); //=> 'Angstrom'\nconsole.log(stripDiacritics('crème brûlée')); //=> 'creme brulee'"} />

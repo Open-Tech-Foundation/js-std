@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "slugify — String",
@@ -51,12 +52,4 @@ slugify('Þór');    //=> 'thor'
 - [stripDiacritics](/docs/String/stripDiacritics)
 - [kebabCase](/docs/String/kebabCase)
 
-## Try it
-
-```ts
-console.log(slugify('Hello World!')); //=> 'hello-world'
-
-console.log(slugify('Café au Lait')); //=> 'cafe-au-lait'
-
-console.log(slugify('Special characters like @#$%')); //=> 'special-characters-like'
-```
+<TryIt code={"console.log(slugify('Hello World!')); //=> 'hello-world'\n\nconsole.log(slugify('Café au Lait')); //=> 'cafe-au-lait'\n\nconsole.log(slugify('Special characters like @#$%')); //=> 'special-characters-like'"} />

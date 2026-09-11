@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "constantCase — String",
   description: "Converts string to constant case."
@@ -44,12 +45,4 @@ constantCase('XMLHttpRequest') //=> 'XML_HTTP_REQUEST'
 - [pascalCase](/docs/String/pascalCase)
 - [kebabCase](/docs/String/kebabCase)
 
-## Try it
-
-```ts
-console.log(constantCase('Foo Bar')); //=> 'FOO_BAR'
-
-console.log(constantCase('fooBar')); //=> 'FOO_BAR'
-
-console.log(constantCase('--foo-bar--')); //=> 'FOO_BAR'
-```
+<TryIt code={"console.log(constantCase('Foo Bar')); //=> 'FOO_BAR'\n\nconsole.log(constantCase('fooBar')); //=> 'FOO_BAR'\n\nconsole.log(constantCase('--foo-bar--')); //=> 'FOO_BAR'"} />

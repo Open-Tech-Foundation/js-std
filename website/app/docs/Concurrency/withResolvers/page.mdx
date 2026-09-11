@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "withResolvers — Concurrency",
@@ -42,14 +43,4 @@ const result = await promise; //=> 42
 
 - [timeoutRun](/docs/Flow/timeoutRun)
 
-## Try it
-
-```ts
-const { promise, resolve, reject } = withResolvers();
-
-setTimeout(() => {
-  resolve(42);
-}, 100);
-
-const result = await promise; //=> 42
-```
+<TryIt code={"const { promise, resolve, reject } = withResolvers();\n\nsetTimeout(() => {\n  resolve(42);\n}, 100);\n\nconst result = await promise; //=> 42"} />

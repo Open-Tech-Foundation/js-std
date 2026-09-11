@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "semverMinSatisfying — Semver",
   description: "Returns the lowest version in the list that satisfies the range."
@@ -53,9 +54,4 @@ const oldest = semverMinSatisfying(published, pkg.peerDependencies.react);
 - [semverMaxSatisfying](/docs/Semver/semverMaxSatisfying)
 - [semverSatisfies](/docs/Semver/semverSatisfies)
 
-## Try it
-
-```ts
-console.log(semverMinSatisfying(['1.0.0', '1.2.3', '2.0.0'], '^1.0.0')); //=> '1.0.0'
-console.log(semverMinSatisfying(['1.0.0', '2.0.0'], '^3.0.0')); //=> null
-```
+<TryIt code={"console.log(semverMinSatisfying(['1.0.0', '1.2.3', '2.0.0'], '^1.0.0')); //=> '1.0.0'\nconsole.log(semverMinSatisfying(['1.0.0', '2.0.0'], '^3.0.0')); //=> null"} />

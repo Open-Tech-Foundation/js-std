@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "findIter — Iter",
   description: "Finds the first item that matches a predicate."
@@ -31,8 +32,4 @@ findIter([1, 2, 3], (x) => x > 1) //=> 2
 
 - [findIterAsync](/docs/Iter/findIterAsync)
 
-## Try it
-
-```ts
-console.log(findIter([1, 2, 3], (x) => x > 1)); //=> 2
-```
+<TryIt code={"console.log(findIter([1, 2, 3], (x) => x > 1)); //=> 2"} />

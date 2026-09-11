@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "isWeakSet — Types",
   description: "Checks if the given value is WeakSet."
@@ -25,10 +26,4 @@ isWeakSet(new WeakSet()) //=> true
 - [isObject](/docs/Types/isObject)
 - [isPlainObject](/docs/Types/isPlainObject)
 
-## Try it
-
-```ts
-console.log(isWeakSet(new Set())); //=> false
-
-console.log(isWeakSet(new WeakSet())); //=> true
-```
+<TryIt code={"console.log(isWeakSet(new Set())); //=> false\n\nconsole.log(isWeakSet(new WeakSet())); //=> true"} />

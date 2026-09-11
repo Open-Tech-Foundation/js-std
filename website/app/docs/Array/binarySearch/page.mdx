@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "binarySearch — Array",
@@ -70,17 +71,4 @@ binarySearch(users, { id: 4 }, (a, b) => a.id - b.id) //=> 1
 - [sort](/docs/Array/sort)
 - [sortBy](/docs/Array/sortBy)
 
-## Try it
-
-```ts
-console.log(binarySearch([1, 3, 5, 7, 9], 5)); //=> 2
-
-console.log(binarySearch([1, 3, 5, 7, 9], 1)); //=> 0
-
-console.log(binarySearch([1, 3, 5, 7, 9], 4)); //=> -1
-
-console.log(binarySearch(['ant', 'bee', 'cow'], 'cow')); //=> 2
-
-// The first of several equal values
-console.log(binarySearch([1, 2, 2, 2, 3], 2)); //=> 1
-```
+<TryIt code={"console.log(binarySearch([1, 3, 5, 7, 9], 5)); //=> 2\n\nconsole.log(binarySearch([1, 3, 5, 7, 9], 1)); //=> 0\n\nconsole.log(binarySearch([1, 3, 5, 7, 9], 4)); //=> -1\n\nconsole.log(binarySearch(['ant', 'bee', 'cow'], 'cow')); //=> 2\n\n// The first of several equal values\nconsole.log(binarySearch([1, 2, 2, 2, 3], 2)); //=> 1"} />

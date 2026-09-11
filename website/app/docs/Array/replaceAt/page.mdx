@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "replaceAt — Array",
   description: "Replaces items at the given index in the array."
@@ -39,12 +40,4 @@ replaceAt([1, 2, 3], 0, 0) //=> [0, 2, 3]
 - [insertAt](/docs/Array/insertAt)
 - [removeAt](/docs/Array/removeAt)
 
-## Try it
-
-```ts
-console.log(replaceAt([1, 2, 3], 1, 5)); //=> [1, 5, 3]
-
-console.log(replaceAt([1, 2, 3], 1, 5, 6)); //=> [1, 5, 6, 3]
-
-console.log(replaceAt([1, 2, 3], 0, 0)); //=> [0, 2, 3]
-```
+<TryIt code={"console.log(replaceAt([1, 2, 3], 1, 5)); //=> [1, 5, 3]\n\nconsole.log(replaceAt([1, 2, 3], 1, 5, 6)); //=> [1, 5, 6, 3]\n\nconsole.log(replaceAt([1, 2, 3], 0, 0)); //=> [0, 2, 3]"} />

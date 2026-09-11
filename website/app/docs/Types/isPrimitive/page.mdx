@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "isPrimitive — Types",
@@ -67,31 +68,4 @@ isPrimitive(Object(1)) //=> false
 - [isPlainObject](/docs/Types/isPlainObject)
 - [isArrayLike](/docs/Types/isArrayLike)
 
-## Try it
-
-```ts
-console.log(isPrimitive('a')); //=> true
-
-console.log(isPrimitive(1)); //=> true
-
-console.log(isPrimitive(true)); //=> true
-
-console.log(isPrimitive(10n)); //=> true
-
-console.log(isPrimitive(Symbol('a'))); //=> true
-
-console.log(isPrimitive(null)); //=> true
-
-console.log(isPrimitive(undefined)); //=> true
-
-// Objects
-console.log(isPrimitive({})); //=> false
-
-console.log(isPrimitive([])); //=> false
-
-console.log(isPrimitive(new Date())); //=> false
-
-console.log(isPrimitive(() => {})); //=> false
-
-console.log(isPrimitive(Object(1))); //=> false
-```
+<TryIt code={"console.log(isPrimitive('a')); //=> true\n\nconsole.log(isPrimitive(1)); //=> true\n\nconsole.log(isPrimitive(true)); //=> true\n\nconsole.log(isPrimitive(10n)); //=> true\n\nconsole.log(isPrimitive(Symbol('a'))); //=> true\n\nconsole.log(isPrimitive(null)); //=> true\n\nconsole.log(isPrimitive(undefined)); //=> true\n\n// Objects\nconsole.log(isPrimitive({})); //=> false\n\nconsole.log(isPrimitive([])); //=> false\n\nconsole.log(isPrimitive(new Date())); //=> false\n\nconsole.log(isPrimitive(() => {})); //=> false\n\nconsole.log(isPrimitive(Object(1))); //=> false"} />

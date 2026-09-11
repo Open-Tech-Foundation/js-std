@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "isSupersetOf — Maths",
@@ -87,46 +88,4 @@ isSupersetOf(set3, set1, false) //=> true
 isSupersetOf(set3, set2, true) //=> true
 ```
 
-## Try it
-
-```ts
-const a = [1, 2, 3];
-
-console.log(isSupersetOf(a, [])); //=> true
-
-console.log(isSupersetOf(a, [1])); //=> true
-
-console.log(isSupersetOf(a, [1, 2])); //=> true
-
-console.log(isSupersetOf(a, [1, 2, 3])); //=> true
-
-
-const evens = new Set([2, 4, 6, 8, 10, 12, 14, 16, 18]);
-const fours = new Set([4, 8, 12, 16]);
-
-console.log(isSupersetOf(evens, fours)); //=> true
-
-
-const set1 = new Set([1, 2, 3]);
-const set2 = new Set([1, 2, 3]);
-
-console.log(isSupersetOf(set1, set2)); //=> true
-
-
-const a = [1, 2, 3, 4];
-
-console.log(isSupersetOf(a, [1, 2, 3, 4, 5])); //=> false
-
-const primes = new Set([2, 3, 5, 7, 11, 13, 17, 19]);
-const odds = new Set([3, 5, 7, 9, 11, 13, 15, 17, 19]);
-
-console.log(isSupersetOf(primes, odds)); //=> false
-
-const set3 = new Set([1, 2, 3, 4, 5]);
-
-console.log(isSupersetOf(set1, set2, true)); //=> false
-
-console.log(isSupersetOf(set3, set1, false)); //=> true
-
-console.log(isSupersetOf(set3, set2, true)); //=> true
-```
+<TryIt code={"const a = [1, 2, 3];\n\nconsole.log(isSupersetOf(a, [])); //=> true\n\nconsole.log(isSupersetOf(a, [1])); //=> true\n\nconsole.log(isSupersetOf(a, [1, 2])); //=> true\n\nconsole.log(isSupersetOf(a, [1, 2, 3])); //=> true\n\n\nconst evens = new Set([2, 4, 6, 8, 10, 12, 14, 16, 18]);\nconst fours = new Set([4, 8, 12, 16]);\n\nconsole.log(isSupersetOf(evens, fours)); //=> true\n\n\nconst set1 = new Set([1, 2, 3]);\nconst set2 = new Set([1, 2, 3]);\n\nconsole.log(isSupersetOf(set1, set2)); //=> true\n\n\nconst a = [1, 2, 3, 4];\n\nconsole.log(isSupersetOf(a, [1, 2, 3, 4, 5])); //=> false\n\nconst primes = new Set([2, 3, 5, 7, 11, 13, 17, 19]);\nconst odds = new Set([3, 5, 7, 9, 11, 13, 15, 17, 19]);\n\nconsole.log(isSupersetOf(primes, odds)); //=> false\n\nconst set3 = new Set([1, 2, 3, 4, 5]);\n\nconsole.log(isSupersetOf(set1, set2, true)); //=> false\n\nconsole.log(isSupersetOf(set3, set1, false)); //=> true\n\nconsole.log(isSupersetOf(set3, set2, true)); //=> true"} />

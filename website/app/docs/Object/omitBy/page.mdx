@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "omitBy — Object",
@@ -45,11 +46,4 @@ omitBy(object, (v) => typeof v === 'number')
 - [omit](/docs/Object/omit)
 - [pickBy](/docs/Object/pickBy)
 
-## Try it
-
-```ts
-const object = { a: 1, b: 'abc', c: 3 };
-
-omitBy(object, (v) => typeof v === 'number')
-//=> { b: 'abc' }
-```
+<TryIt code={"const object = { a: 1, b: 'abc', c: 3 };\n\nomitBy(object, (v) => typeof v === 'number')\n//=> { b: 'abc' }"} />

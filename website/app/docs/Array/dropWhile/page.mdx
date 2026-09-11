@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "dropWhile — Array",
   description: "Creates a slice of array with elements dropped from the beginning or end while the predicate returns true."
@@ -41,16 +42,4 @@ dropWhile([1, 2, 3, 4, 5], (n) => n > 3, true) //=> [1, 2, 3]
 - [takeWhile](/docs/Array/takeWhile)
 - [drop](/docs/Array/drop)
 
-## Try it
-
-```ts
-console.log(dropWhile([1, 2, 3, 4, 5], (n) => n < 3)); //=> [3, 4, 5]
-
-console.log(dropWhile([1, 2, 3], (n) => n > 3)); //=> [1, 2, 3]
-
-console.log(dropWhile([1, 2, 3], (n) => n < 10)); //=> []
-
-console.log(dropWhile([false, false, true, false], (v) => !v)); //=> [true, false]
-
-console.log(dropWhile([1, 2, 3, 4, 5], (n) => n > 3, true)); //=> [1, 2, 3]
-```
+<TryIt code={"console.log(dropWhile([1, 2, 3, 4, 5], (n) => n < 3)); //=> [3, 4, 5]\n\nconsole.log(dropWhile([1, 2, 3], (n) => n > 3)); //=> [1, 2, 3]\n\nconsole.log(dropWhile([1, 2, 3], (n) => n < 10)); //=> []\n\nconsole.log(dropWhile([false, false, true, false], (v) => !v)); //=> [true, false]\n\nconsole.log(dropWhile([1, 2, 3, 4, 5], (n) => n > 3, true)); //=> [1, 2, 3]"} />

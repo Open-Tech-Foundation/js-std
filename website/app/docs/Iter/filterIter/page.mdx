@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "filterIter — Iter",
   description: "Filters items based on a predicate function."
@@ -31,8 +32,4 @@ A new iterable iterator.
 
 - [filterIterAsync](/docs/Iter/filterIterAsync)
 
-## Try it
-
-```ts
-console.log([...filterIter([1, 2, 3, 4], (x) => x % 2 === 0)]); //=> [2, 4]
-```
+<TryIt code={"console.log([...filterIter([1, 2, 3, 4], (x) => x % 2 === 0)]); //=> [2, 4]"} />

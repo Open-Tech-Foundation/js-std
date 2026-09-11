@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "set — Object",
@@ -82,24 +83,4 @@ set({ a: 0 }, 'a.b', 1) //=> { a: 0 }
 - [unset](/docs/Object/unset)
 - [toSet](/docs/Object/toSet)
 
-## Try it
-
-```ts
-console.log(set({}, 'a', 1)); //=> { a: 1 }
-
-console.log(set({}, 'a.b', 25)); //=> { a: { b: 25 } }
-
-set({}, 'user.email', 'user@example.com')
-//=> { user: { email: 'user@example.com' } }
-
-console.log(set({}, 'fruits[0]', 'Apple')); //=> { fruits: ['Apple'] }
-
-// Using a callback to update based on current value
-console.log(set({ a: 1 }, 'a', (val) => val + 1)); //=> { a: 2 }
-
-// Automatically creates arrays if indices are used in path
-console.log(set({}, 'items[2].id', 1)); //=> { items: [undefined, undefined, { id: 1 }] }
-
-// Existing falsy non-object intermediates are not replaced
-console.log(set({ a: 0 }, 'a.b', 1)); //=> { a: 0 }
-```
+<TryIt code={"console.log(set({}, 'a', 1)); //=> { a: 1 }\n\nconsole.log(set({}, 'a.b', 25)); //=> { a: { b: 25 } }\n\nset({}, 'user.email', 'user@example.com')\n//=> { user: { email: 'user@example.com' } }\n\nconsole.log(set({}, 'fruits[0]', 'Apple')); //=> { fruits: ['Apple'] }\n\n// Using a callback to update based on current value\nconsole.log(set({ a: 1 }, 'a', (val) => val + 1)); //=> { a: 2 }\n\n// Automatically creates arrays if indices are used in path\nconsole.log(set({}, 'items[2].id', 1)); //=> { items: [undefined, undefined, { id: 1 }] }\n\n// Existing falsy non-object intermediates are not replaced\nconsole.log(set({ a: 0 }, 'a.b', 1)); //=> { a: 0 }"} />

@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "stripANSI — String",
   description: "Removes ANSI escape codes from a string."
@@ -31,12 +32,4 @@ This utility uses a comprehensive, ECMA-48 compliant regex designed to strip a w
 - **8-bit Codes**: Support for legacy 8-bit CSI introducers (`\u009B`).
 - **High Performance**: Optimized for speed by correctly handling sequence terminators (BEL, ESC\) without being overly greedy.
 
-## Try it
-
-```ts
-stripANSI('\u001b[31mHello\u001b[0m')
-//=> 'Hello'
-
-stripANSI('\x1b[4mUnderline\x1b[0m')
-//=> 'Underline'
-```
+<TryIt code={"stripANSI('\\u001b[31mHello\\u001b[0m')\n//=> 'Hello'\n\nstripANSI('\\x1b[4mUnderline\\x1b[0m')\n//=> 'Underline'"} />

@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "get — Object",
@@ -56,20 +57,4 @@ get({ fruits: ['Apple', 'Mango'] }, ['fruits', 1]) //=> 'Mango'
 - [has](/docs/Object/has)
 - [unset](/docs/Object/unset)
 
-## Try it
-
-```ts
-console.log(get({ a: 1 }, 'a')); //=> 1
-
-console.log(get({ user: { email: 'user@example.com' } }, 'user.email')); //=> 'user@example.com'
-
-console.log(get({ a: [{ b: { c: 99 } }] }, 'a[0].b.c')); //=> 99
-
-console.log(get({ a: 1 }, 'b', 'default')); //=> 'default'
-
-console.log(get({ a: undefined }, 'a', 'default')); //=> undefined
-
-console.log(get({ a: null }, 'a')); //=> null (null is a valid value)
-
-console.log(get({ fruits: ['Apple', 'Mango'] }, ['fruits', 1])); //=> 'Mango'
-```
+<TryIt code={"console.log(get({ a: 1 }, 'a')); //=> 1\n\nconsole.log(get({ user: { email: 'user@example.com' } }, 'user.email')); //=> 'user@example.com'\n\nconsole.log(get({ a: [{ b: { c: 99 } }] }, 'a[0].b.c')); //=> 99\n\nconsole.log(get({ a: 1 }, 'b', 'default')); //=> 'default'\n\nconsole.log(get({ a: undefined }, 'a', 'default')); //=> undefined\n\nconsole.log(get({ a: null }, 'a')); //=> null (null is a valid value)\n\nconsole.log(get({ fruits: ['Apple', 'Mango'] }, ['fruits', 1])); //=> 'Mango'"} />

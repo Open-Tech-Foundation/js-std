@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "dropIter — Iter",
   description: "Skips the first N elements of an iterable."
@@ -37,10 +38,4 @@ const iter = dropIter(arr, 2);
 - [takeIter](/docs/Iter/takeIter)
 - [dropIterAsync](/docs/Iter/dropIterAsync)
 
-## Try it
-
-```ts
-const arr = [1, 2, 3, 4];
-const iter = dropIter(arr, 2);
-console.log([...iter]); //=> [3, 4]
-```
+<TryIt code={"const arr = [1, 2, 3, 4];\nconst iter = dropIter(arr, 2);\nconsole.log([...iter]); //=> [3, 4]"} />

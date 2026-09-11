@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "reduceIter — Iter",
   description: "Accumulates values using a reducer function."
@@ -32,8 +33,4 @@ reduceIter([1, 2, 3], (acc, x) => acc + x, 0) //=> 6
 
 - [reduceIterAsync](/docs/Iter/reduceIterAsync)
 
-## Try it
-
-```ts
-console.log(reduceIter([1, 2, 3], (acc, x) => acc + x, 0)); //=> 6
-```
+<TryIt code={"console.log(reduceIter([1, 2, 3], (acc, x) => acc + x, 0)); //=> 6"} />

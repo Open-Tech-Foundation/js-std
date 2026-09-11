@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "pipe — Functional",
   description: "Performs left-to-right function composition."
@@ -34,12 +35,4 @@ times3ThenAdd2(5); //=> 17 ( (5 * 3) + 2 )
 
 - [compose](/docs/Functional/compose)
 
-## Try it
-
-```ts
-const add2 = (n) => n + 2;
-const times3 = (n) => n * 3;
-
-const times3ThenAdd2 = pipe(times3, add2);
-console.log(times3ThenAdd2(5)); //=> 17 ( (5 * 3) + 2 )
-```
+<TryIt code={"const add2 = (n) => n + 2;\nconst times3 = (n) => n * 3;\n\nconst times3ThenAdd2 = pipe(times3, add2);\nconsole.log(times3ThenAdd2(5)); //=> 17 ( (5 * 3) + 2 )"} />

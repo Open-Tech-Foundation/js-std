@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "omit — Object",
@@ -44,10 +45,4 @@ omit([1, 2, 3], '1') //=> [1, 3]
 - [pick](/docs/Object/pick)
 - [unset](/docs/Object/unset)
 
-## Try it
-
-```ts
-console.log(omit({ a: 1, b: 2, c: 3 }, 'a', 'c')); //=> { b: 2 }
-
-console.log(omit([1, 2, 3], '1')); //=> [1, 3]
-```
+<TryIt code={"console.log(omit({ a: 1, b: 2, c: 3 }, 'a', 'c')); //=> { b: 2 }\n\nconsole.log(omit([1, 2, 3], '1')); //=> [1, 3]"} />

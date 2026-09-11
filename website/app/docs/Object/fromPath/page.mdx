@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "fromPath — Object",
   description: "Converts the given array values into an object property path string."
@@ -22,12 +23,4 @@ fromPath(['a', '0', 'b', 'c']) //=> 'a[0].b.c'
 fromPath(['a', 1, 'b', 'c']) //=> 'a[1].b.c'
 ```
 
-## Try it
-
-```ts
-console.log(fromPath([0])); //=> '[0]'
-
-console.log(fromPath(['a', '0', 'b', 'c'])); //=> 'a[0].b.c'
-
-console.log(fromPath(['a', 1, 'b', 'c'])); //=> 'a[1].b.c'
-```
+<TryIt code={"console.log(fromPath([0])); //=> '[0]'\n\nconsole.log(fromPath(['a', '0', 'b', 'c'])); //=> 'a[0].b.c'\n\nconsole.log(fromPath(['a', 1, 'b', 'c'])); //=> 'a[1].b.c'"} />

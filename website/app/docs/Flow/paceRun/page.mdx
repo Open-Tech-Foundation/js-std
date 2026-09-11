@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "paceRun — FlowControl",
   description: "Creates a throttled function that only invokes func at most once per every interval milliseconds."
@@ -52,11 +53,4 @@ run('b'); // Queued for trailing edge (default trailing: true)
 - [idleRun](/docs/Flow/idleRun)
 - [rateLimitRun](/docs/Flow/rateLimitRun)
 
-## Try it
-
-```ts
-const run = paceRun((val) => console.log(val), 500);
-
-run('a'); // Logs 'a' immediately (leading edge)
-run('b'); // Queued for trailing edge (default trailing: true)
-```
+<TryIt code={"const run = paceRun((val) => console.log(val), 500);\n\nrun('a'); // Logs 'a' immediately (leading edge)\nrun('b'); // Queued for trailing edge (default trailing: true)"} />

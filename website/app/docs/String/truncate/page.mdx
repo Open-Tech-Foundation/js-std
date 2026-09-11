@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "truncate — String",
   description: "Truncates the given string if it's longer than the given maximum string length."
@@ -30,12 +31,4 @@ truncate('hi-package', 5, '---') //=> 'hi---'
 truncate('hi-package', 2) //=> '..'
 ```
 
-## Try it
-
-```ts
-console.log(truncate('hi-package', 8)); //=> 'hi-pa...'
-
-console.log(truncate('hi-package', 5, '---')); //=> 'hi---'
-
-console.log(truncate('hi-package', 2)); //=> '..'
-```
+<TryIt code={"console.log(truncate('hi-package', 8)); //=> 'hi-pa...'\n\nconsole.log(truncate('hi-package', 5, '---')); //=> 'hi---'\n\nconsole.log(truncate('hi-package', 2)); //=> '..'"} />

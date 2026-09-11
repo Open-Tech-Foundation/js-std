@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "merge — Object",
@@ -31,15 +32,4 @@ const c = { a: [7, 8] };
 merge(a, b, c); //=> { a: [7, 8, 5] }
 ```
 
-## Try it
-
-```ts
-const a = { a: { b: 1 }, d: 3 };
-const b = { a: { c: 2 }, e: 5 };
-console.log(merge(a, b)); //=> { a: { b: 1, c: 2 }, d: 3, e: 5 }
-
-const a = { a: [1, 2] };
-const b = { a: [3, 4, 5] };
-const c = { a: [7, 8] };
-console.log(merge(a, b, c)); //=> { a: [7, 8, 5] }
-```
+<TryIt code={"const a = { a: { b: 1 }, d: 3 };\nconst b = { a: { c: 2 }, e: 5 };\nconsole.log(merge(a, b)); //=> { a: { b: 1, c: 2 }, d: 3, e: 5 }\n\nconst a = { a: [1, 2] };\nconst b = { a: [3, 4, 5] };\nconst c = { a: [7, 8] };\nconsole.log(merge(a, b, c)); //=> { a: [7, 8, 5] }"} />

@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "min — Array",
@@ -75,42 +76,4 @@ min(arr, (f) => f.age)
 - [max](/docs/Array/max)
 - [bounds](/docs/Array/bounds)
 
-## Try it
-
-```ts
-console.log(min([])); //=> null
-
-console.log(min([1, undefined, 2, null, 3])); //=> 1
-
-console.log(min([1, 2, -3, 4, 5])); //=> -3
-
-console.log(min(['a', 'b', 'c'])); //=> 'a'
-
-console.log(min(['apple', 'mango', 'grapes'])); //=> 'apple'
-
-const arr = [
-  {
-    name: 'x',
-    age: 10,
-  },
-  {
-    name: 'x2',
-    age: 10,
-  },
-  {
-    name: 'y',
-    age: 16,
-  },
-  {
-    name: 'z',
-    age: 13,
-  },
-  { name: 'y2', age: 16 },
-];
-min(arr, (f) => f.age)
-//=>
-// {
-//  name: 'x',
-//  age: 10,
-// }
-```
+<TryIt code={"console.log(min([])); //=> null\n\nconsole.log(min([1, undefined, 2, null, 3])); //=> 1\n\nconsole.log(min([1, 2, -3, 4, 5])); //=> -3\n\nconsole.log(min(['a', 'b', 'c'])); //=> 'a'\n\nconsole.log(min(['apple', 'mango', 'grapes'])); //=> 'apple'\n\nconst arr = [\n  {\n    name: 'x',\n    age: 10,\n  },\n  {\n    name: 'x2',\n    age: 10,\n  },\n  {\n    name: 'y',\n    age: 16,\n  },\n  {\n    name: 'z',\n    age: 13,\n  },\n  { name: 'y2', age: 16 },\n];\nmin(arr, (f) => f.age)\n//=>\n// {\n//  name: 'x',\n//  age: 10,\n// }"} />

@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "LruCache — Cache",
@@ -74,16 +75,4 @@ Iteration runs least recently used first, so the next eviction is at the front:
 - [TtlCache](/docs/Cache/TtlCache)
 - [memoizeRun](/docs/Flow/memoizeRun)
 
-## Try it
-
-```ts
-const cache = new LruCache(2);
-
-cache.set('a', 1);
-cache.set('b', 2);
-cache.get('a');    // 'a' is now the most recently used
-cache.set('c', 3); // evicts 'b', not 'a'
-
-console.log(cache.has('b')); //=> false
-console.log(cache.has('a')); //=> true
-```
+<TryIt code={"const cache = new LruCache(2);\n\ncache.set('a', 1);\ncache.set('b', 2);\ncache.get('a');    // 'a' is now the most recently used\ncache.set('c', 3); // evicts 'b', not 'a'\n\nconsole.log(cache.has('b')); //=> false\nconsole.log(cache.has('a')); //=> true"} />

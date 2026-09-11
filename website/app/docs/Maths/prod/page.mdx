@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "prod — Maths",
   description: "Calculates the product of all numbers in an array."
@@ -43,17 +44,4 @@ prod(objects, (v) => v.n) //=> 64
 
 - [sum](/docs/Maths/sum)
 
-## Try it
-
-```ts
-console.log(prod([])); //=> 1
-
-console.log(prod([1, 2, 3, 4, 5])); //=> 120
-
-console.log(prod([1, -1])); //=> -1
-
-console.log(prod([-1, -2])); //=> 2
-
-const objects = [{ n: 4 }, { n: 2 }, { n: 8 }];
-console.log(prod(objects, (v) => v.n)); //=> 64
-```
+<TryIt code={"console.log(prod([])); //=> 1\n\nconsole.log(prod([1, 2, 3, 4, 5])); //=> 120\n\nconsole.log(prod([1, -1])); //=> -1\n\nconsole.log(prod([-1, -2])); //=> 2\n\nconst objects = [{ n: 4 }, { n: 2 }, { n: 8 }];\nconsole.log(prod(objects, (v) => v.n)); //=> 64"} />

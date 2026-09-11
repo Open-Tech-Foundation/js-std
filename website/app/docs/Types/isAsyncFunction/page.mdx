@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "isAsyncFunction — Types",
   description: "Checks if the given value is an AsyncFunction."
@@ -47,30 +48,4 @@ isAsyncFunction(aGen); //=> false
 - [isObject](/docs/Types/isObject)
 - [isPlainObject](/docs/Types/isPlainObject)
 
-## Try it
-
-```ts
-console.log(isAsyncFunction(function() {})); //=> false
-
-console.log(isAsyncFunction({})); //=> false
-
-function* generator(i) {
-  yield i;
-  yield i + 10;
-}
-
-console.log(isAsyncFunction(generator)); //=> false
-
-const afn = async () => {}
-console.log(isAsyncFunction(afn)); //=> true
-
-async function getUsers() {}
-console.log(isAsyncFunction(getUsers)); //=> true
-
-async function* aGen(i) {
-  yield i;
-  yield i + 10;
-}
-
-console.log(isAsyncFunction(aGen)); //=> false
-```
+<TryIt code={"console.log(isAsyncFunction(function() {})); //=> false\n\nconsole.log(isAsyncFunction({})); //=> false\n\nfunction* generator(i) {\n  yield i;\n  yield i + 10;\n}\n\nconsole.log(isAsyncFunction(generator)); //=> false\n\nconst afn = async () => {}\nconsole.log(isAsyncFunction(afn)); //=> true\n\nasync function getUsers() {}\nconsole.log(isAsyncFunction(getUsers)); //=> true\n\nasync function* aGen(i) {\n  yield i;\n  yield i + 10;\n}\n\nconsole.log(isAsyncFunction(aGen)); //=> false"} />

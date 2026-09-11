@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "TtlCache — Cache",
@@ -76,14 +77,4 @@ cache.prune(); //=> 2  (the number removed)
 - [LruCache](/docs/Cache/LruCache)
 - [memoizeRun](/docs/Flow/memoizeRun)
 
-## Try it
-
-```ts
-const cache = new TtlCache(1000);
-
-cache.set('a', 1);
-console.log(cache.get('a')); //=> 1
-
-// ...over a second later
-console.log(cache.get('a')); //=> undefined
-```
+<TryIt code={"const cache = new TtlCache(1000);\n\ncache.set('a', 1);\nconsole.log(cache.get('a')); //=> 1\n\n// ...over a second later\nconsole.log(cache.get('a')); //=> undefined"} />

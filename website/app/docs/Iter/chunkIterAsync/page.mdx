@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "chunkIterAsync — Iter",
   description: "Yields the items of an async iterable in groups of a specified size."
@@ -40,10 +41,4 @@ for await (const batch of chunkIterAsync(rows, 500)) {
 - [chunkIter](/docs/Iter/chunkIter)
 - [streamToIter](/docs/Streams/streamToIter)
 
-## Try it
-
-```ts
-for await (const batch of chunkIterAsync(rows, 500)) {
-  await db.insertMany(batch);
-}
-```
+<TryIt code={"for await (const batch of chunkIterAsync(rows, 500)) {\n  await db.insertMany(batch);\n}"} />

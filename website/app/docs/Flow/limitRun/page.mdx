@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "limitRun — FlowControl",
@@ -91,11 +92,4 @@ limit.concurrency //=> 2
 - [mapAsync](/docs/Concurrency/mapAsync)
 - [batchRun](/docs/Flow/batchRun)
 
-## Try it
-
-```ts
-// At most two requests in flight, however many URLs there are
-const limit = limitRun(2);
-
-const pages = await Promise.all(urls.map((url) => limit(() => fetch(url))));
-```
+<TryIt code={"// At most two requests in flight, however many URLs there are\nconst limit = limitRun(2);\n\nconst pages = await Promise.all(urls.map((url) => limit(() => fetch(url))));"} />

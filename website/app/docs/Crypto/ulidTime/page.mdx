@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "ulidTime — Crypto",
   description: "Reads the timestamp back out of a ULID."
@@ -50,11 +51,4 @@ ulidTime('01ARYZ6S41TSV4RRFFQ69G5FAV') //=> 1469918176385
 - [isULID](/docs/Crypto/isULID)
 - [uuidv7Time](/docs/Crypto/uuidv7Time)
 
-## Try it
-
-```ts
-const id = ulid();
-
-console.log(ulidTime(id)); //=> 1769000000000
-console.log(new Date(ulidTime(id))); //=> the moment it was generated
-```
+<TryIt code={"const id = ulid();\n\nconsole.log(ulidTime(id)); //=> 1769000000000\nconsole.log(new Date(ulidTime(id))); //=> the moment it was generated"} />

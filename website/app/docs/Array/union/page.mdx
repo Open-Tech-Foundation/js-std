@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "union — Array",
@@ -58,15 +59,4 @@ union([setA, setB, setC]) //=> [1, 2, 3, 4, 5]
 - [difference](/docs/Array/difference)
 - [symDiff](/docs/Array/symDiff)
 
-## Try it
-
-```ts
-const evens = [2, 4, 6, 8];
-const squares = [1, 4, 9];
-console.log(union([evens, squares])); //=> [2, 4, 6, 8, 1, 9]
-
-const setA = [1, 2, 3];
-const setB = [2, 3];
-const setC = [2, 3, 4, 5];
-console.log(union([setA, setB, setC])); //=> [1, 2, 3, 4, 5]
-```
+<TryIt code={"const evens = [2, 4, 6, 8];\nconst squares = [1, 4, 9];\nconsole.log(union([evens, squares])); //=> [2, 4, 6, 8, 1, 9]\n\nconst setA = [1, 2, 3];\nconst setB = [2, 3];\nconst setC = [2, 3, 4, 5];\nconsole.log(union([setA, setB, setC])); //=> [1, 2, 3, 4, 5]"} />

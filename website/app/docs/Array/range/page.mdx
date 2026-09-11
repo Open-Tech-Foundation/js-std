@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "range — Array",
@@ -70,28 +71,4 @@ range(10, 12, { step: 0.5 }) //=> [10, 10.5, 11, 11.5]
 
 - [intersperse](/docs/Array/intersperse)
 
-## Try it
-
-```ts
-console.log(range(0, 5)); //=> [0, 1, 2, 3, 4]
-
-console.log(range(5)); //=> [0, 1, 2, 3, 4]
-
-console.log(range(-4)); //=> [0, -1, -2, -3]
-
-console.log(range(0, 0)); //=> []
-
-console.log(range(0, 0, { inclusive: true })); //=> [0]
-
-console.log(range(0, 5, { inclusive: true })); //=> [0, 1, 2, 3, 4, 5]
-
-console.log(range(3, 9, { step: 3 })); //=> [3, 6]
-
-console.log(range(0, -5)); //=> [0, -1, -2, -3, -4]
-
-console.log(range(0, -4, { step: -1 })); //=> [0, -1, -2, -3]
-
-console.log(range(-10, -5)); //=> [-10, -9, -8, -7, -6]
-
-console.log(range(10, 12, { step: 0.5 })); //=> [10, 10.5, 11, 11.5]
-```
+<TryIt code={"console.log(range(0, 5)); //=> [0, 1, 2, 3, 4]\n\nconsole.log(range(5)); //=> [0, 1, 2, 3, 4]\n\nconsole.log(range(-4)); //=> [0, -1, -2, -3]\n\nconsole.log(range(0, 0)); //=> []\n\nconsole.log(range(0, 0, { inclusive: true })); //=> [0]\n\nconsole.log(range(0, 5, { inclusive: true })); //=> [0, 1, 2, 3, 4, 5]\n\nconsole.log(range(3, 9, { step: 3 })); //=> [3, 6]\n\nconsole.log(range(0, -5)); //=> [0, -1, -2, -3, -4]\n\nconsole.log(range(0, -4, { step: -1 })); //=> [0, -1, -2, -3]\n\nconsole.log(range(-10, -5)); //=> [-10, -9, -8, -7, -6]\n\nconsole.log(range(10, 12, { step: 0.5 })); //=> [10, 10.5, 11, 11.5]"} />

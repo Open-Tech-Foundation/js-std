@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "isBlob — Types",
   description: "Checks if the given value is a Blob."
@@ -25,10 +26,4 @@ isBlob({}) //=> false
 - [isObject](/docs/Types/isObject)
 - [isPlainObject](/docs/Types/isPlainObject)
 
-## Try it
-
-```ts
-console.log(isBlob(new Blob())); //=> true
-
-console.log(isBlob({})); //=> false
-```
+<TryIt code={"console.log(isBlob(new Blob())); //=> true\n\nconsole.log(isBlob({})); //=> false"} />

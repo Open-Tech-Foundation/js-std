@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "insert — Array",
@@ -72,37 +73,4 @@ insert([1, 2, 3], (x) => x === 2, 5, 'after') //=> [1, 2, 5, 3]
 - [remove](/docs/Array/remove)
 - [replace](/docs/Array/replace)
 
-## Try it
-
-```ts
-console.log(insert([])); //=> []
-
-console.log(insert([1])); //=> [1]
-
-console.log(insert([1], 0)); //=> [1]
-
-console.log(insert([1], 0, 0)); //=> [0, 1]
-
-console.log(insert([1], 1, 0)); //=> [1, 0]
-
-console.log(insert([1, 2, 3], 1, 5)); //=> [1, 5, 2, 3]
-
-console.log(insert([1, 2, 3], -1, 5)); //=> [1, 2, 5, 3]
-
-console.log(insert([1, 2, 3], -3, 5)); //=> [5, 1, 2, 3]
-
-console.log(insert([1, 2, 3], 3, 5)); //=> [1, 2, 3, 5]
-
-console.log(insert([1, 2, 3], 3, 5, 6)); //=> [1, 2, 3, 5, 6]
-
-console.log(insert([1, 2, 3], null, 5, 6)); //=> [1, 2, 3, 5, 6]
-
-console.log(insert([1, 2, 3], 0, [5, 6])); //=> [[5, 6], 1, 2, 3]
-
-console.log(insert([1, 2, 3], 0, ...[5, 6])); //=> [5, 6, 1, 2, 3]
-
-// Predicate-based insert
-console.log(insert([1, 2, 3], (x) => x === 2, 5)); //=> [1, 5, 2, 3]
-
-console.log(insert([1, 2, 3], (x) => x === 2, 5, 'after')); //=> [1, 2, 5, 3]
-```
+<TryIt code={"console.log(insert([])); //=> []\n\nconsole.log(insert([1])); //=> [1]\n\nconsole.log(insert([1], 0)); //=> [1]\n\nconsole.log(insert([1], 0, 0)); //=> [0, 1]\n\nconsole.log(insert([1], 1, 0)); //=> [1, 0]\n\nconsole.log(insert([1, 2, 3], 1, 5)); //=> [1, 5, 2, 3]\n\nconsole.log(insert([1, 2, 3], -1, 5)); //=> [1, 2, 5, 3]\n\nconsole.log(insert([1, 2, 3], -3, 5)); //=> [5, 1, 2, 3]\n\nconsole.log(insert([1, 2, 3], 3, 5)); //=> [1, 2, 3, 5]\n\nconsole.log(insert([1, 2, 3], 3, 5, 6)); //=> [1, 2, 3, 5, 6]\n\nconsole.log(insert([1, 2, 3], null, 5, 6)); //=> [1, 2, 3, 5, 6]\n\nconsole.log(insert([1, 2, 3], 0, [5, 6])); //=> [[5, 6], 1, 2, 3]\n\nconsole.log(insert([1, 2, 3], 0, ...[5, 6])); //=> [5, 6, 1, 2, 3]\n\n// Predicate-based insert\nconsole.log(insert([1, 2, 3], (x) => x === 2, 5)); //=> [1, 5, 2, 3]\n\nconsole.log(insert([1, 2, 3], (x) => x === 2, 5, 'after')); //=> [1, 2, 5, 3]"} />

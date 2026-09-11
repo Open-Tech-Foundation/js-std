@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "isInfinity — Types",
   description: "Checks if the given value is Infinity."
@@ -35,20 +36,4 @@ isInfinity(-Infinity) //=> true
 - [isObject](/docs/Types/isObject)
 - [isPlainObject](/docs/Types/isPlainObject)
 
-## Try it
-
-```ts
-console.log(isInfinity(0)); //=> false
-
-console.log(isInfinity(false)); //=> false
-
-console.log(isInfinity(null)); //=> false
-
-console.log(isInfinity(NaN)); //=> false
-
-console.log(isInfinity(1/0)); //=> true
-
-console.log(isInfinity(Infinity)); //=> true
-
-console.log(isInfinity(-Infinity)); //=> true
-```
+<TryIt code={"console.log(isInfinity(0)); //=> false\n\nconsole.log(isInfinity(false)); //=> false\n\nconsole.log(isInfinity(null)); //=> false\n\nconsole.log(isInfinity(NaN)); //=> false\n\nconsole.log(isInfinity(1/0)); //=> true\n\nconsole.log(isInfinity(Infinity)); //=> true\n\nconsole.log(isInfinity(-Infinity)); //=> true"} />

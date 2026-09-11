@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "findIndexIterAsync — Iter",
   description: "Finds the index of the first item in an async iterator that matches a predicate."
@@ -32,9 +33,4 @@ await findIndexIterAsync(gen(), x => x === 2) //=> 1
 
 - [findIndexIter](/docs/Iter/findIndexIter)
 
-## Try it
-
-```ts
-async function* gen() { yield 1; yield 2; }
-console.log(await findIndexIterAsync(gen(), x => x === 2)); //=> 1
-```
+<TryIt code={"async function* gen() { yield 1; yield 2; }\nconsole.log(await findIndexIterAsync(gen(), x => x === 2)); //=> 1"} />

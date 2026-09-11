@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "colorLighten — Colors",
   description: "Increases the lightness of a color."
@@ -24,10 +25,4 @@ colorLighten({ value: 'red', amount: 0.2 }); //=> '#ff6666'
 colorLighten({ value: 'red', amount: 0.2, to: 'hsl' }); //=> 'hsl(0, 100%, 70%)'
 ```
 
-## Try it
-
-```ts
-console.log(colorLighten({ value: '#000', amount: 0.5 })); //=> '#808080'
-console.log(colorLighten({ value: 'red', amount: 0.2 })); //=> '#ff6666'
-console.log(colorLighten({ value: 'red', amount: 0.2, to: 'hsl' })); //=> 'hsl(0, 100%, 70%)'
-```
+<TryIt code={"console.log(colorLighten({ value: '#000', amount: 0.5 })); //=> '#808080'\nconsole.log(colorLighten({ value: 'red', amount: 0.2 })); //=> '#ff6666'\nconsole.log(colorLighten({ value: 'red', amount: 0.2, to: 'hsl' })); //=> 'hsl(0, 100%, 70%)'"} />

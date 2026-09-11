@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "tryParseJSON — Json",
@@ -122,11 +123,4 @@ tryParseJSON('{"a":1}') //=> {a:1} — tells you and gives the value
 - [DateTime](/docs/DateTime/DateTime) — ISO datetime handled by default
 - [Duration](/docs/DateTime/Duration) — ISO duration handled by default
 
-## Try it
-
-```ts
-console.log(tryParseJSON('{"a":1}')); //=> {a:1}
-console.log(tryParseJSON('[1,2,3]')); //=> [1,2,3]
-console.log(tryParseJSON('null')); //=> null
-console.log(tryParseJSON('"hi"')); //=> "hi"
-```
+<TryIt code={"console.log(tryParseJSON('{\"a\":1}')); //=> {a:1}\nconsole.log(tryParseJSON('[1,2,3]')); //=> [1,2,3]\nconsole.log(tryParseJSON('null')); //=> null\nconsole.log(tryParseJSON('\"hi\"')); //=> \"hi\""} />

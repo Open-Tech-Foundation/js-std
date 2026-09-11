@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "isNegZero — Number",
@@ -42,14 +43,4 @@ isNegZero(-0x0) //=> true
 
 - [isZero](/docs/Number/isZero)
 
-## Try it
-
-```ts
-console.log(isNegZero(0)); //=> false
-
-console.log(isNegZero(-0)); //=> true
-
-console.log(isNegZero(-0.0)); //=> true
-
-console.log(isNegZero(-0x0)); //=> true
-```
+<TryIt code={"console.log(isNegZero(0)); //=> false\n\nconsole.log(isNegZero(-0)); //=> true\n\nconsole.log(isNegZero(-0.0)); //=> true\n\nconsole.log(isNegZero(-0x0)); //=> true"} />

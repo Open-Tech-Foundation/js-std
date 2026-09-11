@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "keyBy — Array",
@@ -78,14 +79,4 @@ keyBy(users, 'id');   //=> { a1: {...} }       ← single elements
 - [groupBy](/docs/Array/groupBy)
 - [countBy](/docs/Array/countBy)
 
-## Try it
-
-```ts
-const users = [
-  { id: 'a1', name: 'Ada' },
-  { id: 'b2', name: 'Linus' },
-];
-
-keyBy(users, 'id');
-//=> { a1: { id: 'a1', name: 'Ada' }, b2: { id: 'b2', name: 'Linus' } }
-```
+<TryIt code={"const users = [\n  { id: 'a1', name: 'Ada' },\n  { id: 'b2', name: 'Linus' },\n];\n\nkeyBy(users, 'id');\n//=> { a1: { id: 'a1', name: 'Ada' }, b2: { id: 'b2', name: 'Linus' } }"} />

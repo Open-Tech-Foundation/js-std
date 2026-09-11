@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "dropIterAsync — Iter",
   description: "Skips the first N elements of an async iterable."
@@ -32,9 +33,4 @@ await toArrayIterAsync(dropIterAsync(gen(), 1)) //=> [2, 3]
 
 - [dropIter](/docs/Iter/dropIter)
 
-## Try it
-
-```ts
-async function* gen() { yield 1; yield 2; yield 3; }
-console.log(await toArrayIterAsync(dropIterAsync(gen(), 1))); //=> [2, 3]
-```
+<TryIt code={"async function* gen() { yield 1; yield 2; yield 3; }\nconsole.log(await toArrayIterAsync(dropIterAsync(gen(), 1))); //=> [2, 3]"} />

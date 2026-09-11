@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "colorGrayscale — Colors",
   description: "Converts a color to grayscale."
@@ -22,9 +23,4 @@ colorGrayscale({ value: 'red' }); //=> '#808080'
 colorGrayscale({ value: '#00ff00' }); //=> '#808080'
 ```
 
-## Try it
-
-```ts
-console.log(colorGrayscale({ value: 'red' })); //=> '#808080'
-console.log(colorGrayscale({ value: '#00ff00' })); //=> '#808080'
-```
+<TryIt code={"console.log(colorGrayscale({ value: 'red' })); //=> '#808080'\nconsole.log(colorGrayscale({ value: '#00ff00' })); //=> '#808080'"} />

@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "colorAlpha — Colors",
   description: "Adjusts the alpha channel of a color."
@@ -23,9 +24,4 @@ colorAlpha({ value: 'red', amount: 0.5 }); //=> '#ff000080'
 colorAlpha({ value: 'red', amount: 0.5, to: 'rgba' }); //=> 'rgba(255, 0, 0, 0.5)'
 ```
 
-## Try it
-
-```ts
-console.log(colorAlpha({ value: 'red', amount: 0.5 })); //=> '#ff000080'
-console.log(colorAlpha({ value: 'red', amount: 0.5, to: 'rgba' })); //=> 'rgba(255, 0, 0, 0.5)'
-```
+<TryIt code={"console.log(colorAlpha({ value: 'red', amount: 0.5 })); //=> '#ff000080'\nconsole.log(colorAlpha({ value: 'red', amount: 0.5, to: 'rgba' })); //=> 'rgba(255, 0, 0, 0.5)'"} />

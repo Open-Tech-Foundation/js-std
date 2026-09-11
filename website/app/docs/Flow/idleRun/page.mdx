@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "idleRun — FlowControl",
   description: "Creates a debounced function that delays invoking func until after delay milliseconds have elapsed since the last time the debounced function was invoked."
@@ -56,13 +57,4 @@ run('c');
 - [paceRun](/docs/Flow/paceRun)
 - [rateLimitRun](/docs/Flow/rateLimitRun)
 
-## Try it
-
-```ts
-const run = idleRun((val) => console.log(val), 500);
-
-run('a');
-run('b');
-run('c');
-// => logs 'c' after 500ms
-```
+<TryIt code={"const run = idleRun((val) => console.log(val), 500);\n\nrun('a');\nrun('b');\nrun('c');\n// => logs 'c' after 500ms"} />

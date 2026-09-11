@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "zip — Array",
   description: "Creates an array of grouped elements from multiple arrays."
@@ -36,12 +37,4 @@ zip([1, 2], ['a', 'b'], [true, false]) //=> [[1, 'a', true], [2, 'b', false]]
 
 - [unzip](/docs/Array/unzip)
 
-## Try it
-
-```ts
-console.log(zip([1, 2], ['a', 'b'])); //=> [[1, 'a'], [2, 'b']]
-
-console.log(zip([1, 2, 3], ['a', 'b'])); //=> [[1, 'a'], [2, 'b'], [3, undefined]]
-
-console.log(zip([1, 2], ['a', 'b'], [true, false])); //=> [[1, 'a', true], [2, 'b', false]]
-```
+<TryIt code={"console.log(zip([1, 2], ['a', 'b'])); //=> [[1, 'a'], [2, 'b']]\n\nconsole.log(zip([1, 2, 3], ['a', 'b'])); //=> [[1, 'a'], [2, 'b'], [3, undefined]]\n\nconsole.log(zip([1, 2], ['a', 'b'], [true, false])); //=> [[1, 'a', true], [2, 'b', false]]"} />

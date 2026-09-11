@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "concatIter — Iter",
   description: "Yields the items of each iterable in turn."
@@ -36,10 +37,4 @@ that stops early never touches the later ones.
 - [concatIterAsync](/docs/Iter/concatIterAsync)
 - [zipIter](/docs/Iter/zipIter)
 
-## Try it
-
-```ts
-console.log([...concatIter([1, 2], [3, 4])]); //=> [1, 2, 3, 4]
-
-console.log([...concatIter('ab', [1, 2])]); //=> ['a', 'b', 1, 2]
-```
+<TryIt code={"console.log([...concatIter([1, 2], [3, 4])]); //=> [1, 2, 3, 4]\n\nconsole.log([...concatIter('ab', [1, 2])]); //=> ['a', 'b', 1, 2]"} />

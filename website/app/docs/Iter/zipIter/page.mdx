@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "zipIter — Iter",
   description: "Yields one group per position, taking one item from each iterable."
@@ -42,10 +43,4 @@ stops early.
 - [zipIterAsync](/docs/Iter/zipIterAsync)
 - [zip](/docs/Array/zip)
 
-## Try it
-
-```ts
-console.log([...zipIter([1, 2], ['a', 'b'])]); //=> [[1, 'a'], [2, 'b']]
-
-console.log([...zipIter([1, 2, 3], ['a'])]); //=> [[1, 'a'], [2, undefined], [3, undefined]]
-```
+<TryIt code={"console.log([...zipIter([1, 2], ['a', 'b'])]); //=> [[1, 'a'], [2, 'b']]\n\nconsole.log([...zipIter([1, 2, 3], ['a'])]); //=> [[1, 'a'], [2, undefined], [3, undefined]]"} />

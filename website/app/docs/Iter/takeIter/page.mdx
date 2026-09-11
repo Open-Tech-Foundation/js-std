@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "takeIter — Iter",
   description: "Takes the first N elements of an iterable."
@@ -42,10 +43,4 @@ const iter = takeIter(arr, 2);
 - [dropIter](/docs/Iter/dropIter)
 - [takeIterAsync](/docs/Iter/takeIterAsync)
 
-## Try it
-
-```ts
-const arr = [1, 2, 3, 4];
-const iter = takeIter(arr, 2);
-console.log([...iter]); //=> [1, 2]
-```
+<TryIt code={"const arr = [1, 2, 3, 4];\nconst iter = takeIter(arr, 2);\nconsole.log([...iter]); //=> [1, 2]"} />

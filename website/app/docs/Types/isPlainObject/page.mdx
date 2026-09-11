@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "isPlainObject — Types",
@@ -52,23 +53,4 @@ isPlainObject(null) //=> false
 - [isObject](/docs/Types/isObject)
 - [isEmpty](/docs/Assert/isEmpty)
 
-## Try it
-
-```ts
-console.log(isPlainObject({})); //=> true
-
-console.log(isPlainObject({ a: 1 })); //=> true
-
-console.log(isPlainObject(Object.create(null))); //=> true
-
-console.log(isPlainObject(new Object())); //=> true
-
-// Non-plain objects
-console.log(isPlainObject([])); //=> false
-
-console.log(isPlainObject(new Map())); //=> false
-
-console.log(isPlainObject(new Error())); //=> false
-
-console.log(isPlainObject(null)); //=> false
-```
+<TryIt code={"console.log(isPlainObject({})); //=> true\n\nconsole.log(isPlainObject({ a: 1 })); //=> true\n\nconsole.log(isPlainObject(Object.create(null))); //=> true\n\nconsole.log(isPlainObject(new Object())); //=> true\n\n// Non-plain objects\nconsole.log(isPlainObject([])); //=> false\n\nconsole.log(isPlainObject(new Map())); //=> false\n\nconsole.log(isPlainObject(new Error())); //=> false\n\nconsole.log(isPlainObject(null)); //=> false"} />

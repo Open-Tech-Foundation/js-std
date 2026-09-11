@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "eachIterAsync — Iter",
   description: "Executes a function for each item in an async iterator."
@@ -32,9 +33,4 @@ await eachIterAsync(gen(), x => console.log(x)) //=> Logs 1, 2
 
 - [eachIter](/docs/Iter/eachIter)
 
-## Try it
-
-```ts
-async function* gen() { yield 1; yield 2; }
-console.log(await eachIterAsync(gen(), x => console.log(x))); //=> Logs 1, 2
-```
+<TryIt code={"async function* gen() { yield 1; yield 2; }\nconsole.log(await eachIterAsync(gen(), x => console.log(x))); //=> Logs 1, 2"} />

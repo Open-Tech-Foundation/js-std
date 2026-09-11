@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "retryRun — FlowControl",
   description: "Retries an asynchronous function until it succeeds or reaches the maximum number of attempts."
@@ -49,12 +50,4 @@ const result = await retryRun(() => fetchData(), {
 
 - [timeoutRun](/docs/Flow/timeoutRun)
 
-## Try it
-
-```ts
-const result = await retryRun(() => fetchData(), {
-  retries: 3,
-  delay: 1000,
-  backoff: 'exponential'
-});
-```
+<TryIt code={"const result = await retryRun(() => fetchData(), {\n  retries: 3,\n  delay: 1000,\n  backoff: 'exponential'\n});"} />

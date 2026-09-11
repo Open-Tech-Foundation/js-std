@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "unflattenObject — Object",
@@ -75,25 +76,4 @@ unflattenObject({ '__proto__.polluted': true }) //=> {}
 - [set](/docs/Object/set)
 - [toPath](/docs/Object/toPath)
 
-## Try it
-
-```ts
-console.log(unflattenObject({ 'a.b.c': 1 })); //=> { a: { b: { c: 1 } } }
-
-unflattenObject({ 'user.name': 'Tom', 'user.age': 30 })
-//=> { user: { name: 'Tom', age: 30 } }
-
-console.log(unflattenObject({ 'a[0]': 1, 'a[1]': 2 })); //=> { a: [1, 2] }
-
-// Dotted indices work too
-console.log(unflattenObject({ 'a.0': 1, 'a.1': 2 })); //=> { a: [1, 2] }
-
-unflattenObject({ 'users[0].name': 'Tom', 'users[1].name': 'Ram' })
-//=> { users: [{ name: 'Tom' }, { name: 'Ram' }] }
-
-// An all-index root gives an array
-console.log(unflattenObject({ '[0]': 'a', '[1]': 'b' })); //=> ['a', 'b']
-
-// Prototype-polluting keys are ignored
-console.log(unflattenObject({ '__proto__.polluted': true })); //=> {}
-```
+<TryIt code={"console.log(unflattenObject({ 'a.b.c': 1 })); //=> { a: { b: { c: 1 } } }\n\nunflattenObject({ 'user.name': 'Tom', 'user.age': 30 })\n//=> { user: { name: 'Tom', age: 30 } }\n\nconsole.log(unflattenObject({ 'a[0]': 1, 'a[1]': 2 })); //=> { a: [1, 2] }\n\n// Dotted indices work too\nconsole.log(unflattenObject({ 'a.0': 1, 'a.1': 2 })); //=> { a: [1, 2] }\n\nunflattenObject({ 'users[0].name': 'Tom', 'users[1].name': 'Ram' })\n//=> { users: [{ name: 'Tom' }, { name: 'Ram' }] }\n\n// An all-index root gives an array\nconsole.log(unflattenObject({ '[0]': 'a', '[1]': 'b' })); //=> ['a', 'b']\n\n// Prototype-polluting keys are ignored\nconsole.log(unflattenObject({ '__proto__.polluted': true })); //=> {}"} />

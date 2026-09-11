@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "flatMapIterAsync — Iter",
   description: "Maps each item in an async iterator and flattens the result."
@@ -32,9 +33,4 @@ await toArrayIterAsync(flatMapIterAsync(gen(), x => [x, x * 10])) //=> [1, 10, 2
 
 - [flatMapIter](/docs/Iter/flatMapIter)
 
-## Try it
-
-```ts
-async function* gen() { yield 1; yield 2; }
-console.log(await toArrayIterAsync(flatMapIterAsync(gen(), x => [x, x * 10]))); //=> [1, 10, 2, 20]
-```
+<TryIt code={"async function* gen() { yield 1; yield 2; }\nconsole.log(await toArrayIterAsync(flatMapIterAsync(gen(), x => [x, x * 10]))); //=> [1, 10, 2, 20]"} />

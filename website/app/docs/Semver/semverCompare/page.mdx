@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "semverCompare — Semver",
@@ -51,10 +52,4 @@ As a sort comparator:
 - [semverSort](/docs/Semver/semverSort)
 - [semverSatisfies](/docs/Semver/semverSatisfies)
 
-## Try it
-
-```ts
-console.log(semverCompare('1.2.3', '1.10.0')); //=> -1  (segments compare numerically)
-console.log(semverCompare('2.0.0', '2.0.0-rc.1')); //=> 1
-console.log(semverCompare('1.0.0+a', '1.0.0+b')); //=> 0
-```
+<TryIt code={"console.log(semverCompare('1.2.3', '1.10.0')); //=> -1  (segments compare numerically)\nconsole.log(semverCompare('2.0.0', '2.0.0-rc.1')); //=> 1\nconsole.log(semverCompare('1.0.0+a', '1.0.0+b')); //=> 0"} />

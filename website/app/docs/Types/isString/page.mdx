@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "isString — Types",
   description: "Checks if the given value is String."
@@ -27,12 +28,4 @@ isString(1) //=> false
 - [isObject](/docs/Types/isObject)
 - [isPlainObject](/docs/Types/isPlainObject)
 
-## Try it
-
-```ts
-console.log(isString('abc')); //=> true
-
-console.log(isString(String(1))); //=> true
-
-console.log(isString(1)); //=> false
-```
+<TryIt code={"console.log(isString('abc')); //=> true\n\nconsole.log(isString(String(1))); //=> true\n\nconsole.log(isString(1)); //=> false"} />

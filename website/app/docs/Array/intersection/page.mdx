@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "intersection — Array",
@@ -68,25 +69,4 @@ intersection(
 - [symDiff](/docs/Array/symDiff)
 - [union](/docs/Array/union)
 
-## Try it
-
-```ts
-const setA = [1, 2];
-const setB = [2, 3];
-console.log(intersection([setA, setB])); //=> [2]
-
-const arrays = [
-  [1, 2, 3],
-  [2, 1, 5],
-  [3, 1],
-];
-console.log(intersection([...arrays])); //=> [1]
-
-console.log(intersection(
-  [
-    [2.1, 1.2],
-    [2.3, 3.4],
-  ],
-  Math.floor
-)); //=> [2.1]
-```
+<TryIt code={"const setA = [1, 2];\nconst setB = [2, 3];\nconsole.log(intersection([setA, setB])); //=> [2]\n\nconst arrays = [\n  [1, 2, 3],\n  [2, 1, 5],\n  [3, 1],\n];\nconsole.log(intersection([...arrays])); //=> [1]\n\nconsole.log(intersection(\n  [\n    [2.1, 1.2],\n    [2.3, 3.4],\n  ],\n  Math.floor\n)); //=> [2.1]"} />

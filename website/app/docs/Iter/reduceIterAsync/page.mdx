@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "reduceIterAsync — Iter",
   description: "Accumulates values from an async iterator using a reducer function."
@@ -33,9 +34,4 @@ await reduceIterAsync(gen(), (acc, x) => acc + x, 0) //=> 6
 
 - [reduceIter](/docs/Iter/reduceIter)
 
-## Try it
-
-```ts
-async function* gen() { yield 1; yield 2; yield 3; }
-console.log(await reduceIterAsync(gen(), (acc, x) => acc + x, 0)); //=> 6
-```
+<TryIt code={"async function* gen() { yield 1; yield 2; yield 3; }\nconsole.log(await reduceIterAsync(gen(), (acc, x) => acc + x, 0)); //=> 6"} />

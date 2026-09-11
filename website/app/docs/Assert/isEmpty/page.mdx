@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "isEmpty — Assert",
@@ -64,29 +65,4 @@ isEmpty(false) //=> false
 
 - [isNil](/docs/Assert/isNil)
 
-## Try it
-
-```ts
-// --- Empty Cases ---
-console.log(isEmpty('')); //=> true
-console.log(isEmpty([])); //=> true
-console.log(isEmpty({})); //=> true
-console.log(isEmpty(new Map())); //=> true
-console.log(isEmpty(new Set())); //=> true
-console.log(isEmpty(new ArrayBuffer(0))); //=> true
-console.log(isEmpty(new Array(5), true)); //=> true
-
-// --- Non-Empty Cases ---
-console.log(isEmpty(' ')); //=> false
-console.log(isEmpty('a')); //=> false
-console.log(isEmpty([1])); //=> false
-console.log(isEmpty({ [Symbol('x')]: 1 })); //=> false
-console.log(isEmpty({ length: 0, size: 0, byteLength: 0 })); //=> false
-console.log(isEmpty([,])); //=> false
-
-// --- Other Values ---
-console.log(isEmpty(null)); //=> false
-console.log(isEmpty(undefined)); //=> false
-console.log(isEmpty(1)); //=> false
-console.log(isEmpty(false)); //=> false
-```
+<TryIt code={"// --- Empty Cases ---\nconsole.log(isEmpty('')); //=> true\nconsole.log(isEmpty([])); //=> true\nconsole.log(isEmpty({})); //=> true\nconsole.log(isEmpty(new Map())); //=> true\nconsole.log(isEmpty(new Set())); //=> true\nconsole.log(isEmpty(new ArrayBuffer(0))); //=> true\nconsole.log(isEmpty(new Array(5), true)); //=> true\n\n// --- Non-Empty Cases ---\nconsole.log(isEmpty(' ')); //=> false\nconsole.log(isEmpty('a')); //=> false\nconsole.log(isEmpty([1])); //=> false\nconsole.log(isEmpty({ [Symbol('x')]: 1 })); //=> false\nconsole.log(isEmpty({ length: 0, size: 0, byteLength: 0 })); //=> false\nconsole.log(isEmpty([,])); //=> false\n\n// --- Other Values ---\nconsole.log(isEmpty(null)); //=> false\nconsole.log(isEmpty(undefined)); //=> false\nconsole.log(isEmpty(1)); //=> false\nconsole.log(isEmpty(false)); //=> false"} />

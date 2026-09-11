@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "flatMapAsync — Concurrency",
@@ -49,11 +50,4 @@ const result = await flatMapAsync(items, async (n) => {
 - [mapAsync](/docs/Concurrency/mapAsync)
 - [filterAsync](/docs/Concurrency/filterAsync)
 
-## Try it
-
-```ts
-const items = [1, 2, 3];
-const result = await flatMapAsync(items, async (n) => {
-  return [n, n * 2];
-}); //=> [1, 2, 2, 4, 3, 6]
-```
+<TryIt code={"const items = [1, 2, 3];\nconst result = await flatMapAsync(items, async (n) => {\n  return [n, n * 2];\n}); //=> [1, 2, 2, 4, 3, 6]"} />

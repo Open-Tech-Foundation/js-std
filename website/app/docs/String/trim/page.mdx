@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "trim — String",
   description: "Removes leading and trailing whitespace or specified characters from a string."
@@ -34,10 +35,4 @@ trim('-_-abc-_-', '_-') //=> 'abc'
 - [truncate](/docs/String/truncate)
 - [words](/docs/String/words)
 
-## Try it
-
-```ts
-console.log(trim('  abc  ')); //=> 'abc'
-
-console.log(trim('-_-abc-_-', '_-')); //=> 'abc'
-```
+<TryIt code={"console.log(trim('  abc  ')); //=> 'abc'\n\nconsole.log(trim('-_-abc-_-', '_-')); //=> 'abc'"} />

@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "snakeCase — String",
   description: "Converts string to snake case."
@@ -36,12 +37,4 @@ snakeCase('--foo-bar--') //=> 'foo_bar'
 - [pascalCase](/docs/String/pascalCase)
 - [kebabCase](/docs/String/kebabCase)
 
-## Try it
-
-```ts
-console.log(snakeCase('Foo Bar')); //=> 'foo_bar'
-
-console.log(snakeCase('fooBar')); //=> 'foo_bar'
-
-console.log(snakeCase('--foo-bar--')); //=> 'foo_bar'
-```
+<TryIt code={"console.log(snakeCase('Foo Bar')); //=> 'foo_bar'\n\nconsole.log(snakeCase('fooBar')); //=> 'foo_bar'\n\nconsole.log(snakeCase('--foo-bar--')); //=> 'foo_bar'"} />

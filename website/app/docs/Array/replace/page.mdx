@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "replace — Array",
@@ -59,24 +60,4 @@ replace([1, 2, 3, 4, 5], (x) => x % 2 === 0, 0) //=> [1, 0, 3, 0, 5]
 - [insert](/docs/Array/insert)
 - [remove](/docs/Array/remove)
 
-## Try it
-
-```ts
-console.log(replace([])); //=> []
-
-console.log(replace([1])); //=> [1]
-
-console.log(replace([1, 2, 3], 0, 1, 'a')); //=> ['a', 2, 3]
-
-console.log(replace([1, 2, 3], null, 1, 'a')); //=> [1, 2, 'a']
-
-console.log(replace([1, 2, 3], 3, null, 'c')); //=> [1, 2, 3, 'c']
-
-const months = ['Jan', 'Feb', 'Apr', 'May'];
-console.log(replace(months, 1, 1, 'Feb', 'Mar')); //=> ['Jan', 'Feb', 'Mar', 'Apr', 'May']
-
-console.log(replace(months, 1, null, 'Feb', 'Mar')); //=> ['Jan', 'Feb', 'Mar', 'May']
-
-// Predicate-based replace
-console.log(replace([1, 2, 3, 4, 5], (x) => x % 2 === 0, 0)); //=> [1, 0, 3, 0, 5]
-```
+<TryIt code={"console.log(replace([])); //=> []\n\nconsole.log(replace([1])); //=> [1]\n\nconsole.log(replace([1, 2, 3], 0, 1, 'a')); //=> ['a', 2, 3]\n\nconsole.log(replace([1, 2, 3], null, 1, 'a')); //=> [1, 2, 'a']\n\nconsole.log(replace([1, 2, 3], 3, null, 'c')); //=> [1, 2, 3, 'c']\n\nconst months = ['Jan', 'Feb', 'Apr', 'May'];\nconsole.log(replace(months, 1, 1, 'Feb', 'Mar')); //=> ['Jan', 'Feb', 'Mar', 'Apr', 'May']\n\nconsole.log(replace(months, 1, null, 'Feb', 'Mar')); //=> ['Jan', 'Feb', 'Mar', 'May']\n\n// Predicate-based replace\nconsole.log(replace([1, 2, 3, 4, 5], (x) => x % 2 === 0, 0)); //=> [1, 0, 3, 0, 5]"} />

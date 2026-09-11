@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "streamToBytes — Streams",
   description: "Reads a byte stream fully into a single Uint8Array."
@@ -40,8 +41,4 @@ await sha256(bytesToString(bytes));
 - [streamToText](/docs/Streams/streamToText)
 - [streamToArray](/docs/Streams/streamToArray)
 
-## Try it
-
-```ts
-console.log(await streamToBytes(response.body)); //=> Uint8Array [...]
-```
+<TryIt code={"console.log(await streamToBytes(response.body)); //=> Uint8Array [...]"} />

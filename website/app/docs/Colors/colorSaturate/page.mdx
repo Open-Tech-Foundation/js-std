@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "colorSaturate — Colors",
   description: "Increases the saturation of a color."
@@ -23,9 +24,4 @@ colorSaturate({ value: 'gray', amount: 0.5 }); //=> '#bf4040'
 colorSaturate({ value: 'gray', amount: 0.5, to: 'hsl' }); //=> 'hsl(0, 50%, 50%)'
 ```
 
-## Try it
-
-```ts
-console.log(colorSaturate({ value: 'gray', amount: 0.5 })); //=> '#bf4040'
-console.log(colorSaturate({ value: 'gray', amount: 0.5, to: 'hsl' })); //=> 'hsl(0, 50%, 50%)'
-```
+<TryIt code={"console.log(colorSaturate({ value: 'gray', amount: 0.5 })); //=> '#bf4040'\nconsole.log(colorSaturate({ value: 'gray', amount: 0.5, to: 'hsl' })); //=> 'hsl(0, 50%, 50%)'"} />

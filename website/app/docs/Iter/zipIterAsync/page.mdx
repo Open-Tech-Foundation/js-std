@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "zipIterAsync — Iter",
   description: "Yields one group per position, taking one item from each async iterable."
@@ -41,10 +42,4 @@ await toArrayIterAsync(rows) //=> [['ann', 9], ['bob', 7]]
 - [zipIter](/docs/Iter/zipIter)
 - [streamToIter](/docs/Streams/streamToIter)
 
-## Try it
-
-```ts
-const rows = zipIterAsync(streamToIter(names), streamToIter(scores));
-
-console.log(await toArrayIterAsync(rows)); //=> [['ann', 9], ['bob', 7]]
-```
+<TryIt code={"const rows = zipIterAsync(streamToIter(names), streamToIter(scores));\n\nconsole.log(await toArrayIterAsync(rows)); //=> [['ann', 9], ['bob', 7]]"} />

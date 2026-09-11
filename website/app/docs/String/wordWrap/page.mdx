@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "wordWrap — String",
@@ -107,15 +108,4 @@ wordWrap(`\u001b[31m${message}\u001b[0m`, 40);
 - [truncate](/docs/String/truncate)
 - [pad](/docs/String/pad)
 
-## Try it
-
-```ts
-wordWrap('the quick brown fox', 10);
-//=> 'the quick
-//    brown fox'
-
-wordWrap('one two three four five six', 12);
-//=> 'one two
-//    three four
-//    five six'
-```
+<TryIt code={"wordWrap('the quick brown fox', 10);\n//=> 'the quick\n//    brown fox'\n\nwordWrap('one two three four five six', 12);\n//=> 'one two\n//    three four\n//    five six'"} />

@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "sort — Array",
@@ -54,13 +55,4 @@ sort(dates) //=> [2022-01-01, 2023-01-01]
 
 - [sortBy](/docs/Array/sortBy)
 
-## Try it
-
-```ts
-console.log(sort([1, 3, 2])); //=> [1, 2, 3]
-
-console.log(sort(['x', 'z', 'y'], 'desc')); //=> ['z', 'y', 'x']
-
-const dates = [new Date(2023, 0, 1), new Date(2022, 0, 1)];
-console.log(sort(dates)); //=> [2022-01-01, 2023-01-01]
-```
+<TryIt code={"console.log(sort([1, 3, 2])); //=> [1, 2, 3]\n\nconsole.log(sort(['x', 'z', 'y'], 'desc')); //=> ['z', 'y', 'x']\n\nconst dates = [new Date(2023, 0, 1), new Date(2022, 0, 1)];\nconsole.log(sort(dates)); //=> [2022-01-01, 2023-01-01]"} />

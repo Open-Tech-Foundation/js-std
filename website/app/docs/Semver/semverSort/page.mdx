@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "semverSort — Semver",
@@ -53,12 +54,4 @@ semverSort(['1.0.0', '1.0.0-rc.1', '1.0.0-alpha'])
 
 - [semverCompare](/docs/Semver/semverCompare)
 
-## Try it
-
-```ts
-semverSort(['1.10.0', '1.2.3', '1.0.0'])
-//=> ['1.0.0', '1.2.3', '1.10.0']
-
-semverSort(['1.0.0', '1.10.0', '1.2.3'], 'desc')
-//=> ['1.10.0', '1.2.3', '1.0.0']
-```
+<TryIt code={"semverSort(['1.10.0', '1.2.3', '1.0.0'])\n//=> ['1.0.0', '1.2.3', '1.10.0']\n\nsemverSort(['1.0.0', '1.10.0', '1.2.3'], 'desc')\n//=> ['1.10.0', '1.2.3', '1.0.0']"} />

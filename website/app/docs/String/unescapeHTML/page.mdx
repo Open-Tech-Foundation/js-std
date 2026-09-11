@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "unescapeHTML — String",
   description: "Unescapes HTML entities back to their original characters."
@@ -29,9 +30,4 @@ unescapeHTML('&lt;script&gt;alert(&quot;xss&quot;)&lt;/script&gt;')
 
 - [escapeHTML](/docs/String/escapeHTML)
 
-## Try it
-
-```ts
-unescapeHTML('&lt;script&gt;alert(&quot;xss&quot;)&lt;/script&gt;')
-//=> '<script>alert("xss")</script>'
-```
+<TryIt code={"unescapeHTML('&lt;script&gt;alert(&quot;xss&quot;)&lt;/script&gt;')\n//=> '<script>alert(\"xss\")</script>'"} />

@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "isJSONValue — Json",
@@ -104,18 +105,4 @@ function logPayload(payload: unknown) {
 - [tryStringifyJSON](/docs/Json/tryStringifyJSON) — stringify with `bigint` support
 - [isJSON](/docs/Types/isJSON) — checks if a *string* contains JSON
 
-## Try it
-
-```ts
-console.log(isJSONValue(null)); //=> true
-console.log(isJSONValue("hi")); //=> true
-console.log(isJSONValue(0)); //=> true
-console.log(isJSONValue(false)); //=> true
-
-console.log(isJSONValue(NaN)); //=> false — would become `null`
-console.log(isJSONValue(Infinity)); //=> false
-console.log(isJSONValue(BigInt(1))); //=> false — would throw
-console.log(isJSONValue(undefined)); //=> false
-console.log(isJSONValue(() => {})); //=> false
-console.log(isJSONValue(Symbol("a"))); //=> false
-```
+<TryIt code={"console.log(isJSONValue(null)); //=> true\nconsole.log(isJSONValue(\"hi\")); //=> true\nconsole.log(isJSONValue(0)); //=> true\nconsole.log(isJSONValue(false)); //=> true\n\nconsole.log(isJSONValue(NaN)); //=> false — would become `null`\nconsole.log(isJSONValue(Infinity)); //=> false\nconsole.log(isJSONValue(BigInt(1))); //=> false — would throw\nconsole.log(isJSONValue(undefined)); //=> false\nconsole.log(isJSONValue(() => {})); //=> false\nconsole.log(isJSONValue(Symbol(\"a\"))); //=> false"} />

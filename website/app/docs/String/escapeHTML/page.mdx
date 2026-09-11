@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "escapeHTML — String",
   description: "Escapes characters for use in HTML."
@@ -19,9 +20,4 @@ escapeHTML('<script>alert("xss")</script>')
 //=> '&lt;script&gt;alert(&quot;xss&quot;)&lt;/script&gt;'
 ```
 
-## Try it
-
-```ts
-escapeHTML('<script>alert("xss")</script>')
-//=> '&lt;script&gt;alert(&quot;xss&quot;)&lt;/script&gt;'
-```
+<TryIt code={"escapeHTML('<script>alert(\"xss\")</script>')\n//=> '&lt;script&gt;alert(&quot;xss&quot;)&lt;/script&gt;'"} />

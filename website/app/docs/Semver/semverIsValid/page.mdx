@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "semverIsValid — Semver",
   description: "Checks whether a string is a valid Semantic Versioning 2.0.0 version."
@@ -41,14 +42,4 @@ semverIsValid('01.2.3') //=> false — leading zeroes are invalid
 - [semverParse](/docs/Semver/semverParse)
 - [semverSatisfies](/docs/Semver/semverSatisfies)
 
-## Try it
-
-```ts
-console.log(semverIsValid('1.2.3')); //=> true
-console.log(semverIsValid('v1.2.3-beta.1')); //=> true
-console.log(semverIsValid('1.2.3+build')); //=> true
-
-console.log(semverIsValid('1.2')); //=> false
-console.log(semverIsValid('^1.2.3')); //=> false
-console.log(semverIsValid('01.2.3')); //=> false — leading zeroes are invalid
-```
+<TryIt code={"console.log(semverIsValid('1.2.3')); //=> true\nconsole.log(semverIsValid('v1.2.3-beta.1')); //=> true\nconsole.log(semverIsValid('1.2.3+build')); //=> true\n\nconsole.log(semverIsValid('1.2')); //=> false\nconsole.log(semverIsValid('^1.2.3')); //=> false\nconsole.log(semverIsValid('01.2.3')); //=> false — leading zeroes are invalid"} />

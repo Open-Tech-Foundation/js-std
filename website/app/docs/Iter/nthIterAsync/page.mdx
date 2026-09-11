@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "nthIterAsync — Iter",
   description: "Returns the nth item (0-indexed) from an async iterable."
@@ -32,9 +33,4 @@ await nthIterAsync(gen(), 1) //=> 2
 
 - [nthIter](/docs/Iter/nthIter)
 
-## Try it
-
-```ts
-async function* gen() { yield 1; yield 2; }
-console.log(await nthIterAsync(gen(), 1)); //=> 2
-```
+<TryIt code={"async function* gen() { yield 1; yield 2; }\nconsole.log(await nthIterAsync(gen(), 1)); //=> 2"} />

@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "findLastIterAsync — Iter",
   description: "Finds the last item in an async iterator that matches a predicate."
@@ -32,9 +33,4 @@ await findLastIterAsync(gen(), x => x < 3) //=> 2
 
 - [findLastIter](/docs/Iter/findLastIter)
 
-## Try it
-
-```ts
-async function* gen() { yield 1; yield 2; yield 3; }
-console.log(await findLastIterAsync(gen(), x => x < 3)); //=> 2
-```
+<TryIt code={"async function* gen() { yield 1; yield 2; yield 3; }\nconsole.log(await findLastIterAsync(gen(), x => x < 3)); //=> 2"} />

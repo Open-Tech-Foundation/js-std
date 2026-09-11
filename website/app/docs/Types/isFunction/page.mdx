@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "isFunction — Types",
   description: "Checks if the given value is a Function."
@@ -32,17 +33,4 @@ isFunction(generator); //=> true
 - [isObject](/docs/Types/isObject)
 - [isPlainObject](/docs/Types/isPlainObject)
 
-## Try it
-
-```ts
-console.log(isFunction(function() {})); //=> true
-
-console.log(isFunction({})); //=> false
-
-function* generator(i) {
-  yield i;
-  yield i + 10;
-}
-
-console.log(isFunction(generator)); //=> true
-```
+<TryIt code={"console.log(isFunction(function() {})); //=> true\n\nconsole.log(isFunction({})); //=> false\n\nfunction* generator(i) {\n  yield i;\n  yield i + 10;\n}\n\nconsole.log(isFunction(generator)); //=> true"} />

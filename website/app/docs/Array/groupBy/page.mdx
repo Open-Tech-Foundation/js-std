@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "groupBy — Array",
@@ -69,36 +70,4 @@ groupBy(["one", "two", "three"], "length")
 - [countBy](/docs/Array/countBy)
 - [chunk](/docs/Array/chunk)
 
-## Try it
-
-```ts
-console.log(groupBy([])); //=> {}
-
-console.log(groupBy(["a"])); //=> { undefined: ["a"] }
-
-const products = [
-  { name: "apples", category: "fruits" },
-  { name: "oranges", category: "fruits" },
-  { name: "potatoes", category: "vegetables" },
-];
-groupBy(products, "category")
-//=> {
-//   fruits: [
-//     { name: "apples", category: "fruits" },
-//     { name: "oranges", category: "fruits" },
-//   ],
-//   vegetables: [{ name: "potatoes", category: "vegetables" }],
-// };
-
-groupBy([1, 2, 3, 4, 5, 6, 7, 8, 9], (v) => (v % 2 === 0 ? "Even" : "Odd"))
-//=> {
-//  Even: [2, 4, 6, 8],
-//  Odd: [1, 3, 5, 7, 9]
-// }
-
-groupBy(["one", "two", "three"], "length")
-//=> {
-//   3: ["one", "two"],
-//   5: ["three"],
-// }
-```
+<TryIt code={"console.log(groupBy([])); //=> {}\n\nconsole.log(groupBy([\"a\"])); //=> { undefined: [\"a\"] }\n\nconst products = [\n  { name: \"apples\", category: \"fruits\" },\n  { name: \"oranges\", category: \"fruits\" },\n  { name: \"potatoes\", category: \"vegetables\" },\n];\ngroupBy(products, \"category\")\n//=> {\n//   fruits: [\n//     { name: \"apples\", category: \"fruits\" },\n//     { name: \"oranges\", category: \"fruits\" },\n//   ],\n//   vegetables: [{ name: \"potatoes\", category: \"vegetables\" }],\n// };\n\ngroupBy([1, 2, 3, 4, 5, 6, 7, 8, 9], (v) => (v % 2 === 0 ? \"Even\" : \"Odd\"))\n//=> {\n//  Even: [2, 4, 6, 8],\n//  Odd: [1, 3, 5, 7, 9]\n// }\n\ngroupBy([\"one\", \"two\", \"three\"], \"length\")\n//=> {\n//   3: [\"one\", \"two\"],\n//   5: [\"three\"],\n// }"} />

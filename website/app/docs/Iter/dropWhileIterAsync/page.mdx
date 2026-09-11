@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "dropWhileIterAsync — Iter",
   description: "Skips items from an async iterable while a predicate is true, then yields the rest."
@@ -32,9 +33,4 @@ await toArrayIterAsync(dropWhileIterAsync(gen(), x => x < 2)) //=> [2, 3]
 
 - [dropWhileIter](/docs/Iter/dropWhileIter)
 
-## Try it
-
-```ts
-async function* gen() { yield 1; yield 2; yield 3; }
-console.log(await toArrayIterAsync(dropWhileIterAsync(gen(), x => x < 2))); //=> [2, 3]
-```
+<TryIt code={"async function* gen() { yield 1; yield 2; yield 3; }\nconsole.log(await toArrayIterAsync(dropWhileIterAsync(gen(), x => x < 2))); //=> [2, 3]"} />

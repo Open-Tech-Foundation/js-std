@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "camelCase — String",
   description: "Converts string to camel case."
@@ -36,12 +37,4 @@ camelCase('__FOO_BAR__') //=> 'fooBar'
 - [kebabCase](/docs/String/kebabCase)
 - [snakeCase](/docs/String/snakeCase)
 
-## Try it
-
-```ts
-console.log(camelCase('Foo Bar')); //=> 'fooBar'
-
-console.log(camelCase('--foo-bar--')); //=> 'fooBar'
-
-console.log(camelCase('__FOO_BAR__')); //=> 'fooBar'
-```
+<TryIt code={"console.log(camelCase('Foo Bar')); //=> 'fooBar'\n\nconsole.log(camelCase('--foo-bar--')); //=> 'fooBar'\n\nconsole.log(camelCase('__FOO_BAR__')); //=> 'fooBar'"} />

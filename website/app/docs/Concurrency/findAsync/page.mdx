@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "findAsync — Concurrency",
@@ -70,8 +71,4 @@ const mirror = await findAsync(
 - [everyAsync](/docs/Concurrency/everyAsync)
 - [filterAsync](/docs/Concurrency/filterAsync)
 
-## Try it
-
-```ts
-console.log(await findAsync([1, 2, 3], async (n) => n > 1)); //=> 2
-```
+<TryIt code={"console.log(await findAsync([1, 2, 3], async (n) => n > 1)); //=> 2"} />

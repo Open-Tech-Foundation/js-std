@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "removeAt — Array",
   description: "Removes items at the given index from the array."
@@ -39,12 +40,4 @@ removeAt([1, 2, 3], 0) //=> [2, 3]
 - [insertAt](/docs/Array/insertAt)
 - [replaceAt](/docs/Array/replaceAt)
 
-## Try it
-
-```ts
-console.log(removeAt([1, 2, 3], 1)); //=> [1, 3]
-
-console.log(removeAt([1, 2, 3, 4], 1, 2)); //=> [1, 4]
-
-console.log(removeAt([1, 2, 3], 0)); //=> [2, 3]
-```
+<TryIt code={"console.log(removeAt([1, 2, 3], 1)); //=> [1, 3]\n\nconsole.log(removeAt([1, 2, 3, 4], 1, 2)); //=> [1, 4]\n\nconsole.log(removeAt([1, 2, 3], 0)); //=> [2, 3]"} />

@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "percentage — Maths",
   description: "Calculates the percentage of a value relative to a total."
@@ -45,22 +46,4 @@ percentage(200, 100); //=> 200
 
 - [percentageOf](/docs/Maths/percentageOf)
 
-## Try it
-
-```ts
-console.log(percentage(0, 0)); //=> NaN
-
-console.log(percentage(1, 0)); //=> Infinity
-
-console.log(percentage(1, 1)); //=> 100
-
-console.log(percentage(0.5, 1)); //=> 50
-
-console.log(percentage(25, 100)); //=> 25
-
-console.log(percentage(75, 150)); //=> 50
-
-console.log(percentage(8, 800)); //=> 1
-
-console.log(percentage(200, 100)); //=> 200
-```
+<TryIt code={"console.log(percentage(0, 0)); //=> NaN\n\nconsole.log(percentage(1, 0)); //=> Infinity\n\nconsole.log(percentage(1, 1)); //=> 100\n\nconsole.log(percentage(0.5, 1)); //=> 50\n\nconsole.log(percentage(25, 100)); //=> 25\n\nconsole.log(percentage(75, 150)); //=> 50\n\nconsole.log(percentage(8, 800)); //=> 1\n\nconsole.log(percentage(200, 100)); //=> 200"} />

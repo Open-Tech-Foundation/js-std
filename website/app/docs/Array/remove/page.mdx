@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "remove — Array",
@@ -65,30 +66,4 @@ remove([1, 2, 3, 4, 5], (x) => x % 2 === 0) //=> [1, 3, 5]
 - [insert](/docs/Array/insert)
 - [replace](/docs/Array/replace)
 
-## Try it
-
-```ts
-console.log(remove([])); //=> []
-
-console.log(remove([1])); //=> []
-
-console.log(remove([1, 2])); //=> [1]
-
-console.log(remove([1, 2], 1)); //=> [1]
-
-console.log(remove([1, 2], 1, 1)); //=> [1]
-
-console.log(remove([1, 2, 3, 4, 5], -1)); //=> [1, 2, 3, 4]
-
-console.log(remove([1, 2, 3, 4, 5], -1, 1)); //=> [1, 2, 3, 4]
-
-console.log(remove([1, 2, 3, 4, 5], -1, 3)); //=> [1, 2, 3, 4]
-
-console.log(remove([1, 2, 3, 4, 5], -2, 2)); //=> [1, 2, 3]
-
-const myFish = ['angel', 'clown', 'mandarin', 'sturgeon'];
-console.log(remove(myFish, 2, Infinity)); //=> ['angel', 'clown']
-
-// Predicate-based remove
-console.log(remove([1, 2, 3, 4, 5], (x) => x % 2 === 0)); //=> [1, 3, 5]
-```
+<TryIt code={"console.log(remove([])); //=> []\n\nconsole.log(remove([1])); //=> []\n\nconsole.log(remove([1, 2])); //=> [1]\n\nconsole.log(remove([1, 2], 1)); //=> [1]\n\nconsole.log(remove([1, 2], 1, 1)); //=> [1]\n\nconsole.log(remove([1, 2, 3, 4, 5], -1)); //=> [1, 2, 3, 4]\n\nconsole.log(remove([1, 2, 3, 4, 5], -1, 1)); //=> [1, 2, 3, 4]\n\nconsole.log(remove([1, 2, 3, 4, 5], -1, 3)); //=> [1, 2, 3, 4]\n\nconsole.log(remove([1, 2, 3, 4, 5], -2, 2)); //=> [1, 2, 3]\n\nconst myFish = ['angel', 'clown', 'mandarin', 'sturgeon'];\nconsole.log(remove(myFish, 2, Infinity)); //=> ['angel', 'clown']\n\n// Predicate-based remove\nconsole.log(remove([1, 2, 3, 4, 5], (x) => x % 2 === 0)); //=> [1, 3, 5]"} />

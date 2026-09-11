@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "formatBytes — Number",
   description: "Formats a number of bytes into a human-readable string."
@@ -51,24 +52,4 @@ formatBytes(-1024) //=> '-1 KiB'
 formatBytes(1000, { binary: false }) //=> '1 KB' (using 1000 as base)
 ```
 
-## Try it
-
-```ts
-console.log(formatBytes(0)); //=> '0 B'
-
-console.log(formatBytes(1023)); //=> '1023 B'
-
-console.log(formatBytes(1024)); //=> '1 KiB'
-
-console.log(formatBytes(1536)); //=> '1.5 KiB'
-
-console.log(formatBytes(0.5)); //=> '0.5 B'
-
-console.log(formatBytes(1234567)); //=> '1.18 MiB'
-
-console.log(formatBytes(1234567, { decimals: 0 })); //=> '1 MiB'
-
-console.log(formatBytes(-1024)); //=> '-1 KiB'
-
-console.log(formatBytes(1000, { binary: false })); //=> '1 KB' (using 1000)
-```
+<TryIt code={"console.log(formatBytes(0)); //=> '0 B'\n\nconsole.log(formatBytes(1023)); //=> '1023 B'\n\nconsole.log(formatBytes(1024)); //=> '1 KiB'\n\nconsole.log(formatBytes(1536)); //=> '1.5 KiB'\n\nconsole.log(formatBytes(0.5)); //=> '0.5 B'\n\nconsole.log(formatBytes(1234567)); //=> '1.18 MiB'\n\nconsole.log(formatBytes(1234567, { decimals: 0 })); //=> '1 MiB'\n\nconsole.log(formatBytes(-1024)); //=> '-1 KiB'\n\nconsole.log(formatBytes(1000, { binary: false })); //=> '1 KB' (using 1000)"} />

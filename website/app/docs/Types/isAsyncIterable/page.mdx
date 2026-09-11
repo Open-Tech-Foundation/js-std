@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "isAsyncIterable — Types",
   description: "Checks if the given value is an async iterable."
@@ -32,9 +33,4 @@ isAsyncIterable([]) //=> false
 - [isIterable](/docs/Types/isIterable)
 - [fromIterAsync](/docs/Iter/fromIterAsync)
 
-## Try it
-
-```ts
-console.log(isAsyncIterable((async function* () {})())); //=> true
-console.log(isAsyncIterable([])); //=> false
-```
+<TryIt code={"console.log(isAsyncIterable((async function* () {})())); //=> true\nconsole.log(isAsyncIterable([])); //=> false"} />

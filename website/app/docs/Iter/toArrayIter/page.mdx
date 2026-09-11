@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "toArrayIter — Iter",
   description: "Collects all items from an iterator into an array."
@@ -30,8 +31,4 @@ toArrayIter((function*() { yield 1; yield 2; })()) //=> [1, 2]
 
 - [toArrayIterAsync](/docs/Iter/toArrayIterAsync)
 
-## Try it
-
-```ts
-console.log(toArrayIter((function*() { yield 1; yield 2; })())); //=> [1, 2]
-```
+<TryIt code={"console.log(toArrayIter((function*() { yield 1; yield 2; })())); //=> [1, 2]"} />

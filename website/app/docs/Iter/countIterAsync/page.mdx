@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "countIterAsync — Iter",
   description: "Returns the total count of items in an async iterable."
@@ -31,9 +32,4 @@ await countIterAsync(gen()) //=> 2
 
 - [countIter](/docs/Iter/countIter)
 
-## Try it
-
-```ts
-async function* gen() { yield 1; yield 2; }
-console.log(await countIterAsync(gen())); //=> 2
-```
+<TryIt code={"async function* gen() { yield 1; yield 2; }\nconsole.log(await countIterAsync(gen())); //=> 2"} />

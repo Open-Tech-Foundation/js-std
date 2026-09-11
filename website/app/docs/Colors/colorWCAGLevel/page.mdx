@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "colorWCAGLevel — Colors",
   description: "Returns the WCAG conformance level for the contrast ratio between two colors."
@@ -42,16 +43,4 @@ colorWCAGLevel({ color1: 'rgb(0,0,0)', color2: 'rgb(255,255,255)' }) //=> 'AAA'
 - [colorContrast](/docs/Colors/colorContrast)
 - [colorIsReadable](/docs/Colors/colorIsReadable)
 
-## Try it
-
-```ts
-console.log(colorWCAGLevel({ color1: '#000', color2: '#fff' })); //=> 'AAA'
-
-console.log(colorWCAGLevel({ color1: '#000', color2: '#999' })); //=> 'AAA'
-
-console.log(colorWCAGLevel({ color1: '#000', color2: '#767676' })); //=> 'AA'
-
-console.log(colorWCAGLevel({ color1: '#000', color2: '#595959' })); //=> 'A'
-
-console.log(colorWCAGLevel({ color1: 'rgb(0,0,0)', color2: 'rgb(255,255,255)' })); //=> 'AAA'
-```
+<TryIt code={"console.log(colorWCAGLevel({ color1: '#000', color2: '#fff' })); //=> 'AAA'\n\nconsole.log(colorWCAGLevel({ color1: '#000', color2: '#999' })); //=> 'AAA'\n\nconsole.log(colorWCAGLevel({ color1: '#000', color2: '#767676' })); //=> 'AA'\n\nconsole.log(colorWCAGLevel({ color1: '#000', color2: '#595959' })); //=> 'A'\n\nconsole.log(colorWCAGLevel({ color1: 'rgb(0,0,0)', color2: 'rgb(255,255,255)' })); //=> 'AAA'"} />

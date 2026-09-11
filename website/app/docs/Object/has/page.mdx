@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "has — Object",
@@ -49,18 +50,4 @@ has({ a: { 'b.c': 1 } }, ['a', 'b.c']) //=> true
 - [set](/docs/Object/set)
 - [unset](/docs/Object/unset)
 
-## Try it
-
-```ts
-console.log(has({ a: 1 }, 'a')); //=> true
-
-console.log(has({ a: undefined }, 'a')); //=> true
-
-console.log(has({ a: null }, 'a')); //=> true
-
-console.log(has({ a: { b: [1, 2, 3, { c: 5 }] } }, 'a.b[3].c')); //=> true
-
-console.log(has({ a: { b: [1, 2, 3, { c: 5 }] } }, 'a.b[5].c')); //=> false
-
-console.log(has({ a: { 'b.c': 1 } }, ['a', 'b.c'])); //=> true
-```
+<TryIt code={"console.log(has({ a: 1 }, 'a')); //=> true\n\nconsole.log(has({ a: undefined }, 'a')); //=> true\n\nconsole.log(has({ a: null }, 'a')); //=> true\n\nconsole.log(has({ a: { b: [1, 2, 3, { c: 5 }] } }, 'a.b[3].c')); //=> true\n\nconsole.log(has({ a: { b: [1, 2, 3, { c: 5 }] } }, 'a.b[5].c')); //=> false\n\nconsole.log(has({ a: { 'b.c': 1 } }, ['a', 'b.c'])); //=> true"} />

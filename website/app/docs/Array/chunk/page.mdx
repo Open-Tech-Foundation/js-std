@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "chunk — Array",
   description: "Splits an array into groups of a specified size."
@@ -39,16 +40,4 @@ chunk([1, 2, 3], 4) //=> [[1, 2, 3]]
 
 - [groupBy](/docs/Array/groupBy)
 
-## Try it
-
-```ts
-console.log(chunk([1, 2, 3])); //=> [[1], [2], [3]]
-
-console.log(chunk([1, 2, 3], 1)); //=> [[1], [2], [3]]
-
-console.log(chunk([1, 2, 3], 2)); //=> [[1, 2], [3]]
-
-console.log(chunk([1, 2, 3], 3)); //=> [[1, 2, 3]]
-
-console.log(chunk([1, 2, 3], 4)); //=> [[1, 2, 3]]
-```
+<TryIt code={"console.log(chunk([1, 2, 3])); //=> [[1], [2], [3]]\n\nconsole.log(chunk([1, 2, 3], 1)); //=> [[1], [2], [3]]\n\nconsole.log(chunk([1, 2, 3], 2)); //=> [[1, 2], [3]]\n\nconsole.log(chunk([1, 2, 3], 3)); //=> [[1, 2, 3]]\n\nconsole.log(chunk([1, 2, 3], 4)); //=> [[1, 2, 3]]"} />

@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "median — Maths",
@@ -56,18 +57,4 @@ median([10, 20, 40, 50]) //=> 30 (Average of 20 and 40)
 - [mean](/docs/Maths/mean)
 - [mode](/docs/Maths/mode)
 
-## Try it
-
-```ts
-console.log(median([])); //=> NaN
-
-console.log(median([1])); //=> 1
-
-console.log(median([4, 1, 7])); //=> 4 (Sorted: [1, 4, 7])
-
-console.log(median([4, 2, 8])); //=> 4 (Sorted: [2, 4, 8])
-
-console.log(median([1, 4, 2, 5, 0])); //=> 2 (Sorted: [0, 1, 2, 4, 5])
-
-console.log(median([10, 20, 40, 50])); //=> 30 (Average of 20 and 40)
-```
+<TryIt code={"console.log(median([])); //=> NaN\n\nconsole.log(median([1])); //=> 1\n\nconsole.log(median([4, 1, 7])); //=> 4 (Sorted: [1, 4, 7])\n\nconsole.log(median([4, 2, 8])); //=> 4 (Sorted: [2, 4, 8])\n\nconsole.log(median([1, 4, 2, 5, 0])); //=> 2 (Sorted: [0, 1, 2, 4, 5])\n\nconsole.log(median([10, 20, 40, 50])); //=> 30 (Average of 20 and 40)"} />

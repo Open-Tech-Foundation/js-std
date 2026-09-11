@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "isDataView — Types",
   description: "Checks if the given value is a DataView object."
@@ -29,14 +30,4 @@ isDataView(new DataView(buffer)) //=> true
 - [isObject](/docs/Types/isObject)
 - [isPlainObject](/docs/Types/isPlainObject)
 
-## Try it
-
-```ts
-const buffer = new ArrayBuffer(8);
-
-console.log(isDataView(buffer)); //=> false
-
-console.log(isDataView(new Uint8Array(buffer))); //=> false
-
-console.log(isDataView(new DataView(buffer))); //=> true
-```
+<TryIt code={"const buffer = new ArrayBuffer(8);\n\nconsole.log(isDataView(buffer)); //=> false\n\nconsole.log(isDataView(new Uint8Array(buffer))); //=> false\n\nconsole.log(isDataView(new DataView(buffer))); //=> true"} />

@@ -1,3 +1,4 @@
+import TryIt from '../../../components/TryIt.jsx';
 export const metadata = {
   title: "decodeBase64Url — Encoding",
   description: "Decodes a URL-safe Base64 string to bytes."
@@ -33,8 +34,4 @@ decodeBase64Url('aGVsbG8') //=> Uint8Array [104, 101, 108, 108, 111]
 - [encodeBase64Url](/docs/Encoding/encodeBase64Url)
 - [decodeBase64](/docs/Encoding/decodeBase64)
 
-## Try it
-
-```ts
-console.log(decodeBase64Url('aGVsbG8')); //=> Uint8Array [104, 101, 108, 108, 111]
-```
+<TryIt code={"console.log(decodeBase64Url('aGVsbG8')); //=> Uint8Array [104, 101, 108, 108, 111]"} />
