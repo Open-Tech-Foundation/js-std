@@ -4,8 +4,7 @@ Converts a color to grayscale.
 
 ## Parameters
 
-- **value** `ColorInput` — The input color.
-- **to** `ColorFormat` _(default: `'hex'`)_ — The output format.
+- **An** `{ value: ColorInput, to?: ColorFormat }` — object naming the value and the format.
 
 ## Returns
 

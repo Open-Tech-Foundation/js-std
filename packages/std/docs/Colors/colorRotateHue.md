@@ -4,9 +4,7 @@ Rotates the hue of a color.
 
 ## Parameters
 
-- **value** `ColorInput` — The input color.
-- **degrees** `number` — The degrees to rotate (can be negative).
-- **to** `ColorFormat` _(default: `'hex'`)_ — The output format.
+- **An** `{ value: ColorInput, degrees: number, to?: ColorFormat }` — object naming the value, the degrees and the format.
 
 ## Returns
 

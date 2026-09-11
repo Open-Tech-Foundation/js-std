@@ -4,9 +4,7 @@ Increases the saturation of a color.
 
 ## Parameters
 
-- **value** `ColorInput` — The input color.
-- **amount** `number` — The amount to saturate (0 to 1).
-- **to** `ColorFormat` _(default: `'hex'`)_ — The output format.
+- **An** `{ value: ColorInput, amount: number, to?: ColorFormat }` — object naming the value, the amount and the format.
 
 ## Returns
 

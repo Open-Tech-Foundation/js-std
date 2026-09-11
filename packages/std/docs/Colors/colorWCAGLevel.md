@@ -4,8 +4,7 @@ Returns the WCAG conformance level for the contrast ratio between two colors.
 
 ## Parameters
 
-- **color1** `ColorInput` — The first color.
-- **color2** `ColorInput` — The second color.
+- **An** `{ color1: ColorInput, color2: ColorInput }` — object naming the two colors.
 
 ## Returns
 
