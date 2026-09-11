@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-08-01",
+  "generatedAt": "2026-09-11",
   "package": "@opentf/std",
-  "version": "0.16.0",
+  "version": "0.19.0",
   "runtimes": [
     {
       "id": "node20",
       "label": "Node.js 20",
-      "version": "20.20.2",
+      "version": "22.23.2",
       "status": "partial",
-      "passed": 1501,
+      "passed": 1685,
       "failed": 1,
-      "total": 1502,
+      "total": 1686,
       "percent": 99.9,
       "capabilities": {
         "Intl.Segmenter": true,
@@ -43,11 +43,11 @@
     {
       "id": "node22",
       "label": "Node.js 22",
-      "version": "22.23.1",
+      "version": "22.23.2",
       "status": "partial",
-      "passed": 1501,
+      "passed": 1685,
       "failed": 1,
-      "total": 1502,
+      "total": 1686,
       "percent": 99.9,
       "capabilities": {
         "Intl.Segmenter": true,
@@ -80,17 +80,17 @@
     {
       "id": "node24",
       "label": "Node.js 24",
-      "version": "24.18.0",
-      "status": "pass",
-      "passed": 1502,
-      "failed": 0,
-      "total": 1502,
-      "percent": 100,
+      "version": "22.23.2",
+      "status": "partial",
+      "passed": 1685,
+      "failed": 1,
+      "total": 1686,
+      "percent": 99.9,
       "capabilities": {
         "Intl.Segmenter": true,
         "Intl.DateTimeFormat names": true,
         "Intl.NumberFormat": true,
-        "Intl.DurationFormat": true,
+        "Intl.DurationFormat": false,
         "Intl.RelativeTimeFormat": true,
         "crypto.getRandomValues": true,
         "crypto.randomUUID": true,
@@ -103,22 +103,31 @@
         "WeakRef": true,
         "Proxy": true
       },
-      "failures": []
+      "failures": [
+        {
+          "title": "Duration.toLocaleString > lets an explicit secondsDisplay win",
+          "message": "expected '0 sec' to be '' // Object.is equality",
+          "category": "missing-capability",
+          "reason": "Localised duration text needs `Intl.DurationFormat` and `Intl.RelativeTimeFormat`. Where either is absent `Duration` falls back to English rather than throwing, so only the wording differs — and `format` is locale-independent and unaffected. A failure here means the runtime has the API but not the locale data behind it.",
+          "requires": "Intl.DurationFormat",
+          "affects": ["Duration"]
+        }
+      ]
     },
     {
       "id": "node26",
       "label": "Node.js 26",
-      "version": "26.5.1",
-      "status": "pass",
-      "passed": 1559,
-      "failed": 0,
-      "total": 1559,
-      "percent": 100,
+      "version": "22.23.2",
+      "status": "partial",
+      "passed": 1685,
+      "failed": 1,
+      "total": 1686,
+      "percent": 99.9,
       "capabilities": {
         "Intl.Segmenter": true,
         "Intl.DateTimeFormat names": true,
         "Intl.NumberFormat": true,
-        "Intl.DurationFormat": true,
+        "Intl.DurationFormat": false,
         "Intl.RelativeTimeFormat": true,
         "crypto.getRandomValues": true,
         "crypto.randomUUID": true,
@@ -131,16 +140,25 @@
         "WeakRef": true,
         "Proxy": true
       },
-      "failures": []
+      "failures": [
+        {
+          "title": "Duration.toLocaleString > lets an explicit secondsDisplay win",
+          "message": "expected '0 sec' to be '' // Object.is equality",
+          "category": "missing-capability",
+          "reason": "Localised duration text needs `Intl.DurationFormat` and `Intl.RelativeTimeFormat`. Where either is absent `Duration` falls back to English rather than throwing, so only the wording differs — and `format` is locale-independent and unaffected. A failure here means the runtime has the API but not the locale data behind it.",
+          "requires": "Intl.DurationFormat",
+          "affects": ["Duration"]
+        }
+      ]
     },
     {
       "id": "bun",
       "label": "Bun",
-      "version": "1.3.14",
+      "version": "1.4.2",
       "status": "pass",
-      "passed": 1502,
+      "passed": 1743,
       "failed": 0,
-      "total": 1502,
+      "total": 1743,
       "percent": 100,
       "capabilities": {
         "Intl.Segmenter": true,
@@ -164,11 +182,11 @@
     {
       "id": "deno",
       "label": "Deno",
-      "version": "2.9.4",
+      "version": "2.9.6",
       "status": "pass",
-      "passed": 1559,
+      "passed": 1743,
       "failed": 0,
-      "total": 1559,
+      "total": 1743,
       "percent": 100,
       "capabilities": {
         "Intl.Segmenter": true,
@@ -192,11 +210,11 @@
     {
       "id": "esrun",
       "label": "ES-Runtime",
-      "version": "0.13.0",
+      "version": "0.28.0",
       "status": "pass",
-      "passed": 1559,
+      "passed": 1743,
       "failed": 0,
-      "total": 1559,
+      "total": 1743,
       "percent": 100,
       "capabilities": {
         "Intl.Segmenter": true,
@@ -220,12 +238,12 @@
     {
       "id": "llrt",
       "label": "LLRT",
-      "version": "0.8.0-beta",
+      "version": "0.9.0-beta",
       "status": "partial",
-      "passed": 1462,
-      "failed": 40,
-      "total": 1502,
-      "percent": 97.3,
+      "passed": 1667,
+      "failed": 76,
+      "total": 1743,
+      "percent": 95.6,
       "capabilities": {
         "Intl.Segmenter": false,
         "Intl.DateTimeFormat names": false,
@@ -254,7 +272,7 @@
         },
         {
           "title": "DateTime (intl backend) > formatting > renders every token",
-          "message": "expected '7/' to be 'July' // Object.is equality",
+          "message": "expected '14:30:15.249' to be '14:30:15.250' // Object.is equality",
           "category": "missing-capability",
           "reason": "Month and weekday names come from `Intl.DateTimeFormat`, which a runtime built without the name tables still exposes while silently ignoring the `month` and `weekday` options and returning a numeric date. Only the `MMM`, `MMMM`, `EEE` and `EEEE` tokens are affected; every other token is computed arithmetically and is unaffected, as is the rest of `DateTime`. Supplying the names ourselves would mean bundling the locale data the module exists to avoid.",
           "requires": "Intl.DateTimeFormat names",
@@ -277,12 +295,180 @@
           "affects": ["DateTime"]
         },
         {
+          "title": "DateTime (intl backend) > formatting > toISOString round-trips exactly",
+          "message": "expected '2026-07-29T14:30:15.249+NaN:NaN[Asia/…' to be '2026-07-29T14:30:15.250+05:30[Asia/Ko…' // Object.is equality",
+          "category": "runtime-deviation",
+          "reason": "LLRT's Temporal implementation returns invalid zone offsets and disagrees with the current Temporal semantics for fields, transitions and milliseconds. The DateTime fallback is correct; the fix belongs in LLRT.",
+          "requires": null,
+          "affects": ["DateTime", "Duration"]
+        },
+        {
           "title": "DateTime (intl backend) > formatting > toLocaleString respects the zone",
           "message": "expected '7/29/2026' to contain 'July'",
           "category": "missing-capability",
           "reason": "Localised duration text needs `Intl.DurationFormat` and `Intl.RelativeTimeFormat`. Where either is absent `Duration` falls back to English rather than throwing, so only the wording differs — and `format` is locale-independent and unaffected. A failure here means the runtime has the API but not the locale data behind it.",
           "requires": "Intl.DurationFormat",
           "affects": ["Duration"]
+        },
+        {
+          "title": "DateTime (temporal backend) > construction > parses a full ISO date-time",
+          "message": "expected 249 to be 250 // Object.is equality",
+          "category": "runtime-deviation",
+          "reason": "LLRT's Temporal implementation returns invalid zone offsets and disagrees with the current Temporal semantics for fields, transitions and milliseconds. The DateTime fallback is correct; the fix belongs in LLRT.",
+          "requires": null,
+          "affects": ["DateTime", "Duration"]
+        },
+        {
+          "title": "DateTime (temporal backend) > construction > accepts a fields object",
+          "message": "expected '+NaN:NaN' to be '+05:30' // Object.is equality",
+          "category": "runtime-deviation",
+          "reason": "LLRT's Temporal implementation returns invalid zone offsets and disagrees with the current Temporal semantics for fields, transitions and milliseconds. The DateTime fallback is correct; the fix belongs in LLRT.",
+          "requires": null,
+          "affects": ["DateTime", "Duration"]
+        },
+        {
+          "title": "DateTime (temporal backend) > time zones > reports the offset in force",
+          "message": "expected '+NaN:NaN' to be '+05:30' // Object.is equality",
+          "category": "runtime-deviation",
+          "reason": "LLRT's Temporal implementation returns invalid zone offsets and disagrees with the current Temporal semantics for fields, transitions and milliseconds. The DateTime fallback is correct; the fix belongs in LLRT.",
+          "requires": null,
+          "affects": ["DateTime", "Duration"]
+        },
+        {
+          "title": "DateTime (temporal backend) > time zones > tracks a DST change across the year",
+          "message": "expected '+NaN:NaN' to be '-05:00' // Object.is equality",
+          "category": "runtime-deviation",
+          "reason": "LLRT's Temporal implementation returns invalid zone offsets and disagrees with the current Temporal semantics for fields, transitions and milliseconds. The DateTime fallback is correct; the fix belongs in LLRT.",
+          "requires": null,
+          "affects": ["DateTime", "Duration"]
+        },
+        {
+          "title": "DateTime (temporal backend) > time zones > resolves a DST gap forward by default",
+          "message": "expected '+NaN:NaN' to be '-04:00' // Object.is equality",
+          "category": "runtime-deviation",
+          "reason": "LLRT's Temporal implementation returns invalid zone offsets and disagrees with the current Temporal semantics for fields, transitions and milliseconds. The DateTime fallback is correct; the fix belongs in LLRT.",
+          "requires": null,
+          "affects": ["DateTime", "Duration"]
+        },
+        {
+          "title": "DateTime (temporal backend) > time zones > honours earlier/later/reject across a gap",
+          "message": "expected '03:30 +NaN:NaN' to be '01:30 -05:00' // Object.is equality",
+          "category": "runtime-deviation",
+          "reason": "LLRT's Temporal implementation returns invalid zone offsets and disagrees with the current Temporal semantics for fields, transitions and milliseconds. The DateTime fallback is correct; the fix belongs in LLRT.",
+          "requires": null,
+          "affects": ["DateTime", "Duration"]
+        },
+        {
+          "title": "DateTime (temporal backend) > time zones > resolves an ambiguous overlap to the earlier instant",
+          "message": "expected +0 to be 3600000 // Object.is equality",
+          "category": "runtime-deviation",
+          "reason": "LLRT's Temporal implementation returns invalid zone offsets and disagrees with the current Temporal semantics for fields, transitions and milliseconds. The DateTime fallback is correct; the fix belongs in LLRT.",
+          "requires": null,
+          "affects": ["DateTime", "Duration"]
+        },
+        {
+          "title": "DateTime (temporal backend) > time zones > handles a 30-minute DST shift",
+          "message": "expected '+NaN:NaN' to be '+11:00' // Object.is equality",
+          "category": "runtime-deviation",
+          "reason": "LLRT's Temporal implementation returns invalid zone offsets and disagrees with the current Temporal semantics for fields, transitions and milliseconds. The DateTime fallback is correct; the fix belongs in LLRT.",
+          "requires": null,
+          "affects": ["DateTime", "Duration"]
+        },
+        {
+          "title": "DateTime (temporal backend) > truncation > startOf week lands on Monday",
+          "message": "expected undefined to be 3 // Object.is equality",
+          "category": "runtime-deviation",
+          "reason": "LLRT's Temporal implementation returns invalid zone offsets and disagrees with the current Temporal semantics for fields, transitions and milliseconds. The DateTime fallback is correct; the fix belongs in LLRT.",
+          "requires": null,
+          "affects": ["DateTime", "Duration"]
+        },
+        {
+          "title": "DateTime (temporal backend) > calendar fields > day of week, day of year and leap years",
+          "message": "expected undefined to be 3 // Object.is equality",
+          "category": "runtime-deviation",
+          "reason": "LLRT's Temporal implementation returns invalid zone offsets and disagrees with the current Temporal semantics for fields, transitions and milliseconds. The DateTime fallback is correct; the fix belongs in LLRT.",
+          "requires": null,
+          "affects": ["DateTime", "Duration"]
+        },
+        {
+          "title": "DateTime (temporal backend) > formatting > renders every token",
+          "message": "expected '14:30:15.249' to be '14:30:15.250' // Object.is equality",
+          "category": "runtime-deviation",
+          "reason": "LLRT's Temporal implementation returns invalid zone offsets and disagrees with the current Temporal semantics for fields, transitions and milliseconds. The DateTime fallback is correct; the fix belongs in LLRT.",
+          "requires": null,
+          "affects": ["DateTime", "Duration"]
+        },
+        {
+          "title": "DateTime (temporal backend) > formatting > emits quoted text literally",
+          "message": "expected 'on ' to be 'on Wednesday' // Object.is equality",
+          "category": "runtime-deviation",
+          "reason": "LLRT's Temporal implementation returns invalid zone offsets and disagrees with the current Temporal semantics for fields, transitions and milliseconds. The DateTime fallback is correct; the fix belongs in LLRT.",
+          "requires": null,
+          "affects": ["DateTime", "Duration"]
+        },
+        {
+          "title": "DateTime (temporal backend) > formatting > localises names only",
+          "message": "expected '7/' to be 'juillet' // Object.is equality",
+          "category": "runtime-deviation",
+          "reason": "LLRT's Temporal implementation returns invalid zone offsets and disagrees with the current Temporal semantics for fields, transitions and milliseconds. The DateTime fallback is correct; the fix belongs in LLRT.",
+          "requires": null,
+          "affects": ["DateTime", "Duration"]
+        },
+        {
+          "title": "DateTime (temporal backend) > formatting > toISOString round-trips exactly",
+          "message": "expected '2026-07-29T14:30:15.249+NaN:NaN[Asia/…' to be '2026-07-29T14:30:15.250+05:30[Asia/Ko…' // Object.is equality",
+          "category": "runtime-deviation",
+          "reason": "LLRT's Temporal implementation returns invalid zone offsets and disagrees with the current Temporal semantics for fields, transitions and milliseconds. The DateTime fallback is correct; the fix belongs in LLRT.",
+          "requires": null,
+          "affects": ["DateTime", "Duration"]
+        },
+        {
+          "title": "DateTime (temporal backend) > formatting > toLocaleString respects the zone",
+          "message": "expected '7/29/2026' to contain 'July'",
+          "category": "runtime-deviation",
+          "reason": "LLRT's Temporal implementation returns invalid zone offsets and disagrees with the current Temporal semantics for fields, transitions and milliseconds. The DateTime fallback is correct; the fix belongs in LLRT.",
+          "requires": null,
+          "affects": ["DateTime", "Duration"]
+        },
+        {
+          "title": "DateTime backend equivalence > both backends resolve wall-clock times identically",
+          "message": "expected 'UTC 2026-01-01T00:00:00 compatible 17…' to be 'UTC 2026-01-01T00:00:00 compatible 17…' // Object.is equality",
+          "category": "runtime-deviation",
+          "reason": "LLRT's Temporal implementation returns invalid zone offsets and disagrees with the current Temporal semantics for fields, transitions and milliseconds. The DateTime fallback is correct; the fix belongs in LLRT.",
+          "requires": null,
+          "affects": ["DateTime", "Duration"]
+        },
+        {
+          "title": "DateTime backend equivalence > both backends read instants identically",
+          "message": "expected 'UTC 0 0|1970-01-01T00:00:00.000+00:00…' to be 'UTC 0 0|1970-01-01T00:00:00.000+NaN:N…' // Object.is equality",
+          "category": "runtime-deviation",
+          "reason": "LLRT's Temporal implementation returns invalid zone offsets and disagrees with the current Temporal semantics for fields, transitions and milliseconds. The DateTime fallback is correct; the fix belongs in LLRT.",
+          "requires": null,
+          "affects": ["DateTime", "Duration"]
+        },
+        {
+          "title": "DateTime backend equivalence > both backends agree on arithmetic across transitions",
+          "message": "expected 'UTC {\"days\":1} 1772971200000|2026-03-…' to be 'UTC {\"days\":1} 1772971200000|2026-03-…' // Object.is equality",
+          "category": "runtime-deviation",
+          "reason": "LLRT's Temporal implementation returns invalid zone offsets and disagrees with the current Temporal semantics for fields, transitions and milliseconds. The DateTime fallback is correct; the fix belongs in LLRT.",
+          "requires": null,
+          "affects": ["DateTime", "Duration"]
+        },
+        {
+          "title": "Duration with DateTime > DateTime.add accepts a Duration instance",
+          "message": "expected '2026-01-02T02:00:00.000+NaN:NaN[UTC]' to be '2026-01-02T02:00:00.000+00:00[UTC]' // Object.is equality",
+          "category": "runtime-deviation",
+          "reason": "LLRT's Temporal implementation returns invalid zone offsets and disagrees with the current Temporal semantics for fields, transitions and milliseconds. The DateTime fallback is correct; the fix belongs in LLRT.",
+          "requires": null,
+          "affects": ["DateTime", "Duration"]
+        },
+        {
+          "title": "Duration with DateTime > DateTime.subtract accepts a Duration instance",
+          "message": "expected '2026-01-01T00:00:00.000+NaN:NaN[UTC]' to be '2026-01-01T00:00:00.000+00:00[UTC]' // Object.is equality",
+          "category": "runtime-deviation",
+          "reason": "LLRT's Temporal implementation returns invalid zone offsets and disagrees with the current Temporal semantics for fields, transitions and milliseconds. The DateTime fallback is correct; the fix belongs in LLRT.",
+          "requires": null,
+          "affects": ["DateTime", "Duration"]
         },
         {
           "title": "Duration.toLocaleString > lets an explicit secondsDisplay win",
@@ -307,6 +493,38 @@
           "reason": "Runtime does not perform `IteratorClose` when a `for await...of` loop exits early, so a `finally` block in an async generator never runs. Required by ECMA-262; the equivalent sync `for...of` path is handled correctly. The fix belongs in the runtime. For `streamToIter` this means a `break` neither cancels the stream nor releases the reader lock, so the stream stays locked — drain it rather than exiting early on this runtime.",
           "requires": null,
           "affects": ["fromIterAsync", "streamToIter", "zipIterAsync"]
+        },
+        {
+          "title": "Json > tryParseJSON > reviver",
+          "message": "expected { a: 1 } to deeply equal { a: 2 }",
+          "category": "runtime-deviation",
+          "reason": "LLRT's JSON implementation does not correctly support revivers, Temporal values and replacer arrays in these cases. The fix belongs in LLRT.",
+          "requires": null,
+          "affects": ["tryParseJSON", "tryStringifyJSON"]
+        },
+        {
+          "title": "Json > tryParseJSON > temporal",
+          "message": "expected '2024-01-01T00:00:00.000Z' to be an instance of y4",
+          "category": "runtime-deviation",
+          "reason": "LLRT's JSON implementation does not correctly support revivers, Temporal values and replacer arrays in these cases. The fix belongs in LLRT.",
+          "requires": null,
+          "affects": ["tryParseJSON", "tryStringifyJSON"]
+        },
+        {
+          "title": "Json > tryStringifyJSON > bigint with replacer array",
+          "message": "expected undefined to be '{\"a\":1,\"b\":\"2\"}' // Object.is equality",
+          "category": "runtime-deviation",
+          "reason": "LLRT's JSON implementation does not correctly support revivers, Temporal values and replacer arrays in these cases. The fix belongs in LLRT.",
+          "requires": null,
+          "affects": ["tryParseJSON", "tryStringifyJSON"]
+        },
+        {
+          "title": "Json > tryStringifyJSON > temporal",
+          "message": "expected undefined to be '{\"a\":1}' // Object.is equality",
+          "category": "runtime-deviation",
+          "reason": "LLRT's JSON implementation does not correctly support revivers, Temporal values and replacer arrays in these cases. The fix belongs in LLRT.",
+          "requires": null,
+          "affects": ["tryParseJSON", "tryStringifyJSON"]
         },
         {
           "title": "Number > formatCompact",
@@ -373,12 +591,100 @@
           "affects": ["formatCompact", "formatCurrency", "formatNumber"]
         },
         {
-          "title": "streamToText > splits every byte into its own chunk",
-          "message": "expected '\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\ufffd\\…' to be '🌍🔐é' // Object.is equality",
+          "title": "Object > the recursion depth cap > clone > walks an ordinary structure without complaint",
+          "message": "Maximum call stack size exceeded",
           "category": "runtime-deviation",
-          "reason": "Runtime `TextDecoder` ignores the `stream: true` option, so the trailing bytes of a multi-byte character split across two chunks are decoded as replacement characters instead of being held back for the next call. Required by the Encoding spec; the fix belongs in the runtime. Text arriving in whole characters per chunk is unaffected.",
-          "requires": "TextDecoder stream: true",
-          "affects": ["streamToText", "streamToLines"]
+          "reason": "LLRT exhausts its JavaScript stack before the library's documented 512-level recursion limit, so the expected limit boundary cannot be reached. The fix belongs in LLRT.",
+          "requires": null,
+          "affects": ["clone", "isEql", "deepFreeze", "merge", "mergeAll"]
+        },
+        {
+          "title": "Object > the recursion depth cap > clone > refuses a string-keyed chain past the cap",
+          "message": "expected [Function] to throw error including 'clone: input nested deeper than 512 l…' but got 'Maximum call stack size exceeded'",
+          "category": "runtime-deviation",
+          "reason": "LLRT exhausts its JavaScript stack before the library's documented 512-level recursion limit, so the expected limit boundary cannot be reached. The fix belongs in LLRT.",
+          "requires": null,
+          "affects": ["clone", "isEql", "deepFreeze", "merge", "mergeAll"]
+        },
+        {
+          "title": "Object > the recursion depth cap > clone > counts symbol keys toward the cap, exactly as string keys",
+          "message": "expected [Function] to not throw an error but 'RangeError: Maximum call stack size e…' was thrown",
+          "category": "runtime-deviation",
+          "reason": "LLRT exhausts its JavaScript stack before the library's documented 512-level recursion limit, so the expected limit boundary cannot be reached. The fix belongs in LLRT.",
+          "requires": null,
+          "affects": ["clone", "isEql", "deepFreeze", "merge", "mergeAll"]
+        },
+        {
+          "title": "Object > the recursion depth cap > clone > counts a chain that alternates string and symbol links",
+          "message": "expected [Function] to not throw an error but 'RangeError: Maximum call stack size e…' was thrown",
+          "category": "runtime-deviation",
+          "reason": "LLRT exhausts its JavaScript stack before the library's documented 512-level recursion limit, so the expected limit boundary cannot be reached. The fix belongs in LLRT.",
+          "requires": null,
+          "affects": ["clone", "isEql", "deepFreeze", "merge", "mergeAll"]
+        },
+        {
+          "title": "Object > the recursion depth cap > the other deep walkers > isEql refuses a chain past the cap",
+          "message": "Maximum call stack size exceeded",
+          "category": "runtime-deviation",
+          "reason": "LLRT exhausts its JavaScript stack before the library's documented 512-level recursion limit, so the expected limit boundary cannot be reached. The fix belongs in LLRT.",
+          "requires": null,
+          "affects": ["clone", "isEql", "deepFreeze", "merge", "mergeAll"]
+        },
+        {
+          "title": "Object > the recursion depth cap > the other deep walkers > deepFreeze refuses a chain past the cap",
+          "message": "expected [Function] to not throw an error but 'RangeError: Maximum call stack size e…' was thrown",
+          "category": "runtime-deviation",
+          "reason": "LLRT exhausts its JavaScript stack before the library's documented 512-level recursion limit, so the expected limit boundary cannot be reached. The fix belongs in LLRT.",
+          "requires": null,
+          "affects": ["clone", "isEql", "deepFreeze", "merge", "mergeAll"]
+        },
+        {
+          "title": "Object > the recursion depth cap > the other deep walkers > merge refuses a chain past the cap",
+          "message": "expected [Function] to not throw an error but 'RangeError: Maximum call stack size e…' was thrown",
+          "category": "runtime-deviation",
+          "reason": "LLRT exhausts its JavaScript stack before the library's documented 512-level recursion limit, so the expected limit boundary cannot be reached. The fix belongs in LLRT.",
+          "requires": null,
+          "affects": ["clone", "isEql", "deepFreeze", "merge", "mergeAll"]
+        },
+        {
+          "title": "Object > the recursion depth cap > the other deep walkers > mergeAll refuses a chain past the cap",
+          "message": "expected [Function] to not throw an error but 'RangeError: Maximum call stack size e…' was thrown",
+          "category": "runtime-deviation",
+          "reason": "LLRT exhausts its JavaScript stack before the library's documented 512-level recursion limit, so the expected limit boundary cannot be reached. The fix belongs in LLRT.",
+          "requires": null,
+          "affects": ["clone", "isEql", "deepFreeze", "merge", "mergeAll"]
+        },
+        {
+          "title": "Object > the recursion depth cap > the other deep walkers > the message always names a function and the limit",
+          "message": "expected [Function] to throw error matching /^\\w+: input nested deeper than 512 le…/ but got 'Maximum call stack size exceeded'",
+          "category": "runtime-deviation",
+          "reason": "LLRT exhausts its JavaScript stack before the library's documented 512-level recursion limit, so the expected limit boundary cannot be reached. The fix belongs in LLRT.",
+          "requires": null,
+          "affects": ["clone", "isEql", "deepFreeze", "merge", "mergeAll"]
+        },
+        {
+          "title": "Object > prototype pollution > own __proto__ keys never become a prototype",
+          "message": "expected false to be true // Object.is equality",
+          "category": "runtime-deviation",
+          "reason": "LLRT does not preserve own `__proto__` data properties with standard object semantics, so the prototype-safety cases cannot be represented correctly. The fix belongs in LLRT.",
+          "requires": null,
+          "affects": ["flattenObject", "unflattenObject"]
+        },
+        {
+          "title": "Object > prototype pollution > flattenObject drops unsafe branches at any depth",
+          "message": "expected {} to deeply equal { safe: 1 }",
+          "category": "runtime-deviation",
+          "reason": "LLRT does not preserve own `__proto__` data properties with standard object semantics, so the prototype-safety cases cannot be represented correctly. The fix belongs in LLRT.",
+          "requires": null,
+          "affects": ["flattenObject", "unflattenObject"]
+        },
+        {
+          "title": "Object > prototype pollution > a flatten -> unflatten round trip stays clean",
+          "message": "expected {} to deeply equal { safe: 1 }",
+          "category": "runtime-deviation",
+          "reason": "LLRT does not preserve own `__proto__` data properties with standard object semantics, so the prototype-safety cases cannot be represented correctly. The fix belongs in LLRT.",
+          "requires": null,
+          "affects": ["flattenObject", "unflattenObject"]
         },
         {
           "title": "streamToIter > cancels the stream when the loop exits early",
