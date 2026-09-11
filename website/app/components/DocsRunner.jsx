@@ -16,10 +16,17 @@ export default function DocsRunner() {
   onMount(() => {
     view = mountTryIt(document);
 
-    // The site is a single-page app: a route change replaces the page beneath
-    // this persistent component. Ignore editor-local mutations, then attach
-    // the section to the new page on the next frame.
+    // The route layout can mount before the MDX chunk has finished inserting
+    // its content. Retry briefly after a page mutation; a full reload did not
+    // expose this because its content already existed before mount.
     let queued = false;
+    function update(attempts = 8) {
+      queued = false;
+      if (view?.update() || attempts === 0) return;
+      queued = true;
+      requestAnimationFrame(() => update(attempts - 1));
+    }
+
     const observer = new MutationObserver((records) => {
       if (
         !view ||
@@ -28,10 +35,7 @@ export default function DocsRunner() {
         return;
       if (queued) return;
       queued = true;
-      requestAnimationFrame(() => {
-        queued = false;
-        view?.update();
-      });
+      requestAnimationFrame(() => update());
     });
     observer.observe(document.body, { childList: true, subtree: true });
 

@@ -268,6 +268,15 @@ describe('mountTryIt — documentation page', () => {
     expect(sample()).toBe('last([1, 2]) //=> 2\n');
   });
 
+  test('attaches when a route renders its Try it block after mount', () => {
+    document.body.replaceChildren(el('h2', { id: 'examples' }, 'Examples'));
+    const view = mountTryIt(undefined, document);
+
+    page('last([1, 2]) //=> 2');
+    expect(view.update()).toBe(true);
+    expect(sample()).toBe('last([1, 2]) //=> 2\n');
+  });
+
   test('does not create a section on pages without a Try it example', () => {
     document.body.replaceChildren(el('h2', { id: 'examples' }, 'Examples'));
     const view = mountTryIt(undefined, document);

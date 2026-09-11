@@ -191,13 +191,13 @@ export default function mountTryIt(host, input = document) {
     if (direct) {
       const next = build(input);
       section.hidden = next === '';
-      if (next === '' || next === doc) return;
+      if (next === '' || next === doc) return !section.hidden;
 
       doc = next;
       out.clear();
       preview.textContent = next;
       editor?.set(next);
-      return;
+      return true;
     }
 
     const { heading, block, raw } = sourceOf(input);
@@ -206,7 +206,7 @@ export default function mountTryIt(host, input = document) {
     // the existing editor and its current text intact.
     if (!block) {
       if (!section.isConnected) section.hidden = true;
-      return;
+      return !section.hidden;
     }
 
     block.parentNode.insertBefore(section, block.nextSibling);
@@ -214,12 +214,13 @@ export default function mountTryIt(host, input = document) {
 
     const next = build(raw);
     section.hidden = next === '' || !heading || !section.isConnected;
-    if (next === '' || next === doc) return;
+    if (next === '' || next === doc) return !section.hidden;
 
     doc = next;
     out.clear();
     preview.textContent = next;
     editor?.set(next);
+    return true;
   }
 
   refresh();
@@ -237,7 +238,7 @@ export default function mountTryIt(host, input = document) {
 
   const view = {
     section,
-    update: direct ? () => {} : refresh,
+    update: direct ? () => !section.hidden : refresh,
     destroy() {
       watcher.disconnect();
       editor?.destroy();
