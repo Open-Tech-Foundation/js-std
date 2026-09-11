@@ -6,6 +6,7 @@
 
 - The website now consumes the published `@opentf/std@0.19.0` tarball.
 - The Playground now separates the code editor and flow-control visualisers into accessible tabs.
+- The Playground output now uses a compact DevTools-style console with per-level rows, expandable structured values and a dedicated Clear action.
 
 ## [0.19.0] - 2026-09-11
 

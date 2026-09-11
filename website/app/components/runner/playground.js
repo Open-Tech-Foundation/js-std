@@ -54,13 +54,12 @@ export default function mountPlayground(host) {
 
   const run = button('Run', 'rn-btn rn-btn--run');
   const reset = button('Reset', 'rn-btn');
-  const clear = button('Clear output', 'rn-btn');
 
   const hint = document.createElement('span');
   hint.className = 'rn-hint';
   hint.textContent = 'Ctrl/⌘ + Enter to run';
 
-  toolbar.append(run, reset, clear, hint);
+  toolbar.append(run, reset, hint);
 
   const split = document.createElement('div');
   split.className = 'rn-split';
@@ -68,14 +67,28 @@ export default function mountPlayground(host) {
   const surface = document.createElement('div');
   surface.className = 'rn-surface';
 
-  const output = document.createElement('div');
-  output.className = 'rn-console';
-  output.setAttribute('aria-live', 'polite');
+  const devtools = document.createElement('section');
+  devtools.className = 'rn-devtools';
+  devtools.setAttribute('aria-label', 'Console output');
 
-  split.append(surface, output);
+  const devtoolsHead = document.createElement('div');
+  devtoolsHead.className = 'rn-devtools-head';
+  const title = document.createElement('span');
+  title.className = 'rn-devtools-title';
+  title.textContent = 'Console';
+  const clear = button('Clear', 'rn-devtools-clear');
+  clear.setAttribute('aria-label', 'Clear console output');
+  devtoolsHead.append(title, clear);
+
+  const output = document.createElement('div');
+  output.className = 'rn-console rn-console--devtools';
+  output.setAttribute('aria-live', 'polite');
+  devtools.append(devtoolsHead, output);
+
+  split.append(surface, devtools);
   host.append(toolbar, split);
 
-  const out = createConsole(output);
+  const out = createConsole(output, { devtools: true });
   let editor = null;
   let running = false;
 
