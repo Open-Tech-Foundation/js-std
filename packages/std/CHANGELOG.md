@@ -22,6 +22,7 @@
 ### Fixed
 
 - Updated the release workflow's `otf-release` pin so the release gate recognises the untagged `0.19.0` package version and runs the publish job.
+- Kept the release jobs on pnpm 11.21.0, matching the version declared by the workspace.
 - CI now installs `esdev` before TSR runs the package and website test commands.
 - Restored the ES-Runtime compatibility-matrix job after its installer moved the `esrun` binary from `~/.esrun/bin` to `~/.es-runtime/bin`.
 - Classified LLRT's current Temporal, JSON, recursion-depth and own-`__proto__` deviations in the compatibility matrix. They remain visible in the published support report without preventing its refresh; equivalent failures on other runtimes still fail the matrix as undiagnosed.
