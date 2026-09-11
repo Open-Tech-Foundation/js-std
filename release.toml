@@ -22,3 +22,4 @@ matrix = false
 command = "npm run build"
 artifacts = ""
 manifest = "packages/std/package.json"
+provenance = true
