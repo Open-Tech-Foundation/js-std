@@ -60,9 +60,9 @@ compact([{}, []]) //=> [{}, []] (Empty objects and arrays are truthy)
 ## Try it
 
 ```ts
-compact([0, 1, false, 2, '', 3, null, undefined, NaN]) //=> [1, 2, 3]
+console.log(compact([0, 1, false, 2, '', 3, null, undefined, NaN])); //=> [1, 2, 3]
 
-compact(['apple', '', 'Mango']) //=> ['apple', 'Mango']
+console.log(compact(['apple', '', 'Mango'])); //=> ['apple', 'Mango']
 
-compact([{}, []]) //=> [{}, []] (Empty objects and arrays are truthy)
+console.log(compact([{}, []])); //=> [{}, []] (Empty objects and arrays are truthy)
 ```

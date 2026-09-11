@@ -44,13 +44,13 @@ takeWhile([1, 2, 3, 4, 5], (n) => n > 3, true) //=> [4, 5]
 ## Try it
 
 ```ts
-takeWhile([1, 2, 3, 4, 5], (n) => n < 4) //=> [1, 2, 3]
+console.log(takeWhile([1, 2, 3, 4, 5], (n) => n < 4)); //=> [1, 2, 3]
 
-takeWhile([1, 2, 3], (n) => n > 3) //=> []
+console.log(takeWhile([1, 2, 3], (n) => n > 3)); //=> []
 
-takeWhile([1, 2, 3], (n) => n < 10) //=> [1, 2, 3]
+console.log(takeWhile([1, 2, 3], (n) => n < 10)); //=> [1, 2, 3]
 
-takeWhile([true, true, false, true], Boolean) //=> [true, true]
+console.log(takeWhile([true, true, false, true], Boolean)); //=> [true, true]
 
-takeWhile([1, 2, 3, 4, 5], (n) => n > 3, true) //=> [4, 5]
+console.log(takeWhile([1, 2, 3, 4, 5], (n) => n > 3, true)); //=> [4, 5]
 ```

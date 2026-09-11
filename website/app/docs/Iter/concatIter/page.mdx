@@ -39,7 +39,7 @@ that stops early never touches the later ones.
 ## Try it
 
 ```ts
-[...concatIter([1, 2], [3, 4])] //=> [1, 2, 3, 4]
+console.log([...concatIter([1, 2], [3, 4])]); //=> [1, 2, 3, 4]
 
-[...concatIter('ab', [1, 2])] //=> ['a', 'b', 1, 2]
+console.log([...concatIter('ab', [1, 2])]); //=> ['a', 'b', 1, 2]
 ```

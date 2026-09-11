@@ -41,5 +41,5 @@ await toArrayIterAsync(takeIterAsync(gen(), 2)) //=> [1, 2]
 
 ```ts
 async function* gen() { yield 1; yield 2; yield 3; }
-await toArrayIterAsync(takeIterAsync(gen(), 2)) //=> [1, 2]
+console.log(await toArrayIterAsync(takeIterAsync(gen(), 2))); //=> [1, 2]
 ```

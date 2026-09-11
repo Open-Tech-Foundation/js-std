@@ -35,7 +35,7 @@ isPromise({}) //=> false
 ## Try it
 
 ```ts
-isPromise(Promise.resolve()) //=> true
+console.log(isPromise(Promise.resolve())); //=> true
 
-isPromise({}) //=> false
+console.log(isPromise({})); //=> false
 ```

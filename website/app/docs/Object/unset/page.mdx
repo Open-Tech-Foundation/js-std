@@ -63,13 +63,13 @@ unset(nestedObj, 'x.y.z') //=> { x: { y: {} } }
 ## Try it
 
 ```ts
-unset({ a: 1, b: 2 }, 'a') //=> { b: 2 }
+console.log(unset({ a: 1, b: 2 }, 'a')); //=> { b: 2 }
 
-unset({ a: 1, b: 2 }, 'c') //=> { a: 1, b: 2 } (Non-existent path)
+console.log(unset({ a: 1, b: 2 }, 'c')); //=> { a: 1, b: 2 } (Non-existent path)
 
 // Sparse array behavior
-unset([1, 2, 3], '1') //=> [1, <1 empty item>, 3]
+console.log(unset([1, 2, 3], '1')); //=> [1, <1 empty item>, 3]
 
 const nestedObj = { x: { y: { z: ['a', null, 'b'] } } };
-unset(nestedObj, 'x.y.z') //=> { x: { y: {} } }
+console.log(unset(nestedObj, 'x.y.z')); //=> { x: { y: {} } }
 ```

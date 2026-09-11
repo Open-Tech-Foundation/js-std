@@ -59,6 +59,6 @@ rows
 ```ts
 const id = uuidv7();
 
-uuidv7Time(id) //=> 1769000000000
-new Date(uuidv7Time(id)) //=> the moment it was generated
+console.log(uuidv7Time(id)); //=> 1769000000000
+console.log(new Date(uuidv7Time(id))); //=> the moment it was generated
 ```

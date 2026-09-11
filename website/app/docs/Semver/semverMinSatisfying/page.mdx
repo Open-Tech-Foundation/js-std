@@ -56,6 +56,6 @@ const oldest = semverMinSatisfying(published, pkg.peerDependencies.react);
 ## Try it
 
 ```ts
-semverMinSatisfying(['1.0.0', '1.2.3', '2.0.0'], '^1.0.0') //=> '1.0.0'
-semverMinSatisfying(['1.0.0', '2.0.0'], '^3.0.0') //=> null
+console.log(semverMinSatisfying(['1.0.0', '1.2.3', '2.0.0'], '^1.0.0')); //=> '1.0.0'
+console.log(semverMinSatisfying(['1.0.0', '2.0.0'], '^3.0.0')); //=> null
 ```

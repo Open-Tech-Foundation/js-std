@@ -73,20 +73,20 @@ intersection(
 ```ts
 const setA = [1, 2];
 const setB = [2, 3];
-intersection([setA, setB]) //=> [2]
+console.log(intersection([setA, setB])); //=> [2]
 
 const arrays = [
   [1, 2, 3],
   [2, 1, 5],
   [3, 1],
 ];
-intersection([...arrays]) //=> [1]
+console.log(intersection([...arrays])); //=> [1]
 
-intersection(
+console.log(intersection(
   [
     [2.1, 1.2],
     [2.3, 3.4],
   ],
   Math.floor
-) //=> [2.1]
+)); //=> [2.1]
 ```

@@ -68,25 +68,25 @@ isEmpty(false) //=> false
 
 ```ts
 // --- Empty Cases ---
-isEmpty('') //=> true
-isEmpty([]) //=> true
-isEmpty({}) //=> true
-isEmpty(new Map()) //=> true
-isEmpty(new Set()) //=> true
-isEmpty(new ArrayBuffer(0)) //=> true
-isEmpty(new Array(5), true) //=> true
+console.log(isEmpty('')); //=> true
+console.log(isEmpty([])); //=> true
+console.log(isEmpty({})); //=> true
+console.log(isEmpty(new Map())); //=> true
+console.log(isEmpty(new Set())); //=> true
+console.log(isEmpty(new ArrayBuffer(0))); //=> true
+console.log(isEmpty(new Array(5), true)); //=> true
 
 // --- Non-Empty Cases ---
-isEmpty(' ') //=> false
-isEmpty('a') //=> false
-isEmpty([1]) //=> false
-isEmpty({ [Symbol('x')]: 1 }) //=> false
-isEmpty({ length: 0, size: 0, byteLength: 0 }) //=> false
-isEmpty([,]) //=> false
+console.log(isEmpty(' ')); //=> false
+console.log(isEmpty('a')); //=> false
+console.log(isEmpty([1])); //=> false
+console.log(isEmpty({ [Symbol('x')]: 1 })); //=> false
+console.log(isEmpty({ length: 0, size: 0, byteLength: 0 })); //=> false
+console.log(isEmpty([,])); //=> false
 
 // --- Other Values ---
-isEmpty(null) //=> false
-isEmpty(undefined) //=> false
-isEmpty(1) //=> false
-isEmpty(false) //=> false
+console.log(isEmpty(null)); //=> false
+console.log(isEmpty(undefined)); //=> false
+console.log(isEmpty(1)); //=> false
+console.log(isEmpty(false)); //=> false
 ```

@@ -78,22 +78,22 @@ unflattenObject({ '__proto__.polluted': true }) //=> {}
 ## Try it
 
 ```ts
-unflattenObject({ 'a.b.c': 1 }) //=> { a: { b: { c: 1 } } }
+console.log(unflattenObject({ 'a.b.c': 1 })); //=> { a: { b: { c: 1 } } }
 
 unflattenObject({ 'user.name': 'Tom', 'user.age': 30 })
 //=> { user: { name: 'Tom', age: 30 } }
 
-unflattenObject({ 'a[0]': 1, 'a[1]': 2 }) //=> { a: [1, 2] }
+console.log(unflattenObject({ 'a[0]': 1, 'a[1]': 2 })); //=> { a: [1, 2] }
 
 // Dotted indices work too
-unflattenObject({ 'a.0': 1, 'a.1': 2 }) //=> { a: [1, 2] }
+console.log(unflattenObject({ 'a.0': 1, 'a.1': 2 })); //=> { a: [1, 2] }
 
 unflattenObject({ 'users[0].name': 'Tom', 'users[1].name': 'Ram' })
 //=> { users: [{ name: 'Tom' }, { name: 'Ram' }] }
 
 // An all-index root gives an array
-unflattenObject({ '[0]': 'a', '[1]': 'b' }) //=> ['a', 'b']
+console.log(unflattenObject({ '[0]': 'a', '[1]': 'b' })); //=> ['a', 'b']
 
 // Prototype-polluting keys are ignored
-unflattenObject({ '__proto__.polluted': true }) //=> {}
+console.log(unflattenObject({ '__proto__.polluted': true })); //=> {}
 ```

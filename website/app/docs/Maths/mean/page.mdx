@@ -58,14 +58,14 @@ mean(objects, (o) => o.a) //=> 4.666666666666667
 ## Try it
 
 ```ts
-mean([]) //=> NaN
+console.log(mean([])); //=> NaN
 
-mean([1]) //=> 1
+console.log(mean([1])); //=> 1
 
-mean([4, 1, 7]) //=> 4
+console.log(mean([4, 1, 7])); //=> 4
 
-mean([4, 2, 8]) //=> 4.666666666666667
+console.log(mean([4, 2, 8])); //=> 4.666666666666667
 
 const objects = [{ a: 4 }, { a: 2 }, { a: 8 }];
-mean(objects, (o) => o.a) //=> 4.666666666666667
+console.log(mean(objects, (o) => o.a)); //=> 4.666666666666667
 ```

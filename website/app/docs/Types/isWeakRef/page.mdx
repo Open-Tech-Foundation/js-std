@@ -29,8 +29,8 @@ isWeakRef(new WeakRef(user)) //=> true
 ## Try it
 
 ```ts
-isWeakRef({}) //=> false
+console.log(isWeakRef({})); //=> false
 
 let user = { name: "John" };
-isWeakRef(new WeakRef(user)) //=> true
+console.log(isWeakRef(new WeakRef(user))); //=> true
 ```

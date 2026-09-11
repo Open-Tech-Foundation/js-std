@@ -36,5 +36,5 @@ await everyIterAsync(gen(), x => x > 0) //=> true
 
 ```ts
 async function* gen() { yield 1; yield 2; }
-await everyIterAsync(gen(), x => x > 0) //=> true
+console.log(await everyIterAsync(gen(), x => x > 0)); //=> true
 ```

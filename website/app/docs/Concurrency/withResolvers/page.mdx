@@ -45,7 +45,7 @@ const result = await promise; //=> 42
 ## Try it
 
 ```ts
-const { promise, resolve, reject } = withResolvers<number>();
+const { promise, resolve, reject } = withResolvers();
 
 setTimeout(() => {
   resolve(42);

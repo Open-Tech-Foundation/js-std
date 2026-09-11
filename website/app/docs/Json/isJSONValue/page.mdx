@@ -107,15 +107,15 @@ function logPayload(payload: unknown) {
 ## Try it
 
 ```ts
-isJSONValue(null) //=> true
-isJSONValue("hi") //=> true
-isJSONValue(0) //=> true
-isJSONValue(false) //=> true
+console.log(isJSONValue(null)); //=> true
+console.log(isJSONValue("hi")); //=> true
+console.log(isJSONValue(0)); //=> true
+console.log(isJSONValue(false)); //=> true
 
-isJSONValue(NaN) //=> false — would become `null`
-isJSONValue(Infinity) //=> false
-isJSONValue(BigInt(1)) //=> false — would throw
-isJSONValue(undefined) //=> false
-isJSONValue(() => {}) //=> false
-isJSONValue(Symbol("a")) //=> false
+console.log(isJSONValue(NaN)); //=> false — would become `null`
+console.log(isJSONValue(Infinity)); //=> false
+console.log(isJSONValue(BigInt(1))); //=> false — would throw
+console.log(isJSONValue(undefined)); //=> false
+console.log(isJSONValue(() => {})); //=> false
+console.log(isJSONValue(Symbol("a"))); //=> false
 ```

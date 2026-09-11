@@ -39,6 +39,6 @@ await streamToArray(objectStream) //=> [{ a: 1 }, { b: 2 }]
 ## Try it
 
 ```ts
-await streamToArray(stream) //=> ['a', 'b', 'c']
-await streamToArray(objectStream) //=> [{ a: 1 }, { b: 2 }]
+console.log(await streamToArray(stream)); //=> ['a', 'b', 'c']
+console.log(await streamToArray(objectStream)); //=> [{ a: 1 }, { b: 2 }]
 ```

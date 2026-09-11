@@ -36,6 +36,6 @@ encodeBase64Url(new Uint8Array([104, 101, 108, 108, 111]), { pad: false }) //=> 
 ## Try it
 
 ```ts
-encodeBase64Url(new Uint8Array([104, 101, 108, 108, 111])) //=> 'aGVsbG8='
-encodeBase64Url(new Uint8Array([104, 101, 108, 108, 111]), { pad: false }) //=> 'aGVsbG8'
+console.log(encodeBase64Url(new Uint8Array([104, 101, 108, 108, 111]))); //=> 'aGVsbG8='
+console.log(encodeBase64Url(new Uint8Array([104, 101, 108, 108, 111]), { pad: false })); //=> 'aGVsbG8'
 ```

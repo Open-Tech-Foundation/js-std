@@ -30,9 +30,9 @@ isRegExp({}) //=> false
 ## Try it
 
 ```ts
-isRegExp(new RegExp()) //=> true
+console.log(isRegExp(new RegExp())); //=> true
 
-isRegExp(/\d+/) //=> true
+console.log(isRegExp(/\d+/)); //=> true
 
-isRegExp({}) //=> false
+console.log(isRegExp({})); //=> false
 ```

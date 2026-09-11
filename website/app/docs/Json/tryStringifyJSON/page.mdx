@@ -149,7 +149,7 @@ const body = tryStringifyJSON({ id: BigInt("123456789012345"), createdAt: new Da
 ## Try it
 
 ```ts
-tryStringifyJSON({ a: 1 }) //=> '{"a":1}'
-tryStringifyJSON([1, 2, 3]) //=> '[1,2,3]'
-tryStringifyJSON(null) //=> 'null'
+console.log(tryStringifyJSON({ a: 1 })); //=> '{"a":1}'
+console.log(tryStringifyJSON([1, 2, 3])); //=> '[1,2,3]'
+console.log(tryStringifyJSON(null)); //=> 'null'
 ```

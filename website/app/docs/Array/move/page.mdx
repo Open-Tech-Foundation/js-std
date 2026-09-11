@@ -45,9 +45,9 @@ move([1, 2, 3], 5, 0); //=> [1, 2, 3] (invalid source index returns original)
 ## Try it
 
 ```ts
-move([1, 2, 3], 0, 2); //=> [2, 3, 1]
+console.log(move([1, 2, 3], 0, 2)); //=> [2, 3, 1]
 
-move([1, 2, 3], 0, 5); //=> [2, 3, 1] (capped at array length)
+console.log(move([1, 2, 3], 0, 5)); //=> [2, 3, 1] (capped at array length)
 
-move([1, 2, 3], 5, 0); //=> [1, 2, 3] (invalid source index returns original)
+console.log(move([1, 2, 3], 5, 0)); //=> [1, 2, 3] (invalid source index returns original)
 ```

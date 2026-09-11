@@ -64,5 +64,5 @@ const allUp = await everyAsync(
 ## Try it
 
 ```ts
-await everyAsync([2, 4, 6], async (n) => n % 2 === 0); //=> true
+console.log(await everyAsync([2, 4, 6], async (n) => n % 2 === 0)); //=> true
 ```

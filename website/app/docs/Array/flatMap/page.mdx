@@ -39,9 +39,9 @@ flatMap(['a', 'b'], (x, i) => [x + i]) //=> ['a0', 'b1']
 ## Try it
 
 ```ts
-flatMap([1, 2], (x) => [x, x * 10]) //=> [1, 10, 2, 20]
+console.log(flatMap([1, 2], (x) => [x, x * 10])); //=> [1, 10, 2, 20]
 
-flatMap([1, 2, 3], (x) => [x]) //=> [1, 2, 3]
+console.log(flatMap([1, 2, 3], (x) => [x])); //=> [1, 2, 3]
 
-flatMap(['a', 'b'], (x, i) => [x + i]) //=> ['a0', 'b1']
+console.log(flatMap(['a', 'b'], (x, i) => [x + i])); //=> ['a0', 'b1']
 ```

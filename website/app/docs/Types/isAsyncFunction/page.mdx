@@ -50,27 +50,27 @@ isAsyncFunction(aGen); //=> false
 ## Try it
 
 ```ts
-isAsyncFunction(function() {}) //=> false
+console.log(isAsyncFunction(function() {})); //=> false
 
-isAsyncFunction({}) //=> false
+console.log(isAsyncFunction({})); //=> false
 
 function* generator(i) {
   yield i;
   yield i + 10;
 }
 
-isAsyncFunction(generator); //=> false
+console.log(isAsyncFunction(generator)); //=> false
 
 const afn = async () => {}
-isAsyncFunction(afn) //=> true
+console.log(isAsyncFunction(afn)); //=> true
 
 async function getUsers() {}
-isAsyncFunction(getUsers) //=> true
+console.log(isAsyncFunction(getUsers)); //=> true
 
 async function* aGen(i) {
   yield i;
   yield i + 10;
 }
 
-isAsyncFunction(aGen); //=> false
+console.log(isAsyncFunction(aGen)); //=> false
 ```

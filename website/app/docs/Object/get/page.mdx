@@ -59,17 +59,17 @@ get({ fruits: ['Apple', 'Mango'] }, ['fruits', 1]) //=> 'Mango'
 ## Try it
 
 ```ts
-get({ a: 1 }, 'a') //=> 1
+console.log(get({ a: 1 }, 'a')); //=> 1
 
-get({ user: { email: 'user@example.com' } }, 'user.email') //=> 'user@example.com'
+console.log(get({ user: { email: 'user@example.com' } }, 'user.email')); //=> 'user@example.com'
 
-get({ a: [{ b: { c: 99 } }] }, 'a[0].b.c') //=> 99
+console.log(get({ a: [{ b: { c: 99 } }] }, 'a[0].b.c')); //=> 99
 
-get({ a: 1 }, 'b', 'default') //=> 'default'
+console.log(get({ a: 1 }, 'b', 'default')); //=> 'default'
 
-get({ a: undefined }, 'a', 'default') //=> undefined
+console.log(get({ a: undefined }, 'a', 'default')); //=> undefined
 
-get({ a: null }, 'a') //=> null (null is a valid value)
+console.log(get({ a: null }, 'a')); //=> null (null is a valid value)
 
-get({ fruits: ['Apple', 'Mango'] }, ['fruits', 1]) //=> 'Mango'
+console.log(get({ fruits: ['Apple', 'Mango'] }, ['fruits', 1])); //=> 'Mango'
 ```

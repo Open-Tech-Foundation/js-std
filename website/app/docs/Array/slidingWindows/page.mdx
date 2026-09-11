@@ -68,8 +68,8 @@ slidingWindows([1, 2, 3, 4], 2); //=> [[1, 2], [2, 3], [3, 4]] ← overlapping
 ## Try it
 
 ```ts
-slidingWindows([1, 2, 3, 4], 2)    //=> [[1, 2], [2, 3], [3, 4]]
-slidingWindows([1, 2, 3, 4, 5], 3) //=> [[1, 2, 3], [2, 3, 4], [3, 4, 5]]
+console.log(slidingWindows([1, 2, 3, 4], 2)); //=> [[1, 2], [2, 3], [3, 4]]
+console.log(slidingWindows([1, 2, 3, 4, 5], 3)); //=> [[1, 2, 3], [2, 3, 4], [3, 4, 5]]
 
-slidingWindows([1, 2], 3) //=> []  (too short for a whole window)
+console.log(slidingWindows([1, 2], 3)); //=> []  (too short for a whole window)
 ```

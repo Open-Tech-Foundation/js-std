@@ -36,5 +36,5 @@ await findIterAsync(gen(), x => x > 1) //=> 2
 
 ```ts
 async function* gen() { yield 1; yield 2; }
-await findIterAsync(gen(), x => x > 1) //=> 2
+console.log(await findIterAsync(gen(), x => x > 1)); //=> 2
 ```

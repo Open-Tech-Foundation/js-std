@@ -85,10 +85,10 @@ semverSatisfies('2.0.0-alpha', '>=1.0.0', { includePrerelease: true }) //=> true
 ## Try it
 
 ```ts
-semverSatisfies('1.2.5', '^1.2.3') //=> true
-semverSatisfies('2.0.0', '^1.2.3') //=> false
-semverSatisfies('1.2.7', '~1.2.3') //=> true
+console.log(semverSatisfies('1.2.5', '^1.2.3')); //=> true
+console.log(semverSatisfies('2.0.0', '^1.2.3')); //=> false
+console.log(semverSatisfies('1.2.7', '~1.2.3')); //=> true
 
-semverSatisfies('1.5.0', '>=1.2.3 <2.0.0 || 3.x') //=> true
-semverSatisfies('1.2.3', '1.2.3 - 2.3.4')         //=> true
+console.log(semverSatisfies('1.5.0', '>=1.2.3 <2.0.0 || 3.x')); //=> true
+console.log(semverSatisfies('1.2.3', '1.2.3 - 2.3.4')); //=> true
 ```

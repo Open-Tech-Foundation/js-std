@@ -52,5 +52,5 @@ function* naturals() { let n = 0; while (true) yield n++; }
 ## Try it
 
 ```ts
-[...chunkIter([1, 2, 3, 4, 5], 2)] //=> [[1, 2], [3, 4], [5]]
+console.log([...chunkIter([1, 2, 3, 4, 5], 2)]); //=> [[1, 2], [3, 4], [5]]
 ```

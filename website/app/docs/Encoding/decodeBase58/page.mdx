@@ -53,6 +53,6 @@ decodeBase58('112') //=> Uint8Array [0, 0, 1]
 ## Try it
 
 ```ts
-decodeBase58('9Ajdvzr')         //=> Uint8Array [72, 101, 108, 108, 111]
-bytesToString(decodeBase58('StV1DL6CwTryKyV')) //=> 'hello world'
+console.log(decodeBase58('9Ajdvzr')); //=> Uint8Array [72, 101, 108, 108, 111]
+console.log(bytesToString(decodeBase58('StV1DL6CwTryKyV'))); //=> 'hello world'
 ```

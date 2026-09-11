@@ -53,23 +53,23 @@ isGeneratorFunction(someObj.generator); //=> true
 ## Try it
 
 ```ts
-isGeneratorFunction(function() {}) //=> false
+console.log(isGeneratorFunction(function() {})); //=> false
 
-isGeneratorFunction({}) //=> false
+console.log(isGeneratorFunction({})); //=> false
 
 function* generator(i) {
   yield i;
   yield i + 10;
 }
 
-isGeneratorFunction(generator); //=> true
+console.log(isGeneratorFunction(generator)); //=> true
 
 async function* aGen(i) {
   yield i;
   yield i + 10;
 }
 
-isGeneratorFunction(aGen); //=> false
+console.log(isGeneratorFunction(aGen)); //=> false
 
 const someObj = {
   *generator() {
@@ -78,5 +78,5 @@ const someObj = {
   },
 };
 
-isGeneratorFunction(someObj.generator); //=> true
+console.log(isGeneratorFunction(someObj.generator)); //=> true
 ```

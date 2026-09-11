@@ -72,5 +72,5 @@ const translated = mapStream(lines, async (line) => (await translate(line)).text
 ```ts
 const sizes = mapStream(response.body, (chunk) => chunk.length);
 
-await streamToArray(sizes) //=> [64, 64, 12]
+console.log(await streamToArray(sizes)); //=> [64, 64, 12]
 ```

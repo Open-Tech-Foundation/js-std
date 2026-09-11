@@ -36,5 +36,5 @@ await toArrayIterAsync(flatMapIterAsync(gen(), x => [x, x * 10])) //=> [1, 10, 2
 
 ```ts
 async function* gen() { yield 1; yield 2; }
-await toArrayIterAsync(flatMapIterAsync(gen(), x => [x, x * 10])) //=> [1, 10, 2, 20]
+console.log(await toArrayIterAsync(flatMapIterAsync(gen(), x => [x, x * 10]))); //=> [1, 10, 2, 20]
 ```

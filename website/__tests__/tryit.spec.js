@@ -12,7 +12,6 @@ import {
   test,
 } from 'runtime:test';
 
-import { seedFromExample } from '../app/components/runner/seed.js';
 import mountTryIt from '../app/components/runner/tryit.js';
 
 class Element {
@@ -193,7 +192,7 @@ describe('mountTryIt — direct source', () => {
 
     expect(section().hidden).toBe(false);
     expect(section().querySelector('h2').textContent).toBe('Try it');
-    expect(sample()).toBe('console.log(chunk([1, 2], 1)); //=> [[1], [2]]\n');
+    expect(sample()).toBe('chunk([1, 2], 1) //=> [[1], [2]]\n');
   });
 
   test('includes the import header when present', () => {
@@ -203,7 +202,7 @@ describe('mountTryIt — direct source', () => {
     mountTryIt(host, source);
 
     expect(sample()).toContain("import { chunk } from '@opentf/std';");
-    expect(sample()).toContain('console.log(chunk([1, 2]));');
+    expect(sample()).toContain('chunk([1, 2]) //=> [[1], [2]]');
   });
 
   test('hides itself when source is empty', () => {
@@ -240,7 +239,7 @@ describe('mountTryIt — direct source', () => {
     mountTryIt(host, 'last([1, 2]) //=> 2');
 
     expect(document.querySelectorAll('.rn-tryit')).toHaveLength(1);
-    expect(sample()).toBe('console.log(last([1, 2])); //=> 2\n');
+    expect(sample()).toBe('last([1, 2]) //=> 2\n');
   });
 });
 
@@ -252,10 +251,10 @@ describe('mountTryIt — documentation page', () => {
     expect(document.querySelectorAll('h2#try-it')).toHaveLength(1);
     expect(section().previousElementSibling.tagName).toBe('H2');
     expect(document.querySelector('web-internal-code-block')).toBe(null);
-    expect(sample()).toBe('console.log(first([1, 2])); //=> 1\n');
+    expect(sample()).toBe('first([1, 2]) //=> 1\n');
 
     view.update();
-    expect(sample()).toBe('console.log(first([1, 2])); //=> 1\n');
+    expect(sample()).toBe('first([1, 2]) //=> 1\n');
   });
 
   test('moves and re-seeds the editor after a page navigation', () => {
@@ -266,7 +265,7 @@ describe('mountTryIt — documentation page', () => {
     view.update();
 
     expect(section().previousElementSibling.tagName).toBe('H2');
-    expect(sample()).toBe('console.log(last([1, 2])); //=> 2\n');
+    expect(sample()).toBe('last([1, 2]) //=> 2\n');
   });
 
   test('does not create a section on pages without a Try it example', () => {
@@ -275,62 +274,5 @@ describe('mountTryIt — documentation page', () => {
 
     expect(view.section.hidden).toBe(true);
     expect(view.section.isConnected).toBe(false);
-  });
-});
-
-describe('seedFromExample — TypeScript stripping', () => {
-  test('removes type annotations from variable declarations', () => {
-    const result = seedFromExample('const o: any = {};\n');
-    expect(result).toBe('const o = {};');
-  });
-
-  test('removes generic type parameters from function calls', () => {
-    const result = seedFromExample("const user = tryParseJSON<User>('{}');\n");
-    expect(result).toBe("const user = tryParseJSON('{}');");
-  });
-
-  test('removes type assertions', () => {
-    const result = seedFromExample('tryParseJSON(null as any, []) //=> []\n');
-    expect(result).toBe('console.log(tryParseJSON(null, [])); //=> []');
-  });
-
-  test('removes non-null assertions', () => {
-    const result = seedFromExample(
-      'localStorage.setItem("user", tryStringifyJSON(user, "{}")!);\n',
-    );
-    expect(result).toBe(
-      'localStorage.setItem("user", tryStringifyJSON(user, "{}"));',
-    );
-  });
-
-  test('removes type definitions', () => {
-    const result = seedFromExample(
-      'type User = { id: string; name: string };\n' +
-        "const user = tryParseJSON<User>('{}');\n",
-    );
-    expect(result).toBe("const user = tryParseJSON('{}');");
-  });
-
-  test('removes declare statements', () => {
-    const result = seedFromExample(
-      'declare const maybe: unknown;\n' +
-        'if (isJSONValue(maybe)) {\n' +
-        '  console.log(maybe);\n' +
-        '}\n',
-    );
-    expect(result).toContain('if (isJSONValue(maybe))');
-    expect(result).not.toContain('declare');
-  });
-
-  test('removes arrow function parameter types', () => {
-    const result = seedFromExample(
-      'const fn = (k: string, v: unknown) => v;\n',
-    );
-    expect(result).toBe('const fn = (k, v) => v;');
-  });
-
-  test('does not strip "as" inside strings or words', () => {
-    const result = seedFromExample('"class" //=> "class"\n');
-    expect(result).toBe('console.log("class"); //=> "class"');
   });
 });

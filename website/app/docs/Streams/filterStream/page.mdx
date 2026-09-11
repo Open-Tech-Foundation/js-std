@@ -69,5 +69,5 @@ const report = mapStream(
 ```ts
 const errors = filterStream(lines, (line) => line.startsWith('ERROR'));
 
-await streamToArray(errors) //=> ['ERROR one', 'ERROR two']
+console.log(await streamToArray(errors)); //=> ['ERROR one', 'ERROR two']
 ```

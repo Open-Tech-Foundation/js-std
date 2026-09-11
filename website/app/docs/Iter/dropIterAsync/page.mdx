@@ -36,5 +36,5 @@ await toArrayIterAsync(dropIterAsync(gen(), 1)) //=> [2, 3]
 
 ```ts
 async function* gen() { yield 1; yield 2; yield 3; }
-await toArrayIterAsync(dropIterAsync(gen(), 1)) //=> [2, 3]
+console.log(await toArrayIterAsync(dropIterAsync(gen(), 1))); //=> [2, 3]
 ```

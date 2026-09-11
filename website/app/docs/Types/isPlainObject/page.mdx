@@ -55,20 +55,20 @@ isPlainObject(null) //=> false
 ## Try it
 
 ```ts
-isPlainObject({}) //=> true
+console.log(isPlainObject({})); //=> true
 
-isPlainObject({ a: 1 }) //=> true
+console.log(isPlainObject({ a: 1 })); //=> true
 
-isPlainObject(Object.create(null)) //=> true
+console.log(isPlainObject(Object.create(null))); //=> true
 
-isPlainObject(new Object()) //=> true
+console.log(isPlainObject(new Object())); //=> true
 
 // Non-plain objects
-isPlainObject([]) //=> false
+console.log(isPlainObject([])); //=> false
 
-isPlainObject(new Map()) //=> false
+console.log(isPlainObject(new Map())); //=> false
 
-isPlainObject(new Error()) //=> false
+console.log(isPlainObject(new Error())); //=> false
 
-isPlainObject(null) //=> false
+console.log(isPlainObject(null)); //=> false
 ```

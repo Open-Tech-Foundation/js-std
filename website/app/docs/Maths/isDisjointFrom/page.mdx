@@ -58,16 +58,16 @@ isDisjointFrom(composites, squares) //=> false
 ## Try it
 
 ```ts
-isDisjointFrom([1, 3, 5], [2, 4]) //=> true
+console.log(isDisjointFrom([1, 3, 5], [2, 4])); //=> true
 
 const primes = new Set([2, 3, 5, 7, 11, 13, 17, 19]);
 const squares = new Set([1, 4, 9, 16]);
-isDisjointFrom(primes, squares) //=> true
+console.log(isDisjointFrom(primes, squares)); //=> true
 
-isDisjointFrom([1, 2, 3, 5], [2, 4]) //=> false
+console.log(isDisjointFrom([1, 2, 3, 5], [2, 4])); //=> false
 
 const composites = new Set([4, 6, 8, 9, 10, 12, 14, 15, 16, 18]);
 const squares = new Set([1, 4, 9, 16]);
 
-isDisjointFrom(composites, squares) //=> false
+console.log(isDisjointFrom(composites, squares)); //=> false
 ```

@@ -54,5 +54,5 @@ await streamToArray(concatStreams(slow, fast)) //=> ['a', 'b', 'c', 'd']
 
 ```ts
 const all = concatStreams(header, body, footer);
-await streamToText(all) //=> 'headerbodyfooter'
+console.log(await streamToText(all)); //=> 'headerbodyfooter'
 ```

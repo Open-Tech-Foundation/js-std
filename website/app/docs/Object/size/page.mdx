@@ -68,27 +68,27 @@ size(123) //=> -1
 
 ```ts
 // --- Strings ---
-size('') //=> 0
-size('abc') //=> 3
+console.log(size('')); //=> 0
+console.log(size('abc')); //=> 3
 
 // --- Arrays ---
-size([]) //=> 0
-size([1, 2, 3]) //=> 3
+console.log(size([])); //=> 0
+console.log(size([1, 2, 3])); //=> 3
 
 // --- Objects ---
-size({}) //=> 0
-size({ a: 1, b: 2 }) //=> 2
-size({ [Symbol('x')]: 1 }) //=> 1
+console.log(size({})); //=> 0
+console.log(size({ a: 1, b: 2 })); //=> 2
+console.log(size({ [Symbol('x')]: 1 })); //=> 1
 
 // --- Maps & Sets ---
-size(new Map([['a', 1]])) //=> 1
-size(new Set([1, 2])) //=> 2
+console.log(size(new Map([['a', 1]]))); //=> 1
+console.log(size(new Set([1, 2]))); //=> 2
 
 // --- Buffers ---
-size(new ArrayBuffer(8)) //=> 8
-size(new Uint8Array(10)) //=> 10
+console.log(size(new ArrayBuffer(8))); //=> 8
+console.log(size(new Uint8Array(10))); //=> 10
 
 // --- Unsupported ---
-size(null) //=> -1
-size(123) //=> -1
+console.log(size(null)); //=> -1
+console.log(size(123)); //=> -1
 ```

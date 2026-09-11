@@ -36,5 +36,5 @@ await toArrayIterAsync(mapIterAsync(gen(), x => x * 2)) //=> [2, 4]
 
 ```ts
 async function* gen() { yield 1; yield 2; }
-await toArrayIterAsync(mapIterAsync(gen(), x => x * 2)) //=> [2, 4]
+console.log(await toArrayIterAsync(mapIterAsync(gen(), x => x * 2))); //=> [2, 4]
 ```

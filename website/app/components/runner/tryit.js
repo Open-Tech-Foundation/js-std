@@ -1,7 +1,6 @@
 import execute from './client.js';
 import createConsole from './console.js';
 import createEditor from './editor.js';
-import { seedFromExample } from './seed.js';
 
 /**
  * The Try it editor at the foot of every function page.
@@ -142,7 +141,9 @@ export default function mountTryIt(host, input = document) {
     return editing;
   }
 
-  const build = (raw) => (raw ? `${seedFromExample(raw)}\n` : '');
+  // Try it code is authored for execution. It is deliberately not rewritten:
+  // a page controls exactly what readers see and run.
+  const build = (raw) => (raw ? `${raw}\n` : '');
 
   async function start() {
     if (running) return;

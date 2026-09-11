@@ -60,19 +60,19 @@ formatCurrency(1200, 'USD', { maxFraction: 0 }) //=> '$1,200'
 ## Try it
 
 ```ts
-formatCurrency(1200, 'USD') //=> '$1,200.00'
+console.log(formatCurrency(1200, 'USD')); //=> '$1,200.00'
 
-formatCurrency(1200, 'EUR') //=> '€1,200.00'
+console.log(formatCurrency(1200, 'EUR')); //=> '€1,200.00'
 
-formatCurrency(1200, 'JPY') //=> '¥1,200' (no decimals, Intl knows)
+console.log(formatCurrency(1200, 'JPY')); //=> '¥1,200' (no decimals, Intl knows)
 
-formatCurrency(1200, 'INR') //=> '₹1,200.00'
+console.log(formatCurrency(1200, 'INR')); //=> '₹1,200.00'
 
-formatCurrency(1200, 'EUR', { locale: 'de-DE' }) //=> '1.200,00 €'
+console.log(formatCurrency(1200, 'EUR', { locale: 'de-DE' })); //=> '1.200,00 €'
 
-formatCurrency(1200, 'USD', { display: 'code' }) //=> 'USD 1,200.00'
+console.log(formatCurrency(1200, 'USD', { display: 'code' })); //=> 'USD 1,200.00'
 
-formatCurrency(1200, 'USD', { display: 'name' }) //=> '1,200.00 US dollars'
+console.log(formatCurrency(1200, 'USD', { display: 'name' })); //=> '1,200.00 US dollars'
 
-formatCurrency(1200, 'USD', { maxFraction: 0 }) //=> '$1,200'
+console.log(formatCurrency(1200, 'USD', { maxFraction: 0 })); //=> '$1,200'
 ```

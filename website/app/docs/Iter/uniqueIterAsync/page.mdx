@@ -50,5 +50,5 @@ await toArrayIterAsync(ids) //=> one event per user, in first-seen order
 ```ts
 const ids = uniqueIterAsync(events, (e) => e.userId);
 
-await toArrayIterAsync(ids) //=> one event per user, in first-seen order
+console.log(await toArrayIterAsync(ids)); //=> one event per user, in first-seen order
 ```

@@ -74,15 +74,15 @@ bounds(arr, (f) => f.age)
 ## Try it
 
 ```ts
-bounds([]) //=> null
+console.log(bounds([])); //=> null
 
-bounds([1, undefined, 2, null, 3]) //=> [1, 3]
+console.log(bounds([1, undefined, 2, null, 3])); //=> [1, 3]
 
-bounds([1, 2, -3, 4, 5]) //=> [-3, 5]
+console.log(bounds([1, 2, -3, 4, 5])); //=> [-3, 5]
 
-bounds(['a', 'b', 'c', 'z', 'd']) //=> ['a', 'z']
+console.log(bounds(['a', 'b', 'c', 'z', 'd'])); //=> ['a', 'z']
 
-bounds(['apple', 'mango', 'grapes']) //=> ['apple', 'mango']
+console.log(bounds(['apple', 'mango', 'grapes'])); //=> ['apple', 'mango']
 
 const arr = [
   {

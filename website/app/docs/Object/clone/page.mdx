@@ -112,7 +112,7 @@ const clonedBoxed = clone({ boxed });
 clonedBoxed.boxed === boxed; // true
 
 // Circular references
-const circular: any = { a: 1 };
+const circular = { a: 1 };
 circular.self = circular;
 const clonedCircular = clone(circular);
 clonedCircular.self === clonedCircular; // true

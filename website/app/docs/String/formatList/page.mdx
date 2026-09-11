@@ -73,8 +73,8 @@ formatList(['a', 'b'], { locale: 'es-ES' }) //=> 'a y b'
 ## Try it
 
 ```ts
-formatList(['a', 'b', 'c']) //=> 'a, b, and c'
-formatList(['a', 'b']) //=> 'a and b'
-formatList(['a']) //=> 'a'
-formatList([]) //=> ''
+console.log(formatList(['a', 'b', 'c'])); //=> 'a, b, and c'
+console.log(formatList(['a', 'b'])); //=> 'a and b'
+console.log(formatList(['a'])); //=> 'a'
+console.log(formatList([])); //=> ''
 ```

@@ -36,5 +36,5 @@ await nthIterAsync(gen(), 1) //=> 2
 
 ```ts
 async function* gen() { yield 1; yield 2; }
-await nthIterAsync(gen(), 1) //=> 2
+console.log(await nthIterAsync(gen(), 1)); //=> 2
 ```

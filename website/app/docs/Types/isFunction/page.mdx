@@ -35,14 +35,14 @@ isFunction(generator); //=> true
 ## Try it
 
 ```ts
-isFunction(function() {}) //=> true
+console.log(isFunction(function() {})); //=> true
 
-isFunction({}) //=> false
+console.log(isFunction({})); //=> false
 
 function* generator(i) {
   yield i;
   yield i + 10;
 }
 
-isFunction(generator); //=> true
+console.log(isFunction(generator)); //=> true
 ```

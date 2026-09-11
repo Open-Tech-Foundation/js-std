@@ -36,5 +36,5 @@ await toArrayIterAsync(filterIterAsync(gen(), x => x % 2 === 0)) //=> [2]
 
 ```ts
 async function* gen() { yield 1; yield 2; yield 3; }
-await toArrayIterAsync(filterIterAsync(gen(), x => x % 2 === 0)) //=> [2]
+console.log(await toArrayIterAsync(filterIterAsync(gen(), x => x % 2 === 0))); //=> [2]
 ```

@@ -125,8 +125,8 @@ tryParseJSON('{"a":1}') //=> {a:1} — tells you and gives the value
 ## Try it
 
 ```ts
-tryParseJSON('{"a":1}') //=> {a:1}
-tryParseJSON('[1,2,3]') //=> [1,2,3]
-tryParseJSON('null') //=> null
-tryParseJSON('"hi"') //=> "hi"
+console.log(tryParseJSON('{"a":1}')); //=> {a:1}
+console.log(tryParseJSON('[1,2,3]')); //=> [1,2,3]
+console.log(tryParseJSON('null')); //=> null
+console.log(tryParseJSON('"hi"')); //=> "hi"
 ```

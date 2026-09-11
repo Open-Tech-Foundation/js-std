@@ -76,15 +76,15 @@ clamp(mapRange(15, [0, 10], [0, 100]), 0, 100) //=> 100
 ## Try it
 
 ```ts
-mapRange(5, [0, 10], [0, 100]) //=> 50
+console.log(mapRange(5, [0, 10], [0, 100])); //=> 50
 
-mapRange(0, [0, 10], [0, 100]) //=> 0
+console.log(mapRange(0, [0, 10], [0, 100])); //=> 0
 
-mapRange(10, [0, 10], [0, 100]) //=> 100
+console.log(mapRange(10, [0, 10], [0, 100])); //=> 100
 
-// A 10-bit sensor reading as a byte
-mapRange(512, [0, 1023], [0, 255]) //=> 127.75
+// A 10-bit sensor reading byte
+console.log(mapRange(512, [0, 1023], [0, 255])); //=> 127.75
 
 // Celsius to Fahrenheit
-mapRange(50, [0, 100], [32, 212]) //=> 122
+console.log(mapRange(50, [0, 100], [32, 212])); //=> 122
 ```

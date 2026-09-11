@@ -75,34 +75,34 @@ insert([1, 2, 3], (x) => x === 2, 5, 'after') //=> [1, 2, 5, 3]
 ## Try it
 
 ```ts
-insert([]) //=> []
+console.log(insert([])); //=> []
 
-insert([1]) //=> [1]
+console.log(insert([1])); //=> [1]
 
-insert([1], 0) //=> [1]
+console.log(insert([1], 0)); //=> [1]
 
-insert([1], 0, 0) //=> [0, 1]
+console.log(insert([1], 0, 0)); //=> [0, 1]
 
-insert([1], 1, 0) //=> [1, 0]
+console.log(insert([1], 1, 0)); //=> [1, 0]
 
-insert([1, 2, 3], 1, 5) //=> [1, 5, 2, 3]
+console.log(insert([1, 2, 3], 1, 5)); //=> [1, 5, 2, 3]
 
-insert([1, 2, 3], -1, 5) //=> [1, 2, 5, 3]
+console.log(insert([1, 2, 3], -1, 5)); //=> [1, 2, 5, 3]
 
-insert([1, 2, 3], -3, 5) //=> [5, 1, 2, 3]
+console.log(insert([1, 2, 3], -3, 5)); //=> [5, 1, 2, 3]
 
-insert([1, 2, 3], 3, 5) //=> [1, 2, 3, 5]
+console.log(insert([1, 2, 3], 3, 5)); //=> [1, 2, 3, 5]
 
-insert([1, 2, 3], 3, 5, 6) //=> [1, 2, 3, 5, 6]
+console.log(insert([1, 2, 3], 3, 5, 6)); //=> [1, 2, 3, 5, 6]
 
-insert([1, 2, 3], null, 5, 6) //=> [1, 2, 3, 5, 6]
+console.log(insert([1, 2, 3], null, 5, 6)); //=> [1, 2, 3, 5, 6]
 
-insert([1, 2, 3], 0, [5, 6]) //=> [[5, 6], 1, 2, 3]
+console.log(insert([1, 2, 3], 0, [5, 6])); //=> [[5, 6], 1, 2, 3]
 
-insert([1, 2, 3], 0, ...[5, 6]) //=> [5, 6, 1, 2, 3]
+console.log(insert([1, 2, 3], 0, ...[5, 6])); //=> [5, 6, 1, 2, 3]
 
 // Predicate-based insert
-insert([1, 2, 3], (x) => x === 2, 5) //=> [1, 5, 2, 3]
+console.log(insert([1, 2, 3], (x) => x === 2, 5)); //=> [1, 5, 2, 3]
 
-insert([1, 2, 3], (x) => x === 2, 5, 'after') //=> [1, 2, 5, 3]
+console.log(insert([1, 2, 3], (x) => x === 2, 5, 'after')); //=> [1, 2, 5, 3]
 ```

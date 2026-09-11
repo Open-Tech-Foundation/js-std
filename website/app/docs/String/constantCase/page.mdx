@@ -47,9 +47,9 @@ constantCase('XMLHttpRequest') //=> 'XML_HTTP_REQUEST'
 ## Try it
 
 ```ts
-constantCase('Foo Bar') //=> 'FOO_BAR'
+console.log(constantCase('Foo Bar')); //=> 'FOO_BAR'
 
-constantCase('fooBar') //=> 'FOO_BAR'
+console.log(constantCase('fooBar')); //=> 'FOO_BAR'
 
-constantCase('--foo-bar--') //=> 'FOO_BAR'
+console.log(constantCase('--foo-bar--')); //=> 'FOO_BAR'
 ```

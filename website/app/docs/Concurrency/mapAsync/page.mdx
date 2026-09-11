@@ -71,7 +71,7 @@ await mapAsync(
 
 ```ts
 const items = [1, 2, 3];
-await mapAsync(items, async (n) => {
+console.log(await mapAsync(items, async (n) => {
   return n * 2;
-}); //=> [2, 4, 6]
+})); //=> [2, 4, 6]
 ```

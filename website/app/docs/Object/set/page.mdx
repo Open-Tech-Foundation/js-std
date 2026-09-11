@@ -85,21 +85,21 @@ set({ a: 0 }, 'a.b', 1) //=> { a: 0 }
 ## Try it
 
 ```ts
-set({}, 'a', 1) //=> { a: 1 }
+console.log(set({}, 'a', 1)); //=> { a: 1 }
 
-set({}, 'a.b', 25) //=> { a: { b: 25 } }
+console.log(set({}, 'a.b', 25)); //=> { a: { b: 25 } }
 
 set({}, 'user.email', 'user@example.com')
 //=> { user: { email: 'user@example.com' } }
 
-set({}, 'fruits[0]', 'Apple') //=> { fruits: ['Apple'] }
+console.log(set({}, 'fruits[0]', 'Apple')); //=> { fruits: ['Apple'] }
 
 // Using a callback to update based on current value
-set({ a: 1 }, 'a', (val) => val + 1) //=> { a: 2 }
+console.log(set({ a: 1 }, 'a', (val) => val + 1)); //=> { a: 2 }
 
 // Automatically creates arrays if indices are used in path
-set({}, 'items[2].id', 1) //=> { items: [undefined, undefined, { id: 1 }] }
+console.log(set({}, 'items[2].id', 1)); //=> { items: [undefined, undefined, { id: 1 }] }
 
 // Existing falsy non-object intermediates are not replaced
-set({ a: 0 }, 'a.b', 1) //=> { a: 0 }
+console.log(set({ a: 0 }, 'a.b', 1)); //=> { a: 0 }
 ```

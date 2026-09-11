@@ -48,9 +48,9 @@ isUnorderedEqual([{ a: 1 }, { b: 2 }], [{ b: 2 }, { a: 1 }]) //=> true
 ## Try it
 
 ```ts
-isUnorderedEqual([1, 3, 2], [2, 1, 3]) //=> true
+console.log(isUnorderedEqual([1, 3, 2], [2, 1, 3])); //=> true
 
-isUnorderedEqual([1, 3, 2], [2, 1, 5]) //=> false
+console.log(isUnorderedEqual([1, 3, 2], [2, 1, 5])); //=> false
 
-isUnorderedEqual([{ a: 1 }, { b: 2 }], [{ b: 2 }, { a: 1 }]) //=> true
+console.log(isUnorderedEqual([{ a: 1 }, { b: 2 }], [{ b: 2 }, { a: 1 }])); //=> true
 ```

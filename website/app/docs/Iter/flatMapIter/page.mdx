@@ -34,5 +34,5 @@ A new iterable iterator.
 ## Try it
 
 ```ts
-[...flatMapIter([1, 2], (x) => [x, x * 10])] //=> [1, 10, 2, 20]
+console.log([...flatMapIter([1, 2], (x) => [x, x * 10])]); //=> [1, 10, 2, 20]
 ```

@@ -61,6 +61,6 @@ encodeBase58(randomBytes(32)) //=> '6dRUYs1PkJmpM6bLYLvSCEyKk1zqPr...'
 ## Try it
 
 ```ts
-encodeBase58(new Uint8Array([72, 101, 108, 108, 111])) //=> '9Ajdvzr'
-encodeBase58(stringToBytes('hello world'))             //=> 'StV1DL6CwTryKyV'
+console.log(encodeBase58(new Uint8Array([72, 101, 108, 108, 111]))); //=> '9Ajdvzr'
+console.log(encodeBase58(stringToBytes('hello world'))); //=> 'StV1DL6CwTryKyV'
 ```

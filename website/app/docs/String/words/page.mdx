@@ -44,9 +44,9 @@ words('a+b+c', '+') //=> ['+', '+']
 ## Try it
 
 ```ts
-words('fred, barney, & pebbles') //=> ['fred', 'barney', 'pebbles']
+console.log(words('fred, barney, & pebbles')); //=> ['fred', 'barney', 'pebbles']
 
-words('fred, barney, & pebbles', /[^, ]+/g) //=> ['fred', 'barney', '&', 'pebbles']
+console.log(words('fred, barney, & pebbles', /[^, ]+/g)); //=> ['fred', 'barney', '&', 'pebbles']
 
-words('a+b+c', '+') //=> ['+', '+']
+console.log(words('a+b+c', '+')); //=> ['+', '+']
 ```

@@ -43,5 +43,5 @@ await toArrayIterAsync(all) //=> [...head, ...tail]
 ```ts
 const all = concatIterAsync(streamToIter(head), streamToIter(tail));
 
-await toArrayIterAsync(all) //=> [...head, ...tail]
+console.log(await toArrayIterAsync(all)); //=> [...head, ...tail]
 ```

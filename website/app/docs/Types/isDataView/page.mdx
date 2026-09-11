@@ -34,9 +34,9 @@ isDataView(new DataView(buffer)) //=> true
 ```ts
 const buffer = new ArrayBuffer(8);
 
-isDataView(buffer) //=> false
+console.log(isDataView(buffer)); //=> false
 
-isDataView(new Uint8Array(buffer)) //=> false
+console.log(isDataView(new Uint8Array(buffer))); //=> false
 
-isDataView(new DataView(buffer)) //=> true
+console.log(isDataView(new DataView(buffer))); //=> true
 ```

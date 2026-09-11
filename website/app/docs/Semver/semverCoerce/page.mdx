@@ -70,7 +70,7 @@ semverSatisfies(tag, '^2.0.0'); //=> true
 ## Try it
 
 ```ts
-semverCoerce('v2') //=> '2.0.0'
-semverCoerce('20.11') //=> '20.11.0'
-semverCoerce('4.17.21.min') //=> '4.17.21'
+console.log(semverCoerce('v2')); //=> '2.0.0'
+console.log(semverCoerce('20.11')); //=> '20.11.0'
+console.log(semverCoerce('4.17.21.min')); //=> '4.17.21'
 ```

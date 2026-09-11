@@ -89,7 +89,7 @@ isEql({a: {b: 1}}, {a: {b: 1}}, {shallow: true}) //=> false
 ## Try it
 
 ```ts
-isEql({a: 1, b: 2}, {a: 1, b: 2}) //=> true
+console.log(isEql({a: 1, b: 2}, {a: 1, b: 2})); //=> true
 
 const mapA = new Map([
   ['a', 1],
@@ -99,17 +99,17 @@ const mapB = new Map([
   ['b', 2],
   ['a', 1],
 ]);
-isEql(mapA, mapB); //=> false (Order matters in Maps)
+console.log(isEql(mapA, mapB)); //=> false (Order matters in Maps)
 
 const re = new RegExp('ab+c');
 const re2 = new RegExp('ab+d');
-isEql(re, re2); //=> false
+console.log(isEql(re, re2)); //=> false
 
 const ta1 = new Uint8Array([42, 43]);
 const ta2 = new Uint8Array([42, 43]);
 const ta3 = new Uint8Array([42, 45]);
-isEql(ta1, ta2); //=> true
-isEql(ta2, ta3); //=> false
+console.log(isEql(ta1, ta2)); //=> true
+console.log(isEql(ta2, ta3)); //=> false
 
-isEql({a: {b: 1}}, {a: {b: 1}}, {shallow: true}) //=> false
+console.log(isEql({a: {b: 1}}, {a: {b: 1}}, {shallow: true})); //=> false
 ```

@@ -93,7 +93,7 @@ intersperse(['a', 'b', 'c'], (i) => `<span key="sep-${i}"> , </span>`)
 
 ```ts
 const arr = [1, 2, 3];
-intersperse(arr, '&') //=> [1, '&', 2, '&', 3]
+console.log(intersperse(arr, '&')); //=> [1, '&', 2, '&', 3]
 
 const menu = ['Home', 'Menu', 'Sub Menu'];
 intersperse(menu, '>')
@@ -105,7 +105,7 @@ intersperse(menu, '>')
 //  'Sub Menu',
 // ]
 
-intersperse('Hello', '-') //=> 'H-e-l-l-o'
+console.log(intersperse('Hello', '-')); //=> 'H-e-l-l-o'
 
 const items = [
   { type: 'div', text: 'Apple' },

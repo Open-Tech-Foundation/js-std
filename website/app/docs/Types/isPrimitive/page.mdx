@@ -70,28 +70,28 @@ isPrimitive(Object(1)) //=> false
 ## Try it
 
 ```ts
-isPrimitive('a') //=> true
+console.log(isPrimitive('a')); //=> true
 
-isPrimitive(1) //=> true
+console.log(isPrimitive(1)); //=> true
 
-isPrimitive(true) //=> true
+console.log(isPrimitive(true)); //=> true
 
-isPrimitive(10n) //=> true
+console.log(isPrimitive(10n)); //=> true
 
-isPrimitive(Symbol('a')) //=> true
+console.log(isPrimitive(Symbol('a'))); //=> true
 
-isPrimitive(null) //=> true
+console.log(isPrimitive(null)); //=> true
 
-isPrimitive(undefined) //=> true
+console.log(isPrimitive(undefined)); //=> true
 
 // Objects
-isPrimitive({}) //=> false
+console.log(isPrimitive({})); //=> false
 
-isPrimitive([]) //=> false
+console.log(isPrimitive([])); //=> false
 
-isPrimitive(new Date()) //=> false
+console.log(isPrimitive(new Date())); //=> false
 
-isPrimitive(() => {}) //=> false
+console.log(isPrimitive(() => {})); //=> false
 
-isPrimitive(Object(1)) //=> false
+console.log(isPrimitive(Object(1))); //=> false
 ```

@@ -35,6 +35,6 @@ isAsyncIterable([]) //=> false
 ## Try it
 
 ```ts
-isAsyncIterable((async function* () {})()) //=> true
-isAsyncIterable([]) //=> false
+console.log(isAsyncIterable((async function* () {})())); //=> true
+console.log(isAsyncIterable([])); //=> false
 ```

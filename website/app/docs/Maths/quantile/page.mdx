@@ -67,7 +67,7 @@ quantile(requests, 0.95, (r) => r.durationMs);
 ## Try it
 
 ```ts
-quantile([1, 2, 3, 4], 0.25) //=> 1.75
-quantile([1, 2, 3, 4], 0.5) //=> 2.5
-quantile([1, 2, 3, 4], 0.75) //=> 3.25
+console.log(quantile([1, 2, 3, 4], 0.25)); //=> 1.75
+console.log(quantile([1, 2, 3, 4], 0.5)); //=> 2.5
+console.log(quantile([1, 2, 3, 4], 0.75)); //=> 3.25
 ```

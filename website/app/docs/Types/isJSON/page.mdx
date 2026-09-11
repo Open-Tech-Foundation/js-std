@@ -61,26 +61,26 @@ isJSON("") //=> false
 ## Try it
 
 ```ts
-isJSON("{}") //=> true
+console.log(isJSON("{}")); //=> true
 
-isJSON('{"a": 1}') //=> true
+console.log(isJSON('{"a": 1}')); //=> true
 
-isJSON("[]") //=> true
+console.log(isJSON("[]")); //=> true
 
-isJSON("null") //=> true
+console.log(isJSON("null")); //=> true
 
-isJSON("123") //=> true
+console.log(isJSON("123")); //=> true
 
-isJSON("true") //=> true
+console.log(isJSON("true")); //=> true
 
-isJSON('"hello"') //=> true
+console.log(isJSON('"hello"')); //=> true
 
-isJSON({}) //=> false
+console.log(isJSON({})); //=> false
 
-isJSON(null) //=> false
+console.log(isJSON(null)); //=> false
 
 // Invalid JSON
-isJSON("{a: 1}") //=> false (Keys must be double-quoted)
+console.log(isJSON("{a: 1}")); //=> false (Keys must be double-quoted)
 
-isJSON("") //=> false
+console.log(isJSON("")); //=> false
 ```

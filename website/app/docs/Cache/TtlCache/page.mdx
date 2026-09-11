@@ -79,11 +79,11 @@ cache.prune(); //=> 2  (the number removed)
 ## Try it
 
 ```ts
-const cache = new TtlCache<string, number>(1000);
+const cache = new TtlCache(1000);
 
 cache.set('a', 1);
-cache.get('a'); //=> 1
+console.log(cache.get('a')); //=> 1
 
 // ...over a second later
-cache.get('a'); //=> undefined
+console.log(cache.get('a')); //=> undefined
 ```

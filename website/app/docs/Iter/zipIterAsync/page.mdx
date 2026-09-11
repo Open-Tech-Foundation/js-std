@@ -46,5 +46,5 @@ await toArrayIterAsync(rows) //=> [['ann', 9], ['bob', 7]]
 ```ts
 const rows = zipIterAsync(streamToIter(names), streamToIter(scores));
 
-await toArrayIterAsync(rows) //=> [['ann', 9], ['bob', 7]]
+console.log(await toArrayIterAsync(rows)); //=> [['ann', 9], ['bob', 7]]
 ```

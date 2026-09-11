@@ -54,7 +54,7 @@ As a sort comparator:
 ## Try it
 
 ```ts
-semverCompare('1.2.3', '1.10.0')   //=> -1  (segments compare numerically)
-semverCompare('2.0.0', '2.0.0-rc.1') //=> 1
-semverCompare('1.0.0+a', '1.0.0+b')  //=> 0
+console.log(semverCompare('1.2.3', '1.10.0')); //=> -1  (segments compare numerically)
+console.log(semverCompare('2.0.0', '2.0.0-rc.1')); //=> 1
+console.log(semverCompare('1.0.0+a', '1.0.0+b')); //=> 0
 ```

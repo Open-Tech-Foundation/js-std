@@ -46,14 +46,14 @@ prod(objects, (v) => v.n) //=> 64
 ## Try it
 
 ```ts
-prod([]) //=> 1
+console.log(prod([])); //=> 1
 
-prod([1, 2, 3, 4, 5]) //=> 120
+console.log(prod([1, 2, 3, 4, 5])); //=> 120
 
-prod([1, -1]) //=> -1
+console.log(prod([1, -1])); //=> -1
 
-prod([-1, -2]) //=> 2
+console.log(prod([-1, -2])); //=> 2
 
 const objects = [{ n: 4 }, { n: 2 }, { n: 8 }];
-prod(objects, (v) => v.n) //=> 64
+console.log(prod(objects, (v) => v.n)); //=> 64
 ```

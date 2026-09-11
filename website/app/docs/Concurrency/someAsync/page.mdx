@@ -63,5 +63,5 @@ const anyUp = await someAsync(
 ## Try it
 
 ```ts
-await someAsync([1, 2, 3], async (n) => n > 2); //=> true
+console.log(await someAsync([1, 2, 3], async (n) => n > 2)); //=> true
 ```

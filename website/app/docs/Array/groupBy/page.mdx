@@ -72,9 +72,9 @@ groupBy(["one", "two", "three"], "length")
 ## Try it
 
 ```ts
-groupBy([]) //=> {}
+console.log(groupBy([])); //=> {}
 
-groupBy(["a"]) //=> { undefined: ["a"] }
+console.log(groupBy(["a"])); //=> { undefined: ["a"] }
 
 const products = [
   { name: "apples", category: "fruits" },

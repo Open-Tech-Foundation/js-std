@@ -165,7 +165,7 @@ Duration.compare('P1M', 'P30D', { relativeTo: new DateTime('2026-02-01') }); //=
 ```ts
 import { Duration } from '@opentf/std';
 
-new Duration('PT90M').format('H:mm'); //=> '1:30'
+console.log(new Duration('PT90M').format('H:mm')); //=> '1:30'
 ```
 
 ## Related

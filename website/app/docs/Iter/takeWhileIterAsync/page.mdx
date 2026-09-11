@@ -36,5 +36,5 @@ await toArrayIterAsync(takeWhileIterAsync(gen(), x => x < 3)) //=> [1, 2]
 
 ```ts
 async function* gen() { yield 1; yield 2; yield 3; }
-await toArrayIterAsync(takeWhileIterAsync(gen(), x => x < 3)) //=> [1, 2]
+console.log(await toArrayIterAsync(takeWhileIterAsync(gen(), x => x < 3))); //=> [1, 2]
 ```

@@ -62,21 +62,21 @@ replace([1, 2, 3, 4, 5], (x) => x % 2 === 0, 0) //=> [1, 0, 3, 0, 5]
 ## Try it
 
 ```ts
-replace([]) //=> []
+console.log(replace([])); //=> []
 
-replace([1]) //=> [1]
+console.log(replace([1])); //=> [1]
 
-replace([1, 2, 3], 0, 1, 'a') //=> ['a', 2, 3]
+console.log(replace([1, 2, 3], 0, 1, 'a')); //=> ['a', 2, 3]
 
-replace([1, 2, 3], null, 1, 'a') //=> [1, 2, 'a']
+console.log(replace([1, 2, 3], null, 1, 'a')); //=> [1, 2, 'a']
 
-replace([1, 2, 3], 3, null, 'c') //=> [1, 2, 3, 'c']
+console.log(replace([1, 2, 3], 3, null, 'c')); //=> [1, 2, 3, 'c']
 
 const months = ['Jan', 'Feb', 'Apr', 'May'];
-replace(months, 1, 1, 'Feb', 'Mar') //=> ['Jan', 'Feb', 'Mar', 'Apr', 'May']
+console.log(replace(months, 1, 1, 'Feb', 'Mar')); //=> ['Jan', 'Feb', 'Mar', 'Apr', 'May']
 
-replace(months, 1, null, 'Feb', 'Mar') //=> ['Jan', 'Feb', 'Mar', 'May']
+console.log(replace(months, 1, null, 'Feb', 'Mar')); //=> ['Jan', 'Feb', 'Mar', 'May']
 
 // Predicate-based replace
-replace([1, 2, 3, 4, 5], (x) => x % 2 === 0, 0) //=> [1, 0, 3, 0, 5]
+console.log(replace([1, 2, 3, 4, 5], (x) => x % 2 === 0, 0)); //=> [1, 0, 3, 0, 5]
 ```

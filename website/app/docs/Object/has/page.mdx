@@ -52,15 +52,15 @@ has({ a: { 'b.c': 1 } }, ['a', 'b.c']) //=> true
 ## Try it
 
 ```ts
-has({ a: 1 }, 'a') //=> true
+console.log(has({ a: 1 }, 'a')); //=> true
 
-has({ a: undefined }, 'a') //=> true
+console.log(has({ a: undefined }, 'a')); //=> true
 
-has({ a: null }, 'a') //=> true
+console.log(has({ a: null }, 'a')); //=> true
 
-has({ a: { b: [1, 2, 3, { c: 5 }] } }, 'a.b[3].c') //=> true
+console.log(has({ a: { b: [1, 2, 3, { c: 5 }] } }, 'a.b[3].c')); //=> true
 
-has({ a: { b: [1, 2, 3, { c: 5 }] } }, 'a.b[5].c') //=> false
+console.log(has({ a: { b: [1, 2, 3, { c: 5 }] } }, 'a.b[5].c')); //=> false
 
-has({ a: { 'b.c': 1 } }, ['a', 'b.c']) //=> true
+console.log(has({ a: { 'b.c': 1 } }, ['a', 'b.c'])); //=> true
 ```

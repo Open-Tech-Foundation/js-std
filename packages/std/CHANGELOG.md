@@ -7,6 +7,7 @@
 - The documentation now gives every API page a small runnable Try it example. The editor uses the authored example in place, including after client-side navigation, and converts TypeScript-only notation to JavaScript before execution.
 - A Try it page now retains exactly one editor if the docs layout reconnects during hydration, and its CodeMirror chunk resolves through the website bundle rather than browser package imports.
 - Try it now replaces its MDX seed fence once mounted, so each page shows one editor and its controls. Editor and worker loading errors are reported in the runner output instead of leaving Run pending.
+- Try it no longer rewrites documentation examples at runtime. Every sample is authored as the exact JavaScript readers execute, avoiding implicit logging or TypeScript stripping.
 - Repository development now uses pnpm workspaces. The pnpm lockfile and CI/release installs replace Bun's workspace and lockfile configuration.
 - The test commands now use `esdev test`. Specs import the `runtime:test` API directly, and the portable runtime matrix maps that API to its existing harness.
 - **Breaking.** `color` takes a single object stating the conversion — `color({ value, from, to })` — instead of a value and a positional format. `to` defaults to `'hex'`. The old two-argument call throws with a message naming the replacement rather than failing as an invalid colour, so the migration is mechanical: `color(x, 'rgb')` becomes `color({ value: x, to: 'rgb' })`.

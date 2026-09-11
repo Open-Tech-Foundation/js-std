@@ -36,5 +36,5 @@ await findLastIterAsync(gen(), x => x < 3) //=> 2
 
 ```ts
 async function* gen() { yield 1; yield 2; yield 3; }
-await findLastIterAsync(gen(), x => x < 3) //=> 2
+console.log(await findLastIterAsync(gen(), x => x < 3)); //=> 2
 ```

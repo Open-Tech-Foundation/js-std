@@ -52,16 +52,16 @@ isNumber([]) //=> false
 ## Try it
 
 ```ts
-isNumber(1) //=> true
-isNumber(1.5) //=> true
-isNumber(NaN) //=> false
-isNumber(Infinity) //=> false
+console.log(isNumber(1)); //=> true
+console.log(isNumber(1.5)); //=> true
+console.log(isNumber(NaN)); //=> false
+console.log(isNumber(Infinity)); //=> false
 
-isNumber('1') //=> false
-isNumber('1_000') //=> false
+console.log(isNumber('1')); //=> false
+console.log(isNumber('1_000')); //=> false
 
 // Other types
-isNumber(null) //=> false
-isNumber(true) //=> false
-isNumber([]) //=> false
+console.log(isNumber(null)); //=> false
+console.log(isNumber(true)); //=> false
+console.log(isNumber([])); //=> false
 ```

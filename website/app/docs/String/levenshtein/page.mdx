@@ -70,19 +70,19 @@ sortBy(commands, (cmd) => levenshtein(cmd, 'instal'))[0] //=> 'install'
 ## Try it
 
 ```ts
-levenshtein('kitten', 'sitting') //=> 3
+console.log(levenshtein('kitten', 'sitting')); //=> 3
 
-levenshtein('abc', 'abc') //=> 0
+console.log(levenshtein('abc', 'abc')); //=> 0
 
-levenshtein('', 'abc') //=> 3
+console.log(levenshtein('', 'abc')); //=> 3
 
-levenshtein('cat', 'bat') //=> 1
+console.log(levenshtein('cat', 'bat')); //=> 1
 
-levenshtein('cat', 'cart') //=> 1
+console.log(levenshtein('cat', 'cart')); //=> 1
 
 // A transposition is two edits
-levenshtein('ab', 'ba') //=> 2
+console.log(levenshtein('ab', 'ba')); //=> 2
 
 // One code point, one edit
-levenshtein('a😀', 'a') //=> 1
+console.log(levenshtein('a😀', 'a')); //=> 1
 ```

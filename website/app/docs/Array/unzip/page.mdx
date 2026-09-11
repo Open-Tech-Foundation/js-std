@@ -41,11 +41,11 @@ unzip([]) //=> []
 ## Try it
 
 ```ts
-unzip([[1, 'a'], [2, 'b']]) //=> [[1, 2], ['a', 'b']]
+console.log(unzip([[1, 'a'], [2, 'b']])); //=> [[1, 2], ['a', 'b']]
 
-unzip([[1], [2]]) //=> [[1, 2]]
+console.log(unzip([[1], [2]])); //=> [[1, 2]]
 
-unzip([[1, 'a'], [2]]) //=> [[1, 2], ['a', undefined]]
+console.log(unzip([[1, 'a'], [2]])); //=> [[1, 2], ['a', undefined]]
 
-unzip([]) //=> []
+console.log(unzip([])); //=> []
 ```

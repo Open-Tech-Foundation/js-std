@@ -89,11 +89,11 @@ toSet({ a: false }, 'a.b', 1)
 ## Try it
 
 ```ts
-toSet({}, 'a', null) //=> { a: null }
+console.log(toSet({}, 'a', null)); //=> { a: null }
 
-toSet({}, 'a', 1) //=> { a: 1 }
+console.log(toSet({}, 'a', 1)); //=> { a: 1 }
 
-toSet({}, 'a.b', 25) //=> { a: { b: 25 } }
+console.log(toSet({}, 'a.b', 25)); //=> { a: { b: 25 } }
 
 toSet({}, 'user.email', 'user@example.com')
 //=>
@@ -101,11 +101,11 @@ toSet({}, 'user.email', 'user@example.com')
 //    user: { email: 'user@example.com' }
 // }
 
-toSet({}, '0', 'Apple') //=>   { '0': 'Apple' }
+console.log(toSet({}, '0', 'Apple')); //=>   { '0': 'Apple' }
 
-toSet({}, 'fruits[0]', 'Apple') //=>  { fruits: ['Apple'] }
+console.log(toSet({}, 'fruits[0]', 'Apple')); //=>  { fruits: ['Apple'] }
 
-toSet({ a: 1 }, 'a', (val) => val + 1) //=> { a: 2 }
+console.log(toSet({ a: 1 }, 'a', (val) => val + 1)); //=> { a: 2 }
 
 const fn = () => render('My Component')
 toSet({ subscribeFns: [] }, 'subscribeFns[0]', () => fn)

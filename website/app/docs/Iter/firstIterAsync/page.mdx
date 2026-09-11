@@ -35,5 +35,5 @@ await firstIterAsync(gen()) //=> 1
 
 ```ts
 async function* gen() { yield 1; yield 2; }
-await firstIterAsync(gen()) //=> 1
+console.log(await firstIterAsync(gen())); //=> 1
 ```

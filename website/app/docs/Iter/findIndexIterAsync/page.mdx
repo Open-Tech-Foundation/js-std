@@ -36,5 +36,5 @@ await findIndexIterAsync(gen(), x => x === 2) //=> 1
 
 ```ts
 async function* gen() { yield 1; yield 2; }
-await findIndexIterAsync(gen(), x => x === 2) //=> 1
+console.log(await findIndexIterAsync(gen(), x => x === 2)); //=> 1
 ```
