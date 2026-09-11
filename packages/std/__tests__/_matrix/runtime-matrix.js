@@ -74,6 +74,54 @@ const ORDER = [
  */
 const KNOWN_ISSUES = [
   {
+    // LLRT exposes an early Temporal implementation, but its zoned-date-time
+    // fields, offsets, transitions and millisecond rounding do not agree with
+    // the current Temporal specification. Keep this scoped to LLRT: these are
+    // conformance assertions and must remain a release blocker elsewhere.
+    engines: ['llrt'],
+    match:
+      /DateTime \(intl backend\) > formatting > toISOString round-trips exactly|DateTime \(temporal backend\)|DateTime backend equivalence|Duration with DateTime/,
+    requires: null,
+    affects: ['DateTime', 'Duration'],
+    category: 'runtime-deviation',
+    reason:
+      "LLRT's Temporal implementation returns invalid zone offsets and disagrees with the current " +
+      'Temporal semantics for fields, transitions and milliseconds. The DateTime fallback is correct; ' +
+      'the fix belongs in LLRT.',
+  },
+  {
+    engines: ['llrt'],
+    match:
+      /Json > tryParseJSON > (?:reviver|temporal)|Json > tryStringifyJSON > (?:bigint with replacer array|temporal)/,
+    requires: null,
+    affects: ['tryParseJSON', 'tryStringifyJSON'],
+    category: 'runtime-deviation',
+    reason:
+      "LLRT's JSON implementation does not correctly support revivers, Temporal values and replacer " +
+      'arrays in these cases. The fix belongs in LLRT.',
+  },
+  {
+    engines: ['llrt'],
+    match: /Object > the recursion depth cap/,
+    requires: null,
+    affects: ['clone', 'isEql', 'deepFreeze', 'merge', 'mergeAll'],
+    category: 'runtime-deviation',
+    reason:
+      "LLRT exhausts its JavaScript stack before the library's documented 512-level recursion limit, " +
+      'so the expected limit boundary cannot be reached. The fix belongs in LLRT.',
+  },
+  {
+    engines: ['llrt'],
+    match:
+      /Object > prototype pollution > (?:own __proto__ keys never become a prototype|flattenObject drops unsafe branches at any depth|a flatten -> unflatten round trip stays clean)/,
+    requires: null,
+    affects: ['flattenObject', 'unflattenObject'],
+    category: 'runtime-deviation',
+    reason:
+      'LLRT does not preserve own `__proto__` data properties with standard object semantics, so the ' +
+      'prototype-safety cases cannot be represented correctly. The fix belongs in LLRT.',
+  },
+  {
     match: /isBlob/,
     requires: 'Blob.toStringTag',
     affects: ['isBlob'],
@@ -240,8 +288,9 @@ function extract(marker, output) {
   }
 }
 
-function classify(failure, caps) {
+function classify(failure, caps, engineId) {
   for (const issue of KNOWN_ISSUES) {
+    if (issue.engines && !issue.engines.includes(engineId)) continue;
     if (!issue.match.test(failure.title)) continue;
     // Only blame a capability gap when the capability is genuinely absent.
     if (issue.requires && caps && caps[issue.requires] === true) continue;
@@ -300,7 +349,7 @@ function measure(id, engine, label) {
     failures: results.failures.map((f) => ({
       title: f.title,
       message: f.message,
-      ...classify(f, caps),
+      ...classify(f, caps, id),
     })),
   };
 }
