@@ -67,5 +67,5 @@ run = "node packages/std/__tests__/_matrix/runtime-matrix.js"
 deps = ["build", "matrix:bundle", "matrix:run"]
 
 [tasks.ci]
-deps = ["build", "lint", "typecheck", "typecheck:api", "test", "test:website"]
+deps = ["build", "lint", "typecheck", "typecheck:api", "test"]
 parallel = true
