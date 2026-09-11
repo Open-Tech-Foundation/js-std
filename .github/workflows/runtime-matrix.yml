@@ -110,8 +110,8 @@ jobs:
       - name: Setup ES-Runtime
         if: matrix.engine == 'esrun'
         run: |
-          curl -fsSL https://raw.githubusercontent.com/Open-Tech-Foundation/ES-Runtime/main/install.sh | bash
-          echo "$HOME/.esrun/bin" >> "$GITHUB_PATH"
+          curl -fsSL https://raw.githubusercontent.com/Open-Tech-Foundation/ES-Runtime/main/install.sh | bash -s -- --only=esrun
+          echo "$HOME/.es-runtime/bin" >> "$GITHUB_PATH"
 
       - name: Setup LLRT
         if: matrix.engine == 'llrt'
