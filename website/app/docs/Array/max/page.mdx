@@ -1,5 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
-export const tryItCode = "console.log(max([])); //=> null\n\nconsole.log(max([1, undefined, 2, null, 3])); //=> 3\n\nconsole.log(max([1, 2, -3, 4, 5])); //=> 5\n\nconsole.log(max(['a', 'b', 'c'])); //=> 'c'\n\nconsole.log(max(['apple', 'mango', 'grapes'])); //=> 'mango'\n\nconst arr = [\n  {\n    name: 'x',\n    age: 10,\n  },\n  {\n    name: 'y',\n    age: 16,\n  },\n  {\n    name: 'z',\n    age: 13,\n  },\n  { name: 'y2', age: 16 },\n];\nmax(arr, (f) => f.age)\n//=>\n// {\n//  name: 'y',\n//  age: 16,\n// }";
+export const tryItCode = "console.log(max([])); //=> null\n\nconsole.log(max([1, undefined, 2, null, 3])); //=> 3\n\nconsole.log(max([1, 2, -3, 4, 5])); //=> 5\n\nconsole.log(max(['a', 'b', 'c'])); //=> 'c'\n\nconsole.log(max(['apple', 'mango', 'grapes'])); //=> 'mango'\n\nconst arr = [\n  {\n    name: 'x',\n    age: 10,\n  },\n  {\n    name: 'y',\n    age: 16,\n  },\n  {\n    name: 'z',\n    age: 13,\n  },\n  { name: 'y2', age: 16 },\n];\nconsole.log(max(arr, (f) => f.age));\n//=>\n// {\n//  name: 'y',\n//  age: 16,\n// }";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "max — Array",

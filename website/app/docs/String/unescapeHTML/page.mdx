@@ -1,5 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
-export const tryItCode = "unescapeHTML('&lt;script&gt;alert(&quot;xss&quot;)&lt;/script&gt;')\n//=> '<script>alert(\"xss\")</script>'";
+export const tryItCode = "console.log(unescapeHTML('&lt;script&gt;alert(&quot;xss&quot;)&lt;/script&gt;'));\n//=> '<script>alert(\"xss\")</script>'";
 export const metadata = {
   title: "unescapeHTML — String",
   description: "Unescapes HTML entities back to their original characters."

@@ -1,5 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
-export const tryItCode = "escapeHTML('<script>alert(\"xss\")</script>')\n//=> '&lt;script&gt;alert(&quot;xss&quot;)&lt;/script&gt;'";
+export const tryItCode = "console.log(escapeHTML('<script>alert(\"xss\")</script>'));\n//=> '&lt;script&gt;alert(&quot;xss&quot;)&lt;/script&gt;'";
 export const metadata = {
   title: "escapeHTML — String",
   description: "Escapes characters for use in HTML."

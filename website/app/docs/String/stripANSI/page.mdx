@@ -1,5 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
-export const tryItCode = "stripANSI('\\u001b[31mHello\\u001b[0m')\n//=> 'Hello'\n\nstripANSI('\\x1b[4mUnderline\\x1b[0m')\n//=> 'Underline'";
+export const tryItCode = "console.log(stripANSI('\\u001b[31mHello\\u001b[0m'));\n//=> 'Hello'\n\nconsole.log(stripANSI('\\x1b[4mUnderline\\x1b[0m'));\n//=> 'Underline'";
 export const metadata = {
   title: "stripANSI — String",
   description: "Removes ANSI escape codes from a string."

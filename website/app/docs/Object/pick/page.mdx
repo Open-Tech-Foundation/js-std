@@ -1,5 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
-export const tryItCode = "console.log(pick({ a: 1, b: 2 }, 'a')); //=> { a: 1 }\n\nconsole.log(pick([1, 2, 3], '0')); //=> [1]\n\npick({ a: { b: { c: 1 }, d, e: [10, 20, 30] } }, 'a.b', ['a', 'e', '2'])\n//=> {\n//   a: { b: { c: 1 } },\n//   e: [30]\n// }";
+export const tryItCode = "console.log(pick({ a: 1, b: 2 }, 'a')); //=> { a: 1 }\n\nconsole.log(pick([1, 2, 3], '0')); //=> [1]\n\nconsole.log(pick({ a: { b: { c: 1 }, d, e: [10, 20, 30] } }, 'a.b', ['a', 'e', '2']));\n//=> {\n//   a: { b: { c: 1 } },\n//   e: [30]\n// }";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "pick — Object",

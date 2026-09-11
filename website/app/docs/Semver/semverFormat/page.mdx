@@ -1,5 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
-export const tryItCode = "semverFormat({ major: 1, minor: 2, patch: 3, prerelease: [], build: [] })\n//=> '1.2.3'\n\nsemverFormat(semverParse('v2.0.0-alpha.1+build.5'))\n//=> '2.0.0-alpha.1+build.5'";
+export const tryItCode = "console.log(semverFormat({ major: 1, minor: 2, patch: 3, prerelease: [], build: [] }));\n//=> '1.2.3'\n\nconsole.log(semverFormat(semverParse('v2.0.0-alpha.1+build.5')));\n//=> '2.0.0-alpha.1+build.5'";
 export const metadata = {
   title: "semverFormat — Semver",
   description: "Formats a parsed version back into a Semantic Versioning 2.0.0 string."
