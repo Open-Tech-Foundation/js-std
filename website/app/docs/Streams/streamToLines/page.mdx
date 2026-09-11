@@ -64,3 +64,11 @@ for await (const line of streamToLines(logStream)) {
 
 - [streamToText](/docs/Streams/streamToText)
 - [streamToArray](/docs/Streams/streamToArray)
+
+## Try it
+
+```ts
+for await (const line of streamToLines(response.body)) {
+  console.log(JSON.parse(line));
+}
+```

@@ -57,3 +57,30 @@ isJSON("") //=> false
 
 - [isObject](/docs/Types/isObject)
 - [isPlainObject](/docs/Types/isPlainObject)
+
+## Try it
+
+```ts
+isJSON("{}") //=> true
+
+isJSON('{"a": 1}') //=> true
+
+isJSON("[]") //=> true
+
+isJSON("null") //=> true
+
+isJSON("123") //=> true
+
+isJSON("true") //=> true
+
+isJSON('"hello"') //=> true
+
+isJSON({}) //=> false
+
+isJSON(null) //=> false
+
+// Invalid JSON
+isJSON("{a: 1}") //=> false (Keys must be double-quoted)
+
+isJSON("") //=> false
+```

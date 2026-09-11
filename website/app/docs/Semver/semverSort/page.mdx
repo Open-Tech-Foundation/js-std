@@ -52,3 +52,13 @@ semverSort(['1.0.0', '1.0.0-rc.1', '1.0.0-alpha'])
 ## Related
 
 - [semverCompare](/docs/Semver/semverCompare)
+
+## Try it
+
+```ts
+semverSort(['1.10.0', '1.2.3', '1.0.0'])
+//=> ['1.0.0', '1.2.3', '1.10.0']
+
+semverSort(['1.0.0', '1.10.0', '1.2.3'], 'desc')
+//=> ['1.10.0', '1.2.3', '1.0.0']
+```

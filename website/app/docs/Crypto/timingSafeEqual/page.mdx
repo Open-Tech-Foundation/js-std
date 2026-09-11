@@ -66,3 +66,13 @@ timingSafeEqual('abc', 'abcd') //=> false
 - [hmacSHA256](/docs/Crypto/hmacSHA256)
 - [hmacSHA512](/docs/Crypto/hmacSHA512)
 - [sha256](/docs/Crypto/sha256)
+
+## Try it
+
+```ts
+const expected = await hmacSHA256(signingSecret, rawBody);
+
+if (!timingSafeEqual(expected, request.headers.get('x-signature'))) {
+  throw new Error('Invalid signature');
+}
+```

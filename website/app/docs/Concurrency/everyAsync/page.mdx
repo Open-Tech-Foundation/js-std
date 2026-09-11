@@ -60,3 +60,9 @@ const allUp = await everyAsync(
 - [someAsync](/docs/Concurrency/someAsync)
 - [findAsync](/docs/Concurrency/findAsync)
 - [filterAsync](/docs/Concurrency/filterAsync)
+
+## Try it
+
+```ts
+await everyAsync([2, 4, 6], async (n) => n % 2 === 0); //=> true
+```

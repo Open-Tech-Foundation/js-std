@@ -43,3 +43,13 @@ constantCase('XMLHttpRequest') //=> 'XML_HTTP_REQUEST'
 - [camelCase](/docs/String/camelCase)
 - [pascalCase](/docs/String/pascalCase)
 - [kebabCase](/docs/String/kebabCase)
+
+## Try it
+
+```ts
+constantCase('Foo Bar') //=> 'FOO_BAR'
+
+constantCase('fooBar') //=> 'FOO_BAR'
+
+constantCase('--foo-bar--') //=> 'FOO_BAR'
+```

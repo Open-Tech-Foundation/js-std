@@ -63,3 +63,30 @@ isEmpty(false) //=> false
 ## Related
 
 - [isNil](/docs/Assert/isNil)
+
+## Try it
+
+```ts
+// --- Empty Cases ---
+isEmpty('') //=> true
+isEmpty([]) //=> true
+isEmpty({}) //=> true
+isEmpty(new Map()) //=> true
+isEmpty(new Set()) //=> true
+isEmpty(new ArrayBuffer(0)) //=> true
+isEmpty(new Array(5), true) //=> true
+
+// --- Non-Empty Cases ---
+isEmpty(' ') //=> false
+isEmpty('a') //=> false
+isEmpty([1]) //=> false
+isEmpty({ [Symbol('x')]: 1 }) //=> false
+isEmpty({ length: 0, size: 0, byteLength: 0 }) //=> false
+isEmpty([,]) //=> false
+
+// --- Other Values ---
+isEmpty(null) //=> false
+isEmpty(undefined) //=> false
+isEmpty(1) //=> false
+isEmpty(false) //=> false
+```

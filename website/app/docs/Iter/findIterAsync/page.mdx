@@ -31,3 +31,10 @@ await findIterAsync(gen(), x => x > 1) //=> 2
 ## Related
 
 - [findIter](/docs/Iter/findIter)
+
+## Try it
+
+```ts
+async function* gen() { yield 1; yield 2; }
+await findIterAsync(gen(), x => x > 1) //=> 2
+```

@@ -36,3 +36,12 @@ flatMap(['a', 'b'], (x, i) => [x + i]) //=> ['a0', 'b1']
 - [flatten](/docs/Array/flatten)
 - [map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
 
+## Try it
+
+```ts
+flatMap([1, 2], (x) => [x, x * 10]) //=> [1, 10, 2, 20]
+
+flatMap([1, 2, 3], (x) => [x]) //=> [1, 2, 3]
+
+flatMap(['a', 'b'], (x, i) => [x + i]) //=> ['a0', 'b1']
+```

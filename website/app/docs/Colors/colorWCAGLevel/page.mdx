@@ -42,3 +42,16 @@ colorWCAGLevel({ color1: 'rgb(0,0,0)', color2: 'rgb(255,255,255)' }) //=> 'AAA'
 - [colorContrast](/docs/Colors/colorContrast)
 - [colorIsReadable](/docs/Colors/colorIsReadable)
 
+## Try it
+
+```ts
+colorWCAGLevel({ color1: '#000', color2: '#fff' }) //=> 'AAA'
+
+colorWCAGLevel({ color1: '#000', color2: '#999' }) //=> 'AAA'
+
+colorWCAGLevel({ color1: '#000', color2: '#767676' }) //=> 'AA'
+
+colorWCAGLevel({ color1: '#000', color2: '#595959' }) //=> 'A'
+
+colorWCAGLevel({ color1: 'rgb(0,0,0)', color2: 'rgb(255,255,255)' }) //=> 'AAA'
+```

@@ -63,3 +63,11 @@ const report = mapStream(
 
 - [mapStream](/docs/Streams/mapStream)
 - [streamToIter](/docs/Streams/streamToIter)
+
+## Try it
+
+```ts
+const errors = filterStream(lines, (line) => line.startsWith('ERROR'));
+
+await streamToArray(errors) //=> ['ERROR one', 'ERROR two']
+```

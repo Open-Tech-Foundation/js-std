@@ -35,3 +35,11 @@ that stops early never touches the later ones.
 
 - [concatIterAsync](/docs/Iter/concatIterAsync)
 - [zipIter](/docs/Iter/zipIter)
+
+## Try it
+
+```ts
+[...concatIter([1, 2], [3, 4])] //=> [1, 2, 3, 4]
+
+[...concatIter('ab', [1, 2])] //=> ['a', 'b', 1, 2]
+```

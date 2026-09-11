@@ -31,3 +31,10 @@ await findLastIndexIterAsync(gen(), x => x < 3) //=> 1
 ## Related
 
 - [findLastIndexIter](/docs/Iter/findLastIndexIter)
+
+## Try it
+
+```ts
+async function* gen() { yield 1; yield 2; yield 3; }
+await findLastIndexIterAsync(gen(), x => x < 3) //=> 1
+```

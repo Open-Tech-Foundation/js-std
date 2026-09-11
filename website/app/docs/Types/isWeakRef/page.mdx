@@ -26,3 +26,11 @@ isWeakRef(new WeakRef(user)) //=> true
 - [isObject](/docs/Types/isObject)
 - [isPlainObject](/docs/Types/isPlainObject)
 
+## Try it
+
+```ts
+isWeakRef({}) //=> false
+
+let user = { name: "John" };
+isWeakRef(new WeakRef(user)) //=> true
+```

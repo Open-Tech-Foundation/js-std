@@ -64,3 +64,12 @@ slidingWindows([1, 2, 3, 4], 2); //=> [[1, 2], [2, 3], [3, 4]] ← overlapping
 
 - [chunk](/docs/Array/chunk)
 - [runningReduce](/docs/Array/runningReduce)
+
+## Try it
+
+```ts
+slidingWindows([1, 2, 3, 4], 2)    //=> [[1, 2], [2, 3], [3, 4]]
+slidingWindows([1, 2, 3, 4, 5], 3) //=> [[1, 2, 3], [2, 3, 4], [3, 4, 5]]
+
+slidingWindows([1, 2], 3) //=> []  (too short for a whole window)
+```

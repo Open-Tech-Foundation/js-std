@@ -64,3 +64,30 @@ isArrayLike(null) //=> false
 - [isArray](/docs/Types/isArray)
 - [isIterable](/docs/Types/isIterable)
 - [isTypedArray](/docs/Types/isTypedArray)
+
+## Try it
+
+```ts
+isArrayLike([]) //=> true
+
+isArrayLike([1, 2, 3]) //=> true
+
+isArrayLike('abc') //=> true
+
+isArrayLike({ length: 2, 0: 'a', 1: 'b' }) //=> true
+
+isArrayLike(new Uint8Array(3)) //=> true
+
+// Not array-like
+isArrayLike({}) //=> false
+
+isArrayLike(new Set([1, 2])) //=> false
+
+isArrayLike({ length: -1 }) //=> false
+
+isArrayLike({ length: 1.5 }) //=> false
+
+isArrayLike((a, b) => a + b) //=> false
+
+isArrayLike(null) //=> false
+```

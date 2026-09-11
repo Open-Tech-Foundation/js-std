@@ -30,3 +30,10 @@ await firstIterAsync(gen()) //=> 1
 ## Related
 
 - [firstIter](/docs/Iter/firstIter)
+
+## Try it
+
+```ts
+async function* gen() { yield 1; yield 2; }
+await firstIterAsync(gen()) //=> 1
+```

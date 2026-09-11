@@ -28,3 +28,10 @@ unescapeHTML('&lt;script&gt;alert(&quot;xss&quot;)&lt;/script&gt;')
 ## Related
 
 - [escapeHTML](/docs/String/escapeHTML)
+
+## Try it
+
+```ts
+unescapeHTML('&lt;script&gt;alert(&quot;xss&quot;)&lt;/script&gt;')
+//=> '<script>alert("xss")</script>'
+```

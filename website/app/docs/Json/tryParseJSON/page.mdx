@@ -121,3 +121,12 @@ tryParseJSON('{"a":1}') //=> {a:1} — tells you and gives the value
 - [isJSON](/docs/Types/isJSON) — boolean check for a JSON *string*
 - [DateTime](/docs/DateTime/DateTime) — ISO datetime handled by default
 - [Duration](/docs/DateTime/Duration) — ISO duration handled by default
+
+## Try it
+
+```ts
+tryParseJSON('{"a":1}') //=> {a:1}
+tryParseJSON('[1,2,3]') //=> [1,2,3]
+tryParseJSON('null') //=> null
+tryParseJSON('"hi"') //=> "hi"
+```

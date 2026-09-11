@@ -31,3 +31,10 @@ await eachIterAsync(gen(), x => console.log(x)) //=> Logs 1, 2
 ## Related
 
 - [eachIter](/docs/Iter/eachIter)
+
+## Try it
+
+```ts
+async function* gen() { yield 1; yield 2; }
+await eachIterAsync(gen(), x => console.log(x)) //=> Logs 1, 2
+```

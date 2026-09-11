@@ -49,3 +49,10 @@ await streamToArray(concatStreams(slow, fast)) //=> ['a', 'b', 'c', 'd']
 
 - [mergeStreams](/docs/Streams/mergeStreams)
 - [streamToText](/docs/Streams/streamToText)
+
+## Try it
+
+```ts
+const all = concatStreams(header, body, footer);
+await streamToText(all) //=> 'headerbodyfooter'
+```

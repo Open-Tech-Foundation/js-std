@@ -63,3 +63,11 @@ quantile(requests, 0.95, (r) => r.durationMs);
 - [median](/docs/Maths/median)
 - [mean](/docs/Maths/mean)
 - [stddev](/docs/Maths/stddev)
+
+## Try it
+
+```ts
+quantile([1, 2, 3, 4], 0.25) //=> 1.75
+quantile([1, 2, 3, 4], 0.5) //=> 2.5
+quantile([1, 2, 3, 4], 0.75) //=> 3.25
+```

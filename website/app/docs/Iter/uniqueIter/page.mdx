@@ -45,3 +45,12 @@ const users = [{ id: 1 }, { id: 2 }, { id: 1 }];
 
 - [uniqueIterAsync](/docs/Iter/uniqueIterAsync)
 - [unique](/docs/Array/unique)
+
+## Try it
+
+```ts
+[...uniqueIter([1, 2, 2, 3, 1])] //=> [1, 2, 3]
+
+const users = [{ id: 1 }, { id: 2 }, { id: 1 }];
+[...uniqueIter(users, (u) => u.id)] //=> [{ id: 1 }, { id: 2 }]
+```

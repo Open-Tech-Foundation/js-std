@@ -31,3 +31,10 @@ await nthIterAsync(gen(), 1) //=> 2
 ## Related
 
 - [nthIter](/docs/Iter/nthIter)
+
+## Try it
+
+```ts
+async function* gen() { yield 1; yield 2; }
+await nthIterAsync(gen(), 1) //=> 2
+```

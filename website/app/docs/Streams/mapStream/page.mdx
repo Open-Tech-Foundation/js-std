@@ -66,3 +66,11 @@ const translated = mapStream(lines, async (line) => (await translate(line)).text
 - [filterStream](/docs/Streams/filterStream)
 - [streamToIter](/docs/Streams/streamToIter)
 - [iterToStream](/docs/Streams/iterToStream)
+
+## Try it
+
+```ts
+const sizes = mapStream(response.body, (chunk) => chunk.length);
+
+await streamToArray(sizes) //=> [64, 64, 12]
+```

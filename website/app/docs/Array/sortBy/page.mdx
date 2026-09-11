@@ -68,3 +68,36 @@ sortBy(fruits, [o => o.amount, 'desc'], [o => o.name, 'asc']);
 
 - [sort](/docs/Array/sort)
 
+## Try it
+
+```ts
+const fruits = [
+  { name: 'banana', amount: 2 },
+  { name: 'apple', amount: 4 },
+  { name: 'pineapple', amount: 2 },
+  { name: 'mango', amount: 1 },
+  { name: 'orange', amount: 5 },
+];
+
+sortBy(fruits, ['name', 'asc']);
+// OR
+sortBy(fruits, [(o) => o.name, 'asc']);
+//=> [
+//   { name: 'apple', amount: 4 },
+//   { name: 'banana', amount: 2 },
+//   { name: 'mango', amount: 1 },
+//   { name: 'orange', amount: 5 },
+//   { name: 'pineapple', amount: 2 },
+// ]
+
+sortBy(fruits, ['amount', 'desc'], ['name', 'asc']);
+// OR
+sortBy(fruits, [o => o.amount, 'desc'], [o => o.name, 'asc']);
+//=> [
+//  { name: 'orange', amount: 5 },
+//  { name: 'apple', amount: 4 },
+//  { name: 'banana', amount: 2 },
+//  { name: 'pineapple', amount: 2 },
+//  { name: 'mango', amount: 1 }
+// ]
+```

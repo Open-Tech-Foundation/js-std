@@ -63,3 +63,12 @@ semverDiff('1.2.3-rc.1', '1.2.3') //=> 'patch'
 
 - [semverIncrement](/docs/Semver/semverIncrement)
 - [semverCompare](/docs/Semver/semverCompare)
+
+## Try it
+
+```ts
+semverDiff('1.2.3', '2.0.0') //=> 'major'
+semverDiff('1.2.3', '1.3.0') //=> 'minor'
+semverDiff('1.2.3', '1.2.4') //=> 'patch'
+semverDiff('1.2.3', '1.2.3') //=> null
+```

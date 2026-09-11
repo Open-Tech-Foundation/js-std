@@ -37,7 +37,7 @@ const arr = [1, 2, 3];
 intersperse(arr, '&') //=> [1, '&', 2, '&', 3]
 
 const menu = ['Home', 'Menu', 'Sub Menu'];
-intersperse(menu, '>') 
+intersperse(menu, '>')
 //=> [
 //  'Home',
 //  '>',
@@ -53,7 +53,7 @@ const items = [
   { type: 'div', text: 'Orange' },
   { type: 'div', text: 'Mango' },
 ];
-intersperse(items, { type: 'br' }) 
+intersperse(items, { type: 'br' })
 //=> [
 //   {
 //     type: 'div',
@@ -89,3 +89,57 @@ intersperse(['a', 'b', 'c'], (i) => `<span key="sep-${i}"> , </span>`)
 
 - [range](/docs/Array/range)
 
+## Try it
+
+```ts
+const arr = [1, 2, 3];
+intersperse(arr, '&') //=> [1, '&', 2, '&', 3]
+
+const menu = ['Home', 'Menu', 'Sub Menu'];
+intersperse(menu, '>')
+//=> [
+//  'Home',
+//  '>',
+//  'Menu',
+//  '>',
+//  'Sub Menu',
+// ]
+
+intersperse('Hello', '-') //=> 'H-e-l-l-o'
+
+const items = [
+  { type: 'div', text: 'Apple' },
+  { type: 'div', text: 'Orange' },
+  { type: 'div', text: 'Mango' },
+];
+intersperse(items, { type: 'br' })
+//=> [
+//   {
+//     type: 'div',
+//     text: 'Apple',
+//   },
+//   {
+//     type: 'br',
+//   },
+//   {
+//     type: 'div',
+//     text: 'Orange',
+//   },
+//   {
+//     type: 'br',
+//   },
+//   {
+//     type: 'div',
+//     text: 'Mango',
+//   },
+// ]
+
+intersperse(['a', 'b', 'c'], (i) => `<span key="sep-${i}"> , </span>`)
+//=> [
+//   'a',
+//   '<span key="sep-0"> , </span>',
+//   'b',
+//   '<span key="sep-1"> , </span>',
+//   'c',
+// ]
+```

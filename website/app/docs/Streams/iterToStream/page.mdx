@@ -80,3 +80,15 @@ Cancelling the stream calls `return` on the source, so a generator's `finally` b
 - [streamToIter](/docs/Streams/streamToIter)
 - [concatStreams](/docs/Streams/concatStreams)
 - [fromIterAsync](/docs/Iter/fromIterAsync)
+
+## Try it
+
+```ts
+async function* rows() {
+  for await (const row of query()) {
+    yield JSON.stringify(row) + '\n';
+  }
+}
+
+new Response(iterToStream(rows()));
+```

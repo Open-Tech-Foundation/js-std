@@ -58,3 +58,15 @@ union([setA, setB, setC]) //=> [1, 2, 3, 4, 5]
 - [difference](/docs/Array/difference)
 - [symDiff](/docs/Array/symDiff)
 
+## Try it
+
+```ts
+const evens = [2, 4, 6, 8];
+const squares = [1, 4, 9];
+union([evens, squares]) //=> [2, 4, 6, 8, 1, 9]
+
+const setA = [1, 2, 3];
+const setB = [2, 3];
+const setC = [2, 3, 4, 5];
+union([setA, setB, setC]) //=> [1, 2, 3, 4, 5]
+```

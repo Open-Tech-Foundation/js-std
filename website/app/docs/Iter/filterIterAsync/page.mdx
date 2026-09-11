@@ -31,3 +31,10 @@ await toArrayIterAsync(filterIterAsync(gen(), x => x % 2 === 0)) //=> [2]
 ## Related
 
 - [filterIter](/docs/Iter/filterIter)
+
+## Try it
+
+```ts
+async function* gen() { yield 1; yield 2; yield 3; }
+await toArrayIterAsync(filterIterAsync(gen(), x => x % 2 === 0)) //=> [2]
+```

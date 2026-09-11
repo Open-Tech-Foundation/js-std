@@ -27,3 +27,12 @@ isRegExp({}) //=> false
 - [isObject](/docs/Types/isObject)
 - [isPlainObject](/docs/Types/isPlainObject)
 
+## Try it
+
+```ts
+isRegExp(new RegExp()) //=> true
+
+isRegExp(/\d+/) //=> true
+
+isRegExp({}) //=> false
+```

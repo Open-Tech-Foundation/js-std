@@ -29,3 +29,14 @@ isDataView(new DataView(buffer)) //=> true
 - [isObject](/docs/Types/isObject)
 - [isPlainObject](/docs/Types/isPlainObject)
 
+## Try it
+
+```ts
+const buffer = new ArrayBuffer(8);
+
+isDataView(buffer) //=> false
+
+isDataView(new Uint8Array(buffer)) //=> false
+
+isDataView(new DataView(buffer)) //=> true
+```

@@ -69,3 +69,18 @@ binarySearch(users, { id: 4 }, (a, b) => a.id - b.id) //=> 1
 
 - [sort](/docs/Array/sort)
 - [sortBy](/docs/Array/sortBy)
+
+## Try it
+
+```ts
+binarySearch([1, 3, 5, 7, 9], 5) //=> 2
+
+binarySearch([1, 3, 5, 7, 9], 1) //=> 0
+
+binarySearch([1, 3, 5, 7, 9], 4) //=> -1
+
+binarySearch(['ant', 'bee', 'cow'], 'cow') //=> 2
+
+// The first of several equal values
+binarySearch([1, 2, 2, 2, 3], 2) //=> 1
+```

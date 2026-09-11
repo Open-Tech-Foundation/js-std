@@ -30,3 +30,10 @@ await countIterAsync(gen()) //=> 2
 ## Related
 
 - [countIter](/docs/Iter/countIter)
+
+## Try it
+
+```ts
+async function* gen() { yield 1; yield 2; }
+await countIterAsync(gen()) //=> 2
+```

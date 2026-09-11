@@ -31,3 +31,8 @@ A new iterable iterator.
 
 - [flatMapIterAsync](/docs/Iter/flatMapIterAsync)
 
+## Try it
+
+```ts
+[...flatMapIter([1, 2], (x) => [x, x * 10])] //=> [1, 10, 2, 20]
+```

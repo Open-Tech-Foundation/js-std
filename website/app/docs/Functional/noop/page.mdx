@@ -29,3 +29,11 @@ const { onComplete = noop } = options;
 
 - [sleep](/docs/Timing/sleep)
 
+## Try it
+
+```ts
+noop(); //=> undefined
+
+// Useful as a default callback
+const { onComplete = noop } = options;
+```

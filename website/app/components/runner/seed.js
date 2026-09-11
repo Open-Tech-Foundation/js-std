@@ -1,19 +1,42 @@
 import read from './statements.js';
 
 /**
- * Builds the code the Try it editor opens with, from the page's own examples.
- *
- * The examples are written to be read — a result is a `//=>` comment beside the
- * call, not something the program does — so pasting them into an editor gives a
- * page that runs and prints nothing. Each annotated expression becomes a
- * `console.log`, which is what a reader would have written themselves, and the
- * documented result stays beside it so the sample still says what to expect.
- *
- * Statements that are not annotated are left exactly as they are: the setup a
- * page builds before its calls is part of the sample, and so is the import.
+ * Strips TypeScript-specific syntax from a line of code, converting it to
+ * plain JavaScript.
  */
+function stripTypeScript(line) {
+  let s = line;
+
+  // Remove entire lines: type Foo = ... and declare const ...
+  if (/^\s*type\s+\w/.test(s) || /^\s*declare\s+/.test(s)) return '';
+
+  // Generic function calls: fn<Type>( → fn(
+  s = s.replace(/\b(\w+)\s*<[^>]+>\s*\(/g, '$1(');
+
+  // Non-null assertions (but not != or !==)
+  s = s.replace(/([)\]\\w])\s*!(?!=)/g, '$1');
+
+  // 'as Type' assertions: expr as Type → expr
+  s = s.replace(/(\)|[\w$])\s+as\s+[A-Za-z_$][\w$]*/g, '$1');
+
+  // Variable type annotations: const/let/var name: Type = → const/let/var name =
+  s = s.replace(
+    /^(\s*(?:const|let|var)\s+\w+)\s*:\s*[A-Za-z_$][\w$]*(?:\s*\|[^=]+)?(?=\s*=)/,
+    '$1',
+  );
+
+  // Arrow function parameter types: (param: Type) → (param)
+  s = s.replace(/(\(\s*|\,\s*)(\w+)\s*:\s*[A-Za-z_$][\w$]*/g, '$1$2');
+
+  // Return type annotation: ): Type → )
+  s = s.replace(/\)\s*:\s*[A-Za-z_$][\w$]*/g, ')');
+
+  return s;
+}
+
 export function seedFromExample(source) {
-  const { lines, statements } = read(source);
+  const js = source.split('\n').map(stripTypeScript).join('\n');
+  const { lines, statements } = read(js);
   const text = lines.map((l) => l.text);
 
   for (const stmt of statements) {
@@ -37,20 +60,10 @@ export function seedFromExample(source) {
     text[stmt.end] = `${before.replace(/;$/, '')}); ${after}`.trimEnd();
   }
 
-  return text.join('\n').trimEnd();
+  return text.join('\n').replace(/^\n+/, '').trimEnd();
 }
 
-/**
- * Joins a page's examples into one sample.
- *
- * Several pages are written as one session — a cache built in the first block
- * is read in the second — so the blocks are concatenated in the order they
- * appear rather than offered as separate samples.
- *
- * @param {string[]} examples The source of each example block on the page.
- * @param {{ header?: string }} [options] `header` leads the sample, and is the
- *   import a reader would write in their own project.
- */
+/** Joins related examples into one runnable sample. */
 export default function seed(examples, options = {}) {
   const body = examples
     .map(seedFromExample)

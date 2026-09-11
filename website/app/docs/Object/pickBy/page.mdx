@@ -46,3 +46,12 @@ pickBy(object, (v) => typeof v === 'number')
 
 - [pick](/docs/Object/pick)
 - [omitBy](/docs/Object/omitBy)
+
+## Try it
+
+```ts
+const object = { a: 1, b: 'abc', c: 3 };
+
+pickBy(object, (v) => typeof v === 'number')
+//=> { a: 1, c: 3 }
+```

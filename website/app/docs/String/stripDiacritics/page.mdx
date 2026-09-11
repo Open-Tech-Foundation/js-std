@@ -80,3 +80,11 @@ matches('MALMO', 'Malmö') //=> true
 
 - [slugify](/docs/String/slugify)
 - [stripANSI](/docs/String/stripANSI)
+
+## Try it
+
+```ts
+stripDiacritics('José')      //=> 'Jose'
+stripDiacritics('Ångström')  //=> 'Angstrom'
+stripDiacritics('crème brûlée') //=> 'creme brulee'
+```

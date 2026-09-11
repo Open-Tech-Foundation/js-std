@@ -44,3 +44,22 @@ isNil({}) //=> false
 
 - [isEmpty](/docs/Assert/isEmpty)
 
+## Try it
+
+```ts
+isNil() //=> true
+
+isNil(undefined) //=> true
+
+isNil(null) //=> true
+
+isNil('') //=> false
+
+isNil(0) //=> false
+
+isNil(false) //=> false
+
+isNil([]) //=> false
+
+isNil({}) //=> false
+```

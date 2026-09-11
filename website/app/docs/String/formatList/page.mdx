@@ -69,3 +69,12 @@ formatList(['a', 'b'], { locale: 'es-ES' }) //=> 'a y b'
 - [intersperse](/docs/Array/intersperse)
 - [titleCase](/docs/String/titleCase)
 - [wordWrap](/docs/String/wordWrap)
+
+## Try it
+
+```ts
+formatList(['a', 'b', 'c']) //=> 'a, b, and c'
+formatList(['a', 'b']) //=> 'a and b'
+formatList(['a']) //=> 'a'
+formatList([]) //=> ''
+```

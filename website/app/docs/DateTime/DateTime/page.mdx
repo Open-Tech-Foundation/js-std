@@ -222,3 +222,12 @@ The whole API works on every runtime. Only the machinery underneath changes.
   names and `toLocaleString` do not work. Numeric tokens and all date arithmetic are
   unaffected.
 </Callout>
+
+## Try it
+
+```ts
+import { DateTime } from '@opentf/std';
+
+new DateTime('2026-07-29T14:30:00', { timeZone: 'Asia/Kolkata' }).format('yyyy-MM-dd HH:mm ZZ');
+//=> '2026-07-29 14:30 +05:30'
+```

@@ -68,3 +68,12 @@ await abortable(sleep(5000, { signal: controller.signal }), controller.signal);
 - [sleep](/docs/Timing/sleep)
 - [timeoutRun](/docs/Flow/timeoutRun)
 - [withResolvers](/docs/Concurrency/withResolvers)
+
+## Try it
+
+```ts
+const controller = new AbortController();
+setTimeout(() => controller.abort(), 100);
+
+await abortable(slowOperation(), controller.signal); // rejects after 100ms
+```

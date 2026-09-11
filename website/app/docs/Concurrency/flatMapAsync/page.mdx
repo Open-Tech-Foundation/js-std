@@ -48,3 +48,12 @@ const result = await flatMapAsync(items, async (n) => {
 
 - [mapAsync](/docs/Concurrency/mapAsync)
 - [filterAsync](/docs/Concurrency/filterAsync)
+
+## Try it
+
+```ts
+const items = [1, 2, 3];
+const result = await flatMapAsync(items, async (n) => {
+  return [n, n * 2];
+}); //=> [1, 2, 2, 4, 3, 6]
+```

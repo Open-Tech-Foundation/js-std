@@ -1,54 +1,22 @@
 import execute from './client.js';
 import createConsole from './console.js';
 import createEditor from './editor.js';
-import seed from './seed.js';
+import { seedFromExample } from './seed.js';
 
 /**
- * The Try it section at the foot of every function page.
+ * The Try it editor at the foot of every function page.
  *
- * It opens with the page's own examples, rewritten so that running them prints
- * something, and the reader edits from there. One editor per page rather than a
- * control on each example block: the examples on a page are one sequence — a
- * cache built in the first is read in the second — and a reader who wants to
- * change something wants the whole sample in front of them, not a fragment.
+ * In direct mode the caller passes a string of source code; the section is
+ * built into `host` with that code as the seed.
+ *
+ * In DOM mode the caller passes the page (or a sub-tree of it). The function
+ * finds the `## Try it` heading authored in the page's MDX, reads the source
+ * from the `<pre>` that follows it, and inserts the section right after that
+ * `<pre>` — so the visible heading in the page is the one and only Try it
+ * heading, and the editor lands where the reader is already looking.
  */
 
 const TIMEOUT = 5000;
-
-/** The source of every example block on the page, in the order written. */
-function examplesOf(root) {
-  const heading = root.querySelector('h2#examples');
-  if (!heading) return [];
-
-  const blocks = [];
-  for (
-    let node = heading.nextElementSibling;
-    node && node.tagName !== 'H2';
-    node = node.nextElementSibling
-  ) {
-    if (node.tagName === 'WEB-INTERNAL-CODE-BLOCK') blocks.push(node);
-    else blocks.push(...node.querySelectorAll('web-internal-code-block'));
-  }
-
-  return blocks
-    .map((block) => block.querySelector('pre')?.textContent ?? '')
-    .map((text) => text.replace(/^\n|\n$/g, ''))
-    .filter((text) => text.trim() !== '');
-}
-
-/**
- * The import line the page's Syntax block opens with.
- *
- * Taking it from the page rather than rebuilding it from the URL keeps the
- * sample honest about what to import, including the pages that export more than
- * one name.
- */
-function importOf(root) {
-  const heading = root.querySelector('h2#syntax');
-  const block = heading?.nextElementSibling?.querySelector('pre');
-  const first = block?.textContent.trim().split('\n')[0] ?? '';
-  return /^import\b/.test(first) ? first : '';
-}
 
 function button(label, className) {
   const el = document.createElement('button');
@@ -58,23 +26,44 @@ function button(label, className) {
   return el;
 }
 
+/** Finds the `<pre>`-bearing block that follows `el`, or null. */
+function nextPre(el) {
+  let n = el?.nextElementSibling;
+  while (n) {
+    if (n.tagName === 'PRE') return n;
+    const inner = n.querySelector?.('pre');
+    if (inner) return n;
+    n = n.nextElementSibling;
+  }
+  return null;
+}
+
+function sourceOf(root) {
+  const heading = root.querySelector?.('h2#try-it');
+  const block = nextPre(heading);
+  const pre =
+    block?.querySelector?.('pre') ?? (block?.tagName === 'PRE' ? block : null);
+  const raw = pre?.textContent?.replace(/^\n|\n$/g, '') ?? '';
+  return { block, raw };
+}
+
 /**
- * Builds the section into `host`.
+ * Builds the section.
  *
+ * @param {HTMLElement|Document} [host] Used only in direct mode. Ignored in
+ *   DOM mode, where the section is inserted right after the source `<pre>`.
+ * @param {string|Document|Element} input Direct: a source string. DOM: the
+ *   page (or a sub-tree) to read `## Try it` from.
  * @returns {{ section: HTMLElement, update: () => void, destroy: () => void }}
- *   `update` re-seeds the editor from the page currently in the DOM, which is
- *   how a client-side navigation is handled, and `section` is the element to
- *   exclude when watching for one.
  */
-export default function mountTryIt(host, root = document) {
+export default function mountTryIt(host, input = document) {
+  const direct = typeof input === 'string';
+
   const section = document.createElement('section');
   section.className = 'rn-tryit';
-  // The sample is the page's own examples again, and the output is values;
-  // neither belongs in a search result.
   section.setAttribute('data-pagefind-ignore', '');
 
   const heading = document.createElement('h2');
-  heading.id = 'try-it';
   heading.textContent = 'Try it';
 
   const panel = document.createElement('div');
@@ -99,48 +88,45 @@ export default function mountTryIt(host, root = document) {
   output.className = 'rn-console';
   output.setAttribute('aria-live', 'polite');
 
-  section.append(heading, panel, output);
-  host.append(section);
+  if (direct) section.append(heading);
+  section.append(panel, output);
+
+  if (direct) {
+    host.append(section);
+  } else {
+    const { block } = sourceOf(input);
+    if (block && block.parentNode) {
+      block.parentNode.insertBefore(section, block.nextSibling);
+    }
+  }
 
   const out = createConsole(output);
 
-  // Shown until the editor is built, so the section is readable the moment it
-  // scrolls into view rather than after a 250 kB import has landed.
   const preview = document.createElement('pre');
   preview.className = 'rn-preview';
   surface.append(preview);
 
   let editor = null;
   let editing = null;
-  let source = '';
+  let doc = '';
   let running = false;
 
-  /**
-   * Builds the editor, once, on the first sign that it is wanted.
-   *
-   * CodeMirror is the largest thing this page can pull, and the section sits
-   * below everything else on it, so most readers never reach it. It is imported
-   * when the section approaches the viewport, or immediately if a reader gets
-   * to Run before that — not when the page mounts.
-   */
   function ensureEditor() {
     if (!editing) {
-      editing = createEditor(surface, { doc: source, onRun: start }).then(
-        (created) => {
-          editor = created;
-          // The page may have changed while the import was in flight.
-          created.set(source);
-          preview.remove();
-        },
-      );
+      editing = createEditor(surface, { doc, onRun: start }).then((created) => {
+        editor = created;
+        created.set(doc);
+        preview.remove();
+      });
     }
     return editing;
   }
 
   const build = () => {
-    const examples = examplesOf(root);
-    if (!examples.length) return '';
-    return seed(examples, { header: importOf(root) });
+    if (direct) return input ? `${seedFromExample(input)}\n` : '';
+    const { raw } = sourceOf(input);
+    if (!raw) return '';
+    return `${seedFromExample(raw)}\n`;
   };
 
   async function start() {
@@ -177,23 +163,21 @@ export default function mountTryIt(host, root = document) {
 
   run.addEventListener('click', start);
   reset.addEventListener('click', () => {
-    editor?.set(source);
+    editor?.set(doc);
     out.clear();
   });
 
-  /**
-   * Seeds the editor from whatever page is in the DOM.
-   *
-   * The section is hidden rather than removed on a page with no examples — the
-   * overview pages, and `security` — because the reader may navigate from one
-   * to a function page without this component being rebuilt.
-   */
   function refresh() {
+    if (!direct) {
+      const { block } = sourceOf(input);
+      if (block?.parentNode)
+        block.parentNode.insertBefore(section, block.nextSibling);
+    }
     const next = build();
-    section.hidden = next === '';
-    if (next === '' || next === source) return;
+    section.hidden = next === '' || (!direct && !section.isConnected);
+    if (next === '' || next === doc) return;
 
-    source = next;
+    doc = next;
     out.clear();
     preview.textContent = next;
     editor?.set(next);
@@ -214,7 +198,7 @@ export default function mountTryIt(host, root = document) {
 
   return {
     section,
-    update: refresh,
+    update: direct ? () => {} : refresh,
     destroy() {
       watcher.disconnect();
       editor?.destroy();

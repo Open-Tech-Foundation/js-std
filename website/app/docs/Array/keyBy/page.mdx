@@ -77,3 +77,15 @@ keyBy(users, 'id');   //=> { a1: {...} }       ← single elements
 
 - [groupBy](/docs/Array/groupBy)
 - [countBy](/docs/Array/countBy)
+
+## Try it
+
+```ts
+const users = [
+  { id: 'a1', name: 'Ada' },
+  { id: 'b2', name: 'Linus' },
+];
+
+keyBy(users, 'id');
+//=> { a1: { id: 'a1', name: 'Ada' }, b2: { id: 'b2', name: 'Linus' } }
+```

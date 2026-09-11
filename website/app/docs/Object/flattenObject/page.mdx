@@ -70,3 +70,22 @@ get(obj, 'a.b[0].c') //=> 1
 - [unflattenObject](/docs/Object/unflattenObject)
 - [get](/docs/Object/get)
 - [toPath](/docs/Object/toPath)
+
+## Try it
+
+```ts
+flattenObject({ a: { b: { c: 1 } } }) //=> { 'a.b.c': 1 }
+
+flattenObject({ a: 1, b: 2 }) //=> { a: 1, b: 2 }
+
+flattenObject({ a: [1, 2] }) //=> { 'a[0]': 1, 'a[1]': 2 }
+
+flattenObject({ users: [{ name: 'Tom' }, { name: 'Ram' }] })
+//=> { 'users[0].name': 'Tom', 'users[1].name': 'Ram' }
+
+// Empty branches are kept
+flattenObject({ a: {}, b: [], c: 1 }) //=> { a: {}, b: [], c: 1 }
+
+// Non-plain objects are values
+flattenObject({ at: new Date(0) }) //=> { at: Date }
+```

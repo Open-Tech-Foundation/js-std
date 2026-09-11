@@ -35,3 +35,13 @@ zip([1, 2], ['a', 'b'], [true, false]) //=> [[1, 'a', true], [2, 'b', false]]
 ## Related
 
 - [unzip](/docs/Array/unzip)
+
+## Try it
+
+```ts
+zip([1, 2], ['a', 'b']) //=> [[1, 'a'], [2, 'b']]
+
+zip([1, 2, 3], ['a', 'b']) //=> [[1, 'a'], [2, 'b'], [3, undefined]]
+
+zip([1, 2], ['a', 'b'], [true, false]) //=> [[1, 'a', true], [2, 'b', false]]
+```

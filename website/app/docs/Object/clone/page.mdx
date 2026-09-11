@@ -51,11 +51,46 @@ A deep clone of supported values. Unsupported object instances and functions are
 ## Examples
 
 ```ts
-const input = { 
-  arr: [1, 2, 3], 
+const input = {
+  arr: [1, 2, 3],
   obj: { a: 'abc', b: 123 },
   date: new Date(),
-  map: new Map([['a', 1], ['b', 2]]) 
+  map: new Map([['a', 1], ['b', 2]])
+};
+
+const output = clone(input);
+
+input === output; // false
+output.arr === input.arr; // false
+output.obj === input.obj; // false
+output.map === input.map; // false
+output.date.getTime() === input.date.getTime(); // true
+
+class Box {
+  constructor(value) {
+    this.value = value;
+  }
+}
+
+const boxed = new Box(1);
+const clonedBoxed = clone({ boxed });
+clonedBoxed.boxed === boxed; // true
+
+// Circular references
+const circular: any = { a: 1 };
+circular.self = circular;
+const clonedCircular = clone(circular);
+clonedCircular.self === clonedCircular; // true
+```
+
+## Try it
+
+```ts
+const input = {
+  arr: [1, 2, 3],
+  obj: { a: 'abc', b: 123 },
+  date: new Date(),
+  map: new Map([['a', 1], ['b', 2]])
 };
 
 const output = clone(input);

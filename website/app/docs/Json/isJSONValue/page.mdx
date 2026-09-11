@@ -103,3 +103,19 @@ function logPayload(payload: unknown) {
 - [tryParseJSON](/docs/Json/tryParseJSON) — parse with fallback, no throw
 - [tryStringifyJSON](/docs/Json/tryStringifyJSON) — stringify with `bigint` support
 - [isJSON](/docs/Types/isJSON) — checks if a *string* contains JSON
+
+## Try it
+
+```ts
+isJSONValue(null) //=> true
+isJSONValue("hi") //=> true
+isJSONValue(0) //=> true
+isJSONValue(false) //=> true
+
+isJSONValue(NaN) //=> false — would become `null`
+isJSONValue(Infinity) //=> false
+isJSONValue(BigInt(1)) //=> false — would throw
+isJSONValue(undefined) //=> false
+isJSONValue(() => {}) //=> false
+isJSONValue(Symbol("a")) //=> false
+```

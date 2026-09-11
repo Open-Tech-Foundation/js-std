@@ -90,3 +90,12 @@ limit.concurrency //=> 2
 - [rateLimitRun](/docs/Flow/rateLimitRun)
 - [mapAsync](/docs/Concurrency/mapAsync)
 - [batchRun](/docs/Flow/batchRun)
+
+## Try it
+
+```ts
+// At most two requests in flight, however many URLs there are
+const limit = limitRun(2);
+
+const pages = await Promise.all(urls.map((url) => limit(() => fetch(url))));
+```

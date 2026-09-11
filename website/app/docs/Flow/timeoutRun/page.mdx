@@ -50,3 +50,16 @@ const data = await timeoutRun(() => fetch(), 500, { fallback: 'DEFAULT' });
 
 - [retryRun](/docs/Flow/retryRun)
 - [paceRun](/docs/Flow/paceRun)
+
+## Try it
+
+```ts
+try {
+  const result = await timeoutRun(() => fetchLargeData(), 1000);
+} catch (err) {
+  // Rejects if it takes longer than 1s
+}
+
+// With fallback
+const data = await timeoutRun(() => fetch(), 500, { fallback: 'DEFAULT' });
+```

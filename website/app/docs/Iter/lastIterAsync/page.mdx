@@ -30,3 +30,10 @@ await lastIterAsync(gen()) //=> 2
 ## Related
 
 - [lastIter](/docs/Iter/lastIter)
+
+## Try it
+
+```ts
+async function* gen() { yield 1; yield 2; }
+await lastIterAsync(gen()) //=> 2
+```

@@ -75,3 +75,15 @@ cache.prune(); //=> 2  (the number removed)
 
 - [LruCache](/docs/Cache/LruCache)
 - [memoizeRun](/docs/Flow/memoizeRun)
+
+## Try it
+
+```ts
+const cache = new TtlCache<string, number>(1000);
+
+cache.set('a', 1);
+cache.get('a'); //=> 1
+
+// ...over a second later
+cache.get('a'); //=> undefined
+```

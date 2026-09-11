@@ -145,3 +145,11 @@ const body = tryStringifyJSON({ id: BigInt("123456789012345"), createdAt: new Da
 - [isJSON](/docs/Types/isJSON) — check if string is JSON
 - [DateTime](/docs/DateTime/DateTime) — temporal datetime
 - [Duration](/docs/DateTime/Duration) — temporal duration
+
+## Try it
+
+```ts
+tryStringifyJSON({ a: 1 }) //=> '{"a":1}'
+tryStringifyJSON([1, 2, 3]) //=> '[1,2,3]'
+tryStringifyJSON(null) //=> 'null'
+```

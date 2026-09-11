@@ -38,13 +38,23 @@ A Promise that resolves with the function's result or rejects with the last erro
 ## Examples
 
 ```ts
-const result = await retryRun(() => fetchData(), { 
-  retries: 3, 
+const result = await retryRun(() => fetchData(), {
+  retries: 3,
   delay: 1000,
-  backoff: 'exponential' 
+  backoff: 'exponential'
 });
 ```
 
 ## Related
 
 - [timeoutRun](/docs/Flow/timeoutRun)
+
+## Try it
+
+```ts
+const result = await retryRun(() => fetchData(), {
+  retries: 3,
+  delay: 1000,
+  backoff: 'exponential'
+});
+```

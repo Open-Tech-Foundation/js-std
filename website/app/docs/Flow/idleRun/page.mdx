@@ -55,3 +55,14 @@ run('c');
 
 - [paceRun](/docs/Flow/paceRun)
 - [rateLimitRun](/docs/Flow/rateLimitRun)
+
+## Try it
+
+```ts
+const run = idleRun((val) => console.log(val), 500);
+
+run('a');
+run('b');
+run('c');
+// => logs 'c' after 500ms
+```

@@ -64,3 +64,11 @@ formatNumber(0.4235, { style: 'percent', maxFraction: 1 }) //=> '42.4%'
 - [formatCompact](/docs/Number/formatCompact)
 - [formatCurrency](/docs/Number/formatCurrency)
 - [formatBytes](/docs/Number/formatBytes)
+
+## Try it
+
+```ts
+formatNumber(1234567.891) //=> '1,234,567.891'
+formatNumber(1234.5, { locale: 'de-DE' }) //=> '1.234,5'
+formatNumber(1234.5, { grouping: false }) //=> '1234.5'
+```

@@ -37,3 +37,11 @@ await toArrayIterAsync(all) //=> [...head, ...tail]
 
 - [concatIter](/docs/Iter/concatIter)
 - [mergeStreams](/docs/Streams/mergeStreams)
+
+## Try it
+
+```ts
+const all = concatIterAsync(streamToIter(head), streamToIter(tail));
+
+await toArrayIterAsync(all) //=> [...head, ...tail]
+```

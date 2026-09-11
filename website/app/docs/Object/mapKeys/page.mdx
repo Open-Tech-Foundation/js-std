@@ -27,6 +27,15 @@ mapKeys(obj: object, fn: (value: any, key: string | symbol) => string | symbol)
 ```ts
 const obj = { a: 1, b: 2 };
 
-mapKeys(obj, (v, k) => k + v); 
+mapKeys(obj, (v, k) => k + v);
+//=> { a1: 1, b2: 2 }
+```
+
+## Try it
+
+```ts
+const obj = { a: 1, b: 2 };
+
+mapKeys(obj, (v, k) => k + v);
 //=> { a1: 1, b2: 2 }
 ```

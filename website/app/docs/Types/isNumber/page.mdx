@@ -48,3 +48,20 @@ isNumber([]) //=> false
 - [toNum](/docs/Number/toNum)
 - [isObject](/docs/Types/isObject)
 - [isPlainObject](/docs/Types/isPlainObject)
+
+## Try it
+
+```ts
+isNumber(1) //=> true
+isNumber(1.5) //=> true
+isNumber(NaN) //=> false
+isNumber(Infinity) //=> false
+
+isNumber('1') //=> false
+isNumber('1_000') //=> false
+
+// Other types
+isNumber(null) //=> false
+isNumber(true) //=> false
+isNumber([]) //=> false
+```

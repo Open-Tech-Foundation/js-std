@@ -31,3 +31,10 @@ isAsyncIterable([]) //=> false
 
 - [isIterable](/docs/Types/isIterable)
 - [fromIterAsync](/docs/Iter/fromIterAsync)
+
+## Try it
+
+```ts
+isAsyncIterable((async function* () {})()) //=> true
+isAsyncIterable([]) //=> false
+```

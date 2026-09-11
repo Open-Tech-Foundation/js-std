@@ -42,3 +42,13 @@ semverFormat(semverParse('  v1.2.3  ')) //=> '1.2.3'
 
 - [semverParse](/docs/Semver/semverParse)
 - [semverIncrement](/docs/Semver/semverIncrement)
+
+## Try it
+
+```ts
+semverFormat({ major: 1, minor: 2, patch: 3, prerelease: [], build: [] })
+//=> '1.2.3'
+
+semverFormat(semverParse('v2.0.0-alpha.1+build.5'))
+//=> '2.0.0-alpha.1+build.5'
+```

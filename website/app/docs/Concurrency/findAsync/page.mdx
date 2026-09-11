@@ -69,3 +69,9 @@ const mirror = await findAsync(
 - [someAsync](/docs/Concurrency/someAsync)
 - [everyAsync](/docs/Concurrency/everyAsync)
 - [filterAsync](/docs/Concurrency/filterAsync)
+
+## Try it
+
+```ts
+await findAsync([1, 2, 3], async (n) => n > 1); //=> 2
+```

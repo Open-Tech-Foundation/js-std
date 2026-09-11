@@ -106,3 +106,16 @@ wordWrap(`\u001b[31m${message}\u001b[0m`, 40);
 - [stripANSI](/docs/String/stripANSI)
 - [truncate](/docs/String/truncate)
 - [pad](/docs/String/pad)
+
+## Try it
+
+```ts
+wordWrap('the quick brown fox', 10);
+//=> 'the quick
+//    brown fox'
+
+wordWrap('one two three four five six', 12);
+//=> 'one two
+//    three four
+//    five six'
+```

@@ -96,3 +96,14 @@ await pollRun(() => fetchStatus({ signal: controller.signal }), {
 - [retryRun](/docs/Flow/retryRun)
 - [timeoutRun](/docs/Flow/timeoutRun)
 - [sleep](/docs/Timing/sleep)
+
+## Try it
+
+```ts
+// Wait for a job to finish
+const job = await pollRun(() => getJob(id), {
+  until: (job) => job.status !== 'pending',
+  interval: 1000,
+  timeout: 30_000,
+});
+```

@@ -59,7 +59,7 @@ const arr = [
   { name: 'y2', age: 16 },
 ];
 max(arr, (f) => f.age)
-//=> 
+//=>
 // {
 //  name: 'y',
 //  age: 16,
@@ -71,3 +71,38 @@ max(arr, (f) => f.age)
 - [min](/docs/Array/min)
 - [bounds](/docs/Array/bounds)
 
+## Try it
+
+```ts
+max([]) //=> null
+
+max([1, undefined, 2, null, 3]) //=> 3
+
+max([1, 2, -3, 4, 5]) //=> 5
+
+max(['a', 'b', 'c']) //=> 'c'
+
+max(['apple', 'mango', 'grapes']) //=> 'mango'
+
+const arr = [
+  {
+    name: 'x',
+    age: 10,
+  },
+  {
+    name: 'y',
+    age: 16,
+  },
+  {
+    name: 'z',
+    age: 13,
+  },
+  { name: 'y2', age: 16 },
+];
+max(arr, (f) => f.age)
+//=>
+// {
+//  name: 'y',
+//  age: 16,
+// }
+```

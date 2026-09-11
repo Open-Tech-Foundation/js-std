@@ -49,3 +49,10 @@ decodeBase58('112') //=> Uint8Array [0, 0, 1]
 - [encodeBase58](/docs/Encoding/encodeBase58)
 - [decodeBase32](/docs/Encoding/decodeBase32)
 - [decodeBase64Url](/docs/Encoding/decodeBase64Url)
+
+## Try it
+
+```ts
+decodeBase58('9Ajdvzr')         //=> Uint8Array [72, 101, 108, 108, 111]
+bytesToString(decodeBase58('StV1DL6CwTryKyV')) //=> 'hello world'
+```

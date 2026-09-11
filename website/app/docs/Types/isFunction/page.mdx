@@ -32,3 +32,17 @@ isFunction(generator); //=> true
 - [isObject](/docs/Types/isObject)
 - [isPlainObject](/docs/Types/isPlainObject)
 
+## Try it
+
+```ts
+isFunction(function() {}) //=> true
+
+isFunction({}) //=> false
+
+function* generator(i) {
+  yield i;
+  yield i + 10;
+}
+
+isFunction(generator); //=> true
+```

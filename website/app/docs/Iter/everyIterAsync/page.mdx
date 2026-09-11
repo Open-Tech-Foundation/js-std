@@ -31,3 +31,10 @@ await everyIterAsync(gen(), x => x > 0) //=> true
 ## Related
 
 - [everyIter](/docs/Iter/everyIter)
+
+## Try it
+
+```ts
+async function* gen() { yield 1; yield 2; }
+await everyIterAsync(gen(), x => x > 0) //=> true
+```

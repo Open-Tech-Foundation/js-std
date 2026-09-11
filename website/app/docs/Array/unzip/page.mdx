@@ -37,3 +37,15 @@ unzip([]) //=> []
 ## Related
 
 - [zip](/docs/Array/zip)
+
+## Try it
+
+```ts
+unzip([[1, 'a'], [2, 'b']]) //=> [[1, 2], ['a', 'b']]
+
+unzip([[1], [2]]) //=> [[1, 2]]
+
+unzip([[1, 'a'], [2]]) //=> [[1, 2], ['a', undefined]]
+
+unzip([]) //=> []
+```

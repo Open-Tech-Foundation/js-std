@@ -73,3 +73,17 @@ Iteration runs least recently used first, so the next eviction is at the front:
 
 - [TtlCache](/docs/Cache/TtlCache)
 - [memoizeRun](/docs/Flow/memoizeRun)
+
+## Try it
+
+```ts
+const cache = new LruCache<string, number>(2);
+
+cache.set('a', 1);
+cache.set('b', 2);
+cache.get('a');    // 'a' is now the most recently used
+cache.set('c', 3); // evicts 'b', not 'a'
+
+cache.has('b'); //=> false
+cache.has('a'); //=> true
+```

@@ -36,3 +36,10 @@ await toArrayIterAsync(takeIterAsync(gen(), 2)) //=> [1, 2]
 ## Related
 
 - [takeIter](/docs/Iter/takeIter)
+
+## Try it
+
+```ts
+async function* gen() { yield 1; yield 2; yield 3; }
+await toArrayIterAsync(takeIterAsync(gen(), 2)) //=> [1, 2]
+```

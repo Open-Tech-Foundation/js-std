@@ -44,3 +44,12 @@ omitBy(object, (v) => typeof v === 'number')
 
 - [omit](/docs/Object/omit)
 - [pickBy](/docs/Object/pickBy)
+
+## Try it
+
+```ts
+const object = { a: 1, b: 'abc', c: 3 };
+
+omitBy(object, (v) => typeof v === 'number')
+//=> { b: 'abc' }
+```

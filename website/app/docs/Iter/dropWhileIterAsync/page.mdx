@@ -31,3 +31,10 @@ await toArrayIterAsync(dropWhileIterAsync(gen(), x => x < 2)) //=> [2, 3]
 ## Related
 
 - [dropWhileIter](/docs/Iter/dropWhileIter)
+
+## Try it
+
+```ts
+async function* gen() { yield 1; yield 2; yield 3; }
+await toArrayIterAsync(dropWhileIterAsync(gen(), x => x < 2)) //=> [2, 3]
+```

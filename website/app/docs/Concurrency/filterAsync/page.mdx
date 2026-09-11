@@ -48,3 +48,12 @@ const result = await filterAsync(items, async (n) => {
 
 - [mapAsync](/docs/Concurrency/mapAsync)
 - [reduceAsync](/docs/Concurrency/reduceAsync)
+
+## Try it
+
+```ts
+const items = [1, 2, 3, 4];
+const result = await filterAsync(items, async (n) => {
+  return n % 2 === 0;
+}); //=> [2, 4]
+```

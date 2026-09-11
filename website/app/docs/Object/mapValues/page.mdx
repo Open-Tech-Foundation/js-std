@@ -31,6 +31,15 @@ mapValues(obj: object, fn: (value: any, key: string | symbol) => any)
 ```ts
 const obj = { a: 1, b: 2 };
 
-mapValues(obj, (v) => v * 2); 
+mapValues(obj, (v) => v * 2);
+//=> { a: 2, b: 4 }
+```
+
+## Try it
+
+```ts
+const obj = { a: 1, b: 2 };
+
+mapValues(obj, (v) => v * 2);
 //=> { a: 2, b: 4 }
 ```

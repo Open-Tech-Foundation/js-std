@@ -41,3 +41,11 @@ stops early.
 
 - [zipIterAsync](/docs/Iter/zipIterAsync)
 - [zip](/docs/Array/zip)
+
+## Try it
+
+```ts
+[...zipIter([1, 2], ['a', 'b'])] //=> [[1, 'a'], [2, 'b']]
+
+[...zipIter([1, 2, 3], ['a'])] //=> [[1, 'a'], [2, undefined], [3, undefined]]
+```

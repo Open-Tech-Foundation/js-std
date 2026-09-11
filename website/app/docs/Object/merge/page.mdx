@@ -31,3 +31,15 @@ const c = { a: [7, 8] };
 merge(a, b, c); //=> { a: [7, 8, 5] }
 ```
 
+## Try it
+
+```ts
+const a = { a: { b: 1 }, d: 3 };
+const b = { a: { c: 2 }, e: 5 };
+merge(a, b); //=> { a: { b: 1, c: 2 }, d: 3, e: 5 }
+
+const a = { a: [1, 2] };
+const b = { a: [3, 4, 5] };
+const c = { a: [7, 8] };
+merge(a, b, c); //=> { a: [7, 8, 5] }
+```

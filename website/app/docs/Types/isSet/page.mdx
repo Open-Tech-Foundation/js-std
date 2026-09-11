@@ -27,3 +27,12 @@ isSet({}) //=> false
 - [isObject](/docs/Types/isObject)
 - [isPlainObject](/docs/Types/isPlainObject)
 
+## Try it
+
+```ts
+isSet(new Set()) //=> true
+
+isSet(new WeakSet()) //=> false
+
+isSet({}) //=> false
+```

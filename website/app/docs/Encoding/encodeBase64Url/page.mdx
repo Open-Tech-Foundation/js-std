@@ -32,3 +32,10 @@ encodeBase64Url(new Uint8Array([104, 101, 108, 108, 111]), { pad: false }) //=> 
 
 - [decodeBase64Url](/docs/Encoding/decodeBase64Url)
 - [encodeBase64](/docs/Encoding/encodeBase64)
+
+## Try it
+
+```ts
+encodeBase64Url(new Uint8Array([104, 101, 108, 108, 111])) //=> 'aGVsbG8='
+encodeBase64Url(new Uint8Array([104, 101, 108, 108, 111]), { pad: false }) //=> 'aGVsbG8'
+```

@@ -66,3 +66,23 @@ sortBy(commands, (cmd) => levenshtein(cmd, 'instal'))[0] //=> 'install'
 
 - [stringWidth](/docs/String/stringWidth)
 - [stripDiacritics](/docs/String/stripDiacritics)
+
+## Try it
+
+```ts
+levenshtein('kitten', 'sitting') //=> 3
+
+levenshtein('abc', 'abc') //=> 0
+
+levenshtein('', 'abc') //=> 3
+
+levenshtein('cat', 'bat') //=> 1
+
+levenshtein('cat', 'cart') //=> 1
+
+// A transposition is two edits
+levenshtein('ab', 'ba') //=> 2
+
+// One code point, one edit
+levenshtein('a😀', 'a') //=> 1
+```

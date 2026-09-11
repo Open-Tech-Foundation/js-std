@@ -36,3 +36,9 @@ encodeBase64(stringToBytes('Hello')) //=> 'SGVsbG8='
 
 - [decodeBase64](/docs/Encoding/decodeBase64)
 - [stringToBytes](/docs/Encoding/stringToBytes)
+
+## Try it
+
+```ts
+encodeBase64(new Uint8Array([72, 101, 108, 108, 111])) //=> 'SGVsbG8='
+```

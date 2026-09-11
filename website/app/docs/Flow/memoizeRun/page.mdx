@@ -70,3 +70,16 @@ await memoized(new Map([['a', 1]])); // shares the cached result
 ## Related
 
 - [retryRun](/docs/Flow/retryRun)
+
+## Try it
+
+```ts
+const memoized = memoizeRun(fetchUser, { maxAge: 5000 });
+
+// Only one API call will be made if these are called concurrently
+const [u1, u2] = await Promise.all([memoized(1), memoized(1)]);
+
+// Structural equality works for common built-in values
+await memoized(new Map([['a', 1]]));
+await memoized(new Map([['a', 1]])); // shares the cached result
+```

@@ -48,7 +48,7 @@ symDiff([evens, squares]) //=> [2, 6, 8, 1, 9]
 
 const bucket1 = ['Fruits', 'Vegs', 'Eggs', 'Cookies', 'Nuts'];
 const bucket2 = ['fruits', 'Snacks', 'cookies'];
-symDiff([bucket1, bucket2], (v) => v.toLowerCase()) 
+symDiff([bucket1, bucket2], (v) => v.toLowerCase())
 //=> [
 //  'Vegs',
 //  'Eggs',
@@ -63,3 +63,20 @@ symDiff([bucket1, bucket2], (v) => v.toLowerCase())
 - [difference](/docs/Array/difference)
 - [union](/docs/Array/union)
 
+## Try it
+
+```ts
+const evens = [2, 4, 6, 8];
+const squares = [1, 4, 9];
+symDiff([evens, squares]) //=> [2, 6, 8, 1, 9]
+
+const bucket1 = ['Fruits', 'Vegs', 'Eggs', 'Cookies', 'Nuts'];
+const bucket2 = ['fruits', 'Snacks', 'cookies'];
+symDiff([bucket1, bucket2], (v) => v.toLowerCase())
+//=> [
+//  'Vegs',
+//  'Eggs',
+//  'Nuts',
+//  'Snacks',
+// ]
+```

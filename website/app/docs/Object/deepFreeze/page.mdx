@@ -70,3 +70,18 @@ deepFreeze(a) //=> a, frozen
 
 - [clone](/docs/Object/clone)
 - [merge](/docs/Object/merge)
+
+## Try it
+
+```ts
+const config = deepFreeze({ db: { host: 'localhost', opts: { pool: 5 } } });
+
+Object.isFrozen(config.db) //=> true
+Object.isFrozen(config.db.opts) //=> true
+
+config.db.opts.pool = 10 //=> TypeError in strict mode
+
+// Object.freeze alone reaches only the first level
+const shallow = Object.freeze({ db: { pool: 5 } });
+Object.isFrozen(shallow.db) //=> false
+```

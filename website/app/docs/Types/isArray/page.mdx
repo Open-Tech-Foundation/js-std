@@ -16,7 +16,7 @@ isArray(val: unknown): val is Array<unknown>
 
 ```ts
 isArray([]) //=> true
- 
+
 isArray(new Array('a', 'b', 'c')) //=> true
 
 isArray('abc') //=> false
@@ -27,3 +27,12 @@ isArray('abc') //=> false
 - [isObject](/docs/Types/isObject)
 - [isPlainObject](/docs/Types/isPlainObject)
 
+## Try it
+
+```ts
+isArray([]) //=> true
+
+isArray(new Array('a', 'b', 'c')) //=> true
+
+isArray('abc') //=> false
+```

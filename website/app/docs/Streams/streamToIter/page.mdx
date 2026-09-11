@@ -78,3 +78,12 @@ The reader lock is released either way, so the stream is never left locked. A st
 - [iterToStream](/docs/Streams/iterToStream)
 - [streamToLines](/docs/Streams/streamToLines)
 - [streamToArray](/docs/Streams/streamToArray)
+
+## Try it
+
+```ts
+import { streamToIter, mapIterAsync, toArrayIterAsync } from '@opentf/std';
+const sizes = mapIterAsync(streamToIter(response.body), (chunk) => chunk.length);
+
+await toArrayIterAsync(sizes); //=> [64, 64, 12]
+```

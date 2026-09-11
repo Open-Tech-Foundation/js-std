@@ -65,3 +65,30 @@ remove([1, 2, 3, 4, 5], (x) => x % 2 === 0) //=> [1, 3, 5]
 - [insert](/docs/Array/insert)
 - [replace](/docs/Array/replace)
 
+## Try it
+
+```ts
+remove([]) //=> []
+
+remove([1]) //=> []
+
+remove([1, 2]) //=> [1]
+
+remove([1, 2], 1) //=> [1]
+
+remove([1, 2], 1, 1) //=> [1]
+
+remove([1, 2, 3, 4, 5], -1) //=> [1, 2, 3, 4]
+
+remove([1, 2, 3, 4, 5], -1, 1) //=> [1, 2, 3, 4]
+
+remove([1, 2, 3, 4, 5], -1, 3) //=> [1, 2, 3, 4]
+
+remove([1, 2, 3, 4, 5], -2, 2) //=> [1, 2, 3]
+
+const myFish = ['angel', 'clown', 'mandarin', 'sturgeon'];
+remove(myFish, 2, Infinity) //=> ['angel', 'clown']
+
+// Predicate-based remove
+remove([1, 2, 3, 4, 5], (x) => x % 2 === 0) //=> [1, 3, 5]
+```

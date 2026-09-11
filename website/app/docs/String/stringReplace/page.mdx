@@ -57,3 +57,22 @@ stringReplace('212F', /(-?\d+(?:\.\d*)?)F\b/, fahrenheitToCelsius) //=> '100C'
 ## Related
 
 - [stringSplice](/docs/String/stringSplice)
+
+## Try it
+
+```ts
+stringReplace('abc', 'a', 'x') //=> 'xbc'
+
+stringReplace('abbc', 'b', '', { all: true }) //=> 'ac'
+
+stringReplace('aBbBc', 'B', '', { all: true, case: true }) //=> 'ac'
+
+const paragraph = "I think Ruth's dog is cuter than your dog!";
+stringReplace(paragraph, /dog/, 'ferret') //=> "I think Ruth's ferret is cuter than your dog!"
+
+// Using a function as replacement
+function fahrenheitToCelsius(match, p1) {
+  return `${((p1 - 32) * 5) / 9}C`;
+}
+stringReplace('212F', /(-?\d+(?:\.\d*)?)F\b/, fahrenheitToCelsius) //=> '100C'
+```

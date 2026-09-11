@@ -36,3 +36,18 @@ first() //=> undefined
 
 - [last](/docs/Array/last)
 
+## Try it
+
+```ts
+const users = [
+  { name: 'Ada', role: 'admin' },
+  { name: 'Lin', role: 'editor' },
+];
+
+// Grab the first admin, or fall back to a default
+const admin = first(users.filter((u) => u.role === 'admin'));
+console.log(admin); //=> { name: 'Ada', role: 'admin' }
+
+// Safe on empty arrays — returns undefined instead of throwing
+console.log(first([])); //=> undefined
+```

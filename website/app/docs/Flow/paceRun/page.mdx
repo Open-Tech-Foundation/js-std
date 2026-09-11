@@ -51,3 +51,12 @@ run('b'); // Queued for trailing edge (default trailing: true)
 
 - [idleRun](/docs/Flow/idleRun)
 - [rateLimitRun](/docs/Flow/rateLimitRun)
+
+## Try it
+
+```ts
+const run = paceRun((val) => console.log(val), 500);
+
+run('a'); // Logs 'a' immediately (leading edge)
+run('b'); // Queued for trailing edge (default trailing: true)
+```

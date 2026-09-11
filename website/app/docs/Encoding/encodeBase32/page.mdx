@@ -51,3 +51,10 @@ encodeBase32(stringToBytes('foobar'), { pad: false }) //=> 'MZXW6YTBOI'
 - [decodeBase32](/docs/Encoding/decodeBase32)
 - [encodeBase58](/docs/Encoding/encodeBase58)
 - [encodeBase64](/docs/Encoding/encodeBase64)
+
+## Try it
+
+```ts
+encodeBase32(new Uint8Array([72, 101, 108, 108, 111])) //=> 'JBSWY3DP'
+encodeBase32(stringToBytes('foobar'))                  //=> 'MZXW6YTBOI======'
+```

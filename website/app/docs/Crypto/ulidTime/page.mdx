@@ -49,3 +49,12 @@ ulidTime('01ARYZ6S41TSV4RRFFQ69G5FAV') //=> 1469918176385
 - [ulid](/docs/Crypto/ulid)
 - [isULID](/docs/Crypto/isULID)
 - [uuidv7Time](/docs/Crypto/uuidv7Time)
+
+## Try it
+
+```ts
+const id = ulid();
+
+ulidTime(id) //=> 1769000000000
+new Date(ulidTime(id)) //=> the moment it was generated
+```

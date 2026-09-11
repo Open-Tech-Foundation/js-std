@@ -41,3 +41,12 @@ run('c'); // waits until 1s after 'a' started
 - [batchRun](/docs/Flow/batchRun)
 - [paceRun](/docs/Flow/paceRun)
 
+## Try it
+
+```ts
+const run = rateLimitRun(async (val) => val, 2, 1000); // 2 per second
+
+run('a'); // runs immediately
+run('b'); // runs immediately
+run('c'); // waits until 1s after 'a' started
+```

@@ -32,3 +32,10 @@ await reduceIterAsync(gen(), (acc, x) => acc + x, 0) //=> 6
 ## Related
 
 - [reduceIter](/docs/Iter/reduceIter)
+
+## Try it
+
+```ts
+async function* gen() { yield 1; yield 2; yield 3; }
+await reduceIterAsync(gen(), (acc, x) => acc + x, 0) //=> 6
+```

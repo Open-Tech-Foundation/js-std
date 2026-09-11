@@ -51,7 +51,7 @@ export default async function createEditor(parent, options) {
 
   const extensions = [
     basicSetup,
-    lang.javascript({ typescript: true }),
+    lang.javascript(),
     EditorView.lineWrapping,
     theme.of(isDark() ? dark.oneDark : []),
   ];

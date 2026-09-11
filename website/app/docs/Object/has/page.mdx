@@ -49,3 +49,18 @@ has({ a: { 'b.c': 1 } }, ['a', 'b.c']) //=> true
 - [set](/docs/Object/set)
 - [unset](/docs/Object/unset)
 
+## Try it
+
+```ts
+has({ a: 1 }, 'a') //=> true
+
+has({ a: undefined }, 'a') //=> true
+
+has({ a: null }, 'a') //=> true
+
+has({ a: { b: [1, 2, 3, { c: 5 }] } }, 'a.b[3].c') //=> true
+
+has({ a: { b: [1, 2, 3, { c: 5 }] } }, 'a.b[5].c') //=> false
+
+has({ a: { 'b.c': 1 } }, ['a', 'b.c']) //=> true
+```

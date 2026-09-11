@@ -40,3 +40,15 @@ semverIsValid('01.2.3') //=> false — leading zeroes are invalid
 
 - [semverParse](/docs/Semver/semverParse)
 - [semverSatisfies](/docs/Semver/semverSatisfies)
+
+## Try it
+
+```ts
+semverIsValid('1.2.3')        //=> true
+semverIsValid('v1.2.3-beta.1') //=> true
+semverIsValid('1.2.3+build')   //=> true
+
+semverIsValid('1.2')    //=> false
+semverIsValid('^1.2.3') //=> false
+semverIsValid('01.2.3') //=> false — leading zeroes are invalid
+```

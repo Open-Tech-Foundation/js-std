@@ -47,3 +47,16 @@ const user2 = batchFetch(2);
 ## Related
 
 - [rateLimitRun](/docs/Flow/rateLimitRun)
+
+## Try it
+
+```ts
+const batchFetch = batchRun(async (batch) => {
+  // batch is an array of arguments: [[1], [2], [3]]
+  const ids = batch.map(args => args[0]);
+  return await fetchUsers(ids);
+}, { limit: 10, delay: 50 });
+
+const user1 = batchFetch(1);
+const user2 = batchFetch(2);
+```

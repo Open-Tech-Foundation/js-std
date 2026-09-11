@@ -35,3 +35,20 @@ isInfinity(-Infinity) //=> true
 - [isObject](/docs/Types/isObject)
 - [isPlainObject](/docs/Types/isPlainObject)
 
+## Try it
+
+```ts
+isInfinity(0) //=> false
+
+isInfinity(false) //=> false
+
+isInfinity(null) //=> false
+
+isInfinity(NaN) //=> false
+
+isInfinity(1/0) //=> true
+
+isInfinity(Infinity) //=> true
+
+isInfinity(-Infinity) //=> true
+```

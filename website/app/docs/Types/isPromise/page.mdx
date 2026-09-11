@@ -32,3 +32,10 @@ isPromise({}) //=> false
 
 - [isAsyncFunction](/docs/Types/isAsyncFunction)
 
+## Try it
+
+```ts
+isPromise(Promise.resolve()) //=> true
+
+isPromise({}) //=> false
+```

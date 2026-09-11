@@ -49,3 +49,34 @@ isGeneratorFunction(someObj.generator); //=> true
 
 - [isObject](/docs/Types/isObject)
 - [isPlainObject](/docs/Types/isPlainObject)
+
+## Try it
+
+```ts
+isGeneratorFunction(function() {}) //=> false
+
+isGeneratorFunction({}) //=> false
+
+function* generator(i) {
+  yield i;
+  yield i + 10;
+}
+
+isGeneratorFunction(generator); //=> true
+
+async function* aGen(i) {
+  yield i;
+  yield i + 10;
+}
+
+isGeneratorFunction(aGen); //=> false
+
+const someObj = {
+  *generator() {
+    yield "a";
+    yield "b";
+  },
+};
+
+isGeneratorFunction(someObj.generator); //=> true
+```

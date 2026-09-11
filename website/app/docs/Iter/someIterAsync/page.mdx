@@ -31,3 +31,10 @@ await someIterAsync(gen(), x => x > 1) //=> true
 ## Related
 
 - [someIter](/docs/Iter/someIter)
+
+## Try it
+
+```ts
+async function* gen() { yield 1; yield 2; }
+await someIterAsync(gen(), x => x > 1) //=> true
+```

@@ -51,3 +51,18 @@ isObject(123) //=> false
 - [isPlainObject](/docs/Types/isPlainObject)
 - [isEmpty](/docs/Assert/isEmpty)
 
+## Try it
+
+```ts
+isObject({}) //=> true
+
+isObject([]) //=> true
+
+isObject(new Date()) //=> true
+
+isObject(new Map()) //=> true
+
+isObject(null) //=> false
+
+isObject(123) //=> false
+```

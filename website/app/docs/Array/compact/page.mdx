@@ -57,3 +57,12 @@ compact([{}, []]) //=> [{}, []] (Empty objects and arrays are truthy)
 
 - [unique](/docs/Array/unique)
 
+## Try it
+
+```ts
+compact([0, 1, false, 2, '', 3, null, undefined, NaN]) //=> [1, 2, 3]
+
+compact(['apple', '', 'Mango']) //=> ['apple', 'Mango']
+
+compact([{}, []]) //=> [{}, []] (Empty objects and arrays are truthy)
+```

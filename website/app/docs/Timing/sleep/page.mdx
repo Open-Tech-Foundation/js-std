@@ -62,3 +62,11 @@ await sleep(5000, { signal: controller.signal }); // rejects with that Error
 
 - [abortable](/docs/Concurrency/abortable)
 - [timeoutRun](/docs/Flow/timeoutRun)
+
+## Try it
+
+```ts
+await sleep(1000); // Suspends execution for 1 second
+
+await sleep(0); // Resolves in the next event loop iteration
+```
