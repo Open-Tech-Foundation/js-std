@@ -1,3 +1,17 @@
+import '../test.setup.js';
+import {
+  afterAll,
+  afterEach,
+  beforeAll,
+  beforeEach,
+  clock,
+  describe,
+  expect,
+  it,
+  mock,
+  test,
+} from 'runtime:test';
+
 import run from '../app/components/runner/run.js';
 import transform from '../app/components/runner/transform.js';
 

@@ -1,16 +1,29 @@
+import {
+  afterAll,
+  afterEach,
+  beforeAll,
+  beforeEach,
+  clock,
+  describe,
+  expect,
+  it,
+  mock,
+  test,
+} from 'runtime:test';
+
 import { idleRun } from '../../src';
 
 describe('idleRun', () => {
   beforeEach(() => {
-    vi.useFakeTimers();
+    clock.freeze();
   });
 
   afterEach(() => {
-    vi.useRealTimers();
+    clock.release();
   });
 
   test('debounces calls', () => {
-    const func = vi.fn();
+    const func = mock.fn();
     const debounced = idleRun(func, 100);
 
     debounced('a');
@@ -19,57 +32,57 @@ describe('idleRun', () => {
 
     expect(func).not.toBeCalled();
 
-    vi.advanceTimersByTime(50);
+    clock.advance(50);
     expect(func).not.toBeCalled();
 
-    vi.advanceTimersByTime(50);
+    clock.advance(50);
     expect(func).toBeCalledWith('c');
     expect(func).toHaveBeenCalledTimes(1);
   });
 
   test('leading option', () => {
-    const func = vi.fn();
+    const func = mock.fn();
     const debounced = idleRun(func, 100, { leading: true });
 
     debounced('a');
     expect(func).toBeCalledWith('a');
 
     debounced('b');
-    vi.advanceTimersByTime(100);
+    clock.advance(100);
     expect(func).toBeCalledWith('b');
     expect(func).toHaveBeenCalledTimes(2);
   });
 
   test('maxWait option', () => {
-    const func = vi.fn();
+    const func = mock.fn();
     const debounced = idleRun(func, 100, { maxWait: 200 });
 
     debounced('a');
-    vi.advanceTimersByTime(50);
+    clock.advance(50);
     debounced('b');
-    vi.advanceTimersByTime(50);
+    clock.advance(50);
     debounced('c');
-    vi.advanceTimersByTime(50);
+    clock.advance(50);
     debounced('d');
 
     // maxWait is 200ms from the first call
-    vi.advanceTimersByTime(50);
+    clock.advance(50);
     expect(func).toBeCalledWith('d');
     expect(func).toHaveBeenCalledTimes(1);
   });
 
   test('cancel method', () => {
-    const func = vi.fn();
+    const func = mock.fn();
     const debounced = idleRun(func, 100);
 
     debounced('a');
     debounced.cancel();
-    vi.advanceTimersByTime(100);
+    clock.advance(100);
     expect(func).not.toBeCalled();
   });
 
   test('flush method', () => {
-    const func = vi.fn();
+    const func = mock.fn();
     const debounced = idleRun(func, 100);
 
     debounced('a');

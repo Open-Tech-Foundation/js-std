@@ -1,3 +1,16 @@
+import {
+  afterAll,
+  afterEach,
+  beforeAll,
+  beforeEach,
+  clock,
+  describe,
+  expect,
+  it,
+  mock,
+  test,
+} from 'runtime:test';
+
 import { clone, deepFreeze, isEql, merge, mergeAll } from '../../src';
 
 /** Wraps a leaf in `levels` plain objects, keyed by a string. */

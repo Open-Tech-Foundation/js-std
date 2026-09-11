@@ -1,3 +1,16 @@
+import {
+  afterAll,
+  afterEach,
+  beforeAll,
+  beforeEach,
+  clock,
+  describe,
+  expect,
+  it,
+  mock,
+  test,
+} from 'runtime:test';
+
 import { toArrayIter, unique, uniqueIter } from '../../src';
 
 describe('Array > unique', () => {

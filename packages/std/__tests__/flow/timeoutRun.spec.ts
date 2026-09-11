@@ -1,12 +1,25 @@
+import {
+  afterAll,
+  afterEach,
+  beforeAll,
+  beforeEach,
+  clock,
+  describe,
+  expect,
+  it,
+  mock,
+  test,
+} from 'runtime:test';
+
 import { timeoutRun } from '../../src';
 
 describe('timeoutRun', () => {
   beforeEach(() => {
-    vi.useFakeTimers();
+    clock.freeze();
   });
 
   afterEach(() => {
-    vi.useRealTimers();
+    clock.release();
   });
 
   test('resolves if within timeout', async () => {
@@ -21,7 +34,7 @@ describe('timeoutRun', () => {
 
     const result = timeoutRun(func, 1000);
     result.catch(() => {});
-    vi.advanceTimersByTime(1000);
+    clock.advance(1000);
 
     await expect(result).rejects.toThrow('Operation timed out after 1000ms');
   });
@@ -31,7 +44,7 @@ describe('timeoutRun', () => {
 
     const result = timeoutRun(func, 1000, { message: 'Custom timeout' });
     result.catch(() => {});
-    vi.advanceTimersByTime(1000);
+    clock.advance(1000);
 
     await expect(result).rejects.toThrow('Custom timeout');
   });
@@ -41,7 +54,7 @@ describe('timeoutRun', () => {
       new Promise((resolve) => setTimeout(() => resolve('real'), 2000));
 
     const result = timeoutRun(func, 1000, { fallback: 'fallback' });
-    vi.advanceTimersByTime(1000);
+    clock.advance(1000);
 
     expect(await result).toBe('fallback');
   });

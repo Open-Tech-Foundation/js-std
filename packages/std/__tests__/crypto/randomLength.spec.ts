@@ -1,3 +1,16 @@
+import {
+  afterAll,
+  afterEach,
+  beforeAll,
+  beforeEach,
+  clock,
+  describe,
+  expect,
+  it,
+  mock,
+  test,
+} from 'runtime:test';
+
 import { decodeBase58, encodeBase58, randomId, randomString } from '../../src';
 
 describe('Crypto > random length bounds', () => {

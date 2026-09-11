@@ -1,16 +1,29 @@
+import {
+  afterAll,
+  afterEach,
+  beforeAll,
+  beforeEach,
+  clock,
+  describe,
+  expect,
+  it,
+  mock,
+  test,
+} from 'runtime:test';
+
 import { batchRun } from '../../src';
 
 describe('batchRun', () => {
   beforeEach(() => {
-    vi.useFakeTimers();
+    clock.freeze();
   });
 
   afterEach(() => {
-    vi.useRealTimers();
+    clock.release();
   });
 
   test('batches calls by limit', async () => {
-    const processor = vi.fn(async (batch: number[][]) => {
+    const processor = mock.fn(async (batch: number[][]) => {
       return batch.map((args) => args[0] * 2);
     });
     const batched = batchRun(processor, { limit: 2 });
@@ -23,13 +36,13 @@ describe('batchRun', () => {
     expect(await p1).toBe(2);
     expect(await p2).toBe(4);
 
-    vi.advanceTimersByTime(0);
+    clock.advance(0);
     expect(processor).toHaveBeenCalledTimes(2);
     expect(await p3).toBe(6);
   });
 
   test('batches calls by delay', async () => {
-    const processor = vi.fn(async (batch: number[][]) => {
+    const processor = mock.fn(async (batch: number[][]) => {
       return batch.map((args) => args[0] * 2);
     });
     const batched = batchRun(processor, { delay: 100 });
@@ -39,7 +52,7 @@ describe('batchRun', () => {
 
     expect(processor).not.toBeCalled();
 
-    vi.advanceTimersByTime(100);
+    clock.advance(100);
     // Use a small delay to allow promises to settle
 
     expect(processor).toHaveBeenCalledTimes(1);
@@ -48,7 +61,7 @@ describe('batchRun', () => {
   });
 
   test('handles errors', async () => {
-    const processor = vi.fn(() => {
+    const processor = mock.fn(() => {
       throw new Error('fail');
     });
     const batched = batchRun(processor, { limit: 1 });

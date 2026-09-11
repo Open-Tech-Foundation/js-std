@@ -1,3 +1,16 @@
+import {
+  afterAll,
+  afterEach,
+  beforeAll,
+  beforeEach,
+  clock,
+  describe,
+  expect,
+  it,
+  mock,
+  test,
+} from 'runtime:test';
+
 import { gcd, lcm, lerp, stddev, variance } from '../../src';
 
 describe('Maths > variance', () => {

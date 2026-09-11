@@ -1,3 +1,16 @@
+import {
+  afterAll,
+  afterEach,
+  beforeAll,
+  beforeEach,
+  clock,
+  describe,
+  expect,
+  it,
+  mock,
+  test,
+} from 'runtime:test';
+
 import { levenshtein } from '../../src';
 
 /** The plain full-matrix algorithm, to check the rolling-row one against. */

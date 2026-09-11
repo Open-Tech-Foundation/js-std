@@ -1,16 +1,29 @@
+import {
+  afterAll,
+  afterEach,
+  beforeAll,
+  beforeEach,
+  clock,
+  describe,
+  expect,
+  it,
+  mock,
+  test,
+} from 'runtime:test';
+
 import { paceRun } from '../../src';
 
 describe('paceRun', () => {
   beforeEach(() => {
-    vi.useFakeTimers();
+    clock.freeze();
   });
 
   afterEach(() => {
-    vi.useRealTimers();
+    clock.release();
   });
 
   test('throttles calls', () => {
-    const func = vi.fn();
+    const func = mock.fn();
     const throttled = paceRun(func, 100);
 
     throttled('a');
@@ -20,32 +33,32 @@ describe('paceRun', () => {
     expect(func).toBeCalledWith('a');
     expect(func).toHaveBeenCalledTimes(1);
 
-    vi.advanceTimersByTime(100);
+    clock.advance(100);
     // Trailing is true by default
     expect(func).toBeCalledWith('c');
     expect(func).toHaveBeenCalledTimes(2);
   });
 
   test('leading: false', () => {
-    const func = vi.fn();
+    const func = mock.fn();
     const throttled = paceRun(func, 100, { leading: false });
 
     throttled('a');
     expect(func).not.toBeCalled();
 
-    vi.advanceTimersByTime(100);
+    clock.advance(100);
     expect(func).toBeCalledWith('a');
   });
 
   test('trailing: false', () => {
-    const func = vi.fn();
+    const func = mock.fn();
     const throttled = paceRun(func, 100, { trailing: false });
 
     throttled('a');
     throttled('b');
     expect(func).toHaveBeenCalledTimes(1);
 
-    vi.advanceTimersByTime(100);
+    clock.advance(100);
     expect(func).toHaveBeenCalledTimes(1);
 
     throttled('c');
@@ -54,13 +67,13 @@ describe('paceRun', () => {
   });
 
   test('cancel method', () => {
-    const func = vi.fn();
+    const func = mock.fn();
     const throttled = paceRun(func, 100);
 
     throttled('a');
     throttled('b');
     throttled.cancel();
-    vi.advanceTimersByTime(100);
+    clock.advance(100);
     expect(func).toHaveBeenCalledTimes(1);
     expect(func).not.toBeCalledWith('b');
   });

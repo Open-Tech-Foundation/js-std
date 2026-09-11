@@ -1,19 +1,32 @@
+import {
+  afterAll,
+  afterEach,
+  beforeAll,
+  beforeEach,
+  clock,
+  describe,
+  expect,
+  it,
+  mock,
+  test,
+} from 'runtime:test';
+
 import { pollRun } from '../../src';
 
 describe('pollRun', () => {
   beforeEach(() => {
-    vi.useFakeTimers();
+    clock.freeze();
   });
 
   afterEach(() => {
-    vi.useRealTimers();
+    clock.release();
   });
 
   /** Advances one interval at a time, since each wait is only scheduled once
    *  the one before it has fired. */
   async function tick(...steps: number[]) {
     for (const step of steps) {
-      await vi.advanceTimersByTimeAsync(step);
+      await clock.advanceAsync(step);
     }
   }
 

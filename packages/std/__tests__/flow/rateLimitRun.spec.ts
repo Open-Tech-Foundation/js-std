@@ -1,16 +1,29 @@
+import {
+  afterAll,
+  afterEach,
+  beforeAll,
+  beforeEach,
+  clock,
+  describe,
+  expect,
+  it,
+  mock,
+  test,
+} from 'runtime:test';
+
 import { rateLimitRun } from '../../src';
 
 describe('rateLimitRun', () => {
   beforeEach(() => {
-    vi.useFakeTimers();
+    clock.freeze();
   });
 
   afterEach(() => {
-    vi.useRealTimers();
+    clock.release();
   });
 
   test('limits execution frequency', async () => {
-    const func = vi.fn(async (val: string) => val);
+    const func = mock.fn(async (val: string) => val);
     const limited = rateLimitRun(func, 2, 1000); // 2 per second
 
     const p1 = limited('a');
@@ -21,16 +34,16 @@ describe('rateLimitRun', () => {
     expect(await p1).toBe('a');
     expect(await p2).toBe('b');
 
-    vi.advanceTimersByTime(500);
+    clock.advance(500);
 
-    vi.advanceTimersByTime(500);
+    clock.advance(500);
 
     expect(func).toHaveBeenCalledTimes(3);
     expect(await p3).toBe('c');
   });
 
   test('handles rapid bursts', async () => {
-    const func = vi.fn(async (val: number) => val);
+    const func = mock.fn(async (val: number) => val);
     const limited = rateLimitRun(func, 1, 100);
 
     const results = [];
@@ -40,27 +53,27 @@ describe('rateLimitRun', () => {
 
     expect(func).toHaveBeenCalledTimes(1);
 
-    vi.advanceTimersByTime(100);
+    clock.advance(100);
     expect(func).toHaveBeenCalledTimes(2);
 
-    vi.advanceTimersByTime(100);
+    clock.advance(100);
     expect(func).toHaveBeenCalledTimes(3);
 
     expect(await Promise.all(results)).toEqual([1, 2, 3]);
   });
 
   test('handles rapid bursts of a synchronous function', async () => {
-    const func = vi.fn((val: number) => val);
+    const func = mock.fn((val: number) => val);
     const limited = rateLimitRun(func, 1, 100);
 
     const results = [limited(1), limited(2), limited(3)];
 
     expect(func).toHaveBeenCalledTimes(1);
 
-    vi.advanceTimersByTime(100);
+    clock.advance(100);
     expect(func).toHaveBeenCalledTimes(2);
 
-    vi.advanceTimersByTime(100);
+    clock.advance(100);
     expect(func).toHaveBeenCalledTimes(3);
 
     expect(await Promise.all(results)).toEqual([1, 2, 3]);
@@ -91,7 +104,7 @@ describe('rateLimitRun', () => {
 
   test('a slow call does not delay the next window', async () => {
     const started: number[] = [];
-    const func = vi.fn((val: number) => {
+    const func = mock.fn((val: number) => {
       started.push(val);
       // Never settles: the rolling window is measured from when a call starts,
       // so a pending call must not hold the queue.
@@ -103,12 +116,12 @@ describe('rateLimitRun', () => {
     limited(2);
     expect(started).toEqual([1]);
 
-    vi.advanceTimersByTime(100);
+    clock.advance(100);
     expect(started).toEqual([1, 2]);
   });
 
   test('a rejected call does not stall the queue', async () => {
-    const func = vi.fn(async (val: number) => {
+    const func = mock.fn(async (val: number) => {
       if (val === 1) throw new Error('boom');
       return val;
     });
@@ -119,12 +132,12 @@ describe('rateLimitRun', () => {
 
     await expect(p1).rejects.toThrow('boom');
 
-    vi.advanceTimersByTime(100);
+    clock.advance(100);
     expect(await p2).toBe(2);
   });
 
   test('propagates a synchronous throw', async () => {
-    const func = vi.fn((val: number) => {
+    const func = mock.fn((val: number) => {
       if (val === 1) throw new Error('sync boom');
       return val;
     });
@@ -135,12 +148,12 @@ describe('rateLimitRun', () => {
 
     await expect(p1).rejects.toThrow('sync boom');
 
-    vi.advanceTimersByTime(100);
+    clock.advance(100);
     expect(await p2).toBe(2);
   });
 
   test('throws on invalid limit', () => {
-    const func = vi.fn(async (val: number) => val);
+    const func = mock.fn(async (val: number) => val);
 
     expect(() => rateLimitRun(func, 0, 100)).toThrow(
       'Limit must be a positive integer.',
@@ -157,7 +170,7 @@ describe('rateLimitRun', () => {
   });
 
   test('throws on invalid period', () => {
-    const func = vi.fn(async (val: number) => val);
+    const func = mock.fn(async (val: number) => val);
 
     expect(() => rateLimitRun(func, 1, 0)).toThrow(
       'Period must be a positive finite number.',

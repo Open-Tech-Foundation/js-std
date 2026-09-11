@@ -23,7 +23,7 @@ const distEntry = path.join(stdDir, 'dist', 'index.js');
 
 if (!fs.existsSync(distEntry)) {
   throw new Error(
-    `Missing ${distEntry}. Run \`bun run build\` in packages/std first.`,
+    `Missing ${distEntry}. Run \`esdev build\` in packages/std first.`,
   );
 }
 
@@ -81,6 +81,7 @@ try {
     ignoreAnnotations: true,
     alias: {
       util: path.join(here, 'util-stub.js'),
+      'runtime:test': path.join(testsDir, '_harness', 'index.ts'),
     },
     plugins: [
       {

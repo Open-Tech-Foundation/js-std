@@ -64,7 +64,7 @@
   "scripts": {
     "build": "rolldown -c",
     "docs": "node scripts/gen-docs.js",
-    "test": "bun test",
+    "test": "esdev test",
     "dev": "rolldown -c --watch",
     "check-types": "tsc --noEmit",
     "check-types:api": "tsc --noEmit -p tsconfig.api.json",

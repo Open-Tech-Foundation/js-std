@@ -1,3 +1,16 @@
+import {
+  afterAll,
+  afterEach,
+  beforeAll,
+  beforeEach,
+  clock,
+  describe,
+  expect,
+  it,
+  mock,
+  test,
+} from 'runtime:test';
+
 import { shuffle } from '../../src';
 
 describe('Array > shuffle', () => {
@@ -10,7 +23,7 @@ describe('Array > shuffle', () => {
   });
 
   test('deterministic shuffling with a mocked crypto source', () => {
-    const spy = vi
+    const spy = mock
       .spyOn(globalThis.crypto, 'getRandomValues')
       .mockImplementation((buf) => {
         (buf as unknown as { fill: (v: number) => void }).fill(0);
@@ -28,8 +41,8 @@ describe('Array > shuffle', () => {
   });
 
   test('draws from crypto rather than Math.random', () => {
-    const mathSpy = vi.spyOn(Math, 'random');
-    const cryptoSpy = vi.spyOn(globalThis.crypto, 'getRandomValues');
+    const mathSpy = mock.spyOn(Math, 'random');
+    const cryptoSpy = mock.spyOn(globalThis.crypto, 'getRandomValues');
 
     shuffle([1, 2, 3, 4, 5]);
 

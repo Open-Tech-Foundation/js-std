@@ -1,17 +1,30 @@
+import {
+  afterAll,
+  afterEach,
+  beforeAll,
+  beforeEach,
+  clock,
+  describe,
+  expect,
+  it,
+  mock,
+  test,
+} from 'runtime:test';
+
 import { retryRun } from '../../src';
 
 describe('retryRun', () => {
   beforeEach(() => {
-    vi.useFakeTimers();
+    clock.freeze();
   });
 
   afterEach(() => {
-    vi.useRealTimers();
+    clock.release();
   });
 
   test('retries until success', async () => {
     let attempts = 0;
-    const func = vi.fn(() => {
+    const func = mock.fn(() => {
       attempts++;
       if (attempts < 3) {
         const p = Promise.reject(new Error('fail'));
@@ -24,16 +37,16 @@ describe('retryRun', () => {
     const result = retryRun(func, { retries: 5, delay: 100 });
     result.catch(() => {});
 
-    await vi.advanceTimersByTimeAsync(0);
-    await vi.advanceTimersByTimeAsync(100);
-    await vi.advanceTimersByTimeAsync(100);
+    await clock.advanceAsync(0);
+    await clock.advanceAsync(100);
+    await clock.advanceAsync(100);
 
     expect(await result).toBe('success');
     expect(func).toHaveBeenCalledTimes(3);
   });
 
   test('throws last error after all retries fail', async () => {
-    const func = vi.fn(() => {
+    const func = mock.fn(() => {
       const p = Promise.reject(new Error('permanent fail'));
       p.catch(() => {});
       return p;
@@ -43,7 +56,7 @@ describe('retryRun', () => {
     result.catch(() => {});
 
     for (let i = 0; i <= 2; i++) {
-      await vi.advanceTimersByTimeAsync(10);
+      await clock.advanceAsync(10);
     }
 
     await expect(result).rejects.toThrow('permanent fail');
@@ -51,13 +64,13 @@ describe('retryRun', () => {
   });
 
   test('exponential backoff', async () => {
-    const func = vi.fn(() => {
+    const func = mock.fn(() => {
       const p = Promise.reject(new Error('fail'));
       p.catch(() => {});
       return p;
     });
 
-    const onRetry = vi.fn();
+    const onRetry = mock.fn();
     const result = retryRun(func, {
       retries: 3,
       delay: 100,
@@ -66,10 +79,10 @@ describe('retryRun', () => {
     });
     result.catch(() => {});
 
-    await vi.advanceTimersByTimeAsync(0);
-    await vi.advanceTimersByTimeAsync(100);
-    await vi.advanceTimersByTimeAsync(200);
-    await vi.advanceTimersByTimeAsync(400);
+    await clock.advanceAsync(0);
+    await clock.advanceAsync(100);
+    await clock.advanceAsync(200);
+    await clock.advanceAsync(400);
 
     await expect(result).rejects.toThrow();
     expect(onRetry).toHaveBeenCalledTimes(3);

@@ -1,3 +1,16 @@
+import {
+  afterAll,
+  afterEach,
+  beforeAll,
+  beforeEach,
+  clock,
+  describe,
+  expect,
+  it,
+  mock,
+  test,
+} from 'runtime:test';
+
 import { memoizeRun } from '../../src';
 
 /**
@@ -21,7 +34,7 @@ import { memoizeRun } from '../../src';
 describe('flow > memoizeRun with symbol arguments', () => {
   describe('registered symbols', () => {
     test('the same registry key is the same cache key', async () => {
-      const func = vi.fn(async (_s: symbol) => 'v');
+      const func = mock.fn(async (_s: symbol) => 'v');
       const memoized = memoizeRun(func);
 
       await memoized(Symbol.for('shared'));
@@ -31,7 +44,7 @@ describe('flow > memoizeRun with symbol arguments', () => {
     });
 
     test('different registry keys are different cache keys', async () => {
-      const func = vi.fn(async (_s: symbol) => 'v');
+      const func = mock.fn(async (_s: symbol) => 'v');
       const memoized = memoizeRun(func);
 
       await memoized(Symbol.for('a'));
@@ -41,7 +54,7 @@ describe('flow > memoizeRun with symbol arguments', () => {
     });
 
     test('a registered symbol is distinct from a unique one that shares its description', async () => {
-      const func = vi.fn(async (_s: symbol) => 'v');
+      const func = mock.fn(async (_s: symbol) => 'v');
       const memoized = memoizeRun(func);
 
       await memoized(Symbol.for('x'));
@@ -51,7 +64,7 @@ describe('flow > memoizeRun with symbol arguments', () => {
     });
 
     test('a well-known symbol is a stable key', async () => {
-      const func = vi.fn(async (_s: symbol) => 'v');
+      const func = mock.fn(async (_s: symbol) => 'v');
       const memoized = memoizeRun(func);
 
       await memoized(Symbol.iterator);
@@ -65,7 +78,7 @@ describe('flow > memoizeRun with symbol arguments', () => {
   describe('unique symbols', () => {
     test('the same symbol reused hits the cache', async () => {
       const key = Symbol('once');
-      const func = vi.fn(async (_s: symbol) => 'v');
+      const func = mock.fn(async (_s: symbol) => 'v');
       const memoized = memoizeRun(func);
 
       await memoized(key);
@@ -75,7 +88,7 @@ describe('flow > memoizeRun with symbol arguments', () => {
     });
 
     test('two symbols with the same description are different keys', async () => {
-      const func = vi.fn(async (_s: symbol) => 'v');
+      const func = mock.fn(async (_s: symbol) => 'v');
       const memoized = memoizeRun(func);
 
       await memoized(Symbol('same'));
@@ -86,7 +99,7 @@ describe('flow > memoizeRun with symbol arguments', () => {
 
     test('a symbol with no description is still a key', async () => {
       const key = Symbol();
-      const func = vi.fn(async (_s: symbol) => 'v');
+      const func = mock.fn(async (_s: symbol) => 'v');
       const memoized = memoizeRun(func);
 
       await memoized(key);
@@ -100,7 +113,7 @@ describe('flow > memoizeRun with symbol arguments', () => {
   describe('symbol-keyed properties', () => {
     test('a symbol property is part of the key', async () => {
       const key = Symbol('prop');
-      const func = vi.fn(async (_o: object) => 'v');
+      const func = mock.fn(async (_o: object) => 'v');
       const memoized = memoizeRun(func);
 
       await memoized({ [key]: 1 });
@@ -115,7 +128,7 @@ describe('flow > memoizeRun with symbol arguments', () => {
     test('symbol property order does not change the key', async () => {
       const a = Symbol.for('a');
       const b = Symbol.for('b');
-      const func = vi.fn(async (_o: object) => 'v');
+      const func = mock.fn(async (_o: object) => 'v');
       const memoized = memoizeRun(func);
 
       await memoized({ [a]: 1, [b]: 2 });
@@ -126,7 +139,7 @@ describe('flow > memoizeRun with symbol arguments', () => {
 
     test('a symbol value and a symbol key are not confused', async () => {
       const key = Symbol.for('k');
-      const func = vi.fn(async (_o: object) => 'v');
+      const func = mock.fn(async (_o: object) => 'v');
       const memoized = memoizeRun(func);
 
       await memoized({ [key]: 1 });
@@ -137,8 +150,8 @@ describe('flow > memoizeRun with symbol arguments', () => {
   });
 
   test('registered symbols key alike across separate memoized functions', async () => {
-    const first = vi.fn(async (_s: symbol) => 'a');
-    const second = vi.fn(async (_s: symbol) => 'b');
+    const first = mock.fn(async (_s: symbol) => 'a');
+    const second = mock.fn(async (_s: symbol) => 'b');
     const memoFirst = memoizeRun(first);
     const memoSecond = memoizeRun(second);
 
@@ -151,7 +164,7 @@ describe('flow > memoizeRun with symbol arguments', () => {
   });
 
   test('a bounded cache still evicts symbol-keyed entries', async () => {
-    const func = vi.fn(async (_s: symbol) => 'v');
+    const func = mock.fn(async (_s: symbol) => 'v');
     const memoized = memoizeRun(func, { maxSize: 2 });
 
     await memoized(Symbol.for('a'));

@@ -1,3 +1,17 @@
+import '../test.setup.js';
+import {
+  afterAll,
+  afterEach,
+  beforeAll,
+  beforeEach,
+  clock,
+  describe,
+  expect,
+  it,
+  mock,
+  test,
+} from 'runtime:test';
+
 import seed, { seedFromExample } from '../app/components/runner/seed.js';
 
 describe('seedFromExample', () => {

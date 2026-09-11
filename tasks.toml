@@ -10,7 +10,7 @@ run = "otfw dev"
 dir = "website"
 
 [tasks.test]
-run = "bun test"
+run = "esdev test"
 dir = "packages/std"
 
 [tasks.typecheck]
@@ -28,8 +28,7 @@ dir = "packages/std"
 # formatter, and the execution core. Kept out of `packages/std` because they
 # belong to the site, not the library.
 [tasks."test:website"]
-run = "bun test ./__tests__"
-dir = "website"
+run = "esdev test website"
 
 [tasks.lint]
 run = "biome check ."

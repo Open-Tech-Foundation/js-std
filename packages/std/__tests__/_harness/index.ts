@@ -1,9 +1,8 @@
 /**
  * Installs the test globals the specs expect.
  *
- * The 146 spec files call `describe`/`test`/`expect`/`vi` as bare globals (the
- * shape `bun test` provides), so this module must be imported before any spec.
- * The bundler guarantees that ordering.
+ * The runtime matrix aliases `runtime:test` to this module. It preserves the
+ * test API that the specs import while the matrix bundle runs without esdev.
  */
 import { expect } from './expect';
 import {
@@ -17,17 +16,27 @@ import {
 } from './runner';
 import { vi } from './timers';
 
-const g = globalThis as Record<string, unknown>;
+export const mock = {
+  fn: vi.fn,
+  spyOn: vi.spyOn,
+};
 
-g.describe = describe;
-g.test = test;
-g.it = it;
-g.expect = expect;
-g.beforeEach = beforeEach;
-g.afterEach = afterEach;
-g.beforeAll = beforeAll;
-g.afterAll = afterAll;
-g.vi = vi;
+export const clock = {
+  freeze: vi.useFakeTimers,
+  release: vi.useRealTimers,
+  advance: vi.advanceTimersByTime,
+  advanceAsync: vi.advanceTimersByTimeAsync,
+};
 
 export { run } from './runner';
 export type { Failure, Results } from './runner';
+export {
+  afterAll,
+  afterEach,
+  beforeAll,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  test,
+};

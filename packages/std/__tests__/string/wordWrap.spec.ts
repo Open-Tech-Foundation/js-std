@@ -1,3 +1,16 @@
+import {
+  afterAll,
+  afterEach,
+  beforeAll,
+  beforeEach,
+  clock,
+  describe,
+  expect,
+  it,
+  mock,
+  test,
+} from 'runtime:test';
+
 import { stringWidth, stripANSI, wordWrap } from '../../src';
 
 /** Every produced line, so widths can be asserted one by one. */

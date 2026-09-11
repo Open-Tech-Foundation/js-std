@@ -1,3 +1,17 @@
+import '../test.setup.js';
+import {
+  afterAll,
+  afterEach,
+  beforeAll,
+  beforeEach,
+  clock,
+  describe,
+  expect,
+  it,
+  mock,
+  test,
+} from 'runtime:test';
+
 import mountTryIt from '../app/components/runner/tryit.js';
 
 /**

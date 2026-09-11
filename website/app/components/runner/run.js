@@ -33,7 +33,7 @@ const AsyncFunction = Object.getPrototypeOf(async () => {}).constructor;
 const BINDINGS = `var {${Object.keys(std).join(',')}} = __std;`;
 
 function compile(code) {
-  return new AsyncFunction('__probe', '__std', BINDINGS + code);
+  return new AsyncFunction('__probe', '__std', 'console', BINDINGS + code);
 }
 
 /**
@@ -104,10 +104,10 @@ function verdict(value, source) {
  */
 function captureConsole(report) {
   const levels = ['log', 'info', 'warn', 'error', 'debug'];
-  const saved = new Map(levels.map((level) => [level, console[level]]));
+  const captured = {};
 
   for (const level of levels) {
-    console[level] = (...args) => {
+    captured[level] = (...args) => {
       report({
         type: 'log',
         level,
@@ -118,9 +118,7 @@ function captureConsole(report) {
     };
   }
 
-  return () => {
-    for (const [level, fn] of saved) console[level] = fn;
-  };
+  return captured;
 }
 
 /**
@@ -151,17 +149,15 @@ export default async function run(code, probes, report) {
   };
 
   const started = Date.now();
-  const restore = captureConsole(report);
+  const capturedConsole = captureConsole(report);
   try {
-    await compile(code)(probe, std);
+    await compile(code)(probe, std, capturedConsole);
   } catch (error) {
     report({
       type: 'error',
       name: error?.name ?? 'Error',
       message: error?.message ?? String(error),
     });
-  } finally {
-    restore();
   }
   report({ type: 'done', ms: Date.now() - started });
 }
