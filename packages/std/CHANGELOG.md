@@ -21,6 +21,7 @@
 
 ### Fixed
 
+- CI now installs `esdev` before TSR runs the package and website test commands.
 - Restored the ES-Runtime compatibility-matrix job after its installer moved the `esrun` binary from `~/.esrun/bin` to `~/.es-runtime/bin`.
 - Classified LLRT's current Temporal, JSON, recursion-depth and own-`__proto__` deviations in the compatibility matrix. They remain visible in the published support report without preventing its refresh; equivalent failures on other runtimes still fail the matrix as undiagnosed.
 - `clone` returned a fresh copy for each reference to the same regexp, `ArrayBuffer`, typed array or `DataView`, so a value reached twice came back as two values. Plain objects, arrays, Dates, Maps and Sets were recorded as the walk descended and these four were not, which made `clone({ a: d, b: d })` hold one Date but two regexps. For buffers it decided more than identity: two typed arrays over one `ArrayBuffer` are views of the same memory, and cloning the buffer once per view broke that relationship silently — a write through one clone was invisible to the other.

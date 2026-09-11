@@ -40,9 +40,7 @@ describe('run', () => {
     );
     expect(events.filter((event) => event.type === 'error')).toEqual([]);
     expect(
-      events
-        .filter((event) => event.type === 'log')
-        .map((event) => event.text),
+      events.filter((event) => event.type === 'log').map((event) => event.text),
     ).toEqual(['#ff0000', 'rgb(0, 255, 0)']);
   });
 
