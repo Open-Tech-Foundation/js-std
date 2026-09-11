@@ -31,6 +31,16 @@ function button(label, className) {
 function nextPre(el) {
   let n = el?.nextElementSibling;
   while (n) {
+    // The seed belongs to this heading alone. Once consumed, the runner is
+    // immediately next; do not mistake its preview (or a later docs section)
+    // for a fresh seed on a mutation-driven update.
+    if (
+      n.classList?.contains('rn-tryit') ||
+      n.className?.split(/\s+/).includes('rn-tryit') ||
+      /^H[1-6]$/.test(n.tagName)
+    ) {
+      return null;
+    }
     if (n.tagName === 'PRE') return n;
     const inner = n.querySelector?.('pre');
     if (inner) return n;
@@ -45,7 +55,7 @@ function sourceOf(root) {
   const pre =
     block?.querySelector?.('pre') ?? (block?.tagName === 'PRE' ? block : null);
   const raw = pre?.textContent?.replace(/^\n|\n$/g, '') ?? '';
-  return { block, raw };
+  return { heading, block, raw };
 }
 
 /**
@@ -118,52 +128,56 @@ export default function mountTryIt(host, input = document) {
 
   function ensureEditor() {
     if (!editing) {
-      editing = createEditor(surface, { doc, onRun: start }).then((created) => {
-        editor = created;
-        created.set(doc);
-        preview.remove();
-      });
+      editing = createEditor(surface, { doc, onRun: start })
+        .then((created) => {
+          editor = created;
+          created.set(doc);
+          preview.remove();
+        })
+        .catch((error) => {
+          editing = null;
+          throw error;
+        });
     }
     return editing;
   }
 
-  const build = () => {
-    if (direct) return input ? `${seedFromExample(input)}\n` : '';
-    const { raw } = sourceOf(input);
-    if (!raw) return '';
-    return `${seedFromExample(raw)}\n`;
-  };
+  const build = (raw) => (raw ? `${seedFromExample(raw)}\n` : '');
 
   async function start() {
     if (running) return;
-    await ensureEditor();
     running = true;
     run.textContent = 'Running…';
     out.clear();
 
-    await execute(editor.value(), {
-      probe: false,
-      timeout: TIMEOUT,
-      onEvent(event) {
-        switch (event.type) {
-          case 'log':
-            out.log(event.level, event.text);
-            break;
-          case 'error':
-            out.error(`${event.name}: ${event.message}`);
-            break;
-          case 'timeout':
-            out.error(`Stopped after ${event.ms / 1000}s.`);
-            break;
-          case 'done':
-            if (out.empty) out.note('Ran with no output.');
-            break;
-        }
-      },
-    });
-
-    running = false;
-    run.textContent = 'Run';
+    try {
+      await ensureEditor();
+      await execute(editor.value(), {
+        probe: false,
+        timeout: TIMEOUT,
+        onEvent(event) {
+          switch (event.type) {
+            case 'log':
+              out.log(event.level, event.text);
+              break;
+            case 'error':
+              out.error(`${event.name}: ${event.message}`);
+              break;
+            case 'timeout':
+              out.error(`Stopped after ${event.ms / 1000}s.`);
+              break;
+            case 'done':
+              if (out.empty) out.note('Ran with no output.');
+              break;
+          }
+        },
+      });
+    } catch (error) {
+      out.error(`${error?.name ?? 'Error'}: ${error?.message ?? error}`);
+    } finally {
+      running = false;
+      run.textContent = 'Run';
+    }
   }
 
   run.addEventListener('click', start);
@@ -173,13 +187,32 @@ export default function mountTryIt(host, input = document) {
   });
 
   function refresh() {
-    if (!direct) {
-      const { block } = sourceOf(input);
-      if (block?.parentNode)
-        block.parentNode.insertBefore(section, block.nextSibling);
+    if (direct) {
+      const next = build(input);
+      section.hidden = next === '';
+      if (next === '' || next === doc) return;
+
+      doc = next;
+      out.clear();
+      preview.textContent = next;
+      editor?.set(next);
+      return;
     }
-    const next = build();
-    section.hidden = next === '' || (!direct && !section.isConnected);
+
+    const { heading, block, raw } = sourceOf(input);
+    // After the seed is consumed, the editor is its replacement. A later
+    // observer update on the same page finds no seed and deliberately keeps
+    // the existing editor and its current text intact.
+    if (!block) {
+      if (!section.isConnected) section.hidden = true;
+      return;
+    }
+
+    block.parentNode.insertBefore(section, block.nextSibling);
+    block.remove();
+
+    const next = build(raw);
+    section.hidden = next === '' || !heading || !section.isConnected;
     if (next === '' || next === doc) return;
 
     doc = next;

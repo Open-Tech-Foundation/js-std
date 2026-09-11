@@ -78,6 +78,7 @@ export default function execute(source, options) {
     const finish = () => {
       clearTimeout(timer);
       active.removeEventListener('message', onMessage);
+      active.removeEventListener('error', onError);
       resolve();
     };
 
@@ -96,6 +97,18 @@ export default function execute(source, options) {
     };
 
     active.addEventListener('message', onMessage);
+
+    const onError = (event) => {
+      terminate();
+      onEvent({
+        type: 'error',
+        name: 'WorkerError',
+        message: event.message ?? 'The runner worker could not start.',
+      });
+      finish();
+    };
+
+    active.addEventListener('error', onError);
 
     timer = setTimeout(() => {
       // A reader can edit these examples, and an edited one can loop forever.

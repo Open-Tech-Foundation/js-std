@@ -247,12 +247,14 @@ describe('mountTryIt — direct source', () => {
 describe('mountTryIt — documentation page', () => {
   test('uses the authored heading and its simple example', () => {
     page('first([1, 2]) //=> 1');
-    mountTryIt(undefined, document);
+    const view = mountTryIt(undefined, document);
 
     expect(document.querySelectorAll('h2#try-it')).toHaveLength(1);
-    expect(section().previousElementSibling.tagName).toBe(
-      'WEB-INTERNAL-CODE-BLOCK',
-    );
+    expect(section().previousElementSibling.tagName).toBe('H2');
+    expect(document.querySelector('web-internal-code-block')).toBe(null);
+    expect(sample()).toBe('console.log(first([1, 2])); //=> 1\n');
+
+    view.update();
     expect(sample()).toBe('console.log(first([1, 2])); //=> 1\n');
   });
 
@@ -263,9 +265,7 @@ describe('mountTryIt — documentation page', () => {
     page('last([1, 2]) //=> 2');
     view.update();
 
-    expect(section().previousElementSibling.tagName).toBe(
-      'WEB-INTERNAL-CODE-BLOCK',
-    );
+    expect(section().previousElementSibling.tagName).toBe('H2');
     expect(sample()).toBe('console.log(last([1, 2])); //=> 2\n');
   });
 
