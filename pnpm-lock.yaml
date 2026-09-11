@@ -139,8 +139,8 @@ importers:
         specifier: ^6.43.11
         version: 6.43.11
       '@opentf/std':
-        specifier: https://registry.npmjs.org/@opentf/std/-/std-0.18.0.tgz
-        version: 0.18.0
+        specifier: https://registry.npmjs.org/@opentf/std/-/std-0.19.0.tgz
+        version: 0.19.0
       '@opentf/web':
         specifier: ^0.27.0
         version: 0.27.0
@@ -588,8 +588,8 @@ packages:
       '@emnapi/core': ^1.7.1 || ^2.0.0-alpha.4
       '@emnapi/runtime': ^1.7.1 || ^2.0.0-alpha.4
 
-  '@opentf/std@0.18.0':
-    resolution: {integrity: sha512-860vQJifbxZhm/LmxOssz2gvltkNCUALZ6SEI8PwkcyuTzvGSkTEZBxdCF4JR0OWBGLTW+uHODyElb2zM7+3DA==}
+  '@opentf/std@0.19.0':
+    resolution: {integrity: sha512-tnBP9Fv3T7Sfd1VWJQKfq6BubBH/qvVEC80zzMeeLW7epACt0jtpZ7ivB9A5HLSzb8Lxs9Mc0V/jvD6jStq+bA==}
     engines: {node: '>=20.0.0'}
 
   '@opentf/web-cli@1.26.0':
@@ -2407,7 +2407,7 @@ snapshots:
       '@tybys/wasm-util': 0.10.3
     optional: true
 
-  '@opentf/std@0.18.0': {}
+  '@opentf/std@0.19.0': {}
 
   '@opentf/web-cli@1.26.0(@opentf/web@0.27.0)':
     dependencies:

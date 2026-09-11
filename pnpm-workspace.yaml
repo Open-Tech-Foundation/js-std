@@ -7,3 +7,6 @@ allowBuilds:
   '@biomejs/biome': true
   '@opentf/web-compiler': true
   esbuild: true
+
+minimumReleaseAgeExclude:
+  - '@opentf/std@0.19.0'

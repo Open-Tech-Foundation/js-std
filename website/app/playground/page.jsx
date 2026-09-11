@@ -1,5 +1,4 @@
-import Playground from '../components/Playground.jsx';
-import VisualTools from '../components/VisualTools.jsx';
+import PlaygroundTabs from '../components/PlaygroundTabs.jsx';
 
 export const metadata = {
   title: 'Playground',
@@ -18,15 +17,7 @@ export default function PlaygroundPage() {
         </p>
       </div>
 
-      <Playground />
-
-      <div class="mt-16 mb-8 text-center">
-        <h2 class="text-2xl font-bold mb-2">Interactive Visual Tools</h2>
-        <p class="text-gray-400">
-          Simulate and visualize the flow control utilities in real time.
-        </p>
-      </div>
-      <VisualTools />
+      <PlaygroundTabs />
     </main>
   );
 }

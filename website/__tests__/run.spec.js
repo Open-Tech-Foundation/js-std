@@ -36,7 +36,7 @@ describe('run', () => {
 
   test('runs the ColorFormat try it example', async () => {
     const events = await execute(
-      "import { color, ColorFormat } from '@opentf/std';\n\nconsole.log(color('red', ColorFormat.HEX));\nconsole.log(color('#00ff00', ColorFormat.RGB));",
+      "import { color, ColorFormat } from '@opentf/std';\n\nconsole.log(color({ value: 'red', to: ColorFormat.HEX }));\nconsole.log(color({ value: '#00ff00', to: ColorFormat.RGB }));",
     );
     expect(events.filter((event) => event.type === 'error')).toEqual([]);
     expect(

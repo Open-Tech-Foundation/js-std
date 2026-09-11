@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+### Changed
+
+- The website now consumes the published `@opentf/std@0.19.0` tarball.
+- The Playground now separates the code editor and flow-control visualisers into accessible tabs.
+
 ## [0.19.0] - 2026-09-11
 
 ### Changed
