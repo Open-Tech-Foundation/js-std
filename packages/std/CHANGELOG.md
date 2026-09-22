@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Added
+
+- Added `isUtf8`, a runtime-agnostic validator for complete UTF-8 byte sequences. It accepts `Uint8Array` and `ArrayBuffer` inputs without decoding them to a string, throws a `TypeError` on other types, and treats detached buffers as empty.
+
 ### Changed
 
 - The website now consumes the published `@opentf/std@0.19.0` tarball.

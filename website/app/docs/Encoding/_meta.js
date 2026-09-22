@@ -9,6 +9,7 @@ export default {
   decodeBase58: 'decodeBase58',
   encodeHex: 'encodeHex',
   decodeHex: 'decodeHex',
+  isUtf8: 'isUtf8',
   stringToBytes: 'stringToBytes',
   bytesToString: 'bytesToString',
 };

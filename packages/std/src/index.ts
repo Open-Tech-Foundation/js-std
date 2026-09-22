@@ -327,6 +327,7 @@ export { default as encodeHex } from './encoding/encodeHex';
 export { default as decodeHex } from './encoding/decodeHex';
 export { default as stringToBytes } from './encoding/stringToBytes';
 export { default as bytesToString } from './encoding/bytesToString';
+export { default as isUtf8 } from './encoding/isUtf8';
 
 // Semver
 export { default as semverParse } from './semver/semverParse';

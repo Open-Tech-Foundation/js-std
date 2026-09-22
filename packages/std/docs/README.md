@@ -128,6 +128,7 @@
 - [encodeBase64](./Encoding/encodeBase64.md)
 - [encodeBase64Url](./Encoding/encodeBase64Url.md)
 - [encodeHex](./Encoding/encodeHex.md)
+- [isUtf8](./Encoding/isUtf8.md)
 - [stringToBytes](./Encoding/stringToBytes.md)
 
 ## Flow

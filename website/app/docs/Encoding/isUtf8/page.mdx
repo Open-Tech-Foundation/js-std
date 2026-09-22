@@ -1,0 +1,43 @@
+import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(isUtf8(new Uint8Array([0x48, 0x69]))); //=> true\nconsole.log(isUtf8(new Uint8Array([0xc3, 0x28]))); //=> false";
+export const metadata = {
+  title: "isUtf8 — Encoding",
+  description: "Checks whether bytes contain a complete, valid UTF-8 sequence."
+};
+
+Checks whether bytes contain a complete, valid UTF-8 sequence.
+
+## Syntax
+
+```ts
+import { isUtf8 } from '@opentf/std';
+isUtf8(input: Uint8Array | ArrayBuffer): boolean
+```
+
+## Parameters
+
+- `input`: The bytes to validate.
+
+## Returns
+
+`true` when every byte belongs to a valid UTF-8 sequence; otherwise `false`.
+
+A detached `ArrayBuffer`, or a `Uint8Array` backed by one, is treated as empty.
+
+Throws a `TypeError` if the input is not a `Uint8Array` or `ArrayBuffer`.
+
+## Examples
+
+```ts
+isUtf8(new Uint8Array([0x48, 0x69])) //=> true
+isUtf8(new Uint8Array([0xc3, 0x28])) //=> false
+```
+
+## Related
+
+- [bytesToString](/docs/Encoding/bytesToString)
+- [stringToBytes](/docs/Encoding/stringToBytes)
+
+## Try it
+
+<TryIt code={tryItCode} />
