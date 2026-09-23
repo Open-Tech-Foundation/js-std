@@ -12,21 +12,21 @@
  * `Decimal` classes document many methods on one page — and a generator that
  * overwrote those would be trading a formatting bug for a content loss.
  *
-  * Run with `tsr docs` from the workspace root.
+ * Run with `tsr docs` from the workspace root.
  */
-import fs from 'node:fs';
-import path from 'node:path';
+import { exists, file, readDir, write } from 'runtime:fs';
+import { dirname, fromFileURL, join, resolve } from 'runtime:path';
 
-const here = import.meta.dirname;
-const stdDir = path.resolve(here, '..');
-const srcDir = path.join(stdDir, 'src');
-const docsDir = path.join(stdDir, 'docs');
+const here = dirname(fromFileURL(import.meta.url));
+const stdDir = resolve(here, '..');
+const srcDir = join(stdDir, 'src');
+const docsDir = join(stdDir, 'docs');
 
 const MARKER = '<!-- handwritten -->';
 
 /** Every `export { default as name } from './path'`, including multi-name forms. */
-function readExports() {
-  const index = fs.readFileSync(path.join(srcDir, 'index.ts'), 'utf8');
+async function readExports() {
+  const index = await file(join(srcDir, 'index.ts')).text();
   const re = /export\s*\{\s*default as (\w+)[^}]*\}\s*from\s*'\.\/([\w/]+)'/g;
   const out = new Map();
   for (const m of index.matchAll(re)) out.set(m[1], m[2]);
@@ -40,11 +40,11 @@ function readExports() {
  * to define ahead of its function — `deepFreeze.ts` opens with the JSDoc for
  * the `DeepReadonly` type, which describes something else entirely.
  */
-function readJsDoc(modulePath) {
-  const file = path.join(srcDir, `${modulePath}.ts`);
-  if (!fs.existsSync(file)) return null;
+async function readJsDoc(modulePath) {
+  const filePath = join(srcDir, `${modulePath}.ts`);
+  if (!(await exists(filePath))) return null;
 
-  const text = fs.readFileSync(file, 'utf8');
+  const text = await file(filePath).text();
   const attached =
     /\/\*\*((?:(?!\*\/)[\s\S])*?)\*\/\s*export\s+default\s/.exec(text);
   const blocks = [...text.matchAll(/\/\*\*((?:(?!\*\/)[\s\S])*?)\*\//g)];
@@ -218,13 +218,15 @@ function render(name, doc, report) {
 }
 
 /** Where a page already lives, so generating does not move it. */
-function readLayout() {
+async function readLayout() {
   const layout = new Map();
-  for (const category of fs.readdirSync(docsDir)) {
-    const dir = path.join(docsDir, category);
-    if (!fs.statSync(dir).isDirectory()) continue;
-    for (const file of fs.readdirSync(dir)) {
-      if (file.endsWith('.md')) layout.set(file.slice(0, -3), category);
+  for (const category of await readDir(docsDir)) {
+    if (!category.isDir) continue;
+    const dir = join(docsDir, category.name);
+    for (const entry of await readDir(dir)) {
+      if (entry.isFile && entry.name.endsWith('.md')) {
+        layout.set(entry.name.slice(0, -3), category.name);
+      }
     }
   }
   return layout;
@@ -250,8 +252,8 @@ function renderIndex(layout, names) {
   return `${out.join('\n').trimEnd()}\n`;
 }
 
-const exports_ = readExports();
-const layout = readLayout();
+const exports_ = await readExports();
+const layout = await readLayout();
 const stats = { written: 0, unchanged: 0, skipped: 0, missing: [] };
 const misplaced = [];
 
@@ -262,32 +264,32 @@ for (const [name, modulePath] of exports_) {
     continue;
   }
 
-  const file = path.join(docsDir, category, `${name}.md`);
-  if (fs.existsSync(file) && fs.readFileSync(file, 'utf8').includes(MARKER)) {
+  const docFile = join(docsDir, category, `${name}.md`);
+  if ((await exists(docFile)) && (await file(docFile).text()).includes(MARKER)) {
     stats.skipped++;
     continue;
   }
 
-  const doc = readJsDoc(modulePath);
+  const doc = await readJsDoc(modulePath);
   if (!doc) {
     stats.missing.push(name);
     continue;
   }
 
   const next = render(name, doc, misplaced);
-  if (fs.existsSync(file) && fs.readFileSync(file, 'utf8') === next) {
+  if ((await exists(docFile)) && (await file(docFile).text()) === next) {
     stats.unchanged++;
     continue;
   }
 
-  fs.writeFileSync(file, next);
+  await write(docFile, next);
   stats.written++;
 }
 
-const indexFile = path.join(docsDir, 'README.md');
+const indexFile = join(docsDir, 'README.md');
 const index = renderIndex(layout, [...exports_.keys()]);
-if (fs.readFileSync(indexFile, 'utf8') !== index) {
-  fs.writeFileSync(indexFile, index);
+if ((await file(indexFile).text()) !== index) {
+  await write(indexFile, index);
   stats.written++;
 }
 

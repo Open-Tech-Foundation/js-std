@@ -2,7 +2,7 @@
 members = ["apps/*", "packages/*", "website"]
 
 [tasks.dev]
-run = "esdev build"
+run = "esdev start"
 dir = "packages/std"
 
 [tasks."dev:website"]
@@ -43,7 +43,7 @@ dir = "packages/std"
 # Regenerates `docs/` from the JSDoc on each export. Pages marked
 # `<!-- handwritten -->` are left alone; see scripts/gen-docs.js.
 [tasks.docs]
-run = "node scripts/gen-docs.js"
+run = "esdev scripts/gen-docs.js"
 dir = "packages/std"
 
 [tasks."website#build"]
@@ -55,13 +55,13 @@ deps = ["build", "website#build"]
 
 # Bundles the whole spec suite into one runtime-agnostic ESM file.
 [tasks."matrix:bundle"]
-run = "node __tests__/_matrix/build-bundle.js"
+run = "esdev __tests__/_matrix/build-bundle.js"
 dir = "packages/std"
 
 # Local sweep over every runtime on PATH. Read-only; CI is the source of truth
 # because it covers multiple Node majors.
 [tasks."matrix:run"]
-run = "node packages/std/__tests__/_matrix/runtime-matrix.js"
+run = "esdev packages/std/__tests__/_matrix/runtime-matrix.js"
 
 [tasks.matrix]
 deps = ["build", "matrix:bundle", "matrix:run"]

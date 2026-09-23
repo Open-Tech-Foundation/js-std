@@ -10,5 +10,6 @@
       "sourcemap": true,
       "assets": ["README.md", "LICENSE", "docs"]
     }
-  }
+  },
+  "start": { "serve": "dist" }
 }

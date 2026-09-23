@@ -8,41 +8,34 @@
  * Three modes:
  *
  *   tsr matrix       (builds the bundle, then sweeps)
- *   node packages/std/__tests__/_matrix/runtime-matrix.js         (sweep only, bundle must already exist)
+ *   esdev packages/std/__tests__/_matrix/runtime-matrix.js         (sweep only, bundle must already exist)
  *       Local sweep. Runs every engine found on PATH. Handy for a quick check,
  *       but it cannot cover multiple Node majors — CI is the source of truth.
  *
- *   node packages/std/__tests__/_matrix/runtime-matrix.js --engine node --id node20 --label "Node.js 20" \
+ *   esdev packages/std/__tests__/_matrix/runtime-matrix.js --engine node --id node20 --label "Node.js 20" \
  *       --out results/node20.json
  *       Single runtime, for one CI matrix job.
  *
- *   node packages/std/__tests__/_matrix/runtime-matrix.js --aggregate results/
+ *   esdev packages/std/__tests__/_matrix/runtime-matrix.js --aggregate results/
  *       Merges per-runtime results into `results.json` and splices the
  *       docs page. Rewrites nothing when the numbers are unchanged, so CI only
  *       raises a PR on real drift.
  *
  * Adding a runtime: one entry in ENGINES, one id in ORDER, one CI matrix entry.
  */
-import { execFileSync } from 'node:child_process';
-import fs from 'node:fs';
-import path from 'node:path';
+import { exists, file, mkdir, readDir, write } from 'runtime:fs';
+import { dirname, fromFileURL, join, relative, resolve } from 'runtime:path';
+import { env, args as procArgs } from 'runtime:process';
+import { Command } from 'runtime:system';
 
-const HERE = import.meta.dirname;
-const STD = path.resolve(HERE, '..', '..');
-const ROOT = path.resolve(STD, '..', '..');
-const REPORT = path.join(HERE, 'results.json');
-const DOC = path.join(
-  ROOT,
-  'website',
-  'app',
-  'docs',
-  'env-support',
-  'page.mdx',
-);
+const HERE = dirname(fromFileURL(import.meta.url));
+const STD = resolve(HERE, '..', '..');
+const ROOT = resolve(STD, '..', '..');
+const REPORT = join(HERE, 'results.json');
+const DOC = join(ROOT, 'website', 'app', 'docs', 'env-support', 'page.mdx');
 
-const BUNDLE =
-  process.env.MATRIX_BUNDLE ?? path.join(HERE, 'bundle', 'test-bundle.mjs');
-const PROBE = process.env.MATRIX_PROBE ?? path.join(HERE, 'probe.mjs');
+const BUNDLE = env.MATRIX_BUNDLE ?? join(HERE, 'bundle', 'test-bundle.mjs');
+const PROBE = env.MATRIX_PROBE ?? join(HERE, 'probe.mjs');
 
 const ENGINES = {
   node: { label: 'Node.js', bin: 'node', args: (f) => [f] },
@@ -254,27 +247,29 @@ function parseArgs(argv) {
 const normalizeVersion = (raw) =>
   raw.match(/\d+\.\d+\.\d+[\w.-]*/)?.[0] ?? raw.trim();
 
-function exec(bin, args, timeoutMs) {
+const text = new TextDecoder();
+
+async function exec(bin, args, timeoutMs) {
   try {
+    const out = await new Command(bin, { args, timeout: timeoutMs }).output();
+    if (out.success) {
+      return { ok: true, stdout: text.decode(out.stdout) };
+    }
     return {
-      ok: true,
-      stdout: execFileSync(bin, args, {
-        encoding: 'utf-8',
-        timeout: timeoutMs,
-        stdio: ['ignore', 'pipe', 'pipe'],
-      }),
+      ok: false,
+      stdout: text.decode(out.stdout) + text.decode(out.stderr),
     };
   } catch (err) {
     return {
       ok: false,
-      stdout: `${err.stdout ?? ''}${err.stderr ?? ''}`,
-      error: err.message,
+      stdout: err?.message ?? String(err),
+      error: err?.message ?? String(err),
     };
   }
 }
 
-function detectVersion(engine) {
-  const res = exec(engine.bin, ['--version'], 15_000);
+async function detectVersion(engine) {
+  const res = await exec(engine.bin, ['--version'], 15_000);
   return res.ok ? normalizeVersion(res.stdout.split('\n')[0]) : null;
 }
 
@@ -310,15 +305,15 @@ function classify(failure, caps, engineId) {
 }
 
 /** Runs one engine and returns its result record. */
-function measure(id, engine, label) {
-  const version = detectVersion(engine);
+async function measure(id, engine, label) {
+  const version = await detectVersion(engine);
   if (!version) return { id, label, status: 'not-measured' };
 
   const caps = extract(
     '__PROBE_JSON__',
-    exec(engine.bin, engine.args(PROBE), 60_000).stdout,
+    (await exec(engine.bin, engine.args(PROBE), 60_000)).stdout,
   );
-  const out = exec(engine.bin, engine.args(BUNDLE), 300_000);
+  const out = await exec(engine.bin, engine.args(BUNDLE), 300_000);
   const results = extract('__RESULTS_JSON__', out.stdout);
 
   if (!results) {
@@ -359,21 +354,18 @@ function measure(id, engine, label) {
  * inlines short ones. Rather than replicate those rules, defer to Biome itself
  * so the committed file is canonical and a drift PR never fails formatting.
  */
-function formatWithBiome(file) {
-  const bin = path.join(ROOT, 'node_modules', '.bin', 'biome');
-  if (!fs.existsSync(bin)) {
+async function formatWithBiome(filePath) {
+  const bin = join(ROOT, 'node_modules', '.bin', 'biome');
+  if (!(await exists(bin))) {
     throw new Error(
-      `Cannot format ${path.relative(ROOT, file)}: ${bin} not found. Run \`pnpm install\` first.`,
+      `Cannot format ${relative(ROOT, filePath)}: ${bin} not found. Run \`pnpm install\` first.`,
     );
   }
-  execFileSync(bin, ['format', '--write', file], {
-    stdio: 'ignore',
-    timeout: 60_000,
-  });
+  await new Command(bin, { args: ['format', '--write', filePath] }).output();
 }
 
-function requireBundle() {
-  if (fs.existsSync(BUNDLE)) return;
+async function requireBundle() {
+  if (await exists(BUNDLE)) return;
   throw new Error(
     `Missing ${BUNDLE}.\nBuild it first:\n  tsr build\n  tsr matrix:bundle`,
   );
@@ -455,17 +447,17 @@ function renderSection(report) {
 const START = '{/* MATRIX:START */}';
 const END = '{/* MATRIX:END */}';
 
-function spliceDoc(report) {
-  if (!fs.existsSync(DOC)) return false;
-  const doc = fs.readFileSync(DOC, 'utf-8');
+async function spliceDoc(report) {
+  if (!(await exists(DOC))) return false;
+  const doc = await file(DOC).text();
   if (!doc.includes(START) || !doc.includes(END)) {
     throw new Error(
-      `${path.relative(ROOT, DOC)} is missing the ${START} / ${END} markers.`,
+      `${relative(ROOT, DOC)} is missing the ${START} / ${END} markers.`,
     );
   }
   const next = `${doc.slice(0, doc.indexOf(START) + START.length)}\n\n${renderSection(report)}\n\n${doc.slice(doc.indexOf(END))}`;
   if (next === doc) return false;
-  fs.writeFileSync(DOC, next);
+  await write(DOC, next);
   return true;
 }
 
@@ -493,23 +485,28 @@ const comparable = (report) =>
 
 // ---------------------------------------------------------------- modes
 
-const args = parseArgs(process.argv.slice(2));
-const stdPkg = JSON.parse(
-  fs.readFileSync(path.join(STD, 'package.json'), 'utf-8'),
-);
+const args = parseArgs(procArgs);
+const stdPkg = JSON.parse(await file(join(STD, 'package.json')).text());
+
+/** Every `.json` file under a directory, recursively. */
+async function findJson(dir, found = []) {
+  for (const entry of await readDir(dir)) {
+    const full = join(dir, entry.name);
+    if (entry.isDir) await findJson(full, found);
+    else if (entry.name.endsWith('.json')) found.push(full);
+  }
+  return found;
+}
 
 if (args.aggregate) {
-  const dir =
-    args.aggregate === true ? path.join(ROOT, 'results') : args.aggregate;
-  const files = fs
-    .readdirSync(dir, { recursive: true })
-    .filter((f) => typeof f === 'string' && f.endsWith('.json'))
-    .map((f) => path.join(dir, f));
+  const dir = args.aggregate === true ? join(ROOT, 'results') : args.aggregate;
+  const files = await findJson(dir);
 
   if (files.length === 0)
     throw new Error(`No result JSON files found under ${dir}`);
 
-  const runtimes = files.map((f) => JSON.parse(fs.readFileSync(f, 'utf-8')));
+  const runtimes = [];
+  for (const f of files) runtimes.push(JSON.parse(await file(f).text()));
   runtimes.sort((a, b) => {
     const ia = ORDER.indexOf(a.id);
     const ib = ORDER.indexOf(b.id);
@@ -525,8 +522,8 @@ if (args.aggregate) {
       .map((f) => `${r.label}: ${f.title} — ${f.message}`),
   );
 
-  const previous = fs.existsSync(REPORT)
-    ? JSON.parse(fs.readFileSync(REPORT, 'utf-8'))
+  const previous = (await exists(REPORT))
+    ? JSON.parse(await file(REPORT).text())
     : null;
   const report = {
     generatedAt: new Date().toISOString().slice(0, 10),
@@ -594,24 +591,24 @@ if (args.aggregate) {
   } else if (!drifted) {
     console.log('\nNo drift — results.json left untouched.');
   } else {
-    fs.writeFileSync(REPORT, `${JSON.stringify(report, null, 2)}\n`);
-    formatWithBiome(REPORT);
-    spliceDoc(report);
+    await write(REPORT, `${JSON.stringify(report, null, 2)}\n`);
+    await formatWithBiome(REPORT);
+    await spliceDoc(report);
     console.log('\nNumbers drifted — updated results.json and the docs page.');
   }
 
   const markdown = `## Runtime compatibility\n\n${renderSection(report)}\n${driftLines.length ? `\n### Changes vs committed matrix\n\n${driftLines.join('\n')}\n` : ''}`;
 
   // Consumed by the workflow to decide whether to open a PR.
-  if (process.env.GITHUB_OUTPUT) {
-    fs.appendFileSync(process.env.GITHUB_OUTPUT, `drifted=${drifted}\n`);
+  if (env.GITHUB_OUTPUT) {
+    await write(env.GITHUB_OUTPUT, `drifted=${drifted}\n`, { append: true });
   }
-  if (process.env.GITHUB_STEP_SUMMARY) {
-    fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, markdown);
+  if (env.GITHUB_STEP_SUMMARY) {
+    await write(env.GITHUB_STEP_SUMMARY, markdown, { append: true });
   }
   // Posted as a sticky PR comment so reviewers see the numbers without leaving the PR.
-  if (process.env.MATRIX_COMMENT_FILE) {
-    fs.writeFileSync(process.env.MATRIX_COMMENT_FILE, markdown);
+  if (env.MATRIX_COMMENT_FILE) {
+    await write(env.MATRIX_COMMENT_FILE, markdown);
   }
 } else if (args.engine) {
   const engine = ENGINES[args.engine];
@@ -620,31 +617,31 @@ if (args.aggregate) {
       `Unknown engine "${args.engine}". Known: ${Object.keys(ENGINES).join(', ')}`,
     );
 
-  requireBundle();
+  await requireBundle();
   const id = args.id ?? args.engine;
-  const result = measure(id, engine, args.label ?? engine.label);
+  const result = await measure(id, engine, args.label ?? engine.label);
   console.log(`- ${summarize(result)}`);
   for (const f of result.failures ?? [])
     console.log(`    ${f.category}: ${f.title}`);
 
-  const out = args.out ?? path.join(ROOT, 'results', `${id}.json`);
-  fs.mkdirSync(path.dirname(out), { recursive: true });
-  fs.writeFileSync(out, `${JSON.stringify(result, null, 2)}\n`);
-  console.log(`  -> ${path.relative(ROOT, out)}`);
+  const out = args.out ?? join(ROOT, 'results', `${id}.json`);
+  await mkdir(dirname(out), { recursive: true });
+  await write(out, `${JSON.stringify(result, null, 2)}\n`);
+  console.log(`  -> ${relative(ROOT, out)}`);
 
   if (result.status === 'not-measured') {
     throw new Error(`${engine.bin} is not installed in this job.`);
   }
 } else {
   // Local sweep. Cannot cover multiple Node majors; CI is authoritative.
-  requireBundle();
+  await requireBundle();
   console.log(
     `Running @opentf/std ${stdPkg.version} test suite across local runtimes...\n`,
   );
 
   const runtimes = [];
   for (const [id, engine] of Object.entries(ENGINES)) {
-    const result = measure(id, engine, engine.label);
+    const result = await measure(id, engine, engine.label);
     console.log(`- ${summarize(result)}`);
     runtimes.push(result);
   }

@@ -10,28 +10,37 @@
  * `files: ["dist"]` and a 700 KB test bundle must never reach npm.
  * Runnable by any ES2022 runtime with no module resolution, no `node:` builtins
  * and no test runner of its own.
+ *
+ * Run with `tsr matrix:bundle` from the workspace root.
  */
-import fs from 'node:fs';
-import path from 'node:path';
-import esbuild from 'esbuild';
+import { build } from 'runtime:build';
+import { exists, file, readDir, remove, stat, write } from 'runtime:fs';
+import {
+  dirname,
+  fromFileURL,
+  join,
+  relative,
+  resolve,
+  sep,
+} from 'runtime:path';
 
-const here = import.meta.dirname;
-const stdDir = path.resolve(here, '..', '..');
-const testsDir = path.join(stdDir, '__tests__');
-const outfile = path.join(here, 'bundle', 'test-bundle.mjs');
-const distEntry = path.join(stdDir, 'dist', 'index.js');
+const here = dirname(fromFileURL(import.meta.url));
+const stdDir = resolve(here, '..', '..');
+const testsDir = join(stdDir, '__tests__');
+const outfile = join(here, 'bundle', 'test-bundle.mjs');
+const distEntry = join(stdDir, 'dist', 'index.js');
 
-if (!fs.existsSync(distEntry)) {
+if (!(await exists(distEntry))) {
   throw new Error(
     `Missing ${distEntry}. Run \`esdev build\` in packages/std first.`,
   );
 }
 
-function findSpecs(dir, found = []) {
-  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-    const full = path.join(dir, entry.name);
-    if (entry.isDirectory()) {
-      if (entry.name !== '_harness') findSpecs(full, found);
+async function findSpecs(dir, found = []) {
+  for (const entry of await readDir(dir)) {
+    const full = join(dir, entry.name);
+    if (entry.isDir) {
+      if (entry.name !== '_harness') await findSpecs(full, found);
     } else if (entry.name.endsWith('.spec.ts')) {
       found.push(full);
     }
@@ -39,13 +48,13 @@ function findSpecs(dir, found = []) {
   return found;
 }
 
-const specs = findSpecs(testsDir).sort();
+const specs = (await findSpecs(testsDir)).sort();
 if (specs.length === 0) throw new Error('No spec files found.');
 
-const entryPath = path.join(stdDir, '.test-bundle-entry.ts');
+const entryPath = join(stdDir, '.test-bundle-entry.ts');
 const entrySource = `
 import { run } from './__tests__/_harness/index';
-${specs.map((f) => `import ${JSON.stringify(`./${path.relative(stdDir, f).split(path.sep).join('/')}`)};`).join('\n')}
+${specs.map((f) => `import ${JSON.stringify(`./${relative(stdDir, f).split(sep).join('/')}`)};`).join('\n')}
 
 const results = await run();
 results.specFiles = ${specs.length};
@@ -62,48 +71,53 @@ for (const f of results.failures) console.log(\`  FAIL \${f.title}\\n       \${f
 if (results.failed > 0) throw new Error(\`\${results.failed} test(s) failed.\`);
 `;
 
-fs.writeFileSync(entryPath, entrySource, 'utf-8');
+await write(entryPath, entrySource);
 
 try {
-  await esbuild.build({
-    entryPoints: [entryPath],
-    outfile,
-    bundle: true,
-    format: 'esm',
+  const bundle = await build({
+    input: entryPath,
     platform: 'neutral',
-    target: 'es2022',
-    // fake-timers is CJS, so `main` has to be considered explicitly under `neutral`.
-    mainFields: ['module', 'main'],
-    conditions: ['import', 'default'],
     // package.json declares `sideEffects: false` for tree-shaking consumers, but
     // importing a spec file IS the side effect (it registers tests). Without this
-    // esbuild drops all 146 imports and the bundle silently runs nothing.
-    ignoreAnnotations: true,
-    alias: {
-      util: path.join(here, 'util-stub.js'),
-      'runtime:test': path.join(testsDir, '_harness', 'index.ts'),
+    // the bundler drops all the imports and the bundle silently runs nothing.
+    treeshake: false,
+    resolve: {
+      alias: {
+        util: join(here, 'util-stub.js'),
+        'runtime:test': join(testsDir, '_harness', 'index.ts'),
+      },
     },
     plugins: [
       {
         name: 'src-to-dist',
-        setup(build) {
-          // Point every `../../src` barrel import at the built artifact.
-          build.onResolve({ filter: /(^|\/)src$/ }, (args) => {
-            if (args.kind === 'entry-point') return null;
-            return { path: distEntry };
-          });
+        resolve: {
+          filter: { id: /(^|\/)src$/ },
+          handler(_source, _importer, ctx) {
+            // Point every `../../src` barrel import at the built artifact.
+            if (ctx.isEntry) return null;
+            return { id: distEntry };
+          },
         },
       },
     ],
   });
+  try {
+    const { output } = await bundle.generate({
+      format: 'esm',
+      codeSplitting: false,
+    });
+    const chunk = output.find((o) => o.isEntry) ?? output[0];
+    await write(outfile, chunk.code);
+  } finally {
+    await bundle.close();
+  }
 } finally {
-  fs.rmSync(entryPath, { force: true });
+  await remove(entryPath);
 }
 
-const { size } = fs.statSync(outfile);
-const leaked = [
-  ...fs.readFileSync(outfile, 'utf-8').matchAll(/["']node:[a-z_/]+["']/g),
-];
+const { size } = await stat(outfile);
+const text = await file(outfile).text();
+const leaked = [...text.matchAll(/["']node:[a-z_/]+["']/g)];
 if (leaked.length > 0) {
   throw new Error(
     `Bundle references Node builtins: ${[...new Set(leaked.map((m) => m[0]))].join(', ')}`,
@@ -111,6 +125,6 @@ if (leaked.length > 0) {
 }
 
 console.log(
-  `Bundled ${specs.length} spec files -> ${path.relative(stdDir, outfile)} ` +
+  `Bundled ${specs.length} spec files -> ${relative(stdDir, outfile)} ` +
     `(${(size / 1024).toFixed(0)} KB, no node: builtins)`,
 );
