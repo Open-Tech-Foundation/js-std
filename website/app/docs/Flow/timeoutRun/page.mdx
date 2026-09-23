@@ -1,5 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
-export const tryItCode = "try {\n  const result = await timeoutRun(() => fetchLargeData(), 1000);\n} catch (err) {\n  // Rejects if it takes longer than 1s\n}\n\n// With fallback\nconst data = await timeoutRun(() => fetch(), 500, { fallback: 'DEFAULT' });";
+export const tryItCode = "console.log(await timeoutRun(() => sleep(300), 50, { fallback: 'DEFAULT' })); //=> 'DEFAULT'\nconsole.log(await timeoutRun(async () => 'fast', 500)); //=> 'fast'";
 export const metadata = {
   title: "timeoutRun — FlowControl",
   description: "Enforces a time limit on an asynchronous function."

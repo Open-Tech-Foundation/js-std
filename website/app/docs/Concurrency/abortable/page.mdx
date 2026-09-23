@@ -1,5 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
-export const tryItCode = "const controller = new AbortController();\nsetTimeout(() => controller.abort(), 100);\n\nawait abortable(slowOperation(), controller.signal); // rejects after 100ms";
+export const tryItCode = "const controller = new AbortController();\nsetTimeout(() => controller.abort(), 50);\ntry {\n  await abortable(sleep(1000), controller.signal);\n} catch (err) {\n  console.log(err.name); //=> 'AbortError'\n}";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "abortable — Concurrency",

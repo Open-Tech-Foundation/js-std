@@ -1,5 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
-export const tryItCode = "console.log(await streamToBytes(response.body)); //=> Uint8Array [...]";
+export const tryItCode = "const from = (items) => new ReadableStream({ start(c) { for (const x of items) c.enqueue(x); c.close(); } });\nconsole.log(await streamToBytes(from([new TextEncoder().encode('Hi')])));";
 export const metadata = {
   title: "streamToBytes — Streams",
   description: "Reads a byte stream fully into a single Uint8Array."

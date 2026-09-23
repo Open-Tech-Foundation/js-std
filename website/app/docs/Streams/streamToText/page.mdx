@@ -1,5 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
-export const tryItCode = "console.log(await streamToText(response.body)); //=> 'Hello World'";
+export const tryItCode = "const from = (items) => new ReadableStream({ start(c) { for (const x of items) c.enqueue(x); c.close(); } });\nconsole.log(await streamToText(from(['Hello', ' World']))); //=> 'Hello World'";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "streamToText — Streams",

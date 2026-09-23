@@ -1,5 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
-export const tryItCode = "const items = [1, 2, 3, 4];\nconst result = await filterAsync(items, async (n) => {\n  return n % 2 === 0;\n}); //=> [2, 4]";
+export const tryItCode = "const items = [1, 2, 3, 4];\nconsole.log(await filterAsync(items, async (n) => n % 2 === 0)); //=> [2, 4]";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "filterAsync — Concurrency",

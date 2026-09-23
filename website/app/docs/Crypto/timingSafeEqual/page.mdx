@@ -1,5 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
-export const tryItCode = "const expected = await hmacSHA256(signingSecret, rawBody);\n\nif (!timingSafeEqual(expected, request.headers.get('x-signature'))) {\n  throw new Error('Invalid signature');\n}";
+export const tryItCode = "const mac = await hmacSHA256('secret', 'body');\nconsole.log(timingSafeEqual(mac, await hmacSHA256('secret', 'body'))); //=> true\nconsole.log(timingSafeEqual(mac, await hmacSHA256('secret', 'other'))); //=> false";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "timingSafeEqual — Crypto",

@@ -1,5 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
-export const tryItCode = "console.log(isGeneratorFunction(function() {})); //=> false\n\nconsole.log(isGeneratorFunction({})); //=> false\n\nfunction* generator(i) {\n  yield i;\n  yield i + 10;\n}\n\nconsole.log(isGeneratorFunction(generator)); //=> true\n\nasync function* aGen(i) {\n  yield i;\n  yield i + 10;\n}\n\nconsole.log(isGeneratorFunction(aGen)); //=> false\n\nconst someObj = {\n  *generator() {\n    yield \"a\";\n    yield \"b\";\n  },\n};\n\nconsole.log(isGeneratorFunction(someObj.generator)); //=> true";
+export const tryItCode = "console.log(isGeneratorFunction(function() {})); //=> false\n\nconsole.log(isGeneratorFunction({})); //=> false";
 export const metadata = {
   title: "isGeneratorFunction — Types",
   description: "Checks if the given value is a Generator Function."

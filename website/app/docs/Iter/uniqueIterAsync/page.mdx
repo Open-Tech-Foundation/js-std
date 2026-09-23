@@ -1,5 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
-export const tryItCode = "const ids = uniqueIterAsync(events, (e) => e.userId);\n\nconsole.log(await toArrayIterAsync(ids)); //=> one event per user, in first-seen order";
+export const tryItCode = "async function* gen(values) { yield* values; }\nconst ids = uniqueIterAsync(gen([{ userId: 1 }, { userId: 1 }, { userId: 2 }]), (e) => e.userId);\nconsole.log(await toArrayIterAsync(ids)); //=> [{ userId: 1 }, { userId: 2 }]";
 export const metadata = {
   title: "uniqueIterAsync — Iter",
   description: "Yields each item of an async iterable the first time it is seen."

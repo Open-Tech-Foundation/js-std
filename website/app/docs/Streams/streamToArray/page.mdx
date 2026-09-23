@@ -1,5 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
-export const tryItCode = "console.log(await streamToArray(stream)); //=> ['a', 'b', 'c']\nconsole.log(await streamToArray(objectStream)); //=> [{ a: 1 }, { b: 2 }]";
+export const tryItCode = "const from = (items) => new ReadableStream({ start(c) { for (const x of items) c.enqueue(x); c.close(); } });\nconsole.log(await streamToArray(from(['a', 'b', 'c']))); //=> ['a', 'b', 'c']";
 export const metadata = {
   title: "streamToArray — Streams",
   description: "Reads a stream fully into an array of its chunks."

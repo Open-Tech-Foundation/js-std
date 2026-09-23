@@ -1,5 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
-export const tryItCode = "const result = await retryRun(() => fetchData(), {\n  retries: 3,\n  delay: 1000,\n  backoff: 'exponential'\n});";
+export const tryItCode = "let attempts = 0;\nconst result = await retryRun(() => (++attempts < 3 ? Promise.reject(new Error('flaky')) : Promise.resolve('ok')), { retries: 3, delay: 10 });\nconsole.log(result, attempts); //=> 'ok' 3";
 export const metadata = {
   title: "retryRun — FlowControl",
   description: "Retries an asynchronous function until it succeeds or reaches the maximum number of attempts."

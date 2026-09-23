@@ -1,5 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
-export const tryItCode = "const errors = filterStream(lines, (line) => line.startsWith('ERROR'));\n\nconsole.log(await streamToArray(errors)); //=> ['ERROR one', 'ERROR two']";
+export const tryItCode = "const from = (items) => new ReadableStream({ start(c) { for (const x of items) c.enqueue(x); c.close(); } });\nconst errors = filterStream(from(['ERROR one', 'ok', 'ERROR two']), (line) => line.startsWith('ERROR'));\nconsole.log(await streamToArray(errors)); //=> ['ERROR one', 'ERROR two']";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "filterStream — Streams",

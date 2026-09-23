@@ -1,5 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
-export const tryItCode = "const items = [1, 2, 3];\nconst sum = await reduceAsync(items, async (acc, n) => {\n  return acc + n;\n}, 0); //=> 6";
+export const tryItCode = "const items = [1, 2, 3];\nconsole.log(await reduceAsync(items, async (acc, n) => acc + n, 0)); //=> 6";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "reduceAsync — Concurrency",

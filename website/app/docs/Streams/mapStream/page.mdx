@@ -1,5 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
-export const tryItCode = "const sizes = mapStream(response.body, (chunk) => chunk.length);\n\nconsole.log(await streamToArray(sizes)); //=> [64, 64, 12]";
+export const tryItCode = "const from = (items) => new ReadableStream({ start(c) { for (const x of items) c.enqueue(x); c.close(); } });\nconsole.log(await streamToArray(mapStream(from(['ab', 'c']), (chunk) => chunk.length))); //=> [2, 1]";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "mapStream — Streams",

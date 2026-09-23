@@ -1,5 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
-export const tryItCode = "const users = [\n  { name: 'Ada', role: 'admin' },\n  { name: 'Lin', role: 'editor' },\n];\n\n// Grab the first admin, or fall back to a default\nconst admin = first(users.filter((u) => u.role === 'admin'));\nconsole.log(admin); //=> { name: 'Ada', role: 'admin' }\n\n// Safe on empty arrays — returns undefined instead of throwing\nconsole.log(first([])); //=> undefined";
+export const tryItCode = "const users = [\n  { name: 'Ada', role: 'admin' },\n  { name: 'Lin', role: 'editor' },\n];\n\n// Grab the first admin, or fall back to a default\nconst admin = first(users.filter((u) => u.role === 'admin'));\nconsole.log(admin); //=> { name: 'Ada', role: 'admin' }\n\n// Safe on empty arrays \u2014 returns undefined instead of throwing\nconsole.log(first([])); //=> undefined";
 export const metadata = {
   title: "first — Array",
   description: "Returns the first element of the array."

@@ -1,5 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
-export const tryItCode = "const memoized = memoizeRun(fetchUser, { maxAge: 5000 });\n\n// Only one API call will be made if these are called concurrently\nconst [u1, u2] = await Promise.all([memoized(1), memoized(1)]);\n\n// Structural equality works for common built-in values\nawait memoized(new Map([['a', 1]]));\nawait memoized(new Map([['a', 1]])); // shares the cached result";
+export const tryItCode = "let calls = 0;\nconst memoized = memoizeRun(async (id) => { calls++; return id; }, { maxAge: 5000 });\nconsole.log(await Promise.all([memoized(1), memoized(1)])); //=> [1, 1]\nconsole.log(calls); //=> 1";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "memoizeRun — FlowControl",

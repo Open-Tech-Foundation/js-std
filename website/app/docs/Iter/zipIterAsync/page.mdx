@@ -1,5 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
-export const tryItCode = "const rows = zipIterAsync(streamToIter(names), streamToIter(scores));\n\nconsole.log(await toArrayIterAsync(rows)); //=> [['ann', 9], ['bob', 7]]";
+export const tryItCode = "async function* gen(values) { yield* values; }\nconsole.log(await toArrayIterAsync(zipIterAsync(gen(['ann', 'bob']), gen([9, 7])))); //=> [['ann', 9], ['bob', 7]]";
 export const metadata = {
   title: "zipIterAsync — Iter",
   description: "Yields one group per position, taking one item from each async iterable."

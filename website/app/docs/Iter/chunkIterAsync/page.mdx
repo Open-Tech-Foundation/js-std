@@ -1,5 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
-export const tryItCode = "for await (const batch of chunkIterAsync(rows, 500)) {\n  await db.insertMany(batch);\n}";
+export const tryItCode = "async function* gen(values) { yield* values; }\nfor await (const batch of chunkIterAsync(gen([1, 2, 3, 4]), 2)) {\n  console.log(batch); //=> [1, 2] then [3, 4]\n}";
 export const metadata = {
   title: "chunkIterAsync — Iter",
   description: "Yields the items of an async iterable in groups of a specified size."

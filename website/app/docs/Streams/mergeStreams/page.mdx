@@ -1,5 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
-export const tryItCode = "const events = mergeStreams(clicks, keys);\nawait streamToArray(events)";
+export const tryItCode = "const from = (items) => new ReadableStream({ start(c) { for (const x of items) c.enqueue(x); c.close(); } });\nconsole.log(await streamToArray(mergeStreams(from([1]), from([2]))));";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "mergeStreams — Streams",

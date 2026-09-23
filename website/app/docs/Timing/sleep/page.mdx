@@ -1,5 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
-export const tryItCode = "await sleep(1000); // Suspends execution for 1 second\n\nawait sleep(0); // Resolves in the next event loop iteration";
+export const tryItCode = "console.log('before');\nawait sleep(50);\nconsole.log('after');";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "sleep — Timing",

@@ -1,5 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
-export const tryItCode = "// Wait for a job to finish\nconst job = await pollRun(() => getJob(id), {\n  until: (job) => job.status !== 'pending',\n  interval: 1000,\n  timeout: 30_000,\n});";
+export const tryItCode = "let n = 0;\nconst job = await pollRun(() => ({ status: ++n < 3 ? 'pending' : 'done' }), { until: (job) => job.status !== 'pending', interval: 50, timeout: 5000 });\nconsole.log(job.status); //=> 'done'";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "pollRun — FlowControl",

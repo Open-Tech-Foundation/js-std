@@ -1,5 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
-export const tryItCode = "const batchFetch = batchRun(async (batch) => {\n  // batch is an array of arguments: [[1], [2], [3]]\n  const ids = batch.map(args => args[0]);\n  return await fetchUsers(ids);\n}, { limit: 10, delay: 50 });\n\nconst user1 = batchFetch(1);\nconst user2 = batchFetch(2);";
+export const tryItCode = "const batchFetch = batchRun(async (batch) => batch.map(([id]) => ({ id })), { limit: 10, delay: 50 });\nconsole.log(await Promise.all([batchFetch(1), batchFetch(2)])); //=> [{ id: 1 }, { id: 2 }]";
 export const metadata = {
   title: "batchRun — FlowControl",
   description: "Creates a batched function that collects calls and processes them in groups."
