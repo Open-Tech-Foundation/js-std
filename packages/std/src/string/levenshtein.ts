@@ -32,7 +32,7 @@
  *
  * @example
  * // Ranking suggestions by distance
- * sortBy(commands, (cmd) => levenshtein(cmd, input))[0]
+ * sortBy(commands, [(cmd) => levenshtein(cmd, input), 'asc'])[0]
  */
 export default function levenshtein(a = '', b = ''): number {
   if (a === b) {

@@ -5,6 +5,8 @@ export const metadata = {
   description: "Yields the items of each iterable in turn."
 };
 
+# concatIter
+
 🧩 Yields the items of each iterable in turn.
 
 ## Syntax
@@ -28,9 +30,9 @@ that stops early never touches the later ones.
 ## Examples
 
 ```ts
-[...concatIter([1, 2], [3, 4])] //=> [1, 2, 3, 4]
+[...concatIter([1, 2], [3, 4])]; //=> [1, 2, 3, 4]
 
-[...concatIter('ab', [1, 2])] //=> ['a', 'b', 1, 2]
+[...concatIter('ab', [1, 2])]; //=> ['a', 'b', 1, 2]
 ```
 
 ## Related

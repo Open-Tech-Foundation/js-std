@@ -5,6 +5,8 @@ export const metadata = {
   description: "Returns the lowest version in the list that satisfies the range."
 };
 
+# semverMinSatisfying
+
 🏷️ Returns the lowest version in the list that satisfies the range.
 
 The counterpart to [semverMaxSatisfying](/docs/Semver/semverMaxSatisfying), and
@@ -47,7 +49,8 @@ semverMinSatisfying(['1.0.0', '2.0.0'], '^3.0.0') //=> null
 Pinning a CI job to the oldest version a range allows:
 
 ```ts
-const oldest = semverMinSatisfying(published, pkg.peerDependencies.react);
+const published = ['1.0.0', '1.2.3', '2.0.0'];
+const oldest = semverMinSatisfying(published, '^1.0.0'); //=> '1.0.0'
 ```
 
 ## Related

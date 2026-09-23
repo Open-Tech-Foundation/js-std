@@ -42,5 +42,5 @@ levenshtein('abc', 'abc') //=> 0
 
 ```js
 // Ranking suggestions by distance
-sortBy(commands, (cmd) => levenshtein(cmd, input))[0]
+sortBy(commands, [(cmd) => levenshtein(cmd, input), 'asc'])[0]
 ```

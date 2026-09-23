@@ -5,6 +5,8 @@ export const metadata = {
   description: "Reads the timestamp back out of a UUID v7."
 };
 
+# uuidv7Time
+
 🆔 Reads the timestamp back out of a UUID v7.
 
 A v7 leads with a 48-bit count of milliseconds since the Unix epoch — that is
@@ -45,6 +47,7 @@ new Date(uuidv7Time(id)) //=> the moment it was generated
 Recovering a creation time you never stored:
 
 ```ts
+const rows = [{ id: uuidv7() }, { id: 'not-an-id' }];
 rows
   .filter((row) => isUUID(row.id, 7))
   .map((row) => ({ ...row, createdAt: new Date(uuidv7Time(row.id)) }));

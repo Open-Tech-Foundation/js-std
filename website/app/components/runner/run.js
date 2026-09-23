@@ -33,7 +33,18 @@ const AsyncFunction = Object.getPrototypeOf(async () => {}).constructor;
 const BINDINGS = `var {${Object.keys(std).join(',')}} = __std;`;
 
 function compile(code) {
-  return new AsyncFunction('__probe', '__std', 'console', BINDINGS + code);
+  // The preamble ends the line with its own semicolon rather than sharing
+  // the example's first line: a statement opening with `[`, `(`, a template
+  // literal or `+`/`-` would otherwise parse as a continuation of `__std`
+  // (`__std\n[...]` is a member access, not two statements). Probe lines
+  // come from the statement table rather than the compiled output, so the
+  // extra line moves nothing the reader sees.
+  return new AsyncFunction(
+    '__probe',
+    '__std',
+    'console',
+    `${BINDINGS}\n${code}`,
+  );
 }
 
 /**

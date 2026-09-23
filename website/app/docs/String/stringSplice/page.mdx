@@ -6,6 +6,8 @@ export const metadata = {
   description: "Removes characters from a string and inserts another in their place, following Array.prototype.splice."
 };
 
+# stringSplice
+
 
 Removes characters from a string and inserts another in their place, following `Array.prototype.splice`.
 
@@ -65,6 +67,7 @@ stringSplice('SELECT * FROM users', 19, 0, ' LIMIT 10');
 //=> 'SELECT * FROM users LIMIT 10'
 
 // At the caret of a textarea.
+const el = { value: 'SELECT *', selectionStart: 6 };
 stringSplice(el.value, el.selectionStart, 0, '\t');
 ```
 

@@ -5,6 +5,8 @@ export const metadata = {
   description: "Yields one group per position, taking one item from each iterable."
 };
 
+# zipIter
+
 🧩 Yields one group per position, taking one item from each iterable.
 
 ## Syntax
@@ -34,9 +36,9 @@ stops early.
 ## Examples
 
 ```ts
-[...zipIter([1, 2], ['a', 'b'])] //=> [[1, 'a'], [2, 'b']]
+[...zipIter([1, 2], ['a', 'b'])]; //=> [[1, 'a'], [2, 'b']]
 
-[...zipIter([1, 2, 3], ['a'])] //=> [[1, 'a'], [2, undefined], [3, undefined]]
+[...zipIter([1, 2, 3], ['a'])]; //=> [[1, 'a'], [2, undefined], [3, undefined]]
 ```
 
 ## Related

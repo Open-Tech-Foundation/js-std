@@ -5,6 +5,8 @@ export const metadata = {
   description: "Calculates the value below which the given fraction of the data falls."
 };
 
+# quantile
+
 📊 Calculates the value below which the given fraction of the data falls.
 
 ## Syntax
@@ -57,6 +59,7 @@ quantile([1, 2, 3, 4], 0.75) //=> 3.25
 The p95 of a set of response times:
 
 ```ts
+const requests = [{ durationMs: 120 }, { durationMs: 80 }, { durationMs: 200 }];
 quantile(requests, 0.95, (r) => r.durationMs);
 ```
 
