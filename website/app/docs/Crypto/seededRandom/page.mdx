@@ -1,0 +1,49 @@
+import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "const rand = seededRandom('demo');\nconsole.log(rand());\nconsole.log(rand());";
+export const metadata = {
+  title: "seededRandom — Crypto",
+  description: "Creates a deterministic random-number generator from a seed."
+};
+
+# seededRandom
+
+🎲 Creates a deterministic random-number generator from a seed.
+
+## Syntax
+
+```ts
+import { seededRandom } from '@opentf/std';
+seededRandom(seed: number | string): () => number
+```
+
+## Parameters
+
+- `seed`: The seed. Equal seeds replay equal streams.
+
+## Returns
+
+A function producing the next float in `[0, 1)`.
+
+This is the opposite of `randomInt` and friends: same seed, same sequence, on every run and every runtime — for tests, games, and reproducible simulations. It composes with plain code: roll dice with `Math.floor(rand() * 6) + 1`, pick with `arr[Math.floor(rand() * arr.length)]`.
+
+A statistical generator, not a secure one. Anyone holding the seed replays the stream, so never use it for keys or tokens — that is what the cryptographic utils are for.
+
+Throws a `TypeError` if the seed is neither a number nor a string.
+
+## Examples
+
+```ts
+const rand = seededRandom('demo');
+rand() //=> 0.8388890530914068
+rand() //=> 0.13535357755608857
+```
+
+## Related
+
+- [randomInt](/docs/Crypto/randomInt)
+- [randomString](/docs/Crypto/randomString)
+- [uuidv4](/docs/Crypto/uuidv4)
+
+## Try it
+
+<TryIt code={tryItCode} />

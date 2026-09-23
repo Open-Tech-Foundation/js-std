@@ -11,6 +11,7 @@ export default {
   randomInt: 'randomInt',
   randomFloat: 'randomFloat',
   randomString: 'randomString',
+  seededRandom: 'seededRandom',
   sha256: 'sha256',
   sha512: 'sha512',
   hmacSHA256: 'hmacSHA256',

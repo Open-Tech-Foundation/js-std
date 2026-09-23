@@ -293,6 +293,7 @@ export { default as randomInt } from './crypto/randomInt';
 export { default as randomFloat } from './crypto/randomFloat';
 export { default as randomString } from './crypto/randomString';
 export { default as randomId } from './crypto/randomId';
+export { default as seededRandom } from './crypto/seededRandom';
 export { default as sha256 } from './crypto/sha256';
 export { default as sha512 } from './crypto/sha512';
 export { default as hmacSHA256 } from './crypto/hmacSHA256';

@@ -27,6 +27,10 @@ const SKIPPED = new Map([
     'app/docs/Encoding/stringifyQueryString/page.mdx',
     'needs the next @opentf/std release: the published tarball the site runs has no stringifyQueryString yet',
   ],
+  [
+    'app/docs/Crypto/seededRandom/page.mdx',
+    'needs the next @opentf/std release: the published tarball the site runs has no seededRandom yet',
+  ],
 ]);
 
 function decodeJsString(literal) {

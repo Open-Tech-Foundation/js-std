@@ -101,6 +101,7 @@
 - [randomId](./Crypto/randomId.md)
 - [randomInt](./Crypto/randomInt.md)
 - [randomString](./Crypto/randomString.md)
+- [seededRandom](./Crypto/seededRandom.md)
 - [sha256](./Crypto/sha256.md)
 - [sha512](./Crypto/sha512.md)
 - [timingSafeEqual](./Crypto/timingSafeEqual.md)
