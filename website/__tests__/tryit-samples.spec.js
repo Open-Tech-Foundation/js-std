@@ -19,6 +19,14 @@ const SKIPPED = new Map([
     'app/docs/Encoding/isUtf8/page.mdx',
     'needs the next @opentf/std release: the published tarball the site runs has no isUtf8 yet',
   ],
+  [
+    'app/docs/Encoding/parseQueryString/page.mdx',
+    'needs the next @opentf/std release: the published tarball the site runs has no parseQueryString yet',
+  ],
+  [
+    'app/docs/Encoding/stringifyQueryString/page.mdx',
+    'needs the next @opentf/std release: the published tarball the site runs has no stringifyQueryString yet',
+  ],
 ]);
 
 function decodeJsString(literal) {

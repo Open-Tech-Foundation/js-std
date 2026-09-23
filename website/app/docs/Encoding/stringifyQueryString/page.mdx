@@ -1,0 +1,43 @@
+import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(stringifyQueryString({ name: 'Ada', tags: ['a', 'b'] }));";
+export const metadata = {
+  title: "stringifyQueryString — Encoding",
+  description: "Serializes an object to a URL query string in qs bracket notation."
+};
+
+# stringifyQueryString
+
+🔗 Serializes an object to a URL query string in `qs` bracket notation.
+
+## Syntax
+
+```ts
+import { stringifyQueryString } from '@opentf/std';
+stringifyQueryString(obj: object): string
+```
+
+## Parameters
+
+- `obj`: The object to serialize. Must be a non-array object.
+
+## Returns
+
+The query string, without a leading `?`.
+
+This is the inverse of `parseQueryString`: nested objects become `user[name]` segments and arrays become repeated `tags[]` pairs. Keys and leaves are percent-encoded, so spaces become `%20`. Numbers and booleans stringify, a `Date` becomes its ISO string, `null` keeps its key with an empty value, and `undefined` — like an empty object or array — is skipped. A circular structure throws a `TypeError`, as does anything that is not a non-array object.
+
+## Examples
+
+```ts
+stringifyQueryString({ name: 'Ada', tags: ['a', 'b'], user: { name: 'x' } })
+//=> 'name=Ada&tags[]=a&tags[]=b&user[name]=x'
+```
+
+## Related
+
+- [parseQueryString](/docs/Encoding/parseQueryString)
+- [stringToBytes](/docs/Encoding/stringToBytes)
+
+## Try it
+
+<TryIt code={tryItCode} />

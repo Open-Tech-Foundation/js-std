@@ -1,0 +1,51 @@
+import TryIt from '../../../components/TryIt.jsx';
+export const tryItCode = "console.log(parseQueryString('?name=Ada&tags[]=a&tags[]=b'));\nconsole.log(parseQueryString('a=1&a=2'));";
+export const metadata = {
+  title: "parseQueryString — Encoding",
+  description: "Parses a URL query string into an object, following qs bracket notation."
+};
+
+# parseQueryString
+
+🔗 Parses a URL query string into an object, following `qs` bracket notation.
+
+## Syntax
+
+```ts
+import { parseQueryString } from '@opentf/std';
+parseQueryString(query: string): Record<string, unknown>
+```
+
+## Parameters
+
+- `query`: The query string to parse, with or without a leading `?`.
+
+## Returns
+
+The parsed pairs, nested by brackets.
+
+A leading `?` is accepted and a trailing `#fragment` is ignored. Pairs split on `&` and on the first `=`; a key with no `=` means an empty value, and `+` reads as a space before percent-decoding. Only brackets nest — dots stay literal — so `user[name]=Ada` nests while `user.name` stays one key. A repeated key collects into an array instead of losing earlier values the way `Object.fromEntries(new URLSearchParams(query))` does.
+
+Throws a `TypeError` if the input is not a string.
+
+## Comparison with qs
+
+The same core — nesting, `[]` appends, repeat collection, depth and index caps, `__proto__` refusal — without the long tail: no custom delimiters, `allowDots`, charset switching, or date handling.
+
+## Examples
+
+```ts
+parseQueryString('?name=Ada&tags[]=a&tags[]=b&user[name]=x')
+//=> { name: 'Ada', tags: ['a', 'b'], user: { name: 'x' } }
+
+parseQueryString('a=1&a=2') //=> { a: ['1', '2'] }
+```
+
+## Related
+
+- [stringifyQueryString](/docs/Encoding/stringifyQueryString)
+- [bytesToString](/docs/Encoding/bytesToString)
+
+## Try it
+
+<TryIt code={tryItCode} />

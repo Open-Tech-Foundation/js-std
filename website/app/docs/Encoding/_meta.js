@@ -12,4 +12,6 @@ export default {
   isUtf8: 'isUtf8',
   stringToBytes: 'stringToBytes',
   bytesToString: 'bytesToString',
+  parseQueryString: 'parseQueryString',
+  stringifyQueryString: 'stringifyQueryString',
 };

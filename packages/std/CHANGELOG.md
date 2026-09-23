@@ -5,6 +5,7 @@
 ### Added
 
 - Added `isUtf8`, a runtime-agnostic validator for complete UTF-8 byte sequences. It accepts `Uint8Array` and `ArrayBuffer` inputs without decoding them to a string, throws a `TypeError` on other types, and treats detached buffers as empty.
+- Added `parseQueryString` and `stringifyQueryString`, a bracket-aware query-string pair in the style of `qs`: nesting, `[]` appends, repeat collection, depth and index caps, and `__proto__` refusal on parse; percent-encoding, `Date` handling, and circular-structure rejection on stringify. The two round-trip each other.
 
 ### Changed
 

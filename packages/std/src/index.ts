@@ -328,6 +328,8 @@ export { default as decodeHex } from './encoding/decodeHex';
 export { default as stringToBytes } from './encoding/stringToBytes';
 export { default as bytesToString } from './encoding/bytesToString';
 export { default as isUtf8 } from './encoding/isUtf8';
+export { default as parseQueryString } from './encoding/parseQueryString';
+export { default as stringifyQueryString } from './encoding/stringifyQueryString';
 
 // Semver
 export { default as semverParse } from './semver/semverParse';
