@@ -17,4 +17,4 @@ export const CROCKFORD_ALPHABET = '0123456789ABCDEFGHJKMNPQRSTVWXYZ';
  * deliberately not accepted, since a string carrying them is not one this
  * module produced.
  */
-export const ULID_REGEX = /^[0-7][0-9A-HJKMNP-TV-Z]{25}$/i;
+export const ULID_REGEX: RegExp = /^[0-7][0-9A-HJKMNP-TV-Z]{25}$/i;

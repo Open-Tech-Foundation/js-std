@@ -56,11 +56,21 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
+      - name: Install esdev
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/Open-Tech-Foundation/ES-Runtime/main/install.sh | bash -s -- --only=esdev
+          echo "$HOME/.es-runtime/bin" >> "$GITHUB_PATH"
+
+      - name: Install TSR
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/Open-Tech-Foundation/tsr/main/install.sh | bash
+          echo "$HOME/.tsr/bin" >> $GITHUB_PATH
+
       - name: Build dist
-        run: pnpm --filter @opentf/std run build
+        run: tsr build
 
       - name: Bundle test suite
-        run: pnpm --dir packages/std exec node __tests__/_matrix/build-bundle.js
+        run: tsr matrix:bundle
 
       # A single path keeps the artifact root at the file's own directory, so it
       # round-trips to the same location on download. The probe is not uploaded;

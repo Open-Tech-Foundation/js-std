@@ -7,8 +7,7 @@
     "node": ">=22"
   },
   "scripts": {
-    "build": "otfw build --ssg",
-    "test": "cd .. && esdev test website"
+    "build": "otfw build --ssg"
   },
   "dependencies": {
     "@codemirror/lang-javascript": "^6.2.5",

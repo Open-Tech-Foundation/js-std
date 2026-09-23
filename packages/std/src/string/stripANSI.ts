@@ -10,7 +10,7 @@
  *
  * The `g` flag makes `lastIndex` stateful, so every use must reset it first.
  */
-export const ANSI_REGEX =
+export const ANSI_REGEX: RegExp =
   /[\u001b\u009b][\[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]|[\u001b\u009b]\][0-9;]*[^\u001b\u009b\u0007]*[\u001b\u009b\u0007\\]|[\u001b\u009b][ABCDEFGHJKSTfmhnqrsu]|[\u001b\u009b][\]\^\\_]/g;
 
 /**

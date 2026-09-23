@@ -1,3 +1,5 @@
+import type DateTime from './DateTime';
+
 /** The units `DateTime` can be truncated to, advanced by and compared in. */
 export type DateTimeUnit =
   | 'year'
@@ -57,7 +59,7 @@ export interface DateTimeOptions {
  * hours and below never need this.
  */
 export interface RelativeToOptions {
-  relativeTo?: import('./DateTime').default;
+  relativeTo?: DateTime;
 }
 
 /** Options for `Duration.between`. */

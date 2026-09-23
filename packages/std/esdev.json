@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "lib": {
+      "entry": "src",
+      "lib": true,
+      "format": ["esm", "cjs"],
+      "outdir": "dist",
+      "dts-bundle": true,
+      "minify": true,
+      "sourcemap": true,
+      "assets": ["README.md", "LICENSE", "docs"]
+    }
+  }
+}

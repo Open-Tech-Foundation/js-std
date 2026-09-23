@@ -2,7 +2,7 @@
 members = ["apps/*", "packages/*", "website"]
 
 [tasks.dev]
-run = "rolldown -c --watch"
+run = "esdev build"
 dir = "packages/std"
 
 [tasks."dev:website"]
@@ -37,7 +37,7 @@ run = "biome check ."
 run = "biome format --write ."
 
 [tasks.build]
-run = "rolldown -c"
+run = "esdev build"
 dir = "packages/std"
 
 # Regenerates `docs/` from the JSDoc on each export. Pages marked

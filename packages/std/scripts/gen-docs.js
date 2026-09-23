@@ -12,7 +12,7 @@
  * `Decimal` classes document many methods on one page — and a generator that
  * overwrote those would be trading a formatting bug for a content loss.
  *
- * Run with `pnpm docs` from `packages/std`.
+  * Run with `tsr docs` from the workspace root.
  */
 import fs from 'node:fs';
 import path from 'node:path';
