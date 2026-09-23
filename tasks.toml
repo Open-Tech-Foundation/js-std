@@ -1,5 +1,5 @@
 [workspace]
-members = ["apps/*", "packages/*", "website"]
+members = ["packages/*", "website"]
 
 [tasks.dev]
 run = "esdev start"

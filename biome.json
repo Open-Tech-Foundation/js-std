@@ -5,7 +5,6 @@
       "node_modules",
       "dist",
       ".next",
-      "apps",
       "packages/std/dist",
       "packages/std/__tests__/_matrix/bundle",
       "results",
