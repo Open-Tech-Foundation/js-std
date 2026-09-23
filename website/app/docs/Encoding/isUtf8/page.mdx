@@ -26,6 +26,21 @@ A detached `ArrayBuffer`, or a `Uint8Array` backed by one, is treated as empty.
 
 Throws a `TypeError` if the input is not a `Uint8Array` or `ArrayBuffer`.
 
+## Comparison with node:buffer
+
+A runtime-agnostic equivalent of `node:buffer`'s `isUtf8`, with the same
+verdict on every byte pattern: overlong encodings, surrogate halves,
+truncated sequences and code points above `U+10FFFF` are rejected, and an
+empty input is valid. The rejection cases are cross-checked against the
+`test-buffer-isutf8` cases in `nodejs/node`.
+
+Two deliberate differences remain. `node:buffer` accepts any `TypedArray`
+and `SharedArrayBuffer`; `isUtf8` takes a `Uint8Array` or an `ArrayBuffer`
+only (a Node `Buffer` works, since it is a `Uint8Array`) and throws a
+`TypeError` for anything else. And a detached `ArrayBuffer` reads as empty
+here and returns `true`, while recent Node versions throw
+`ERR_INVALID_STATE` instead.
+
 ## Examples
 
 ```ts

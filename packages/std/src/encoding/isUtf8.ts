@@ -19,7 +19,8 @@ export default function isUtf8(input: Uint8Array | ArrayBuffer): boolean {
     try {
       bytes = new Uint8Array(input);
     } catch {
-      // Match Node's isUtf8(): a detached ArrayBuffer is empty.
+      // A detached ArrayBuffer has no bytes to read, so it validates as
+      // empty. Recent Node versions throw `ERR_INVALID_STATE` here instead.
       return true;
     }
   } else {
