@@ -11,6 +11,7 @@
 - Fixed runtime-matrix input and output paths resolving from ES-Dev's working directory instead of the repository root.
 - Fixed the Playground mode tabs keeping the Playground active styling after switching panels.
 - Added syntax colors to Playground console strings, object keys, numbers, and literal values; numbers use a brighter yellow for contrast.
+- Labeled runtime-matrix results above 99% as near-complete and included the remaining failing test count.
 
 ## [0.20.0] - 2026-09-30
 

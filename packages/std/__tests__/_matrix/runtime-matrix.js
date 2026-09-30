@@ -395,12 +395,16 @@ function renderSection(report) {
   for (const r of measured) {
     const icon =
       r.status === 'pass' ? '✅' : r.status === 'partial' ? '⚠️' : '❌';
+    const nearComplete =
+      r.status === 'partial' && r.total > 0 && r.passed / r.total > 0.99;
     const status =
       r.status === 'pass'
         ? 'Fully supported'
-        : r.status === 'partial'
-          ? 'Partial'
-          : 'Failed to run';
+        : nearComplete
+          ? `Near-complete (${r.failed} test${r.failed === 1 ? '' : 's'} failing)`
+          : r.status === 'partial'
+            ? 'Partial'
+            : 'Failed to run';
     const score = r.total ? `${r.passed} / ${r.total} (${r.percent}%)` : '—';
     lines.push(
       `| ${r.label} | \`${r.version}\` | ${score} | ${icon} ${status} |`,
