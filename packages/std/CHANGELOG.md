@@ -13,6 +13,7 @@
 ### Changed
 
 - Cleared the workspace's remaining Biome lint diagnostics across source files and tests.
+- Fixed `tsr matrix:bundle` on clean checkouts by creating its output directory before writing the bundle.
 - **Breaking.** `formatCurrency` now takes `{ currency, ...options }` as its second argument, `rateLimitRun` takes `{ period }` as its third argument, and `TtlCache.set` takes `{ ttl }` as its third argument.
 - **Breaking.** Nine async utilities now take third-argument settings in named options objects: `filterAsync`, `mapAsync`, `eachAsync`, `someAsync`, `everyAsync`, `findAsync`, and `flatMapAsync` use `{ concurrency }`; `reduceAsync` and `reduceIterAsync` use `{ initialValue }`.
 - **Breaking.** Ten utilities now accept options objects for arguments from the third position onward: `dropWhile`/`takeWhile` use `{ fromEnd }`, `remove` uses `{ count }`, `replace` uses `{ items }`, `range` uses `{ step }`, `runningReduce`/`reduceIter` use `{ initialValue }`, `tryParseJSON` uses `{ reviver, temporal }`, `stringReplace` uses `{ replacement, all, case }`, and `sortBy` uses `{ criteria }`.

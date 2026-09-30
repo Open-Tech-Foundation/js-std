@@ -14,7 +14,7 @@
  * Run with `tsr matrix:bundle` from the workspace root.
  */
 import { build } from 'runtime:build';
-import { exists, file, readDir, remove, stat, write } from 'runtime:fs';
+import { exists, file, mkdir, readDir, remove, stat, write } from 'runtime:fs';
 import {
   dirname,
   fromFileURL,
@@ -107,6 +107,7 @@ try {
       codeSplitting: false,
     });
     const chunk = output.find((o) => o.isEntry) ?? output[0];
+    await mkdir(dirname(outfile), { recursive: true });
     await write(outfile, chunk.code);
   } finally {
     await bundle.close();
