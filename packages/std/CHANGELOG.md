@@ -10,6 +10,7 @@
 
 ### Changed
 
+- The `typecheck` and `typecheck:api` tasks now run through `esdev typecheck`, using TypeScript 7.0.2.
 - Fixed `isEqual` treating objects with different own string or symbol keys as equal when the compared values were both `undefined`.
 - Renamed the public `isEql` utility to `isEqual`; the old export has been removed without a compatibility alias.
 - Fixed query-string round trips for percent-encoded brackets, parsing of keys that shadow inherited object properties, and circular arrays in `stringifyQueryString`. `randomInt` now rejects bounds outside the safe-integer range so its uniformity guarantee holds.

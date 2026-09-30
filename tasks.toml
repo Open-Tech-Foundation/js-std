@@ -14,14 +14,14 @@ run = "esdev test"
 dir = "packages/std"
 
 [tasks.typecheck]
-run = "tsc --noEmit"
+run = "esdev typecheck"
 dir = "packages/std"
 
 # Compiles the public type surface against the package entry. Separate from
 # `typecheck` because the rest of `__tests__` passes wrong types on purpose to
 # exercise the runtime guards, so it cannot be typechecked as a whole.
 [tasks."typecheck:api"]
-run = "tsc --noEmit -p tsconfig.api.json"
+run = "esdev typecheck -p tsconfig.api.json"
 dir = "packages/std"
 
 # The docs runner's units: the scanner, the example transform, the value
