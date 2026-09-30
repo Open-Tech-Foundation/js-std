@@ -60,7 +60,8 @@ export default function parseQueryString(
   for (const pair of rest.split('&')) {
     if (pair === '') continue;
     const eq = pair.indexOf('=');
-    const segments = splitKey(decode(eq === -1 ? pair : pair.slice(0, eq)));
+    const rawSegments = splitKey(eq === -1 ? pair : pair.slice(0, eq));
+    const segments = rawSegments.map(decode);
     if (hasUnsafeKey(segments)) continue;
     assign(out, segments, decode(eq === -1 ? '' : pair.slice(eq + 1)), 0);
   }
@@ -122,7 +123,10 @@ function assign(
   const [segment, ...rest] = segments;
 
   if (rest.length === 0) {
-    const current = (holder as Record<string, unknown>)[segment];
+    const hasCurrent = Object.prototype.hasOwnProperty.call(holder, segment);
+    const current = hasCurrent
+      ? (holder as Record<string, unknown>)[segment]
+      : undefined;
     if (
       current === undefined ||
       (typeof current === 'object' &&

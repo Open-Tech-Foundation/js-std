@@ -96,10 +96,10 @@ describe('Crypto Utilities', () => {
     expect(Number.isInteger(val)).toBe(true);
     expect(() => randomInt(10, 1)).toThrow();
     expect(() => randomInt(1.2, 10)).toThrow(
-      'The min and max values must be integers.',
+      'The min and max values must be safe integers.',
     );
     expect(() => randomInt(1, 10.2)).toThrow(
-      'The min and max values must be integers.',
+      'The min and max values must be safe integers.',
     );
   });
 

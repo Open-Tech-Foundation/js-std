@@ -21,7 +21,7 @@ instead, leaving a count that the range divides exactly.
 
 ## Throws
 
-- `RangeError` — If either bound is not an integer, or the range is wider than `Number.MAX_SAFE_INTEGER`.
+- `RangeError` — If either bound is not a safe integer, or the span between them is wider than `Number.MAX_SAFE_INTEGER`.
 
 ## Example
 

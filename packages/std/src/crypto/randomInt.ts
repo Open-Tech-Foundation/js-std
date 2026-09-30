@@ -18,15 +18,15 @@ const TWO_POW_64 = 18446744073709551616n;
  * @param {number} max The upper bound, inclusive.
  * @returns {number} A random integer between `min` and `max`.
  *
- * @throws {RangeError} If either bound is not an integer, or the range is
- * wider than `Number.MAX_SAFE_INTEGER`.
+ * @throws {RangeError} If either bound is not a safe integer, or the span
+ * between them is wider than `Number.MAX_SAFE_INTEGER`.
  *
  * @example
  * randomInt(1, 10) //=> 7
  */
 export default function randomInt(min: number, max: number): number {
-  if (!Number.isInteger(min) || !Number.isInteger(max)) {
-    throw new RangeError('The min and max values must be integers.');
+  if (!Number.isSafeInteger(min) || !Number.isSafeInteger(max)) {
+    throw new RangeError('The min and max values must be safe integers.');
   }
 
   if (min > max) {

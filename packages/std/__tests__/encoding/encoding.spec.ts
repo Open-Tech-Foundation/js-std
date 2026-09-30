@@ -177,6 +177,10 @@ describe('Encoding Utilities', () => {
     expect(parseQueryString('q=a+b')).toEqual({ q: 'a b' });
     expect(parseQueryString('e=%26')).toEqual({ e: '&' });
     expect(parseQueryString('bad=%zz')).toEqual({ bad: '%zz' });
+    expect(parseQueryString('a%5Bb%5D=x')).toEqual({ 'a[b]': 'x' });
+    expect(parseQueryString('user[x%5By%5D]=x')).toEqual({
+      user: { 'x[y]': 'x' },
+    });
   });
 
   test('parseQueryString nests brackets and collects repeats', () => {
@@ -187,6 +191,10 @@ describe('Encoding Utilities', () => {
       tags: ['a', 'b'],
     });
     expect(parseQueryString('a=1&a=2')).toEqual({ a: ['1', '2'] });
+    expect(parseQueryString('toString=x')).toEqual({ toString: 'x' });
+    expect(parseQueryString('toString=x&toString=y')).toEqual({
+      toString: ['x', 'y'],
+    });
     expect(parseQueryString('a[0]=x&a[2]=y')).toEqual({
       a: ['x', undefined, 'y'],
     });
@@ -245,6 +253,15 @@ describe('Encoding Utilities', () => {
     const circular: Record<string, unknown> = {};
     circular.self = circular;
     expect(() => stringifyQueryString(circular)).toThrow(TypeError);
+
+    const circularArray: unknown[] = [];
+    circularArray.push(circularArray);
+    expect(() => stringifyQueryString({ circularArray })).toThrow(TypeError);
+
+    const arrayObjectCycle: Record<string, unknown> = {};
+    const containingArray = [arrayObjectCycle];
+    arrayObjectCycle.items = containingArray;
+    expect(() => stringifyQueryString(arrayObjectCycle)).toThrow(TypeError);
   });
 
   test('query strings round-trip through both functions', () => {
@@ -252,6 +269,8 @@ describe('Encoding Utilities', () => {
       name: 'Ada Lovelace',
       tags: ['a', 'b'],
       user: { name: 'x', ids: ['1', '2'] },
+      'literal[key]': 'brackets stay data',
+      nested: { 'literal[key]': 'also preserved' },
     };
     expect(parseQueryString(stringifyQueryString(obj))).toEqual(obj);
   });

@@ -58,7 +58,12 @@ function append(
     return;
   }
   if (Array.isArray(value)) {
+    if (seen.includes(value)) {
+      throw new TypeError('stringifyQueryString: circular structure.');
+    }
+    seen.push(value);
     for (const item of value) append(parts, seen, `${key}[]`, item);
+    seen.pop();
     return;
   }
   if (typeof value === 'object') {

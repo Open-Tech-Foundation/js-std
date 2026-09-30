@@ -36,9 +36,11 @@ describe('Crypto > randomInt', () => {
     }
   });
 
-  test('rejects non-integer bounds and an inverted range', () => {
+  test('rejects non-safe-integer bounds and an inverted range', () => {
     expect(() => randomInt(1.5, 3)).toThrow(RangeError);
     expect(() => randomInt(1, 3.5)).toThrow(RangeError);
+    expect(() => randomInt(2 ** 53, 2 ** 53 + 2)).toThrow(RangeError);
+    expect(() => randomInt(-(2 ** 53), -(2 ** 53))).toThrow(RangeError);
     expect(() => randomInt(5, 1)).toThrow();
   });
 
