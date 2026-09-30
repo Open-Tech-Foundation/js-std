@@ -102,4 +102,17 @@ describe('Array > sortBy', () => {
       { name: 'Alex', grade: 15 },
     ]);
   });
+
+  test('sorting by number and symbol property keys', () => {
+    const numericItems = [{ 0: 2 }, { 0: 1 }];
+    expect(sortBy(numericItems, [0, 'asc'])).toEqual([{ 0: 1 }, { 0: 2 }]);
+
+    const rank = Symbol('rank');
+    const items = [{ [rank]: 2 }, { [rank]: 1 }];
+
+    expect(sortBy(items, [rank, 'asc'])).toEqual([
+      { [rank]: 1 },
+      { [rank]: 2 },
+    ]);
+  });
 });

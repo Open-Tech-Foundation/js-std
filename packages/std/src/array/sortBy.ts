@@ -1,4 +1,3 @@
-import isString from '../types/isString';
 import type { OrderType } from './sort';
 
 export type SortCB<T> = (val: T) => number | string | boolean | Date;
@@ -19,8 +18,8 @@ export default function sortBy<T>(arr: T[], ...tuples: OrderTuples<T>): T[] {
   return [...arr].sort((a: T, b: T) => {
     for (let i = 0; i < tuples.length; i++) {
       const [key, order] = tuples[i];
-      const x = isString(key) ? a[key] : (key as SortCB<T>)(a);
-      const y = isString(key) ? b[key] : (key as SortCB<T>)(b);
+      const x = typeof key === 'function' ? (key as SortCB<T>)(a) : a[key];
+      const y = typeof key === 'function' ? (key as SortCB<T>)(b) : b[key];
 
       if (x !== y) {
         const val = x < y ? -1 : 1;
