@@ -5,8 +5,7 @@ Moves an array element from one index position to another.
 ## Parameters
 
 - **arr** `T[]` — The source array.
-- **from** `number` — The index of the element to move.
-- **to** `number` — The index to move the element to.
+- **options** `MoveOptions` — The source and destination indexes.
 
 ## Returns
 
@@ -15,5 +14,5 @@ Moves an array element from one index position to another.
 ## Example
 
 ```js
-move([1, 2, 3], 0, 2) //=> [2, 3, 1]
+move([1, 2, 3], { from: 0, to: 2 }) //=> [2, 3, 1]
 ```

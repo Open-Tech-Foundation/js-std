@@ -19,14 +19,14 @@ export const metadata = {
 
 ```ts
 import { move } from '@opentf/std';
-move<T>(arr: T[], from: number, to: number): T[]
+move<T>(arr: T[], options: { from: number; to: number }): T[]
 ```
 
 ## Parameters
 
 - `arr`: The source array.
-- `from`: The index of the element to move.
-- `to`: The index to move the element to.
+- `options.from`: The index of the element to move.
+- `options.to`: The index to move the element to.
 
 ## Returns
 
@@ -35,11 +35,11 @@ A new array with the element moved.
 ## Examples
 
 ```ts
-move([1, 2, 3], 0, 2); //=> [2, 3, 1]
+move([1, 2, 3], { from: 0, to: 2 }); //=> [2, 3, 1]
 
-move([1, 2, 3], 0, 5); //=> [2, 3, 1] (capped at array length)
+move([1, 2, 3], { from: 0, to: 5 }); //=> [2, 3, 1] (capped at array length)
 
-move([1, 2, 3], 5, 0); //=> [1, 2, 3] (invalid source index returns original)
+move([1, 2, 3], { from: 5, to: 0 }); //=> [1, 2, 3] (invalid source index returns original)
 ```
 
 ## Related

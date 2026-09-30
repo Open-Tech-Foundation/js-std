@@ -44,6 +44,7 @@ export { default as range } from './array/range';
 export { default as groupBy } from './array/groupBy';
 export { default as keyBy } from './array/keyBy';
 export { default as move } from './array/move';
+export type { MoveOptions } from './array/move';
 export { default as sort } from './array/sort';
 export type { OrderType } from './array/sort';
 export { default as sortBy } from './array/sortBy';

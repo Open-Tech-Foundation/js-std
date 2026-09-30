@@ -47,6 +47,7 @@ import type {
   LimitRunFn,
   MemoizeRunFn,
   MemoizeRunOptions,
+  MoveOptions,
   OKLCH,
   OrderTuples,
   OrderType,
@@ -95,6 +96,7 @@ import {
   isPrimitive,
   limitRun,
   memoizeRun,
+  move,
   paceRun,
   pollRun,
   retryRun,
@@ -137,6 +139,9 @@ function assertType<_T extends true>(): void {}
 
 const insertOptions: InsertOptions<number> = { items: [5], position: 'after' };
 accepts<number[]>(insert([1, 2, 3], 1, insertOptions));
+
+const moveOptions: MoveOptions = { from: 0, to: 2 };
+accepts<number[]>(move([1, 2, 3], moveOptions));
 
 const order: OrderType = 'desc';
 accepts<OrderType>('asc');
