@@ -12,6 +12,7 @@
 
 - **Breaking.** `insert` now takes its values and optional predicate position in a third-argument options object: `insert(arr, index, 5)` becomes `insert(arr, index, { items: [5] })`, and `insert(arr, predicate, 5, 'after')` becomes `insert(arr, predicate, { items: [5], position: 'after' })`. This removes ambiguity when `'before'` or `'after'` is itself an item.
 - **Breaking.** `move` now names both indexes in an options object: `move(arr, 0, 2)` becomes `move(arr, { from: 0, to: 2 })`.
+- **Breaking.** `removeAt` now takes its optional removal count in an options object: `removeAt(arr, index, 2)` becomes `removeAt(arr, index, { count: 2 })`.
 - Fixed `compact` retaining `0n`, even though BigInt zero is falsy.
 - Fixed `sortBy` treating numeric and symbol property selectors as callback functions, even though both are allowed by its public type.
 - The `typecheck` and `typecheck:api` tasks now run through `esdev typecheck`, using TypeScript 7.0.2.

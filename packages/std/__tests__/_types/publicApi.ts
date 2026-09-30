@@ -58,6 +58,7 @@ import type {
   PromiseResolvers,
   PropertyPath,
   RGBA,
+  RemoveAtOptions,
   RetryRunOptions,
   Semver,
   SemverRelease,
@@ -99,6 +100,7 @@ import {
   move,
   paceRun,
   pollRun,
+  removeAt,
   retryRun,
   semverIncrement,
   semverParse,
@@ -142,6 +144,9 @@ accepts<number[]>(insert([1, 2, 3], 1, insertOptions));
 
 const moveOptions: MoveOptions = { from: 0, to: 2 };
 accepts<number[]>(move([1, 2, 3], moveOptions));
+
+const removeAtOptions: RemoveAtOptions = { count: 2 };
+accepts<number[]>(removeAt([1, 2, 3, 4], 1, removeAtOptions));
 
 const order: OrderType = 'desc';
 accepts<OrderType>('asc');

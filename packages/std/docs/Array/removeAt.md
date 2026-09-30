@@ -6,7 +6,7 @@ Removes items at the given index from the given array.
 
 - **arr** `T[]` — The source array.
 - **index** `number` — The index to remove items from.
-- **count** `number` — The number of items to remove (default 1).
+- **options** `RemoveAtOptions` — The number of items to remove.
 
 ## Returns
 
@@ -16,5 +16,5 @@ Removes items at the given index from the given array.
 
 ```js
 removeAt([1, 2, 3], 1); //=> [1, 3]
-removeAt([1, 2, 3, 4], 1, 2); //=> [1, 4]
+removeAt([1, 2, 3, 4], 1, { count: 2 }); //=> [1, 4]
 ```

@@ -37,6 +37,7 @@ export { default as first } from './array/first';
 export { default as last } from './array/last';
 export { default as insertAt } from './array/insertAt';
 export { default as removeAt } from './array/removeAt';
+export type { RemoveAtOptions } from './array/removeAt';
 export { default as replaceAt } from './array/replaceAt';
 export { default as difference } from './array/difference';
 export { default as symDiff } from './array/symDiff';
