@@ -1,12 +1,12 @@
 import TryIt from '../../../components/TryIt.jsx';
-export const tryItCode = "console.log(isEql({a: 1, b: 2}, {a: 1, b: 2})); //=> true\n\nconst mapA = new Map([\n  ['a', 1],\n  ['b', 2],\n]);\nconst mapB = new Map([\n  ['b', 2],\n  ['a', 1],\n]);\nconsole.log(isEql(mapA, mapB)); //=> false (Order matters in Maps)";
+export const tryItCode = "console.log(isEqual({a: 1, b: 2}, {a: 1, b: 2})); //=> true\n\nconst mapA = new Map([\n  ['a', 1],\n  ['b', 2],\n]);\nconst mapB = new Map([\n  ['b', 2],\n  ['a', 1],\n]);\nconsole.log(isEqual(mapA, mapB)); //=> false (Order matters in Maps)";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
-  title: "isEql — Assert",
+  title: "isEqual — Assert",
   description: "Performs a deep comparison between two values to determine if they are equivalent."
 };
 
-# isEql
+# isEqual
 
 
 🧬 Performs a deep comparison between two values to determine if they are equivalent.
@@ -39,8 +39,8 @@ export const metadata = {
 ## Syntax
 
 ```ts
-import { isEql } from '@opentf/std';
-isEql(
+import { isEqual } from '@opentf/std';
+isEqual(
   val1: unknown, 
   val2: unknown, 
   options?: { shallow?: boolean }
@@ -61,7 +61,7 @@ isEql(
 ## Examples
 
 ```ts
-isEql({a: 1, b: 2}, {a: 1, b: 2}) //=> true
+isEqual({a: 1, b: 2}, {a: 1, b: 2}) //=> true
 
 const mapA = new Map([
   ['a', 1],
@@ -71,19 +71,19 @@ const mapB = new Map([
   ['b', 2],
   ['a', 1],
 ]);
-isEql(mapA, mapB); //=> false (Order matters in Maps)
+isEqual(mapA, mapB); //=> false (Order matters in Maps)
 
 const re = new RegExp('ab+c');
 const re2 = new RegExp('ab+d');
-isEql(re, re2); //=> false
+isEqual(re, re2); //=> false
 
 const ta1 = new Uint8Array([42, 43]);
 const ta2 = new Uint8Array([42, 43]);
 const ta3 = new Uint8Array([42, 45]);
-isEql(ta1, ta2); //=> true
-isEql(ta2, ta3); //=> false
+isEqual(ta1, ta2); //=> true
+isEqual(ta2, ta3); //=> false
 
-isEql({a: {b: 1}}, {a: {b: 1}}, {shallow: true}) //=> false
+isEqual({a: {b: 1}}, {a: {b: 1}}, {shallow: true}) //=> false
 ```
 
 ## Related

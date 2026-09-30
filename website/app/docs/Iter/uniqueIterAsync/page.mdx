@@ -33,7 +33,7 @@ available before the stream ends — but the keys seen so far are held, and that
 set only grows.
 
 Primitive keys are matched by identity. Object keys are compared structurally
-with [isEql](/docs/Assert/isEql) against every distinct object seen so far —
+with [isEqual](/docs/Assert/isEqual) against every distinct object seen so far —
 quadratic in the number of them, so prefer a `by` that returns a primitive.
 
 ## Examples

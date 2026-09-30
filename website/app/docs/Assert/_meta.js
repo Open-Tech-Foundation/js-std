@@ -1,6 +1,6 @@
 export default {
   isEmpty: 'isEmpty',
-  isEql: 'isEql',
+  isEqual: 'isEqual',
   isUnorderedEqual: 'isUnorderedEqual',
   isNil: 'isNil',
 };

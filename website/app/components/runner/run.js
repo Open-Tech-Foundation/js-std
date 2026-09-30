@@ -1,6 +1,9 @@
-import { isEql } from '@opentf/std';
 import * as std from '@opentf/std';
 import inspect from './inspect.js';
+
+// The website stays on the published package until the next release. During
+// that window it exposes isEql; the next tarball exposes isEqual instead.
+const isEqual = std.isEqual ?? std.isEql;
 
 /**
  * Runs a transformed example and reports what each probe saw.
@@ -103,7 +106,7 @@ function verdict(value, source) {
   if (normalise(inspect(target)) !== normalise(source)) {
     return { status: 'unverified' };
   }
-  return { status: isEql(value, target) ? 'match' : 'differs' };
+  return { status: isEqual(value, target) ? 'match' : 'differs' };
 }
 
 /**
