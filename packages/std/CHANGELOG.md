@@ -10,7 +10,7 @@
 - Fixed the runtime-matrix workflow invoking its `runtime:*`-based driver and aggregator with Node instead of ES-Dev.
 - Fixed runtime-matrix input and output paths resolving from ES-Dev's working directory instead of the repository root.
 - Fixed the Playground mode tabs keeping the Playground active styling after switching panels.
-- Added syntax colors to Playground console strings, object keys, numbers, and literal values.
+- Added syntax colors to Playground console strings, object keys, numbers, and literal values; numbers use a brighter yellow for contrast.
 
 ## [0.20.0] - 2026-09-30
 
