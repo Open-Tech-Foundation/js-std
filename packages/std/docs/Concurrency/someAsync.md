@@ -12,7 +12,7 @@ skips them.
 
 - **arr** `T[]` — The source array.
 - **cb** `Function` — The async predicate to run for each element.
-- **concurrency** `number` _(default: `Infinity`)_ — The maximum number of concurrent executions.
+- **options** `{ concurrency?: number }` — The maximum number of concurrent executions. Defaults to `Infinity`.
 
 ## Returns
 
@@ -25,5 +25,5 @@ await someAsync([1, 2, 3], async (n) => n > 2) //=> true
 ```
 
 ```js
-await someAsync(urls, async (url) => (await fetch(url)).ok, 4) //=> true
+await someAsync(urls, async (url) => (await fetch(url)).ok, { concurrency: 4 }) //=> true
 ```

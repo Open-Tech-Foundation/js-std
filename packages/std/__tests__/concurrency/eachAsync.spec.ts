@@ -40,7 +40,7 @@ describe('Array > eachAsync', () => {
           if (n === 3) throw new Error('Fail');
           result.push(n);
         },
-        2,
+        { concurrency: 2 },
       ),
     ).rejects.toThrow('Fail');
     expect(result.length).toBeLessThan(arr.length);
@@ -49,10 +49,12 @@ describe('Array > eachAsync', () => {
   test('throws on invalid concurrency', async () => {
     const cb = async () => {};
 
-    await expect(eachAsync([1], cb, 0)).rejects.toThrow(
+    await expect(eachAsync([1], cb, { concurrency: 0 })).rejects.toThrow(
       'Concurrency must be a positive integer or Infinity.',
     );
-    await expect(eachAsync([1], cb, Number.NEGATIVE_INFINITY)).rejects.toThrow(
+    await expect(
+      eachAsync([1], cb, { concurrency: Number.NEGATIVE_INFINITY }),
+    ).rejects.toThrow(
       'Concurrency must be a positive integer or Infinity.',
     );
   });

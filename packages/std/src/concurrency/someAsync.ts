@@ -1,4 +1,8 @@
 import validateConcurrency from './validateConcurrency';
+import {
+  getConcurrency,
+  type ConcurrencyOptions,
+} from './concurrencyOptions';
 
 /**
  * Asynchronous version of `Array.prototype.some`.
@@ -11,20 +15,21 @@ import validateConcurrency from './validateConcurrency';
  *
  * @param {T[]} arr The source array.
  * @param {Function} cb The async predicate to run for each element.
- * @param {number} [concurrency=Infinity] The maximum number of concurrent executions.
+ * @param {ConcurrencyOptions} [options] The maximum number of concurrent executions.
  * @returns {Promise<boolean>} Whether any element satisfied the predicate.
  *
  * @example
  * await someAsync([1, 2, 3], async (n) => n > 2) //=> true
  *
  * @example
- * await someAsync(urls, async (url) => (await fetch(url)).ok, 4) //=> true
+ * await someAsync(urls, async (url) => (await fetch(url)).ok, { concurrency: 4 }) //=> true
  */
 export default async function someAsync<T>(
   arr: T[],
   cb: (value: T, index: number) => boolean | Promise<boolean>,
-  concurrency: number = Number.POSITIVE_INFINITY,
+  options: ConcurrencyOptions = {},
 ): Promise<boolean> {
+  const concurrency = getConcurrency(options);
   validateConcurrency(concurrency);
 
   let index = 0;

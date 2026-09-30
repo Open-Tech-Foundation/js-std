@@ -15,7 +15,9 @@ import { reduceAsync } from '../../src';
 
 describe('reduceAsync', () => {
   test('reduceAsync with initial value', async () => {
-    const res = await reduceAsync([1, 2, 3], async (acc, n) => acc + n, 0);
+    const res = await reduceAsync([1, 2, 3], async (acc, n) => acc + n, {
+      initialValue: 0,
+    });
     expect(res).toBe(6);
   });
 
@@ -30,6 +32,12 @@ describe('reduceAsync', () => {
     );
   });
 
+  test('requires an options object for the initial value', async () => {
+    await expect(
+      reduceAsync([1, 2], async (acc, n) => acc + n, 0 as never),
+    ).rejects.toThrow('Options must be an object.');
+  });
+
   test('reduceAsync skips sparse holes like Array.prototype.reduce', async () => {
     const sparse = [, 1, , 2] as number[];
     const seen: number[] = [];
@@ -39,7 +47,7 @@ describe('reduceAsync', () => {
         seen.push(i);
         return acc + n;
       },
-      0,
+      { initialValue: 0 },
     );
 
     expect(seen).toEqual([1, 3]);

@@ -13,7 +13,7 @@ export const metadata = {
 
 <Callout type="info">
   By default, it runs all iterations in **parallel**. You can limit the
-  concurrency by providing a third argument.
+  concurrency through an options object.
 </Callout>
 
 ## Syntax
@@ -23,7 +23,7 @@ import { filterAsync } from '@opentf/std';
 filterAsync<T>(
   arr: T[],
   cb: (value: T, index: number) => Promise<boolean>,
-  concurrency?: number
+  options?: { concurrency?: number }
 ): Promise<T[]>;
 ```
 
@@ -31,7 +31,7 @@ filterAsync<T>(
 
 - `arr`: The array to iterate over.
 - `cb`: An async callback function that returns a boolean.
-- `concurrency` (Optional): The maximum number of concurrent executions. Default: `Infinity`.
+- `options.concurrency` (Optional): The maximum number of concurrent executions. Default: `Infinity`.
 
 ## Returns
 
@@ -45,6 +45,10 @@ Sparse array holes are skipped, matching native `Array.prototype.filter()` behav
 const items = [1, 2, 3, 4];
 const result = await filterAsync(items, async (n) => {
   return n % 2 === 0;
+}); //=> [2, 4]
+
+const limited = await filterAsync(items, async (n) => n % 2 === 0, {
+  concurrency: 2,
 }); //=> [2, 4]
 ```
 

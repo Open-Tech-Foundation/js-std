@@ -13,7 +13,7 @@ export const metadata = {
 
 <Callout type="info">
   By default, it runs all iterations in **parallel**. You can limit the
-  concurrency by providing a third argument.
+  concurrency through an options object.
 </Callout>
 
 ## Syntax
@@ -23,7 +23,7 @@ import { eachAsync } from '@opentf/std';
 eachAsync<T>(
   arr: T[],
   cb: (value: T, index: number) => Promise<void>,
-  concurrency?: number
+  options?: { concurrency?: number }
 ): Promise<void>;
 ```
 
@@ -31,7 +31,7 @@ eachAsync<T>(
 
 - `arr`: The array to iterate over.
 - `cb`: An async callback function for each element.
-- `concurrency` (Optional): The maximum number of concurrent executions. Default: `Infinity`.
+- `options.concurrency` (Optional): The maximum number of concurrent executions. Default: `Infinity`.
 
 ## Returns
 
@@ -46,6 +46,10 @@ const items = [1, 2, 3];
 await eachAsync(items, async (n) => {
   console.log(n);
 });
+
+await eachAsync(items, async (n) => {
+  console.log(n);
+}, { concurrency: 2 });
 ```
 
 ## Related

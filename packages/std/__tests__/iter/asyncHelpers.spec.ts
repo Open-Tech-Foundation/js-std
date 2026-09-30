@@ -84,16 +84,20 @@ describe('IterAsync Helpers', () => {
     const sum = await reduceIterAsync(
       asyncGen([1, 2, 3]),
       (acc, x) => acc + x,
-      0,
+      { initialValue: 0 },
     );
     expect(sum).toBe(6);
 
     const asyncSum = await reduceIterAsync(
       asyncGen([1, 2, 3]),
       async (acc, x) => acc + x,
-      10,
+      { initialValue: 10 },
     );
     expect(asyncSum).toBe(16);
+
+    await expect(
+      reduceIterAsync(asyncGen([1, 2]), (acc, x) => acc + x, 0 as never),
+    ).rejects.toThrow('Options must be an object.');
   });
 
   test('eachIterAsync', async () => {
@@ -139,9 +143,11 @@ describe('IterAsync Helpers', () => {
   describe('Edge Cases', () => {
     test('empty iterators', async () => {
       expect(await toArrayIterAsync(asyncGen([]))).toEqual([]);
-      expect(await reduceIterAsync(asyncGen([]), (acc, x) => acc + x, 0)).toBe(
-        0,
-      );
+      expect(
+        await reduceIterAsync(asyncGen([]), (acc, x) => acc + x, {
+          initialValue: 0,
+        }),
+      ).toBe(0);
       expect(await someIterAsync(asyncGen([]), (x) => true)).toBe(false);
       expect(await everyIterAsync(asyncGen([]), (x) => false)).toBe(true);
       expect(await findIterAsync(asyncGen([]), (x) => true)).toBe(undefined);

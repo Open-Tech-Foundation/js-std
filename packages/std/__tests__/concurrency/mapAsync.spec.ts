@@ -31,7 +31,7 @@ describe('mapAsync', () => {
         running--;
         return n * 2;
       },
-      2,
+      { concurrency: 2 },
     );
     expect(res).toEqual([2, 4, 6, 8, 10]);
     expect(maxRunning).toBe(2);
@@ -62,7 +62,7 @@ describe('mapAsync', () => {
           await new Promise((resolve) => setTimeout(resolve, 20));
           return n;
         },
-        2,
+        { concurrency: 2 },
       );
     } catch (err) {
       expect((err as Error).message).toBe('failed');
@@ -78,17 +78,20 @@ describe('mapAsync', () => {
   test('throws on invalid concurrency', async () => {
     const cb = async (n: number) => n;
 
-    await expect(mapAsync([1], cb, 0)).rejects.toThrow(
+    await expect(mapAsync([1], cb, { concurrency: 0 })).rejects.toThrow(
       'Concurrency must be a positive integer or Infinity.',
     );
-    await expect(mapAsync([1], cb, -1)).rejects.toThrow(
+    await expect(mapAsync([1], cb, { concurrency: -1 })).rejects.toThrow(
       'Concurrency must be a positive integer or Infinity.',
     );
-    await expect(mapAsync([1], cb, 1.5)).rejects.toThrow(
+    await expect(mapAsync([1], cb, { concurrency: 1.5 })).rejects.toThrow(
       'Concurrency must be a positive integer or Infinity.',
     );
-    await expect(mapAsync([1], cb, Number.NaN)).rejects.toThrow(
+    await expect(mapAsync([1], cb, { concurrency: Number.NaN })).rejects.toThrow(
       'Concurrency must be a positive integer or Infinity.',
+    );
+    await expect(mapAsync([1], cb, 2 as never)).rejects.toThrow(
+      'Options must be an object.',
     );
   });
 

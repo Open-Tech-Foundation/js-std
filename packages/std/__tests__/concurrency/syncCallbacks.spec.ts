@@ -51,7 +51,9 @@ describe('Concurrency > synchronous callbacks', () => {
   });
 
   test('reduceAsync', async () => {
-    expect(await reduceAsync([1, 2, 3], (acc, n) => acc + n, 0)).toBe(6);
+    expect(
+      await reduceAsync([1, 2, 3], (acc, n) => acc + n, { initialValue: 0 }),
+    ).toBe(6);
   });
 
   test('someAsync', async () => {

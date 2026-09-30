@@ -10,6 +10,7 @@
 
 ### Changed
 
+- **Breaking.** Nine async utilities now take third-argument settings in named options objects: `filterAsync`, `mapAsync`, `eachAsync`, `someAsync`, `everyAsync`, `findAsync`, and `flatMapAsync` use `{ concurrency }`; `reduceAsync` and `reduceIterAsync` use `{ initialValue }`.
 - **Breaking.** Ten utilities now accept options objects for arguments from the third position onward: `dropWhile`/`takeWhile` use `{ fromEnd }`, `remove` uses `{ count }`, `replace` uses `{ items }`, `range` uses `{ step }`, `runningReduce`/`reduceIter` use `{ initialValue }`, `tryParseJSON` uses `{ reviver, temporal }`, `stringReplace` uses `{ replacement, all, case }`, and `sortBy` uses `{ criteria }`.
 - **Breaking.** Nine utilities now use options objects for arguments from the third position onward: `get`/`set`/`toSet` take `{ defaultValue }` or `{ value }`; `binarySearch` takes `{ compare }`; `take`/`drop` take `{ predicate, fromEnd }`; `quantile` takes `{ by }`; and `mapRange`/`clamp` name their paired ranges or bounds as `{ from, to }` / `{ min, max }`.
 - **Breaking.** `lerp` now takes `{ start, end, progress }` in one options object; `progress` is the formula's interpolation parameter `t` in `start + (end - start) * t`.

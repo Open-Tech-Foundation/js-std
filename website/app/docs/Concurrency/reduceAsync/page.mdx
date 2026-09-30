@@ -22,7 +22,7 @@ import { reduceAsync } from '@opentf/std';
 reduceAsync<T, R>(
   arr: T[],
   cb: (acc: R, value: T, index: number) => Promise<R>,
-  initialValue: R
+  options?: { initialValue?: R }
 ): Promise<R>;
 ```
 
@@ -30,7 +30,7 @@ reduceAsync<T, R>(
 
 - `arr`: The array to iterate over.
 - `cb`: An async callback function (accumulator, value, index).
-- `initialValue`: The initial value of the accumulator.
+- `options.initialValue`: The initial value of the accumulator.
 
 ## Returns
 
@@ -44,7 +44,7 @@ Sparse array holes are skipped, and when no initial value is provided the first 
 const items = [1, 2, 3];
 const sum = await reduceAsync(items, async (acc, n) => {
   return acc + n;
-}, 0); //=> 6
+}, { initialValue: 0 }); //=> 6
 ```
 
 ## Related

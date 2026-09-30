@@ -12,7 +12,7 @@ skips them, and an empty array is vacuously `true`.
 
 - **arr** `T[]` — The source array.
 - **cb** `Function` — The async predicate to run for each element.
-- **concurrency** `number` _(default: `Infinity`)_ — The maximum number of concurrent executions.
+- **options** `{ concurrency?: number }` — The maximum number of concurrent executions. Defaults to `Infinity`.
 
 ## Returns
 
@@ -25,5 +25,5 @@ await everyAsync([2, 4, 6], async (n) => n % 2 === 0) //=> true
 ```
 
 ```js
-await everyAsync(urls, async (url) => (await fetch(url)).ok, 4) //=> false
+await everyAsync(urls, async (url) => (await fetch(url)).ok, { concurrency: 4 }) //=> false
 ```

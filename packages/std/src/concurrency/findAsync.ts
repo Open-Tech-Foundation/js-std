@@ -1,4 +1,8 @@
 import validateConcurrency from './validateConcurrency';
+import {
+  getConcurrency,
+  type ConcurrencyOptions,
+} from './concurrencyOptions';
 
 /**
  * Asynchronous version of `Array.prototype.find`.
@@ -16,20 +20,21 @@ import validateConcurrency from './validateConcurrency';
  *
  * @param {T[]} arr The source array.
  * @param {Function} cb The async predicate to run for each element.
- * @param {number} [concurrency=Infinity] The maximum number of concurrent executions.
+ * @param {ConcurrencyOptions} [options] The maximum number of concurrent executions.
  * @returns {Promise<T|undefined>} The first matching element, or `undefined`.
  *
  * @example
  * await findAsync([1, 2, 3], async (n) => n > 1) //=> 2
  *
  * @example
- * await findAsync(urls, async (url) => (await fetch(url)).ok, 4) //=> 'https://…'
+ * await findAsync(urls, async (url) => (await fetch(url)).ok, { concurrency: 4 }) //=> 'https://…'
  */
 export default async function findAsync<T>(
   arr: T[],
   cb: (value: T, index: number) => boolean | Promise<boolean>,
-  concurrency: number = Number.POSITIVE_INFINITY,
+  options: ConcurrencyOptions = {},
 ): Promise<T | undefined> {
+  const concurrency = getConcurrency(options);
   validateConcurrency(concurrency);
 
   let index = 0;

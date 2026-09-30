@@ -56,7 +56,7 @@ describe('Concurrency > findAsync', () => {
         seen.push(n);
         return n === 2;
       },
-      1,
+      { concurrency: 1 },
     );
 
     expect(res).toBe(2);
@@ -93,7 +93,7 @@ describe('Concurrency > findAsync', () => {
         running--;
         return false;
       },
-      2,
+      { concurrency: 2 },
     );
 
     expect(peak).toBe(2);
@@ -120,7 +120,9 @@ describe('Concurrency > findAsync', () => {
   });
 
   test('throws on invalid concurrency', async () => {
-    await expect(findAsync([1], async () => true, 0)).rejects.toThrow(
+    await expect(
+      findAsync([1], async () => true, { concurrency: 0 }),
+    ).rejects.toThrow(
       'Concurrency must be a positive integer or Infinity.',
     );
   });

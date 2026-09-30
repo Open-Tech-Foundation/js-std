@@ -6,7 +6,7 @@ Asynchronous version of `Array.prototype.map`.
 
 - **arr** `T[]` — The source array.
 - **cb** `Function` — The async callback to run for each element.
-- **concurrency** `number` _(default: `Infinity`)_ — The maximum number of concurrent executions.
+- **options** `{ concurrency?: number }` — The maximum number of concurrent executions. Defaults to `Infinity`.
 
 ## Returns
 
@@ -16,4 +16,5 @@ Asynchronous version of `Array.prototype.map`.
 
 ```js
 await mapAsync([1, 2, 3], async (n) => n * 2) //=> [2, 4, 6]
+await mapAsync([1, 2, 3], async (n) => n * 2, { concurrency: 2 }) //=> [2, 4, 6]
 ```

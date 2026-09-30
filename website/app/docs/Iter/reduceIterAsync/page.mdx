@@ -13,14 +13,14 @@ export const metadata = {
 
 ```ts
 import { reduceIterAsync } from '@opentf/std';
-reduceIterAsync<T, U>(iter: AsyncIterable<T>, fn: (acc: U, val: T) => U | Promise<U>, initialValue: U): Promise<U>
+reduceIterAsync<T, U>(iter: AsyncIterable<T>, fn: (acc: U, val: T) => U | Promise<U>, options: { initialValue: U }): Promise<U>
 ```
 
 ## Parameters
 
 - `iter`: The async iterable to reduce.
 - `fn`: The reducer function.
-- `initialValue`: The initial value for the accumulator.
+- `options.initialValue`: The initial value for the accumulator.
 
 ## Returns
 
@@ -30,7 +30,7 @@ A promise that resolves to the final accumulator value.
 
 ```ts
 async function* gen() { yield 1; yield 2; yield 3; }
-await reduceIterAsync(gen(), (acc, x) => acc + x, 0) //=> 6
+await reduceIterAsync(gen(), (acc, x) => acc + x, { initialValue: 0 }) //=> 6
 ```
 
 ## Related

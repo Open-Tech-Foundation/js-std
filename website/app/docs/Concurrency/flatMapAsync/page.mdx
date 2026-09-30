@@ -13,7 +13,7 @@ export const metadata = {
 
 <Callout type="info">
   By default, it runs all iterations in **parallel**. You can limit the
-  concurrency by providing a third argument.
+  concurrency through an options object.
 </Callout>
 
 ## Syntax
@@ -23,7 +23,7 @@ import { flatMapAsync } from '@opentf/std';
 flatMapAsync<T, R>(
   arr: T[],
   cb: (value: T, index: number) => Promise<R | R[]>,
-  concurrency?: number
+  options?: { concurrency?: number }
 ): Promise<R[]>;
 ```
 
@@ -31,7 +31,7 @@ flatMapAsync<T, R>(
 
 - `arr`: The array to iterate over.
 - `cb`: An async callback function for each element.
-- `concurrency` (Optional): The maximum number of concurrent executions. Default: `Infinity`.
+- `options.concurrency` (Optional): The maximum number of concurrent executions. Default: `Infinity`.
 
 ## Returns
 
@@ -45,6 +45,10 @@ Sparse array holes are skipped, matching native `Array.prototype.flatMap()` beha
 const items = [1, 2, 3];
 const result = await flatMapAsync(items, async (n) => {
   return [n, n * 2];
+}); //=> [1, 2, 2, 4, 3, 6]
+
+const limited = await flatMapAsync(items, async (n) => [n, n * 2], {
+  concurrency: 2,
 }); //=> [1, 2, 2, 4, 3, 6]
 ```
 

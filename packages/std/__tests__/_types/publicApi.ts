@@ -33,6 +33,7 @@ import type {
   ColorSaturateOptions,
   ColorSourceFormat,
   ColorWCAGLevelOptions,
+  ConcurrencyOptions,
   DeepReadonly,
   EncodeBase32Options,
   EncodeBase64UrlOptions,
@@ -64,6 +65,8 @@ import type {
   PropertyPath,
   RGBA,
   RemoveAtOptions,
+  ReduceAsyncOptions,
+  ReduceIterAsyncOptions,
   ReplaceAtOptions,
   RetryRunOptions,
   Semver,
@@ -110,11 +113,14 @@ import {
   isSubsetOf,
   isSupersetOf,
   limitRun,
+  mapAsync,
   memoizeRun,
   move,
   paceRun,
   pad,
   pollRun,
+  reduceAsync,
+  reduceIterAsync,
   removeAt,
   replaceAt,
   retryRun,
@@ -214,6 +220,31 @@ wordWrap('some text', 10, wrapOptions);
 
 const eqlOptions: IsEqualOptions = { shallow: true };
 isEqual({ a: 1 }, { a: 1 }, eqlOptions);
+
+const concurrencyOptions: ConcurrencyOptions = { concurrency: 2 };
+const reduceAsyncOptions: ReduceAsyncOptions<number> = { initialValue: 0 };
+const reduceIterAsyncOptions: ReduceIterAsyncOptions<number> = {
+  initialValue: 0,
+};
+void [concurrencyOptions, reduceAsyncOptions, reduceIterAsyncOptions];
+accepts<Promise<number[]>>(
+  mapAsync([1, 2], async (value) => value * 2, concurrencyOptions),
+);
+accepts<Promise<number>>(
+  reduceAsync([1, 2], async (acc, value) => acc + value, reduceAsyncOptions),
+);
+
+async function* publicApiNumbers() {
+  yield 1;
+  yield 2;
+}
+accepts<Promise<number>>(
+  reduceIterAsync(
+    publicApiNumbers(),
+    (acc, value) => acc + value,
+    reduceIterAsyncOptions,
+  ),
+);
 
 // --- Timing ----------------------------------------------------------------
 

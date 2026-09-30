@@ -99,6 +99,7 @@ export type { SwapOptions } from './array/swap';
 
 // Concurrency
 export { default as filterAsync } from './concurrency/filterAsync';
+export type { ConcurrencyOptions } from './concurrency/concurrencyOptions';
 export { default as mapAsync } from './concurrency/mapAsync';
 export { default as eachAsync } from './concurrency/eachAsync';
 export { default as someAsync } from './concurrency/someAsync';
@@ -106,6 +107,7 @@ export { default as everyAsync } from './concurrency/everyAsync';
 export { default as findAsync } from './concurrency/findAsync';
 export { default as flatMapAsync } from './concurrency/flatMapAsync';
 export { default as reduceAsync } from './concurrency/reduceAsync';
+export type { ReduceAsyncOptions } from './concurrency/reduceAsync';
 export { default as withResolvers } from './concurrency/withResolvers';
 export type { PromiseResolvers } from './concurrency/withResolvers';
 export { default as abortable } from './concurrency/abortable';
@@ -428,6 +430,7 @@ export { default as mapIterAsync } from './iter/mapIterAsync';
 export { default as filterIterAsync } from './iter/filterIterAsync';
 export { default as flatMapIterAsync } from './iter/flatMapIterAsync';
 export { default as reduceIterAsync } from './iter/reduceIterAsync';
+export type { ReduceIterAsyncOptions } from './iter/reduceIterAsync';
 export { default as toArrayIterAsync } from './iter/toArrayIterAsync';
 export { default as eachIterAsync } from './iter/eachIterAsync';
 export { default as someIterAsync } from './iter/someIterAsync';

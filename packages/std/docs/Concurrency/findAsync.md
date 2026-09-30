@@ -17,7 +17,7 @@ still turn out to be the earlier match. Holes are visited and seen as
 
 - **arr** `T[]` — The source array.
 - **cb** `Function` — The async predicate to run for each element.
-- **concurrency** `number` _(default: `Infinity`)_ — The maximum number of concurrent executions.
+- **options** `{ concurrency?: number }` — The maximum number of concurrent executions. Defaults to `Infinity`.
 
 ## Returns
 
@@ -30,5 +30,5 @@ await findAsync([1, 2, 3], async (n) => n > 1) //=> 2
 ```
 
 ```js
-await findAsync(urls, async (url) => (await fetch(url)).ok, 4) //=> 'https://…'
+await findAsync(urls, async (url) => (await fetch(url)).ok, { concurrency: 4 }) //=> 'https://…'
 ```

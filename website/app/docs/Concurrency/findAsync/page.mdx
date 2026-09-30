@@ -13,7 +13,7 @@ export const metadata = {
 
 <Callout type="info">
   By default, it runs all iterations in **parallel**. You can limit the
-  concurrency by providing a third argument.
+  concurrency through an options object.
 </Callout>
 
 ## Syntax
@@ -23,7 +23,7 @@ import { findAsync } from '@opentf/std';
 findAsync<T>(
   arr: T[],
   cb: (value: T, index: number) => Promise<boolean>,
-  concurrency?: number
+  options?: { concurrency?: number }
 ): Promise<T | undefined>;
 ```
 
@@ -31,7 +31,7 @@ findAsync<T>(
 
 - `arr`: The array to iterate over.
 - `cb`: An async predicate that returns a boolean.
-- `concurrency` (Optional): The maximum number of concurrent executions. Default: `Infinity`.
+- `options.concurrency` (Optional): The maximum number of concurrent executions. Default: `Infinity`.
 
 ## Returns
 
@@ -64,7 +64,7 @@ later one answers sooner:
 const mirror = await findAsync(
   mirrors,
   async (url) => (await fetch(url)).ok,
-  4,
+  { concurrency: 4 },
 );
 ```
 

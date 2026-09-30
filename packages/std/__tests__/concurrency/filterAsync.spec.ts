@@ -29,8 +29,16 @@ describe('Array > filterAsync', () => {
   });
 
   test('throws on invalid concurrency', async () => {
-    await expect(filterAsync([1], async () => true, 0)).rejects.toThrow(
+    await expect(
+      filterAsync([1, 2, 3], async (n) => n > 1, { concurrency: 2 }),
+    ).resolves.toEqual([2, 3]);
+    await expect(
+      filterAsync([1], async () => true, { concurrency: 0 }),
+    ).rejects.toThrow(
       'Concurrency must be a positive integer or Infinity.',
+    );
+    await expect(filterAsync([1], async () => true, 1 as never)).rejects.toThrow(
+      'Options must be an object.',
     );
   });
 

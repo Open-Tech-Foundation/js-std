@@ -9,8 +9,10 @@ Sparse array holes are skipped, and when no initial value is provided the first
 present element becomes the accumulator, matching native
 `Array.prototype.reduce()` behavior.
 
+Pass the initial value in a third-argument options object as `{ initialValue }`.
+
 ## Example
 
 ```js
-await reduceAsync([1, 2, 3], async (acc, n) => acc + n, 0) //=> 6
+await reduceAsync([1, 2, 3], async (acc, n) => acc + n, { initialValue: 0 }) //=> 6
 ```
