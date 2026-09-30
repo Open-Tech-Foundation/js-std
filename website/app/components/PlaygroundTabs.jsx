@@ -1,6 +1,7 @@
 import { onCleanup, onMount } from '@opentf/web';
 import Playground from './Playground.jsx';
 import VisualTools from './VisualTools.jsx';
+import { updatePlaygroundTabSelection } from './playground-tabs-state.js';
 
 /** Switches between the code editor and the flow-control visualisers. */
 export default function PlaygroundTabs() {
@@ -12,14 +13,7 @@ export default function PlaygroundTabs() {
     const tabs = [...host.querySelectorAll('[role="tab"]')];
     const panels = [...host.querySelectorAll('[role="tabpanel"]')];
 
-    const select = (id) => {
-      for (const tab of tabs) {
-        const selected = tab.dataset.tab === id;
-        tab.setAttribute('aria-selected', String(selected));
-        tab.tabIndex = selected ? 0 : -1;
-      }
-      for (const panel of panels) panel.hidden = panel.dataset.panel !== id;
-    };
+    const select = (id) => updatePlaygroundTabSelection(tabs, panels, id);
 
     const onClick = (event) => {
       const tab = event.target.closest('[role="tab"]');
