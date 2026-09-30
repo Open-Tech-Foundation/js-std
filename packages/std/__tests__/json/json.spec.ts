@@ -124,31 +124,28 @@ describe('Json', () => {
     test('reviver', () => {
       const reviver = (_k: string, v: unknown) =>
         _k === 'a' && typeof v === 'number' ? (v as number) * 2 : v;
-      expect(tryParseJSON('{"a":1}', undefined, reviver)).toEqual({ a: 2 });
-      expect(tryParseJSON('bad', { a: 1 }, reviver)).toEqual({ a: 1 });
-      expect(tryParseJSON('{"a":1}', undefined, { reviver } as never)).toEqual({
-        a: 2,
-      });
+      expect(tryParseJSON('{"a":1}', undefined, { reviver })).toEqual({ a: 2 });
+      expect(tryParseJSON('bad', { a: 1 }, { reviver })).toEqual({ a: 1 });
     });
 
     test('temporal', () => {
       const dt = tryParseJSON<{ t: unknown }>(
         '{"t":"2024-01-01T00:00:00.000Z"}',
         undefined,
-        { temporal: true } as never,
+        { temporal: true },
       );
       expect(dt?.t).toBeInstanceOf(DateTime);
       expect((dt?.t as DateTime).toISOString()).toContain('2024-01-01');
 
       const dur = tryParseJSON<{ d: unknown }>('{"d":"P1DT2H"}', undefined, {
         temporal: true,
-      } as never);
+      });
       expect(dur?.d).toBeInstanceOf(Duration);
       expect((dur?.d as Duration).toString()).toBe('P1DT2H');
 
       const plain = tryParseJSON('{"a":1}', undefined, {
         temporal: true,
-      } as never);
+      });
       expect(plain).toEqual({ a: 1 });
 
       // default is temporal:true, stays DateTime
@@ -161,7 +158,7 @@ describe('Json', () => {
       const disabled = tryParseJSON<{ t: unknown }>(
         '{"t":"2024-01-01T00:00:00.000Z"}',
         undefined,
-        { temporal: false } as never,
+        { temporal: false },
       );
       expect(typeof disabled?.t).toBe('string');
 
@@ -169,7 +166,7 @@ describe('Json', () => {
       const withReviver = tryParseJSON<{ n: number }>('{"n":1}', undefined, {
         temporal: true,
         reviver: (k, v) => (k === 'n' && typeof v === 'number' ? v * 10 : v),
-      } as never);
+      });
       expect(withReviver).toEqual({ n: 10 });
     });
   });

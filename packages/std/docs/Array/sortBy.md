@@ -5,7 +5,7 @@ Sorts an array of objects by one or more criteria.
 ## Parameters
 
 - **arr** `T[]` — The source array.
-- **tuples** `OrderTuples` — The criteria to sort by.
+- **options** `{ criteria?: OrderTuples }` — The criteria to sort by.
 
 ## Returns
 
@@ -15,5 +15,5 @@ Sorts an array of objects by one or more criteria.
 
 ```js
 const arr = [{a: 1}, {a: 3}, {a: 2}]
-sortBy(arr, ['a', 'asc']); //=> [{a: 1}, {a: 2}, {a: 3}]
+sortBy(arr, { criteria: [['a', 'asc']] }); //=> [{a: 1}, {a: 2}, {a: 3}]
 ```

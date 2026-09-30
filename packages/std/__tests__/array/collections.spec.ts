@@ -150,21 +150,25 @@ describe('slidingWindows', () => {
 
 describe('runningReduce', () => {
   test('keeps every intermediate result', () => {
-    expect(runningReduce([1, 2, 3, 4], (acc, cur) => acc + cur, 0)).toEqual([
-      1, 3, 6, 10,
-    ]);
+    expect(
+      runningReduce([1, 2, 3, 4], (acc, cur) => acc + cur, {
+        initialValue: 0,
+      }),
+    ).toEqual([1, 3, 6, 10]);
   });
 
   test('returns an array the same length as the input', () => {
     const arr = [1, 2, 3, 4, 5];
-    expect(runningReduce(arr, (acc, cur) => acc + cur, 0).length).toBe(
-      arr.length,
-    );
+    expect(
+      runningReduce(arr, (acc, cur) => acc + cur, { initialValue: 0 }).length,
+    ).toBe(arr.length);
   });
 
   test('ends on the same value reduce would return', () => {
     const arr = [3, 1, 4, 1, 5];
-    const running = runningReduce(arr, (acc, cur) => acc + cur, 0);
+    const running = runningReduce(arr, (acc, cur) => acc + cur, {
+      initialValue: 0,
+    });
 
     expect(running[running.length - 1]).toBe(
       arr.reduce((acc, cur) => acc + cur, 0),
@@ -172,9 +176,9 @@ describe('runningReduce', () => {
   });
 
   test('honours the initial value', () => {
-    expect(runningReduce([1, 2], (acc, cur) => acc + cur, 100)).toEqual([
-      101, 103,
-    ]);
+    expect(
+      runningReduce([1, 2], (acc, cur) => acc + cur, { initialValue: 100 }),
+    ).toEqual([101, 103]);
   });
 
   test('passes the index and array to the reducer', () => {
@@ -186,7 +190,7 @@ describe('runningReduce', () => {
         seen.push([index, arr.length]);
         return acc;
       },
-      0,
+      { initialValue: 0 },
     );
 
     expect(seen).toEqual([
@@ -200,24 +204,26 @@ describe('runningReduce', () => {
       runningReduce(
         ['a', 'b', 'c'],
         (acc, cur) => [...acc, cur],
-        [] as string[],
+        { initialValue: [] as string[] },
       ),
     ).toEqual([['a'], ['a', 'b'], ['a', 'b', 'c']]);
   });
 
   test('handles empty and default input', () => {
-    expect(runningReduce([], (acc: number) => acc, 0)).toEqual([]);
-    expect(runningReduce(undefined as never, (acc: number) => acc, 0)).toEqual(
-      [],
-    );
+    expect(runningReduce([], (acc: number) => acc, { initialValue: 0 })).toEqual([]);
+    expect(
+      runningReduce(undefined as never, (acc: number) => acc, {
+        initialValue: 0,
+      }),
+    ).toEqual([]);
   });
 
   test('tracks a running balance', () => {
     const transactions = [-20, 50, -5];
 
-    expect(runningReduce(transactions, (bal, t) => bal + t, 100)).toEqual([
-      80, 130, 125,
-    ]);
+    expect(
+      runningReduce(transactions, (bal, t) => bal + t, { initialValue: 100 }),
+    ).toEqual([80, 130, 125]);
   });
 });
 

@@ -13,7 +13,7 @@ ISO 8601 date/time strings are revived to `DateTime` and durations to
 
 - **text** — The JSON string to parse. Non-strings immediately return `fallback`.
 - **fallback** — Value to return on failure. Defaults to `undefined`.
-- **reviver** — Optional `JSON.parse` reviver, or options with `reviver`/`temporal`.
+- **options** `{ reviver?, temporal? }` — Optional `JSON.parse` reviver and temporal parsing setting.
 
 ## Returns
 
@@ -25,6 +25,6 @@ The parsed value or the fallback.
 tryParseJSON('{"a":1}') //=> {a:1}
 tryParseJSON('bad', {a:1}) //=> {a:1}
 tryParseJSON(123, []) //=> []
-tryParseJSON('{"a":1}', undefined, (k,v) => k==='a'? (v as number)*2 : v) //=> {a:2}
+tryParseJSON('{"a":1}', undefined, { reviver: (k,v) => k==='a'? (v as number)*2 : v }) //=> {a:2}
 tryParseJSON('{"t":"2024-01-01T00:00:00.000Z"}') //=> {t: DateTime} — temporal by default
 ```

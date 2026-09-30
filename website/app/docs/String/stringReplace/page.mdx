@@ -16,8 +16,8 @@ import { stringReplace } from '@opentf/std';
 stringReplace(
   str: string,
   pattern: string | RegExp,
-  replacement: string | ((...args: any[]) => string),
-  options?: {
+  options: {
+    replacement: string | ((...args: any[]) => string),
     all?: boolean;
     case?: boolean;
   }
@@ -28,7 +28,7 @@ stringReplace(
 
 - `str`: The source string.
 - `pattern`: The string or regular expression to match.
-- `replacement`: The replacement string or a function to be called for each match.
+- `options.replacement`: The replacement string or a function to be called for each match.
 - `options`:
     - `all`: If `true`, replaces all occurrences (like `g` flag). Default: `false`.
     - `case`: If `true`, performs case-insensitive matching (like `i` flag). Default: `false`.
@@ -42,20 +42,20 @@ String patterns are treated literally. Regular expression patterns preserve thei
 ## Examples
 
 ```ts
-stringReplace('abc', 'a', 'x') //=> 'xbc'
+stringReplace('abc', 'a', { replacement: 'x' }) //=> 'xbc'
 
-stringReplace('abbc', 'b', '', { all: true }) //=> 'ac'
+stringReplace('abbc', 'b', { replacement: '', all: true }) //=> 'ac'
 
-stringReplace('aBbBc', 'B', '', { all: true, case: true }) //=> 'ac'
+stringReplace('aBbBc', 'B', { replacement: '', all: true, case: true }) //=> 'ac'
 
 const paragraph = "I think Ruth's dog is cuter than your dog!";
-stringReplace(paragraph, /dog/, 'ferret') //=> "I think Ruth's ferret is cuter than your dog!"
+stringReplace(paragraph, /dog/, { replacement: 'ferret' }) //=> "I think Ruth's ferret is cuter than your dog!"
 
 // Using a function as replacement
 function fahrenheitToCelsius(match, p1) {
   return `${((p1 - 32) * 5) / 9}C`;
 }
-stringReplace('212F', /(-?\d+(?:\.\d*)?)F\b/, fahrenheitToCelsius) //=> '100C'
+stringReplace('212F', /(-?\d+(?:\.\d*)?)F\b/, { replacement: fahrenheitToCelsius }) //=> '100C'
 ```
 
 ## Related

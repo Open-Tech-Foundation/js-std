@@ -11,23 +11,23 @@
  *
  * @param {T[]} arr The source array.
  * @param {Function} cb The reducer, invoked per element.
- * @param {A} initial The value to start from.
+ * @param {RunningReduceOptions} options The initial accumulator value.
  * @returns {A[]} The accumulated value after each element.
  *
  * @example
- * runningReduce([1, 2, 3, 4], (acc, cur) => acc + cur, 0) //=> [1, 3, 6, 10]
+ * runningReduce([1, 2, 3, 4], (acc, cur) => acc + cur, { initialValue: 0 }) //=> [1, 3, 6, 10]
  *
  * @example
  * // A running balance.
- * runningReduce(transactions, (bal, t) => bal + t.amount, openingBalance)
+ * runningReduce(transactions, (bal, t) => bal + t.amount, { initialValue: openingBalance })
  */
 export default function runningReduce<T, A>(
   arr: T[] = [],
   cb: (accumulator: A, current: T, index: number, arr: T[]) => A,
-  initial: A,
+  { initialValue }: RunningReduceOptions<A>,
 ): A[] {
   const result: A[] = new Array(arr.length);
-  let accumulator = initial;
+  let accumulator = initialValue;
 
   for (let i = 0; i < arr.length; i++) {
     accumulator = cb(accumulator, arr[i], i, arr);
@@ -35,4 +35,9 @@ export default function runningReduce<T, A>(
   }
 
   return result;
+}
+/** Options for {@link runningReduce}. */
+export interface RunningReduceOptions<A> {
+  /** The starting accumulator value. */
+  initialValue: A;
 }

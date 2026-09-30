@@ -19,35 +19,28 @@ export interface TryParseJSONOptions {
  *
  * @param text The JSON string to parse. Non-strings immediately return `fallback`.
  * @param fallback Value to return on failure. Defaults to `undefined`.
- * @param reviver Optional `JSON.parse` reviver, or options with `reviver`/`temporal`.
+ * @param options Optional `JSON.parse` reviver and temporal parsing options.
  * @returns The parsed value or the fallback.
  *
  * @example
  * tryParseJSON('{"a":1}') //=> {a:1}
  * tryParseJSON('bad', {a:1}) //=> {a:1}
  * tryParseJSON(123, []) //=> []
- * tryParseJSON('{"a":1}', undefined, (k,v) => k==='a'? (v as number)*2 : v) //=> {a:2}
+ * tryParseJSON('{"a":1}', undefined, { reviver: (k,v) => k==='a'? (v as number)*2 : v }) //=> {a:2}
  * tryParseJSON('{"t":"2024-01-01T00:00:00.000Z"}') //=> {t: DateTime} — temporal by default
  */
 export default function tryParseJSON<T>(
   text: unknown,
   fallback?: T,
-  reviverOrOptions?:
-    | ((key: string, value: unknown) => unknown)
-    | TryParseJSONOptions,
+  options: TryParseJSONOptions = {},
 ): T | undefined {
   if (typeof text !== 'string') return fallback as T | undefined;
 
   let reviver: ((key: string, value: unknown) => unknown) | undefined;
   let temporal = true;
 
-  if (typeof reviverOrOptions === 'function') {
-    reviver = reviverOrOptions;
-  } else if (reviverOrOptions != null && typeof reviverOrOptions === 'object') {
-    reviver = (reviverOrOptions as TryParseJSONOptions).reviver;
-    if ((reviverOrOptions as TryParseJSONOptions).temporal === false)
-      temporal = false;
-  }
+  reviver = options.reviver;
+  if (options.temporal === false) temporal = false;
 
   const finalReviver = temporal ? createTemporalReviver(reviver) : reviver;
 

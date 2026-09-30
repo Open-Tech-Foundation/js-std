@@ -14,7 +14,7 @@ rather than having to guess a seed.
 
 - **arr** `T[]` — The source array.
 - **cb** `Function` — The reducer, invoked per element.
-- **initial** `A` — The value to start from.
+- **options** `{ initialValue: A }` — The value to start from.
 
 ## Returns
 
@@ -23,10 +23,10 @@ rather than having to guess a seed.
 ## Examples
 
 ```js
-runningReduce([1, 2, 3, 4], (acc, cur) => acc + cur, 0) //=> [1, 3, 6, 10]
+runningReduce([1, 2, 3, 4], (acc, cur) => acc + cur, { initialValue: 0 }) //=> [1, 3, 6, 10]
 ```
 
 ```js
 // A running balance.
-runningReduce(transactions, (bal, t) => bal + t.amount, openingBalance)
+runningReduce(transactions, (bal, t) => bal + t.amount, { initialValue: openingBalance })
 ```

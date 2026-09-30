@@ -21,14 +21,14 @@ export const metadata = {
 import { sortBy } from '@opentf/std';
 sortBy<T>(
   arr: T[],
-  ...tuples: [key: keyof T | ((obj: T) => unknown), order: "asc" | "desc"][]
+  options?: { criteria?: [key: keyof T | ((obj: T) => unknown), order: "asc" | "desc"][] }
 ): T[]
 ```
 
 ## Parameters
 
 - `arr`: The source array of objects.
-- `...tuples`: A list of tuples where each tuple contains a key (property name or function) and the sort order (`'asc'` or `'desc'`).
+- `options.criteria`: A list of tuples where each tuple contains a key (property name or function) and the sort order (`'asc'` or `'desc'`).
 
 ## Returns
 
@@ -45,9 +45,9 @@ const fruits = [
   { name: 'orange', amount: 5 },
 ];
 
-sortBy(fruits, ['name', 'asc']);
+sortBy(fruits, { criteria: [['name', 'asc']] });
 // OR
-sortBy(fruits, [(o) => o.name, 'asc']);
+sortBy(fruits, { criteria: [[(o) => o.name, 'asc']] });
 //=> [
 //   { name: 'apple', amount: 4 },
 //   { name: 'banana', amount: 2 },
@@ -56,9 +56,9 @@ sortBy(fruits, [(o) => o.name, 'asc']);
 //   { name: 'pineapple', amount: 2 },
 // ]
 
-sortBy(fruits, ['amount', 'desc'], ['name', 'asc']);
+sortBy(fruits, { criteria: [['amount', 'desc'], ['name', 'asc']] });
 // OR
-sortBy(fruits, [o => o.amount, 'desc'], [o => o.name, 'asc']);
+sortBy(fruits, { criteria: [[o => o.amount, 'desc'], [o => o.name, 'asc']] });
 //=> [
 //  { name: 'orange', amount: 5 },
 //  { name: 'apple', amount: 4 },

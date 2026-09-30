@@ -1,7 +1,10 @@
-import shallowMerge from '../object/shallowMerge';
 import escapeRegExp from './escapeRegExp';
 
-export type StringReplaceOptions = { all?: boolean; case?: boolean };
+export type StringReplaceOptions = {
+  replacement: string | StringReplacer;
+  all?: boolean;
+  case?: boolean;
+};
 
 /**
  * Builds the replacement for one match.
@@ -18,33 +21,28 @@ export type StringReplacer = (substring: string, ...args: any[]) => string;
  *
  * @example
  *
- * stringReplace('abc', 'a', 'x') //=> 'xbc'
+ * stringReplace('abc', 'a', { replacement: 'x' }) //=> 'xbc'
  *
- * stringReplace('abc abc', 'a', 'x', { all: true }) //=> 'xbc xbc'
+ * stringReplace('abc abc', 'a', { replacement: 'x', all: true }) //=> 'xbc xbc'
  */
 export default function stringReplace(
   str: string,
   pattern: string | RegExp,
-  replacement: string | StringReplacer,
-  options?: StringReplaceOptions,
+  options: StringReplaceOptions,
 ): string {
   if (pattern == null) {
     return str;
   }
 
-  const defaultOptions: StringReplaceOptions = { all: false, case: false };
-  const opts = shallowMerge(
-    defaultOptions,
-    options as Record<string, unknown>,
-  ) as StringReplaceOptions;
+  const { replacement, all = false, case: caseSensitive = false } = options;
   const source =
     typeof pattern === 'string' ? escapeRegExp(pattern) : pattern.source;
   const flags = new Set(typeof pattern === 'string' ? '' : pattern.flags);
 
-  if (opts.all) {
+  if (all) {
     flags.add('g');
   }
-  if (opts.case) {
+  if (caseSensitive) {
     flags.add('i');
   }
 

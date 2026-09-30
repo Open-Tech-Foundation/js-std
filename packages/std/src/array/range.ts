@@ -1,5 +1,4 @@
-type RangeOptions = {
-  start?: number;
+export type RangeOptions = {
   step?: number;
   inclusiveEnd?: boolean;
   inclusive?: boolean;
@@ -19,18 +18,18 @@ export const MAX_RANGE_LENGTH = 10_000_000;
  *
  * @param {number} start The start of the range.
  * @param {number} end The end of the range.
- * @param {number|Object} options The step or options object.
+ * @param {RangeOptions} [options] Range options, including the step.
  * @returns {number[]} A new array of numbers.
  *
  * @example
  * range(4) //=> [0, 1, 2, 3]
  * range(-4) //=> [0, -1, -2, -3]
  * range(1, 5) //=> [1, 2, 3, 4]
- * range(0, 20, 5) //=> [0, 5, 10, 15]
+ * range(0, 20, { step: 5 }) //=> [0, 5, 10, 15]
  * range(1, 4, {step: 1, inclusiveEnd: true}) //=> [1, 2, 3, 4]
  */
 export default function range(
-  ...args: [number?, number?, (RangeOptions | number)?]
+  ...args: [number?, number?, RangeOptions?]
 ): number[] {
   const [startOrEnd, end, options] = args;
   if (
@@ -38,10 +37,7 @@ export default function range(
     (args.length === 1 && startOrEnd === 0) ||
     typeof startOrEnd !== 'number' ||
     (end !== undefined && typeof end !== 'number') ||
-    (options !== undefined &&
-      options !== null &&
-      typeof options !== 'number' &&
-      typeof options !== 'object')
+    (options !== undefined && typeof options !== 'object')
   ) {
     throw new Error('Invalid arguments');
   }
@@ -49,25 +45,13 @@ export default function range(
   const stop = end === undefined ? (startOrEnd as number) : (end as number);
   let step: number;
 
-  if (
-    options &&
-    typeof options === 'object' &&
-    options.step !== undefined &&
-    typeof options.step !== 'number'
-  ) {
+  if (options?.step !== undefined && typeof options.step !== 'number') {
     throw new Error('Step must be a number');
   }
 
   const inclusive =
-    options && typeof options === 'object'
-      ? options.inclusive ?? options.inclusiveEnd ?? false
-      : false;
-
-  if (typeof options === 'number') {
-    step = options;
-  } else {
-    step = options?.step ?? (start < stop ? 1 : -1);
-  }
+    options?.inclusive ?? options?.inclusiveEnd ?? false;
+  step = options?.step ?? (start < stop ? 1 : -1);
 
   if (Number.isNaN(start) || Number.isNaN(stop) || Number.isNaN(step)) {
     throw new Error('NaN is not allowed');

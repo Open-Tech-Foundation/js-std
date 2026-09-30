@@ -23,7 +23,7 @@ import { runningReduce } from '@opentf/std';
 runningReduce<T, A>(
   arr: T[],
   cb: (accumulator: A, current: T, index: number, arr: T[]) => A,
-  initial: A,
+  options: { initialValue: A },
 ): A[];
 ```
 
@@ -33,7 +33,7 @@ runningReduce<T, A>(
 | ------- | ---------- | --------------------------------- |
 | arr     | `T[]`      | The source array.                 |
 | cb      | `Function` | The reducer, invoked per element. |
-| initial | `A`        | The value to start from.          |
+| options | `{ initialValue: A }` | The starting accumulator value. |
 
 ## Returns
 
@@ -44,19 +44,19 @@ The initial value is **required**, so an empty array returns `[]` rather than ha
 ## Examples
 
 ```ts
-runningReduce([1, 2, 3, 4], (acc, cur) => acc + cur, 0); //=> [1, 3, 6, 10]
+runningReduce([1, 2, 3, 4], (acc, cur) => acc + cur, { initialValue: 0 }); //=> [1, 3, 6, 10]
 ```
 
 A running balance:
 
 ```ts
-runningReduce([-20, 50, -5], (bal, t) => bal + t, 100); //=> [80, 130, 125]
+runningReduce([-20, 50, -5], (bal, t) => bal + t, { initialValue: 100 }); //=> [80, 130, 125]
 ```
 
 Accumulating into a different type:
 
 ```ts
-runningReduce(['a', 'b', 'c'], (acc, cur) => [...acc, cur], []);
+runningReduce(['a', 'b', 'c'], (acc, cur) => [...acc, cur], { initialValue: [] });
 //=> [['a'], ['a', 'b'], ['a', 'b', 'c']]
 ```
 

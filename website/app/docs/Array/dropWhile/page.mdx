@@ -13,14 +13,14 @@ export const metadata = {
 
 ```ts
 import { dropWhile } from '@opentf/std';
-dropWhile<T>(arr: T[] = [], predicate: (val: T, index: number, arr: T[]) => boolean, right?: boolean): T[]
+dropWhile<T>(arr: T[] = [], predicate: (val: T, index: number, arr: T[]) => boolean, options?: { fromEnd?: boolean }): T[]
 ```
 
 ## Parameters
 
 - `arr`: The source array.
 - `predicate`: The function invoked per element. Receives `(value, index, array)`.
-- `right`: If `true`, drops from the end while preserving the original callback indexes and array.
+- `options.fromEnd`: If `true`, drops from the end while preserving the original callback indexes and array.
 
 ## Returns
 
@@ -37,7 +37,7 @@ dropWhile([1, 2, 3], (n) => n < 10) //=> []
 
 dropWhile([false, false, true, false], (v) => !v) //=> [true, false]
 
-dropWhile([1, 2, 3, 4, 5], (n) => n > 3, true) //=> [1, 2, 3]
+dropWhile([1, 2, 3, 4, 5], (n) => n > 3, { fromEnd: true }) //=> [1, 2, 3]
 ```
 
 ## Related

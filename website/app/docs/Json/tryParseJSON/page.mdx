@@ -20,12 +20,12 @@ Safely parses a JSON string without throwing. Returns a fallback instead of `Syn
 ```ts
 import { tryParseJSON } from '@opentf/std';
 
-tryParseJSON<T>(text: unknown, fallback?: T, reviverOrOptions?: ((key: string, value: unknown) => unknown) | { reviver?: (key: string, value: unknown) => unknown, temporal?: boolean }): T | undefined
+tryParseJSON<T>(text: unknown, fallback?: T, options?: { reviver?: (key: string, value: unknown) => unknown, temporal?: boolean }): T | undefined
 ```
 
 - `text`: JSON string to parse. Non-strings immediately return `fallback` — no `TypeError`.
 - `fallback`: Returned on failure. Defaults to `undefined`.
-- `reviverOrOptions`: Either a `JSON.parse` reviver function, or an options object with `reviver` and `temporal`.
+- `options`: An object with an optional `reviver` and `temporal` setting.
 - `options.temporal`: ISO 8601 strings revive to `DateTime`/`Duration` by default (like `bigint` in stringify). Pass `temporal:false` to keep strings. Native `Temporal` also revives where runtime has it.
 
 ## Returns
@@ -81,7 +81,7 @@ const safeUser = tryParseJSON<User>('bad', { id: "0", name: "Guest" });
 const reviver = (k: string, v: unknown) =>
   k === "createdAt" && typeof v === "string" ? new Date(v as string) : v;
 
-tryParseJSON('{"createdAt":"2024-01-01T00:00:00.000Z"}', undefined, reviver)
+tryParseJSON('{"createdAt":"2024-01-01T00:00:00.000Z"}', undefined, { reviver })
 //=> { createdAt: Date }
 
 // Options form — reviver + temporal

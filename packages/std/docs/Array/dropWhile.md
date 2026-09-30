@@ -6,7 +6,7 @@ Creates a slice of array with elements dropped from the beginning or end while t
 
 - **arr** `T[]` — The source array.
 - **predicate** `Function` — The function invoked per element.
-- **right** `boolean` — If true, drops from the end.
+- **options** `{ fromEnd?: boolean }` — Set `fromEnd` to drop from the end.
 
 ## Returns
 
@@ -16,5 +16,5 @@ Creates a slice of array with elements dropped from the beginning or end while t
 
 ```js
 dropWhile([1, 2, 3, 4, 5], (n) => n < 3) //=> [3, 4, 5]
-dropWhile([1, 2, 3, 4, 5], (n) => n > 3, true) //=> [1, 2, 3]
+dropWhile([1, 2, 3, 4, 5], (n) => n > 3, { fromEnd: true }) //=> [1, 2, 3]
 ```

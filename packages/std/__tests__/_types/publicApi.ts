@@ -184,7 +184,7 @@ const criteria: OrderTuples<Row> = [
   ['id', 'asc'],
   [byName, 'desc'],
 ];
-sortBy<Row>([{ id: 1, name: 'a' }], ...criteria);
+sortBy<Row>([{ id: 1, name: 'a' }], { criteria });
 
 // The depth decides the element type, as with `Array.prototype.flat`, so a
 // partial flatten still reports what it left nested. This returned `any[]`
@@ -202,10 +202,10 @@ accepts<unknown[]>(flatten([1, [2, [3]]], Number.POSITIVE_INFINITY));
 // --- String ----------------------------------------------------------------
 
 const replaceOptions: StringReplaceOptions = { all: true, case: false };
-stringReplace('a-b', '-', '+', replaceOptions);
+stringReplace('a-b', '-', { replacement: '+', ...replaceOptions });
 
 const replacer: StringReplacer = (substring) => substring.toUpperCase();
-stringReplace('a-b', /[a-z]/, replacer, { all: true });
+stringReplace('a-b', /[a-z]/, { replacement: replacer, all: true });
 
 const wrapOptions: WordWrapOptions = { hard: true };
 wordWrap('some text', 10, wrapOptions);
@@ -494,7 +494,10 @@ accepts<JsonObject>({ a: 1 });
 accepts<JsonArray>([1, 'a']);
 const jsonOpts: TryStringifyJSONOptions = { space: 2, temporal: true };
 accepts<string | undefined>(tryStringifyJSON({ a: 1 }, undefined, jsonOpts));
-const jsonParseOpts: TryParseJSONOptions = { temporal: true };
+const jsonParseOpts: TryParseJSONOptions = {
+  temporal: true,
+  reviver: (_key, value) => value,
+};
 accepts<boolean>(isJSONValue({ a: 1 }));
 accepts<Record<string, unknown> | undefined>(
   tryParseJSON('{"a":1}', undefined, jsonParseOpts),

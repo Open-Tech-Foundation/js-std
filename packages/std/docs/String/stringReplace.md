@@ -12,7 +12,7 @@ top.
 
 ```js
 
-stringReplace('abc', 'a', 'x') //=> 'xbc'
+stringReplace('abc', 'a', { replacement: 'x' }) //=> 'xbc'
 
-stringReplace('abc abc', 'a', 'x', { all: true }) //=> 'xbc xbc'
+stringReplace('abc abc', 'a', { replacement: 'x', all: true }) //=> 'xbc xbc'
 ```

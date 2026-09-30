@@ -22,7 +22,7 @@ describe('Array > sortBy', () => {
       { name: 'mango', amount: 1 },
       { name: 'orange', amount: 5 },
     ];
-    const sorted = sortBy(fruits, ['name', 'asc']);
+    const sorted = sortBy(fruits, { criteria: [['name', 'asc']] });
     expect(sorted).toEqual([
       { name: 'apple', amount: 4 },
       { name: 'banana', amount: 2 },
@@ -41,7 +41,7 @@ describe('Array > sortBy', () => {
       { _id: 4, name: "Stan's Pizzaria", city: 'Manhattan' },
       { _id: 5, name: "Jane's Deli", city: 'Brooklyn' },
     ];
-    let sorted = sortBy(hotels, [(obj) => obj.name, 'asc']);
+    let sorted = sortBy(hotels, { criteria: [[(obj) => obj.name, 'asc']] });
     expect(sorted).toEqual([
       { _id: 1, name: 'Central Park Cafe', city: 'Manhattan' },
       { _id: 3, name: 'Empire State Pub', city: 'Brooklyn' },
@@ -50,11 +50,12 @@ describe('Array > sortBy', () => {
       { _id: 4, name: "Stan's Pizzaria", city: 'Manhattan' },
     ]);
 
-    sorted = sortBy(
-      hotels,
-      [(obj) => obj.city, 'asc'],
-      [(obj) => obj.name, 'asc'],
-    );
+    sorted = sortBy(hotels, {
+      criteria: [
+        [(obj) => obj.city, 'asc'],
+        [(obj) => obj.name, 'asc'],
+      ],
+    });
     expect(sorted).toEqual([
       { _id: 3, name: 'Empire State Pub', city: 'Brooklyn' },
       { _id: 5, name: "Jane's Deli", city: 'Brooklyn' },
@@ -63,11 +64,12 @@ describe('Array > sortBy', () => {
       { _id: 2, name: 'Rock A Feller Bar and Grill', city: 'Queens' },
     ]);
 
-    sorted = sortBy(
-      hotels,
-      [(obj) => obj.city, 'asc'],
-      [(obj) => obj.name, 'desc'],
-    );
+    sorted = sortBy(hotels, {
+      criteria: [
+        [(obj) => obj.city, 'asc'],
+        [(obj) => obj.name, 'desc'],
+      ],
+    });
     expect(sorted).toEqual([
       { _id: 5, name: "Jane's Deli", city: 'Brooklyn' },
       { _id: 3, name: 'Empire State Pub', city: 'Brooklyn' },
@@ -85,7 +87,7 @@ describe('Array > sortBy', () => {
       { name: 'Sam', grade: 14 },
     ];
 
-    let sorted = sortBy(students, ['grade', 'asc'], ['name', 'asc']);
+    let sorted = sortBy(students, { criteria: [['grade', 'asc'], ['name', 'asc']] });
     expect(sorted).toEqual([
       { name: 'Eagle', grade: 13 },
       { name: 'Sam', grade: 14 },
@@ -94,7 +96,7 @@ describe('Array > sortBy', () => {
     ]);
     expect(sorted).not.toBe(students);
 
-    sorted = sortBy(students, ['grade', 'asc'], ['name', 'desc']);
+    sorted = sortBy(students, { criteria: [['grade', 'asc'], ['name', 'desc']] });
     expect(sorted).toEqual([
       { name: 'Eagle', grade: 13 },
       { name: 'Sam', grade: 14 },
@@ -105,12 +107,12 @@ describe('Array > sortBy', () => {
 
   test('sorting by number and symbol property keys', () => {
     const numericItems = [{ 0: 2 }, { 0: 1 }];
-    expect(sortBy(numericItems, [0, 'asc'])).toEqual([{ 0: 1 }, { 0: 2 }]);
+    expect(sortBy(numericItems, { criteria: [[0, 'asc']] })).toEqual([{ 0: 1 }, { 0: 2 }]);
 
     const rank = Symbol('rank');
     const items = [{ [rank]: 2 }, { [rank]: 1 }];
 
-    expect(sortBy(items, [rank, 'asc'])).toEqual([
+    expect(sortBy(items, { criteria: [[rank, 'asc']] })).toEqual([
       { [rank]: 1 },
       { [rank]: 2 },
     ]);

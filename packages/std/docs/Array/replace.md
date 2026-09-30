@@ -6,7 +6,7 @@ Replaces items at the given index or all elements matching the predicate.
 
 - **arr** `T[]` — The source array.
 - **indexOrFn** `number|Function` — The index or predicate function.
-- **items** `T[]` — The items to replace with.
+- **options** `{ items?: T[] }` — The items to replace with.
 
 ## Returns
 
@@ -15,6 +15,6 @@ Replaces items at the given index or all elements matching the predicate.
 ## Example
 
 ```js
-replace([1, 2, 3], 1, 5); //=> [1, 5, 3]
-replace([1, 2, 3, 4, 5], (x) => x % 2 === 0, 0); //=> [1, 0, 3, 0, 5]
+replace([1, 2, 3], 1, { items: [5] }); //=> [1, 5, 3]
+replace([1, 2, 3, 4, 5], (x) => x % 2 === 0, { items: [0] }); //=> [1, 0, 3, 0, 5]
 ```

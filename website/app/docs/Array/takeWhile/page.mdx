@@ -13,14 +13,14 @@ export const metadata = {
 
 ```ts
 import { takeWhile } from '@opentf/std';
-takeWhile<T>(arr: T[] = [], predicate: (val: T, index: number, arr: T[]) => boolean, right?: boolean): T[]
+takeWhile<T>(arr: T[] = [], predicate: (val: T, index: number, arr: T[]) => boolean, options?: { fromEnd?: boolean }): T[]
 ```
 
 ## Parameters
 
 - `arr`: The source array.
 - `predicate`: The function invoked per element. Receives `(value, index, array)`.
-- `right`: If `true`, takes from the end while preserving the original callback indexes and array.
+- `options.fromEnd`: If `true`, takes from the end while preserving the original callback indexes and array.
 
 ## Returns
 
@@ -37,7 +37,7 @@ takeWhile([1, 2, 3], (n) => n < 10) //=> [1, 2, 3]
 
 takeWhile([true, true, false, true], Boolean) //=> [true, true]
 
-takeWhile([1, 2, 3, 4, 5], (n) => n > 3, true) //=> [4, 5]
+takeWhile([1, 2, 3, 4, 5], (n) => n > 3, { fromEnd: true }) //=> [4, 5]
 ```
 
 ## Related

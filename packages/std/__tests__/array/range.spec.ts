@@ -39,7 +39,7 @@ describe('Array > range', () => {
 
   test('empty', () => {
     expect(range(0, 0)).toEqual([]);
-    expect(range(0, -5, 1)).toEqual([]);
+    expect(range(0, -5, { step: 1 })).toEqual([]);
   });
 
   test('positive integers', () => {
@@ -47,7 +47,6 @@ describe('Array > range', () => {
     expect(range(1, 2)).toEqual([1]);
     expect(range(1, 2, { step: 1 })).toEqual([1]);
     expect(range(10, 50, { step: 10 })).toEqual([10, 20, 30, 40]);
-    expect(range(10, 50, 10)).toEqual([10, 20, 30, 40]);
     expect(range(3, 9, { step: 3 })).toEqual([3, 6]);
   });
 
@@ -88,7 +87,7 @@ describe('Array > range', () => {
     expect(() => range(Number.NaN, Number.NaN)).toThrowError();
 
     expect(() => range(0, 0, { step: Number.NaN })).toThrowError();
-    expect(() => range(0, 5, Number.NaN)).toThrowError();
+    expect(() => range(0, 5, { step: Number.NaN })).toThrowError();
   });
 
   test('Step infer', () => {
@@ -97,19 +96,14 @@ describe('Array > range', () => {
   });
 
   test('Error: Zero as step', () => {
-    expect(() => range(0, 10, 0)).toThrowError();
     expect(() => range(0, 10, { step: 0 })).toThrowError();
-    expect(() => range(0n, 10n, 0n)).toThrowError();
     expect(() => range(0n, 10n, { step: 0n })).toThrowError();
   });
 
   test('Error: Infinity as start / step', () => {
-    expect(() => range(Number.POSITIVE_INFINITY, 10, 0)).toThrowError();
-    expect(() => range(Number.NEGATIVE_INFINITY, 10, 0)).toThrowError();
-    expect(() => range(0, 10, Number.POSITIVE_INFINITY)).toThrowError();
-    expect(() =>
-      range(0, 10, { step: Number.POSITIVE_INFINITY }),
-    ).toThrowError();
+    expect(() => range(Number.POSITIVE_INFINITY, 10, { step: 0 })).toThrowError();
+    expect(() => range(Number.NEGATIVE_INFINITY, 10, { step: 0 })).toThrowError();
+    expect(() => range(0, 10, { step: Number.POSITIVE_INFINITY })).toThrowError();
   });
 
   test('Inclusive on same start-end', () => {
@@ -137,8 +131,12 @@ describe('Array > range bounds', () => {
     expect(range(4)).toEqual([0, 1, 2, 3]);
     expect(range(-4)).toEqual([0, -1, -2, -3]);
     expect(range(1, 5)).toEqual([1, 2, 3, 4]);
-    expect(range(0, 20, 5)).toEqual([0, 5, 10, 15]);
+    expect(range(0, 20, { step: 5 })).toEqual([0, 5, 10, 15]);
     expect(range(1, 4, { inclusiveEnd: true })).toEqual([1, 2, 3, 4]);
     expect(range(0, 100_000)).toHaveLength(100_000);
+  });
+
+  test('rejects a positional step', () => {
+    expect(() => range(0, 20, 5 as never)).toThrowError('Invalid arguments');
   });
 });

@@ -6,7 +6,7 @@ Accumulates values from an iterator using a reducer function.
 
 - **iter** `Iterable<T>` — The iterable to reduce.
 - **fn** `(acc: U, val: T) => U` — The reducer function.
-- **initialValue** `U` — The initial value for the accumulator.
+- **options** `{ initialValue: U }` — The initial value for the accumulator.
 
 ## Returns
 
@@ -15,5 +15,5 @@ Accumulates values from an iterator using a reducer function.
 ## Example
 
 ```js
-reduceIter([1, 2, 3], (acc, x) => acc + x, 0) //=> 6
+reduceIter([1, 2, 3], (acc, x) => acc + x, { initialValue: 0 }) //=> 6
 ```

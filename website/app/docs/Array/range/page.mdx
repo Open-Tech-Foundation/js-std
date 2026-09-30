@@ -22,23 +22,21 @@ import { range } from '@opentf/std';
 range(
   startOrEnd: number,
   end?: number,
-  options?: number | { step: number; inclusive: boolean }
+  options?: { step?: number; inclusive?: boolean; inclusiveEnd?: boolean }
 ): number[]
 ```
 
 <Callout type="info">
 - If only one argument is provided, it is treated as `end` and `start` defaults to `0`.
 - The `step` value can be auto-inferred based on the `start` and `end` values.
-- The third argument can be either a numeric `step` value or an `options` object.
+- The third argument is an options object that can contain `step` and inclusive-end settings.
 </Callout>
 
 ## Parameters
 
 - `startOrEnd`: The starting value (if `end` is provided) or the end value (if `end` is omitted).
 - `end`: The end value of the sequence.
-- `options`: 
-    - As a `number`: The step value.
-    - As an `object`: `{ step?: number; inclusive?: boolean }`.
+- `options`: `{ step?: number; inclusive?: boolean; inclusiveEnd?: boolean }`.
 
 ## Returns
 

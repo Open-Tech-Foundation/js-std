@@ -20,8 +20,8 @@ describe('Array > dropWhile', () => {
   });
 
   test('drops while from right', () => {
-    expect(dropWhile([1, 2, 3, 4, 5], (n) => n > 3, true)).toEqual([1, 2, 3]);
-    expect(dropWhile([1, 2, 3], (n) => n < 3, true)).toEqual([1, 2, 3]);
+    expect(dropWhile([1, 2, 3, 4, 5], (n) => n > 3, { fromEnd: true })).toEqual([1, 2, 3]);
+    expect(dropWhile([1, 2, 3], (n) => n < 3, { fromEnd: true })).toEqual([1, 2, 3]);
   });
 
   test('uses index and array params', () => {
@@ -30,8 +30,8 @@ describe('Array > dropWhile', () => {
 
   test('preserves original index and array params from right', () => {
     expect(
-      dropWhile([10, 20, 30, 40], (_, i, arr) => i < arr.length - 1, true),
+      dropWhile([10, 20, 30, 40], (_, i, arr) => i < arr.length - 1, { fromEnd: true }),
     ).toEqual([10, 20, 30, 40]);
-    expect(dropWhile([1, 2, 3, 4], (_, i) => i >= 2, true)).toEqual([1, 2]);
+    expect(dropWhile([1, 2, 3, 4], (_, i) => i >= 2, { fromEnd: true })).toEqual([1, 2]);
   });
 });

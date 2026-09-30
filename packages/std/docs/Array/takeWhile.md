@@ -6,7 +6,7 @@ Creates a slice of array with elements taken from the beginning or end while the
 
 - **arr** `T[]` — The source array.
 - **predicate** `Function` — The function invoked per element.
-- **right** `boolean` — If true, takes from the end.
+- **options** `{ fromEnd?: boolean }` — Set `fromEnd` to take from the end.
 
 ## Returns
 
@@ -16,5 +16,5 @@ Creates a slice of array with elements taken from the beginning or end while the
 
 ```js
 takeWhile([1, 2, 3, 4, 5], (n) => n < 4) //=> [1, 2, 3]
-takeWhile([1, 2, 3, 4, 5], (n) => n > 3, true) //=> [4, 5]
+takeWhile([1, 2, 3, 4, 5], (n) => n > 3, { fromEnd: true }) //=> [4, 5]
 ```

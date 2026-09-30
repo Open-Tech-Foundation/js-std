@@ -63,7 +63,7 @@ levenshtein('a😀', 'a') //=> 1
 // "Did you mean…?"
 const commands = ['install', 'uninstall', 'update', 'list'];
 
-sortBy(commands, [(cmd) => levenshtein(cmd, 'instal'), 'asc'])[0] //=> 'install'
+sortBy(commands, { criteria: [[(cmd) => levenshtein(cmd, 'instal'), 'asc']] })[0] //=> 'install'
 ```
 
 ## Related

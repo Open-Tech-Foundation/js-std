@@ -61,8 +61,8 @@ describe('Iter Sync Helpers', () => {
   });
 
   test('reduceIter', () => {
-    expect(reduceIter(syncGen([1, 2, 3]), (acc, x) => acc + x, 0)).toBe(6);
-    expect(reduceIter(syncGen([1, 2, 3]), (acc, x) => acc + x, 10)).toBe(16);
+    expect(reduceIter(syncGen([1, 2, 3]), (acc, x) => acc + x, { initialValue: 0 })).toBe(6);
+    expect(reduceIter(syncGen([1, 2, 3]), (acc, x) => acc + x, { initialValue: 10 })).toBe(16);
   });
 
   test('eachIter', () => {
@@ -148,7 +148,7 @@ describe('Iter Sync Helpers', () => {
 
   test('empty iterators', () => {
     expect(toArrayIter(syncGen([]))).toEqual([]);
-    expect(reduceIter(syncGen([]), (acc, x) => acc + x, 0)).toBe(0);
+    expect(reduceIter(syncGen([]), (acc, x) => acc + x, { initialValue: 0 })).toBe(0);
     expect(someIter(syncGen([]), (x) => true)).toBe(false);
     expect(everyIter(syncGen([]), (x) => false)).toBe(true);
     expect(findIter(syncGen([]), (x) => true)).toBe(undefined);
