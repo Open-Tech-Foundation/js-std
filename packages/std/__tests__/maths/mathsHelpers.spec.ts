@@ -63,21 +63,21 @@ describe('Maths > stddev', () => {
 
 describe('Maths > lerp', () => {
   test('interpolates between two values', () => {
-    expect(lerp(0, 10, 0.5)).toBe(5);
-    expect(lerp(100, 200, 0.25)).toBe(125);
+    expect(lerp({ start: 0, end: 10, progress: 0.5 })).toBe(5);
+    expect(lerp({ start: 100, end: 200, progress: 0.25 })).toBe(125);
   });
 
-  test('returns start when t is 0', () => {
-    expect(lerp(5, 15, 0)).toBe(5);
+  test('returns start when progress is 0', () => {
+    expect(lerp({ start: 5, end: 15, progress: 0 })).toBe(5);
   });
 
-  test('returns end when t is 1', () => {
-    expect(lerp(5, 15, 1)).toBe(15);
+  test('returns end when progress is 1', () => {
+    expect(lerp({ start: 5, end: 15, progress: 1 })).toBe(15);
   });
 
-  test('extrapolates when t is outside 0-1', () => {
-    expect(lerp(0, 10, 1.5)).toBe(15);
-    expect(lerp(0, 10, -0.5)).toBe(-5);
+  test('extrapolates when progress is outside 0-1', () => {
+    expect(lerp({ start: 0, end: 10, progress: 1.5 })).toBe(15);
+    expect(lerp({ start: 0, end: 10, progress: -0.5 })).toBe(-5);
   });
 });
 

@@ -13,16 +13,16 @@ export const metadata = {
 
 ```ts
 import { lerp } from '@opentf/std';
-lerp(start: number, end: number, t: number): number;
+lerp(options: { start: number; end: number; progress: number }): number;
 ```
 
 ## Parameters
 
-| Name  | Type     | Description                     |
-| ----- | -------- | ------------------------------- |
-| start | `number` | The starting value.             |
-| end   | `number` | The ending value.               |
-| t     | `number` | The interpolation factor (0-1). |
+| Name               | Type     | Description |
+| ------------------ | -------- | ----------- |
+| `options.start`    | `number` | The starting value. |
+| `options.end`      | `number` | The ending value. |
+| `options.progress` | `number` | The interpolation parameter `t` in `start + (end - start) * t`. `0` returns `start`, `1` returns `end`, values between them interpolate, and values outside 0-1 extrapolate. |
 
 ## Returns
 
@@ -31,8 +31,8 @@ The interpolated value.
 ## Examples
 
 ```ts
-lerp(0, 10, 0.5) //=> 5
-lerp(100, 200, 0.25) //=> 125
+lerp({ start: 0, end: 10, progress: 0.5 }) //=> 5
+lerp({ start: 100, end: 200, progress: 0.25 }) //=> 125
 ```
 
 ## Try it

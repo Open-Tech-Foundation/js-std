@@ -135,6 +135,7 @@ export { default as variance } from './maths/variance';
 export { default as stddev } from './maths/stddev';
 export { default as quantile } from './maths/quantile';
 export { default as lerp } from './maths/lerp';
+export type { LerpOptions } from './maths/lerp';
 export { default as mapRange } from './maths/mapRange';
 export { default as gcd } from './maths/gcd';
 export { default as lcm } from './maths/lcm';

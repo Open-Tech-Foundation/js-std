@@ -1,16 +1,28 @@
+/** Options for {@link lerp}. */
+export interface LerpOptions {
+  /** The starting value. */
+  start: number;
+  /** The ending value. */
+  end: number;
+  /** The interpolation parameter `t` in `start + (end - start) * t`. */
+  progress: number;
+}
+
 /**
  * Linearly interpolates between two values.
  *
- * @param start - The starting value.
- * @param end - The ending value.
- * @param t - The interpolation factor (0 to 1).
+ * `progress` is the interpolation parameter `t` in the formula
+ * `start + (end - start) * t`. A value from 0 to 1 moves from `start` to
+ * `end`; values outside that range extrapolate beyond the endpoints.
+ *
+ * @param options - The starting value, ending value, and interpolation progress.
  * @returns The interpolated value.
  *
  * @example
  *
- * lerp(0, 10, 0.5) //=> 5
- * lerp(100, 200, 0.25) //=> 125
+ * lerp({ start: 0, end: 10, progress: 0.5 }) //=> 5
+ * lerp({ start: 100, end: 200, progress: 0.25 }) //=> 125
  */
-export default function lerp(start: number, end: number, t: number): number {
-  return start + (end - start) * t;
+export default function lerp({ start, end, progress }: LerpOptions): number {
+  return start + (end - start) * progress;
 }
