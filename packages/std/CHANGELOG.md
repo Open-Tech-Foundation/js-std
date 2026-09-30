@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [0.20.0] - 2026-09-30
+
 ### Added
 
 - Added `isUtf8`, a runtime-agnostic validator for complete UTF-8 byte sequences. It accepts `Uint8Array` and `ArrayBuffer` inputs without decoding them to a string, throws a `TypeError` on other types, and treats detached buffers as empty.
