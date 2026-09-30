@@ -6,7 +6,7 @@ Truncates string if it's longer than the given maximum string length.
 
 - **str** `string` — The string to truncate.
 - **length** `number` _(default: `30`)_ — The maximum string length.
-- **omission** `string` _(default: `'...'`)_ — The string to indicate truncation. It is itself truncated when it does not fit within the given length.
+- **options** `TruncateOptions` _(optional)_ — The marker used to indicate truncation.
 
 ## Returns
 
@@ -16,6 +16,7 @@ Truncates string if it's longer than the given maximum string length.
 
 ```js
 truncate('hi-package', 8) //=> 'hi-pa...'
+truncate('hi-package', 5, { omission: '---' }) //=> 'hi---'
 
 truncate('hi-package', 2) //=> '..'
 ```

@@ -16,7 +16,7 @@ Returns a boolean indicating if all elements of the given set are in this set.
 </Callout>
 
 <Callout>
-  The subset relationship can determined by passing boolean value to the `proper` param. 
+  Set `options.proper` to `true` to require a strict superset.
 </Callout>
 
 ### Venn Diagram
@@ -40,11 +40,7 @@ Returns a boolean indicating if all elements of the given set are in this set.
 
 ```ts
 import { isSupersetOf } from '@opentf/std';
-isSupersetOf(
-  a: unknown[] | Set<unknown>,
-  b: unknown[] | Set<unknown>,
-  proper = false
-): boolean
+isSupersetOf(a: unknown[] | Set<unknown>, b: unknown[] | Set<unknown>, options?: { proper?: boolean }): boolean
 ```
 
 ## Examples
@@ -84,11 +80,11 @@ isSupersetOf(primes, odds) //=> false
 
 const set3 = new Set([1, 2, 3, 4, 5]);
 
-isSupersetOf(set1, set2, true) //=> false
+isSupersetOf(set1, set2, { proper: true }) //=> false
 
-isSupersetOf(set3, set1, false) //=> true
+isSupersetOf(set3, set1, { proper: false }) //=> true
 
-isSupersetOf(set3, set2, true) //=> true
+isSupersetOf(set3, set2, { proper: true }) //=> true
 ```
 
 ## Try it

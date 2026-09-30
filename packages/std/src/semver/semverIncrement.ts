@@ -11,6 +11,11 @@ export type SemverRelease =
   | 'prepatch'
   | 'prerelease';
 
+export interface SemverIncrementOptions {
+  /** The pre-release identifier, such as `'beta'`. */
+  identifier?: string;
+}
+
 const RELEASES = new Set<string>([
   'major',
   'minor',
@@ -64,7 +69,7 @@ function bumpPrerelease(
  *
  * @param {string} version The version to increment.
  * @param {SemverRelease} release The kind of increment to apply.
- * @param {string} [identifier] The pre-release identifier, such as `'beta'`.
+ * @param {SemverIncrementOptions} [options] The pre-release identifier.
  * @returns {string} The incremented version string.
  * @throws {TypeError} If the version is invalid or the release is unknown.
  *
@@ -73,14 +78,15 @@ function bumpPrerelease(
  * semverIncrement('1.0.0-rc.1', 'major') //=> '1.0.0'
  *
  * @example
- * semverIncrement('1.2.3', 'preminor', 'beta') //=> '1.3.0-beta.0'
+ * semverIncrement('1.2.3', 'preminor', { identifier: 'beta' }) //=> '1.3.0-beta.0'
  * semverIncrement('1.3.0-beta.0', 'prerelease') //=> '1.3.0-beta.1'
  */
 export default function semverIncrement(
   version: string,
   release: SemverRelease,
-  identifier?: string,
+  options?: SemverIncrementOptions,
 ): string {
+  const identifier = options?.identifier;
   if (!RELEASES.has(release)) {
     throw new TypeError(`Invalid SemVer release: ${String(release)}`);
   }

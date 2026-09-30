@@ -1,25 +1,31 @@
 import validateStringCount from './validateStringCount';
 
+export interface TruncateOptions {
+  /** The marker appended when truncation occurs. Defaults to `'...'`. */
+  omission?: string;
+}
+
 /**
  * Truncates string if it's longer than the given maximum string length.
  *
  * @param {string} str The string to truncate.
  * @param {number} [length=30] The maximum string length.
- * @param {string} [omission='...'] The string to indicate truncation. It is
- * itself truncated when it does not fit within the given length.
+ * @param {TruncateOptions} [options] The marker used to indicate truncation.
  * @returns {string} The truncated string.
  *
  * @example
  * truncate('hi-package', 8) //=> 'hi-pa...'
+ * truncate('hi-package', 5, { omission: '---' }) //=> 'hi---'
  *
  * truncate('hi-package', 2) //=> '..'
  */
 export default function truncate(
   str: string,
   length = 30,
-  omission = '...',
+  options?: TruncateOptions,
 ): string {
   validateStringCount(length, 'Length');
+  const omission = options?.omission ?? '...';
 
   if (str.length <= length) {
     return str;

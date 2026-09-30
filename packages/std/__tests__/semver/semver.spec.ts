@@ -317,9 +317,15 @@ describe('semverIncrement', () => {
   });
 
   test('starts the pre-releases with an identifier', () => {
-    expect(semverIncrement('1.2.3', 'premajor', 'beta')).toBe('2.0.0-beta.0');
-    expect(semverIncrement('1.2.3', 'preminor', 'beta')).toBe('1.3.0-beta.0');
-    expect(semverIncrement('1.2.3', 'prepatch', 'beta')).toBe('1.2.4-beta.0');
+    expect(semverIncrement('1.2.3', 'premajor', { identifier: 'beta' })).toBe(
+      '2.0.0-beta.0',
+    );
+    expect(semverIncrement('1.2.3', 'preminor', { identifier: 'beta' })).toBe(
+      '1.3.0-beta.0',
+    );
+    expect(semverIncrement('1.2.3', 'prepatch', { identifier: 'beta' })).toBe(
+      '1.2.4-beta.0',
+    );
   });
 
   test('bumps the trailing number of an existing pre-release', () => {
@@ -333,15 +339,15 @@ describe('semverIncrement', () => {
   });
 
   test('restarts the series when the identifier changes', () => {
-    expect(semverIncrement('1.3.0-alpha.5', 'prerelease', 'beta')).toBe(
-      '1.3.0-beta.0',
-    );
-    expect(semverIncrement('1.3.0-beta.5', 'prerelease', 'beta')).toBe(
-      '1.3.0-beta.6',
-    );
-    expect(semverIncrement('1.3.0-beta', 'prerelease', 'beta')).toBe(
-      '1.3.0-beta.0',
-    );
+    expect(
+      semverIncrement('1.3.0-alpha.5', 'prerelease', { identifier: 'beta' }),
+    ).toBe('1.3.0-beta.0');
+    expect(
+      semverIncrement('1.3.0-beta.5', 'prerelease', { identifier: 'beta' }),
+    ).toBe('1.3.0-beta.6');
+    expect(
+      semverIncrement('1.3.0-beta', 'prerelease', { identifier: 'beta' }),
+    ).toBe('1.3.0-beta.0');
   });
 
   test('drops build metadata', () => {

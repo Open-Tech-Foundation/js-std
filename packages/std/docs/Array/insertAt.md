@@ -6,7 +6,7 @@ Inserts items at the given index into the given array.
 
 - **arr** `T[]` — The source array.
 - **index** `number` — The index to insert items at.
-- **items** `T[]` — The items to insert.
+- **options** `InsertAtOptions<T>` _(optional)_ — The items to insert.
 
 ## Returns
 
@@ -15,6 +15,6 @@ Inserts items at the given index into the given array.
 ## Example
 
 ```js
-insertAt([1, 2, 3], 1, 5); //=> [1, 5, 2, 3]
-insertAt([1, 2, 3], 0, 5, 6); //=> [5, 6, 1, 2, 3]
+insertAt([1, 2, 3], 1, { items: [5] }); //=> [1, 5, 2, 3]
+insertAt([1, 2, 3], 0, { items: [5, 6] }); //=> [5, 6, 1, 2, 3]
 ```

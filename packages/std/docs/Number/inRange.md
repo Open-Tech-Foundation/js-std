@@ -5,8 +5,7 @@ Checks if a number is within the specified range (inclusive).
 ## Parameters
 
 - **n** — The number to check.
-- **start** — The start of the range.
-- **end** — The end of the range.
+- **options** — The inclusive start and end of the range.
 
 ## Returns
 
@@ -15,6 +14,6 @@ True if n is between start and end.
 ## Example
 
 ```js
-inRange(3, 0, 5) //=> true
-inRange(-1, 0, 5) //=> false
+inRange(3, { start: 0, end: 5 }) //=> true
+inRange(-1, { start: 0, end: 5 }) //=> false
 ```

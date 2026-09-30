@@ -13,7 +13,7 @@ export const metadata = {
 
 ```ts
 import { inRange } from '@opentf/std';
-inRange(n: number, start: number, end: number): boolean;
+inRange(n: number, options: { start: number; end: number }): boolean;
 ```
 
 ## Parameters
@@ -21,8 +21,7 @@ inRange(n: number, start: number, end: number): boolean;
 | Name  | Type     | Description              |
 | ----- | -------- | ------------------------ |
 | n     | `number` | The number to check.     |
-| start | `number` | The start of the range.  |
-| end   | `number` | The end of the range.    |
+| options | `{ start: number; end: number }` | The inclusive start and end of the range. |
 
 ## Returns
 
@@ -31,8 +30,8 @@ True if n is between start and end.
 ## Examples
 
 ```ts
-inRange(3, 0, 5) //=> true
-inRange(-1, 0, 5) //=> false
+inRange(3, { start: 0, end: 5 }) //=> true
+inRange(-1, { start: 0, end: 5 }) //=> false
 ```
 
 ## Try it

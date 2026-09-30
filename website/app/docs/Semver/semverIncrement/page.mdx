@@ -21,11 +21,7 @@ export const metadata = {
 
 ```ts
 import { semverIncrement } from '@opentf/std';
-semverIncrement(
-  version: string,
-  release: SemverRelease,
-  identifier?: string,
-): string;
+semverIncrement(version: string, release: SemverRelease, options?: { identifier?: string }): string;
 
 type SemverRelease =
   | 'major' | 'minor' | 'patch'
@@ -38,7 +34,7 @@ type SemverRelease =
 | ---------- | --------------- | ------------------------------------------ |
 | version    | `string`        | The version to increment.                  |
 | release    | `SemverRelease` | The kind of increment to apply.            |
-| identifier | `string`        | The pre-release identifier, e.g. `'beta'`. |
+| options | `{ identifier?: string }` | The pre-release identifier, e.g. `'beta'`. |
 
 ## Returns
 
@@ -65,12 +61,12 @@ semverIncrement('1.2.3-rc.1', 'major') //=> '2.0.0'
 Running a pre-release series:
 
 ```ts
-semverIncrement('1.2.3', 'preminor', 'beta')     //=> '1.3.0-beta.0'
+semverIncrement('1.2.3', 'preminor', { identifier: 'beta' })     //=> '1.3.0-beta.0'
 semverIncrement('1.3.0-beta.0', 'prerelease')    //=> '1.3.0-beta.1'
 semverIncrement('1.3.0-beta.9', 'prerelease')    //=> '1.3.0-beta.10'
 
 // A different identifier restarts the series.
-semverIncrement('1.3.0-alpha.5', 'prerelease', 'beta') //=> '1.3.0-beta.0'
+semverIncrement('1.3.0-alpha.5', 'prerelease', { identifier: 'beta' }) //=> '1.3.0-beta.0'
 ```
 
 ## Related

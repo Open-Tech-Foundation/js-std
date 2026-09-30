@@ -6,12 +6,14 @@
  * const a = [1, 2, 3, 4]
  * const b = [2, 4]
  * isSupersetOf(a, b) //=> true
+ * isSupersetOf(a, a, { proper: true }) //=> false
  */
 export default function isSupersetOf(
   a: unknown[] | Set<unknown>,
   b: unknown[] | Set<unknown>,
-  proper = false,
+  options?: IsSupersetOfOptions,
 ): boolean {
+  const proper = options?.proper ?? false;
   const setA = new Set(a);
   const setB = new Set(b);
 
@@ -32,4 +34,8 @@ export default function isSupersetOf(
   }
 
   return true;
+}
+export interface IsSupersetOfOptions {
+  /** Require `a` to be a strict superset of `b`. Defaults to `false`. */
+  proper?: boolean;
 }

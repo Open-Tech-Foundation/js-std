@@ -6,7 +6,7 @@ Replaces items at the given index in the given array.
 
 - **arr** `T[]` — The source array.
 - **index** `number` — The index to replace items at.
-- **items** `T[]` — The items to replace with.
+- **options** `ReplaceAtOptions<T>` _(optional)_ — The items to replace with.
 
 ## Returns
 
@@ -15,6 +15,6 @@ Replaces items at the given index in the given array.
 ## Example
 
 ```js
-replaceAt([1, 2, 3], 1, 5); //=> [1, 5, 3]
-replaceAt([1, 2, 3], 1, 5, 6); //=> [1, 5, 6, 3]
+replaceAt([1, 2, 3], 1, { items: [5] }); //=> [1, 5, 3]
+replaceAt([1, 2, 3], 1, { items: [5, 6] }); //=> [1, 5, 6, 3]
 ```

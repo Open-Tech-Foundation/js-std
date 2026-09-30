@@ -12,8 +12,7 @@ Indices count UTF-16 code units, as `slice` and `indexOf` do, so a position take
 
 - **str** `string` — The source string.
 - **start** `number` _(default: `0`)_ — The index to start changing the string at.
-- **deleteCount** `number` _(optional)_ — The number of characters to remove.
-- **insert** `string` _(default: `''`)_ — The string to insert at `start`.
+- **options** `StringSpliceOptions` _(optional)_ — The number of characters to remove and the string to insert. Omit `deleteCount` to remove to the end.
 
 ## Returns
 
@@ -23,17 +22,17 @@ Indices count UTF-16 code units, as `slice` and `indexOf` do, so a position take
 
 ```js
 // Replace a range.
-stringSplice('2026-07-30', 5, 2, '08') //=> '2026-08-30'
+stringSplice('2026-07-30', 5, { deleteCount: 2, insert: '08' }) //=> '2026-08-30'
 
 // Insert, by removing nothing.
-stringSplice('SELECT * FROM users', 19, 0, ' LIMIT 10') //=> 'SELECT * FROM users LIMIT 10'
+stringSplice('SELECT * FROM users', 19, { deleteCount: 0, insert: ' LIMIT 10' }) //=> 'SELECT * FROM users LIMIT 10'
 
 // Delete, by inserting nothing.
 stringSplice('2026-07-30T09:15:00Z', -1) //=> '2026-07-30T09:15:00'
 
 // Mask, where the replacement need not match the removed length.
-stringSplice('4111111111111111', 4, 8, '••••') //=> '4111••••1111'
+stringSplice('4111111111111111', 4, { deleteCount: 8, insert: '••••' }) //=> '4111••••1111'
 
 // A negative start counts back from the end.
-stringSplice('report.txt', -3, 3, 'csv') //=> 'report.csv'
+stringSplice('report.txt', -3, { deleteCount: 3, insert: 'csv' }) //=> 'report.csv'
 ```

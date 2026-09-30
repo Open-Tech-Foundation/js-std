@@ -1,5 +1,6 @@
 // String
 export { default as stringSplice } from './string/stringSplice';
+export type { StringSpliceOptions } from './string/stringSplice';
 export { default as capitalize } from './string/capitalize';
 export { default as camelCase } from './string/camelCase';
 export { default as pascalCase } from './string/pascalCase';
@@ -19,9 +20,11 @@ export { default as stripDiacritics } from './string/stripDiacritics';
 export { default as stringReverse } from './string/stringReverse';
 export { default as stringWidth } from './string/stringWidth';
 export { default as truncate } from './string/truncate';
+export type { TruncateOptions } from './string/truncate';
 export { default as trim } from './string/trim';
 export { default as words } from './string/words';
 export { default as pad } from './string/pad';
+export type { PadOptions } from './string/pad';
 export { default as repeat } from './string/repeat';
 export { default as wordWrap } from './string/wordWrap';
 export type { WordWrapOptions } from './string/wordWrap';
@@ -36,9 +39,11 @@ export { default as levenshtein } from './string/levenshtein';
 export { default as first } from './array/first';
 export { default as last } from './array/last';
 export { default as insertAt } from './array/insertAt';
+export type { InsertAtOptions } from './array/insertAt';
 export { default as removeAt } from './array/removeAt';
 export type { RemoveAtOptions } from './array/removeAt';
 export { default as replaceAt } from './array/replaceAt';
+export type { ReplaceAtOptions } from './array/replaceAt';
 export { default as difference } from './array/difference';
 export { default as symDiff } from './array/symDiff';
 export { default as range } from './array/range';
@@ -81,6 +86,7 @@ export { default as slidingWindows } from './array/slidingWindows';
 export { default as runningReduce } from './array/runningReduce';
 export { default as partition } from './array/partition';
 export { default as swap } from './array/swap';
+export type { SwapOptions } from './array/swap';
 
 // Concurrency
 export { default as filterAsync } from './concurrency/filterAsync';
@@ -134,7 +140,9 @@ export { default as gcd } from './maths/gcd';
 export { default as lcm } from './maths/lcm';
 export { default as clamp } from './maths/clamp';
 export { default as isSubsetOf } from './maths/isSubsetOf';
+export type { IsSubsetOfOptions } from './maths/isSubsetOf';
 export { default as isSupersetOf } from './maths/isSupersetOf';
+export type { IsSupersetOfOptions } from './maths/isSupersetOf';
 export { default as isDisjointFrom } from './maths/isDisjointFrom';
 export { default as Decimal } from './maths/Decimal';
 
@@ -308,6 +316,7 @@ export { default as isZero } from './number/isZero';
 export { default as isNegZero } from './number/isNegZero';
 export { default as toNum } from './number/toNum';
 export { default as inRange } from './number/inRange';
+export type { InRangeOptions } from './number/inRange';
 export { default as round } from './number/round';
 export { default as formatOrdinal } from './number/formatOrdinal';
 export { default as formatBytes } from './number/formatBytes';
@@ -344,7 +353,10 @@ export { default as semverCompare } from './semver/semverCompare';
 export { default as semverSatisfies } from './semver/semverSatisfies';
 export type { SemverSatisfiesOptions } from './semver/semverSatisfies';
 export { default as semverIncrement } from './semver/semverIncrement';
-export type { SemverRelease } from './semver/semverIncrement';
+export type {
+  SemverIncrementOptions,
+  SemverRelease,
+} from './semver/semverIncrement';
 export { default as semverSort } from './semver/semverSort';
 export { default as semverDiff } from './semver/semverDiff';
 export { default as semverCoerce } from './semver/semverCoerce';

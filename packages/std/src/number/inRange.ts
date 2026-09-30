@@ -2,19 +2,23 @@
  * Checks if a number is within the specified range (inclusive).
  *
  * @param n - The number to check.
- * @param start - The start of the range.
- * @param end - The end of the range.
+ * @param options - The inclusive start and end of the range.
  * @returns True if n is between start and end.
  *
  * @example
  *
- * inRange(3, 0, 5) //=> true
- * inRange(-1, 0, 5) //=> false
+ * inRange(3, { start: 0, end: 5 }) //=> true
+ * inRange(-1, { start: 0, end: 5 }) //=> false
  */
 export default function inRange(
   n: number,
-  start: number,
-  end: number,
+  { start, end }: InRangeOptions,
 ): boolean {
   return n >= start && n <= end;
+}
+export interface InRangeOptions {
+  /** The inclusive start of the range. */
+  start: number;
+  /** The inclusive end of the range. */
+  end: number;
 }

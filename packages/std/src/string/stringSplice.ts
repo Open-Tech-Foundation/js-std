@@ -1,5 +1,12 @@
 import validateStringCount from './validateStringCount';
 
+export interface StringSpliceOptions {
+  /** The number of code units to remove. Omit it to remove to the end. */
+  deleteCount?: number;
+  /** The string to insert at `start`. Defaults to an empty string. */
+  insert?: string;
+}
+
 /**
  * Returns true when the code unit at `index` is the trailing half of a
  * surrogate pair, meaning a cut there would leave a lone surrogate behind.
@@ -23,28 +30,26 @@ function isSplitPoint(str: string, index: number): boolean {
  * @param {string} str The source string.
  * @param {number} [start=0] The index to start changing the string at. A
  * negative index counts back from the end.
- * @param {number} [deleteCount] The number of characters to remove. Omit it to
- * remove everything from `start` onwards.
- * @param {string} [insert=''] The string to insert at `start`.
+ * @param {StringSpliceOptions} [options] The number of characters to remove
+ * and the string to insert. Omit `deleteCount` to remove to the end.
  * @returns {string} The modified string.
  *
  * @example
  *
- * stringSplice('2026-07-30', 5, 2, '08') //=> '2026-08-30'
+ * stringSplice('2026-07-30', 5, { deleteCount: 2, insert: '08' }) //=> '2026-08-30'
  *
- * stringSplice('SELECT * FROM users', 19, 0, ' LIMIT 10') //=> 'SELECT * FROM users LIMIT 10'
+ * stringSplice('SELECT * FROM users', 19, { deleteCount: 0, insert: ' LIMIT 10' }) //=> 'SELECT * FROM users LIMIT 10'
  *
- * stringSplice('4111111111111111', 4, 8, '••••') //=> '4111••••1111'
+ * stringSplice('4111111111111111', 4, { deleteCount: 8, insert: '••••' }) //=> '4111••••1111'
  *
- * stringSplice('report.txt', -3, 3, 'csv') //=> 'report.csv'
+ * stringSplice('report.txt', -3, { deleteCount: 3, insert: 'csv' }) //=> 'report.csv'
  *
  * stringSplice('2026-07-30T09:15:00Z', -1) //=> '2026-07-30T09:15:00'
  */
 export default function stringSplice(
   str: string,
   start = 0,
-  deleteCount?: number,
-  insert = '',
+  options?: StringSpliceOptions,
 ): string {
   if (!Number.isFinite(start) || !Number.isInteger(start)) {
     throw new RangeError('Start must be a finite integer.');
@@ -53,6 +58,7 @@ export default function stringSplice(
   const len = str.length;
   let from = start < 0 ? Math.max(len + start, 0) : Math.min(start, len);
 
+  const { deleteCount, insert = '' } = options ?? {};
   if (deleteCount !== undefined) {
     validateStringCount(deleteCount, 'Delete count');
   }

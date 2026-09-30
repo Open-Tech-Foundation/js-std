@@ -10,7 +10,7 @@ not `2.0.0`. Build metadata is dropped, since it does not carry over.
 
 - **version** `string` — The version to increment.
 - **release** `SemverRelease` — The kind of increment to apply.
-- **identifier** `string` _(optional)_ — The pre-release identifier, such as `'beta'`.
+- **options** `SemverIncrementOptions` _(optional)_ — The pre-release identifier.
 
 ## Returns
 
@@ -28,6 +28,6 @@ semverIncrement('1.0.0-rc.1', 'major') //=> '1.0.0'
 ```
 
 ```js
-semverIncrement('1.2.3', 'preminor', 'beta') //=> '1.3.0-beta.0'
+semverIncrement('1.2.3', 'preminor', { identifier: 'beta' }) //=> '1.3.0-beta.0'
 semverIncrement('1.3.0-beta.0', 'prerelease') //=> '1.3.0-beta.1'
 ```

@@ -5,8 +5,7 @@ Swaps two elements in an array at the given indices.
 ## Parameters
 
 - **arr** `T[]` — The source array.
-- **x** `number` — The index of the first element.
-- **y** `number` — The index of the second element.
+- **options** `SwapOptions` — The indexes of the elements to swap.
 
 ## Returns
 
@@ -15,5 +14,5 @@ Swaps two elements in an array at the given indices.
 ## Example
 
 ```js
-swap([1, 2, 3, 4, 5], 0, 1) //=> [2, 1, 3, 4, 5]
+swap([1, 2, 3, 4, 5], { x: 0, y: 1 }) //=> [2, 1, 3, 4, 5]
 ```

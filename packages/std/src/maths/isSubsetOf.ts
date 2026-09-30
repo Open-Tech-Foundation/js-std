@@ -6,12 +6,14 @@
  * const a = [1, 2, 3, 4]
  * const b = [2, 4]
  * isSubsetOf(b, a) //=> true
+ * isSubsetOf(a, a, { proper: true }) //=> false
  */
 export default function isSubsetOf(
   a: unknown[] | Set<unknown>,
   b: unknown[] | Set<unknown>,
-  proper = false,
+  options?: IsSubsetOfOptions,
 ): boolean {
+  const proper = options?.proper ?? false;
   const setA = new Set(a);
   const setB = new Set(b);
 
@@ -32,4 +34,8 @@ export default function isSubsetOf(
   }
 
   return true;
+}
+export interface IsSubsetOfOptions {
+  /** Require `a` to be a strict subset of `b`. Defaults to `false`. */
+  proper?: boolean;
 }

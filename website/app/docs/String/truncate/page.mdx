@@ -16,7 +16,7 @@ import { truncate } from '@opentf/std';
 truncate(
   str: string,
   length = 30,
-  omission = '...'
+  options?: { omission?: string }
 ): string;
 ```
 
@@ -29,7 +29,7 @@ The result never exceeds `length`: when `omission` does not fit, it is itself tr
 ```ts
 truncate('hi-package', 8) //=> 'hi-pa...'
 
-truncate('hi-package', 5, '---') //=> 'hi---'
+truncate('hi-package', 5, { omission: '---' }) //=> 'hi---'
 
 truncate('hi-package', 2) //=> '..'
 ```

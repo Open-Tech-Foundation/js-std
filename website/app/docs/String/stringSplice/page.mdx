@@ -23,12 +23,7 @@ const result = chars.join('');
 
 ```ts
 import { stringSplice } from '@opentf/std';
-stringSplice(
-  str: string,
-  start?: number,
-  deleteCount?: number,
-  insert?: string
-): string;
+stringSplice(str: string, start?: number, options?: { deleteCount?: number; insert?: string }): string;
 ```
 
 <Callout type="info">
@@ -46,29 +41,29 @@ Indices count UTF-16 code units, the same as `String.prototype.slice` and `index
 Replacing a range:
 
 ```ts
-stringSplice('2026-07-30', 5, 2, '08'); //=> '2026-08-30'
+stringSplice('2026-07-30', 5, { deleteCount: 2, insert: '08' }); //=> '2026-08-30'
 
-stringSplice('v1.4.0', 3, 1, '5'); //=> 'v1.5.0'
+stringSplice('v1.4.0', 3, { deleteCount: 1, insert: '5' }); //=> 'v1.5.0'
 ```
 
 The replacement need not be the length of what it removes, which is what makes masking and eliding work:
 
 ```ts
-stringSplice('4111111111111111', 4, 8, '••••'); //=> '4111••••1111'
+stringSplice('4111111111111111', 4, { deleteCount: 8, insert: '••••' }); //=> '4111••••1111'
 
-stringSplice('/home/ada/projects/std/src/index.ts', 6, 20, '…');
+stringSplice('/home/ada/projects/std/src/index.ts', 6, { deleteCount: 20, insert: '…' });
 //=> '/home/…/index.ts'
 ```
 
 Inserting, by removing nothing:
 
 ```ts
-stringSplice('SELECT * FROM users', 19, 0, ' LIMIT 10');
+stringSplice('SELECT * FROM users', 19, { deleteCount: 0, insert: ' LIMIT 10' });
 //=> 'SELECT * FROM users LIMIT 10'
 
 // At the caret of a textarea.
 const el = { value: 'SELECT *', selectionStart: 6 };
-stringSplice(el.value, el.selectionStart, 0, '\t');
+stringSplice(el.value, el.selectionStart, { deleteCount: 0, insert: '\t' });
 ```
 
 Deleting, by inserting nothing:
@@ -84,15 +79,15 @@ stringSplice(url, url.indexOf('?')); //=> 'https://example.com/search'
 Counting back from the end:
 
 ```ts
-stringSplice('report.txt', -3, 3, 'csv'); //=> 'report.csv'
+stringSplice('report.txt', -3, { deleteCount: 3, insert: 'csv' }); //=> 'report.csv'
 ```
 
 Multi code unit characters are removed whole, never split:
 
 ```ts
-stringSplice('Ship it 🚀', 8, 1, 'now'); //=> 'Ship it now'
+stringSplice('Ship it 🚀', 8, { deleteCount: 1, insert: 'now' }); //=> 'Ship it now'
 
-stringSplice('😀😃😄😁', 2, 2, '😎'); //=> '😀😎😄😁'
+stringSplice('😀😃😄😁', 2, { deleteCount: 2, insert: '😎' }); //=> '😀😎😄😁'
 ```
 
 ## Related

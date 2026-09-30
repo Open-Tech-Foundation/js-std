@@ -13,7 +13,7 @@ export const metadata = {
 
 ```ts
 import { insertAt } from '@opentf/std';
-insertAt<T>(arr: T[], index: number, ...items: T[]): T[]
+insertAt<T>(arr: T[], index: number, options?: { items: T[] }): T[]
 ```
 
 ## Parameters
@@ -22,7 +22,7 @@ insertAt<T>(arr: T[], index: number, ...items: T[]): T[]
 | ------- | ---------- | ------------------------------- |
 | arr     | `T[]`      | The source array.                |
 | index   | `number`    | The index to insert items at.    |
-| items   | `T[]`      | The items to insert.             |
+| options | `{ items: T[] }` | The items to insert.        |
 
 ## Returns
 
@@ -31,11 +31,11 @@ A new array with the inserted items.
 ## Examples
 
 ```ts
-insertAt([1, 2, 3], 1, 5) //=> [1, 5, 2, 3]
+insertAt([1, 2, 3], 1, { items: [5] }) //=> [1, 5, 2, 3]
 
-insertAt([1, 2, 3], 0, 5, 6) //=> [5, 6, 1, 2, 3]
+insertAt([1, 2, 3], 0, { items: [5, 6] }) //=> [5, 6, 1, 2, 3]
 
-insertAt([1, 2, 3], 3, 4) //=> [1, 2, 3, 4]
+insertAt([1, 2, 3], 3, { items: [4] }) //=> [1, 2, 3, 4]
 ```
 
 ## Related

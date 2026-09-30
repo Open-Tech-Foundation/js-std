@@ -43,13 +43,13 @@ describe('String Utils', () => {
 
   test('truncate', () => {
     expect(truncate('hi-package', 8)).toBe('hi-pa...');
-    expect(truncate('hi-package', 5, '---')).toBe('hi---');
+    expect(truncate('hi-package', 5, { omission: '---' })).toBe('hi---');
     expect(truncate('hi', 5)).toBe('hi');
     expect(truncate('😀😃😄😁', 4)).toBe('😀...');
     expect(truncate('hello world', 3)).toBe('...');
     expect(truncate('hello world', 2)).toBe('..');
     expect(truncate('hello world', 0)).toBe('');
-    expect(truncate('hello world', 2, '')).toBe('he');
+    expect(truncate('hello world', 2, { omission: '' })).toBe('he');
     expect(() => truncate('hello', -1)).toThrow(
       'Length must be greater than or equal to 0.',
     );
@@ -83,10 +83,10 @@ describe('String Utils', () => {
 
   test('pad', () => {
     expect(pad('abc', 8)).toBe('  abc   ');
-    expect(pad('abc', 8, '_-')).toBe('_-abc_-_');
+    expect(pad('abc', 8, { chars: '_-' })).toBe('_-abc_-_');
     expect(pad('abc', 3)).toBe('abc');
-    expect(pad('abc', 10, '')).toBe('abc');
-    expect(pad('', 4, '')).toBe('');
+    expect(pad('abc', 10, { chars: '' })).toBe('abc');
+    expect(pad('', 4, { chars: '' })).toBe('');
     expect(() => pad('abc', -1)).toThrow(
       'Length must be greater than or equal to 0.',
     );

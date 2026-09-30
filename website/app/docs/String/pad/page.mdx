@@ -13,7 +13,7 @@ Pads the given string on the left and right sides if it's shorter than the given
 
 ```ts
 import { pad } from '@opentf/std';
-pad(str: string, length = 0, chars = ' '): string;
+pad(str: string, length = 0, options?: { chars?: string }): string;
 ```
 
 `length` must be a non-negative finite integer.
@@ -23,11 +23,11 @@ pad(str: string, length = 0, chars = ' '): string;
 ```ts
 pad('abc', 8) //=> '  abc   '
 
-pad('abc', 8, '_-') //=> '_-abc_-_'
+pad('abc', 8, { chars: '_-' }) //=> '_-abc_-_'
 
 pad('abc', 3) //=> 'abc'
 
-pad('abc', 8, '') //=> 'abc'
+pad('abc', 8, { chars: '' }) //=> 'abc'
 ```
 
 ## Try it

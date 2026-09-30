@@ -39,8 +39,12 @@ import type {
   HSLA,
   IdleRunFn,
   IdleRunOptions,
+  InRangeOptions,
+  InsertAtOptions,
   InsertOptions,
   IsEqualOptions,
+  IsSubsetOfOptions,
+  IsSupersetOfOptions,
   JsonArray,
   JsonObject,
   JsonValue,
@@ -53,14 +57,17 @@ import type {
   OrderType,
   PaceRunFn,
   PaceRunOptions,
+  PadOptions,
   PollRunOptions,
   Primitive,
   PromiseResolvers,
   PropertyPath,
   RGBA,
   RemoveAtOptions,
+  ReplaceAtOptions,
   RetryRunOptions,
   Semver,
+  SemverIncrementOptions,
   SemverRelease,
   SemverSatisfiesOptions,
   SleepOptions,
@@ -68,7 +75,10 @@ import type {
   StreamToIterOptions,
   StringReplaceOptions,
   StringReplacer,
+  StringSpliceOptions,
+  SwapOptions,
   TimeoutRunOptions,
+  TruncateOptions,
   TryParseJSONOptions,
   TryStringifyJSONOptions,
   TypedArray,
@@ -90,17 +100,23 @@ import {
   get,
   has,
   idleRun,
+  inRange,
   insert,
+  insertAt,
   isArrayLike,
   isEqual,
   isJSONValue,
   isPrimitive,
+  isSubsetOf,
+  isSupersetOf,
   limitRun,
   memoizeRun,
   move,
   paceRun,
+  pad,
   pollRun,
   removeAt,
+  replaceAt,
   retryRun,
   semverIncrement,
   semverParse,
@@ -111,8 +127,11 @@ import {
   sortBy,
   streamToIter,
   stringReplace,
+  stringSplice,
+  swap,
   timeoutRun,
   toPath,
+  truncate,
   tryParseJSON,
   tryStringifyJSON,
   unflattenObject,
@@ -147,6 +166,13 @@ accepts<number[]>(move([1, 2, 3], moveOptions));
 
 const removeAtOptions: RemoveAtOptions = { count: 2 };
 accepts<number[]>(removeAt([1, 2, 3, 4], 1, removeAtOptions));
+
+const insertAtOptions: InsertAtOptions<number> = { items: [5] };
+const replaceAtOptions: ReplaceAtOptions<number> = { items: [5] };
+const swapOptions: SwapOptions = { x: 0, y: 2 };
+accepts<number[]>(insertAt([1, 2, 3], 1, insertAtOptions));
+accepts<number[]>(replaceAt([1, 2, 3], 1, replaceAtOptions));
+accepts<number[]>(swap([1, 2, 3], swapOptions));
 
 const order: OrderType = 'desc';
 accepts<OrderType>('asc');
@@ -370,6 +396,21 @@ encodeBase64Url(new Uint8Array([1]), base64UrlOptions);
 const base32Options: EncodeBase32Options = { pad: false };
 encodeBase32(new Uint8Array([1]), base32Options);
 
+const spliceOptions: StringSpliceOptions = { deleteCount: 2, insert: '08' };
+accepts<string>(stringSplice('2026-07-30', 5, spliceOptions));
+const truncateOptions: TruncateOptions = { omission: '..' };
+accepts<string>(truncate('hi-package', 8, truncateOptions));
+const padOptions: PadOptions = { chars: '_-' };
+accepts<string>(pad('abc', 8, padOptions));
+
+const properOptions: IsSubsetOfOptions = { proper: true };
+const supersetOptions: IsSupersetOfOptions = { proper: true };
+accepts<boolean>(isSubsetOf([1], [1, 2], properOptions));
+accepts<boolean>(isSupersetOf([1, 2], [1], supersetOptions));
+
+const rangeOptions: InRangeOptions = { start: 0, end: 5 };
+accepts<boolean>(inRange(3, rangeOptions));
+
 // --- Semver ----------------------------------------------------------------
 
 const parsed: Semver = semverParse('1.2.3-alpha.1+build.5');
@@ -379,6 +420,8 @@ accepts<string[]>(parsed.build);
 
 const release: SemverRelease = 'preminor';
 semverIncrement('1.2.3', release);
+const incrementOptions: SemverIncrementOptions = { identifier: 'beta' };
+semverIncrement('1.2.3', release, incrementOptions);
 
 const satisfiesOptions: SemverSatisfiesOptions = { includePrerelease: true };
 semverSatisfies('1.2.3', '^1.0.0', satisfiesOptions);

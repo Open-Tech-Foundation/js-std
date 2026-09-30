@@ -15,18 +15,18 @@ import { inRange, round } from '../../src';
 
 describe('Number > inRange', () => {
   test('returns true for values within range', () => {
-    expect(inRange(3, 0, 5)).toBe(true);
-    expect(inRange(0, 0, 5)).toBe(true);
-    expect(inRange(5, 0, 5)).toBe(true);
+    expect(inRange(3, { start: 0, end: 5 })).toBe(true);
+    expect(inRange(0, { start: 0, end: 5 })).toBe(true);
+    expect(inRange(5, { start: 0, end: 5 })).toBe(true);
   });
 
   test('returns false for values outside range', () => {
-    expect(inRange(-1, 0, 5)).toBe(false);
-    expect(inRange(6, 0, 5)).toBe(false);
+    expect(inRange(-1, { start: 0, end: 5 })).toBe(false);
+    expect(inRange(6, { start: 0, end: 5 })).toBe(false);
   });
 
   test('handles reversed bounds', () => {
-    expect(inRange(3, 5, 0)).toBe(false);
+    expect(inRange(3, { start: 5, end: 0 })).toBe(false);
   });
 });
 

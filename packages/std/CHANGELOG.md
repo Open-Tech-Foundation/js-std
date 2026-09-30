@@ -10,6 +10,7 @@
 
 ### Changed
 
+- **Breaking.** Ten utilities now name their extra arguments in options objects: `stringSplice(str, start, { deleteCount, insert })`, `truncate(str, length, { omission })`, `pad(str, length, { chars })`, `insertAt`/`replaceAt(arr, index, { items })`, `swap(arr, { x, y })`, `isSubsetOf`/`isSupersetOf(a, b, { proper })`, `inRange(n, { start, end })`, and `semverIncrement(version, release, { identifier })`.
 - **Breaking.** `insert` now takes its values and optional predicate position in a third-argument options object: `insert(arr, index, 5)` becomes `insert(arr, index, { items: [5] })`, and `insert(arr, predicate, 5, 'after')` becomes `insert(arr, predicate, { items: [5], position: 'after' })`. This removes ambiguity when `'before'` or `'after'` is itself an item.
 - **Breaking.** `move` now names both indexes in an options object: `move(arr, 0, 2)` becomes `move(arr, { from: 0, to: 2 })`.
 - **Breaking.** `removeAt` now takes its optional removal count in an options object: `removeAt(arr, index, 2)` becomes `removeAt(arr, index, { count: 2 })`.
