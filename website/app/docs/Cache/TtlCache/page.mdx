@@ -37,7 +37,7 @@ Throws a `RangeError` unless `ttl` is a positive finite number.
 | Member                   | Returns              | Description                                     |
 | ------------------------ | -------------------- | ----------------------------------------------- |
 | `get(key)`               | `V \| undefined`     | Reads a value, or `undefined` if expired.       |
-| `set(key, value, ttl?)`  | `this`               | Writes a value, optionally with its own lifetime. |
+| `set(key, value, options?)` | `this`            | Writes a value, optionally with its own lifetime. |
 | `has(key)`               | `boolean`            | Checks for an unexpired key.                    |
 | `ttlOf(key)`             | `number \| undefined` | Milliseconds left before the key expires.      |
 | `delete(key)`            | `boolean`            | Removes a key.                                  |
@@ -62,7 +62,7 @@ cache.get('a'); //=> undefined
 A per-entry lifetime overrides the default, and rewriting a key restarts it:
 
 ```ts
-cache.set('short', 1, 50);   // expires in 50ms
+cache.set('short', 1, { ttl: 50 }); // expires in 50ms
 cache.set('a', 2);           // 'a' gets a fresh second
 ```
 

@@ -22,5 +22,5 @@ cache.get('a'); //=> undefined
 
 ```js
 // A per-entry lifetime overrides the default.
-cache.set('short', 1, 50);
+cache.set('short', 1, { ttl: 50 });
 ```

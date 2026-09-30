@@ -35,6 +35,14 @@ const SKIPPED = new Map([
     'app/docs/Assert/isEqual/page.mdx',
     'needs the next @opentf/std release: the published tarball the site runs still exports isEql',
   ],
+  [
+    'app/docs/Number/formatCurrency/page.mdx',
+    'needs the next @opentf/std release: formatCurrency still takes currency positionally',
+  ],
+  [
+    'app/docs/Flow/rateLimitRun/page.mdx',
+    'needs the next @opentf/std release: rateLimitRun still takes period positionally',
+  ],
 ]);
 
 function decodeJsString(literal) {

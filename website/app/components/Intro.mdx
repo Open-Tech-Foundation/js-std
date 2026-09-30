@@ -55,7 +55,7 @@ colorContrast("white", "black"); //=> 21  (WCAG ratio)
 
 // 💾 Human-readable, locale-aware formatting
 formatBytes(1234567); //=> "1.18 MiB"
-formatCurrency(1200, "EUR", { locale: "de-DE" }); //=> "1.200,00 €"
+formatCurrency(1200, { currency: "EUR", locale: "de-DE" }); //=> "1.200,00 €"
 
 // 🆔 Time-sortable UUID via runtime-agnostic crypto
 uuidv7(); //=> "0195e2a4-8c3d-7000-…"

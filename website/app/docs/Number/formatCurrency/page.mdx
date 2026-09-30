@@ -1,5 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
-export const tryItCode = "console.log(formatCurrency(1200, 'USD')); //=> '$1,200.00'\n\nconsole.log(formatCurrency(1200, 'EUR')); //=> '\u20ac1,200.00'";
+export const tryItCode = "console.log(formatCurrency(1200, { currency: 'USD' })); //=> '$1,200.00'\n\nconsole.log(formatCurrency(1200, { currency: 'EUR' })); //=> '\u20ac1,200.00'";
 export const metadata = {
   title: "formatCurrency — Number",
   description: "Formats a number as a currency string using Intl.NumberFormat."
@@ -13,7 +13,8 @@ export const metadata = {
 
 ```ts
 import { formatCurrency } from '@opentf/std';
-formatCurrency(value: number, currency: string, options?: {
+formatCurrency(value: number, options: {
+  currency: string;
   display?: 'symbol' | 'code' | 'name';
   minFraction?: number;
   maxFraction?: number;
@@ -26,14 +27,14 @@ formatCurrency(value: number, currency: string, options?: {
 | Name         | Type                    | Description                                          |
 | ------------ | ----------------------- | ---------------------------------------------------- |
 | value        | `number`                | The number to format.                                |
-| currency     | `string`                | The ISO 4217 currency code (e.g., 'USD', 'EUR').    |
 | options      | `object`                | The options object.                                  |
+| options.currency | `string`           | The ISO 4217 currency code (e.g., 'USD', 'EUR').    |
 | options.display    | `'symbol' \| 'code' \| 'name'` | The display format (default 'symbol').    |
 | options.minFraction | `number`          | The minimum fraction digits.                          |
 | options.maxFraction | `number`          | The maximum fraction digits.                          |
 | options.locale     | `string`          | The locale (default runtime locale).                 |
 
-`currency` must be a 3-letter ISO 4217 code. Fraction digit options must be
+`options.currency` must be a 3-letter ISO 4217 code. Fraction digit options must be
 integers between `0` and `100`, and `minFraction` must not exceed
 `maxFraction`. `options.display` must be one of `'symbol'`, `'code'`, or `'name'`.
 
@@ -44,21 +45,21 @@ The formatted currency string.
 ## Examples
 
 ```ts
-formatCurrency(1200, 'USD') //=> '$1,200.00'
+formatCurrency(1200, { currency: 'USD' }) //=> '$1,200.00'
 
-formatCurrency(1200, 'EUR') //=> '€1,200.00'
+formatCurrency(1200, { currency: 'EUR' }) //=> '€1,200.00'
 
-formatCurrency(1200, 'JPY') //=> '¥1,200' (no decimals, Intl knows)
+formatCurrency(1200, { currency: 'JPY' }) //=> '¥1,200' (no decimals, Intl knows)
 
-formatCurrency(1200, 'INR') //=> '₹1,200.00'
+formatCurrency(1200, { currency: 'INR' }) //=> '₹1,200.00'
 
-formatCurrency(1200, 'EUR', { locale: 'de-DE' }) //=> '1.200,00 €'
+formatCurrency(1200, { currency: 'EUR', locale: 'de-DE' }) //=> '1.200,00 €'
 
-formatCurrency(1200, 'USD', { display: 'code' }) //=> 'USD 1,200.00'
+formatCurrency(1200, { currency: 'USD', display: 'code' }) //=> 'USD 1,200.00'
 
-formatCurrency(1200, 'USD', { display: 'name' }) //=> '1,200.00 US dollars'
+formatCurrency(1200, { currency: 'USD', display: 'name' }) //=> '1,200.00 US dollars'
 
-formatCurrency(1200, 'USD', { maxFraction: 0 }) //=> '$1,200'
+formatCurrency(1200, { currency: 'USD', maxFraction: 0 }) //=> '$1,200'
 ```
 
 ## Try it

@@ -120,6 +120,7 @@ export type { PaceRunFn, PaceRunOptions } from './flow/paceRun';
 export { default as batchRun } from './flow/batchRun';
 export type { BatchRunOptions } from './flow/batchRun';
 export { default as rateLimitRun } from './flow/rateLimitRun';
+export type { RateLimitRunOptions } from './flow/rateLimitRun';
 export { default as retryRun } from './flow/retryRun';
 export type { RetryRunOptions } from './flow/retryRun';
 export { default as timeoutRun } from './flow/timeoutRun';
@@ -339,6 +340,7 @@ export { default as round } from './number/round';
 export { default as formatOrdinal } from './number/formatOrdinal';
 export { default as formatBytes } from './number/formatBytes';
 export { default as formatCurrency } from './number/formatCurrency';
+export type { FormatCurrencyOptions } from './number/formatCurrency';
 export { default as formatCompact } from './number/formatCompact';
 export { default as formatNumber } from './number/formatNumber';
 export type { FormatNumberOptions } from './number/formatNumber';
@@ -397,6 +399,7 @@ export { default as mergeStreams } from './streams/mergeStreams';
 // Cache
 export { default as LruCache } from './cache/LruCache';
 export { default as TtlCache } from './cache/TtlCache';
+export type { TtlCacheSetOptions } from './cache/TtlCache';
 
 // Iter
 export { default as takeIter } from './iter/takeIter';

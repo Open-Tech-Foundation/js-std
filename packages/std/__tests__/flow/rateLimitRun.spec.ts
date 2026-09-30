@@ -24,7 +24,7 @@ describe('rateLimitRun', () => {
 
   test('limits execution frequency', async () => {
     const func = mock.fn(async (val: string) => val);
-    const limited = rateLimitRun(func, 2, 1000); // 2 per second
+    const limited = rateLimitRun(func, 2, { period: 1000 }); // 2 per second
 
     const p1 = limited('a');
     const p2 = limited('b');
@@ -44,7 +44,7 @@ describe('rateLimitRun', () => {
 
   test('handles rapid bursts', async () => {
     const func = mock.fn(async (val: number) => val);
-    const limited = rateLimitRun(func, 1, 100);
+    const limited = rateLimitRun(func, 1, { period: 100 });
 
     const results = [];
     results.push(limited(1));
@@ -64,7 +64,7 @@ describe('rateLimitRun', () => {
 
   test('handles rapid bursts of a synchronous function', async () => {
     const func = mock.fn((val: number) => val);
-    const limited = rateLimitRun(func, 1, 100);
+    const limited = rateLimitRun(func, 1, { period: 100 });
 
     const results = [limited(1), limited(2), limited(3)];
 
@@ -91,7 +91,7 @@ describe('rateLimitRun', () => {
     }) as typeof setTimeout;
 
     try {
-      const limited = rateLimitRun((val: number) => val, 1, 100);
+      const limited = rateLimitRun((val: number) => val, 1, { period: 100 });
       limited(1);
       for (let i = 2; i <= 6; i++) limited(i);
 
@@ -110,7 +110,7 @@ describe('rateLimitRun', () => {
       // so a pending call must not hold the queue.
       return new Promise<number>(() => {});
     });
-    const limited = rateLimitRun(func, 1, 100);
+    const limited = rateLimitRun(func, 1, { period: 100 });
 
     limited(1);
     limited(2);
@@ -125,7 +125,7 @@ describe('rateLimitRun', () => {
       if (val === 1) throw new Error('boom');
       return val;
     });
-    const limited = rateLimitRun(func, 1, 100);
+    const limited = rateLimitRun(func, 1, { period: 100 });
 
     const p1 = limited(1);
     const p2 = limited(2);
@@ -141,7 +141,7 @@ describe('rateLimitRun', () => {
       if (val === 1) throw new Error('sync boom');
       return val;
     });
-    const limited = rateLimitRun(func, 1, 100);
+    const limited = rateLimitRun(func, 1, { period: 100 });
 
     const p1 = limited(1);
     const p2 = limited(2);
@@ -155,34 +155,34 @@ describe('rateLimitRun', () => {
   test('throws on invalid limit', () => {
     const func = mock.fn(async (val: number) => val);
 
-    expect(() => rateLimitRun(func, 0, 100)).toThrow(
+    expect(() => rateLimitRun(func, 0, { period: 100 })).toThrow(
       'Limit must be a positive integer.',
     );
-    expect(() => rateLimitRun(func, -1, 100)).toThrow(
+    expect(() => rateLimitRun(func, -1, { period: 100 })).toThrow(
       'Limit must be a positive integer.',
     );
-    expect(() => rateLimitRun(func, 1.5, 100)).toThrow(
+    expect(() => rateLimitRun(func, 1.5, { period: 100 })).toThrow(
       'Limit must be a positive integer.',
     );
-    expect(() => rateLimitRun(func, Number.POSITIVE_INFINITY, 100)).toThrow(
-      'Limit must be a positive integer.',
-    );
+    expect(() =>
+      rateLimitRun(func, Number.POSITIVE_INFINITY, { period: 100 }),
+    ).toThrow('Limit must be a positive integer.');
   });
 
   test('throws on invalid period', () => {
     const func = mock.fn(async (val: number) => val);
 
-    expect(() => rateLimitRun(func, 1, 0)).toThrow(
+    expect(() => rateLimitRun(func, 1, { period: 0 })).toThrow(
       'Period must be a positive finite number.',
     );
-    expect(() => rateLimitRun(func, 1, -1)).toThrow(
+    expect(() => rateLimitRun(func, 1, { period: -1 })).toThrow(
       'Period must be a positive finite number.',
     );
-    expect(() => rateLimitRun(func, 1, Number.NaN)).toThrow(
+    expect(() => rateLimitRun(func, 1, { period: Number.NaN })).toThrow(
       'Period must be a positive finite number.',
     );
-    expect(() => rateLimitRun(func, 1, Number.POSITIVE_INFINITY)).toThrow(
-      'Period must be a positive finite number.',
-    );
+    expect(() =>
+      rateLimitRun(func, 1, { period: Number.POSITIVE_INFINITY }),
+    ).toThrow('Period must be a positive finite number.');
   });
 });

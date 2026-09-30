@@ -243,7 +243,7 @@ describe('TtlCache', () => {
     const cache = new TtlCache<string, number>(1000);
 
     cache.set('long', 1);
-    cache.set('short', 2, 1);
+    cache.set('short', 2, { ttl: 1 });
 
     await sleep(50);
 
@@ -274,7 +274,7 @@ describe('TtlCache', () => {
     await sleep(50);
     expect(cache.get('a')).toBeUndefined();
 
-    cache.set('a', 2, 60_000);
+    cache.set('a', 2, { ttl: 60_000 });
     expect(cache.get('a')).toBe(2);
   });
 
@@ -317,7 +317,7 @@ describe('TtlCache', () => {
 
     cache.set('a', 1);
     cache.set('b', 2);
-    cache.set('c', 3, 60_000);
+    cache.set('c', 3, { ttl: 60_000 });
 
     await sleep(50);
 
@@ -330,7 +330,7 @@ describe('TtlCache', () => {
     const cache = new TtlCache<string, number>(1);
 
     cache.set('a', 1);
-    cache.set('b', 2, 60_000);
+    cache.set('b', 2, { ttl: 60_000 });
 
     await sleep(50);
 
@@ -345,7 +345,7 @@ describe('TtlCache', () => {
     const cache = new TtlCache<string, number>(1);
 
     cache.set('a', 1);
-    cache.set('b', 2, 60_000);
+    cache.set('b', 2, { ttl: 60_000 });
 
     await sleep(50);
 
@@ -372,8 +372,8 @@ describe('TtlCache', () => {
     expect(() => new TtlCache(Number.POSITIVE_INFINITY)).toThrow(RangeError);
 
     const cache = new TtlCache<string, number>(1000);
-    expect(() => cache.set('a', 1, 0)).toThrow(RangeError);
-    expect(() => cache.set('a', 1, -5)).toThrow(RangeError);
+    expect(() => cache.set('a', 1, { ttl: 0 })).toThrow(RangeError);
+    expect(() => cache.set('a', 1, { ttl: -5 })).toThrow(RangeError);
   });
 
   test('does not hold the process open with timers', () => {

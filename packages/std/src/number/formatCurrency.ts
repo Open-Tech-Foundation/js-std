@@ -2,8 +2,8 @@
  * Formats a number as a currency string using Intl.NumberFormat.
  *
  * @param {number} value The number to format.
- * @param {string} currency The ISO 4217 currency code (e.g., 'USD', 'EUR').
  * @param {object} options The options object.
+ * @param {string} options.currency The ISO 4217 currency code (e.g., 'USD', 'EUR').
  * @param {string} options.display The display format: 'symbol', 'code', or 'name' (default 'symbol').
  * @param {number} options.minFraction The minimum fraction digits.
  * @param {number} options.maxFraction The maximum fraction digits.
@@ -11,17 +11,18 @@
  * @returns {string} The formatted currency string.
  *
  * @example
- * formatCurrency(1200, 'USD') //=> '$1,200.00'
- * formatCurrency(1200, 'EUR') //=> '€1,200.00'
- * formatCurrency(1200, 'JPY') //=> '¥1,200'
- * formatCurrency(1200, 'INR') //=> '₹1,200.00'
- * formatCurrency(1200, 'EUR', { locale: 'de-DE' }) //=> '1.200,00 €'
- * formatCurrency(1200, 'USD', { display: 'code' }) //=> 'USD 1,200.00'
- * formatCurrency(1200, 'USD', { display: 'name' }) //=> '1,200.00 US dollars'
- * formatCurrency(1200, 'USD', { maxFraction: 0 }) //=> '$1,200'
+ * formatCurrency(1200, { currency: 'USD' }) //=> '$1,200.00'
+ * formatCurrency(1200, { currency: 'EUR' }) //=> '€1,200.00'
+ * formatCurrency(1200, { currency: 'JPY' }) //=> '¥1,200'
+ * formatCurrency(1200, { currency: 'INR' }) //=> '₹1,200.00'
+ * formatCurrency(1200, { currency: 'EUR', locale: 'de-DE' }) //=> '1.200,00 €'
+ * formatCurrency(1200, { currency: 'USD', display: 'code' }) //=> 'USD 1,200.00'
+ * formatCurrency(1200, { currency: 'USD', display: 'name' }) //=> '1,200.00 US dollars'
+ * formatCurrency(1200, { currency: 'USD', maxFraction: 0 }) //=> '$1,200'
  */
 
-interface FormatCurrencyOptions {
+export interface FormatCurrencyOptions {
+  currency: string;
   display?: 'symbol' | 'code' | 'name';
   minFraction?: number;
   maxFraction?: number;
@@ -55,10 +56,15 @@ function validateFractionDigits(
 
 export default function formatCurrency(
   value: number,
-  currency: string,
-  options: FormatCurrencyOptions = {},
+  options: FormatCurrencyOptions,
 ): string {
-  const { display = 'symbol', minFraction, maxFraction, locale } = options;
+  const {
+    currency,
+    display = 'symbol',
+    minFraction,
+    maxFraction,
+    locale,
+  } = options;
 
   if (!/^[A-Za-z]{3}$/.test(currency)) {
     throw new RangeError(

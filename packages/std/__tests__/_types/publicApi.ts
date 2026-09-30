@@ -37,6 +37,7 @@ import type {
   DeepReadonly,
   EncodeBase32Options,
   EncodeBase64UrlOptions,
+  FormatCurrencyOptions,
   HSLA,
   IdleRunFn,
   IdleRunOptions,
@@ -64,9 +65,10 @@ import type {
   PromiseResolvers,
   PropertyPath,
   RGBA,
-  RemoveAtOptions,
+  RateLimitRunOptions,
   ReduceAsyncOptions,
   ReduceIterAsyncOptions,
+  RemoveAtOptions,
   ReplaceAtOptions,
   RetryRunOptions,
   Semver,
@@ -84,10 +86,12 @@ import type {
   TruncateOptions,
   TryParseJSONOptions,
   TryStringifyJSONOptions,
+  TtlCacheSetOptions,
   TypedArray,
   WordWrapOptions,
 } from '../../src';
 import {
+  TtlCache,
   batchRun,
   color,
   colorGrayscale,
@@ -100,6 +104,7 @@ import {
   encodeBase64Url,
   flatten,
   flattenObject,
+  formatCurrency,
   get,
   has,
   idleRun,
@@ -119,6 +124,7 @@ import {
   paceRun,
   pad,
   pollRun,
+  rateLimitRun,
   reduceAsync,
   reduceIterAsync,
   removeAt,
@@ -207,8 +213,12 @@ accepts<unknown[]>(flatten([1, [2, [3]]], Number.POSITIVE_INFINITY));
 
 // --- String ----------------------------------------------------------------
 
-const replaceOptions: StringReplaceOptions = { all: true, case: false };
-stringReplace('a-b', '-', { replacement: '+', ...replaceOptions });
+const replaceOptions: StringReplaceOptions = {
+  replacement: '+',
+  all: true,
+  case: false,
+};
+stringReplace('a-b', '-', replaceOptions);
 
 const replacer: StringReplacer = (substring) => substring.toUpperCase();
 stringReplace('a-b', /[a-z]/, { replacement: replacer, all: true });
@@ -259,6 +269,11 @@ resolvers.resolve(1);
 resolvers.reject(new Error('nope'));
 
 // --- Flow ------------------------------------------------------------------
+
+const rateLimitOptions: RateLimitRunOptions = { period: 1000 };
+rateLimitRun(async (value: string) => value, 2, rateLimitOptions);
+// @ts-expect-error The period is now named in the options object.
+rateLimitRun(async (value: string) => value, 2, 1000);
 
 const idleOptions: IdleRunOptions = {
   leading: true,
@@ -330,6 +345,20 @@ set({ a: 1 }, stringPath, { value: 2 });
 set({ a: 1 }, stringPath, { value: (n: unknown) => n });
 
 // --- Types -----------------------------------------------------------------
+
+const currencyOptions: FormatCurrencyOptions = {
+  currency: 'EUR',
+  locale: 'de-DE',
+};
+accepts<string>(formatCurrency(1200, currencyOptions));
+// @ts-expect-error Currency is now part of the options object.
+formatCurrency(1200, 'EUR');
+
+const ttlOptions: TtlCacheSetOptions = { ttl: 5000 };
+const ttlCache = new TtlCache<string, number>(1000);
+accepts<TtlCache<string, number>>(ttlCache.set('key', 1, ttlOptions));
+// @ts-expect-error The per-entry TTL is now named in an options object.
+ttlCache.set('key', 1, 5000);
 
 const bytes: TypedArray = new Uint8Array([1, 2, 3]);
 accepts<number>(bytes.length);

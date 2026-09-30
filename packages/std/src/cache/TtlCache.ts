@@ -3,6 +3,11 @@ interface Entry<V> {
   expiresAt: number;
 }
 
+export interface TtlCacheSetOptions {
+  /** A lifetime for this entry only, in milliseconds. */
+  ttl?: number;
+}
+
 /**
  * A cache whose entries expire a fixed time after they are written.
  *
@@ -23,7 +28,7 @@ interface Entry<V> {
  *
  * @example
  * // A per-entry lifetime overrides the default.
- * cache.set('short', 1, 50);
+ * cache.set('short', 1, { ttl: 50 });
  */
 export default class TtlCache<K, V> {
   private readonly map = new Map<K, Entry<V>>();
@@ -79,9 +84,12 @@ export default class TtlCache<K, V> {
   /**
    * Stores a value. Writing an existing key restarts its lifetime.
    *
-   * @param ttl A lifetime for this entry only, in milliseconds.
+   * @param options Options for this entry.
+   * @param options.ttl A lifetime for this entry only, in milliseconds.
    */
-  set(key: K, value: V, ttl: number = this.ttl): this {
+  set(key: K, value: V, options: TtlCacheSetOptions = {}): this {
+    const ttl = options.ttl === undefined ? this.ttl : options.ttl;
+
     if (!Number.isFinite(ttl) || ttl <= 0) {
       throw new RangeError('The ttl must be a positive finite number.');
     }

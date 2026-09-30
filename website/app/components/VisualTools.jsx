@@ -139,6 +139,7 @@ export default function VisualTools() {
           return id;
         },
         rateLimitVal,
+        // The website is pinned to the published package until the next release.
         ratePeriod,
       );
     }
@@ -350,7 +351,7 @@ export default function VisualTools() {
                   <span class="vt-stat-num">${rateQueueLength}</span>
                 </div>
               </div>
-              <div class="vt-code">rateLimitRun(fn, <span class="tok">${rateLimitVal}</span>, <span class="tok">${ratePeriod}</span>)</div>
+              <div class="vt-code">rateLimitRun(fn, <span class="tok">${rateLimitVal}</span>, { period: <span class="tok">${ratePeriod}</span> })</div>
             </div>
             ${visualizer()}
           </div>`;

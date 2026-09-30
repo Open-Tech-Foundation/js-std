@@ -1,11 +1,16 @@
 import withResolvers from '../concurrency/withResolvers';
 
+export interface RateLimitRunOptions {
+  /** The rolling time window in milliseconds. */
+  period: number;
+}
+
 /**
  * Creates a rate-limited function that ensures it only runs a specific number of times
  * within a rolling time window.
  *
  * @example
- * const run = rateLimitRun(async (val) => val, 2, 1000); // 2 per second
+ * const run = rateLimitRun(async (val) => val, 2, { period: 1000 }); // 2 per second
  * run('a'); // runs immediately
  * run('b'); // runs immediately
  * run('c'); // waits until 1s after 'a' started
@@ -13,8 +18,10 @@ import withResolvers from '../concurrency/withResolvers';
 export default function rateLimitRun<T extends (...args: any[]) => any>(
   func: T,
   limit: number,
-  period: number,
+  options: RateLimitRunOptions,
 ): (...args: Parameters<T>) => Promise<ReturnType<T>> {
+  const { period } = options;
+
   if (!Number.isInteger(limit) || limit <= 0) {
     throw new RangeError('Limit must be a positive integer.');
   }
