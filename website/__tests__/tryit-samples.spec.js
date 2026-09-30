@@ -52,32 +52,65 @@ function readExpected(source) {
 const printed = (value) => (typeof value === 'string' ? value : inspect(value));
 
 /**
+ * Reads the claim for one printed line: the `//=>` on its own line, or a
+ * `//=>` block on the lines right below it (long outputs wrap that way).
+ * One trailing prose suffix (`(capped at array length)`) is stripped, but
+ * a suffix that marks the output as nondeterministic (`(random result)`)
+ * keeps the whole line unverified. Returns null when there is no claim.
+ */
+function claimFor(lines, at) {
+  const atIdx = lines[at].indexOf('//=>');
+  if (atIdx !== -1) {
+    const direct = lines[at].slice(atIdx + 4).trim();
+    if (direct !== '') return stripProse(direct);
+  }
+  const block = [];
+  for (let j = at + 1; j < lines.length; j++) {
+    const trimmed = lines[j].trim();
+    if (!trimmed.startsWith('//')) break;
+    block.push(trimmed.replace(/^\/\/\s?/, ''));
+  }
+  if (block.length === 0 || !block[0].startsWith('=>')) return null;
+  return block.join('\n').replace(/^=>\s?/, '');
+}
+
+/** Drops a trailing `(prose)` suffix unless it marks random output. */
+function stripProse(annotation) {
+  const match = /^(.*?)\s*\((.*)\)\s*$/.exec(annotation);
+  if (match && !/random|e\.g\.|moment|ordered/i.test(match[2])) {
+    return match[1].trim() || null;
+  }
+  return annotation;
+}
+
+/**
  * Pairs each printed line with the `//=>` beside the `console.log` that
  * made it, and reports the ones whose claim round-trips yet differs —
  * the shape of every stale sample the options migration left behind.
  */
 function checkLogs(code, logs) {
   const problems = [];
+  const lines = code.split('\n');
   let index = 0;
-  for (const line of code.split('\n')) {
-    const at = line.indexOf('//=>');
-    if (at === -1 || !/console\.\w+\(/.test(line.slice(0, at))) continue;
-    const annotation = line.slice(at + 4).trim();
+  lines.forEach((line, at) => {
+    if (!/console\.\w+\(/.test(line)) return;
+    const annotation = claimFor(lines, at);
+    if (annotation === null) return;
     const actual = logs[index++];
-    if (actual === undefined) continue;
+    if (actual === undefined) return;
     const read = readExpected(annotation);
-    if (!read) continue;
+    if (!read) return;
     let target;
     try {
       target = read(std);
     } catch {
-      continue;
+      return;
     }
-    if (normalise(inspect(target)) !== normalise(annotation)) continue;
+    if (normalise(inspect(target)) !== normalise(annotation)) return;
     if (normalise(actual) !== normalise(printed(target))) {
       problems.push({ annotation, actual });
     }
-  }
+  });
   return problems;
 }
 
