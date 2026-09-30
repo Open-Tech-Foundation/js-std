@@ -13,38 +13,6 @@ import transform from '../app/components/runner/transform.js';
  * so keep each `tryItCode` small and self-contained.
  */
 
-// Samples that cannot pass yet, with the reason.
-const SKIPPED = new Map([
-  [
-    'app/docs/Encoding/isUtf8/page.mdx',
-    'needs the next @opentf/std release: the published tarball the site runs has no isUtf8 yet',
-  ],
-  [
-    'app/docs/Encoding/parseQueryString/page.mdx',
-    'needs the next @opentf/std release: the published tarball the site runs has no parseQueryString yet',
-  ],
-  [
-    'app/docs/Encoding/stringifyQueryString/page.mdx',
-    'needs the next @opentf/std release: the published tarball the site runs has no stringifyQueryString yet',
-  ],
-  [
-    'app/docs/Crypto/seededRandom/page.mdx',
-    'needs the next @opentf/std release: the published tarball the site runs has no seededRandom yet',
-  ],
-  [
-    'app/docs/Assert/isEqual/page.mdx',
-    'needs the next @opentf/std release: the published tarball the site runs still exports isEql',
-  ],
-  [
-    'app/docs/Number/formatCurrency/page.mdx',
-    'needs the next @opentf/std release: formatCurrency still takes currency positionally',
-  ],
-  [
-    'app/docs/Flow/rateLimitRun/page.mdx',
-    'needs the next @opentf/std release: rateLimitRun still takes period positionally',
-  ],
-]);
-
 function decodeJsString(literal) {
   return literal.replace(
     /\\(\\|"|n|t|r|u\{[0-9a-fA-F]+\}|u[0-9a-fA-F]{4}|x[0-9a-fA-F]{2}|.)/g,
@@ -90,11 +58,6 @@ samples.sort((a, b) => (a.rel < b.rel ? -1 : 1));
 
 describe('try-it samples', () => {
   for (const { rel, code } of samples) {
-    if (SKIPPED.has(rel)) {
-      test.skip(`${rel} (${SKIPPED.get(rel)})`, async () => {});
-      continue;
-    }
-
     test(rel, async () => {
       const compiled = transform(code, { probe: false });
       const events = [];

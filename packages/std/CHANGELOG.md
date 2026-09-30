@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Changed
+
+- Updated the website to use the published `@opentf/std@0.20.0` tarball, refreshed its API examples, and enabled Try-it samples for APIs included in that release.
+
 ## [0.20.0] - 2026-09-30
 
 ### Added

@@ -139,8 +139,7 @@ export default function VisualTools() {
           return id;
         },
         rateLimitVal,
-        // The website is pinned to the published package until the next release.
-        ratePeriod,
+        { period: ratePeriod },
       );
     }
 

@@ -1,5 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
-export const tryItCode = "async function* gen() { yield 1; yield 2; yield 3; }\nconsole.log(await reduceIterAsync(gen(), (acc, x) => acc + x, 0)); //=> 6";
+export const tryItCode = "async function* gen() { yield 1; yield 2; yield 3; }\nconsole.log(await reduceIterAsync(gen(), (acc, x) => acc + x, { initialValue: 0 })); //=> 6";
 export const metadata = {
   title: "reduceIterAsync — Iter",
   description: "Accumulates values from an async iterator using a reducer function."
