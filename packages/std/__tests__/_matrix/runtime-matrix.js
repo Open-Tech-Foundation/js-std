@@ -499,7 +499,10 @@ async function findJson(dir, found = []) {
 }
 
 if (args.aggregate) {
-  const dir = args.aggregate === true ? join(ROOT, 'results') : args.aggregate;
+  const dir =
+    args.aggregate === true
+      ? join(ROOT, 'results')
+      : resolve(ROOT, args.aggregate);
   const files = await findJson(dir);
 
   if (files.length === 0)
@@ -624,7 +627,9 @@ if (args.aggregate) {
   for (const f of result.failures ?? [])
     console.log(`    ${f.category}: ${f.title}`);
 
-  const out = args.out ?? join(ROOT, 'results', `${id}.json`);
+  const out = args.out
+    ? resolve(ROOT, args.out)
+    : join(ROOT, 'results', `${id}.json`);
   await mkdir(dirname(out), { recursive: true });
   await write(out, `${JSON.stringify(result, null, 2)}\n`);
   console.log(`  -> ${relative(ROOT, out)}`);
