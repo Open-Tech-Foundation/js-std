@@ -1,3 +1,11 @@
+/** Options for {@link mapRange}. */
+export interface MapRangeOptions {
+  /** The range the input value is in. */
+  from: [number, number];
+  /** The range to map the value to. */
+  to: [number, number];
+}
+
 /**
  * Re-maps a number from one range to another.
  *
@@ -17,30 +25,28 @@
  * it reversed.
  *
  * @param {number} val The value to re-map.
- * @param {[number, number]} from The range the value is in.
- * @param {[number, number]} to The range to map it to.
+ * @param {MapRangeOptions} options The input and output ranges.
  * @returns {number} The re-mapped value.
  * @throws {RangeError} If the input range is empty.
  *
  * @example
- * mapRange(5, [0, 10], [0, 100]) //=> 50
+ * mapRange(5, { from: [0, 10], to: [0, 100] }) //=> 50
  *
  * @example
- * mapRange(512, [0, 1023], [0, 255]) //=> 127.75
+ * mapRange(512, { from: [0, 1023], to: [0, 255] }) //=> 127.75
  *
  * @example
  * // An inverted output range
- * mapRange(0.25, [0, 1], [100, 0]) //=> 75
+ * mapRange(0.25, { from: [0, 1], to: [100, 0] }) //=> 75
  *
  * @example
  * // Outside the input range, and clamped back in
- * mapRange(15, [0, 10], [0, 100]) //=> 150
- * clamp(mapRange(15, [0, 10], [0, 100]), 0, 100) //=> 100
+ * mapRange(15, { from: [0, 10], to: [0, 100] }) //=> 150
+ * clamp(mapRange(15, { from: [0, 10], to: [0, 100] }), { min: 0, max: 100 }) //=> 100
  */
 export default function mapRange(
   val: number,
-  from: [number, number],
-  to: [number, number],
+  { from, to }: MapRangeOptions,
 ): number {
   const [fromMin, fromMax] = from;
   const [toMin, toMax] = to;

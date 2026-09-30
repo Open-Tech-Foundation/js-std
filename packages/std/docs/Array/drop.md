@@ -6,8 +6,8 @@ Skips the given number of elements at the start or end of the given array.
 
 - **arr** `T[]` — The source array.
 - **limit** `number` — The number of elements to drop.
-- **cb** `Function` — The callback to test elements.
-- **right** `boolean` — If true, drops from the end.
+- **options.predicate** `Function` _(optional)_ — Tests whether an element should be counted as dropped.
+- **options.fromEnd** `boolean` _(optional)_ — If true, drops from the end.
 
 ## Returns
 
@@ -17,5 +17,5 @@ Skips the given number of elements at the start or end of the given array.
 
 ```js
 drop([1, 2, 3, 4, 5], 3) //=> [4, 5]
-drop([1, 2, 3, 4, 5], 3, undefined, true) //=> [1, 2]
+drop([1, 2, 3, 4, 5], 3, { fromEnd: true }) //=> [1, 2]
 ```

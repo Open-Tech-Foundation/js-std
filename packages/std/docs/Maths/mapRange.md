@@ -20,8 +20,8 @@ it reversed.
 ## Parameters
 
 - **val** `number` — The value to re-map.
-- **from** `[number, number]` — The range the value is in.
-- **to** `[number, number]` — The range to map it to.
+- **options.from** `[number, number]` — The range the value is in.
+- **options.to** `[number, number]` — The range to map it to.
 
 ## Returns
 
@@ -34,20 +34,20 @@ it reversed.
 ## Examples
 
 ```js
-mapRange(5, [0, 10], [0, 100]) //=> 50
+mapRange(5, { from: [0, 10], to: [0, 100] }) //=> 50
 ```
 
 ```js
-mapRange(512, [0, 1023], [0, 255]) //=> 127.75
+mapRange(512, { from: [0, 1023], to: [0, 255] }) //=> 127.75
 ```
 
 ```js
 // An inverted output range
-mapRange(0.25, [0, 1], [100, 0]) //=> 75
+mapRange(0.25, { from: [0, 1], to: [100, 0] }) //=> 75
 ```
 
 ```js
 // Outside the input range, and clamped back in
-mapRange(15, [0, 10], [0, 100]) //=> 150
-clamp(mapRange(15, [0, 10], [0, 100]), 0, 100) //=> 100
+mapRange(15, { from: [0, 10], to: [0, 100] }) //=> 150
+clamp(mapRange(15, { from: [0, 10], to: [0, 100] }), { min: 0, max: 100 }) //=> 100
 ```

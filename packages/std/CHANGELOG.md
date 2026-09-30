@@ -10,6 +10,7 @@
 
 ### Changed
 
+- **Breaking.** Nine utilities now use options objects for arguments from the third position onward: `get`/`set`/`toSet` take `{ defaultValue }` or `{ value }`; `binarySearch` takes `{ compare }`; `take`/`drop` take `{ predicate, fromEnd }`; `quantile` takes `{ by }`; and `mapRange`/`clamp` name their paired ranges or bounds as `{ from, to }` / `{ min, max }`.
 - **Breaking.** `lerp` now takes `{ start, end, progress }` in one options object; `progress` is the formula's interpolation parameter `t` in `start + (end - start) * t`.
 - **Breaking.** Ten utilities now name their extra arguments in options objects: `stringSplice(str, start, { deleteCount, insert })`, `truncate(str, length, { omission })`, `pad(str, length, { chars })`, `insertAt`/`replaceAt(arr, index, { items })`, `swap(arr, { x, y })`, `isSubsetOf`/`isSupersetOf(a, b, { proper })`, `inRange(n, { start, end })`, and `semverIncrement(version, release, { identifier })`.
 - **Breaking.** `insert` now takes its values and optional predicate position in a third-argument options object: `insert(arr, index, 5)` becomes `insert(arr, index, { items: [5] })`, and `insert(arr, predicate, 5, 'after')` becomes `insert(arr, predicate, { items: [5], position: 'after' })`. This removes ambiguity when `'before'` or `'after'` is itself an item.

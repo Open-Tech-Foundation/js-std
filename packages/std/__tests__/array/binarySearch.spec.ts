@@ -66,24 +66,24 @@ describe('Array > binarySearch', () => {
   test('takes a comparator, which decides what counts as a match', () => {
     const byLength = (a: string, b: string) => a.length - b.length;
 
-    expect(binarySearch(['a', 'bb', 'ccc'], 'dd', byLength)).toBe(1);
-    expect(binarySearch(['a', 'bb', 'ccc'], 'dddd', byLength)).toBe(-1);
+    expect(binarySearch(['a', 'bb', 'ccc'], 'dd', { compare: byLength })).toBe(1);
+    expect(binarySearch(['a', 'bb', 'ccc'], 'dddd', { compare: byLength })).toBe(-1);
   });
 
   test('searches a descending array with the matching comparator', () => {
     const desc = (a: number, b: number) => b - a;
 
-    expect(binarySearch([7, 5, 3, 1], 5, desc)).toBe(1);
-    expect(binarySearch([7, 5, 3, 1], 7, desc)).toBe(0);
-    expect(binarySearch([7, 5, 3, 1], 4, desc)).toBe(-1);
+    expect(binarySearch([7, 5, 3, 1], 5, { compare: desc })).toBe(1);
+    expect(binarySearch([7, 5, 3, 1], 7, { compare: desc })).toBe(0);
+    expect(binarySearch([7, 5, 3, 1], 4, { compare: desc })).toBe(-1);
   });
 
   test('searches objects by a key', () => {
     const users = [{ id: 1 }, { id: 4 }, { id: 9 }];
     const byId = (a: { id: number }, b: { id: number }) => a.id - b.id;
 
-    expect(binarySearch(users, { id: 4 }, byId)).toBe(1);
-    expect(binarySearch(users, { id: 5 }, byId)).toBe(-1);
+    expect(binarySearch(users, { id: 4 }, { compare: byId })).toBe(1);
+    expect(binarySearch(users, { id: 5 }, { compare: byId })).toBe(-1);
   });
 
   test('agrees with indexOf across every position of many arrays', () => {
@@ -112,10 +112,10 @@ describe('Array > binarySearch', () => {
     let comparisons = 0;
     const arr = Array.from({ length: 1024 }, (_, i) => i);
 
-    binarySearch(arr, 999, (a, b) => {
+    binarySearch(arr, 999, { compare: (a, b) => {
       comparisons++;
       return a - b;
-    });
+    } });
 
     // A scan would be 1024. log2(1024) is 10, plus the one confirming the hit.
     expect(comparisons).toBeLessThanOrEqual(12);

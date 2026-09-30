@@ -68,7 +68,7 @@ export default function unflattenObject(
   const out: Record<string, unknown> | unknown[] = rootIsArray ? [] : {};
 
   for (const [key, path] of paths) {
-    set(out, path, obj[key]);
+    set(out, path, { value: obj[key] });
   }
 
   return out;

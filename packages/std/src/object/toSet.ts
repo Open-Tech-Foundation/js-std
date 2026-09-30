@@ -9,6 +9,12 @@ import type { IterableObj } from './merge';
 import { MAX_ARRAY_INDEX } from './set';
 import toPath, { type PropertyPath } from './toPath';
 
+/** Options for {@link toSet}. */
+export interface ToSetOptions {
+  /** The value to store, or a function that receives the current value. */
+  value: unknown;
+}
+
 /**
  * Sets the value to an object at the given path & returns new object.
  *
@@ -29,18 +35,19 @@ import toPath, { type PropertyPath } from './toPath';
  *
  * @param {T} obj The object to copy from.
  * @param {PropertyPath} path The path of the property to set.
- * @param {unknown} value The value to set, or a function to produce it.
+ * @param {ToSetOptions} options The value to set, or a function to produce it.
  * @returns {T} A new object with the value set.
  *
  * @example
  *
- * toSet({}, 'a.b', 1) //=> {a: {b: 1} }
+ * toSet({}, 'a.b', { value: 1 }) //=> {a: {b: 1} }
  */
 export default function toSet<T>(
   obj: T,
   path: PropertyPath,
-  value: unknown,
+  options: ToSetOptions,
 ): T {
+  const { value } = options;
   const pathArr = toPath(path);
 
   if (isEmpty(pathArr) || hasUnsafeKey(pathArr)) {

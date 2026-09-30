@@ -13,14 +13,14 @@ export const metadata = {
 
 ```ts
 import { clamp } from '@opentf/std';
-clamp(val: number, min: number, max: number): number
+clamp(val: number, options: { min: number; max: number }): number
 ```
 
 ## Parameters
 
 - `val`: The number to clamp.
-- `min`: The lower bound of the range.
-- `max`: The upper bound of the range.
+- `options.min`: The lower bound of the range.
+- `options.max`: The upper bound of the range.
 
 ## Returns
 
@@ -29,13 +29,13 @@ The clamped number.
 ## Examples
 
 ```ts
-clamp(10, -5, 5) //=> 5
+clamp(10, { min: -5, max: 5 }) //=> 5
 
-clamp(0, 1000, 1366) //=> 1000
+clamp(0, { min: 1000, max: 1366 }) //=> 1000
 
-clamp(1001, 1000, 1366) //=> 1001
+clamp(1001, { min: 1000, max: 1366 }) //=> 1001
 
-clamp(1500, 1000, 1366) //=> 1366
+clamp(1500, { min: 1000, max: 1366 }) //=> 1366
 ```
 
 ## Try it

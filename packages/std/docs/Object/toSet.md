@@ -26,7 +26,7 @@ flattened array starts at `[0]`, so one of any size still round trips.
 
 - **obj** `T` — The object to copy from.
 - **path** `PropertyPath` — The path of the property to set.
-- **value** `unknown` — The value to set, or a function to produce it.
+- **options.value** `unknown` — The value to set, or a function to produce it.
 
 ## Returns
 
@@ -35,5 +35,5 @@ flattened array starts at `[0]`, so one of any size still round trips.
 ## Example
 
 ```js
-toSet({}, 'a.b', 1) //=> {a: {b: 1} }
+toSet({}, 'a.b', { value: 1 }) //=> {a: {b: 1} }
 ```

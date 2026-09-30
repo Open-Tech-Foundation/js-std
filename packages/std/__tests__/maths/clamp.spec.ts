@@ -15,12 +15,12 @@ import { clamp } from '../../src';
 
 describe('Maths', () => {
   test('clamp', () => {
-    expect(clamp(10, -5, 5)).toBe(5);
-    expect(clamp(-10, -5, 5)).toBe(-5);
-    expect(clamp(-10, -1, -50)).toBe(-50);
-    expect(clamp(0, 1000, 1366)).toBe(1000);
-    expect(clamp(1000, 1000, 1366)).toBe(1000);
-    expect(clamp(1001, 1000, 1366)).toBe(1001);
-    expect(clamp(1500, 1000, 1366)).toBe(1366);
+    expect(clamp(10, { min: -5, max: 5 })).toBe(5);
+    expect(clamp(-10, { min: -5, max: 5 })).toBe(-5);
+    expect(clamp(-10, { min: -1, max: -50 })).toBe(-50);
+    expect(clamp(0, { min: 1000, max: 1366 })).toBe(1000);
+    expect(clamp(1000, { min: 1000, max: 1366 })).toBe(1000);
+    expect(clamp(1001, { min: 1000, max: 1366 })).toBe(1001);
+    expect(clamp(1500, { min: 1000, max: 1366 })).toBe(1366);
   });
 });

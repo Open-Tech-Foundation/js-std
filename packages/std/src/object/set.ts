@@ -29,14 +29,14 @@ import toPath, { type PropertyPath } from './toPath';
  *
  * @param {T} obj The object to modify.
  * @param {PropertyPath} path The path of the property to set.
- * @param {unknown} value The value to set, or a function to produce it.
+ * @param {SetOptions} options The value to set, or a function to produce it.
  * @returns {T} The modified object.
  *
  * @example
- * set({}, 'a.b', 1) //=> {a: {b: 1} }
+ * set({}, 'a.b', { value: 1 }) //=> {a: {b: 1} }
  *
  * @example
- * set({ a: 1 }, 'a', (n) => (n as number) + 1) //=> { a: 2 }
+ * set({ a: 1 }, 'a', { value: (n) => (n as number) + 1 }) //=> { a: 2 }
  */
 /**
  * The largest numeric path segment that will create an array.
@@ -60,7 +60,18 @@ import toPath, { type PropertyPath } from './toPath';
  */
 export const MAX_ARRAY_INDEX = 10_000;
 
-export default function set<T>(obj: T, path: PropertyPath, value: unknown): T {
+/** Options for {@link set}. */
+export interface SetOptions {
+  /** The value to store, or a function that receives the current value. */
+  value: unknown;
+}
+
+export default function set<T>(
+  obj: T,
+  path: PropertyPath,
+  options: SetOptions,
+): T {
+  const { value } = options;
   const pathArr = toPath(path);
   let curObj: IterableObj = obj as IterableObj;
 

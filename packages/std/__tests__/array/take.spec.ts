@@ -44,28 +44,31 @@ describe('Array > take', () => {
     expect(take([1, 2, 3, 4, 5], null)).toEqual([1, 2, 3, 4, 5]);
   });
 
-  test('returns only items if cb passed', () => {
-    expect(take([1, 2, 3, 4, 5], 2, (val) => val % 2 === 0)).toEqual([2, 4]);
-    expect(take([1, 2, 3, 4, 5], 3, (val) => val % 2 !== 0)).toEqual([1, 3, 5]);
+  test('takes only items matching a predicate', () => {
+    expect(take([1, 2, 3, 4, 5], 2, { predicate: (val) => val % 2 === 0 })).toEqual([2, 4]);
+    expect(take([1, 2, 3, 4, 5], 3, { predicate: (val) => val % 2 !== 0 })).toEqual([1, 3, 5]);
 
     const users = [
       { name: 'x', active: false },
       { name: 'y', active: true },
       { name: 'z', active: false },
     ];
-    expect(take(users, null, (val) => val.active)).toEqual([
+    expect(take(users, null, { predicate: (val) => val.active })).toEqual([
       { name: 'y', active: true },
     ]);
   });
 
-  test('takes from right', () => {
-    expect(take([1, 2, 3, 4, 5], 3, undefined, true)).toEqual([3, 4, 5]);
-    expect(take([1, 2, 3], 1, undefined, true)).toEqual([3]);
+  test('takes from the end', () => {
+    expect(take([1, 2, 3, 4, 5], 3, { fromEnd: true })).toEqual([3, 4, 5]);
+    expect(take([1, 2, 3], 1, { fromEnd: true })).toEqual([3]);
   });
 
-  test('takes from right with cb', () => {
-    expect(take([1, 2, 3, 4, 5], 2, (val) => val % 2 === 0, true)).toEqual([
-      2, 4,
-    ]);
+  test('takes from the end with a predicate', () => {
+    expect(
+      take([1, 2, 3, 4, 5], 2, {
+        predicate: (val) => val % 2 === 0,
+        fromEnd: true,
+      }),
+    ).toEqual([2, 4]);
   });
 });

@@ -294,9 +294,9 @@ accepts<unknown[]>(toPath(Symbol('k')));
 accepts<unknown[]>(toPath(0));
 get({ a: 1 }, stringPath);
 has({ a: 1 }, segmentPath);
-set({ a: 1 }, stringPath, 2);
+set({ a: 1 }, stringPath, { value: 2 });
 // A function at `value` is an updater, and is as valid as any other value.
-set({ a: 1 }, stringPath, (n: unknown) => n);
+set({ a: 1 }, stringPath, { value: (n: unknown) => n });
 
 // --- Types -----------------------------------------------------------------
 

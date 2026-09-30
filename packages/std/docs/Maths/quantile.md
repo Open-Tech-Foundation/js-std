@@ -17,7 +17,7 @@ common use, and a figure produced by another will differ on small samples.
 
 - **arr** `T[]` — The source array.
 - **p** `number` — The fraction, from 0 to 1.
-- **cb** `Function` _(optional)_ — The iteratee invoked per element to pick the number.
+- **options.by** `Function` _(optional)_ — Selects the numeric value for each element.
 
 ## Returns
 
@@ -37,5 +37,5 @@ quantile([1, 2, 3, 4], 0.75) //=> 3.25
 
 ```js
 // The p95 of a set of response times.
-quantile(requests, 0.95, (r) => r.durationMs)
+quantile(requests, 0.95, { by: (r) => r.durationMs })
 ```

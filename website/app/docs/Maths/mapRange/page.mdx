@@ -21,16 +21,15 @@ export const metadata = {
 import { mapRange } from '@opentf/std';
 mapRange(
   val: number,
-  from: [number, number],
-  to: [number, number]
+  options: { from: [number, number]; to: [number, number] }
 ): number
 ```
 
 ## Parameters
 
 - `val`: The value to re-map.
-- `from`: The range the value is in.
-- `to`: The range to map it to.
+- `options.from`: The range the value is in.
+- `options.to`: The range to map it to.
 
 ## Returns
 
@@ -49,26 +48,26 @@ The re-mapped value.
 ## Examples
 
 ```ts
-mapRange(5, [0, 10], [0, 100]) //=> 50
+mapRange(5, { from: [0, 10], to: [0, 100] }) //=> 50
 
-mapRange(0, [0, 10], [0, 100]) //=> 0
+mapRange(0, { from: [0, 10], to: [0, 100] }) //=> 0
 
-mapRange(10, [0, 10], [0, 100]) //=> 100
+mapRange(10, { from: [0, 10], to: [0, 100] }) //=> 100
 
 // A 10-bit sensor reading as a byte
-mapRange(512, [0, 1023], [0, 255]) //=> 127.75
+mapRange(512, { from: [0, 1023], to: [0, 255] }) //=> 127.75
 
 // Celsius to Fahrenheit
-mapRange(50, [0, 100], [32, 212]) //=> 122
+mapRange(50, { from: [0, 100], to: [32, 212] }) //=> 122
 ```
 
 ```ts
 // An inverted output range
-mapRange(0.25, [0, 1], [100, 0]) //=> 75
+mapRange(0.25, { from: [0, 1], to: [100, 0] }) //=> 75
 
 // Extrapolation, and clamping it back in
-mapRange(15, [0, 10], [0, 100]) //=> 150
-clamp(mapRange(15, [0, 10], [0, 100]), 0, 100) //=> 100
+mapRange(15, { from: [0, 10], to: [0, 100] }) //=> 150
+clamp(mapRange(15, { from: [0, 10], to: [0, 100] }), { min: 0, max: 100 }) //=> 100
 ```
 
 ## Related

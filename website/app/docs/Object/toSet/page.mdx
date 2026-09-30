@@ -30,7 +30,7 @@ import { toSet } from '@opentf/std';
 toSet<T>(
   obj: T,
   path: string | unknown[],
-  value: unknown | ((val: unknown) => unknown)
+  options: { value: unknown | ((val: unknown) => unknown) }
 ): T
 ```
 <Callout type="info">
@@ -64,29 +64,29 @@ Missing intermediate branches are created automatically. Existing non-object int
 ## Examples
 
 ```ts
-toSet({}, 'a', null) //=> { a: null }
+toSet({}, 'a', { value: null }) //=> { a: null }
 
-toSet({}, 'a', 1) //=> { a: 1 }
+toSet({}, 'a', { value: 1 }) //=> { a: 1 }
 
-toSet({}, 'a.b', 25) //=> { a: { b: 25 } }
+toSet({}, 'a.b', { value: 25 }) //=> { a: { b: 25 } }
 
-toSet({}, 'user.email', 'user@example.com')
+toSet({}, 'user.email', { value: 'user@example.com' })
 //=>
 // {
 //    user: { email: 'user@example.com' }
 // }
 
-toSet({}, '0', 'Apple') //=>   { '0': 'Apple' }
+toSet({}, '0', { value: 'Apple' }) //=>   { '0': 'Apple' }
 
-toSet({}, 'fruits[0]', 'Apple') //=>  { fruits: ['Apple'] }
+toSet({}, 'fruits[0]', { value: 'Apple' }) //=>  { fruits: ['Apple'] }
 
-toSet({ a: 1 }, 'a', (val) => val + 1) //=> { a: 2 }
+toSet({ a: 1 }, 'a', { value: (val) => val + 1 }) //=> { a: 2 }
 
 const fn = () => render('My Component')
-toSet({ subscribeFns: [] }, 'subscribeFns[0]', () => fn)
+toSet({ subscribeFns: [] }, 'subscribeFns[0]', { value: () => fn })
 //=> { subscribeFns: [fn] }
 
-toSet({ a: false }, 'a.b', 1)
+toSet({ a: false }, 'a.b', { value: 1 })
 //=> { a: false }
 ```
 

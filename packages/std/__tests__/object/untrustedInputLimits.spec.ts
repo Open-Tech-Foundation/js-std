@@ -32,7 +32,7 @@ describe('Object > limits on untrusted input', () => {
 
   test('the value is kept, only the array-ness is dropped', () => {
     const target: Record<string, unknown> = {};
-    set(target, 'a[99999]', 'kept');
+    set(target, 'a[99999]', { value: 'kept' });
 
     const branch = target.a as Record<string, unknown>;
     expect(Array.isArray(branch)).toBe(false);
@@ -43,10 +43,10 @@ describe('Object > limits on untrusted input', () => {
     expect(unflattenObject({ 'a[0]': 'x', 'a[1]': 'y' })).toEqual({
       a: ['x', 'y'],
     });
-    expect(set({}, 'a[3]', 1)).toEqual({
+    expect(set({}, 'a[3]', { value: 1 })).toEqual({
       a: [undefined, undefined, undefined, 1],
     });
-    expect(toSet({}, 'a[2]', 1)).toEqual({ a: [undefined, undefined, 1] });
+    expect(toSet({}, 'a[2]', { value: 1 })).toEqual({ a: [undefined, undefined, 1] });
   });
 
   test('the root array is bounded the same way', () => {

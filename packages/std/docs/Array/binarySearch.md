@@ -23,7 +23,7 @@ the answer does not depend on where the search happened to land.
 
 - **arr** `T[]` — The sorted array to search.
 - **target** `T` — The value to find.
-- **compare** `Function` _(optional)_ — Orders two values, as `Array.prototype.sort` does.
+- **options.compare** `Function` _(optional)_ — Orders two values, as `Array.prototype.sort` does.
 
 ## Returns
 
@@ -41,10 +41,10 @@ binarySearch([1, 3, 5, 7], 4) //=> -1
 
 ```js
 // A comparator decides what counts as a match, not just the order
-binarySearch(['a', 'bb', 'ccc'], 'dd', (a, b) => a.length - b.length) //=> 1
+binarySearch(['a', 'bb', 'ccc'], 'dd', { compare: (a, b) => a.length - b.length }) //=> 1
 ```
 
 ```js
 // Descending, searched with the comparator it was sorted by
-binarySearch([7, 5, 3, 1], 5, (a, b) => b - a) //=> 1
+binarySearch([7, 5, 3, 1], 5, { compare: (a, b) => b - a }) //=> 1
 ```

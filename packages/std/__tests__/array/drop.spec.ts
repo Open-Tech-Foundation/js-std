@@ -44,29 +44,32 @@ describe('Array > drop', () => {
     expect(drop([1, 2, 3, 4, 5], null)).toEqual([]);
   });
 
-  test('drops only items if cb passed', () => {
-    expect(drop([1, 2, 3, 4, 5], 2, (val) => val % 2 === 0)).toEqual([1, 3, 5]);
-    expect(drop([1, 2, 3, 4, 5], 3, (val) => val % 2 !== 0)).toEqual([2, 4]);
+  test('drops only items matching a predicate', () => {
+    expect(drop([1, 2, 3, 4, 5], 2, { predicate: (val) => val % 2 === 0 })).toEqual([1, 3, 5]);
+    expect(drop([1, 2, 3, 4, 5], 3, { predicate: (val) => val % 2 !== 0 })).toEqual([2, 4]);
 
     const users = [
       { name: 'x', active: false },
       { name: 'y', active: true },
       { name: 'z', active: false },
     ];
-    expect(drop(users, null, (val) => val.active)).toEqual([
+    expect(drop(users, null, { predicate: (val) => val.active })).toEqual([
       { name: 'x', active: false },
       { name: 'z', active: false },
     ]);
   });
 
-  test('drops from right', () => {
-    expect(drop([1, 2, 3, 4, 5], 3, undefined, true)).toEqual([1, 2]);
-    expect(drop([1, 2, 3], 1, undefined, true)).toEqual([1, 2]);
+  test('drops from the end', () => {
+    expect(drop([1, 2, 3, 4, 5], 3, { fromEnd: true })).toEqual([1, 2]);
+    expect(drop([1, 2, 3], 1, { fromEnd: true })).toEqual([1, 2]);
   });
 
-  test('drops from right with cb', () => {
-    expect(drop([1, 2, 3, 4, 5], 2, (val) => val % 2 === 0, true)).toEqual([
-      1, 3, 5,
-    ]);
+  test('drops from the end with a predicate', () => {
+    expect(
+      drop([1, 2, 3, 4, 5], 2, {
+        predicate: (val) => val % 2 === 0,
+        fromEnd: true,
+      }),
+    ).toEqual([1, 3, 5]);
   });
 });

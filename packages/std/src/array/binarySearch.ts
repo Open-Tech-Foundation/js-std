@@ -1,5 +1,11 @@
 const defaultCompare = <T>(a: T, b: T): number => (a < b ? -1 : a > b ? 1 : 0);
 
+/** Options for {@link binarySearch}. */
+export interface BinarySearchOptions<T> {
+  /** Orders two values, as `Array.prototype.sort` does. */
+  compare?: (a: T, b: T) => number;
+}
+
 /**
  * Finds the index of a value in a sorted array, in `O(log n)` comparisons.
  *
@@ -22,7 +28,7 @@ const defaultCompare = <T>(a: T, b: T): number => (a < b ? -1 : a > b ? 1 : 0);
  *
  * @param {T[]} arr The sorted array to search.
  * @param {T} target The value to find.
- * @param {Function} [compare] Orders two values, as `Array.prototype.sort` does.
+ * @param {BinarySearchOptions} [options] Comparator options.
  * @returns {number} The index of the first match, or `-1` if there is none.
  *
  * @example
@@ -33,16 +39,16 @@ const defaultCompare = <T>(a: T, b: T): number => (a < b ? -1 : a > b ? 1 : 0);
  *
  * @example
  * // A comparator decides what counts as a match, not just the order
- * binarySearch(['a', 'bb', 'ccc'], 'dd', (a, b) => a.length - b.length) //=> 1
+ * binarySearch(['a', 'bb', 'ccc'], 'dd', { compare: (a, b) => a.length - b.length }) //=> 1
  *
  * @example
  * // Descending, searched with the comparator it was sorted by
- * binarySearch([7, 5, 3, 1], 5, (a, b) => b - a) //=> 1
+ * binarySearch([7, 5, 3, 1], 5, { compare: (a, b) => b - a }) //=> 1
  */
 export default function binarySearch<T>(
   arr: T[] = [],
   target: T,
-  compare: (a: T, b: T) => number = defaultCompare,
+  { compare = defaultCompare }: BinarySearchOptions<T> = {},
 ): number {
   let low = 0;
   let high = arr.length;

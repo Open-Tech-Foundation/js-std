@@ -22,8 +22,14 @@ describe('Object > get', () => {
 
   test('valid', () => {
     expect(get({}, '')).toBe(undefined);
-    expect(get({}, '', undefined)).toBe(undefined);
-    expect(get({}, '', null)).toBe(null);
+    expect(get({}, '', { defaultValue: undefined })).toBe(undefined);
+    expect(get({}, '', { defaultValue: null })).toBe(null);
+    expect(get({ a: 1 }, 'missing', { defaultValue: 'fallback' })).toBe(
+      'fallback',
+    );
+    expect(get({ a: undefined }, 'a', { defaultValue: 'fallback' })).toBe(
+      undefined,
+    );
 
     expect(get({}, 'a')).toBe(undefined);
 

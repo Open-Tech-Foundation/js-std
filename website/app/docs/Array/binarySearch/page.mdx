@@ -22,7 +22,7 @@ import { binarySearch } from '@opentf/std';
 binarySearch<T>(
   arr?: T[],
   target: T,
-  compare?: (a: T, b: T) => number
+  options?: { compare: (a: T, b: T) => number }
 ): number
 ```
 
@@ -30,7 +30,7 @@ binarySearch<T>(
 
 - `arr`: The sorted array to search.
 - `target`: The value to find.
-- `compare`: Orders two values, as `Array.prototype.sort` does. Defaults to ordering by `<` and `>`.
+- `options.compare`: Orders two values, as `Array.prototype.sort` does. Defaults to ordering by `<` and `>`.
 
 ## Returns
 
@@ -59,14 +59,14 @@ binarySearch([1, 2, 2, 2, 3], 2) //=> 1
 
 ```ts
 // A comparator decides what counts as a match, not just the order
-binarySearch(['a', 'bb', 'ccc'], 'dd', (a, b) => a.length - b.length) //=> 1
+binarySearch(['a', 'bb', 'ccc'], 'dd', { compare: (a, b) => a.length - b.length }) //=> 1
 
 // Descending, searched with the comparator it was sorted by
-binarySearch([7, 5, 3, 1], 5, (a, b) => b - a) //=> 1
+binarySearch([7, 5, 3, 1], 5, { compare: (a, b) => b - a }) //=> 1
 
 // Objects by a key
 const users = [{ id: 1 }, { id: 4 }, { id: 9 }];
-binarySearch(users, { id: 4 }, (a, b) => a.id - b.id) //=> 1
+binarySearch(users, { id: 4 }, { compare: (a, b) => a.id - b.id }) //=> 1
 ```
 
 ## Related

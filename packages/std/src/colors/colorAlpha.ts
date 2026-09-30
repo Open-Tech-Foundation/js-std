@@ -37,6 +37,6 @@ export default function colorAlpha(
   checkAmount(amount, 'amount');
 
   const rgba = color({ value, to: 'rgba-object' });
-  rgba.a = clamp(amount, 0, 1);
+  rgba.a = clamp(amount, { min: 0, max: 1 });
   return color({ value: rgba, to });
 }

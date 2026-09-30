@@ -168,10 +168,10 @@ describe('Object > prototype pollution', () => {
     for (const key of UNSAFE) {
       const target: Record<string, unknown> = {};
 
-      set(target, `${key}.isAdmin`, true);
-      set(target, [key, 'isAdmin'], true);
-      set(target, `a.${key}.isAdmin`, true);
-      set(target, `a.b.${key}`, true);
+      set(target, `${key}.isAdmin`, { value: true });
+      set(target, [key, 'isAdmin'], { value: true });
+      set(target, `a.${key}.isAdmin`, { value: true });
+      set(target, `a.b.${key}`, { value: true });
 
       // Refused whole: not even the branch leading up to the unsafe segment.
       expect(target).toEqual({});
@@ -186,14 +186,14 @@ describe('Object > prototype pollution', () => {
         const target: Record<string, unknown> = { a: { b: { c: 1 } } };
         const before = JSON.parse(JSON.stringify(target));
 
-        expect(set(target, path, true)).toBe(target);
+        expect(set(target, path, { value: true })).toBe(target);
         expect(target).toEqual(before);
 
         expect(unset(target, path)).toBe(target);
         expect(target).toEqual(before);
 
         // The copying forms hand back the original, not a clone.
-        expect(toSet(target, path, true)).toBe(target);
+        expect(toSet(target, path, { value: true })).toBe(target);
         expect(toUnset(target, path)).toBe(target);
         expect(target).toEqual(before);
       }

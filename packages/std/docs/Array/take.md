@@ -6,8 +6,8 @@ Creates a slice of array with n elements taken from the beginning or end.
 
 - **arr** `T[]` — The source array.
 - **limit** `number` — The number of elements to take.
-- **cb** `Function` — The callback to test elements.
-- **right** `boolean` — If true, takes from the end.
+- **options.predicate** `Function` _(optional)_ — Tests whether an element should be taken.
+- **options.fromEnd** `boolean` _(optional)_ — If true, takes from the end.
 
 ## Returns
 
@@ -17,5 +17,5 @@ Creates a slice of array with n elements taken from the beginning or end.
 
 ```js
 take([1, 2, 3, 4, 5], 3) //=> [1, 2, 3]
-take([1, 2, 3, 4, 5], 3, undefined, true) //=> [3, 4, 5]
+take([1, 2, 3, 4, 5], 3, { fromEnd: true }) //=> [3, 4, 5]
 ```

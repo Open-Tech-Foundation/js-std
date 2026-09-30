@@ -434,9 +434,9 @@ function oklchToRgba(l: number, c: number, h: number, a = 1): RGBA {
   };
 
   return {
-    r: clamp(toSRGB(r), 0, 255),
-    g: clamp(toSRGB(g), 0, 255),
-    b: clamp(toSRGB(b), 0, 255),
+    r: clamp(toSRGB(r), { min: 0, max: 255 }),
+    g: clamp(toSRGB(g), { min: 0, max: 255 }),
+    b: clamp(toSRGB(b), { min: 0, max: 255 }),
     a,
   };
 }
@@ -452,13 +452,12 @@ function normalize(input: ColorInput, from?: ColorSourceFormat): RGBA | null {
     );
     if (rgbMatch) {
       return {
-        r: clamp(Number.parseInt(rgbMatch[1], 10), 0, 255),
-        g: clamp(Number.parseInt(rgbMatch[2], 10), 0, 255),
-        b: clamp(Number.parseInt(rgbMatch[3], 10), 0, 255),
+        r: clamp(Number.parseInt(rgbMatch[1], 10), { min: 0, max: 255 }),
+        g: clamp(Number.parseInt(rgbMatch[2], 10), { min: 0, max: 255 }),
+        b: clamp(Number.parseInt(rgbMatch[3], 10), { min: 0, max: 255 }),
         a: clamp(
           rgbMatch[4] === undefined ? 1 : Number.parseFloat(rgbMatch[4]),
-          0,
-          1,
+          { min: 0, max: 1 },
         ),
       };
     }
@@ -468,13 +467,12 @@ function normalize(input: ColorInput, from?: ColorSourceFormat): RGBA | null {
     );
     if (hslMatch) {
       return hslToRgba(
-        clamp(Number.parseInt(hslMatch[1], 10), 0, 360),
-        clamp(Number.parseInt(hslMatch[2], 10), 0, 100),
-        clamp(Number.parseInt(hslMatch[3], 10), 0, 100),
+        clamp(Number.parseInt(hslMatch[1], 10), { min: 0, max: 360 }),
+        clamp(Number.parseInt(hslMatch[2], 10), { min: 0, max: 100 }),
+        clamp(Number.parseInt(hslMatch[3], 10), { min: 0, max: 100 }),
         clamp(
           hslMatch[4] === undefined ? 1 : Number.parseFloat(hslMatch[4]),
-          0,
-          1,
+          { min: 0, max: 1 },
         ),
       );
     }
@@ -503,10 +501,15 @@ function normalize(input: ColorInput, from?: ColorSourceFormat): RGBA | null {
 
   if (Array.isArray(input)) {
     const [x, y, z, w] = input;
-    const a = clamp(w === undefined ? 1 : w, 0, 1);
+    const a = clamp(w === undefined ? 1 : w, { min: 0, max: 1 });
 
     if (from === 'hsl' || from === 'hsla') {
-      return hslToRgba(clamp(x, 0, 360), clamp(y, 0, 100), clamp(z, 0, 100), a);
+      return hslToRgba(
+        clamp(x, { min: 0, max: 360 }),
+        clamp(y, { min: 0, max: 100 }),
+        clamp(z, { min: 0, max: 100 }),
+        a,
+      );
     }
 
     if (from === 'oklch') {
@@ -514,9 +517,9 @@ function normalize(input: ColorInput, from?: ColorSourceFormat): RGBA | null {
     }
 
     return {
-      r: clamp(x, 0, 255),
-      g: clamp(y, 0, 255),
-      b: clamp(z, 0, 255),
+      r: clamp(x, { min: 0, max: 255 }),
+      g: clamp(y, { min: 0, max: 255 }),
+      b: clamp(z, { min: 0, max: 255 }),
       a,
     };
   }
@@ -524,18 +527,18 @@ function normalize(input: ColorInput, from?: ColorSourceFormat): RGBA | null {
   if (input !== null && typeof input === 'object') {
     if ('r' in input) {
       return {
-        r: clamp(input.r, 0, 255),
-        g: clamp(input.g, 0, 255),
-        b: clamp(input.b, 0, 255),
-        a: clamp(input.a === undefined ? 1 : input.a, 0, 1),
+        r: clamp(input.r, { min: 0, max: 255 }),
+        g: clamp(input.g, { min: 0, max: 255 }),
+        b: clamp(input.b, { min: 0, max: 255 }),
+        a: clamp(input.a === undefined ? 1 : input.a, { min: 0, max: 1 }),
       };
     }
     if ('h' in input && 's' in input) {
       return hslToRgba(
-        clamp(input.h, 0, 360),
-        clamp(input.s, 0, 100),
-        clamp(input.l, 0, 100),
-        clamp(input.a === undefined ? 1 : input.a, 0, 1),
+        clamp(input.h, { min: 0, max: 360 }),
+        clamp(input.s, { min: 0, max: 100 }),
+        clamp(input.l, { min: 0, max: 100 }),
+        clamp(input.a === undefined ? 1 : input.a, { min: 0, max: 1 }),
       );
     }
     if ('l' in input && 'c' in input) {
@@ -543,7 +546,7 @@ function normalize(input: ColorInput, from?: ColorSourceFormat): RGBA | null {
         input.l,
         input.c,
         input.h,
-        clamp(input.a === undefined ? 1 : input.a, 0, 1),
+        clamp(input.a === undefined ? 1 : input.a, { min: 0, max: 1 }),
       );
     }
   }

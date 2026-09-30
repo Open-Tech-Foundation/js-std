@@ -22,8 +22,7 @@ import { take } from '@opentf/std';
 take<T>(
   arr: T[],
   limit: number | null = 1,
-  cb?: (val: T) => boolean,
-  right?: boolean
+  options?: { predicate?: (val: T) => boolean; fromEnd?: boolean }
 ): T[]
 ```
 
@@ -31,8 +30,8 @@ take<T>(
 
 - `arr`: The source array.
 - `limit`: The number of elements to take. If `null`, all elements are taken.
-- `cb`: An optional predicate function. If provided, only elements that return `true` are taken, up to the limit.
-- `right`: If `true`, takes from the end of the array instead of the start. Default: `false`.
+- `options.predicate`: An optional predicate function. If provided, only elements that return `true` are taken, up to the limit.
+- `options.fromEnd`: If `true`, takes from the end of the array instead of the start. Default: `false`.
 
 ## Returns
 
@@ -57,18 +56,18 @@ take([1, 2, 3, 4, 5], 6) //=> [1, 2, 3, 4, 5]
 
 take([1, 2, 3, 4, 5], null) //=> [1, 2, 3, 4, 5]
 
-take([1, 2, 3, 4, 5], 2, (val) => val % 2 === 0) //=> [2, 4]
+take([1, 2, 3, 4, 5], 2, { predicate: (val) => val % 2 === 0 }) //=> [2, 4]
 
-take([1, 2, 3, 4, 5], 3, (val) => val % 2 !== 0) //=> [1, 3, 5]
+take([1, 2, 3, 4, 5], 3, { predicate: (val) => val % 2 !== 0 }) //=> [1, 3, 5]
 
-take([1, 2, 3, 4, 5], 2, undefined, true) //=> [4, 5]
+take([1, 2, 3, 4, 5], 2, { fromEnd: true }) //=> [4, 5]
 
 const users = [
   { name: 'x', active: false },
   { name: 'y', active: true },
   { name: 'z', active: false },
 ];
-take(users, null, (val) => val.active)
+take(users, null, { predicate: (val) => val.active })
 //=> [
 //   { name: 'y', active: true },
 // ]

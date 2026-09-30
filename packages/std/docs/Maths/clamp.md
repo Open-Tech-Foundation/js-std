@@ -5,8 +5,8 @@ Returns a value clamped to the inclusive range of min and max.
 ## Parameters
 
 - **val** `number` — The value to clamp.
-- **min** `number` — The lower bound.
-- **max** `number` — The upper bound.
+- **options.min** `number` — The lower bound.
+- **options.max** `number` — The upper bound.
 
 ## Returns
 
@@ -15,6 +15,6 @@ Returns a value clamped to the inclusive range of min and max.
 ## Example
 
 ```js
-clamp(10, -5, 5) //=> 5
-clamp(0, 1000, 1366) //=> 1000
+clamp(10, { min: -5, max: 5 }) //=> 5
+clamp(0, { min: 1000, max: 1366 }) //=> 1000
 ```

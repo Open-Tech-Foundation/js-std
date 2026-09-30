@@ -1,5 +1,11 @@
 import collectPresentValues from './collectPresentValues';
 
+/** Options for {@link quantile}. */
+export interface QuantileOptions<T> {
+  /** Selects the numeric value used for each element. */
+  by?: (value: T, index: number) => number;
+}
+
 /**
  * Calculates the value below which the given fraction of the data falls.
  *
@@ -16,7 +22,7 @@ import collectPresentValues from './collectPresentValues';
  *
  * @param {T[]} arr The source array.
  * @param {number} p The fraction, from 0 to 1.
- * @param {Function} [cb] The iteratee invoked per element to pick the number.
+ * @param {QuantileOptions} [options] Selects numeric values from elements.
  * @returns {number} The quantile, or `NaN` if there are no values.
  * @throws {RangeError} If `p` is not a number from 0 to 1.
  *
@@ -27,18 +33,18 @@ import collectPresentValues from './collectPresentValues';
  *
  * @example
  * // The p95 of a set of response times.
- * quantile(requests, 0.95, (r) => r.durationMs)
+ * quantile(requests, 0.95, { by: (r) => r.durationMs })
  */
 export default function quantile<T>(
   arr: T[] = [],
   p: number,
-  cb?: (val: T, index: number) => number,
+  { by }: QuantileOptions<T> = {},
 ): number {
   if (typeof p !== 'number' || Number.isNaN(p) || p < 0 || p > 1) {
     throw new RangeError('The fraction must be a number between 0 and 1.');
   }
 
-  const sorted = collectPresentValues(arr, cb).sort((a, b) => a - b);
+  const sorted = collectPresentValues(arr, by).sort((a, b) => a - b);
 
   if (sorted.length === 0) {
     return Number.NaN;

@@ -1,31 +1,37 @@
 import isFunction from '../types/isFunction';
 import isNull from '../types/isNull';
 
+/** Options for {@link take}. */
+export interface TakeOptions<T> {
+  /** Tests whether an element should be taken. */
+  predicate?: (value: T) => boolean;
+  /** Takes elements from the end of the array. */
+  fromEnd?: boolean;
+}
+
 /**
  * Creates a slice of array with n elements taken from the beginning or end.
  *
  * @param {T[]} arr The source array.
  * @param {number} limit The number of elements to take.
- * @param {Function} cb The callback to test elements.
- * @param {boolean} right If true, takes from the end.
+ * @param {TakeOptions} [options] Predicate and direction options.
  * @returns {T[]} A new array with taken elements.
  *
  * @example
  * take([1, 2, 3, 4, 5], 3) //=> [1, 2, 3]
- * take([1, 2, 3, 4, 5], 3, undefined, true) //=> [3, 4, 5]
+ * take([1, 2, 3, 4, 5], 3, { fromEnd: true }) //=> [3, 4, 5]
  */
 export default function take<T>(
   arr: T[],
   limit: number | null = 1,
-  cb?: (val: T) => boolean,
-  right = false,
+  { predicate, fromEnd = false }: TakeOptions<T> = {},
 ): T[] {
   if (!isNull(limit) && (!Number.isInteger(limit) || limit < 0)) {
     throw RangeError('The limit must be positive');
   }
 
   const curLimit = isNull(limit) ? arr.length : limit;
-  const source = right ? [...arr].reverse() : arr;
+  const source = fromEnd ? [...arr].reverse() : arr;
   const a: T[] = [];
 
   for (let i = 0; i < source.length; i++) {
@@ -35,8 +41,8 @@ export default function take<T>(
       break;
     }
 
-    if (isFunction(cb)) {
-      if (cb(val)) {
+    if (isFunction(predicate)) {
+      if (predicate(val)) {
         a.push(val);
       }
       continue;
@@ -45,5 +51,5 @@ export default function take<T>(
     a.push(val);
   }
 
-  return right ? a.reverse() : a;
+  return fromEnd ? a.reverse() : a;
 }

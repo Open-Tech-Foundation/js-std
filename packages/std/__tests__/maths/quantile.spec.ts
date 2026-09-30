@@ -63,7 +63,7 @@ describe('Maths > quantile', () => {
       { durationMs: 400 },
     ];
 
-    expect(quantile(requests, 0.75, (r) => r.durationMs)).toBe(325);
+    expect(quantile(requests, 0.75, { by: (r) => r.durationMs })).toBe(325);
   });
 
   test('returns NaN when there is nothing to measure', () => {
