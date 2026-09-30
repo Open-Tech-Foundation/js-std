@@ -105,6 +105,11 @@ jobs:
           name: test-bundle
           path: packages/std/__tests__/_matrix/bundle
 
+      - name: Setup ES-Dev
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/Open-Tech-Foundation/ES-Runtime/main/install.sh | bash -s -- --only=esdev
+          echo "$HOME/.es-runtime/bin" >> "$GITHUB_PATH"
+
       - name: Setup Bun
         if: matrix.engine == 'bun'
         uses: oven-sh/setup-bun@v2
@@ -138,7 +143,7 @@ jobs:
           MATRIX_BUNDLE: ${{ github.workspace }}/packages/std/__tests__/_matrix/bundle/test-bundle.mjs
           MATRIX_PROBE: ${{ github.workspace }}/packages/std/__tests__/_matrix/probe.mjs
         run: |
-          node packages/std/__tests__/_matrix/runtime-matrix.js \
+          esdev packages/std/__tests__/_matrix/runtime-matrix.js \
             --engine "${{ matrix.engine }}" \
             --id "${{ matrix.id }}" \
             --label "${{ matrix.label }}" \
@@ -162,6 +167,11 @@ jobs:
       pull-requests: write
     steps:
       - uses: actions/checkout@v4
+
+      - name: Setup ES-Dev
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/Open-Tech-Foundation/ES-Runtime/main/install.sh | bash -s -- --only=esdev
+          echo "$HOME/.es-runtime/bin" >> "$GITHUB_PATH"
 
       - uses: actions/setup-node@v4
         with:
@@ -191,7 +201,7 @@ jobs:
         if: github.event_name == 'pull_request'
         env:
           MATRIX_COMMENT_FILE: ${{ runner.temp }}/matrix-comment.md
-        run: node packages/std/__tests__/_matrix/runtime-matrix.js --aggregate results --check
+        run: esdev packages/std/__tests__/_matrix/runtime-matrix.js --aggregate results --check
 
       - name: Comment the matrix on the PR
         if: github.event_name == 'pull_request'
@@ -209,7 +219,7 @@ jobs:
       - name: Aggregate and publish
         id: agg
         if: github.event_name != 'pull_request'
-        run: node packages/std/__tests__/_matrix/runtime-matrix.js --aggregate results
+        run: esdev packages/std/__tests__/_matrix/runtime-matrix.js --aggregate results
 
       - name: Open PR if the numbers drifted
         if: github.event_name != 'pull_request' && steps.agg.outputs.drifted == 'true'
