@@ -1,5 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
-export const tryItCode = "console.log(truncate('hi-package', 8)); //=> 'hi-pa...'\n\nconsole.log(truncate('hi-package', 5, '---')); //=> 'hi---'\n\nconsole.log(truncate('hi-package', 2)); //=> '..'";
+export const tryItCode = "console.log(truncate('hi-package', 8)); //=> 'hi-pa...'\n\nconsole.log(truncate('hi-package', 5, { omission: '---' })); //=> 'hi---'\n\nconsole.log(truncate('hi-package', 2)); //=> '..'";
 export const metadata = {
   title: "truncate — String",
   description: "Truncates the given string if it's longer than the given maximum string length."

@@ -43,8 +43,6 @@ import {
 // 🕒 Dates in any IANA zone — no time-zone database, no dependency
 const t = new DateTime("2026-03-07T12:00", { timeZone: "America/New_York" });
 t.add({ days: 1 }).format("HH:mm ZZ"); //=> "12:00 -04:00"  DST-safe: 23 real hours
-t.withTimeZone("Asia/Kolkata").format("EEE d MMM, HH:mm"); //=> "Sat 7 Mar, 22:30"
-new DateTime("2028-02-10").endOf("month"); //=> 2028-02-29  leap-year aware
 
 // 🎯 Exact decimal math — no floating-point errors
 new Decimal("0.1").add("0.2").toString(); //=> "0.3"
@@ -63,6 +61,25 @@ uuidv7(); //=> "0195e2a4-8c3d-7000-…"
 // 📏 Emoji & CJK aware string width (terminal-safe)
 stringWidth("🔥こんにちは"); //=> 12
 ```
+
+## 🧩 API shape
+
+Arguments are named, not positional. Each function takes its primary input positionally, and everything else arrives in one final options object:
+
+```js
+clamp(10, { min: -5, max: 5 }); //=> 5                  — (data, options)
+pad("abc", 8, { chars: "_-" }); //=> "_-abc_-_"         — (data, secondary, options)
+lerp({ start: 0, end: 10, progress: 0.5 }); //=> 5      — one object, no positionals
+move([1, 2, 3], { from: 0, to: 2 }); //=> [2, 3, 1]
+```
+
+Three rules, applied everywhere:
+
+1. **One primary input stays positional** — the array, string, number or function being worked on.
+2. **At most one secondary positional** — `length`, `limit`, `interval`. A second setting onwards joins the options object.
+3. **Peer values share one object** — `start`/`end`/`progress` or `from`/`to` have no primary, so all of them are named.
+
+Options are validated: passing anything that isn't an object throws a `TypeError`, and required keys (like `set`'s `{ value }` or `pollRun`'s `{ until }`) are enforced — a misspelled key fails loud instead of silently using the default.
 
 ## 👉 Next Steps
 

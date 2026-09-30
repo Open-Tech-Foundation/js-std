@@ -1,5 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
-export const tryItCode = "console.log(clamp(10, -5, 5)); //=> 5\n\nconsole.log(clamp(0, 1000, 1366)); //=> 1000\n\nconsole.log(clamp(1001, 1000, 1366)); //=> 1001\n\nconsole.log(clamp(1500, 1000, 1366)); //=> 1366";
+export const tryItCode = "console.log(clamp(10, { min: -5, max: 5 })); //=> 5\n\nconsole.log(clamp(0, { min: 1000, max: 1366 })); //=> 1000\n\nconsole.log(clamp(1001, { min: 1000, max: 1366 })); //=> 1001\n\nconsole.log(clamp(1500, { min: 1000, max: 1366 })); //=> 1366";
 export const metadata = {
   title: "clamp — Maths",
   description: "Clamps a number between a specified minimum and maximum value."

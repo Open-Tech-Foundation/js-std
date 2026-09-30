@@ -1,5 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
-export const tryItCode = "console.log(replace([])); //=> []\n\nconsole.log(replace([1])); //=> [1]";
+export const tryItCode = "console.log(replace([1, 2, 3], 1, { items: [5] })); //=> [1, 5, 3]\n\nconsole.log(replace([1, 2, 3], (x) => x === 2, { items: [5] })); //=> [1, 5, 3]";
 import { Callout } from "@opentf/web-docs";
 export const metadata = {
   title: "replace — Array",

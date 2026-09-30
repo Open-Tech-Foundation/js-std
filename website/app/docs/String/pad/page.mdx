@@ -1,5 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
-export const tryItCode = "console.log(pad('abc', 8)); //=> '  abc   '\n\nconsole.log(pad('abc', 8, '_-')); //=> '_-abc_-_'\n\nconsole.log(pad('abc', 3)); //=> 'abc'\n\nconsole.log(pad('abc', 8, '')); //=> 'abc'";
+export const tryItCode = "console.log(pad('abc', 8)); //=> '  abc   '\n\nconsole.log(pad('abc', 8, { chars: '_-' })); //=> '_-abc_-_'\n\nconsole.log(pad('abc', 3)); //=> 'abc'\n\nconsole.log(pad('abc', 8, { chars: '' })); //=> 'abc'";
 export const metadata = {
   title: "pad — String",
   description: "Pads the given string on the left and right sides if it's shorter than the given length."

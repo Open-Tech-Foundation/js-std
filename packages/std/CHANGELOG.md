@@ -4,6 +4,7 @@
 
 ### Changed
 
+- Updated the Try-it samples left on the pre-options call shapes to the current API (`dropWhile`/`takeWhile`, `insertAt`, `move`, `removeAt`, `replace`/`replaceAt`, `runningReduce`/`reduceIter`, `clamp`, `inRange`, `set`, `pad`, `stringReplace`, `stringSplice`, `truncate`, `sortBy`, `swap`, `lerp`), corrected the `toPath` sample to the string segments parsing produces, documented the named-arguments API shape on the landing page, and bumped the displayed site version to `v0.20.0`.
 - Updated the website to use the published `@opentf/std@0.20.0` tarball, refreshed its API examples, and enabled Try-it samples for APIs included in that release.
 - Fixed the runtime-matrix workflow invoking its `runtime:*`-based driver and aggregator with Node instead of ES-Dev.
 - Fixed runtime-matrix input and output paths resolving from ES-Dev's working directory instead of the repository root.

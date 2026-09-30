@@ -1,5 +1,5 @@
 import TryIt from '../../../components/TryIt.jsx';
-export const tryItCode = "console.log(stringReplace('abc', 'a', 'x')); //=> 'xbc'\nconsole.log(stringReplace('abbc', 'b', '', { all: true })); //=> 'ac'\nconsole.log(stringReplace('aBbBc', 'B', '', { all: true, case: true })); //=> 'ac'";
+export const tryItCode = "console.log(stringReplace('abc', 'a', { replacement: 'x' })); //=> 'xbc'\nconsole.log(stringReplace('abbc', 'b', { replacement: '', all: true })); //=> 'ac'\nconsole.log(stringReplace('aBbBc', 'B', { replacement: '', all: true, case: true })); //=> 'ac'";
 export const metadata = {
   title: "stringReplace — String",
   description: "Returns a new string with matches of a pattern replaced by a replacement."
