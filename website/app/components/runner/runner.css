@@ -242,6 +242,18 @@
   grid-column: 2;
 }
 
+.rn-devtools-line--expandable-severity {
+  grid-template-columns: 18px 18px minmax(0, 1fr);
+}
+
+.rn-devtools-line--expandable-severity .rn-devtools-disclosure {
+  grid-column: 2;
+}
+
+.rn-devtools-line--expandable-severity .rn-devtools-value {
+  grid-column: 3;
+}
+
 .rn-devtools-line.is-expanded .rn-devtools-disclosure {
   transform: rotate(90deg);
 }

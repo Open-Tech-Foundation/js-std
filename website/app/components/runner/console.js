@@ -60,6 +60,7 @@ function formatStructured(text) {
 }
 
 const LITERAL_TOKENS = new Set(['true', 'false', 'null', 'undefined']);
+const MAX_COLLAPSED_LENGTH = 72;
 const NUMBER_PATTERN =
   /-?(?:0[xX][\da-fA-F]+|0[bB][01]+|0[oO][0-7]+|(?:\d+\.?\d*|\.\d+)(?:[eE][+-]?\d+)?n?)/y;
 
@@ -166,10 +167,15 @@ function writeDevtools(host, level, text, parts) {
   if (canColorize) renderParts(value, parts);
   else value.textContent = text;
 
-  const expandable = parts
+  const structured = parts
     ? parts.some((part) => part.kind === 'value' && looksStructured(part.text))
     : looksStructured(text);
+  const expandable =
+    structured || text.length > MAX_COLLAPSED_LENGTH || text.includes('\n');
   if (expandable) {
+    const keepMarker = level === 'warn' || level === 'error';
+    if (keepMarker)
+      line.classList.toggle('rn-devtools-line--expandable-severity', true);
     const formatted = parts
       ? parts.map((part) =>
           part.kind === 'value' && looksStructured(part.text)
@@ -194,10 +200,12 @@ function writeDevtools(host, level, text, parts) {
       if (canColorize) {
         renderParts(value, expanded ? formatted : parts);
       } else {
-        value.textContent = expanded ? formatStructured(text) : text;
+        value.textContent =
+          expanded && structured ? formatStructured(text) : text;
       }
     });
-    line.append(toggle, value);
+    if (keepMarker) line.append(marker, toggle, value);
+    else line.append(toggle, value);
   } else {
     line.append(marker, value);
   }

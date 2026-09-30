@@ -119,10 +119,32 @@ describe('Playground console output', () => {
     output.log('warn', text, [{ kind: 'value', text }]);
 
     const [line] = host.children;
-    const value = line.children[1];
+    const value = line.children.at(-1);
     expect(line.className).toContain('rn-devtools-line--warn');
     expect(value.textContent).toBe(text);
     expect(value.children).toEqual([]);
+  });
+
+  test('expands long error messages without changing their text', () => {
+    const host = new Element('div');
+    const output = createConsole(host, { devtools: true });
+    const message =
+      "TypeError: Cannot destructure property 'start' of 'undefined' as it is undefined.";
+
+    output.error(message);
+
+    const [line] = host.children;
+    const marker = line.children[0];
+    const disclosure = line.children[1];
+    const value = line.children[2];
+    expect(line.className).toContain('rn-devtools-line--error');
+    expect(marker.textContent).toBe('×');
+    expect(disclosure.getAttribute('aria-label')).toBe('Expand value');
+    disclosure.click();
+
+    expect(disclosure.getAttribute('aria-expanded')).toBe('true');
+    expect(line.className).toContain('is-expanded');
+    expect(value.textContent).toBe(message);
   });
 
   test('keeps syntax colors when an object is expanded', () => {
