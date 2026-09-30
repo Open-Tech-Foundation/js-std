@@ -11,7 +11,7 @@ import {
   test,
 } from 'runtime:test';
 
-import { clone, deepFreeze, isEql, merge, mergeAll } from '../../src';
+import { clone, deepFreeze, isEqual, merge, mergeAll } from '../../src';
 
 /** Wraps a leaf in `levels` plain objects, keyed by a string. */
 function stringChain(levels: number): Record<string, unknown> {
@@ -108,13 +108,13 @@ describe('Object > the recursion depth cap', () => {
   });
 
   describe('the other deep walkers', () => {
-    test('isEql refuses a chain past the cap', () => {
-      expect(isEql(stringChain(511), stringChain(511))).toBe(true);
-      expect(() => isEql(stringChain(512), stringChain(512))).toThrow(
+    test('isEqual refuses a chain past the cap', () => {
+      expect(isEqual(stringChain(511), stringChain(511))).toBe(true);
+      expect(() => isEqual(stringChain(512), stringChain(512))).toThrow(
         RangeError,
       );
-      expect(() => isEql(stringChain(512), stringChain(512))).toThrow(
-        'isEql: input nested deeper than 512 levels.',
+      expect(() => isEqual(stringChain(512), stringChain(512))).toThrow(
+        'isEqual: input nested deeper than 512 levels.',
       );
     });
 
@@ -145,7 +145,7 @@ describe('Object > the recursion depth cap', () => {
     test('the message always names a function and the limit', () => {
       for (const run of [
         () => clone(stringChain(600)),
-        () => isEql(stringChain(600), stringChain(600)),
+        () => isEqual(stringChain(600), stringChain(600)),
         () => deepFreeze(stringChain(600)),
         () => merge(stringChain(600), stringChain(600)),
         () => mergeAll([stringChain(600), stringChain(600)]),

@@ -1,4 +1,4 @@
-import isEql from '../assert/isEql';
+import isEqual from '../assert/isEqual';
 import unique from './unique';
 
 /**
@@ -33,7 +33,7 @@ export default function intersection<T>(
     return rest.every((c) => {
       return c.some((item) => {
         const v2 = byFlag ? by(item) : item;
-        return isEql(v1, v2);
+        return isEqual(v1, v2);
       });
     });
   });

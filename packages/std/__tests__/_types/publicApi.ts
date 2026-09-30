@@ -39,7 +39,7 @@ import type {
   HSLA,
   IdleRunFn,
   IdleRunOptions,
-  IsEqlOptions,
+  IsEqualOptions,
   JsonArray,
   JsonObject,
   JsonValue,
@@ -88,7 +88,7 @@ import {
   has,
   idleRun,
   isArrayLike,
-  isEql,
+  isEqual,
   isJSONValue,
   isPrimitive,
   limitRun,
@@ -171,8 +171,8 @@ wordWrap('some text', 10, wrapOptions);
 
 // --- Assert ----------------------------------------------------------------
 
-const eqlOptions: IsEqlOptions = { shallow: true };
-isEql({ a: 1 }, { a: 1 }, eqlOptions);
+const eqlOptions: IsEqualOptions = { shallow: true };
+isEqual({ a: 1 }, { a: 1 }, eqlOptions);
 
 // --- Timing ----------------------------------------------------------------
 

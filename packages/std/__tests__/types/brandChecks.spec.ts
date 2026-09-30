@@ -16,7 +16,7 @@ import {
   isArrayBuffer,
   isDataView,
   isDate,
-  isEql,
+  isEqual,
   isMap,
   isRegExp,
   isSet,
@@ -54,11 +54,11 @@ describe('Types > guards cannot be spoofed by Symbol.toStringTag', () => {
 
   // A tagged object used to reach code that trusted the guard and then treated
   // it as iterable.
-  test('clone and isEql no longer throw on a tagged object', () => {
+  test('clone and isEqual no longer throw on a tagged object', () => {
     expect(() => clone(tagged('Map', { a: 1 }))).not.toThrow();
     expect(() => clone(tagged('Set', { a: 1 }))).not.toThrow();
     expect(() =>
-      isEql(tagged('Map', { a: 1 }), tagged('Map', { a: 1 })),
+      isEqual(tagged('Map', { a: 1 }), tagged('Map', { a: 1 })),
     ).not.toThrow();
 
     // and it is cloned as what it actually is, a plain object

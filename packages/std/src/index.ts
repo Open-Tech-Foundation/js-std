@@ -210,8 +210,8 @@ export { default as unflattenObject } from './object/unflattenObject';
 
 // Assert
 export { default as isEmpty } from './assert/isEmpty';
-export { default as isEql } from './assert/isEql';
-export type { IsEqlOptions } from './assert/isEql';
+export { default as isEqual } from './assert/isEqual';
+export type { IsEqualOptions } from './assert/isEqual';
 export { default as isNil } from './assert/isNil';
 export { default as isUnorderedEqual } from './assert/isUnorderedEqual';
 

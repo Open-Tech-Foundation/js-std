@@ -3,7 +3,7 @@
  *
  * `JSON.parse` accepts nesting far deeper than a recursive walk over the
  * result can follow, so a 20,000-deep object parsed from untrusted input made
- * `merge`, `clone`, `isEql` and `deepFreeze` overflow the stack. A
+ * `merge`, `clone`, `isEqual` and `deepFreeze` overflow the stack. A
  * `RangeError` either way, but the depth it happened at was a property of the
  * runtime and of how much stack the caller had already used, so the same input
  * could pass in one place and fail in another.

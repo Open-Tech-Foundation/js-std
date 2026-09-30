@@ -1,6 +1,6 @@
 <!-- handwritten -->
 
-# isEql
+# isEqual
 
 Checks deeply if the given two values are equivalent.
 
@@ -28,6 +28,6 @@ away; merely sharing a node is not enough to be called a cycle.
 ## Example
 
 ```js
-isEql({a: [{b: 1}]}, {a: [{b: 1}]}) //=> true
-isEql(null, undefined) //=> false
+isEqual({a: [{b: 1}]}, {a: [{b: 1}]}) //=> true
+isEqual(null, undefined) //=> false
 ```

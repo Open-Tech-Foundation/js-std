@@ -49,13 +49,13 @@ function addPair(seen: PairSet, val1: WeakKey, val2: WeakKey): void {
   seen.set(val1, new WeakSet<WeakKey>([val2]));
 }
 
-function isEqlVal(
+function isEqualVal(
   val1: unknown,
   val2: unknown,
   seen: PairSet,
   depth = 0,
 ): boolean {
-  checkDepth(depth, 'isEql');
+  checkDepth(depth, 'isEqual');
 
   // Handles primitives
   if (Object.is(val1, val2)) {
@@ -116,7 +116,7 @@ function isEqlVal(
       }
 
       if (
-        !isEqlVal(
+        !isEqualVal(
           (val1 as IterableObj)[key],
           (val2 as IterableObj)[key],
           seen,
@@ -133,7 +133,7 @@ function isEqlVal(
       }
 
       if (
-        !isEqlVal(
+        !isEqualVal(
           (val1 as IterableObj)[key],
           (val2 as IterableObj)[key],
           seen,
@@ -164,8 +164,8 @@ function isEqlVal(
       const [key2, value2] = entries2[i];
 
       if (
-        !isEqlVal(key1, key2, seen, depth + 1) ||
-        !isEqlVal(value1, value2, seen, depth + 1)
+        !isEqualVal(key1, key2, seen, depth + 1) ||
+        !isEqualVal(value1, value2, seen, depth + 1)
       ) {
         return false;
       }
@@ -176,7 +176,7 @@ function isEqlVal(
   if (isSet(val1)) {
     const itVal2 = (val2 as Set<unknown>).values();
     for (const value of val1) {
-      if (!isEqlVal(value, itVal2.next().value, seen, depth + 1)) {
+      if (!isEqualVal(value, itVal2.next().value, seen, depth + 1)) {
         return false;
       }
     }
@@ -189,7 +189,7 @@ function isEqlVal(
       return false;
     }
 
-    if (!isEqlVal(val1.cause, err2.cause, seen, depth + 1)) {
+    if (!isEqualVal(val1.cause, err2.cause, seen, depth + 1)) {
       return false;
     }
 
@@ -203,7 +203,7 @@ function isEqlVal(
     }
 
     for (const key of keys1) {
-      if (!isEqlVal((val1 as any)[key], (val2 as any)[key], seen, depth + 1)) {
+      if (!isEqualVal((val1 as any)[key], (val2 as any)[key], seen, depth + 1)) {
         return false;
       }
     }
@@ -213,7 +213,7 @@ function isEqlVal(
         return false;
       }
 
-      if (!isEqlVal((val1 as any)[key], (val2 as any)[key], seen, depth + 1)) {
+      if (!isEqualVal((val1 as any)[key], (val2 as any)[key], seen, depth + 1)) {
         return false;
       }
     }
@@ -236,7 +236,7 @@ function isEqlVal(
     const ta2 = new Uint8Array(val2 as ArrayBuffer);
 
     for (const key of ta1.keys()) {
-      if (!isEqlVal(ta1[key], ta2[key], seen, depth + 1)) {
+      if (!isEqualVal(ta1[key], ta2[key], seen, depth + 1)) {
         return false;
       }
     }
@@ -247,7 +247,7 @@ function isEqlVal(
   if (isDataView(val1)) {
     for (let i = 0; i < val1.byteLength; i++) {
       if (
-        !isEqlVal(
+        !isEqualVal(
           val1.getUint8(i),
           (val2 as DataView).getUint8(i),
           seen,
@@ -264,7 +264,7 @@ function isEqlVal(
   return false;
 }
 
-export interface IsEqlOptions {
+export interface IsEqualOptions {
   /** Compare only the first level, leaving nested values to `Object.is`. */
   shallow?: boolean;
 }
@@ -278,13 +278,13 @@ export interface IsEqlOptions {
  * @returns {boolean} True if values are equivalent, false otherwise.
  *
  * @example
- * isEql({a: [{b: 1}]}, {a: [{b: 1}]}) //=> true
- * isEql(null, undefined) //=> false
+ * isEqual({a: [{b: 1}]}, {a: [{b: 1}]}) //=> true
+ * isEqual(null, undefined) //=> false
  */
-export default function isEql(
+export default function isEqual(
   val1: unknown,
   val2: unknown,
-  options?: IsEqlOptions,
+  options?: IsEqualOptions,
 ): boolean {
   if (options?.shallow) {
     if (Object.is(val1, val2)) {
@@ -350,5 +350,5 @@ export default function isEql(
     return false;
   }
 
-  return isEqlVal(val1, val2, new WeakMap(), 0);
+  return isEqualVal(val1, val2, new WeakMap(), 0);
 }

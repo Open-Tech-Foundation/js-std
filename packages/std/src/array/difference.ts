@@ -1,4 +1,4 @@
-import isEql from '../assert/isEql';
+import isEqual from '../assert/isEqual';
 import isFunction from '../types/isFunction';
 
 /**
@@ -35,7 +35,7 @@ export default function difference(
     return !others.some((other) =>
       other.some((otherVal) => {
         const v2 = byFlag ? by(otherVal) : otherVal;
-        return isEql(v1, v2);
+        return isEqual(v1, v2);
       }),
     );
   });

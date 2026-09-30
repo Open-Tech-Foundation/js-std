@@ -1,4 +1,4 @@
-import isEql from '../assert/isEql';
+import isEqual from '../assert/isEqual';
 import isFunction from '../types/isFunction';
 import unique from './unique';
 
@@ -36,12 +36,12 @@ export default function symDiff(
 
       const inAcc = acc.some((a) => {
         const v2 = byFlag ? by(a) : a;
-        return isEql(v1, v2);
+        return isEqual(v1, v2);
       });
 
       const inCur = cur.some((c) => {
         const v2 = byFlag ? by(c) : c;
-        return isEql(v1, v2);
+        return isEqual(v1, v2);
       });
 
       return !(inAcc && inCur);

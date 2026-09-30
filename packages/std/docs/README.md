@@ -49,7 +49,7 @@
 ## Assert
 
 - [isEmpty](./Assert/isEmpty.md)
-- [isEql](./Assert/isEql.md)
+- [isEqual](./Assert/isEqual.md)
 - [isNil](./Assert/isNil.md)
 - [isUnorderedEqual](./Assert/isUnorderedEqual.md)
 

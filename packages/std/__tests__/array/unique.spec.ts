@@ -16,7 +16,7 @@ import { toArrayIter, unique, uniqueIter } from '../../src';
 describe('Array > unique', () => {
   test('compares the same way with an identity iteratee as without one', () => {
     // The iteratee derives the key; it must not change how two keys are
-    // compared. This used to switch from `Set` to `isEql` and disagree with
+    // compared. This used to switch from `Set` to `isEqual` and disagree with
     // itself, so `unique([0, -0], (x) => x)` kept both.
     const inputs: unknown[][] = [
       [0, -0],

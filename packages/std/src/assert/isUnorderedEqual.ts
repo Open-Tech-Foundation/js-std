@@ -1,5 +1,5 @@
 import size from '../object/size';
-import isEql from './isEql';
+import isEqual from './isEqual';
 
 /**
  * Checks deeply if the given two arrays with different orders are equivalent.
@@ -32,7 +32,7 @@ export default function isUnorderedEqual(
     const val = a1[i];
     const index = a2.findIndex((item, idx) => {
       // Ensure we only match at the same index if it's a hole vs value
-      if (Object.hasOwn(a2, idx) && isEql(val, item)) {
+      if (Object.hasOwn(a2, idx) && isEqual(val, item)) {
         return true;
       }
       return false;

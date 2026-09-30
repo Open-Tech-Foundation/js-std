@@ -97,7 +97,7 @@ const KNOWN_ISSUES = [
     engines: ['llrt'],
     match: /Object > the recursion depth cap/,
     requires: null,
-    affects: ['clone', 'isEql', 'deepFreeze', 'merge', 'mergeAll'],
+    affects: ['clone', 'isEqual', 'deepFreeze', 'merge', 'mergeAll'],
     category: 'runtime-deviation',
     reason:
       "LLRT exhausts its JavaScript stack before the library's documented 512-level recursion limit, " +

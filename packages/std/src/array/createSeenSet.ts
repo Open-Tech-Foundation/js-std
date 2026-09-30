@@ -1,11 +1,11 @@
-import isEql from '../assert/isEql';
+import isEqual from '../assert/isEqual';
 
 /**
  * Creates the "have I had this one before?" test the `unique` family shares.
  *
  * Primitive keys go in a `Set`, so they are matched by identity — `NaN` equals
  * `NaN` and `-0` equals `0` — and cost nothing to look up. Object keys are
- * compared structurally with `isEql` against every distinct object held so
+ * compared structurally with `isEqual` against every distinct object held so
  * far, which is quadratic in the number of them but is the only way to treat
  * two separately built objects of the same shape as one value.
  *
@@ -32,7 +32,7 @@ export default function createSeenSet(): (key: unknown) => boolean {
     }
 
     for (const other of objects) {
-      if (isEql(key, other)) {
+      if (isEqual(key, other)) {
         return false;
       }
     }

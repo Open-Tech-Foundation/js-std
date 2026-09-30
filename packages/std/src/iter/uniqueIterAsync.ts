@@ -10,7 +10,7 @@ import isFunction from '../types/isFunction';
  * without limit, as any deduplication must.
  *
  * Primitive keys are matched by identity, so `NaN` equals `NaN` and `-0`
- * equals `0`. Object keys are compared structurally with `isEql`, matching
+ * equals `0`. Object keys are compared structurally with `isEqual`, matching
  * `unique`, and against every distinct object seen so far — quadratic in the
  * number of them, so prefer a `by` that returns a primitive.
  *

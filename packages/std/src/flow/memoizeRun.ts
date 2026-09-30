@@ -1,4 +1,4 @@
-import isEql from '../assert/isEql';
+import isEqual from '../assert/isEqual';
 import isArrayBuffer from '../types/isArrayBuffer';
 import isDataView from '../types/isDataView';
 import isError from '../types/isError';
@@ -276,7 +276,7 @@ export default function memoizeRun<T, Args extends any[]>(
         cache.set(key, activeEntries);
 
         for (const entry of activeEntries) {
-          if (isEql(entry.args, args)) {
+          if (isEqual(entry.args, args)) {
             return entry.result;
           }
         }

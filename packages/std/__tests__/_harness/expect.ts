@@ -2,7 +2,7 @@
  * Real Jest/Vitest matcher semantics, assembled from `@vitest/expect`.
  *
  * We deliberately do NOT hand-roll equality: `@opentf/std`'s core competence is
- * precision comparison (`isEql`, `Decimal`), so a home-grown `toEqual` that
+ * precision comparison (`isEqual`, `Decimal`), so a home-grown `toEqual` that
  * disagrees with the reference implementation would be worse than no test at all.
  */
 import {

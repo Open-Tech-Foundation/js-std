@@ -11,9 +11,9 @@ import {
   test,
 } from 'runtime:test';
 
-import { isEql } from '../../src';
+import { isEqual } from '../../src';
 
-describe('Assert > isEql with circular references', () => {
+describe('Assert > isEqual with circular references', () => {
   // Only plain objects were recorded as the walk descended, so an array, Map
   // or Set that held itself was never recognised as a cycle: the comparison
   // ran until the 512-level depth cap threw a RangeError, rather than
@@ -25,7 +25,7 @@ describe('Assert > isEql with circular references', () => {
       const b: unknown[] = [];
       b.push(b);
 
-      expect(isEql(a, b)).toBe(true);
+      expect(isEqual(a, b)).toBe(true);
     });
 
     test('sets', () => {
@@ -34,7 +34,7 @@ describe('Assert > isEql with circular references', () => {
       const b = new Set<unknown>();
       b.add(b);
 
-      expect(isEql(a, b)).toBe(true);
+      expect(isEqual(a, b)).toBe(true);
     });
 
     test('maps, on both the key and the value side', () => {
@@ -42,13 +42,13 @@ describe('Assert > isEql with circular references', () => {
       a.set('self', a);
       const b = new Map<unknown, unknown>();
       b.set('self', b);
-      expect(isEql(a, b)).toBe(true);
+      expect(isEqual(a, b)).toBe(true);
 
       const c = new Map<unknown, unknown>();
       c.set(c, 'v');
       const d = new Map<unknown, unknown>();
       d.set(d, 'v');
-      expect(isEql(c, d)).toBe(true);
+      expect(isEqual(c, d)).toBe(true);
     });
 
     test('plain objects, as before', () => {
@@ -57,7 +57,7 @@ describe('Assert > isEql with circular references', () => {
       const b: Record<string, unknown> = {};
       b.self = b;
 
-      expect(isEql(a, b)).toBe(true);
+      expect(isEqual(a, b)).toBe(true);
     });
 
     test('errors', () => {
@@ -66,7 +66,7 @@ describe('Assert > isEql with circular references', () => {
       const b = new Error('boom') as Error & { self?: unknown };
       b.self = b;
 
-      expect(isEql(a, b)).toBe(true);
+      expect(isEqual(a, b)).toBe(true);
     });
   });
 
@@ -80,7 +80,7 @@ describe('Assert > isEql with circular references', () => {
       const b2: Record<string, unknown> = { back: b1 };
       b1.next = b2;
 
-      expect(isEql(a1, b1)).toBe(true);
+      expect(isEqual(a1, b1)).toBe(true);
     });
 
     test('a cycle closed through an array and an object', () => {
@@ -89,14 +89,14 @@ describe('Assert > isEql with circular references', () => {
       const b: Record<string, unknown> = {};
       b.list = [b];
 
-      expect(isEql(a, b)).toBe(true);
+      expect(isEqual(a, b)).toBe(true);
     });
 
     test('a value reached twice by different paths', () => {
       const shared = { v: 1 };
 
       expect(
-        isEql({ x: shared, y: shared }, { x: { v: 1 }, y: { v: 1 } }),
+        isEqual({ x: shared, y: shared }, { x: { v: 1 }, y: { v: 1 } }),
       ).toBe(true);
     });
   });
@@ -108,14 +108,14 @@ describe('Assert > isEql with circular references', () => {
       const b: unknown[] = [2];
       b.push(b);
 
-      expect(isEql(a, b)).toBe(false);
+      expect(isEqual(a, b)).toBe(false);
     });
 
     test('a self-referencing object differs from a non-cyclic one', () => {
       const a: Record<string, unknown> = {};
       a.self = a;
 
-      expect(isEql(a, { self: {} })).toBe(false);
+      expect(isEqual(a, { self: {} })).toBe(false);
     });
 
     test('sharing a node is not the same as being equal', () => {
@@ -124,7 +124,7 @@ describe('Assert > isEql with circular references', () => {
 
       // Tracking each side separately called this a cycle as soon as `shared`
       // had been seen once in each graph, whatever it was paired with.
-      expect(isEql({ x: shared, y: shared }, { x: other, y: shared })).toBe(
+      expect(isEqual({ x: shared, y: shared }, { x: other, y: shared })).toBe(
         false,
       );
     });
@@ -137,14 +137,14 @@ describe('Assert > isEql with circular references', () => {
       const b2: Record<string, unknown> = { next: b1, extra: 1 };
       b1.next = b2;
 
-      expect(isEql(a, b1)).toBe(false);
+      expect(isEqual(a, b1)).toBe(false);
     });
   });
 
   test('an ordinary comparison is unaffected', () => {
-    expect(isEql({ a: [{ b: 1 }] }, { a: [{ b: 1 }] })).toBe(true);
-    expect(isEql({ a: [{ b: 1 }] }, { a: [{ b: 2 }] })).toBe(false);
-    expect(isEql(new Set([1, 2, 3]), new Set([1, 2, 3]))).toBe(true);
-    expect(isEql(new Map([['a', 1]]), new Map([['a', 1]]))).toBe(true);
+    expect(isEqual({ a: [{ b: 1 }] }, { a: [{ b: 1 }] })).toBe(true);
+    expect(isEqual({ a: [{ b: 1 }] }, { a: [{ b: 2 }] })).toBe(false);
+    expect(isEqual(new Set([1, 2, 3]), new Set([1, 2, 3]))).toBe(true);
+    expect(isEqual(new Map([['a', 1]]), new Map([['a', 1]]))).toBe(true);
   });
 });
