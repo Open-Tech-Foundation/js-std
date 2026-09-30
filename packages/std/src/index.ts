@@ -52,6 +52,7 @@ export { default as chunk } from './array/chunk';
 export { default as compact } from './array/compact';
 export { default as intersection } from './array/intersection';
 export { default as insert } from './array/insert';
+export type { InsertOptions } from './array/insert';
 export { default as replace } from './array/replace';
 export { default as remove } from './array/remove';
 export { default as countBy } from './array/countBy';

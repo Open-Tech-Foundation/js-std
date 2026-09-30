@@ -22,7 +22,7 @@ import { insert } from '@opentf/std';
 insert<T>(
   arr: T[] = [],
   indexOrFn: number | null | undefined | ((item: T, index: number, array: T[]) => boolean),
-  ...items: T[]
+  options?: { items: T[]; position?: 'before' | 'after' }
 ): T[]
 ```
 
@@ -30,7 +30,7 @@ insert<T>(
 
 - `arr`: The source array.
 - `indexOrFn`: The index where the new items should be inserted, or a predicate function to find the insertion point. If `null` or `undefined`, items are appended to the end.
-- `...items`: The items to be inserted. When using a predicate, the last argument can be `'before'` or `'after'` to control insertion position (default: `'before'`).
+- `options`: The items to insert and, for a predicate match, an optional `position` (`'before'` by default or `'after'`).
 
 ## Returns
 
@@ -45,30 +45,30 @@ insert([1]) //=> [1]
 
 insert([1], 0) //=> [1]
 
-insert([1], 0, 0) //=> [0, 1]
+insert([1], 0, { items: [0] }) //=> [0, 1]
 
-insert([1], 1, 0) //=> [1, 0]
+insert([1], 1, { items: [0] }) //=> [1, 0]
 
-insert([1, 2, 3], 1, 5) //=> [1, 5, 2, 3]
+insert([1, 2, 3], 1, { items: [5] }) //=> [1, 5, 2, 3]
 
-insert([1, 2, 3], -1, 5) //=> [1, 2, 5, 3]
+insert([1, 2, 3], -1, { items: [5] }) //=> [1, 2, 5, 3]
 
-insert([1, 2, 3], -3, 5) //=> [5, 1, 2, 3]
+insert([1, 2, 3], -3, { items: [5] }) //=> [5, 1, 2, 3]
 
-insert([1, 2, 3], 3, 5) //=> [1, 2, 3, 5]
+insert([1, 2, 3], 3, { items: [5] }) //=> [1, 2, 3, 5]
 
-insert([1, 2, 3], 3, 5, 6) //=> [1, 2, 3, 5, 6]
+insert([1, 2, 3], 3, { items: [5, 6] }) //=> [1, 2, 3, 5, 6]
 
-insert([1, 2, 3], null, 5, 6) //=> [1, 2, 3, 5, 6]
+insert([1, 2, 3], null, { items: [5, 6] }) //=> [1, 2, 3, 5, 6]
 
-insert([1, 2, 3], 0, [5, 6]) //=> [[5, 6], 1, 2, 3]
+insert([1, 2, 3], 0, { items: [[5, 6]] }) //=> [[5, 6], 1, 2, 3]
 
-insert([1, 2, 3], 0, ...[5, 6]) //=> [5, 6, 1, 2, 3]
+insert([1, 2, 3], 0, { items: [5, 6] }) //=> [5, 6, 1, 2, 3]
 
 // Predicate-based insert
-insert([1, 2, 3], (x) => x === 2, 5) //=> [1, 5, 2, 3]
+insert([1, 2, 3], (x) => x === 2, { items: [5] }) //=> [1, 5, 2, 3]
 
-insert([1, 2, 3], (x) => x === 2, 5, 'after') //=> [1, 2, 5, 3]
+insert([1, 2, 3], (x) => x === 2, { items: [5], position: 'after' }) //=> [1, 2, 5, 3]
 ```
 
 ## Related

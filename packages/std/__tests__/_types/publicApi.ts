@@ -39,6 +39,7 @@ import type {
   HSLA,
   IdleRunFn,
   IdleRunOptions,
+  InsertOptions,
   IsEqualOptions,
   JsonArray,
   JsonObject,
@@ -87,6 +88,7 @@ import {
   get,
   has,
   idleRun,
+  insert,
   isArrayLike,
   isEqual,
   isJSONValue,
@@ -132,6 +134,9 @@ type Equals<X, Y> = (<T>() => T extends X ? 1 : 2) extends <T>() => T extends Y
 function assertType<_T extends true>(): void {}
 
 // --- Array -----------------------------------------------------------------
+
+const insertOptions: InsertOptions<number> = { items: [5], position: 'after' };
+accepts<number[]>(insert([1, 2, 3], 1, insertOptions));
 
 const order: OrderType = 'desc';
 accepts<OrderType>('asc');
