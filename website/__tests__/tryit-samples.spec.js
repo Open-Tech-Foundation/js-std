@@ -27,12 +27,8 @@ import transform from '../app/components/runner/transform.js';
 const normalise = (text) => text.replace(/\s+/g, '').replace(/"/g, "'");
 
 // Sample output that cannot be asserted exactly: random values, fresh ids
-// and timestamps, and the TtlCache expiry line, which needs wall-clock time.
+// and timestamps.
 const NONDETERMINISTIC = new Map([
-  [
-    'app/docs/Cache/TtlCache/page.mdx',
-    'the expiry line needs a real second to pass',
-  ],
   ['app/docs/Crypto/randomFloat/page.mdx', 'random output'],
   ['app/docs/Crypto/randomId/page.mdx', 'random output'],
   ['app/docs/Crypto/randomInt/page.mdx', 'random output'],
