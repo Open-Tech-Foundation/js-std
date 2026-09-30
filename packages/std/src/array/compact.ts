@@ -14,7 +14,7 @@ export default function compact<T>(arr: T[] = []): T[] {
     return [];
   }
 
-  const falsy = [undefined, null, false, 0, ''];
+  const falsy = [undefined, null, false, 0, 0n, ''];
 
   return arr.filter((val) => {
     if (Number.isNaN(val)) {

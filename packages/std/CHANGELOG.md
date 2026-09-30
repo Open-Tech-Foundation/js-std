@@ -10,6 +10,7 @@
 
 ### Changed
 
+- Fixed `compact` retaining `0n`, even though BigInt zero is falsy.
 - Fixed `sortBy` treating numeric and symbol property selectors as callback functions, even though both are allowed by its public type.
 - The `typecheck` and `typecheck:api` tasks now run through `esdev typecheck`, using TypeScript 7.0.2.
 - Fixed `isEqual` treating objects with different own string or symbol keys as equal when the compared values were both `undefined`.

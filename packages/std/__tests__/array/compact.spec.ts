@@ -35,4 +35,8 @@ describe('Array', () => {
       ' ',
     ]);
   });
+
+  test('removes falsy bigint zero', () => {
+    expect(compact([0n, 1n])).toEqual([1n]);
+  });
 });
