@@ -13,6 +13,7 @@
 - Added syntax colors to Playground console strings, object keys, numbers, and literal values; numbers use a brighter yellow for contrast.
 - Labeled runtime-matrix results above 99% as near-complete and included the remaining failing test count.
 - Made long Playground error messages expandable so their full text can be read.
+- Removed the website runner's obsolete `isEql` fallback now that the published package exports `isEqual`.
 
 ## [0.20.0] - 2026-09-30
 
