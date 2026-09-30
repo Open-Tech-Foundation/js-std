@@ -122,12 +122,15 @@ function captureConsole(report) {
 
   for (const level of levels) {
     captured[level] = (...args) => {
+      const parts = args.map((value) => ({
+        kind: typeof value === 'string' ? 'string' : 'value',
+        text: typeof value === 'string' ? value : inspect(value),
+      }));
       report({
         type: 'log',
         level,
-        text: args
-          .map((a) => (typeof a === 'string' ? a : inspect(a)))
-          .join(' '),
+        text: parts.map((part) => part.text).join(' '),
+        parts,
       });
     };
   }

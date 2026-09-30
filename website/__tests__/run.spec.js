@@ -103,6 +103,16 @@ describe('run', () => {
     ]);
   });
 
+  test('preserves value kinds for colored playground output', async () => {
+    const events = await execute(
+      `console.log('user', { name: 'Ada', age: 37, active: true });`,
+    );
+    expect(events.find((event) => event.type === 'log').parts).toEqual([
+      { kind: 'string', text: 'user' },
+      { kind: 'value', text: "{ name: 'Ada', age: 37, active: true }" },
+    ]);
+  });
+
   test('prints a value the way the docs write one', async () => {
     const events = await execute('console.log(chunk([1, 2], 1));');
     expect(events.find((e) => e.type === 'log').text).toBe('[[1], [2]]');

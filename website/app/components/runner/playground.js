@@ -104,7 +104,7 @@ export default function mountPlayground(host) {
       onEvent(event) {
         switch (event.type) {
           case 'log':
-            out.log(event.level, event.text);
+            out.log(event.level, event.text, event.parts);
             break;
           case 'error':
             out.error(`${event.name}: ${event.message}`);

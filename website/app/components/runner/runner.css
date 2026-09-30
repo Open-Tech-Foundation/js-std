@@ -257,6 +257,22 @@
   white-space: nowrap;
 }
 
+.rn-devtools-token--key {
+  color: #79c0ff;
+}
+
+.rn-devtools-token--string {
+  color: #a5d6a7;
+}
+
+.rn-devtools-token--number {
+  color: #d2a8ff;
+}
+
+.rn-devtools-token--literal {
+  color: #ff7b72;
+}
+
 .rn-devtools-line.is-expanded .rn-devtools-value {
   overflow: auto;
   text-overflow: clip;

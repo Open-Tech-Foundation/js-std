@@ -1,8 +1,8 @@
 import { describe, expect, test } from 'runtime:test';
 
-import * as std from '@opentf/std';
 import { Glob, file } from 'runtime:fs';
 import { dirname, fromFileURL, join } from 'runtime:path';
+import * as std from '@opentf/std';
 import inspect from '../app/components/runner/inspect.js';
 import run from '../app/components/runner/run.js';
 import transform from '../app/components/runner/transform.js';
@@ -29,7 +29,10 @@ const normalise = (text) => text.replace(/\s+/g, '').replace(/"/g, "'");
 // Sample output that cannot be asserted exactly: random values, fresh ids
 // and timestamps, and the TtlCache expiry line, which needs wall-clock time.
 const NONDETERMINISTIC = new Map([
-  ['app/docs/Cache/TtlCache/page.mdx', 'the expiry line needs a real second to pass'],
+  [
+    'app/docs/Cache/TtlCache/page.mdx',
+    'the expiry line needs a real second to pass',
+  ],
   ['app/docs/Crypto/randomFloat/page.mdx', 'random output'],
   ['app/docs/Crypto/randomId/page.mdx', 'random output'],
   ['app/docs/Crypto/randomInt/page.mdx', 'random output'],
@@ -50,8 +53,7 @@ function readExpected(source) {
   }
 }
 
-const printed = (value) =>
-  typeof value === 'string' ? value : inspect(value);
+const printed = (value) => (typeof value === 'string' ? value : inspect(value));
 
 /**
  * Pairs each printed line with the `//=>` beside the `console.log` that
