@@ -10,6 +10,7 @@
 
 ### Changed
 
+- Fixed `isEql` treating objects with different own string or symbol keys as equal when the compared values were both `undefined`.
 - Fixed query-string round trips for percent-encoded brackets, parsing of keys that shadow inherited object properties, and circular arrays in `stringifyQueryString`. `randomInt` now rejects bounds outside the safe-integer range so its uniformity guarantee holds.
 - The website now consumes the published `@opentf/std@0.19.0` tarball.
 - The `@opentf/std` library build now uses `esdev build` instead of rolldown. The `esdev.json` `lib` target emits the same shape — one ESM file per module, bundled `index.d.ts`/`index.d.cts` declarations, minified output with sourcemaps — and the CJS tree is now one file per module rather than a single bundle. Four exports gained explicit type annotations to satisfy the declarations contract. The `rolldown` and `rolldown-plugin-dts` dev dependencies and `rolldown.config.ts` are removed.

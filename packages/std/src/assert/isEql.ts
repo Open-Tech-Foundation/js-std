@@ -111,6 +111,10 @@ function isEqlVal(
     }
 
     for (const key of Object.keys(val1)) {
+      if (!hasOwnKey(val2 as object, key)) {
+        return false;
+      }
+
       if (
         !isEqlVal(
           (val1 as IterableObj)[key],
@@ -124,6 +128,10 @@ function isEqlVal(
     }
 
     for (const key of Object.getOwnPropertySymbols(val1)) {
+      if (!hasOwnKey(val2 as object, key)) {
+        return false;
+      }
+
       if (
         !isEqlVal(
           (val1 as IterableObj)[key],

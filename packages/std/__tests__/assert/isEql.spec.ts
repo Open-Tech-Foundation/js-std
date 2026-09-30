@@ -108,6 +108,16 @@ describe('Assert => isEql', () => {
     expect(isEql([[]], [[]])).toBe(true);
   });
 
+  test('different string keys with undefined values are not equal', () => {
+    expect(isEql({ a: undefined }, { b: undefined })).toBe(false);
+  });
+
+  test('different symbol keys with undefined values are not equal', () => {
+    const symA = Symbol('a');
+    const symB = Symbol('b');
+    expect(isEql({ [symA]: undefined }, { [symB]: undefined })).toBe(false);
+  });
+
   test('falsy', () => {
     expect(isEql(undefined, null)).toBe(false);
     expect(isEql([1], [2])).toBe(false);
