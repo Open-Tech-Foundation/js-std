@@ -87,7 +87,12 @@ describe('Array > sortBy', () => {
       { name: 'Sam', grade: 14 },
     ];
 
-    let sorted = sortBy(students, { criteria: [['grade', 'asc'], ['name', 'asc']] });
+    let sorted = sortBy(students, {
+      criteria: [
+        ['grade', 'asc'],
+        ['name', 'asc'],
+      ],
+    });
     expect(sorted).toEqual([
       { name: 'Eagle', grade: 13 },
       { name: 'Sam', grade: 14 },
@@ -96,7 +101,12 @@ describe('Array > sortBy', () => {
     ]);
     expect(sorted).not.toBe(students);
 
-    sorted = sortBy(students, { criteria: [['grade', 'asc'], ['name', 'desc']] });
+    sorted = sortBy(students, {
+      criteria: [
+        ['grade', 'asc'],
+        ['name', 'desc'],
+      ],
+    });
     expect(sorted).toEqual([
       { name: 'Eagle', grade: 13 },
       { name: 'Sam', grade: 14 },
@@ -107,7 +117,10 @@ describe('Array > sortBy', () => {
 
   test('sorting by number and symbol property keys', () => {
     const numericItems = [{ 0: 2 }, { 0: 1 }];
-    expect(sortBy(numericItems, { criteria: [[0, 'asc']] })).toEqual([{ 0: 1 }, { 0: 2 }]);
+    expect(sortBy(numericItems, { criteria: [[0, 'asc']] })).toEqual([
+      { 0: 1 },
+      { 0: 2 },
+    ]);
 
     const rank = Symbol('rank');
     const items = [{ [rank]: 2 }, { [rank]: 1 }];

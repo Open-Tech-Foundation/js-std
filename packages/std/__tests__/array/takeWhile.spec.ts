@@ -20,7 +20,9 @@ describe('Array > takeWhile', () => {
   });
 
   test('takes while from right', () => {
-    expect(takeWhile([1, 2, 3, 4, 5], (n) => n > 3, { fromEnd: true })).toEqual([4, 5]);
+    expect(takeWhile([1, 2, 3, 4, 5], (n) => n > 3, { fromEnd: true })).toEqual(
+      [4, 5],
+    );
     expect(takeWhile([1, 2, 3], (n) => n < 3, { fromEnd: true })).toEqual([]);
   });
 
@@ -30,8 +32,12 @@ describe('Array > takeWhile', () => {
 
   test('preserves original index and array params from right', () => {
     expect(
-      takeWhile([10, 20, 30, 40], (_, i, arr) => i >= arr.length - 2, { fromEnd: true }),
+      takeWhile([10, 20, 30, 40], (_, i, arr) => i >= arr.length - 2, {
+        fromEnd: true,
+      }),
     ).toEqual([30, 40]);
-    expect(takeWhile([1, 2, 3, 4], (_, i) => i >= 2, { fromEnd: true })).toEqual([3, 4]);
+    expect(
+      takeWhile([1, 2, 3, 4], (_, i) => i >= 2, { fromEnd: true }),
+    ).toEqual([3, 4]);
   });
 });

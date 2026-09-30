@@ -201,16 +201,16 @@ describe('runningReduce', () => {
 
   test('accumulates into a type other than the element type', () => {
     expect(
-      runningReduce(
-        ['a', 'b', 'c'],
-        (acc, cur) => [...acc, cur],
-        { initialValue: [] as string[] },
-      ),
+      runningReduce(['a', 'b', 'c'], (acc, cur) => [...acc, cur], {
+        initialValue: [] as string[],
+      }),
     ).toEqual([['a'], ['a', 'b'], ['a', 'b', 'c']]);
   });
 
   test('handles empty and default input', () => {
-    expect(runningReduce([], (acc: number) => acc, { initialValue: 0 })).toEqual([]);
+    expect(
+      runningReduce([], (acc: number) => acc, { initialValue: 0 }),
+    ).toEqual([]);
     expect(
       runningReduce(undefined as never, (acc: number) => acc, {
         initialValue: 0,

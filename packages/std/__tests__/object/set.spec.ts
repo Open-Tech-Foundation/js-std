@@ -37,13 +37,17 @@ describe('Object', () => {
       fruits: ['Apple'],
     });
 
-    expect(set({ fruits: ['Apple'] }, 'fruits[0]', { value: 'Mango' })).toEqual({
-      fruits: ['Mango'],
-    });
+    expect(set({ fruits: ['Apple'] }, 'fruits[0]', { value: 'Mango' })).toEqual(
+      {
+        fruits: ['Mango'],
+      },
+    );
 
-    expect(set({ fruits: ['Apple'] }, 'fruits[1]', { value: 'Mango' })).toEqual({
-      fruits: ['Apple', 'Mango'],
-    });
+    expect(set({ fruits: ['Apple'] }, 'fruits[1]', { value: 'Mango' })).toEqual(
+      {
+        fruits: ['Apple', 'Mango'],
+      },
+    );
 
     expect(set({ a: [{ b: { c: 3 } }] }, 'a[0].b.c', { value: 4 })).toEqual({
       a: [{ b: { c: 4 } }],
@@ -54,10 +58,12 @@ describe('Object', () => {
     expect(set({}, 'a', { value: () => 1 })).toEqual({ a: 1 });
     expect(set({ a: 1 }, 'a', { value: (val) => val + 1 })).toEqual({ a: 2 });
     expect(
-      set({ a: 1, b: [2] }, 'b', { value: (arr) => {
-        arr.unshift(1);
-        return arr;
-      } }),
+      set({ a: 1, b: [2] }, 'b', {
+        value: (arr) => {
+          arr.unshift(1);
+          return arr;
+        },
+      }),
     ).toEqual({
       a: 1,
       b: [1, 2],

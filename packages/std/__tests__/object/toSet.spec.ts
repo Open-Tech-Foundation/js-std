@@ -37,11 +37,15 @@ describe('Object', () => {
       fruits: ['Apple'],
     });
 
-    expect(toSet({ fruits: ['Apple'] }, 'fruits[0]', { value: 'Mango' })).toEqual({
+    expect(
+      toSet({ fruits: ['Apple'] }, 'fruits[0]', { value: 'Mango' }),
+    ).toEqual({
       fruits: ['Mango'],
     });
 
-    expect(toSet({ fruits: ['Apple'] }, 'fruits[1]', { value: 'Mango' })).toEqual({
+    expect(
+      toSet({ fruits: ['Apple'] }, 'fruits[1]', { value: 'Mango' }),
+    ).toEqual({
       fruits: ['Apple', 'Mango'],
     });
 
@@ -54,16 +58,21 @@ describe('Object', () => {
     expect(toSet({}, 'a', { value: () => 1 })).toEqual({ a: 1 });
     expect(toSet({ a: 1 }, 'a', { value: (val) => val + 1 })).toEqual({ a: 2 });
     expect(
-      toSet({ a: 1, b: [2] }, 'b', { value: (arr) => {
-        arr.unshift(1);
-        return arr;
-      } }),
+      toSet({ a: 1, b: [2] }, 'b', {
+        value: (arr) => {
+          arr.unshift(1);
+          return arr;
+        },
+      }),
     ).toEqual({
       a: 1,
       b: [1, 2],
     });
     const fn = (a, b) => a ** b;
-    expect(toSet({ a: 1 }, 'b', { value: (val) => fn })).toEqual({ a: 1, b: fn });
+    expect(toSet({ a: 1 }, 'b', { value: (val) => fn })).toEqual({
+      a: 1,
+      b: fn,
+    });
   });
 
   test('blocks unsafe prototype paths', () => {
@@ -71,7 +80,9 @@ describe('Object', () => {
 
     const obj = { a: 1 };
     expect(toSet(obj, '__proto__.polluted', { value: true })).toBe(obj);
-    expect(toSet(obj, 'constructor.prototype.polluted', { value: true })).toBe(obj);
+    expect(toSet(obj, 'constructor.prototype.polluted', { value: true })).toBe(
+      obj,
+    );
     expect(toSet(obj, 'prototype.polluted', { value: true })).toBe(obj);
     expect(Object.prototype.polluted).toBeUndefined();
 

@@ -40,9 +40,7 @@ describe('flatMapAsync', () => {
   test('throws on invalid concurrency', async () => {
     await expect(
       flatMapAsync([1], async (n) => [n], { concurrency: 0 }),
-    ).rejects.toThrow(
-      'Concurrency must be a positive integer or Infinity.',
-    );
+    ).rejects.toThrow('Concurrency must be a positive integer or Infinity.');
   });
 
   test('skips sparse holes like Array.prototype.flatMap', async () => {

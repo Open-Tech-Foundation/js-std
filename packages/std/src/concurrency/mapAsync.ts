@@ -1,8 +1,5 @@
+import { type ConcurrencyOptions, getConcurrency } from './concurrencyOptions';
 import validateConcurrency from './validateConcurrency';
-import {
-  getConcurrency,
-  type ConcurrencyOptions,
-} from './concurrencyOptions';
 
 /**
  * Asynchronous version of `Array.prototype.map`.

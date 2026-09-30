@@ -34,12 +34,10 @@ describe('Array > filterAsync', () => {
     ).resolves.toEqual([2, 3]);
     await expect(
       filterAsync([1], async () => true, { concurrency: 0 }),
-    ).rejects.toThrow(
-      'Concurrency must be a positive integer or Infinity.',
-    );
-    await expect(filterAsync([1], async () => true, 1 as never)).rejects.toThrow(
-      'Options must be an object.',
-    );
+    ).rejects.toThrow('Concurrency must be a positive integer or Infinity.');
+    await expect(
+      filterAsync([1], async () => true, 1 as never),
+    ).rejects.toThrow('Options must be an object.');
   });
 
   test('skips sparse holes like Array.prototype.filter', async () => {

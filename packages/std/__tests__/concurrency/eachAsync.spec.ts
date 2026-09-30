@@ -54,9 +54,7 @@ describe('Array > eachAsync', () => {
     );
     await expect(
       eachAsync([1], cb, { concurrency: Number.NEGATIVE_INFINITY }),
-    ).rejects.toThrow(
-      'Concurrency must be a positive integer or Infinity.',
-    );
+    ).rejects.toThrow('Concurrency must be a positive integer or Infinity.');
   });
 
   test('skips sparse holes like Array.prototype.forEach', async () => {

@@ -23,8 +23,8 @@ describe('Array', () => {
     expect(replace()).toEqual([]);
 
     // Predicate-based replace
-    expect(replace([1, 2, 3, 4, 5], (x) => x % 2 === 0, { items: [0] })).toEqual([
-      1, 0, 3, 0, 5,
-    ]);
+    expect(
+      replace([1, 2, 3, 4, 5], (x) => x % 2 === 0, { items: [0] }),
+    ).toEqual([1, 0, 3, 0, 5]);
   });
 });

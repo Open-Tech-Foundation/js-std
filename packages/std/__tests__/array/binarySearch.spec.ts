@@ -66,8 +66,12 @@ describe('Array > binarySearch', () => {
   test('takes a comparator, which decides what counts as a match', () => {
     const byLength = (a: string, b: string) => a.length - b.length;
 
-    expect(binarySearch(['a', 'bb', 'ccc'], 'dd', { compare: byLength })).toBe(1);
-    expect(binarySearch(['a', 'bb', 'ccc'], 'dddd', { compare: byLength })).toBe(-1);
+    expect(binarySearch(['a', 'bb', 'ccc'], 'dd', { compare: byLength })).toBe(
+      1,
+    );
+    expect(
+      binarySearch(['a', 'bb', 'ccc'], 'dddd', { compare: byLength }),
+    ).toBe(-1);
   });
 
   test('searches a descending array with the matching comparator', () => {
@@ -112,10 +116,12 @@ describe('Array > binarySearch', () => {
     let comparisons = 0;
     const arr = Array.from({ length: 1024 }, (_, i) => i);
 
-    binarySearch(arr, 999, { compare: (a, b) => {
-      comparisons++;
-      return a - b;
-    } });
+    binarySearch(arr, 999, {
+      compare: (a, b) => {
+        comparisons++;
+        return a - b;
+      },
+    });
 
     // A scan would be 1024. log2(1024) is 10, plus the one confirming the hit.
     expect(comparisons).toBeLessThanOrEqual(12);

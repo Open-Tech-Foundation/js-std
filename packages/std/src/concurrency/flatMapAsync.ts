@@ -1,8 +1,5 @@
+import { type ConcurrencyOptions, getConcurrency } from './concurrencyOptions';
 import mapAsync from './mapAsync';
-import {
-  getConcurrency,
-  type ConcurrencyOptions,
-} from './concurrencyOptions';
 
 /**
  * Asynchronous version of `Array.prototype.flatMap`.

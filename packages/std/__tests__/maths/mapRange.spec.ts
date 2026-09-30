@@ -26,7 +26,10 @@ describe('Maths > mapRange', () => {
   });
 
   test('handles a non-integer result', () => {
-    expect(mapRange(512, { from: [0, 1023], to: [0, 255] })).toBeCloseTo(127.6, 1);
+    expect(mapRange(512, { from: [0, 1023], to: [0, 255] })).toBeCloseTo(
+      127.6,
+      1,
+    );
   });
 
   test('inverts when the output range runs downwards', () => {
@@ -55,7 +58,9 @@ describe('Maths > mapRange', () => {
   });
 
   test('throws on an empty input range', () => {
-    expect(() => mapRange(5, { from: [3, 3], to: [0, 100] })).toThrow(RangeError);
+    expect(() => mapRange(5, { from: [3, 3], to: [0, 100] })).toThrow(
+      RangeError,
+    );
     // Returning Infinity or NaN would carry the mistake somewhere else.
     expect(() => mapRange(5, { from: [3, 3], to: [0, 100] })).toThrow(/empty/);
   });

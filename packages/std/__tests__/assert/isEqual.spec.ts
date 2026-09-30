@@ -41,7 +41,9 @@ describe('Assert => isEqual', () => {
     expect(isEqual([1, undefined, 2], [1, undefined, 2])).toBe(true);
     expect(isEqual([1], [1])).toBe(true);
     expect(isEqual([1, 2, 3, 4, 5], [1, 2, 3, 4, 5])).toBe(true);
-    expect(isEqual([1, '2', 3.5, 4n, true], [1, '2', 3.5, 4n, true])).toBe(true);
+    expect(isEqual([1, '2', 3.5, 4n, true], [1, '2', 3.5, 4n, true])).toBe(
+      true,
+    );
     expect(isEqual({}, {})).toBe(true);
     expect(isEqual({ a: 1, b: 2 }, { b: 2, a: 1 })).toBe(true);
     expect(isEqual(new Date('2000-01-01'), new Date('2000-01-01'))).toBe(true);

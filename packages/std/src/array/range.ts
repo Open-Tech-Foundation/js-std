@@ -49,8 +49,7 @@ export default function range(
     throw new Error('Step must be a number');
   }
 
-  const inclusive =
-    options?.inclusive ?? options?.inclusiveEnd ?? false;
+  const inclusive = options?.inclusive ?? options?.inclusiveEnd ?? false;
   step = options?.step ?? (start < stop ? 1 : -1);
 
   if (Number.isNaN(start) || Number.isNaN(stop) || Number.isNaN(step)) {

@@ -470,10 +470,10 @@ function normalize(input: ColorInput, from?: ColorSourceFormat): RGBA | null {
         clamp(Number.parseInt(hslMatch[1], 10), { min: 0, max: 360 }),
         clamp(Number.parseInt(hslMatch[2], 10), { min: 0, max: 100 }),
         clamp(Number.parseInt(hslMatch[3], 10), { min: 0, max: 100 }),
-        clamp(
-          hslMatch[4] === undefined ? 1 : Number.parseFloat(hslMatch[4]),
-          { min: 0, max: 1 },
-        ),
+        clamp(hslMatch[4] === undefined ? 1 : Number.parseFloat(hslMatch[4]), {
+          min: 0,
+          max: 1,
+        }),
       );
     }
 

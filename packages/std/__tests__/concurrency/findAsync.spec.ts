@@ -122,8 +122,6 @@ describe('Concurrency > findAsync', () => {
   test('throws on invalid concurrency', async () => {
     await expect(
       findAsync([1], async () => true, { concurrency: 0 }),
-    ).rejects.toThrow(
-      'Concurrency must be a positive integer or Infinity.',
-    );
+    ).rejects.toThrow('Concurrency must be a positive integer or Infinity.');
   });
 });

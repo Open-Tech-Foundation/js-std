@@ -87,9 +87,9 @@ describe('mapAsync', () => {
     await expect(mapAsync([1], cb, { concurrency: 1.5 })).rejects.toThrow(
       'Concurrency must be a positive integer or Infinity.',
     );
-    await expect(mapAsync([1], cb, { concurrency: Number.NaN })).rejects.toThrow(
-      'Concurrency must be a positive integer or Infinity.',
-    );
+    await expect(
+      mapAsync([1], cb, { concurrency: Number.NaN }),
+    ).rejects.toThrow('Concurrency must be a positive integer or Infinity.');
     await expect(mapAsync([1], cb, 2 as never)).rejects.toThrow(
       'Options must be an object.',
     );

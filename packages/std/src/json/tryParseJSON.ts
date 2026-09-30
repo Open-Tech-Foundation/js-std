@@ -36,10 +36,9 @@ export default function tryParseJSON<T>(
 ): T | undefined {
   if (typeof text !== 'string') return fallback as T | undefined;
 
-  let reviver: ((key: string, value: unknown) => unknown) | undefined;
+  const reviver = options.reviver;
   let temporal = true;
 
-  reviver = options.reviver;
   if (options.temporal === false) temporal = false;
 
   const finalReviver = temporal ? createTemporalReviver(reviver) : reviver;

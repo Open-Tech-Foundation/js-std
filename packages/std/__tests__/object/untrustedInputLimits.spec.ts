@@ -46,7 +46,9 @@ describe('Object > limits on untrusted input', () => {
     expect(set({}, 'a[3]', { value: 1 })).toEqual({
       a: [undefined, undefined, undefined, 1],
     });
-    expect(toSet({}, 'a[2]', { value: 1 })).toEqual({ a: [undefined, undefined, 1] });
+    expect(toSet({}, 'a[2]', { value: 1 })).toEqual({
+      a: [undefined, undefined, 1],
+    });
   });
 
   test('the root array is bounded the same way', () => {

@@ -203,7 +203,9 @@ function isEqualVal(
     }
 
     for (const key of keys1) {
-      if (!isEqualVal((val1 as any)[key], (val2 as any)[key], seen, depth + 1)) {
+      if (
+        !isEqualVal((val1 as any)[key], (val2 as any)[key], seen, depth + 1)
+      ) {
         return false;
       }
     }
@@ -213,7 +215,9 @@ function isEqualVal(
         return false;
       }
 
-      if (!isEqualVal((val1 as any)[key], (val2 as any)[key], seen, depth + 1)) {
+      if (
+        !isEqualVal((val1 as any)[key], (val2 as any)[key], seen, depth + 1)
+      ) {
         return false;
       }
     }

@@ -45,8 +45,12 @@ describe('Array > drop', () => {
   });
 
   test('drops only items matching a predicate', () => {
-    expect(drop([1, 2, 3, 4, 5], 2, { predicate: (val) => val % 2 === 0 })).toEqual([1, 3, 5]);
-    expect(drop([1, 2, 3, 4, 5], 3, { predicate: (val) => val % 2 !== 0 })).toEqual([2, 4]);
+    expect(
+      drop([1, 2, 3, 4, 5], 2, { predicate: (val) => val % 2 === 0 }),
+    ).toEqual([1, 3, 5]);
+    expect(
+      drop([1, 2, 3, 4, 5], 3, { predicate: (val) => val % 2 !== 0 }),
+    ).toEqual([2, 4]);
 
     const users = [
       { name: 'x', active: false },

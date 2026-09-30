@@ -101,9 +101,15 @@ describe('Array > range', () => {
   });
 
   test('Error: Infinity as start / step', () => {
-    expect(() => range(Number.POSITIVE_INFINITY, 10, { step: 0 })).toThrowError();
-    expect(() => range(Number.NEGATIVE_INFINITY, 10, { step: 0 })).toThrowError();
-    expect(() => range(0, 10, { step: Number.POSITIVE_INFINITY })).toThrowError();
+    expect(() =>
+      range(Number.POSITIVE_INFINITY, 10, { step: 0 }),
+    ).toThrowError();
+    expect(() =>
+      range(Number.NEGATIVE_INFINITY, 10, { step: 0 }),
+    ).toThrowError();
+    expect(() =>
+      range(0, 10, { step: Number.POSITIVE_INFINITY }),
+    ).toThrowError();
   });
 
   test('Inclusive on same start-end', () => {
