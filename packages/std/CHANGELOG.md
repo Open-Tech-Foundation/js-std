@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Added
+
+- `retryRun` now covers the four gaps in a production retry: `jitter` (0–1, default `0`) randomizes each wait within ±that fraction of the computed delay so clients that failed together stop retrying at the same moment; `signal` aborts the retry — including mid-wait — and rejects with `signal.reason`; `shouldRetry(error, attempt)` (may be async) skips retrying errors that will never succeed, such as a `400` versus a `503`; and `respectRetryAfter` (default `false`) raises a shorter computed wait to the server's `Retry-After` value, accepting seconds, HTTP dates, `retryAfter` (seconds) / `retryAfterMs` properties, and header shapes under `headers` or a nested `response`. Synchronous throws from the retried function are now retried rather than escaping the loop.
+
 ### Changed
 
 - The website Try-it suite now checks each sample's `//=>` annotations against what it actually prints — including annotations with a trailing prose suffix and multi-line blocks — so stale samples fail instead of passing with wrong output. Samples with nondeterministic output (random values, fresh ids) are listed as skips in the spec, and the `TtlCache` sample now walks expiry deterministically with `sleep` instead of relying on wall-clock prose.
