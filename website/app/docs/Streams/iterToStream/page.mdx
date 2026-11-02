@@ -1,6 +1,6 @@
 import TryIt from '../../../components/TryIt.jsx';
 export const tryItCode = "async function* rows() {\n  yield '{\"a\":1}\\n';\n}\nconsole.log(await streamToText(iterToStream(rows()))); //=> '{\"a\":1}\\n'";
-import { Callout } from "@opentf/web-docs";
+import { Callout } from "@opentf/afw-docs";
 export const metadata = {
   title: "iterToStream — Streams",
   description: "Turns an iterable, async iterable or iterator into a stream."

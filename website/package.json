@@ -3,24 +3,29 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
+  "packageManager": "pnpm@11.21.0",
   "engines": {
     "node": ">=22"
   },
   "scripts": {
-    "build": "otfw build --ssg"
+    "start": "esdev start",
+    "build": "esdev build --minify",
+    "preview": "esdev preview"
   },
   "dependencies": {
     "@codemirror/lang-javascript": "^6.2.5",
     "@codemirror/state": "^6.7.4",
     "@codemirror/theme-one-dark": "^6.1.3",
     "@codemirror/view": "^6.43.11",
+    "@opentf/afw": "^0.33.0",
+    "@opentf/afw-docs": "^0.31.0",
     "@opentf/std": "https://registry.npmjs.org/@opentf/std/-/std-0.20.0.tgz",
-    "@opentf/web": "^0.27.0",
-    "@opentf/web-docs": "^0.25.0",
-    "codemirror": "^6.0.2"
+    "codemirror": "^6.0.2",
+    "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
-    "@opentf/web-cli": "^1.25.0",
-    "tailwindcss": "^4.3.3"
+    "@opentf/afw-cli": "^1.32.0",
+    "@opentf/esdev-plugin-afw": "^0.5.0",
+    "wrangler": "^4.147.0"
   }
 }

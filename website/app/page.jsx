@@ -1,6 +1,6 @@
-import { DocsLayout } from '@opentf/web-docs';
-import navMap from '@opentf/web-docs/nav';
-import config from '../otfw.config.js';
+import { DocsLayout } from '@opentf/afw-docs';
+import navMap from '@opentf/afw-docs/nav';
+import config from '../afw.config.js';
 import Intro from './components/Intro.mdx';
 
 export const metadata = {

@@ -1,6 +1,6 @@
 import TryIt from '../../../components/TryIt.jsx';
 export const tryItCode = "const evens = [2, 4, 6, 8];\nconst squares = [1, 4, 9];\nconsole.log(symDiff([evens, squares])); //=> [2, 6, 8, 1, 9]\n\nconst bucket1 = ['Fruits', 'Vegs', 'Eggs', 'Cookies', 'Nuts'];\nconst bucket2 = ['fruits', 'Snacks', 'cookies'];\nconsole.log(symDiff([bucket1, bucket2], (v) => v.toLowerCase()));\n//=> [\n//  'Vegs',\n//  'Eggs',\n//  'Nuts',\n//  'Snacks',\n// ]";
-import { Callout } from "@opentf/web-docs";
+import { Callout } from "@opentf/afw-docs";
 export const metadata = {
   title: "symDiff — Array",
   description: "Returns a new array containing elements that are in either collection, but not in both (symmetric difference)."

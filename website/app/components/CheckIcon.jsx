@@ -4,48 +4,40 @@ export default function CheckIcon({
   class: className = '',
   label = 'Yes',
 }) {
-  if (variant === 'outline') {
-    return (
-      <svg
-        width={size}
-        height={size}
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="#10B981"
-        stroke-width="2.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class={className}
-        style="display: inline-block; vertical-align: middle;"
-      >
-        <title>{label}</title>
-        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-        <polyline points="22 4 12 14.01 9 11.01" />
-      </svg>
-    );
-  }
-
-  if (variant === 'minimal') {
-    return (
-      <svg
-        width={size}
-        height={size}
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="#10B981"
-        stroke-width="3"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class={className}
-        style="display: inline-block; vertical-align: middle;"
-      >
-        <title>{label}</title>
-        <polyline points="20 6 9 17 4 12" />
-      </svg>
-    );
-  }
-
-  return (
+  return variant === 'outline' ? (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#10B981"
+      stroke-width="2.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class={className}
+      style="display: inline-block; vertical-align: middle;"
+    >
+      <title>{label}</title>
+      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+      <polyline points="22 4 12 14.01 9 11.01" />
+    </svg>
+  ) : variant === 'minimal' ? (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#10B981"
+      stroke-width="3"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class={className}
+      style="display: inline-block; vertical-align: middle;"
+    >
+      <title>{label}</title>
+      <polyline points="20 6 9 17 4 12" />
+    </svg>
+  ) : (
     <svg
       width={size}
       height={size}

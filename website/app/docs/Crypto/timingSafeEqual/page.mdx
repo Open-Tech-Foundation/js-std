@@ -1,6 +1,6 @@
 import TryIt from '../../../components/TryIt.jsx';
 export const tryItCode = "const mac = await hmacSHA256('secret', 'body');\nconsole.log(timingSafeEqual(mac, await hmacSHA256('secret', 'body'))); //=> true\nconsole.log(timingSafeEqual(mac, await hmacSHA256('secret', 'other'))); //=> false";
-import { Callout } from "@opentf/web-docs";
+import { Callout } from "@opentf/afw-docs";
 export const metadata = {
   title: "timingSafeEqual — Crypto",
   description: "Compares two values in constant time, so the comparison leaks no information about where they differ."

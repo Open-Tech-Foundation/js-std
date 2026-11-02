@@ -1,6 +1,6 @@
 import TryIt from '../../../components/TryIt.jsx';
 export const tryItCode = "let calls = 0;\nconst memoized = memoizeRun(async (id) => { calls++; return id; }, { maxAge: 5000 });\nconsole.log(await Promise.all([memoized(1), memoized(1)])); //=> [1, 1]\nconsole.log(calls); //=> 1";
-import { Callout } from "@opentf/web-docs";
+import { Callout } from "@opentf/afw-docs";
 export const metadata = {
   title: "memoizeRun — FlowControl",
   description: "Caches the results of an asynchronous function. Supports Single Flight (concurrent request de-duplication) and TTL."

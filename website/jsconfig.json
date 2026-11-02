@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
     "jsx": "react-jsx",
-    "jsxImportSource": "@opentf/web"
+    "jsxImportSource": "@opentf/afw"
   }
 }

@@ -1,6 +1,6 @@
 import TryIt from '../../../components/TryIt.jsx';
 export const tryItCode = "const from = (items) => new ReadableStream({ start(c) { for (const x of items) c.enqueue(x); c.close(); } });\nconsole.log(await streamToArray(mergeStreams(from([1]), from([2]))));";
-import { Callout } from "@opentf/web-docs";
+import { Callout } from "@opentf/afw-docs";
 export const metadata = {
   title: "mergeStreams — Streams",
   description: "Interleaves streams, forwarding every chunk as soon as any source produces it."

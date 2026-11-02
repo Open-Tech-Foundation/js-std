@@ -1,6 +1,6 @@
 import TryIt from '../../../components/TryIt.jsx';
 export const tryItCode = "const from = (items) => new ReadableStream({ start(c) { for (const x of items) c.enqueue(x); c.close(); } });\nconst sizes = mapIterAsync(streamToIter(from(['ab', 'c'])), (chunk) => chunk.length);\nconsole.log(await toArrayIterAsync(sizes)); //=> [2, 1]";
-import { Callout } from "@opentf/web-docs";
+import { Callout } from "@opentf/afw-docs";
 export const metadata = {
   title: "streamToIter — Streams",
   description: "Reads a stream as an async iterable, so the *IterAsync operators apply to it."

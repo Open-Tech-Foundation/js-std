@@ -1,6 +1,6 @@
 import TryIt from '../../../components/TryIt.jsx';
 export const tryItCode = "const from = (items) => new ReadableStream({ start(c) { for (const x of items) c.enqueue(x); c.close(); } });\nconst errors = filterStream(from(['ERROR one', 'ok', 'ERROR two']), (line) => line.startsWith('ERROR'));\nconsole.log(await streamToArray(errors)); //=> ['ERROR one', 'ERROR two']";
-import { Callout } from "@opentf/web-docs";
+import { Callout } from "@opentf/afw-docs";
 export const metadata = {
   title: "filterStream — Streams",
   description: "Keeps only the chunks of a stream that satisfy a predicate."

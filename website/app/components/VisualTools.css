@@ -1,20 +1,20 @@
 /* VisualTools — interactive playground for @opentf/std flow-control utilities.
  *
  * Fully theme-aware: every colour is derived from the docs design tokens
- * (--otfw-*), so the panel reads correctly in both light and dark themes.
+ * (--afw-*), so the panel reads correctly in both light and dark themes.
  * Each tool owns an accent colour that flows through the whole panel via the
  * --tool-accent variable (set on .vt-root per active tab). Neutral tints use
  * color-mix against the text colour, so they invert automatically per theme.
  */
 
 .vt-root {
-  --vt-surface: var(--otfw-bg-surface, #f8fafc);
-  --vt-elevated: var(--otfw-bg-elevated, #ffffff);
-  --vt-border: var(--otfw-border, #e2e8f0);
-  --vt-text: var(--otfw-text, #0f172a);
-  --vt-muted: var(--otfw-text-muted, #64748b);
-  --vt-mono: var(--otfw-mono, ui-monospace, "JetBrains Mono", Menlo, monospace);
-  --vt-radius: var(--otfw-radius, 0.75rem);
+  --vt-surface: var(--afw-bg-surface, #f8fafc);
+  --vt-elevated: var(--afw-bg-elevated, #ffffff);
+  --vt-border: var(--afw-border, #e2e8f0);
+  --vt-text: var(--afw-text, #0f172a);
+  --vt-muted: var(--afw-text-muted, #64748b);
+  --vt-mono: var(--afw-mono, ui-monospace, "JetBrains Mono", Menlo, monospace);
+  --vt-radius: var(--afw-radius, 0.75rem);
 
   /* Neutral fills that invert with the theme automatically. */
   --vt-fill: color-mix(in srgb, var(--vt-text) 4%, transparent);
@@ -29,7 +29,7 @@
   --vt-accent-glow: rgba(var(--tool-accent-rgb), 0.55);
 
   color: var(--vt-text);
-  font-family: var(--otfw-font, ui-sans-serif, system-ui, sans-serif);
+  font-family: var(--afw-font, ui-sans-serif, system-ui, sans-serif);
 }
 
 /* ---------------------------------------------------------------- layout -- */
@@ -66,7 +66,7 @@
     overflow: visible;
     padding-bottom: 0;
     position: sticky;
-    top: calc(var(--otfw-navbar-height, 3.75rem) + 1rem);
+    top: calc(var(--afw-navbar-height, 3.75rem) + 1rem);
   }
 }
 

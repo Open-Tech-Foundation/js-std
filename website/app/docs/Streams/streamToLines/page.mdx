@@ -1,6 +1,6 @@
 import TryIt from '../../../components/TryIt.jsx';
 export const tryItCode = "const from = (items) => new ReadableStream({ start(c) { for (const x of items) c.enqueue(x); c.close(); } });\nfor await (const line of streamToLines(from(['a\\nb\\n']))) {\n  console.log(line); //=> 'a' then 'b'\n}";
-import { Callout } from "@opentf/web-docs";
+import { Callout } from "@opentf/afw-docs";
 export const metadata = {
   title: "streamToLines — Streams",
   description: "Reads a stream and yields it one line at a time, without buffering the whole body first."

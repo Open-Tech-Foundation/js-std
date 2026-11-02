@@ -17,3 +17,8 @@
   is gitignored, so resolving the workspace copy would make the Cloudflare build fail with
   `Cannot find module '@opentf/std'`.
   On each release, bump the tarball URL in `website/package.json` to the new version.
+* `website/` is a **standalone pnpm project** (its own `pnpm-workspace.yaml` and
+  `pnpm-lock.yaml`), not a root workspace member — esdev only loads plugins from inside
+  the project root. Install, build and test inside `website/` (`pnpm install`,
+  `pnpm run build`, or `tsr test:website` / `tsr website#build` from the repo root).
+  Production builds go through `scripts/build-site.sh` (Cloudflare Workers Builds).

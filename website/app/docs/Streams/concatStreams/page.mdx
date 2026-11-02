@@ -1,6 +1,6 @@
 import TryIt from '../../../components/TryIt.jsx';
 export const tryItCode = "const from = (items) => new ReadableStream({ start(c) { for (const x of items) c.enqueue(x); c.close(); } });\nconsole.log(await streamToText(concatStreams(from(['header']), from(['body']), from(['footer'])))); //=> 'headerbodyfooter'";
-import { Callout } from "@opentf/web-docs";
+import { Callout } from "@opentf/afw-docs";
 export const metadata = {
   title: "concatStreams — Streams",
   description: "Joins streams end to end, reading each one only once the previous has closed."

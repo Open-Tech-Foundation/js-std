@@ -1,6 +1,6 @@
 import TryIt from '../../../components/TryIt.jsx';
 export const tryItCode = "const config = deepFreeze({ db: { host: 'localhost', opts: { pool: 5 } } });\n\nconsole.log(Object.isFrozen(config.db)); //=> true\nconsole.log(Object.isFrozen(config.db.opts)); //=> true\n\nconsole.log(config.db.opts.pool = 10); //=> TypeError in strict mode\n\n// Object.freeze alone reaches only the first level\nconst shallow = Object.freeze({ db: { pool: 5 } });\nconsole.log(Object.isFrozen(shallow.db)); //=> false";
-import { Callout } from "@opentf/web-docs";
+import { Callout } from "@opentf/afw-docs";
 export const metadata = {
   title: "deepFreeze — Object",
   description: "Recursively freezes an object and everything reachable from it."

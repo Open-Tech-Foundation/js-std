@@ -222,6 +222,6 @@ describe('mountTryIt — direct source', () => {
   test('keeps the sample and its output out of the search index', () => {
     const host = mountHost();
     mountTryIt(host, 'first([1]) //=> 1');
-    expect(section().hasAttribute('data-pagefind-ignore')).toBe(true);
+    expect(section().hasAttribute('data-afw-search-ignore')).toBe(true);
   });
 });

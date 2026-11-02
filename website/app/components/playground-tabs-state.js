@@ -6,8 +6,8 @@ export function updatePlaygroundTabSelection(tabs, panels, id) {
     tab.tabIndex = selected ? 0 : -1;
     tab.classList.toggle('border-blue-500', selected);
     tab.classList.toggle('border-transparent', !selected);
-    tab.classList.toggle('text-[var(--otfw-text)]', selected);
-    tab.classList.toggle('text-[var(--otfw-text-muted)]', !selected);
+    tab.classList.toggle('text-[var(--afw-text)]', selected);
+    tab.classList.toggle('text-[var(--afw-text-muted)]', !selected);
   }
   for (const panel of panels) panel.hidden = panel.dataset.panel !== id;
 }

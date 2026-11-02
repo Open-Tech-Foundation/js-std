@@ -16,7 +16,7 @@ function button(label, className) {
 export default function mountTryIt(host, code = '') {
   const section = document.createElement('section');
   section.className = 'rn-tryit';
-  section.setAttribute('data-pagefind-ignore', '');
+  section.setAttribute('data-afw-search-ignore', '');
   const panel = document.createElement('div');
   panel.className = 'rn-panel';
   const surface = document.createElement('div');

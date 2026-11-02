@@ -1,4 +1,4 @@
-import { defineDocsConfig } from '@opentf/web-docs/config';
+import { defineDocsConfig } from '@opentf/afw-docs/config';
 
 export default defineDocsConfig({
   site: { url: 'https://js-std.opentechf.org' },
@@ -25,6 +25,6 @@ export default defineDocsConfig({
         },
       ],
     },
-    search: { provider: 'pagefind' },
+    search: { provider: 'afw' },
   },
 });

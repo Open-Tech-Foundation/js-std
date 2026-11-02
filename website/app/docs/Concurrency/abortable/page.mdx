@@ -1,6 +1,6 @@
 import TryIt from '../../../components/TryIt.jsx';
 export const tryItCode = "const controller = new AbortController();\nsetTimeout(() => controller.abort(), 50);\ntry {\n  await abortable(sleep(1000), controller.signal);\n} catch (err) {\n  console.log(err.name); //=> 'AbortError'\n}";
-import { Callout } from "@opentf/web-docs";
+import { Callout } from "@opentf/afw-docs";
 export const metadata = {
   title: "abortable — Concurrency",
   description: "Stops waiting on a promise once a signal aborts."

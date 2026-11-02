@@ -1,0 +1,19 @@
+# The site is its own pnpm project, not a member of the repository workspace:
+# esdev loads plugins only from inside the project root, and a workspace
+# install keeps them in the repository's node_modules/.pnpm, outside website/.
+# It also lets a deploy install the site alone (scripts/build-site.sh).
+packages:
+  - "."
+
+# wrangler's local runtime and its bundler ship platform binaries; pnpm declines
+# lifecycle scripts until each is named here.
+allowBuilds:
+  esbuild: true
+  workerd: true
+
+minimumReleaseAgeExclude:
+  - '@opentf/afw@0.33.0'
+  - '@opentf/afw-cli@1.32.0'
+  - '@opentf/afw-compiler@0.21.0'
+  - '@opentf/afw-docs@0.31.0'
+  - '@opentf/esdev-plugin-afw@0.5.0'

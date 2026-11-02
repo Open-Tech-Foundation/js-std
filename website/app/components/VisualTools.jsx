@@ -1,3 +1,4 @@
+import { onCleanup, onMount } from '@opentf/afw';
 import {
   batchRun,
   idleRun,
@@ -5,7 +6,6 @@ import {
   rateLimitRun,
   retryRun,
 } from '@opentf/std';
-import { onCleanup, onMount } from '@opentf/web';
 
 // Per-tool identity: accent colour flows through the whole panel via
 // --tool-accent, so sliders, buttons, code, and the timeline all stay in sync.

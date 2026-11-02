@@ -1,6 +1,6 @@
 import TryIt from '../../../components/TryIt.jsx';
 export const tryItCode = "const cache = new LruCache(2);\n\ncache.set('a', 1);\ncache.set('b', 2);\ncache.get('a');    // 'a' is now the most recently used\ncache.set('c', 3); // evicts 'b', not 'a'\n\nconsole.log(cache.has('b')); //=> false\nconsole.log(cache.has('a')); //=> true";
-import { Callout } from "@opentf/web-docs";
+import { Callout } from "@opentf/afw-docs";
 export const metadata = {
   title: "LruCache — Cache",
   description: "A fixed-capacity cache that evicts the least recently used entry once it is full."

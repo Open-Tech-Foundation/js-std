@@ -1,6 +1,6 @@
 import TryIt from '../../../components/TryIt.jsx';
 export const tryItCode = "const limit = limitRun(2);\nconst results = await Promise.all([1, 2, 3].map((n) => limit(() => sleep(10).then(() => n))));\nconsole.log(results); //=> [1, 2, 3]";
-import { Callout } from "@opentf/web-docs";
+import { Callout } from "@opentf/afw-docs";
 export const metadata = {
   title: "limitRun — FlowControl",
   description: "Creates a gate that runs at most concurrency tasks at a time."

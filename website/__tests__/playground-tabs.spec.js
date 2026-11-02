@@ -26,11 +26,11 @@ describe('Playground tab selection', () => {
   test('updates the selected tab style, accessibility state, and panel', () => {
     const playground = tab('playground', [
       'border-blue-500',
-      'text-[var(--otfw-text)]',
+      'text-[var(--afw-text)]',
     ]);
     const tools = tab('tools', [
       'border-transparent',
-      'text-[var(--otfw-text-muted)]',
+      'text-[var(--afw-text-muted)]',
     ]);
     const playgroundPanel = { dataset: { panel: 'playground' }, hidden: false };
     const toolsPanel = { dataset: { panel: 'tools' }, hidden: true };
@@ -44,11 +44,11 @@ describe('Playground tab selection', () => {
     expect(playground.attributes['aria-selected']).toBe('false');
     expect(playground.tabIndex).toBe(-1);
     expect(playground.classes.has('border-transparent')).toBe(true);
-    expect(playground.classes.has('text-[var(--otfw-text-muted)]')).toBe(true);
+    expect(playground.classes.has('text-[var(--afw-text-muted)]')).toBe(true);
     expect(tools.attributes['aria-selected']).toBe('true');
     expect(tools.tabIndex).toBe(0);
     expect(tools.classes.has('border-blue-500')).toBe(true);
-    expect(tools.classes.has('text-[var(--otfw-text)]')).toBe(true);
+    expect(tools.classes.has('text-[var(--afw-text)]')).toBe(true);
     expect(playgroundPanel.hidden).toBe(true);
     expect(toolsPanel.hidden).toBe(false);
   });

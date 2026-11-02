@@ -1,6 +1,6 @@
 import TryIt from '../../../components/TryIt.jsx';
 export const tryItCode = "let n = 0;\nconst job = await pollRun(() => ({ status: ++n < 3 ? 'pending' : 'done' }), { until: (job) => job.status !== 'pending', interval: 50, timeout: 5000 });\nconsole.log(job.status); //=> 'done'";
-import { Callout } from "@opentf/web-docs";
+import { Callout } from "@opentf/afw-docs";
 export const metadata = {
   title: "pollRun — FlowControl",
   description: "Runs a function repeatedly until its result satisfies a condition."

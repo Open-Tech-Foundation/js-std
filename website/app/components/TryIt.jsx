@@ -1,4 +1,4 @@
-import { onCleanup, onMount } from '@opentf/web';
+import { onCleanup, onMount } from '@opentf/afw';
 import mountTryIt from './runner/tryit.js';
 
 /** A page-local runnable example. `code` is authored by the MDX page itself. */

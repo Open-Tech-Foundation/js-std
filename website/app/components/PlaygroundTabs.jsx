@@ -1,4 +1,4 @@
-import { onCleanup, onMount } from '@opentf/web';
+import { onCleanup, onMount } from '@opentf/afw';
 import Playground from './Playground.jsx';
 import VisualTools from './VisualTools.jsx';
 import { updatePlaygroundTabSelection } from './playground-tabs-state.js';
@@ -49,7 +49,7 @@ export default function PlaygroundTabs() {
       <div
         role="tablist"
         aria-label="Playground modes"
-        class="flex gap-1 border-b border-[var(--otfw-border)] mb-8"
+        class="flex gap-1 border-b border-[var(--afw-border)] mb-8"
       >
         <button
           type="button"
@@ -58,7 +58,7 @@ export default function PlaygroundTabs() {
           aria-controls="playground-panel"
           aria-selected="true"
           data-tab="playground"
-          class="px-4 py-2 font-semibold border-b-2 border-blue-500 text-[var(--otfw-text)]"
+          class="px-4 py-2 font-semibold border-b-2 border-blue-500 text-[var(--afw-text)]"
         >
           Playground
         </button>
@@ -70,7 +70,7 @@ export default function PlaygroundTabs() {
           aria-selected="false"
           tabindex="-1"
           data-tab="tools"
-          class="px-4 py-2 font-semibold border-b-2 border-transparent text-[var(--otfw-text-muted)] hover:text-[var(--otfw-text)]"
+          class="px-4 py-2 font-semibold border-b-2 border-transparent text-[var(--afw-text-muted)] hover:text-[var(--afw-text)]"
         >
           Interactive Tools
         </button>

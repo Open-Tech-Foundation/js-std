@@ -1,6 +1,6 @@
 import TryIt from '../../../components/TryIt.jsx';
 export const tryItCode = "console.log(unset({ a: 1, b: 2 }, 'a')); //=> { b: 2 }\n\nconsole.log(unset({ a: 1, b: 2 }, 'c')); //=> { a: 1, b: 2 } (Non-existent path)\n\n// Sparse array behavior\nconsole.log(unset([1, 2, 3], '1')); //=> [1, <1 empty item>, 3]\n\nconst nestedObj = { x: { y: { z: ['a', null, 'b'] } } };\nconsole.log(unset(nestedObj, 'x.y.z')); //=> { x: { y: {} } }";
-import { Callout } from "@opentf/web-docs";
+import { Callout } from "@opentf/afw-docs";
 export const metadata = {
   title: "unset — Object",
   description: "Removes a property at a specific path of an object."

@@ -4,48 +4,40 @@ export default function CrossIcon({
   class: className = '',
   label = 'No',
 }) {
-  if (variant === 'outline') {
-    return (
-      <svg
-        width={size}
-        height={size}
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="#F43F5E"
-        stroke-width="2.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class={className}
-        style="display: inline-block; vertical-align: middle;"
-      >
-        <title>{label}</title>
-        <circle cx="12" cy="12" r="10" />
-        <path d="M15 9l-6 6M9 9l6 6" />
-      </svg>
-    );
-  }
-
-  if (variant === 'minimal') {
-    return (
-      <svg
-        width={size}
-        height={size}
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="#F43F5E"
-        stroke-width="3"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class={className}
-        style="display: inline-block; vertical-align: middle;"
-      >
-        <title>{label}</title>
-        <path d="M18 6L6 18M6 6l12 12" />
-      </svg>
-    );
-  }
-
-  return (
+  return variant === 'outline' ? (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#F43F5E"
+      stroke-width="2.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class={className}
+      style="display: inline-block; vertical-align: middle;"
+    >
+      <title>{label}</title>
+      <circle cx="12" cy="12" r="10" />
+      <path d="M15 9l-6 6M9 9l6 6" />
+    </svg>
+  ) : variant === 'minimal' ? (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#F43F5E"
+      stroke-width="3"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class={className}
+      style="display: inline-block; vertical-align: middle;"
+    >
+      <title>{label}</title>
+      <path d="M18 6L6 18M6 6l12 12" />
+    </svg>
+  ) : (
     <svg
       width={size}
       height={size}

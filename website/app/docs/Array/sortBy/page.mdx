@@ -1,6 +1,6 @@
 import TryIt from '../../../components/TryIt.jsx';
 export const tryItCode = "const fruits = [\n  { name: 'banana', amount: 2 },\n  { name: 'apple', amount: 4 },\n  { name: 'pineapple', amount: 2 },\n  { name: 'mango', amount: 1 },\n  { name: 'orange', amount: 5 },\n];\n\nsortBy(fruits, { criteria: [['name', 'asc']] });\n// OR\nconsole.log(sortBy(fruits, { criteria: [[(o) => o.name, 'asc']] }));\n//=> [\n//   { name: 'apple', amount: 4 },\n//   { name: 'banana', amount: 2 },\n//   { name: 'mango', amount: 1 },\n//   { name: 'orange', amount: 5 },\n//   { name: 'pineapple', amount: 2 }\n// ]";
-import { Callout } from "@opentf/web-docs";
+import { Callout } from "@opentf/afw-docs";
 export const metadata = {
   title: "sortBy — Array",
   description: "Sorts an array of objects by one or more properties or iteratees."

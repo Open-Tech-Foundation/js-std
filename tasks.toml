@@ -6,7 +6,7 @@ run = "esdev start"
 dir = "packages/std"
 
 [tasks."dev:website"]
-run = "otfw dev"
+run = "esdev start"
 dir = "website"
 
 [tasks.test]
@@ -26,9 +26,11 @@ dir = "packages/std"
 
 # The docs runner's units: the scanner, the example transform, the value
 # formatter, and the execution core. Kept out of `packages/std` because they
-# belong to the site, not the library.
+# belong to the site, not the library. Runs inside website/ so esdev loads
+# that project's esdev.json plugins.
 [tasks."test:website"]
-run = "esdev test website"
+run = "esdev test"
+dir = "website"
 
 [tasks.lint]
 run = "biome check ."
@@ -47,7 +49,7 @@ run = "esdev scripts/gen-docs.js"
 dir = "packages/std"
 
 [tasks."website#build"]
-run = "otfw build --ssg"
+run = "esdev build --minify"
 dir = "website"
 
 [tasks."build:website"]

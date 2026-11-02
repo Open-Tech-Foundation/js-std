@@ -1,6 +1,6 @@
 import TryIt from '../../../components/TryIt.jsx';
 export const tryItCode = "const cache = new TtlCache(1000);\n\ncache.set('a', 1);\nconsole.log(cache.get('a')); //=> 1\n\n// ...over a second later\nawait sleep(100)\nconsole.log(cache.get('a')); //=> 1\n\nawait sleep(900)\nconsole.log(cache.get('a')); //=> undefined";
-import { Callout } from "@opentf/web-docs";
+import { Callout } from "@opentf/afw-docs";
 export const metadata = {
   title: "TtlCache — Cache",
   description: "A cache whose entries expire a fixed time after they are written."

@@ -1,6 +1,6 @@
-import { router } from '@opentf/web';
-import { Navbar } from '@opentf/web-docs';
-import config from '../otfw.config.js';
+import { router } from '@opentf/afw';
+import { Navbar } from '@opentf/afw-docs';
+import config from '../afw.config.js';
 import SiteFooter from './components/SiteFooter.jsx';
 
 export const metadata = {
@@ -44,9 +44,9 @@ export default function Layout(props) {
   });
 
   return (
-    <div class="otfw-shell">
+    <div class="afwd-shell">
       <Navbar config={config.docs} />
-      <div class="otfw-shell-body">{props.children}</div>
+      <div class="afwd-shell-body">{props.children}</div>
       <SiteFooter />
     </div>
   );
