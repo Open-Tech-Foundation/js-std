@@ -10,6 +10,12 @@ export const metadata = {
   openGraph: {
     siteName: 'JS Standard Library',
     locale: 'en_US',
+    image: '/assets/Logo.png',
+  },
+  twitter: {
+    // Square logo → compact card; summary_large_image wants ~2:1.
+    card: 'summary',
+    image: '/assets/Logo.png',
   },
   jsonLd: {
     '@context': 'https://schema.org',
@@ -40,6 +46,7 @@ export const metadata = {
         description:
           'An extensive JavaScript standard library — lightweight, high-accuracy, and runtime-agnostic.',
         author: { '@id': 'https://opentechf.org/#org' },
+        image: 'https://js-std.opentechf.org/assets/Logo.png',
         offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
       },
       {
@@ -47,6 +54,7 @@ export const metadata = {
         '@id': 'https://opentechf.org/#org',
         name: 'Open Tech Foundation',
         url: 'https://opentechf.org',
+        logo: 'https://js-std.opentechf.org/assets/Logo.png',
         sameAs: ['https://github.com/Open-Tech-Foundation'],
       },
     ],
