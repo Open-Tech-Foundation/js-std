@@ -1,4 +1,5 @@
-// Footer badge linking to AFW.
+// Footer badge linking to AFW. Typography is HTML for crisp spacing; the SVG
+// is only the mark (public/built-with-afw.svg mirrors the full badge).
 const AFW_DOCS = 'https://afw.opentechf.org';
 
 function DocsMark() {
@@ -44,7 +45,7 @@ export default function BuiltWithBadge() {
       <span class="site-footer-badge-copy">
         <span class="site-footer-badge-muted">Built with</span>
         <span class="site-footer-badge-brand">
-          <span class="site-footer-badge-brand-afw">AFW</span>
+          <span class="site-footer-badge-accent">AFW</span>
         </span>
       </span>
     </a>
