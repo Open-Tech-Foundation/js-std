@@ -2,7 +2,7 @@ import TryIt from '../../../components/TryIt.jsx';
 export const tryItCode = "console.log(snakeCase('Foo Bar')); //=> 'foo_bar'\n\nconsole.log(snakeCase('fooBar')); //=> 'foo_bar'\n\nconsole.log(snakeCase('--foo-bar--')); //=> 'foo_bar'";
 export const metadata = {
   title: "snakeCase — String",
-  description: "Converts string to snake case."
+  description: "Converts a string to snake_case, splitting on word boundaries so camelCase, kebab and spaced input all normalise the same way."
 };
 
 # snakeCase

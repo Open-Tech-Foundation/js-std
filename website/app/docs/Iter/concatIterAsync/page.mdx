@@ -2,7 +2,7 @@ import TryIt from '../../../components/TryIt.jsx';
 export const tryItCode = "async function* gen(values) { yield* values; }\nconsole.log(await toArrayIterAsync(concatIterAsync(gen([1, 2]), gen([3])))); //=> [1, 2, 3]";
 export const metadata = {
   title: "concatIterAsync — Iter",
-  description: "Yields the items of each async iterable in turn."
+  description: "Yields the items of each async iterable in turn, chaining async sequences lazily without buffering them."
 };
 
 # concatIterAsync

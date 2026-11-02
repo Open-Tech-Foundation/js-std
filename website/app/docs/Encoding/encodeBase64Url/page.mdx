@@ -2,7 +2,7 @@ import TryIt from '../../../components/TryIt.jsx';
 export const tryItCode = "console.log(encodeBase64Url(new Uint8Array([104, 101, 108, 108, 111]))); //=> 'aGVsbG8='\nconsole.log(encodeBase64Url(new Uint8Array([104, 101, 108, 108, 111]), { pad: false })); //=> 'aGVsbG8'";
 export const metadata = {
   title: "encodeBase64Url — Encoding",
-  description: "Encodes bytes to a URL-safe Base64 string."
+  description: "Encodes bytes to a URL-safe Base64 string, swapping +/ for -_ so the result is safe in query strings and filenames."
 };
 
 # encodeBase64Url

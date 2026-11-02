@@ -2,7 +2,7 @@ import TryIt from '../../../components/TryIt.jsx';
 export const tryItCode = "async function* gen() { yield 1; yield 2; }\nconsole.log(await lastIterAsync(gen())); //=> 2";
 export const metadata = {
   title: "lastIterAsync — Iter",
-  description: "Returns the last item from an async iterable."
+  description: "Returns the last item produced by an async iterable, awaiting each step without holding the whole sequence."
 };
 
 # lastIterAsync

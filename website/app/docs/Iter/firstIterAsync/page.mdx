@@ -2,7 +2,7 @@ import TryIt from '../../../components/TryIt.jsx';
 export const tryItCode = "async function* gen() { yield 1; yield 2; }\nconsole.log(await firstIterAsync(gen())); //=> 1";
 export const metadata = {
   title: "firstIterAsync — Iter",
-  description: "Returns the first item from an async iterable."
+  description: "Returns the first item produced by an async iterable without draining the rest, or undefined when empty."
 };
 
 # firstIterAsync

@@ -1,3 +1,15 @@
+export const metadata = {
+  title: { absolute: 'Page not found — JS Standard Library' },
+  description:
+    'The page you are looking for does not exist or has moved. Return to the JS Standard Library homepage.',
+  canonical: '',
+  openGraph: {
+    title: 'Page not found — JS Standard Library',
+    siteName: 'JS Standard Library',
+    locale: 'en_US',
+  },
+};
+
 export default function NotFound() {
   return (
     <div class="flex min-h-[60vh] flex-col items-center justify-center px-6 text-center">

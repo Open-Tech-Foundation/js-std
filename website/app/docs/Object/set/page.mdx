@@ -3,7 +3,7 @@ export const tryItCode = "console.log(set({}, 'a', { value: 1 })); //=> { a: 1 }
 import { Callout } from "@opentf/afw-docs";
 export const metadata = {
   title: "set — Object",
-  description: "Sets the value at a specific path of an object."
+  description: "Sets the value at a specific path of an object, creating intermediate objects as needed and never mutating prototypes."
 };
 
 # set

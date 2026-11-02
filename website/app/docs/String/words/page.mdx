@@ -2,7 +2,7 @@ import TryIt from '../../../components/TryIt.jsx';
 export const tryItCode = "console.log(words('fred, barney, & pebbles')); //=> ['fred', 'barney', 'pebbles']\n\nconsole.log(words('fred, barney, & pebbles', /[^, ]+/g)); //=> ['fred', 'barney', '&', 'pebbles']\n\nconsole.log(words('a+b+c', '+')); //=> ['+', '+']";
 export const metadata = {
   title: "words — String",
-  description: "Splits a string into an array of its words."
+  description: "Splits a string into an array of its words, handling camelCase boundaries, punctuation and whitespace."
 };
 
 # words

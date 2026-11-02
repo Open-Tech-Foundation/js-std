@@ -2,7 +2,7 @@ import TryIt from '../../../components/TryIt.jsx';
 export const tryItCode = "console.log([...concatIter([1, 2], [3, 4])]); //=> [1, 2, 3, 4]\n\nconsole.log([...concatIter('ab', [1, 2])]); //=> ['a', 'b', 1, 2]";
 export const metadata = {
   title: "concatIter — Iter",
-  description: "Yields the items of each iterable in turn."
+  description: "Yields the items of each iterable in turn, chaining sequences lazily without building an intermediate array."
 };
 
 # concatIter

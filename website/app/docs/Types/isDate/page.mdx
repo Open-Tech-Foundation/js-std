@@ -2,7 +2,7 @@ import TryIt from '../../../components/TryIt.jsx';
 export const tryItCode = "console.log(isDate(new Date())); //=> true\n\nconsole.log(isDate(new Date(''))); //=> false\n\nconsole.log(isDate('2000-01-01')); //=> false";
 export const metadata = {
   title: "isDate — Types",
-  description: "Checks if the given value is a valid Date object."
+  description: "Checks if the given value is a valid Date object (not an invalid date created with NaN timestamps)."
 };
 
 # isDate

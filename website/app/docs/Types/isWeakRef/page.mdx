@@ -2,7 +2,7 @@ import TryIt from '../../../components/TryIt.jsx';
 export const tryItCode = "console.log(isWeakRef({})); //=> false\n\nlet user = { name: \"John\" };\nconsole.log(isWeakRef(new WeakRef(user))); //=> true";
 export const metadata = {
   title: "isWeakRef — Types",
-  description: "Checks if the given value is WeakRef."
+  description: "Checks if the given value is a WeakRef, so code can detect weak references without relying on instanceof alone."
 };
 
 # isWeakRef

@@ -2,7 +2,7 @@ import TryIt from '../../../components/TryIt.jsx';
 export const tryItCode = "console.log(isArrayBuffer([])); //=> false\n\nconsole.log(isArrayBuffer(new ArrayBuffer(8))); //=> true";
 export const metadata = {
   title: "isArrayBuffer — Types",
-  description: "Checks if the given value is an ArrayBuffer."
+  description: "Checks if the given value is an ArrayBuffer, distinguishing raw binary buffers from views and typed arrays."
 };
 
 # isArrayBuffer

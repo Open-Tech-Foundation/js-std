@@ -2,7 +2,7 @@ import TryIt from '../../../components/TryIt.jsx';
 export const tryItCode = "const add2 = (n) => n + 2;\nconst times3 = (n) => n * 3;\n\nconst times3ThenAdd2 = pipe(times3, add2);\nconsole.log(times3ThenAdd2(5)); //=> 17 ( (5 * 3) + 2 )";
 export const metadata = {
   title: "pipe — Functional",
-  description: "Performs left-to-right function composition."
+  description: "Performs left-to-right function composition, so pipe(f, g, h)(x) evaluates h(g(f(x))) — readable call order."
 };
 
 # pipe

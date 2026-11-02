@@ -4,9 +4,13 @@ import config from '../afw.config.js';
 import Intro from './components/Intro.mdx';
 
 export const metadata = {
-  title: { absolute: 'JS Standard Library' },
+  title: { absolute: '@opentf/std — JavaScript Standard Library' },
   description:
     'An extensive JavaScript standard library — lightweight, high-accuracy, and runtime-agnostic.',
+  openGraph: {
+    siteName: 'JS Standard Library',
+    locale: 'en_US',
+  },
 };
 
 /**

@@ -3,7 +3,7 @@ export const tryItCode = "const controller = new AbortController();\nsetTimeout(
 import { Callout } from "@opentf/afw-docs";
 export const metadata = {
   title: "abortable — Concurrency",
-  description: "Stops waiting on a promise once a signal aborts."
+  description: "Stops waiting on a promise once a signal aborts, rejecting with the signal's reason instead of hanging forever."
 };
 
 # abortable

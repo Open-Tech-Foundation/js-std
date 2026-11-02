@@ -2,7 +2,7 @@ import TryIt from '../../../components/TryIt.jsx';
 export const tryItCode = "async function* gen() { yield 1; yield 2; yield 3; }\nconsole.log(await toArrayIterAsync(dropIterAsync(gen(), 1))); //=> [2, 3]";
 export const metadata = {
   title: "dropIterAsync — Iter",
-  description: "Skips the first N elements of an async iterable."
+  description: "Skips the first N elements of an async iterable and yields the rest, awaiting the source as it goes."
 };
 
 # dropIterAsync

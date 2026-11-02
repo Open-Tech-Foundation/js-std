@@ -2,7 +2,7 @@ import TryIt from '../../../components/TryIt.jsx';
 export const tryItCode = "console.log([...flatMapIter([1, 2], (x) => [x, x * 10])]); //=> [1, 10, 2, 20]";
 export const metadata = {
   title: "flatMapIter — Iter",
-  description: "Maps each item and flattens the result."
+  description: "Maps each item with a function and flattens the results one level, yielding the combined sequence lazily."
 };
 
 # flatMapIter

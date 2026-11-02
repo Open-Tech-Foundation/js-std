@@ -2,7 +2,7 @@ import TryIt from '../../../components/TryIt.jsx';
 export const tryItCode = "const id = ulid();\n\nconsole.log(ulidTime(id)); //=> 1769000000000\nconsole.log(new Date(ulidTime(id))); //=> the moment it was generated";
 export const metadata = {
   title: "ulidTime — Crypto",
-  description: "Reads the timestamp back out of a ULID."
+  description: "Reads the timestamp back out of a ULID as a Unix millisecond value, without decoding the rest of the identifier."
 };
 
 # ulidTime

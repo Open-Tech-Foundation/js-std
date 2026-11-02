@@ -2,7 +2,7 @@ import TryIt from '../../../components/TryIt.jsx';
 export const tryItCode = "console.log(isAsyncIterable((async function* () {})())); //=> true\nconsole.log(isAsyncIterable([])); //=> false";
 export const metadata = {
   title: "isAsyncIterable — Types",
-  description: "Checks if the given value is an async iterable."
+  description: "Checks if a value is async-iterable — anything with Symbol.asyncIterable, such as async generators."
 };
 
 # isAsyncIterable

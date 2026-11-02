@@ -2,7 +2,7 @@ import TryIt from '../../../components/TryIt.jsx';
 export const tryItCode = "const buffer = new ArrayBuffer(8);\n\nconsole.log(isDataView(buffer)); //=> false\n\nconsole.log(isDataView(new Uint8Array(buffer))); //=> false\n\nconsole.log(isDataView(new DataView(buffer))); //=> true";
 export const metadata = {
   title: "isDataView — Types",
-  description: "Checks if the given value is a DataView object."
+  description: "Checks if the given value is a DataView, the byte-level view over an ArrayBuffer or SharedArrayBuffer."
 };
 
 # isDataView

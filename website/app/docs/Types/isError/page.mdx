@@ -2,7 +2,7 @@ import TryIt from '../../../components/TryIt.jsx';
 export const tryItCode = "console.log(isError(new Error())); //=> true\n\nconsole.log(isError({})); //=> false";
 export const metadata = {
   title: "isError — Types",
-  description: "Checks if the given value is an Error."
+  description: "Checks if the given value is an Error object, including errors created in another realm or via subclassing."
 };
 
 # isError

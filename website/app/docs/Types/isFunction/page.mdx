@@ -2,7 +2,7 @@ import TryIt from '../../../components/TryIt.jsx';
 export const tryItCode = "console.log(isFunction(function() {})); //=> true\n\nconsole.log(isFunction({})); //=> false\n\nfunction* generator(i) {\n  yield i;\n  yield i + 10;\n}\n\nconsole.log(isFunction(generator)); //=> true";
 export const metadata = {
   title: "isFunction — Types",
-  description: "Checks if the given value is a Function."
+  description: "Checks if the given value is a callable function, including async functions, generators and bound functions."
 };
 
 # isFunction

@@ -2,7 +2,7 @@ import TryIt from '../../../components/TryIt.jsx';
 export const tryItCode = "console.log(stripANSI('\\u001b[31mHello\\u001b[0m'));\n//=> 'Hello'\n\nconsole.log(stripANSI('\\x1b[4mUnderline\\x1b[0m'));\n//=> 'Underline'";
 export const metadata = {
   title: "stripANSI — String",
-  description: "Removes ANSI escape codes from a string."
+  description: "Removes ANSI escape codes from a string so terminal colour sequences never leak into logs or plain-text output."
 };
 
 # stripANSI

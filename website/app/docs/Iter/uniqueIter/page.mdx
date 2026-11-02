@@ -2,7 +2,7 @@ import TryIt from '../../../components/TryIt.jsx';
 export const tryItCode = "console.log([...uniqueIter([1, 2, 2, 3, 1])]); //=> [1, 2, 3]\n\nconst users = [{ id: 1 }, { id: 2 }, { id: 1 }];\nconsole.log([...uniqueIter(users, (u) => u.id)]); //=> [{ id: 1 }, { id: 2 }]";
 export const metadata = {
   title: "uniqueIter — Iter",
-  description: "Yields each item the first time it is seen."
+  description: "Yields each item the first time it is seen, dropping later duplicates while preserving encounter order."
 };
 
 # uniqueIter
