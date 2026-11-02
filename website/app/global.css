@@ -11,8 +11,15 @@ body {
   margin: 0;
 }
 
-/* Footer: theme `afwd-footer` supplies the shell; site rules position the
- * centered policy link and style the org row, badge and bottom line. */
+/* Footer: the theme's `afwd-footer` lives in `@layer afw-docs`, which ranks
+ * after Tailwind's utilities — so `bg-zinc-950` on the element loses to
+ * `background: var(--afw-bg-surface)`. This unlayered rule beats every layer
+ * and keeps the footer dark (same override ES-Runtime uses). */
+.afwd-footer {
+  background-color: #09090b;
+  border-top: 1px solid #27272a;
+  color: #a1a1aa;
+}
 .site-footer-inner {
   position: relative;
 }
